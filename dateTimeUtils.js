@@ -37,3 +37,18 @@ Date.prototype.weekNumber = function() {
     }
     return n
 }
+
+Date.prototype.daysInMonth = function(weekDay) {
+    var y = this.getFullYear(), m = this.getMonth()
+    var date0 = new Date(y, m, 1)
+    var date1 = new Date(y + (m == 11), m < 11 ? m + 1 : 0, 1)
+    var day = date0.getDay()
+    var m = (date1.getTime() - date0.getTime()) / msPerDay
+    var n = 0
+    while (m > 0) {
+        if (day == weekDay) n = n + 1
+        day = day < 6 ? day + 1 : 0
+        m = m - 1
+    }
+    return n
+}
