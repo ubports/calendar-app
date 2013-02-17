@@ -16,6 +16,7 @@ ListView {
         property var timeOrigin: (new Date()).weekStart(monthView.weekStartDay)
         property var today: (new Date()).midnight()
         property int currentMonth: today.getMonth()
+        property int currentYear: today.getFullYear()
     }
 
     clip: true
@@ -36,7 +37,7 @@ ListView {
         Rectangle {
             id: monthRect
             property int month: weekOrigin.getMonth()
-            property bool isCurrentMonth: month == internal.currentMonth
+            property bool isCurrentMonth: month == internal.currentMonth && weekOrigin.getFullYear() == internal.currentYear
             y: -((weekOrigin.getDate() - 1) / 7 | 0) * internal.weekHeight
             width: auxWidth - 1
             height: weekOrigin.daysInMonth(weekStartDay) * internal.weekHeight - 1
