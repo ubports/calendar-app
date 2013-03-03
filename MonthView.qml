@@ -5,123 +5,63 @@ import "DateLib.js" as DateLib
 ListView {
     id: monthView
 
-    property real weeksInView: 12
-    property int weekStartDay: 1 // Monday, FIXME: depends on locale / user settings
-
     QtObject {
-        id: internal
+        id: intern
 
-        property int weekHeight: monthView.height / monthView.weeksInView
-        property int indexOrigin: monthView.count / 2
-        property var timeOrigin: (new Date()).weekStart(monthView.weekStartDay)
-        property var today: (new Date()).midnight()
-        property int currentMonth: today.getMonth()
-        property int currentYear: today.getFullYear()
+        property int squareUnit: monthView.width / 8
+        property int weekStartDay: 1 // Monday, FIXME: depends on locale / user settings
+        property int monthCount: 49
+
+        property var today: (new Date()).midnight() // TODO: update at midnight
+        property int monthIndex0: monthCount / 2
+        property var monthStart0: today.monthStart()
     }
 
     clip: true
+    orientation: ListView.Horizontal
+    model: intern.monthCount
+    snapMode: ListView.SnapOneItem
 
-    model: 21 // 1041 // weeks for about +-10y
+    highlightRangeMode: ListView.StrictlyEnforceRange
+    preferredHighlightBegin: 0
+    preferredHighlightEnd: width
+
+    currentIndex: intern.monthCount / 2
 
     delegate: Item {
-        id: weekItem
+        id: monthItem
 
-        property var weekOrigin: internal.timeOrigin.addDays((index - internal.indexOrigin) * 7)
-        property var weekClosing: weekOrigin.addDays(6)
-        property real dayWidth: width / 8
-        property real auxWidth: dayWidth / 2
+        property var monthStart: intern.monthStart0.addMonths(index - intern.monthIndex0)
+        property var gridStart: monthStart.weekStart(intern.weekStartDay)
 
-        width: parent.width
-        height: internal.weekHeight
+        width: monthView.width
+        height: monthView.height
 
-        Rectangle {
-            id: monthRect
-            property int month: weekOrigin.getMonth()
-            property bool isCurrentMonth: month == internal.currentMonth && weekOrigin.getFullYear() == internal.currentYear
-            y: -((weekOrigin.getDate() - 1) / 7 | 0) * internal.weekHeight
-            width: auxWidth - 1
-            height: weekOrigin.daysInMonth(weekStartDay) * internal.weekHeight - 1
-            color: isCurrentMonth ? "#c94212" : month % 2 ? "#c4c4c4" : "#ededf0"
-            Label {
-                anchors {
-                    centerIn: parent
-                    horizontalCenterOffset: -1
-                }
-                text: {
-                    return [
-                        i18n.tr("January"),
-                        i18n.tr("February"),
-                        i18n.tr("March"),
-                        i18n.tr("April"),
-                        i18n.tr("May"),
-                        i18n.tr("June"),
-                        i18n.tr("July"),
-                        i18n.tr("August"),
-                        i18n.tr("September"),
-                        i18n.tr("October"),
-                        i18n.tr("November"),
-                        i18n.tr("December")
-                    ][weekOrigin.getMonth()]
-                }
-                rotation: 270
-                color: monthRect.isCurrentMonth ? "white" : "#404040"
-            }
-        }
+        Grid {
+            id: monthGrid
 
-        Row {
-            id: dayRow
-            x: auxWidth
-            width: parent.width - 2 * auxWidth
-            height: parent.height
+            x: intern.squareUnit / 2
+            rows: 6
+            columns: 7
+            width: intern.squareUnit * columns
+            height: intern.squareUnit * rows
 
             Repeater {
-                model: 7
+                model: monthGrid.rows * monthGrid.columns
                 delegate: Item {
                     id: dayItem
-
-                    property var dayOrigin: weekOrigin.addDays(index)
-                    property bool isToday: internal.today.getTime() == dayOrigin.getTime()
-
-                    width: dayWidth
-                    height: weekItem.height - 1
-
-                    Rectangle {
-                        width: parent.width - (index < 6)
-                        height: parent.height
-                        color: isToday ? "#c94212" : dayOrigin.getMonth() % 2 ? "#c4c4c4" : "#e0e0e0"
-
-                        Label {
-                            anchors.centerIn: parent
-                            text: dayOrigin.getDate()
-                            color: isToday ? "white" : dayOrigin.getDay() == 0 ? "#c94212" : "#404040"
-                        }
+                    property var dayStart: gridStart.addDays(index)
+                    width: intern.squareUnit
+                    height: intern.squareUnit
+                    Label {
+                        id: label
+                        anchors.centerIn: parent
+                        text: dayStart.getDate()
                     }
                 }
             }
         }
 
-        Item {
-            x: parent.width - auxWidth
-            height: parent.height
-            width: auxWidth
-            Label {
-                anchors.centerIn: parent
-                fontSize: "x-small"
-                text: weekOrigin.weekNumber()
-            }
-        }
+        Component.onCompleted: console.log("Created delegate for month", index, monthStart, gridStart)
     }
-
-    Timer { // make sure today is updated at midnight
-        interval: 1000
-        repeat: true
-        running: true
-
-        onTriggered: {
-            var newDate = (new Date()).midnight()
-            if (internal.today < newDate) internal.today = newDate
-        }
-    }
-
-    Component.onCompleted: positionViewAtIndex(internal.indexOrigin, ListView.Center)
 }
