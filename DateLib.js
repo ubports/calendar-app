@@ -1,17 +1,17 @@
 .pragma library
 
-var msPerDay = 86400e3
-var msPerWeek = msPerDay * 7
+Date.msPerDay = 86400e3
+Date.msPerWeek = Date.msPerDay * 7
 
 Date.prototype.midnight = function() {
     var date = new Date(this)
-    date.setTime(date.getTime() - date.getTime() % msPerDay)
+    date.setTime(date.getTime() - date.getTime() % Date.msPerDay)
     return date
 }
 
 Date.prototype.addDays = function(days) {
     var date = new Date(this)
-    date.setTime(date.getTime() + msPerDay * days)
+    date.setTime(date.getTime() + Date.msPerDay * days)
     return date
 }
 
@@ -32,7 +32,7 @@ Date.prototype.weekNumber = function() {
     var n = 0
     var tx = date.getTime(), tn = newYear.getTime()
     while (tn < tx) {
-        tx = tx - msPerWeek
+        tx = tx - Date.msPerWeek
         n = n + 1
     }
     return n
@@ -43,7 +43,7 @@ Date.prototype.daysInMonth = function(weekDay) {
     var date0 = new Date(y, m, 1)
     var date1 = new Date(y + (m == 11), m < 11 ? m + 1 : 0, 1)
     var day = date0.getDay()
-    var m = (date1.getTime() - date0.getTime()) / msPerDay
+    var m = (date1.getTime() - date0.getTime()) / Date.msPerDay
     var n = 0
     while (m > 0) {
         if (day == weekDay) n = n + 1

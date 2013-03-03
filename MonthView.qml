@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import "dateTimeUtils.js" as DateTime
+import "DateLib.js" as DateLib
 
 ListView {
     id: monthView
