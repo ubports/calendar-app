@@ -11,7 +11,7 @@ ListView {
     QtObject {
         id: internal
 
-        property real weekHeight: monthView.height / monthView.weeksInView
+        property int weekHeight: monthView.height / monthView.weeksInView
         property int indexOrigin: monthView.count / 2
         property var timeOrigin: (new Date()).weekStart(monthView.weekStartDay)
         property var today: (new Date()).midnight()
@@ -21,7 +21,7 @@ ListView {
 
     clip: true
 
-    model: 1041 // weeks for about +-10y
+    model: 21 // 1041 // weeks for about +-10y
 
     delegate: Item {
         id: weekItem
