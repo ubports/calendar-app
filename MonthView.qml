@@ -10,7 +10,7 @@ ListView {
 
         property int squareUnit: monthView.width / 8
         property int weekStartDay: 1 // Monday, FIXME: depends on locale / user settings
-        property int monthCount: 49
+        property int monthCount: 49 // months for +-2 years
 
         property var today: (new Date()).midnight() // TODO: update at midnight
         property int monthIndex0: monthCount / 2
@@ -19,13 +19,14 @@ ListView {
 
     clip: true
     orientation: ListView.Horizontal
-    model: intern.monthCount
     snapMode: ListView.SnapOneItem
+    cacheBuffer: width + 1
 
     highlightRangeMode: ListView.StrictlyEnforceRange
     preferredHighlightBegin: 0
     preferredHighlightEnd: width
 
+    model: intern.monthCount
     currentIndex: intern.monthCount / 2
 
     delegate: Item {
@@ -53,15 +54,21 @@ ListView {
                     property var dayStart: gridStart.addDays(index)
                     width: intern.squareUnit
                     height: intern.squareUnit
-                    Label {
-                        id: label
+                    Text { // FIXME: Label is seriously less performant than Text
                         anchors.centerIn: parent
                         text: dayStart.getDate()
+                        font: themeDummy.font
+                        color: themeDummy.color
                     }
                 }
             }
         }
 
-        Component.onCompleted: console.log("Created delegate for month", index, monthStart, gridStart)
+        // Component.onCompleted: console.log("Created delegate for month", index, monthStart, gridStart)
+    }
+
+    Label {
+        visible: false
+        id: themeDummy
     }
 }
