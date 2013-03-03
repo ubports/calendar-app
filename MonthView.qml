@@ -7,11 +7,11 @@ ListView {
 
     readonly property var monthStart: currentItem != null ? currentItem.monthStart : (new Date())
 
-    signal gotoMonth(int month)
+    signal gotoNextMonth(int month)
 
-    onGotoMonth: {
+    onGotoNextMonth: {
         if (monthStart.getMonth() != month) {
-            var i = 0, m = intern.today.getMonth()
+            var i = intern.monthIndex0, m = intern.today.getMonth()
             while (m != month) {
                 m = (m + 1) % 12
                 i = i + 1
@@ -24,7 +24,7 @@ ListView {
         id: intern
 
         property int squareUnit: monthView.width / 8
-        property int weekStartDay: 1 // Monday, FIXME: depends on locale / user settings
+        property int weekstartDay: 1 // 1=Monday,0=Sunday, FIXME: depends on locale / user settings
         property int monthCount: 49 // months for +-2 years
 
         property var today: (new Date()).midnight() // TODO: update at midnight
@@ -48,7 +48,8 @@ ListView {
         id: monthItem
 
         property var monthStart: intern.monthStart0.addMonths(index - intern.monthIndex0)
-        property var gridStart: monthStart.weekStart(intern.weekStartDay)
+        property var monthEnd: monthStart.addMonths(1)
+        property var gridStart: monthStart.weekStart(intern.weekstartDay)
 
         width: monthView.width
         height: monthView.height
@@ -67,14 +68,21 @@ ListView {
                 delegate: Item {
                     id: dayItem
                     property var dayStart: gridStart.addDays(index)
+                    property bool isCurrentMonth: (monthStart <= dayStart) && (dayStart < monthEnd)
+                    property bool isToday: dayStart.getTime() == intern.today.getTime()
+                    // property int weekday: (index % 7 + intern.weekstartDay) % 7
+                    // property bool isSunday: weekday == 0
                     width: intern.squareUnit
                     height: intern.squareUnit
                     Text { // FIXME: Label is seriously less performant than Text
                         anchors.centerIn: parent
                         text: dayStart.getDate()
                         font: themeDummy.font
-                        color: themeDummy.color
+                        color: Qt.lighter(isToday ? "#DD4814" : themeDummy.color, isCurrentMonth ? 1. : 1.74)
+                            // FIXME: need to get the colors from theme engine
+                        scale: isToday ? 1.5 : 1.
                     }
+                    // Component.onCompleted: console.log(dayStart, intern.today, isToday)
                 }
             }
         }
@@ -85,5 +93,6 @@ ListView {
     Label {
         visible: false
         id: themeDummy
+        // Component.onCompleted: console.log(color, Qt.lighter(color, 1.74))
     }
 }

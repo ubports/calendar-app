@@ -24,7 +24,7 @@ MainView {
         Tab { title: i18n.tr("November") }
         Tab { title: i18n.tr("December") }
 
-        onSelectedTabIndexChanged: monthView.gotoMonth(selectedTabIndex)
+        onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
     }
 
     MonthView {
