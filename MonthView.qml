@@ -78,9 +78,10 @@ ListView {
                         anchors.centerIn: parent
                         text: dayStart.getDate()
                         font: themeDummy.font
-                        color: Qt.lighter(isToday ? "#DD4814" : themeDummy.color, isCurrentMonth ? 1. : 1.74)
+                        color: isToday ? "#DD4814" : themeDummy.color
                             // FIXME: need to get the colors from theme engine
                         scale: isToday ? 1.5 : 1.
+                        opacity: isCurrentMonth ? 1. : 0.3
                     }
                     // Component.onCompleted: console.log(dayStart, intern.today, isToday)
                 }
@@ -93,6 +94,7 @@ ListView {
     Label {
         visible: false
         id: themeDummy
+        fontSize: "large"
         // Component.onCompleted: console.log(color, Qt.lighter(color, 1.74))
     }
 }
