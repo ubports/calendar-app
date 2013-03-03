@@ -5,6 +5,21 @@ import "DateLib.js" as DateLib
 ListView {
     id: monthView
 
+    readonly property var monthStart: currentItem != null ? currentItem.monthStart : (new Date())
+
+    signal gotoMonth(int month)
+
+    onGotoMonth: {
+        if (monthStart.getMonth() != month) {
+            var i = 0, m = intern.today.getMonth()
+            while (m != month) {
+                m = (m + 1) % 12
+                i = i + 1
+            }
+            currentIndex = i
+        }
+    }
+
     QtObject {
         id: intern
 
