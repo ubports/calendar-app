@@ -1,13 +1,54 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import "DateLib.js" as DateLib
+import "colorUtils.js" as Color
 
 ListView {
     id: monthView
 
-    readonly property var monthStart: currentItem != null ? currentItem.monthStart : (new Date())
+    readonly property var monthStart: currentItem != null ? currentItem.monthStart : (new Date()).monthStart()
+    readonly property var monthEnd: currentItem != null ? currentItem.monthEnd : (new Date()).monthStart().addMonths(1)
+    readonly property var currentDayStart: intern.currentDayStart
+
+    signal incrementCurrentDay
+    signal decrementCurrentDay
 
     signal gotoNextMonth(int month)
+
+    onCurrentItemChanged: {
+        if (currentItem == null) {
+            intern.currentDayStart = intern.currentDayStart
+            return
+        }
+        if (currentItem.monthStart <= intern.currentDayStart && intern.currentDayStart < currentItem.monthEnd)
+            return
+        if (currentItem.monthStart <= intern.today && intern.today < currentItem.monthEnd)
+            intern.currentDayStart = intern.today
+        else
+            intern.currentDayStart = currentItem.monthStart
+    }
+
+    onIncrementCurrentDay: {
+        var t = intern.currentDayStart.addDays(1)
+        if (t < monthEnd) {
+            intern.currentDayStart = t
+        }
+        else if (currentIndex < count - 1) {
+            intern.currentDayStart = t
+            currentIndex = currentIndex + 1
+        }
+    }
+
+    onDecrementCurrentDay: {
+        var t = intern.currentDayStart.addDays(-1)
+        if (t >= monthStart) {
+            intern.currentDayStart = t
+        }
+        else if (currentIndex > 0) {
+            intern.currentDayStart = t
+            currentIndex = currentIndex - 1
+        }
+    }
 
     onGotoNextMonth: {
         if (monthStart.getMonth() != month) {
@@ -20,6 +61,10 @@ ListView {
         }
     }
 
+    focus: true
+    Keys.onLeftPressed: decrementCurrentDay()
+    Keys.onRightPressed: incrementCurrentDay()
+
     QtObject {
         id: intern
 
@@ -28,6 +73,7 @@ ListView {
         property int monthCount: 49 // months for +-2 years
 
         property var today: (new Date()).midnight() // TODO: update at midnight
+        property var currentDayStart: today
         property int monthIndex0: monthCount / 2
         property var monthStart0: today.monthStart()
     }
@@ -70,20 +116,29 @@ ListView {
                     property var dayStart: gridStart.addDays(index)
                     property bool isCurrentMonth: (monthStart <= dayStart) && (dayStart < monthEnd)
                     property bool isToday: dayStart.getTime() == intern.today.getTime()
-                    // property int weekday: (index % 7 + intern.weekstartDay) % 7
-                    // property bool isSunday: weekday == 0
+                    property bool isCurrent: dayStart.getTime() == intern.currentDayStart.getTime()
+                    property int weekday: (index % 7 + intern.weekstartDay) % 7
+                    property bool isSunday: weekday == 0
                     width: intern.squareUnit
                     height: intern.squareUnit
-                    Text { // FIXME: Label is seriously less performant than Text
+                    Rectangle {
+                        visible: isSunday
+                        anchors.fill: parent
+                        color: Color.warmGrey
+                        opacity: 0.1
+                    }
+                    Text {
                         anchors.centerIn: parent
                         text: dayStart.getDate()
                         font: themeDummy.font
-                        color: isToday ? "#DD4814" : themeDummy.color
-                            // FIXME: need to get the colors from theme engine
-                        scale: isToday ? 1.5 : 1.
+                        color: isToday ? Color.ubuntuOrange : themeDummy.color
+                        scale: isCurrent ? 1.5 : 1.
                         opacity: isCurrentMonth ? 1. : 0.3
+                        Behavior on scale {
+                            NumberAnimation { duration: 100 }
+                        }
                     }
-                    // Component.onCompleted: console.log(dayStart, intern.today, isToday)
+                    // Component.onCompleted: console.log(dayStart, intern.currentDayStart)
                 }
             }
         }
