@@ -114,7 +114,7 @@ ListView {
                 delegate: Item {
                     id: dayItem
                     property var dayStart: gridStart.addDays(index)
-                    property bool isCurrentMonth: (monthStart <= dayStart) && (dayStart < monthEnd)
+                    property bool isCurrentMonth: monthStart <= dayStart && dayStart < monthEnd
                     property bool isToday: dayStart.getTime() == intern.today.getTime()
                     property bool isCurrent: dayStart.getTime() == intern.currentDayStart.getTime()
                     property int weekday: (index % 7 + intern.weekstartDay) % 7
@@ -132,10 +132,10 @@ ListView {
                         text: dayStart.getDate()
                         font: themeDummy.font
                         color: isToday ? Color.ubuntuOrange : themeDummy.color
-                        scale: isCurrent ? 1.5 : 1.
+                        scale: isCurrent ? 1.8 : 1.
                         opacity: isCurrentMonth ? 1. : 0.3
                         Behavior on scale {
-                            NumberAnimation { duration: 100 }
+                            NumberAnimation { duration: 50 }
                         }
                     }
                     // Component.onCompleted: console.log(dayStart, intern.currentDayStart)

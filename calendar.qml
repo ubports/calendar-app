@@ -34,4 +34,16 @@ MainView {
         width: mainView.width
         height: (mainView.width / 8) * 6
     }
+
+    EventView {
+        id: eventView
+        currentDayStart: monthView.currentDayStart
+        anchors.top: monthView.bottom
+        anchors.bottom: parent.bottom
+        width: mainView.width
+        Component.onCompleted: {
+            incrementCurrentDay.connect(monthView.incrementCurrentDay)
+            decrementCurrentDay.connect(monthView.decrementCurrentDay)
+        }
+    }
 }
