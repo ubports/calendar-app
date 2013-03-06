@@ -24,11 +24,11 @@ MainView {
         Tab { title: i18n.tr("November") }
         Tab { title: i18n.tr("December") }
 
-        onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
+        onSelectedTabIndexChanged: calendarView.gotoNextMonth(selectedTabIndex)
     }
 
-    MonthView {
-        id: monthView
+    CalendarView {
+        id: calendarView
         onMonthStartChanged: tabs.selectedTabIndex = monthStart.getMonth()
         y: pageArea.y
         width: mainView.width
@@ -37,13 +37,13 @@ MainView {
 
     EventView {
         id: eventView
-        currentDayStart: monthView.currentDayStart
-        anchors.top: monthView.bottom
+        currentDayStart: calendarView.currentDayStart
+        anchors.top: calendarView.bottom
         anchors.bottom: parent.bottom
         width: mainView.width
         Component.onCompleted: {
-            incrementCurrentDay.connect(monthView.incrementCurrentDay)
-            decrementCurrentDay.connect(monthView.decrementCurrentDay)
+            incrementCurrentDay.connect(calendarView.incrementCurrentDay)
+            decrementCurrentDay.connect(calendarView.decrementCurrentDay)
         }
     }
 }

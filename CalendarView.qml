@@ -4,7 +4,7 @@ import "DateLib.js" as DateLib
 import "colorUtils.js" as Color
 
 ListView {
-    id: monthView
+    id: calendarView
 
     readonly property var monthStart: currentItem != null ? currentItem.monthStart : (new Date()).monthStart()
     readonly property var monthEnd: currentItem != null ? currentItem.monthEnd : (new Date()).monthStart().addMonths(1)
@@ -14,6 +14,7 @@ ListView {
     signal decrementCurrentDay
 
     signal gotoNextMonth(int month)
+    signal focusOnDay(var dayStart)
 
     onCurrentItemChanged: {
         if (currentItem == null) {
@@ -61,6 +62,22 @@ ListView {
         }
     }
 
+    onFocusOnDay: {
+        if (dayStart < monthStart) {
+            if (currentIndex > 0) {
+                intern.currentDayStart = dayStart
+                currentIndex = currentIndex - 1
+            }
+        }
+        else if (dayStart >= monthEnd) {
+            if (currentIndex < count - 1) {
+                intern.currentDayStart = dayStart
+                currentIndex = currentIndex + 1
+            }
+        }
+        else intern.currentDayStart = dayStart
+    }
+
     focus: true
     Keys.onLeftPressed: decrementCurrentDay()
     Keys.onRightPressed: incrementCurrentDay()
@@ -68,7 +85,7 @@ ListView {
     QtObject {
         id: intern
 
-        property int squareUnit: monthView.width / 8
+        property int squareUnit: calendarView.width / 8
         property int weekstartDay: Qt.locale().firstDayOfWeek
         property int monthCount: 49 // months for +-2 years
 
@@ -96,9 +113,10 @@ ListView {
         property var monthStart: intern.monthStart0.addMonths(index - intern.monthIndex0)
         property var monthEnd: monthStart.addMonths(1)
         property var gridStart: monthStart.weekStart(intern.weekstartDay)
+        property int currentWeekRow: (currentDayStart.getTime() - gridStart.getTime()) / Date.msPerWeek
 
-        width: monthView.width
-        height: monthView.height
+        width: calendarView.width
+        height: calendarView.height
 
         Grid {
             id: monthGrid
@@ -119,6 +137,7 @@ ListView {
                     property bool isCurrent: dayStart.getTime() == intern.currentDayStart.getTime()
                     property int weekday: (index % 7 + intern.weekstartDay) % 7
                     property bool isSunday: weekday == 0
+                    property bool isCurrentWeek: ((index / 7) | 0) == currentWeekRow
                     width: intern.squareUnit
                     height: intern.squareUnit
                     Rectangle {
@@ -137,6 +156,10 @@ ListView {
                         Behavior on scale {
                             NumberAnimation { duration: 50 }
                         }
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onReleased: calendarView.focusOnDay(dayStart)
                     }
                     // Component.onCompleted: console.log(dayStart, intern.currentDayStart)
                 }
