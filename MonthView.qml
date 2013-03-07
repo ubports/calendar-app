@@ -4,7 +4,7 @@ import "DateLib.js" as DateLib
 import "colorUtils.js" as Color
 
 ListView {
-    id: calendarView
+    id: monthView
 
     readonly property var monthStart: currentItem != null ? currentItem.monthStart : (new Date()).monthStart()
     readonly property var monthEnd: currentItem != null ? currentItem.monthEnd : (new Date()).monthStart().addMonths(1)
@@ -85,7 +85,7 @@ ListView {
     QtObject {
         id: intern
 
-        property int squareUnit: calendarView.width / 8
+        property int squareUnit: monthView.width / 8
         property int weekstartDay: Qt.locale().firstDayOfWeek
         property int monthCount: 49 // months for +-2 years
 
@@ -115,8 +115,8 @@ ListView {
         property var gridStart: monthStart.weekStart(intern.weekstartDay)
         property int currentWeekRow: (currentDayStart.getTime() - gridStart.getTime()) / Date.msPerWeek
 
-        width: calendarView.width
-        height: calendarView.height
+        width: monthView.width
+        height: monthView.height
 
         Grid {
             id: monthGrid
@@ -159,7 +159,7 @@ ListView {
                     }
                     MouseArea {
                         anchors.fill: parent
-                        onReleased: calendarView.focusOnDay(dayStart)
+                        onReleased: monthView.focusOnDay(dayStart)
                     }
                     // Component.onCompleted: console.log(dayStart, intern.currentDayStart)
                 }

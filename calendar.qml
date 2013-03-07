@@ -24,11 +24,11 @@ MainView {
         Tab { title: i18n.tr("November") }
         Tab { title: i18n.tr("December") }
 
-        onSelectedTabIndexChanged: calendarView.gotoNextMonth(selectedTabIndex)
+        onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
     }
 
-    CalendarView {
-        id: calendarView
+    MonthView {
+        id: monthView
         onMonthStartChanged: tabs.selectedTabIndex = monthStart.getMonth()
         y: pageArea.y
         width: mainView.width
@@ -37,13 +37,28 @@ MainView {
 
     EventView {
         id: eventView
-        currentDayStart: calendarView.currentDayStart
-        anchors.top: calendarView.bottom
-        anchors.bottom: parent.bottom
+        y: pageArea.y + monthView.height
         width: mainView.width
+        height: parent.height
+        currentDayStart: monthView.currentDayStart
         Component.onCompleted: {
-            incrementCurrentDay.connect(calendarView.incrementCurrentDay)
-            decrementCurrentDay.connect(calendarView.decrementCurrentDay)
+            incrementCurrentDay.connect(monthView.incrementCurrentDay)
+            decrementCurrentDay.connect(monthView.decrementCurrentDay)
+        }
+        MouseArea {
+            enabled: !monthView.weekFocus
+            anchors.fill: parent
+            drag {
+                axis: Drag.YAxis
+                target: eventView
+                minimumY: monthView.y
+                maximumY: pageArea.y + monthView.height
+                onActiveChanged: {
+                    if (!drag.active) {
+                        eventView.y =  Qt.binding(function() { return pageArea.y + monthView.height })
+                    }
+                }
+            }
         }
     }
 }

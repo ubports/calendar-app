@@ -10,6 +10,8 @@ PathView {
     signal incrementCurrentDay
     signal decrementCurrentDay
 
+    readonly property real visibleHeight: parent.height - y
+
     QtObject {
         id: intern
         property int currentIndexSaved: 0
@@ -61,7 +63,8 @@ PathView {
         height: eventView.height
         color: index == 0 ? "#FFFFFF" : index == 1 ? "#EEEEEE" : "#DDDDDD"
         Label {
-            anchors.centerIn: parent
+            anchors.horizontalCenter: parent.horizontalCenter
+            y: units.gu(4)
             text: i18n.tr("No events for") + "\n" + Qt.formatDate(dayStart)
             fontSize: "large"
         }
