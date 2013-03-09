@@ -61,4 +61,29 @@ MainView {
             }
         }
     }
+
+    Image {
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        source: Qt.resolvedUrl("avatar.png")
+        Component.onCompleted: console.log(source, Qt.resolvedUrl("avatar.png"), width, height, sourceSize)
+    }
+
+    tools: ToolbarActions {
+        Action {
+            iconSource: Qt.resolvedUrl("avatar.png")
+            text: i18n.tr("To-do")
+            onTriggered:; // FIXME
+        }
+        Action {
+            iconSource: Qt.resolvedUrl("avatar.png")
+            text: i18n.tr("New Event")
+            onTriggered:; // FIXME
+        }
+        Action {
+            iconSource: Qt.resolvedUrl("avatar.png")
+            text: i18n.tr("Timeline")
+            onTriggered:; // FIXME
+        }
+    }
 }
