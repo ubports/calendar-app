@@ -31,42 +31,56 @@ MainView {
         id: monthView
         onMonthStartChanged: tabs.selectedTabIndex = monthStart.getMonth()
         y: pageArea.y
-        width: mainView.width
-        height: (mainView.width / 8) * 6
     }
 
     EventView {
         id: eventView
-        y: pageArea.y + monthView.height
+        property real minY: pageArea.y + monthView.compressedHeight
+        property real maxY: pageArea.y + monthView.height
+        y: maxY
         width: mainView.width
-        height: parent.height
+        height: parent.height - monthView.compressedHeight
         currentDayStart: monthView.currentDayStart
         Component.onCompleted: {
             incrementCurrentDay.connect(monthView.incrementCurrentDay)
             decrementCurrentDay.connect(monthView.decrementCurrentDay)
         }
         MouseArea {
-            enabled: !monthView.weekFocus
+            id: drawer
+            property bool compression: true
             anchors.fill: parent
             drag {
                 axis: Drag.YAxis
                 target: eventView
-                minimumY: monthView.y
-                maximumY: pageArea.y + monthView.height
+                minimumY: monthView.y + monthView.compressedHeight
+                maximumY: monthView.y + monthView.height
                 onActiveChanged: {
-                    if (!drag.active) {
-                        eventView.y =  Qt.binding(function() { return pageArea.y + monthView.height })
+                    if (compression) {
+                        if (drag.active) {
+                            monthView.compressed = true
+                        }
+                        else {
+                            yBehavior.enabled = true
+                            eventView.y =  Qt.binding(function() { return eventView.minY })
+                            compression = false
+                        }
+                    }
+                    else {
+                        if (drag.active) {}
+                        else{
+                            eventView.y =  Qt.binding(function() { return eventView.maxY })
+                            monthView.compressed = false
+                            compression = true
+                        }
                     }
                 }
             }
         }
-    }
-
-    Image {
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        source: Qt.resolvedUrl("avatar.png")
-        Component.onCompleted: console.log(source, Qt.resolvedUrl("avatar.png"), width, height, sourceSize)
+        Behavior on y {
+            id: yBehavior
+            enabled: false
+            NumberAnimation { duration: 100 }
+        }
     }
 
     tools: ToolbarActions {

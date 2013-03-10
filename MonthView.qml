@@ -10,6 +10,9 @@ ListView {
     readonly property var monthEnd: currentItem != null ? currentItem.monthEnd : (new Date()).monthStart().addMonths(1)
     readonly property var currentDayStart: intern.currentDayStart
 
+    property bool compressed: false
+    property real compressedHeight: intern.squareUnit + intern.verticalMargin * 2
+
     signal incrementCurrentDay
     signal decrementCurrentDay
 
@@ -86,15 +89,20 @@ ListView {
         id: intern
 
         property int squareUnit: monthView.width / 8
+        property int verticalMargin: units.gu(1)
         property int weekstartDay: Qt.locale().firstDayOfWeek
         property int monthCount: 49 // months for +-2 years
 
         property var today: (new Date()).midnight() // TODO: update at midnight
         property var currentDayStart: today
-        property int monthIndex0: monthCount / 2
+        property int monthIndex0: Math.floor(monthCount / 2)
         property var monthStart0: today.monthStart()
     }
 
+    width: parent.width
+    height: intern.squareUnit * 6 + intern.verticalMargin * 2
+
+    interactive: !compressed
     clip: true
     orientation: ListView.Horizontal
     snapMode: ListView.SnapOneItem
@@ -105,7 +113,7 @@ ListView {
     preferredHighlightEnd: width
 
     model: intern.monthCount
-    currentIndex: intern.monthCount / 2
+    currentIndex: intern.monthIndex0
 
     delegate: Item {
         id: monthItem
@@ -113,7 +121,7 @@ ListView {
         property var monthStart: intern.monthStart0.addMonths(index - intern.monthIndex0)
         property var monthEnd: monthStart.addMonths(1)
         property var gridStart: monthStart.weekStart(intern.weekstartDay)
-        property int currentWeekRow: (currentDayStart.getTime() - gridStart.getTime()) / Date.msPerWeek
+        property int currentWeekRow: Math.floor((currentDayStart.getTime() - gridStart.getTime()) / Date.msPerWeek)
 
         width: monthView.width
         height: monthView.height
@@ -121,9 +129,11 @@ ListView {
         Grid {
             id: monthGrid
 
-            x: intern.squareUnit / 2
             rows: 6
             columns: 7
+
+            x: intern.squareUnit / 2
+            y: intern.verticalMargin
             width: intern.squareUnit * columns
             height: intern.squareUnit * rows
 
@@ -137,12 +147,18 @@ ListView {
                     property bool isCurrent: dayStart.getTime() == intern.currentDayStart.getTime()
                     property int weekday: (index % 7 + intern.weekstartDay) % 7
                     property bool isSunday: weekday == 0
-                    property bool isCurrentWeek: ((index / 7) | 0) == currentWeekRow
+                    property int row: Math.floor(index / 7)
+                    property bool isCurrentWeek: row == currentWeekRow
+                    property real topMargin: (row == 0 || (monthView.compressed && isCurrentWeek)) ? -intern.verticalMargin : 0
+                    property real bottomMargin: (row == 5 || (monthView.compressed && isCurrentWeek)) ? -intern.verticalMargin : 0
+                    visible: monthView.compressed ? isCurrentWeek : true
                     width: intern.squareUnit
                     height: intern.squareUnit
                     Rectangle {
                         visible: isSunday
                         anchors.fill: parent
+                        anchors.topMargin: dayItem.topMargin
+                        anchors.bottomMargin: dayItem.bottomMargin
                         color: Color.warmGrey
                         opacity: 0.1
                     }
@@ -159,6 +175,8 @@ ListView {
                     }
                     MouseArea {
                         anchors.fill: parent
+                        anchors.topMargin: dayItem.topMargin
+                        anchors.bottomMargin: dayItem.bottomMargin
                         onReleased: monthView.focusOnDay(dayStart)
                     }
                     // Component.onCompleted: console.log(dayStart, intern.currentDayStart)
@@ -166,7 +184,7 @@ ListView {
             }
         }
 
-        // Component.onCompleted: console.log("Created delegate for month", index, monthStart, gridStart)
+        // Component.onCompleted: console.log("Created delegate for month", index, monthStart, gridStart, currentWeekRow, currentWeekRowReal)
     }
 
     Label {
