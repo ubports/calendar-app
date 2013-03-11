@@ -1,73 +1,196 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import "dateTimeUtils.js" as DateTime
+import "DateLib.js" as DateLib
+import "colorUtils.js" as Color
 
 ListView {
-    id: monthView // id for internal reference
+    id: monthView
 
-    // public properties
-    property bool portraitMode: width < height
-    property real weeksInView: 8
-    property int weekStartDay: 1 // Monday, FIXME: depends on locale / user settings
+    readonly property var monthStart: currentItem != null ? currentItem.monthStart : (new Date()).monthStart()
+    readonly property var monthEnd: currentItem != null ? currentItem.monthEnd : (new Date()).monthStart().addMonths(1)
+    readonly property var currentDayStart: intern.currentDayStart
 
-    // private properties
-    QtObject {
-        id: internal
+    property bool compressed: false
+    property real compressedHeight: intern.squareUnit + intern.verticalMargin * 2
 
-        property real weekHeight: monthView.height / monthView.weeksInView | 0
-        property int indexOrigin: monthView.count / 2
-        property var timeOrigin: (new Date()).weekStart(monthView.weekStartDay)
-        property var today: (new Date()).midnight()
+    signal incrementCurrentDay
+    signal decrementCurrentDay
+
+    signal gotoNextMonth(int month)
+    signal focusOnDay(var dayStart)
+
+    onCurrentItemChanged: {
+        if (currentItem == null) {
+            intern.currentDayStart = intern.currentDayStart
+            return
+        }
+        if (currentItem.monthStart <= intern.currentDayStart && intern.currentDayStart < currentItem.monthEnd)
+            return
+        if (currentItem.monthStart <= intern.today && intern.today < currentItem.monthEnd)
+            intern.currentDayStart = intern.today
+        else
+            intern.currentDayStart = currentItem.monthStart
     }
 
-    clip: true
+    onIncrementCurrentDay: {
+        var t = intern.currentDayStart.addDays(1)
+        if (t < monthEnd) {
+            intern.currentDayStart = t
+        }
+        else if (currentIndex < count - 1) {
+            intern.currentDayStart = t
+            currentIndex = currentIndex + 1
+        }
+    }
 
-    model: 1041 // weeks for about +-10y
+    onDecrementCurrentDay: {
+        var t = intern.currentDayStart.addDays(-1)
+        if (t >= monthStart) {
+            intern.currentDayStart = t
+        }
+        else if (currentIndex > 0) {
+            intern.currentDayStart = t
+            currentIndex = currentIndex - 1
+        }
+    }
+
+    onGotoNextMonth: {
+        if (monthStart.getMonth() != month) {
+            var i = intern.monthIndex0, m = intern.today.getMonth()
+            while (m != month) {
+                m = (m + 1) % 12
+                i = i + 1
+            }
+            currentIndex = i
+        }
+    }
+
+    onFocusOnDay: {
+        if (dayStart < monthStart) {
+            if (currentIndex > 0) {
+                intern.currentDayStart = dayStart
+                currentIndex = currentIndex - 1
+            }
+        }
+        else if (dayStart >= monthEnd) {
+            if (currentIndex < count - 1) {
+                intern.currentDayStart = dayStart
+                currentIndex = currentIndex + 1
+            }
+        }
+        else intern.currentDayStart = dayStart
+    }
+
+    focus: true
+    Keys.onLeftPressed: decrementCurrentDay()
+    Keys.onRightPressed: incrementCurrentDay()
+
+    QtObject {
+        id: intern
+
+        property int squareUnit: monthView.width / 8
+        property int verticalMargin: units.gu(1)
+        property int weekstartDay: Qt.locale().firstDayOfWeek
+        property int monthCount: 49 // months for +-2 years
+
+        property var today: (new Date()).midnight() // TODO: update at midnight
+        property var currentDayStart: today
+        property int monthIndex0: Math.floor(monthCount / 2)
+        property var monthStart0: today.monthStart()
+    }
+
+    width: parent.width
+    height: intern.squareUnit * 6 + intern.verticalMargin * 2
+
+    interactive: !compressed
+    clip: true
+    orientation: ListView.Horizontal
+    snapMode: ListView.SnapOneItem
+    cacheBuffer: width + 1
+
+    highlightRangeMode: ListView.StrictlyEnforceRange
+    preferredHighlightBegin: 0
+    preferredHighlightEnd: width
+
+    model: intern.monthCount
+    currentIndex: intern.monthIndex0
 
     delegate: Item {
-        id: weekItem
+        id: monthItem
 
-        property var weekOrigin: internal.timeOrigin.addDays((index - internal.indexOrigin) * 7)
+        property var monthStart: intern.monthStart0.addMonths(index - intern.monthIndex0)
+        property var monthEnd: monthStart.addMonths(1)
+        property var gridStart: monthStart.weekStart(intern.weekstartDay)
+        property int currentWeekRow: Math.floor((currentDayStart.getTime() - gridStart.getTime()) / Date.msPerWeek)
 
-        width: parent.width
-        height: internal.weekHeight
+        width: monthView.width
+        height: monthView.height
 
-        Row {
-            anchors.fill: parent
-            spacing: 1
+        Grid {
+            id: monthGrid
+
+            rows: 6
+            columns: 7
+
+            x: intern.squareUnit / 2
+            y: intern.verticalMargin
+            width: intern.squareUnit * columns
+            height: intern.squareUnit * rows
 
             Repeater {
-                model: 7
-                delegate: Rectangle {
+                model: monthGrid.rows * monthGrid.columns
+                delegate: Item {
                     id: dayItem
-
-                    property var dayOrigin: weekOrigin.addDays(index)
-                    property bool isToday: internal.today.getTime() == dayOrigin.getTime()
-
-                    width: weekItem.width / 7
-                    height: weekItem.height - 1
-                    color: isToday ? "#c94212" : dayOrigin.getMonth() % 2 ? "#c4c4c4" : "#e0e0e0"
-
-                    Label {
-                        anchors.centerIn: parent
-                        text: dayOrigin.getDate()
-                        color: isToday ? "white" : dayOrigin.getDay() == 0 ? "#c94212" : "#404040"
+                    property var dayStart: gridStart.addDays(index)
+                    property bool isCurrentMonth: monthStart <= dayStart && dayStart < monthEnd
+                    property bool isToday: dayStart.getTime() == intern.today.getTime()
+                    property bool isCurrent: dayStart.getTime() == intern.currentDayStart.getTime()
+                    property int weekday: (index % 7 + intern.weekstartDay) % 7
+                    property bool isSunday: weekday == 0
+                    property int row: Math.floor(index / 7)
+                    property bool isCurrentWeek: row == currentWeekRow
+                    property real topMargin: (row == 0 || (monthView.compressed && isCurrentWeek)) ? -intern.verticalMargin : 0
+                    property real bottomMargin: (row == 5 || (monthView.compressed && isCurrentWeek)) ? -intern.verticalMargin : 0
+                    visible: monthView.compressed ? isCurrentWeek : true
+                    width: intern.squareUnit
+                    height: intern.squareUnit
+                    Rectangle {
+                        visible: isSunday
+                        anchors.fill: parent
+                        anchors.topMargin: dayItem.topMargin
+                        anchors.bottomMargin: dayItem.bottomMargin
+                        color: Color.warmGrey
+                        opacity: 0.1
                     }
+                    Text {
+                        anchors.centerIn: parent
+                        text: dayStart.getDate()
+                        font: themeDummy.font
+                        color: isToday ? Color.ubuntuOrange : themeDummy.color
+                        scale: isCurrent ? 1.8 : 1.
+                        opacity: isCurrentMonth ? 1. : 0.3
+                        Behavior on scale {
+                            NumberAnimation { duration: 50 }
+                        }
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        anchors.topMargin: dayItem.topMargin
+                        anchors.bottomMargin: dayItem.bottomMargin
+                        onReleased: monthView.focusOnDay(dayStart)
+                    }
+                    // Component.onCompleted: console.log(dayStart, intern.currentDayStart)
                 }
             }
         }
+
+        // Component.onCompleted: console.log("Created delegate for month", index, monthStart, gridStart, currentWeekRow, currentWeekRowReal)
     }
 
-    Timer { // make sure today is updated at midnight
-        interval: 1000
-        repeat: true
-        running: true
-
-        onTriggered: {
-            var newDate = (new Date()).midnight()
-            if (internal.today < newDate) internal.today = newDate
-        }
+    Label {
+        visible: false
+        id: themeDummy
+        fontSize: "large"
+        // Component.onCompleted: console.log(color, Qt.lighter(color, 1.74))
     }
-
-    Component.onCompleted: positionViewAtIndex(internal.indexOrigin, ListView.Center)
 }
