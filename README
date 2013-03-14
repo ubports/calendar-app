@@ -1,1 +1,9 @@
-this is an example README file.
+Welcome the Ubuntu Calendar!
+
+Currently this application is fully implemented in QML/JS.
+All you need to launch this all is Qt5 and the qmlscene viewer:
+
+$ cd ubuntu-calendar-app
+$ qmlscene calendar.qml
+
+To test the application on the device check out the "testrun.sh" script.
