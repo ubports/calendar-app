@@ -3,6 +3,10 @@ import Ubuntu.Components 0.1
 
 MainView {
     id: mainView
+
+    objectName: "calendar"
+    applicationName: "calendar"
+
     width: units.gu(45)
     height: units.gu(80)
         // FIXME: 80/45 = aspect ration of Galaxy Nexus
