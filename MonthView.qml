@@ -99,7 +99,7 @@ ListView {
         property var monthStart0: today.monthStart()
     }
 
-    width: parent.width
+    width: parent.width > 0 ? parent.width : 1
     height: intern.squareUnit * 6 + intern.verticalMargin * 2
 
     interactive: !compressed
@@ -184,7 +184,7 @@ ListView {
             }
         }
 
-        // Component.onCompleted: console.log("Created delegate for month", index, monthStart, gridStart, currentWeekRow, currentWeekRowReal)
+        // Component.onCompleted: console.log("Created delegate for month", index, monthStart, monthView.width, monthView.height)
     }
 
     Label {
