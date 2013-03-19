@@ -53,6 +53,13 @@ PathView {
     model: 3
 
     delegate: DiaryView {
-
+        dayStart: {
+            if (index == intern.currentIndex) return intern.currentDayStart
+            var previousIndex = intern.currentIndex > 0 ? intern.currentIndex - 1 : 2
+            if (index == previousIndex) return intern.currentDayStart.addDays(-1)
+            return intern.currentDayStart.addDays(1)
+        }
+        width: eventView.width
+        height: eventView.height
     }
 }
