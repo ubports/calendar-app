@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import "DateExt.js" as DateExt
+import "dateExt.js" as DateExt
 import "dataService.js" as DataService
 
 ListModel {

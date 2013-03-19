@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import "DateExt.js" as DateExt
+import "dateExt.js" as DateExt
 
 PathView {
     id: eventView

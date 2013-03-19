@@ -182,8 +182,14 @@ function removeEvent(event)
                 'delete from Attendance where eventId = ?',
                 [ event.id ]
             )
+            tx.executeSql(
+                'delete from Venue where eventId = ?',
+                [ event.id ]
+            )
         }
     )
+
+    delete event.id
 
     eventsNotifier.dataChanged()
 }
@@ -248,5 +254,90 @@ function getPlaces(places)
     return places
 }
 
-var test = Qt.include('runTests.js', {})
-if (test.status == test.EXCEPTION) console.log(test.exception)
+function addPlace(place)
+{
+    var result = null
+
+    if (typeof place.address == 'undefined') place.address = null
+    if (typeof place.latitude == 'undefined') place.latitude = null
+    if (typeof place.longitude == 'undefined') place.longitude = null
+
+    db.transaction(
+        function(tx) {
+            result = tx.executeSql(
+                'insert into Place(name, address, latitude, longitude) values(?, ?, ?, ?)',
+                [ place.name, place.address, place.latitude, place.longitude ]
+            )
+        }
+    )
+
+    place.id = result.insertId
+
+    return place
+}
+
+function removePlace(place)
+{
+    db.transaction(
+        function(tx) {
+            tx.executeSql(
+                'delete from Place where id = ?',
+                [ place.id ]
+            )
+            tx.executeSql(
+                'delete from Venue where placeId = ?',
+                [ place.id ]
+            )
+        }
+    )
+
+    delete place.id
+}
+
+function addVenue(event, place)
+{
+    db.transaction(
+        function(tx) {
+            tx.executeSql(
+                'insert into Venue(eventId, placeId) values(?, ?)',
+                [ event.id, place.id ]
+            )
+        }
+    )
+}
+
+function removeVenue(event, place)
+{
+    db.transaction(
+        function(tx) {
+            tx.executeSql(
+                'delete from Venue where eventId = ? and placeId = ?',
+                [ event.id, place.id ]
+            )
+        }
+    )
+}
+
+function getVenues(event, venues)
+{
+    var result = null
+
+    db.readTransaction(
+        function(tx) {
+            result = tx.executeSql('\
+select p.* \
+from Venue v, Place p \
+where v.eventId = ? and p.id = v.placeId \
+order by p.name',
+                [ event.id ]
+            )
+        }
+    )
+
+    venues = venues || []
+
+    for (var i = 0; i < result.rows.length; ++i)
+        venues.append(result.rows.item(i))
+
+    return venues
+}
