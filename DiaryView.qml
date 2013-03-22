@@ -8,13 +8,14 @@ Rectangle {
     color: index == 0 ? "#FFFFFF" : index == 1 ? "#EEEEEE" : "#DDDDDD"
 
     EventListModel {
+        id: model
         termStart: dayStart
     }
 
     Label {
         anchors.horizontalCenter: parent.horizontalCenter
         y: units.gu(4)
-        text: i18n.tr("No events for") + "\n" + Qt.formatDate(dayStart)
+        text: model.count + " " + i18n.tr("events for") + "\n" + Qt.formatDate(dayStart)
         fontSize: "large"
     }
 }

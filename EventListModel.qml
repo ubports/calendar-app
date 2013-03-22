@@ -16,6 +16,8 @@ ListModel {
         model.clear()
         DataService.getEvents(t0, t1, model)
         console.log("termStart, t0, t1, count =", termStart, t0, t1, count)
+        // for (var i = 0; i < model.count; ++i)
+        //     DataService.printEvent(model.get(i))
     }
     Component.onCompleted: {
         reload()

@@ -4,101 +4,6 @@
 
 var eventsNotifier = Qt.createQmlObject('import QtQuick 2.0; QtObject { signal dataChanged }', Qt.application, 'eventsNotifier')
 
-var db = LS.LocalStorage.openDatabaseSync("Calendar", "", "Offline Calendar", 100000)
-if (db.version == "") db.changeVersion("", "0.1", __createFirstTime)
-
-function __loadTestData(tx)
-{
-    var inserts = '\
-insert into Contact(id, name, surname) values (1, "John", "Smith");\
-insert into Contact(id, name, surname) values (2, "Jane", "Smith");\
-insert into Contact(id, name, surname, avatar) values (3, "Frank", "Mertens", "http://www.gravatar.com/avatar/6d96fd4a98bba7b8779661d5db391ab6");\
-insert into Contact(id, name, surname) values (4, "Kunal", "Parmar");\
-insert into Contact(id, name, surname) values (5, "Mario", "Boikov");\
-insert into Place(id, name, address) values (1, "Quan Sen", "Pasing Arcaden, München");\
-insert into Place(id, name, address) values (2, "Jashan", "Landsberger Straße 84, 82110 Germering");\
-insert into Place(id, name, latitude, longitude) values (3, "Café Moskau", 52.521339, 13.42279);\
-insert into Place(id, name, address) values (4, "Santa Clara Marriott", "2700 Mission College Boulevard, Santa Clara, California");\
-insert into Place(id, name, address) values (5, "embeddedworld", "Messezentrum, 90471 Nürnberg");\
-insert into Event(id, title, message, startTime, endTime) values (1, "Team Meeting", "Bring your gear...", 1364648400000, 1364650200000);\
-insert into Event(id, title, message, startTime, endTime) values (2, "Jane\'s Birthday Party", "this year: southern wine", 1364061600000, 1364068800000);\
-insert into Event(id, title, startTime, endTime) values (3, "embeddedworld 2013", 1361836800000, 1362009600000);\
-insert into Attendance(eventId, contactId, placeId) values (1, 1, 1);\
-insert into Attendance(eventId, contactId, placeId) values (1, 2, 1);\
-insert into Attendance(eventId, contactId, placeId) values (1, 3, 1);\
-insert into Attendance(eventId, contactId, placeId) values (1, 4, 3);\
-insert into Attendance(eventId, contactId, placeId) values (1, 5, 3);\
-insert into Attendance(eventId, contactId) values (2, 1);\
-insert into Attendance(eventId, contactId) values (2, 2);\
-insert into Attendance(eventId, contactId) values (2, 3);\
-insert into Venue(eventId, placeId) values (2, 3);\
-insert into Venue(eventId, placeId) values (3, 5);\
-'.split(';')
-
-    for (var i in inserts) {
-        var sql = inserts[i]
-        if (sql != "") {
-            console.log(sql)
-            tx.executeSql(sql)
-        }
-    }
-}
-
-function __createFirstTime(tx)
-{
-    var schema = '\
-create table Event(\
-    id integer primary key,\
-    title text,\
-    message text,\
-    startTime integer,\
-    endTime integer\
-);\
-\
-create index EventStartTimeIndex on Event(startTime);\
-create index EventEndTimeIndex on Event(endTime);\
-\
-create table Place(\
-    id integer primary key,\
-    name text,\
-    address text,\
-    latitude real,\
-    longitude real\
-);\
-\
-create table Contact(\
-    id integer primary key,\
-    name text,\
-    surname text,\
-    avatar text\
-);\
-\
-create table Attendance(\
-    id integer primary key,\
-    eventId integer references Event(id) on delete cascade,\
-    contactId integer references Contact(id) on delete cascade,\
-    placeId integer references Place(id) on delete set null\
-);\
-\
-create table Venue(\
-    id integer primary key,\
-    eventId integer references Event(id) on delete cascade,\
-    placeId integer references Place(id) on delete cascade\
-);\
-\
-'.split(';')
-
-    for (var i in schema) {
-        var sql = schema[i]
-        if (sql != "") {
-            console.log(sql)
-            tx.executeSql(sql)
-        }
-    }
-
-    __loadTestData(tx);
-}
-
 Array.prototype.append = function(x) { this.push(x) }
 
 function getEvents(termStart, termEnd, events)
@@ -341,3 +246,97 @@ order by p.name',
 
     return venues
 }
+
+function printEvent(event)
+{
+    console.log('Event', event)
+    console.log('  id:', event.id)
+    console.log('  title:', event.title)
+    console.log('  message:', event.message)
+    console.log('  startTime:', new Date(event.startTime).toLocaleString())
+    console.log('  endTime:', new Date(event.endTime).toLocaleString())
+
+    var attendees = []
+    var venues = []
+    getAttendees(event, attendees)
+    getVenues(event, venues)
+    for (var j = 0; j < attendees.length; ++j)
+        printContact(attendees[j])
+    for (var j = 0; j < venues.length; ++j)
+        printPlace(venues[j])
+    console.log('')
+}
+
+function printContact(contact)
+{
+    console.log('Contact', contact)
+    console.log('  id:', contact.id)
+    console.log('  name:', contact.name)
+    console.log('  surname:', contact.surname)
+    console.log('  avatar:', contact.avatar)
+}
+
+function printPlace(place)
+{
+    console.log('Place', place)
+    console.log('  name:', place.name)
+    console.log('  address:', place.address)
+    console.log('  latitude:', place.latitude)
+    console.log('  longitude:', place.longitude)
+}
+
+function __createFirstTime(tx)
+{
+    var schema = '\
+create table Event(\
+    id integer primary key,\
+    title text,\
+    message text,\
+    startTime integer,\
+    endTime integer\
+);\
+\
+create index EventStartTimeIndex on Event(startTime);\
+create index EventEndTimeIndex on Event(endTime);\
+\
+create table Place(\
+    id integer primary key,\
+    name text,\
+    address text,\
+    latitude real,\
+    longitude real\
+);\
+\
+create table Contact(\
+    id integer primary key,\
+    name text,\
+    surname text,\
+    avatar text\
+);\
+\
+create table Attendance(\
+    id integer primary key,\
+    eventId integer references Event(id) on delete cascade,\
+    contactId integer references Contact(id) on delete cascade,\
+    placeId integer references Place(id) on delete set null\
+);\
+\
+create table Venue(\
+    id integer primary key,\
+    eventId integer references Event(id) on delete cascade,\
+    placeId integer references Place(id) on delete cascade\
+);\
+\
+'.split(';')
+
+    for (var i in schema) {
+        var sql = schema[i]
+        if (sql != "") {
+            console.log(sql)
+            tx.executeSql(sql)
+        }
+    }
+}
+
+var db = LS.LocalStorage.openDatabaseSync("Calendar", "", "Offline Calendar", 100000)
+if (db.version == "") db.changeVersion("", "0.1", __createFirstTime)

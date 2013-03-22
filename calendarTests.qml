@@ -2,7 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import "dataServiceTests.js" as DataServiceTests
 
-Item {
+MainView {
     width: units.gu(20)
     height: units.gu(20)
     Button {
