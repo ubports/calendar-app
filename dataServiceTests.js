@@ -184,7 +184,7 @@ function runTestSimple(tx)
     DataService.removePlace(testPlace)
 }
 
-DataService.db.transaction(
+DataService.db().transaction(
     function (tx) {
         runTestSimple(tx)
         loadTestDataComplex(tx)

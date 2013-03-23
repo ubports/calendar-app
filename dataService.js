@@ -2,15 +2,13 @@
 
 .import QtQuick.LocalStorage 2.0 as LS
 
-var eventsNotifier = Qt.createQmlObject('import QtQuick 2.0; QtObject { signal dataChanged }', Qt.application, 'eventsNotifier')
-
 Array.prototype.append = function(x) { this.push(x) }
 
 function getEvents(termStart, termEnd, events)
 {
     var result = null
 
-    db.readTransaction(
+    db().readTransaction(
         function(tx) {
             result = tx.executeSql('\
 select * from Event \
@@ -35,7 +33,7 @@ function getAttendees(event, attendees)
 {
     var result = null;
 
-    db.readTransaction(
+    db().readTransaction(
         function(tx) {
             result = tx.executeSql('\
 select c.* from Attendance a, Contact c \
@@ -58,7 +56,7 @@ function addEvent(event)
 {
     var result = null
 
-    db.transaction(
+    db().transaction(
         function(tx) {
             result = tx.executeSql('\
 insert into Event(title, message, startTime, endTime) \
@@ -70,14 +68,14 @@ values (?, ?, ?, ?)',
 
     event.id = result.insertId
 
-    eventsNotifier.dataChanged()
+    eventsNotifier().dataChanged()
 
     return event
 }
 
 function removeEvent(event)
 {
-    db.transaction(
+    db().transaction(
         function(tx) {
             tx.executeSql(
                 'delete from Event where id = ?',
@@ -96,14 +94,14 @@ function removeEvent(event)
 
     delete event.id
 
-    eventsNotifier.dataChanged()
+    eventsNotifier().dataChanged()
 }
 
 function getContacts(contacts)
 {
     var result = null
 
-    db.readTransaction(
+    db().readTransaction(
         function(tx) {
             result = tx.executeSql('select * from Contact order by name')
         }
@@ -119,7 +117,7 @@ function getContacts(contacts)
 
 function addAttendee(event, contact)
 {
-    db.transaction(
+    db().transaction(
         function(tx) {
             tx.executeSql(
                 'insert into Attendance(eventId, contactId) values (?, ?)',
@@ -131,7 +129,7 @@ function addAttendee(event, contact)
 
 function removeAttendee(event, contact)
 {
-    db.transaction(
+    db().transaction(
         function(tx) {
             tx.executeSql(
                 'delete from Attendance where eventId = ? and contactId = ?',
@@ -145,7 +143,7 @@ function getPlaces(places)
 {
     var result = null
 
-    db.readTransaction(
+    db().readTransaction(
         function(tx) {
             result = tx.executeSql('select * from Place')
         }
@@ -167,7 +165,7 @@ function addPlace(place)
     if (typeof place.latitude == 'undefined') place.latitude = null
     if (typeof place.longitude == 'undefined') place.longitude = null
 
-    db.transaction(
+    db().transaction(
         function(tx) {
             result = tx.executeSql(
                 'insert into Place(name, address, latitude, longitude) values(?, ?, ?, ?)',
@@ -183,7 +181,7 @@ function addPlace(place)
 
 function removePlace(place)
 {
-    db.transaction(
+    db().transaction(
         function(tx) {
             tx.executeSql(
                 'delete from Place where id = ?',
@@ -201,7 +199,7 @@ function removePlace(place)
 
 function addVenue(event, place)
 {
-    db.transaction(
+    db().transaction(
         function(tx) {
             tx.executeSql(
                 'insert into Venue(eventId, placeId) values(?, ?)',
@@ -213,7 +211,7 @@ function addVenue(event, place)
 
 function removeVenue(event, place)
 {
-    db.transaction(
+    db().transaction(
         function(tx) {
             tx.executeSql(
                 'delete from Venue where eventId = ? and placeId = ?',
@@ -227,7 +225,7 @@ function getVenues(event, venues)
 {
     var result = null
 
-    db.readTransaction(
+    db().readTransaction(
         function(tx) {
             result = tx.executeSql('\
 select p.* \
@@ -329,7 +327,7 @@ create table Venue(\
 \
 '.split(';')
 
-    for (var i in schema) {
+    for (var i = 0; i < schema.length; ++i) {
         var sql = schema[i]
         if (sql != "") {
             console.log(sql)
@@ -338,5 +336,18 @@ create table Venue(\
     }
 }
 
-var db = LS.LocalStorage.openDatabaseSync("Calendar", "", "Offline Calendar", 100000)
-if (db.version == "") db.changeVersion("", "0.1", __createFirstTime)
+function eventsNotifier()
+{
+    if (!eventsNotifier.hasOwnProperty("instance"))
+        eventsNotifier.instance = Qt.createQmlObject('import QtQuick 2.0; QtObject { signal dataChanged }', Qt.application, 'DataService.eventsNotifier()')
+    return eventsNotifier.instance
+}
+
+function db()
+{
+    if (!db.hasOwnProperty("instance")) {
+        db.instance = LS.LocalStorage.openDatabaseSync("Calendar", "", "Offline Calendar", 100000)
+        if (db.instance.version == "") db.instance.changeVersion("", "0.1", __createFirstTime)
+    }
+    return db.instance
+}

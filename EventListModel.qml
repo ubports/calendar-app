@@ -21,7 +21,7 @@ ListModel {
     }
     Component.onCompleted: {
         reload()
-        DataService.eventsNotifier.dataChanged.connect(reload)
+        DataService.eventsNotifier().dataChanged.connect(reload)
         termStartChanged.connect(reload)
     }
 }
