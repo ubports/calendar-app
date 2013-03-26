@@ -10,6 +10,13 @@ PathView {
     signal incrementCurrentDay
     signal decrementCurrentDay
 
+    signal compressRequest()
+    signal compressComplete()
+    signal expandRequest()
+    signal expandComplete()
+
+    property bool expanded: false
+
     readonly property real visibleHeight: parent.height - y
 
     QtObject {
@@ -53,13 +60,23 @@ PathView {
     model: 3
 
     delegate: DiaryView {
+        id: diaryView
+
+        width: eventView.width
+        height: eventView.height
+
         dayStart: {
             if (index == intern.currentIndex) return intern.currentDayStart
             var previousIndex = intern.currentIndex > 0 ? intern.currentIndex - 1 : 2
             if (index == previousIndex) return intern.currentDayStart.addDays(-1)
             return intern.currentDayStart.addDays(1)
         }
-        width: eventView.width
-        height: eventView.height
+
+        expanded: eventView.expanded
+
+        onCompressRequest: eventView.compressRequest()
+        onCompressComplete: eventView.compressComplete()
+        onExpandRequest: eventView.expandRequest()
+        onExpandComplete: eventView.expandComplete()
     }
 }

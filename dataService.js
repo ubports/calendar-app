@@ -4,6 +4,9 @@
 
 Array.prototype.append = function(x) { this.push(x) }
 
+var CATEGORY_EVENT = 0
+var CATEGORY_TODO = 1
+
 function getEvents(termStart, termEnd, events)
 {
     var result = null
@@ -23,8 +26,12 @@ order by startTime',
 
     events = events || []
 
-    for (var i = 0; i < result.rows.length; ++i)
-        events.append(result.rows.item(i))
+    for (var i = 0; i < result.rows.length; ++i) {
+        var e = result.rows.item(i)
+        e.startTime = new Date(e.startTime)
+        e.endTime = new Date(e.endTime)
+        events.append(e)
+    }
 
     return events
 }
@@ -291,7 +298,8 @@ create table Event(\
     title text,\
     message text,\
     startTime integer,\
-    endTime integer\
+    endTime integer,\
+    category text default "Events"\
 );\
 \
 create index EventStartTimeIndex on Event(startTime);\

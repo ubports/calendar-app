@@ -27,6 +27,14 @@ MainView {
         onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
     }
 
+    Rectangle {
+        anchors.top: monthView.top
+        anchors.left: monthView.left
+        anchors.right: monthView.right
+        height: monthView.visibleHeight
+        color: "white"
+    }
+
     MonthView {
         id: monthView
         onMonthStartChanged: tabs.selectedTabIndex = monthStart.getMonth()
@@ -35,47 +43,36 @@ MainView {
 
     EventView {
         id: eventView
+
         property real minY: pageArea.y + monthView.compressedHeight
         property real maxY: pageArea.y + monthView.height
+
         y: maxY
         width: mainView.width
-        height: parent.height - monthView.compressedHeight
+        height: parent.height - monthView.compressedHeight - monthView.y
+
         currentDayStart: monthView.currentDayStart
+        expanded: !monthView.compressed
+
         Component.onCompleted: {
             incrementCurrentDay.connect(monthView.incrementCurrentDay)
             decrementCurrentDay.connect(monthView.decrementCurrentDay)
         }
-        MouseArea {
-            id: drawer
-            property bool compression: true
-            anchors.fill: parent
-            drag {
-                axis: Drag.YAxis
-                target: eventView
-                minimumY: monthView.y + monthView.compressedHeight
-                maximumY: monthView.y + monthView.height
-                onActiveChanged: {
-                    if (compression) {
-                        if (drag.active) {
-                            monthView.compressed = true
-                        }
-                        else {
-                            yBehavior.enabled = true
-                            eventView.y =  Qt.binding(function() { return eventView.minY })
-                            compression = false
-                        }
-                    }
-                    else {
-                        if (drag.active) {}
-                        else{
-                            eventView.y =  Qt.binding(function() { return eventView.maxY })
-                            monthView.compressed = false
-                            compression = true
-                        }
-                    }
-                }
-            }
+
+        onCompressRequest: {
+            monthView.compressed = true
         }
+        onCompressComplete: {
+            yBehavior.enabled = true
+            y = Qt.binding(function() { return eventView.minY })
+        }
+        onExpandRequest: {
+        }
+        onExpandComplete: {
+            monthView.compressed = false
+            y = Qt.binding(function() { return eventView.maxY })
+        }
+
         Behavior on y {
             id: yBehavior
             enabled: false
