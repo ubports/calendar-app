@@ -39,6 +39,7 @@ MainView {
         id: monthView
         onMonthStartChanged: tabs.selectedTabIndex = monthStart.getMonth()
         y: pageArea.y
+        onMovementEnded: eventView.currentDayStart
     }
 
     EventView {
@@ -51,7 +52,7 @@ MainView {
         width: mainView.width
         height: parent.height - monthView.compressedHeight - monthView.y
 
-        currentDayStart: monthView.currentDayStart
+        // currentDayStart: monthView.currentDayStart
         expanded: !monthView.compressed
 
         Component.onCompleted: {
