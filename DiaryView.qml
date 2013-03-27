@@ -9,14 +9,13 @@ ListView {
 
     property var dayStart: new Date()
 
-    property bool expanding: false
-    property bool compressing: false
     property bool expanded: false
 
-    signal compressRequest()
-    signal compressComplete()
-    signal expandRequest()
-    signal expandComplete()
+    property bool expanding: false
+    property bool compressing: false
+
+    signal expand()
+    signal compress()
 
     clip: true
 
@@ -27,9 +26,18 @@ ListView {
 
     section {
         property: "category"
-        labelPositioning: ViewSection.CurrentLabelAtStart
+        // labelPositioning: ViewSection.CurrentLabelAtStart // FIXME, unreliable
         delegate: ListItem.Header {
             text: i18n.tr(section)
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    if (expanded)
+                        compress()
+                    else
+                        expand()
+                }
+            }
         }
     }
 
@@ -42,31 +50,33 @@ ListView {
     }
 
     onContentYChanged: {
-        if (!dragging) return
-        if (expanding || compressing) return
+        // console.log(expanded, expanding, compressing, dragging, flicking, moving, contentY)
+        if (expanding || compressing || !dragging) return
 
         if (expanded) {
-            if (contentY > units.gu(3)) {
+            if (contentY < -units.gu(0.5)) {
                 compressing = true
-                compressRequest()
+                expanding = false
             }
         }
         else {
-            if (contentY < 0) {
+            if (contentY < -units.gu(0.5)) {
                 expanding = true
-                expandRequest()
+                compressing = false
             }
         }
     }
 
-    onDraggingVerticallyChanged: {
+    onDraggingChanged: {
+        if (dragging) return
+
         if (expanding) {
             expanding = false
-            expandComplete()
+            expand()
         }
-        if (compressing) {
+        else if (compressing) {
             compressing = false
-            compressComplete()
+            compress()
         }
     }
 }

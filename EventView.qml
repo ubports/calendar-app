@@ -10,12 +10,10 @@ PathView {
     signal incrementCurrentDay
     signal decrementCurrentDay
 
-    signal compressRequest()
-    signal compressComplete()
-    signal expandRequest()
-    signal expandComplete()
-
     property bool expanded: false
+
+    signal compress()
+    signal expand()
 
     readonly property real visibleHeight: parent.height - y
 
@@ -50,7 +48,7 @@ PathView {
 
     path: Path {
         startX: -eventView.width; startY: eventView.height / 2
-        PathLine { relativeX: eventView.width; relativeY: 0  }
+        PathLine { relativeX: eventView.width; relativeY: 0 }
         PathLine { relativeX: eventView.width; relativeY: 0 }
         PathLine { relativeX: eventView.width; relativeY: 0 }
     }
@@ -74,9 +72,7 @@ PathView {
 
         expanded: eventView.expanded
 
-        onCompressRequest: eventView.compressRequest()
-        onCompressComplete: eventView.compressComplete()
-        onExpandRequest: eventView.expandRequest()
-        onExpandComplete: eventView.expandComplete()
+        onExpand: eventView.expand()
+        onCompress: eventView.compress()
     }
 }

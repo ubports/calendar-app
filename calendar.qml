@@ -28,10 +28,7 @@ MainView {
     }
 
     Rectangle {
-        anchors.top: monthView.top
-        anchors.left: monthView.left
-        anchors.right: monthView.right
-        height: monthView.visibleHeight
+        anchors.fill: monthView
         color: "white"
     }
 
@@ -39,39 +36,36 @@ MainView {
         id: monthView
         onMonthStartChanged: tabs.selectedTabIndex = monthStart.getMonth()
         y: pageArea.y
-        onMovementEnded: eventView.currentDayStart
+        onMovementEnded: eventView.currentDayStart = currentDayStart
+        onCurrentDayStartChanged: if (!(dragging || flicking)) eventView.currentDayStart = currentDayStart
+        Component.onCompleted: eventView.currentDayStart = currentDayStart
     }
 
     EventView {
         id: eventView
 
         property real minY: pageArea.y + monthView.compressedHeight
-        property real maxY: pageArea.y + monthView.height
+        property real maxY: pageArea.y + monthView.expandedHeight
 
         y: maxY
         width: mainView.width
-        height: parent.height - monthView.compressedHeight - monthView.y
+        height: parent.height - y
 
-        // currentDayStart: monthView.currentDayStart
-        expanded: !monthView.compressed
+        expanded: monthView.compressed
 
         Component.onCompleted: {
             incrementCurrentDay.connect(monthView.incrementCurrentDay)
             decrementCurrentDay.connect(monthView.decrementCurrentDay)
         }
 
-        onCompressRequest: {
+        onExpand: {
             monthView.compressed = true
-        }
-        onCompressComplete: {
             yBehavior.enabled = true
-            y = Qt.binding(function() { return eventView.minY })
+            y = minY
         }
-        onExpandRequest: {
-        }
-        onExpandComplete: {
+        onCompress: {
             monthView.compressed = false
-            y = Qt.binding(function() { return eventView.maxY })
+            y = maxY
         }
 
         Behavior on y {
