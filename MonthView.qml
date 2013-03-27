@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import "DateLib.js" as DateLib
+import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
 ListView {
@@ -11,7 +11,8 @@ ListView {
     readonly property var currentDayStart: intern.currentDayStart
 
     property bool compressed: false
-    property real compressedHeight: intern.squareUnit + intern.verticalMargin * 2
+    readonly property real compressedHeight: intern.squareUnit + intern.verticalMargin * 2
+    readonly property real expandedHeight: intern.squareUnit * 6 + intern.verticalMargin * 2
 
     signal incrementCurrentDay
     signal decrementCurrentDay
@@ -90,7 +91,7 @@ ListView {
 
         property int squareUnit: monthView.width / 8
         property int verticalMargin: units.gu(1)
-        property int weekstartDay: Qt.locale().firstDayOfWeek
+        property int weekstartDay: Qt.locale(i18n.language).firstDayOfWeek
         property int monthCount: 49 // months for +-2 years
 
         property var today: (new Date()).midnight() // TODO: update at midnight
@@ -99,8 +100,8 @@ ListView {
         property var monthStart0: today.monthStart()
     }
 
-    width: parent.width > 0 ? parent.width : 1
-    height: intern.squareUnit * 6 + intern.verticalMargin * 2
+    width: parent.width
+    height: compressed ? compressedHeight : expandedHeight
 
     interactive: !compressed
     clip: true
@@ -184,7 +185,7 @@ ListView {
             }
         }
 
-        // Component.onCompleted: console.log("Created delegate for month", index, monthStart, monthView.width, monthView.height)
+        // Component.onCompleted: console.log("Created delegate for month", index, monthStart, gridStart, currentWeekRow, currentWeekRowReal)
     }
 
     Label {

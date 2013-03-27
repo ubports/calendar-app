@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import "DateLib.js" as DateLib
+import "dateExt.js" as DateExt
 
 PathView {
     id: eventView
@@ -9,6 +9,11 @@ PathView {
 
     signal incrementCurrentDay
     signal decrementCurrentDay
+
+    property bool expanded: false
+
+    signal compress()
+    signal expand()
 
     readonly property real visibleHeight: parent.height - y
 
@@ -43,7 +48,7 @@ PathView {
 
     path: Path {
         startX: -eventView.width; startY: eventView.height / 2
-        PathLine { relativeX: eventView.width; relativeY: 0  }
+        PathLine { relativeX: eventView.width; relativeY: 0 }
         PathLine { relativeX: eventView.width; relativeY: 0 }
         PathLine { relativeX: eventView.width; relativeY: 0 }
     }
@@ -52,21 +57,22 @@ PathView {
 
     model: 3
 
-    delegate: Rectangle {
-        property var dayStart: {
+    delegate: DiaryView {
+        id: diaryView
+
+        width: eventView.width
+        height: eventView.height
+
+        dayStart: {
             if (index == intern.currentIndex) return intern.currentDayStart
             var previousIndex = intern.currentIndex > 0 ? intern.currentIndex - 1 : 2
             if (index == previousIndex) return intern.currentDayStart.addDays(-1)
             return intern.currentDayStart.addDays(1)
         }
-        width: eventView.width
-        height: eventView.height
-        color: index == 0 ? "#FFFFFF" : index == 1 ? "#EEEEEE" : "#DDDDDD"
-        Label {
-            anchors.horizontalCenter: parent.horizontalCenter
-            y: units.gu(4)
-            text: i18n.tr("No events for") + "\n" + Qt.formatDate(dayStart)
-            fontSize: "large"
-        }
+
+        expanded: eventView.expanded
+
+        onExpand: eventView.expand()
+        onCompress: eventView.compress()
     }
 }
