@@ -16,6 +16,7 @@ ListView {
 
     signal expand()
     signal compress()
+    signal newEvent()
 
     clip: true
 
@@ -46,7 +47,8 @@ ListView {
     }
 
     footer: ListItem.Standard {
-        text: i18n.tr("(+) New Event / Todo")
+        text: i18n.tr("(+) New Event")
+        onClicked: newEvent()
     }
 
     onContentYChanged: {
