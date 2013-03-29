@@ -9,26 +9,43 @@ MainView {
 
     width: units.gu(45)
     height: units.gu(80)
-        // FIXME: 80/45 = aspect ration of Galaxy Nexus
 
-    Tabs { // preliminary HACK, needs rewrite when NewTabBar is finalized!
+    Tabs {
         id: tabs
         anchors.fill: parent
 
-        Tab { id: pageArea; title: i18n.tr("January"); page: Item { anchors.fill: parent } }
-        Tab { title: i18n.tr("February") }
-        Tab { title: i18n.tr("March") }
-        Tab { title: i18n.tr("April") }
-        Tab { title: i18n.tr("May") }
-        Tab { title: i18n.tr("June") }
-        Tab { title: i18n.tr("July") }
-        Tab { title: i18n.tr("August") }
-        Tab { title: i18n.tr("September") }
-        Tab { title: i18n.tr("October") }
-        Tab { title: i18n.tr("November") }
-        Tab { title: i18n.tr("December") }
+        Tab { title: Qt.locale(i18n.language).monthName(0) }
+        Tab { title: Qt.locale(i18n.language).monthName(1) }
+        Tab { title: Qt.locale(i18n.language).monthName(2) }
+        Tab { title: Qt.locale(i18n.language).monthName(3) }
+        Tab { title: Qt.locale(i18n.language).monthName(4) }
+        Tab { title: Qt.locale(i18n.language).monthName(5) }
+        Tab { title: Qt.locale(i18n.language).monthName(6) }
+        Tab { title: Qt.locale(i18n.language).monthName(7) }
+        Tab { title: Qt.locale(i18n.language).monthName(8) }
+        Tab { title: Qt.locale(i18n.language).monthName(9) }
+        Tab { title: Qt.locale(i18n.language).monthName(10) }
+        Tab { title: Qt.locale(i18n.language).monthName(11) }
 
         onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
+
+        tools: ToolbarActions {
+            Action {
+                iconSource: Qt.resolvedUrl("avatar.png")
+                text: i18n.tr("To-do")
+                onTriggered:; // FIXME
+            }
+            Action {
+                iconSource: Qt.resolvedUrl("avatar.png")
+                text: i18n.tr("New Event")
+                onTriggered:; // FIXME
+            }
+            Action {
+                iconSource: Qt.resolvedUrl("avatar.png")
+                text: i18n.tr("Timeline")
+                onTriggered:; // FIXME
+            }
+        }
     }
 
     Rectangle {
@@ -39,7 +56,7 @@ MainView {
     MonthView {
         id: monthView
         onMonthStartChanged: tabs.selectedTabIndex = monthStart.getMonth()
-        y: pageArea.y
+        y: units.gu(9.5) // FIXME
         onMovementEnded: eventView.currentDayStart = currentDayStart
         onCurrentDayStartChanged: if (!(dragging || flicking)) eventView.currentDayStart = currentDayStart
         Component.onCompleted: eventView.currentDayStart = currentDayStart
@@ -48,8 +65,8 @@ MainView {
     EventView {
         id: eventView
 
-        property real minY: pageArea.y + monthView.compressedHeight
-        property real maxY: pageArea.y + monthView.expandedHeight
+        property real minY: monthView.y + monthView.compressedHeight
+        property real maxY: monthView.y + monthView.expandedHeight
 
         y: maxY
         width: mainView.width
@@ -76,24 +93,6 @@ MainView {
             id: yBehavior
             enabled: false
             NumberAnimation { duration: 100 }
-        }
-    }
-
-    tools: ToolbarActions {
-        Action {
-            iconSource: Qt.resolvedUrl("avatar.png")
-            text: i18n.tr("To-do")
-            onTriggered:; // FIXME
-        }
-        Action {
-            iconSource: Qt.resolvedUrl("avatar.png")
-            text: i18n.tr("New Event")
-            onTriggered:; // FIXME
-        }
-        Action {
-            iconSource: Qt.resolvedUrl("avatar.png")
-            text: i18n.tr("Timeline")
-            onTriggered:; // FIXME
         }
     }
 }
