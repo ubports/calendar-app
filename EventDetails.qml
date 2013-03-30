@@ -56,7 +56,9 @@ Page {
         }
 
         // FIXME: need to cache map image to avoid duplicate download every time
-        var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+"&markers=color:blue|"+location+"&zoom=15&size="+mapContainer.width+"x"+mapContainer.height+"&sensor=false";
+        var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
+                "&markers=color:blue|"+location+"&zoom=15&size="+mapContainer.width+
+                "x"+mapContainer.height+"&sensor=false";
         mapImage.source=imageSrc;
     }
 
@@ -122,7 +124,6 @@ Page {
             height: units.gu(25)
             Image {
                 id: mapImage
-                source: "testmap.png"
                 anchors.fill: parent
                 opacity: 0.5
             }
