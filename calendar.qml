@@ -9,91 +9,102 @@ MainView {
 
     width: units.gu(45)
     height: units.gu(80)
-        // FIXME: 80/45 = aspect ration of Galaxy Nexus
+    // FIXME: 80/45 = aspect ration of Galaxy Nexus
 
-    Tabs { // preliminary HACK, needs rewrite when NewTabBar is finalized!
-        id: tabs
+    PageStack {
+        id: pageStack
         anchors.fill: parent
+        Component.onCompleted: push(monthViewPage)
 
-        Tab { id: pageArea; title: i18n.tr("January"); page: Item { anchors.fill: parent } }
-        Tab { title: i18n.tr("February") }
-        Tab { title: i18n.tr("March") }
-        Tab { title: i18n.tr("April") }
-        Tab { title: i18n.tr("May") }
-        Tab { title: i18n.tr("June") }
-        Tab { title: i18n.tr("July") }
-        Tab { title: i18n.tr("August") }
-        Tab { title: i18n.tr("September") }
-        Tab { title: i18n.tr("October") }
-        Tab { title: i18n.tr("November") }
-        Tab { title: i18n.tr("December") }
+        Page {
+            id: monthViewPage
+            anchors.fill: parent
 
-        onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
-    }
+            Tabs { // preliminary HACK, needs rewrite when NewTabBar is finalized!
+                id: tabs
+                anchors.fill: parent
 
-    Rectangle {
-        anchors.fill: monthView
-        color: "white"
-    }
+                Tab { id: pageArea; title: i18n.tr("January"); page: Item { anchors.fill: parent } }
+                Tab { title: i18n.tr("February") }
+                Tab { title: i18n.tr("March") }
+                Tab { title: i18n.tr("April") }
+                Tab { title: i18n.tr("May") }
+                Tab { title: i18n.tr("June") }
+                Tab { title: i18n.tr("July") }
+                Tab { title: i18n.tr("August") }
+                Tab { title: i18n.tr("September") }
+                Tab { title: i18n.tr("October") }
+                Tab { title: i18n.tr("November") }
+                Tab { title: i18n.tr("December") }
 
-    MonthView {
-        id: monthView
-        onMonthStartChanged: tabs.selectedTabIndex = monthStart.getMonth()
-        y: pageArea.y
-        onMovementEnded: eventView.currentDayStart = currentDayStart
-        onCurrentDayStartChanged: if (!(dragging || flicking)) eventView.currentDayStart = currentDayStart
-        Component.onCompleted: eventView.currentDayStart = currentDayStart
-    }
+                onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
+            }
 
-    EventView {
-        id: eventView
+            Rectangle {
+                anchors.fill: monthView
+                color: "white"
+            }
 
-        property real minY: pageArea.y + monthView.compressedHeight
-        property real maxY: pageArea.y + monthView.expandedHeight
+            MonthView {
+                id: monthView
+                onMonthStartChanged: tabs.selectedTabIndex = monthStart.getMonth()
+                y: pageArea.y
+                onMovementEnded: eventView.currentDayStart = currentDayStart
+                onCurrentDayStartChanged: if (!(dragging || flicking)) eventView.currentDayStart = currentDayStart
+                Component.onCompleted: eventView.currentDayStart = currentDayStart
+            }
 
-        y: maxY
-        width: mainView.width
-        height: parent.height - y
+            EventView {
+                id: eventView
 
-        expanded: monthView.compressed
+                property real minY: pageArea.y + monthView.compressedHeight
+                property real maxY: pageArea.y + monthView.expandedHeight
 
-        Component.onCompleted: {
-            incrementCurrentDay.connect(monthView.incrementCurrentDay)
-            decrementCurrentDay.connect(monthView.decrementCurrentDay)
-        }
+                y: maxY
+                width: mainView.width
+                height: parent.height - y
 
-        onExpand: {
-            monthView.compressed = true
-            yBehavior.enabled = true
-            y = minY
-        }
-        onCompress: {
-            monthView.compressed = false
-            y = maxY
-        }
+                expanded: monthView.compressed
 
-        Behavior on y {
-            id: yBehavior
-            enabled: false
-            NumberAnimation { duration: 100 }
-        }
-    }
+                Component.onCompleted: {
+                    incrementCurrentDay.connect(monthView.incrementCurrentDay)
+                    decrementCurrentDay.connect(monthView.decrementCurrentDay)
+                }
 
-    tools: ToolbarActions {
-        Action {
-            iconSource: Qt.resolvedUrl("avatar.png")
-            text: i18n.tr("To-do")
-            onTriggered:; // FIXME
-        }
-        Action {
-            iconSource: Qt.resolvedUrl("avatar.png")
-            text: i18n.tr("New Event")
-            onTriggered:; // FIXME
-        }
-        Action {
-            iconSource: Qt.resolvedUrl("avatar.png")
-            text: i18n.tr("Timeline")
-            onTriggered:; // FIXME
+                onExpand: {
+                    monthView.compressed = true
+                    yBehavior.enabled = true
+                    y = minY
+                }
+                onCompress: {
+                    monthView.compressed = false
+                    y = maxY
+                }
+
+                Behavior on y {
+                    id: yBehavior
+                    enabled: false
+                    NumberAnimation { duration: 100 }
+                }
+            }
+
+            tools: ToolbarActions {
+                Action {
+                    iconSource: Qt.resolvedUrl("avatar.png")
+                    text: i18n.tr("To-do")
+                    onTriggered:; // FIXME
+                }
+                Action {
+                    iconSource: Qt.resolvedUrl("avatar.png")
+                    text: i18n.tr("New Event")
+                    onTriggered:; // FIXME
+                }
+                Action {
+                    iconSource: Qt.resolvedUrl("avatar.png")
+                    text: i18n.tr("Timeline")
+                    onTriggered:; // FIXME
+                }
+            }
         }
     }
 }

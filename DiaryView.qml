@@ -43,6 +43,10 @@ ListView {
 
     delegate: ListItem.Standard {
         text: startTime.toLocaleTimeString(Qt.locale(i18n.language), Locale.ShortFormat) + "   " + title
+
+        onClicked: {
+            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{event:diaryView.model.get(index)});
+        }
     }
 
     footer: ListItem.Standard {
