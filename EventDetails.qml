@@ -14,12 +14,14 @@ Page {
     anchors.margins: units.gu(2)
 
     Component.onCompleted: {
-        pageStack.header.visible = false;
+        if( pageStack.header )
+            pageStack.header.visible = false;
         showEvent(event);
     }
 
     Component.onDestruction: {
-        pageStack.header.visible = true;
+        if( pageStack.header )
+            pageStack.header.visible = true;
     }
 
     function showEvent(e) {
