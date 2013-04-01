@@ -14,6 +14,7 @@ PathView {
 
     signal compress()
     signal expand()
+    signal newEvent()
 
     readonly property real visibleHeight: parent.height - y
 
@@ -74,5 +75,6 @@ PathView {
 
         onExpand: eventView.expand()
         onCompress: eventView.compress()
+        onNewEvent: eventView.newEvent()
     }
 }
