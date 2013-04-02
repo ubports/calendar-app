@@ -11,8 +11,8 @@ ListView {
     readonly property var currentDayStart: intern.currentDayStart
 
     property bool compressed: false
-    readonly property real compressedHeight: intern.squareUnit * 2 + intern.verticalMargin * 6
-    readonly property real expandedHeight: intern.squareUnit * 7 + intern.verticalMargin * 6
+    readonly property real compressedHeight: intern.squareUnit + intern.verticalMargin * 2 + pageStack.header.height
+    readonly property real expandedHeight: intern.squareUnit * 6 + intern.verticalMargin * 2 + pageStack.header.height
 
     signal incrementCurrentDay
     signal decrementCurrentDay
