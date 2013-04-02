@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.Popups 0.1
 
 MainView {
     id: mainView
@@ -12,7 +13,9 @@ MainView {
 
     PageStack {
         id: pageStack
+
         anchors.fill: parent
+
         Component.onCompleted: push(monthViewPage)
         __showHeader: false
 
@@ -29,7 +32,7 @@ MainView {
                 Action {
                     iconSource: Qt.resolvedUrl("avatar.png")
                     text: i18n.tr("New Event")
-                    onTriggered: mainView.newEvent()
+                    onTriggered: monthViewPage.newEvent()
                 }
                 Action {
                     iconSource: Qt.resolvedUrl("avatar.png")
@@ -104,6 +107,16 @@ MainView {
                     enabled: false
                     NumberAnimation { duration: 100 }
                 }
+
+                onNewEvent: monthViewPage.newEvent()
+            }
+
+            signal newEvent
+            onNewEvent: PopupUtils.open(newEventComponent, monthViewPage, {"defaultDate": monthView.currentDayStart})
+
+            Component {
+                id: newEventComponent
+                NewEvent {}
             }
         }
     }
