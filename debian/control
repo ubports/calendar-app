@@ -8,7 +8,6 @@ Homepage: https://launchpad.net/ubuntu-calendar-app
 Vcs-Bzr: https://code.launchpad.net/~ubuntu-calendar-dev/ubuntu-calendar-app/trunk
 
 Package: ubuntu-calendar-app
-Section: misc
 Architecture: all
 Depends: qmlscene,
          qtdeclarative5-qtquick2-plugin,
