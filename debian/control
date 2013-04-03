@@ -5,6 +5,7 @@ Build-Depends: debhelper (>= 9),
 Standards-Version: 3.9.4
 Section: misc
 Homepage: https://launchpad.net/ubuntu-calendar-app
+Vcs-Bzr: https://code.launchpad.net/~ubuntu-calendar-dev/ubuntu-calendar-app/trunk
 
 Package: ubuntu-calendar-app
 Section: misc
