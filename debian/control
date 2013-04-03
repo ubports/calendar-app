@@ -13,6 +13,10 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
          qmlscene,
          qtdeclarative5-qtquick2-plugin,
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
-Description: Calendar application
- Core Calendar application
-
+Description: Calendar application for Ubuntu devices
+ The Calendar application for Ubuntu devices lets you organise your life your
+ way by month, week or daily diary.
+ .
+ It’s about the task and the context; use the calendar app as a todo list,
+ a diary, a planner, a journal, a life log; and the calendar will behave how
+ you need it to.
