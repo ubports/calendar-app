@@ -1,3 +1,9 @@
+ubuntu-calendar-app (0.2) raring; urgency=low
+
+  * Changing the app name so it can be closed by the hud (LP: #1164130).
+
+ -- Sergio Schvezov <sergio.schvezov@canonical.com>  Thu, 04 Apr 2013 18:26:58 -0300
+
 ubuntu-calendar-app (0.1) raring; urgency=low
 
   * Initial release
