@@ -1,1 +1,6 @@
 calendar.qmlproject.user
+
+debian/files
+debian/ubuntu-calendar-app/
+debian/*.debhelper.log
+debian/*.substvars
