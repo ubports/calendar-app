@@ -8,7 +8,7 @@ Homepage: https://launchpad.net/ubuntu-calendar-app
 
 Package: ubuntu-calendar-app
 Section: misc
-Architecture: any
+Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends},
          qmlscene,
          qt-components-ubuntu,
