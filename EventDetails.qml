@@ -44,7 +44,7 @@ Page {
         if( venues.length > 0 ) {
             //FIXME: what to do for multiple venue
             var place = venues[0];
-            locationLabel.text = address;
+            locationLabel.text = place.address;
             if( place.latitude && place.longitude) {
                 location = place.latitude +"," + place.longitude;
             }
