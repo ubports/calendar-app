@@ -1,6 +1,6 @@
-*.qmlproject.user
+calendar.qmlproject.user
 
 debian/files
-debian/app-template/
+debian/ubuntu-calendar-app/
 debian/*.debhelper.log
 debian/*.substvars
