@@ -6,6 +6,7 @@ PathView {
     id: eventView
 
     property var currentDayStart: (new Date()).midnight()
+    property bool timeLineViewEnable : false
 
     signal incrementCurrentDay
     signal decrementCurrentDay
@@ -58,23 +59,65 @@ PathView {
 
     model: 3
 
-    delegate: DiaryView {
-        id: diaryView
+//    delegate: DiaryView {
+//        id: diaryView
+
+//        width: eventView.width
+//        height: eventView.height
+
+//        dayStart: {
+//            if (index == intern.currentIndex) return intern.currentDayStart
+//            var previousIndex = intern.currentIndex > 0 ? intern.currentIndex - 1 : 2
+//            if (index == previousIndex) return intern.currentDayStart.addDays(-1)
+//            return intern.currentDayStart.addDays(1)
+//        }
+
+//        expanded: eventView.expanded
+
+//        onExpand: eventView.expand()
+//        onCompress: eventView.compress()
+//        onNewEvent: eventView.newEvent()
+//    }
+
+    delegate: Item{
+        id: eventViewDelegate
 
         width: eventView.width
         height: eventView.height
 
-        dayStart: {
+        property var dayStart: {
             if (index == intern.currentIndex) return intern.currentDayStart
             var previousIndex = intern.currentIndex > 0 ? intern.currentIndex - 1 : 2
-            if (index == previousIndex) return intern.currentDayStart.addDays(-1)
+            if (index === previousIndex) return intern.currentDayStart.addDays(-1)
             return intern.currentDayStart.addDays(1)
         }
+        //color: index == 0 ? "#FFFFFF" : index == 1 ? "#EEEEEE" : "#DDDDDD"
 
-        expanded: eventView.expanded
+        DiaryView{
+            id: diaryView
+            anchors.fill: eventViewDelegate
+            visible: !eventView.timeLineViewEnable
+            dayStart: eventViewDelegate.dayStart
 
-        onExpand: eventView.expand()
-        onCompress: eventView.compress()
-        onNewEvent: eventView.newEvent()
+            expanded: eventView.expanded
+
+            onExpand: eventView.expand()
+            onCompress: eventView.compress()
+            onNewEvent: eventView.newEvent()
+        }
+
+        TimeLineView{
+            id: timeLineView
+            anchors.fill: eventViewDelegate
+            visible: eventView.timeLineViewEnable
+            dayStart: eventViewDelegate.dayStart
+
+
+            expanded: eventView.expanded
+
+            onExpand: eventView.expand()
+            onCompress: eventView.compress()
+            onNewEvent: eventView.newEvent()
+        }
     }
 }

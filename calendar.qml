@@ -37,7 +37,7 @@ MainView {
                 Action {
                     iconSource: Qt.resolvedUrl("avatar.png")
                     text: i18n.tr("Timeline")
-                    onTriggered:; // FIXME
+                    onTriggered: eventView.timeLineViewEnable = !eventView.timeLineViewEnable;
                 }
             }
 
