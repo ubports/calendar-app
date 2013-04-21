@@ -9,7 +9,6 @@ Flickable{
     id: scrolllView
 
     property var dayStart : new Date();
-    property var now : new Date();
 
     property bool expanded: false
     property bool expanding: false
@@ -19,17 +18,9 @@ Flickable{
     signal compress()
     signal newEvent()
 
-    //anchors.fill: parent
-    height: parent.height
-    width: parent.width
-    clip: true
-
-    contentHeight: timeLineColumn.height + units.gu(3)
-    contentWidth: parent.width
-
     function scroll() {
         //scroll to first event or current hour
-        var hour = now.getHours();
+        var hour = intern.now.getHours();
         if(eventListModel.count > 0) {
             hour = eventListModel.get(0).startTime.getHours();
         }
@@ -51,14 +42,14 @@ Flickable{
     }
 
     function createEvents() {
-        var eventMap = createEventMap();
+        intern.eventMap = createEventMap();
         for( var i = 0 ; i < eventLineColumn.children.length ;++i) {
             var child = eventLineColumn.children[i];
             if( child.customDelegate === 0) {
-                var event = eventMap[i];
+                var event = intern.eventMap[i];
                 if( event ) {
                     child.showEvent(event);
-                } else if( i === now.getHours() && now.isSameDay( scrolllView.dayStart )) {
+                } else if( i === intern.now.getHours() && intern.now.isSameDay( scrolllView.dayStart )) {
                     child.showSeperator();
                 } else {
                     child.hideChild();
@@ -67,6 +58,11 @@ Flickable{
         }
 
         scroll();
+    }
+
+    function showEventDetails(hour) {
+        var event = intern.eventMap[hour];
+        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event});
     }
 
     onContentYChanged: {
@@ -98,6 +94,19 @@ Flickable{
             compressing = false
             compress()
         }
+    }
+
+    height: parent.height
+    width: parent.width
+    clip: true
+
+    contentHeight: timeLineColumn.height + units.gu(3)
+    contentWidth: parent.width
+
+    QtObject {
+        id: intern
+        property var eventMap;
+        property var now : new Date();
     }
 
     EventListModel {
@@ -209,6 +218,13 @@ Flickable{
                         Label{text:infoBubble.title;fontSize:"medium";color:"black"}
                         Label{text:infoBubble.location; fontSize:"small"; color:"black"}
                     }
+
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            scrolllView.showEventDetails(index);
+                        }
+                    }
                 }
 
                 Rectangle {
@@ -243,7 +259,7 @@ Flickable{
 
                 function showSeperator() {
                     //var seperator = seperatorComponent.createObject(eventDelegate);
-                    var yPos = (now.getMinutes() * eventDelegate.height) / 60
+                    var yPos = (intern.now.getMinutes() * eventDelegate.height) / 60
                     seperator.visible = true;
                     seperator.y = yPos;
                     seperator.x = (parent.width - seperator.width)/2
