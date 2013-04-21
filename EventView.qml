@@ -59,28 +59,10 @@ PathView {
 
     model: 3
 
-//    delegate: DiaryView {
-//        id: diaryView
-
-//        width: eventView.width
-//        height: eventView.height
-
-//        dayStart: {
-//            if (index == intern.currentIndex) return intern.currentDayStart
-//            var previousIndex = intern.currentIndex > 0 ? intern.currentIndex - 1 : 2
-//            if (index == previousIndex) return intern.currentDayStart.addDays(-1)
-//            return intern.currentDayStart.addDays(1)
-//        }
-
-//        expanded: eventView.expanded
-
-//        onExpand: eventView.expand()
-//        onCompress: eventView.compress()
-//        onNewEvent: eventView.newEvent()
-//    }
-
     delegate: Item{
         id: eventViewDelegate
+
+        property Item subDelegate;
 
         width: eventView.width
         height: eventView.height
@@ -93,31 +75,66 @@ PathView {
         }
         //color: index == 0 ? "#FFFFFF" : index == 1 ? "#EEEEEE" : "#DDDDDD"
 
-        DiaryView{
-            id: diaryView
-            anchors.fill: eventViewDelegate
-            visible: !eventView.timeLineViewEnable
-            dayStart: eventViewDelegate.dayStart
-
-            expanded: eventView.expanded
-
-            onExpand: eventView.expand()
-            onCompress: eventView.compress()
-            onNewEvent: eventView.newEvent()
+        onDayStartChanged: {
+            if(subDelegate)
+                subDelegate.dayStart = dayStart;
         }
 
-        TimeLineView{
-            id: timeLineView
-            anchors.fill: eventViewDelegate
-            visible: eventView.timeLineViewEnable
-            dayStart: eventViewDelegate.dayStart
+        function loadSubDelegate() {
+            if( subDelegate) {
+                subDelegate.destroy();
+            }
 
-
-            expanded: eventView.expanded
-
-            onExpand: eventView.expand()
-            onCompress: eventView.compress()
-            onNewEvent: eventView.newEvent()
+            if( eventView.timeLineViewEnable ) {
+                subDelegate = timeLineViewComponent.createObject(eventViewDelegate,{"dayStart":eventViewDelegate.dayStart});
+            } else {
+                subDelegate = diaryViewComponent.createObject(eventViewDelegate,{"dayStart":eventViewDelegate.dayStart});
+            }
         }
+
+        Component.onCompleted: {
+            loadSubDelegate();
+        }
+
+        Connections{
+            target: eventView
+
+            onTimeLineViewEnableChanged :{
+                loadSubDelegate();
+            }
+        }
+
+        Component {
+            id: diaryViewComponent
+            DiaryView{
+                id: diaryView
+                anchors.fill: eventViewDelegate
+                visible: !eventView.timeLineViewEnable
+                dayStart: eventViewDelegate.dayStart
+
+                expanded: eventView.expanded
+
+                onExpand: eventView.expand()
+                onCompress: eventView.compress()
+                onNewEvent: eventView.newEvent()
+            }
+       }
+
+       Component {
+            id: timeLineViewComponent
+            TimeLineView{
+                id: timeLineView
+                anchors.fill: eventViewDelegate
+                visible: eventView.timeLineViewEnable
+                dayStart: eventViewDelegate.dayStart
+
+
+                expanded: eventView.expanded
+
+                onExpand: eventView.expand()
+                onCompress: eventView.compress()
+                onNewEvent: eventView.newEvent()
+            }
+       }
     }
 }

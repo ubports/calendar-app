@@ -6,9 +6,10 @@ import "dataService.js" as DataService
 
 
 Flickable{
-    id: scolllView
+    id: scrolllView
 
     property var dayStart : new Date();
+    property var now : new Date();
 
     property bool expanded: false
     property bool expanding: false
@@ -18,53 +19,54 @@ Flickable{
     signal compress()
     signal newEvent()
 
-    function scroll() {
-        //scroll to first event or current hour
-        var hour = new Date().getHours();
-        if(eventListModel.count > 0) {
-            hour = eventListModel.get(0).startTime.getHours();
-        }
-
-        scolllView.contentY = hour * units.gu(10)
-        if(scolllView.contentY >= scolllView.contentHeight - scolllView.height) {
-            scolllView.contentY = scolllView.contentHeight - scolllView.height
-        }
-    }
-
-    anchors.fill: root
+    //anchors.fill: parent
+    height: parent.height
+    width: parent.width
     clip: true
 
     contentHeight: timeLineColumn.height + units.gu(3)
     contentWidth: parent.width
 
-    onVisibleChanged: {
-        if( visible ) {
-            scroll();
+    function scroll() {
+        //scroll to first event or current hour
+        var hour = now.getHours();
+        if(eventListModel.count > 0) {
+            hour = eventListModel.get(0).startTime.getHours();
+        }
+
+        scrolllView.contentY = hour * units.gu(10);
+
+        if(scrolllView.contentY >= scrolllView.contentHeight - scrolllView.height) {
+            scrolllView.contentY = scrolllView.contentHeight - scrolllView.height
         }
     }
 
-//    onDayStartChanged: {
-//        print(index +":"+dayStart)
-//        for( var i=0 ; i < eventLineColumn.children.length-1 ;++i) {
-//            eventLineColumn.children[i].createEvent();
-//        }
-//        scroll();
-//    }
+    function createEventMap() {
+        var eventMap = {};
+        for(var i = 0 ; i < eventListModel.count ; ++i) {
+            var event = eventListModel.get(i);
+            eventMap[event.startTime.getHours()] = event
+        }
+        return eventMap;
+    }
 
     function createEvents() {
-        for( var i=0 ; i < eventLineColumn.children.length-1 ;++i) {
-            eventLineColumn.children[i].createEvent();
+        var eventMap = createEventMap();
+        for( var i = 0 ; i < eventLineColumn.children.length ;++i) {
+            var child = eventLineColumn.children[i];
+            if( child.customDelegate === 0) {
+                var event = eventMap[i];
+                if( event ) {
+                    child.showEvent(event);
+                } else if( i === now.getHours() && now.isSameDay( scrolllView.dayStart )) {
+                    child.showSeperator();
+                } else {
+                    child.hideChild();
+                }
+            }
         }
-        scroll();
-    }
 
-    Text {
-        id: dummy
-        text: dayStart;
-        visible: false
-        onTextChanged: {
-            createEvents();
-        }
+        scroll();
     }
 
     onContentYChanged: {
@@ -100,18 +102,19 @@ Flickable{
 
     EventListModel {
         id: eventListModel
-        termStart: dayStart
+        termStart: scrolllView.dayStart
         termLength: Date.msPerDay
 
-        onCountChanged: {
+        onReload: {
             createEvents();
         }
     }
 
     Rectangle{
-        id: bg; anchors.fill: parent
+        id: background; anchors.fill: parent
     }
 
+    //Time line view
     Column{
         id: timeLineColumn
         anchors.top: parent.top
@@ -120,7 +123,7 @@ Flickable{
         z:0
 
         Repeater{
-            model: 24
+            model: 24 // hour in a day
 
             delegate: Item {
                 id: delegate
@@ -132,6 +135,7 @@ Flickable{
                     y: -timeLabel.height/2
                     Label{
                         id: timeLabel
+                        // FIXME: how to represent
                         text: index+":00"
                         color:"gray"
                         anchors.top: parent.top
@@ -155,6 +159,7 @@ Flickable{
         }
     }
 
+    //Event bubble overlay
     Column{
         id: eventLineColumn
         anchors.top: parent.top
@@ -163,65 +168,85 @@ Flickable{
         z:1
 
         Repeater{
-            model: 24
+            id: repeater
+            model: 24 // hour in a day
 
             delegate: Item {
                 id: eventDelegate
+
+                property int customDelegate: 0;
+
                 width: parent.width
                 height: units.gu(10)
 
-                Component{
-                    id: eventInfo
-                    Rectangle{
-                        property string title;
-                        property string location;
+                Rectangle{
+                    id: infoBubble
 
-                        color:'#fffdaa';
-                        width: eventDelegate.width - units.gu(8)
-                        x: units.gu(5)
-                        z:1
+                    property string title;
+                    property string location;
 
-                        border.color: "#f4d690"
+                    visible: false
 
-                        Column{
-                            id: column
-                            anchors {
-                                left: parent.left
-                                right: parent.right
-                                top: parent.top
+                    color:'#fffdaa';
+                    width: scrolllView.width - units.gu(8)
+                    x: units.gu(5)
+                    z:1
 
-                                leftMargin: units.gu(1)
-                                rightMargin: units.gu(1)
-                                topMargin: units.gu(1)
-                            }
-                            spacing: units.gu(1)
-                            Label{text:title;fontSize:"medium";color:"black"}
-                            Label{text:location; fontSize:"small"; color:"black"}
+                    border.color: "#f4d690"
+
+                    Column{
+                        id: column
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            top: parent.top
+
+                            leftMargin: units.gu(1)
+                            rightMargin: units.gu(1)
+                            topMargin: units.gu(1)
                         }
+                        spacing: units.gu(1)
+                        Label{text:infoBubble.title;fontSize:"medium";color:"black"}
+                        Label{text:infoBubble.location; fontSize:"small"; color:"black"}
                     }
                 }
 
-                function createEvent() {
-                    eventDelegate.children = null;
+                Rectangle {
+                    id: seperator
+                    height: units.gu(0.5)
+                    width: scrolllView.width - units.gu(2)
+                    color: "#c94212"
+                    visible: false
+                    z: 1
+                }
 
-                    for( var i = 0 ; i < eventListModel.count ; ++i) {
-                        var event = eventListModel.get(i)
-                        if( index === event.startTime.getHours() ) {
-
-                            var temp = eventInfo.createObject(eventDelegate,{"title":event.title,"location":"test"});
-
-                            var yPos = (event.startTime.getMinutes() * 10) / 60
-                            temp.y = units.gu(yPos);
-
-                            var duration = event.endTime.getHours() - event.startTime.getHours();
-                            var height = (duration * 10 ) / 1;
-                            temp.height = units.gu(height);
-                        }
+                function hideChild() {
+                    for(var i=0 ; i < children.length ; ++i ) {
+                        children[i].visible = false;
                     }
                 }
 
-                Component.onCompleted: {
-                    createEvent();
+                function showEvent( event) {
+                    //var info = eventInfo.createObject(eventDelegate,{"title":event.title,"location":"test"});
+                    infoBubble.visible = true;
+                    infoBubble.title = event.title;
+                    infoBubble.location = "test";
+
+                    var yPos = ( event.startTime.getMinutes() * eventDelegate.height) / 60
+                    infoBubble.y = yPos;
+
+                    var durationMin = (event.endTime.getHours() - event.startTime.getHours()) * 60;
+                    durationMin += (event.endTime.getMinutes() - event.startTime.getMinutes());
+                    var height = (durationMin * eventDelegate.height )/ 60;
+                    infoBubble.height = height;
+                }
+
+                function showSeperator() {
+                    //var seperator = seperatorComponent.createObject(eventDelegate);
+                    var yPos = (now.getMinutes() * eventDelegate.height) / 60
+                    seperator.visible = true;
+                    seperator.y = yPos;
+                    seperator.x = (parent.width - seperator.width)/2
                 }
             }
         }

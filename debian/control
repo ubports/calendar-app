@@ -9,7 +9,8 @@ Vcs-Bzr: https://code.launchpad.net/~ubuntu-calendar-dev/ubuntu-calendar-app/tru
 
 Package: ubuntu-calendar-app
 Architecture: all
-Depends: qmlscene,
+Depends: ${misc:Depends},
+         qmlscene,
          qtdeclarative5-localstorage-plugin,
          qtdeclarative5-qtquick2-plugin,
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
