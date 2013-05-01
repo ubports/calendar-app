@@ -21,11 +21,6 @@ ListView {
 
     clip: true
 
-    Component.onDestruction: {
-        print("Diary Line destroyed ....");
-    }
-
-
     model: EventListModel {
         id: eventModel
         termStart: dayStart

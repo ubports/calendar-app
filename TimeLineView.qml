@@ -18,10 +18,6 @@ Flickable{
     signal compress()
     signal newEvent()
 
-    Component.onDestruction: {
-        print("Time Line destroyed ....");
-    }
-
     function scroll() {
         //scroll to first event or current hour
         var hour = intern.now.getHours();

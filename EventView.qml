@@ -116,7 +116,6 @@ PathView {
                 anchors.fill: eventViewDelegate
                 visible: !eventView.timeLineViewEnable
                 dayStart: eventViewDelegate.dayStart
-
                 expanded: eventView.expanded
 
                 onExpand: eventView.expand()
@@ -132,8 +131,6 @@ PathView {
                 anchors.fill: eventViewDelegate
                 visible: eventView.timeLineViewEnable
                 dayStart: eventViewDelegate.dayStart
-
-
                 expanded: eventView.expanded
 
                 onExpand: eventView.expand()
