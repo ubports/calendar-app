@@ -76,13 +76,18 @@ PathView {
         //color: index == 0 ? "#FFFFFF" : index == 1 ? "#EEEEEE" : "#DDDDDD"
 
         onDayStartChanged: {
-            if(subDelegate)
+            if(subDelegate) {
                 subDelegate.dayStart = dayStart;
+            }
         }
 
         function loadSubDelegate() {
             if( subDelegate) {
-                subDelegate.destroy();
+                //to make sure its destroyed immediately, followig is what Qt docs says
+                // Objects are not destroyed the instant destroy() is called,
+                // but are cleaned up sometime between the end of that script block
+                // and the next frame (unless you specified a non-zero delay).
+                subDelegate.destroy(100);
             }
 
             if( eventView.timeLineViewEnable ) {
@@ -93,7 +98,7 @@ PathView {
         }
 
         Component.onCompleted: {
-            loadSubDelegate();
+            loadSubDelegate();            
         }
 
         Connections{
@@ -120,7 +125,7 @@ PathView {
             }
        }
 
-       Component {
+      Component {
             id: timeLineViewComponent
             TimeLineView{
                 id: timeLineView

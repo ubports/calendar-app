@@ -21,10 +21,15 @@ ListView {
 
     clip: true
 
+    Component.onDestruction: {
+        print("Diary Line destroyed ....");
+    }
+
+
     model: EventListModel {
         id: eventModel
         termStart: dayStart
-        termLength: Date.msPerDay       
+        termLength: Date.msPerDay
     }
 
     section {
