@@ -104,7 +104,7 @@ ListView {
 
         property int squareUnit: monthView.width / 8
         property int verticalMargin: units.gu(1)
-        property int weekstartDay: Qt.locale(i18n.language).firstDayOfWeek
+        property int weekstartDay: Qt.locale().firstDayOfWeek
         property int monthCount: 49 // months for +-2 years
 
         property var today: (new Date()).midnight() // TODO: update at midnight

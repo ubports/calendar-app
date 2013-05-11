@@ -45,18 +45,18 @@ MainView {
                 id: tabs
                 anchors.fill: parent
 
-                Tab { title: Qt.locale(i18n.language).monthName(0) }
-                Tab { title: Qt.locale(i18n.language).monthName(1) }
-                Tab { title: Qt.locale(i18n.language).monthName(2) }
-                Tab { title: Qt.locale(i18n.language).monthName(3) }
-                Tab { title: Qt.locale(i18n.language).monthName(4) }
-                Tab { title: Qt.locale(i18n.language).monthName(5) }
-                Tab { title: Qt.locale(i18n.language).monthName(6) }
-                Tab { title: Qt.locale(i18n.language).monthName(7) }
-                Tab { title: Qt.locale(i18n.language).monthName(8) }
-                Tab { title: Qt.locale(i18n.language).monthName(9) }
-                Tab { title: Qt.locale(i18n.language).monthName(10) }
-                Tab { title: Qt.locale(i18n.language).monthName(11) }
+                Tab { title: Qt.locale().monthName(0) }
+                Tab { title: Qt.locale().monthName(1) }
+                Tab { title: Qt.locale().monthName(2) }
+                Tab { title: Qt.locale().monthName(3) }
+                Tab { title: Qt.locale().monthName(4) }
+                Tab { title: Qt.locale().monthName(5) }
+                Tab { title: Qt.locale().monthName(6) }
+                Tab { title: Qt.locale().monthName(7) }
+                Tab { title: Qt.locale().monthName(8) }
+                Tab { title: Qt.locale().monthName(9) }
+                Tab { title: Qt.locale().monthName(10) }
+                Tab { title: Qt.locale().monthName(11) }
 
                 onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
             }
