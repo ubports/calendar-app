@@ -35,10 +35,13 @@ ListView {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    if (expanded)
+                    print("Expanded:"+ expanded);
+                    if (expanded) {
                         compress()
-                    else
+                    }
+                    else {
                         expand()
+                    }
                 }
             }
         }

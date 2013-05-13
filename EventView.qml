@@ -59,10 +59,8 @@ PathView {
 
     model: 3
 
-    delegate: Item{
+    delegate: Loader {
         id: eventViewDelegate
-
-        property Item subDelegate;
 
         width: eventView.width
         height: eventView.height
@@ -73,32 +71,28 @@ PathView {
             if (index === previousIndex) return intern.currentDayStart.addDays(-1)
             return intern.currentDayStart.addDays(1)
         }
-        //color: index == 0 ? "#FFFFFF" : index == 1 ? "#EEEEEE" : "#DDDDDD"
-
-        onDayStartChanged: {
-            if(subDelegate) {
-                subDelegate.dayStart = dayStart;
-            }
-        }
 
         function loadSubDelegate() {
-            if( subDelegate) {
-                //to make sure its destroyed immediately, followig is what Qt docs says
-                // Objects are not destroyed the instant destroy() is called,
-                // but are cleaned up sometime between the end of that script block
-                // and the next frame (unless you specified a non-zero delay).
-                subDelegate.destroy(100);
-            }
-
-            if( eventView.timeLineViewEnable ) {
-                subDelegate = timeLineViewComponent.createObject(eventViewDelegate,{"dayStart":eventViewDelegate.dayStart});
-            } else {
-                subDelegate = diaryViewComponent.createObject(eventViewDelegate,{"dayStart":eventViewDelegate.dayStart});
-            }
+            source = eventView.timeLineViewEnable ? "TimeLineView.qml" : "DiaryView.qml"
         }
 
         Component.onCompleted: {
-            loadSubDelegate();            
+            loadSubDelegate();
+        }
+
+        onStatusChanged: {
+            if (status == Loader.Ready) {
+                item.dayStart = dayStart;
+                item.expand.connect(eventView.expand);
+                item.compress.connect(eventView.compress);
+                item.newEvent.connect(eventView.newEvent);
+            }
+        }
+
+        onDayStartChanged: {
+            if (status == Loader.Ready) {
+                item.dayStart = dayStart;
+            }
         }
 
         Connections{
@@ -107,36 +101,10 @@ PathView {
             onTimeLineViewEnableChanged :{
                 loadSubDelegate();
             }
+
+            onExpandedChanged:{
+                item.expanded = eventView.expanded;
+            }
         }
-
-        Component {
-            id: diaryViewComponent
-            DiaryView{
-                id: diaryView
-                anchors.fill: eventViewDelegate
-                visible: !eventView.timeLineViewEnable
-                dayStart: eventViewDelegate.dayStart
-                expanded: eventView.expanded
-
-                onExpand: eventView.expand()
-                onCompress: eventView.compress()
-                onNewEvent: eventView.newEvent()
-            }
-       }
-
-      Component {
-            id: timeLineViewComponent
-            TimeLineView{
-                id: timeLineView
-                anchors.fill: eventViewDelegate
-                visible: eventView.timeLineViewEnable
-                dayStart: eventViewDelegate.dayStart
-                expanded: eventView.expanded
-
-                onExpand: eventView.expand()
-                onCompress: eventView.compress()
-                onNewEvent: eventView.newEvent()
-            }
-       }
     }
 }
