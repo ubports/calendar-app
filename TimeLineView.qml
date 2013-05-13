@@ -199,7 +199,7 @@ Flickable{
             var yPos = ((intern.now.getMinutes() * intern.hourHeight) / 60) + hour * intern.hourHeight
             sepatator.visible = true;
             sepatator.y = yPos;
-            sepatator.x = (parent.width - seperator.width)/2
+            sepatator.x = (parent.width - sepatator.width)/2
         }
     }
 
