@@ -34,8 +34,7 @@ ListView {
             text: i18n.tr(section)
             MouseArea {
                 anchors.fill: parent
-                onClicked: {
-                    print("Expanded:"+ expanded);
+                onClicked: {                    
                     if (expanded) {
                         compress()
                     }
