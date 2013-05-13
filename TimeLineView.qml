@@ -195,11 +195,11 @@ Flickable{
         }
 
         function createSeperator(hour) {
-            var seperator = separatorComponent.createObject(bubbleOverLay);
+            var sepatator = separatorComponent.createObject(bubbleOverLay);
             var yPos = ((intern.now.getMinutes() * intern.hourHeight) / 60) + hour * intern.hourHeight
-            seperator.visible = true;
-            seperator.y = yPos;
-            seperator.x = (parent.width - seperator.width)/2
+            sepatator.visible = true;
+            sepatator.y = yPos;
+            sepatator.x = (parent.width - seperator.width)/2
         }
     }
 
