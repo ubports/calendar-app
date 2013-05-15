@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Terminal=false
-Exec=/usr/bin/qmlscene
-Name=Calendar
-GenericName=Calendar
-Comment=Ubuntu Calendar
-Icon=ubuntu-qmlrunner
