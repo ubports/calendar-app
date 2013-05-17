@@ -37,7 +37,15 @@ MainView {
                 Action {
                     iconSource: Qt.resolvedUrl("avatar.png")
                     text: i18n.tr("Timeline")
-                    onTriggered: eventView.timeLineViewEnable = !eventView.timeLineViewEnable;
+                    onTriggered: {
+                        if( eventView.eventViewType  === "DiaryView.qml") {
+                            eventView.eventViewType = "TimeLineView.qml";
+                            text = i18n.tr("Diary")
+                        } else {
+                            eventView.eventViewType = "DiaryView.qml";
+                            text = i18n.tr("Timeline")
+                        }
+                    }
                 }
             }
 

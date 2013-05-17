@@ -7,6 +7,7 @@ PathView {
 
     property var currentDayStart: (new Date()).midnight()
     property bool timeLineViewEnable : false
+    property string eventViewType: "DiaryView.qml";
 
     signal incrementCurrentDay
     signal decrementCurrentDay
@@ -64,20 +65,13 @@ PathView {
 
         width: eventView.width
         height: eventView.height
+        source: eventView.eventViewType
 
         property var dayStart: {
             if (index == intern.currentIndex) return intern.currentDayStart
             var previousIndex = intern.currentIndex > 0 ? intern.currentIndex - 1 : 2
             if (index === previousIndex) return intern.currentDayStart.addDays(-1)
             return intern.currentDayStart.addDays(1)
-        }
-
-        function loadSubDelegate() {
-            source = eventView.timeLineViewEnable ? "TimeLineView.qml" : "DiaryView.qml"
-        }
-
-        Component.onCompleted: {
-            loadSubDelegate();
         }
 
         onStatusChanged: {
@@ -97,10 +91,6 @@ PathView {
 
         Connections{
             target: eventView
-
-            onTimeLineViewEnableChanged :{
-                loadSubDelegate();
-            }
 
             onExpandedChanged:{
                 item.expanded = eventView.expanded;
