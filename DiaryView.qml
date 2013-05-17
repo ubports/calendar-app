@@ -34,13 +34,11 @@ ListView {
             text: i18n.tr(section)
             MouseArea {
                 anchors.fill: parent
-                onClicked: {                    
-                    if (expanded) {
+                onClicked: {
+                    if (expanded)
                         compress()
-                    }
-                    else {
+                    else
                         expand()
-                    }
                 }
             }
         }
