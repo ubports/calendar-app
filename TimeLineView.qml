@@ -44,7 +44,7 @@ Flickable{
     function createEvents() {
         intern.eventMap = createEventMap();
 
-        bubbleOverLay.destroyAllChilds();
+        bubbleOverLay.destroyAllChildren();
 
         for( var i=0; i < 24; ++i ) {
             var event = intern.eventMap[i];
@@ -173,10 +173,13 @@ Flickable{
         anchors.top: parent.top
         anchors.topMargin: units.gu(3)
 
-        function destroyAllChilds() {
-            for(var i=0 ; i < children.length ; ++i ) {
-                children[i].destroy(100);
+        function destroyAllChildren() {
+            for(var i = 0 ; i < children.length ; ++i ) {
+                children[i].destroy();
             }
+
+            //resetting children array with empty array
+            children = [];
         }
 
         function createEvent( event ,hour) {
