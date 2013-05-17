@@ -89,12 +89,10 @@ PathView {
             }
         }
 
-        Connections{
-            target: eventView
-
-            onExpandedChanged:{
-                item.expanded = eventView.expanded;
-            }
+        Binding {
+            target: item
+            property: "expanded"
+            value: eventView.expanded
         }
     }
 }
