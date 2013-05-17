@@ -52,7 +52,7 @@ Flickable{
                 bubbleOverLay.createEvent(event,i);
             } else if( i === intern.now.getHours()
                       && intern.now.isSameDay( timeLineView.dayStart )) {
-                bubbleOverLay.createSeperator(i);
+                bubbleOverLay.createSeparator(i);
             }
         }
 
@@ -194,12 +194,12 @@ Flickable{
             eventBubble.height = height;
         }
 
-        function createSeperator(hour) {
-            var sepatator = separatorComponent.createObject(bubbleOverLay);
+        function createSeparator(hour) {
+            var separator = separatorComponent.createObject(bubbleOverLay);
             var yPos = ((intern.now.getMinutes() * intern.hourHeight) / 60) + hour * intern.hourHeight
-            sepatator.visible = true;
-            sepatator.y = yPos;
-            sepatator.x = (parent.width - sepatator.width)/2
+            separator.visible = true;
+            separator.y = yPos;
+            separator.x = (parent.width - separator.width)/2
         }
     }
 
