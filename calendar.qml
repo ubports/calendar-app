@@ -45,18 +45,18 @@ MainView {
                 id: tabs
                 anchors.fill: parent
 
-                Tab { title: Qt.locale(i18n.language).monthName(0) }
-                Tab { title: Qt.locale(i18n.language).monthName(1) }
-                Tab { title: Qt.locale(i18n.language).monthName(2) }
-                Tab { title: Qt.locale(i18n.language).monthName(3) }
-                Tab { title: Qt.locale(i18n.language).monthName(4) }
-                Tab { title: Qt.locale(i18n.language).monthName(5) }
-                Tab { title: Qt.locale(i18n.language).monthName(6) }
-                Tab { title: Qt.locale(i18n.language).monthName(7) }
-                Tab { title: Qt.locale(i18n.language).monthName(8) }
-                Tab { title: Qt.locale(i18n.language).monthName(9) }
-                Tab { title: Qt.locale(i18n.language).monthName(10) }
-                Tab { title: Qt.locale(i18n.language).monthName(11) }
+                Tab { title: Qt.locale().standaloneMonthName(0) }
+                Tab { title: Qt.locale().standaloneMonthName(1) }
+                Tab { title: Qt.locale().standaloneMonthName(2) }
+                Tab { title: Qt.locale().standaloneMonthName(3) }
+                Tab { title: Qt.locale().standaloneMonthName(4) }
+                Tab { title: Qt.locale().standaloneMonthName(5) }
+                Tab { title: Qt.locale().standaloneMonthName(6) }
+                Tab { title: Qt.locale().standaloneMonthName(7) }
+                Tab { title: Qt.locale().standaloneMonthName(8) }
+                Tab { title: Qt.locale().standaloneMonthName(9) }
+                Tab { title: Qt.locale().standaloneMonthName(10) }
+                Tab { title: Qt.locale().standaloneMonthName(11) }
 
                 onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
             }
