@@ -174,12 +174,9 @@ Flickable{
         anchors.topMargin: units.gu(3)
 
         function destroyAllChildren() {
-            for(var i = 0 ; i < children.length ; ++i ) {
+            for( var i = children.length - 1; i >= 0; --i ) {
                 children[i].destroy();
             }
-
-            //resetting children array with empty array
-            children = [];
         }
 
         function createEvent( event ,hour) {
