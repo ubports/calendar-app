@@ -73,19 +73,16 @@ PathView {
             return intern.currentDayStart.addDays(1)
         }
 
-        onStatusChanged: {
-            if (status == Loader.Ready) {
-                item.dayStart = dayStart;
-                item.expand.connect(eventView.expand);
-                item.compress.connect(eventView.compress);
-                item.newEvent.connect(eventView.newEvent);
-            }
+        onLoaded: {
+            item.expand.connect(eventView.expand);
+            item.compress.connect(eventView.compress);
+            item.newEvent.connect(eventView.newEvent);
         }
 
-        onDayStartChanged: {
-            if (status == Loader.Ready) {
-                item.dayStart = dayStart;
-            }
+        Binding {
+            target: item
+            property: "dayStart"
+            value: eventViewDelegate.dayStart
         }
 
         Binding {
