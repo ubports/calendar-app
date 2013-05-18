@@ -6,7 +6,6 @@ PathView {
     id: eventView
 
     property var currentDayStart: (new Date()).midnight()
-    property bool timeLineViewEnable : false
     property string eventViewType: "DiaryView.qml";
 
     signal incrementCurrentDay
