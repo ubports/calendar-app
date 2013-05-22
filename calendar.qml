@@ -14,14 +14,11 @@ MainView {
     PageStack {
         id: pageStack
 
-        anchors.fill: parent
-
         Component.onCompleted: push(monthViewPage)
         __showHeader: false
 
         Page {
             id: monthViewPage
-            anchors.fill: parent
 
             tools: ToolbarActions {
                 Action {
@@ -43,7 +40,6 @@ MainView {
 
             Tabs {
                 id: tabs
-                anchors.fill: parent
 
                 Tab { title: Qt.locale().standaloneMonthName(0) }
                 Tab { title: Qt.locale().standaloneMonthName(1) }
