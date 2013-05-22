@@ -8,30 +8,30 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-15 10:19+0200\n"
-"PO-Revision-Date: 2013-05-18 16:56+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-05-21 21:06+0000\n"
+"Last-Translator: Leo Arias <leo.arias@canonical.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-19 06:13+0000\n"
+"X-Launchpad-Export-Date: 2013-05-22 05:27+0000\n"
 "X-Generator: Launchpad (build 16626)\n"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:29
 msgid "To-do"
-msgstr ""
+msgstr "Por realizar"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:34
 msgid "New Event"
-msgstr ""
+msgstr "Evento nuevo"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:39
 msgid "Timeline"
-msgstr ""
+msgstr "Cronología"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/DiaryView.qml:54
 msgid "(+) New Event"
-msgstr ""
+msgstr "(+) Evento nuevo"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:69
 msgid "Add invite"
@@ -39,16 +39,16 @@ msgstr ""
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:75
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:150
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:112
 msgid "People"
-msgstr ""
+msgstr "Personas"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:20
 msgid "Create event"
-msgstr ""
+msgstr "Crear evento"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:25
 msgid "Add event name"
@@ -56,16 +56,16 @@ msgstr ""
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:99
 msgid "Location"
-msgstr ""
+msgstr "Ubicación"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:104
 msgid "Add Location"
-msgstr ""
+msgstr "Añadir ubicación"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:117
 msgid "Invite People"
-msgstr ""
+msgstr "Invitar personas"
 
 #: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:128
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
