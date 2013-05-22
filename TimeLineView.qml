@@ -148,7 +148,7 @@ Flickable{
                     }
                     Rectangle{
                         width: parent.width -timeLabel.width
-                        height:units.gu(0.1)
+                        height:units.dp(1)
                         color:"gray"
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -156,7 +156,7 @@ Flickable{
 
                 Rectangle{
                     width: parent.width - units.gu(5)
-                    height:units.gu(0.1)
+                    height:units.dp(1)
                     color:"gray"
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
