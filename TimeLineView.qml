@@ -64,6 +64,24 @@ Flickable{
         pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event});
     }
 
+    function numberToLocaleString(num) {
+        return Number(num).toLocaleString(Qt.locale(), "f", 0)
+    }
+
+    function zeroleft ( number, zeroCount ) {
+        var resstring = numberToLocaleString(number.toString());
+        var numchart = zeroCount;
+        var numberlength = resstring.length;
+        for (var i = numberlength; i < numchart; i++) {
+            resstring = numberToLocaleString("0") + resstring;
+        }
+        return resstring;
+    }
+
+    function hourToLocaleString(hour) {
+        return zeroleft(hour,2)+":"+ zeroleft(0,2);
+    }
+
     onContentYChanged: {
         // console.log(expanded, expanding, compressing, dragging, flicking, moving, contentY)
         if (expanding || compressing || !dragging) return
@@ -141,8 +159,7 @@ Flickable{
                     y: -timeLabel.height/2
                     Label{
                         id: timeLabel
-                        // FIXME: how to represent
-                        text: index+":00"
+                        text : hourToLocaleString(index)
                         color:"gray"
                         anchors.top: parent.top
                     }
