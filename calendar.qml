@@ -19,6 +19,7 @@ MainView {
 
         Page {
             id: monthViewPage
+            flickable: null
 
             tools: ToolbarActions {
                 Action {
