@@ -119,6 +119,7 @@ Flickable{
 
     Rectangle{
         id: background; anchors.fill: parent
+        color: "white"
     }
 
     //Time line view
