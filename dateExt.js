@@ -79,3 +79,9 @@ Date.prototype.weekNumber = function() {
 Date.prototype.weeksInMonth = function(weekday) {
     return Date.weeksInMonth(this.getFullYear(), this.getMonth(), weekday)
 }
+
+Date.prototype.isSameDay = function ( otherDay ) {
+    return ( this.getDate() === otherDay.getDate()
+    && this.getMonth() === otherDay.getMonth()
+    && this.getFullYear() === otherDay.getFullYear() );
+}

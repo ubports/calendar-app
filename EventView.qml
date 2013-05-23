@@ -6,6 +6,7 @@ PathView {
     id: eventView
 
     property var currentDayStart: (new Date()).midnight()
+    property string eventViewType: "DiaryView.qml";
 
     signal incrementCurrentDay
     signal decrementCurrentDay
@@ -58,23 +59,36 @@ PathView {
 
     model: 3
 
-    delegate: DiaryView {
-        id: diaryView
+    delegate: Loader {
+        id: eventViewDelegate
 
         width: eventView.width
         height: eventView.height
+        source: eventView.eventViewType
 
-        dayStart: {
+        property var dayStart: {
             if (index == intern.currentIndex) return intern.currentDayStart
             var previousIndex = intern.currentIndex > 0 ? intern.currentIndex - 1 : 2
-            if (index == previousIndex) return intern.currentDayStart.addDays(-1)
+            if (index === previousIndex) return intern.currentDayStart.addDays(-1)
             return intern.currentDayStart.addDays(1)
         }
 
-        expanded: eventView.expanded
+        onLoaded: {
+            item.expand.connect(eventView.expand);
+            item.compress.connect(eventView.compress);
+            item.newEvent.connect(eventView.newEvent);
+        }
 
-        onExpand: eventView.expand()
-        onCompress: eventView.compress()
-        onNewEvent: eventView.newEvent()
+        Binding {
+            target: item
+            property: "dayStart"
+            value: eventViewDelegate.dayStart
+        }
+
+        Binding {
+            target: item
+            property: "expanded"
+            value: eventView.expanded
+        }
     }
 }

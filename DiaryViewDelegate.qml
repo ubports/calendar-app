@@ -38,7 +38,9 @@ Item {
         var now = new Date;
         var lastEvent = eventModel.get(index-1);
 
-        if( endTime >= now && (lastEvent === undefined || lastEvent.endTime < now )  ) {
+        if( endTime >= now
+                && (lastEvent === undefined || lastEvent.endTime < now )
+                && endTime.isSameDay(now) ) {
             collapse(false);
             bgColor = "#fffdaa";
             seperator.visible = true;

@@ -1,14 +1,14 @@
-# Ubuntu Calendar app translation.
-# Copyright (C) Canonical Ltd. 2013.
-# This file is distributed under the same license as the ubuntu-calendar-app package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-15 10:19+0200\n"
+"POT-Creation-Date: 2013-05-23 23:02+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,55 +17,64 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:29
-msgid "To-do"
-msgstr ""
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:34
-msgid "New Event"
-msgstr ""
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:39
-msgid "Timeline"
-msgstr ""
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/DiaryView.qml:54
+#: DiaryView.qml:54
 msgid "(+) New Event"
 msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:69
-msgid "Add invite"
-msgstr ""
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:75
-msgid "Edit"
-msgstr ""
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:150
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:112
-msgid "People"
-msgstr ""
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:20
-msgid "Create event"
-msgstr ""
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:25
-msgid "Add event name"
-msgstr ""
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:99
-msgid "Location"
-msgstr ""
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:104
+#: NewEvent.qml:104
 msgid "Add Location"
 msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:117
+#: NewEvent.qml:25
+msgid "Add event name"
+msgstr ""
+
+#: EventDetails.qml:69
+msgid "Add invite"
+msgstr ""
+
+#: NewEvent.qml:20
+msgid "Create event"
+msgstr ""
+
+#: calendar.qml:45
+msgid "Diary"
+msgstr ""
+
+#: EventDetails.qml:75
+msgid "Edit"
+msgstr ""
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: TimeLineView.qml:147
+msgid "HH:mm"
+msgstr ""
+
+#: NewEvent.qml:117
 msgid "Invite People"
 msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:128
+#: NewEvent.qml:99
+msgid "Location"
+msgstr ""
+
+#: calendar.qml:36
+msgid "New Event"
+msgstr ""
+
+#: EventDetails.qml:150 NewEvent.qml:112
+msgid "People"
+msgstr ""
+
+#: NewEvent.qml:128
 msgid "Save"
+msgstr ""
+
+#: calendar.qml:41 calendar.qml:48
+msgid "Timeline"
+msgstr ""
+
+#: calendar.qml:31
+msgid "To-do"
 msgstr ""
