@@ -1,0 +1,71 @@
+# Ukrainian translation for ubuntu-calendar-app
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the ubuntu-calendar-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-calendar-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-05-15 10:19+0200\n"
+"PO-Revision-Date: 2013-05-17 17:01+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-05-19 06:13+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:29
+msgid "To-do"
+msgstr "Завдання"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:34
+msgid "New Event"
+msgstr "Нова подія"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:39
+msgid "Timeline"
+msgstr "Розклад"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/DiaryView.qml:54
+msgid "(+) New Event"
+msgstr "(+) Нова подія"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:69
+msgid "Add invite"
+msgstr "Додати запрошення"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:75
+msgid "Edit"
+msgstr "Змінити"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:150
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:112
+msgid "People"
+msgstr "Люди"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:20
+msgid "Create event"
+msgstr "Створити запис події"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:25
+msgid "Add event name"
+msgstr "Додати назву події"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:99
+msgid "Location"
+msgstr "Місце"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:104
+msgid "Add Location"
+msgstr "Додати місце"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:117
+msgid "Invite People"
+msgstr "Запросити учасників"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:128
+msgid "Save"
+msgstr "Зберегти"

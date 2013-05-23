@@ -1,0 +1,71 @@
+# Romanian translation for ubuntu-calendar-app
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the ubuntu-calendar-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-calendar-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-05-15 10:19+0200\n"
+"PO-Revision-Date: 2013-05-17 21:55+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Romanian <ro@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-05-19 06:13+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:29
+msgid "To-do"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:34
+msgid "New Event"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:39
+msgid "Timeline"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/DiaryView.qml:54
+msgid "(+) New Event"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:69
+msgid "Add invite"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:75
+msgid "Edit"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:150
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:112
+msgid "People"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:20
+msgid "Create event"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:25
+msgid "Add event name"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:99
+msgid "Location"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:104
+msgid "Add Location"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:117
+msgid "Invite People"
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:128
+msgid "Save"
+msgstr ""

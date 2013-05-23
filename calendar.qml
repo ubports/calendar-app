@@ -14,14 +14,16 @@ MainView {
     PageStack {
         id: pageStack
 
-        anchors.fill: parent
-
         Component.onCompleted: push(monthViewPage)
         __showHeader: false
 
         Page {
             id: monthViewPage
-            anchors.fill: parent
+
+            // Fix for UITK detecting any Flickable as a vertical flickable
+            // This line can be removed after https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/internalizePropagated/+merge/164963
+            // was merged into the UITK.
+            flickable: null
 
             tools: ToolbarActions {
                 Action {
@@ -51,7 +53,6 @@ MainView {
 
             Tabs {
                 id: tabs
-                anchors.fill: parent
 
                 Tab { title: Qt.locale().standaloneMonthName(0) }
                 Tab { title: Qt.locale().standaloneMonthName(1) }
