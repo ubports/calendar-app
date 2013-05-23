@@ -7,65 +7,56 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-15 10:19+0200\n"
-"PO-Revision-Date: 2013-05-21 21:06+0000\n"
-"Last-Translator: Leo Arias <leo.arias@canonical.com>\n"
+"POT-Creation-Date: 2013-05-20 13:51+0200\n"
+"PO-Revision-Date: 2013-05-22 02:45+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-22 05:27+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2013-05-23 06:20+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:29
-msgid "To-do"
-msgstr "Por realizar"
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:34
-msgid "New Event"
-msgstr "Evento nuevo"
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/calendar.qml:39
-msgid "Timeline"
-msgstr "Cronología"
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/DiaryView.qml:54
-msgid "(+) New Event"
-msgstr "(+) Evento nuevo"
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:69
-msgid "Add invite"
+#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:32
+msgid "Release to start new calculation"
 msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:75
-msgid "Edit"
-msgstr "Editar"
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/EventDetails.qml:150
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:112
-msgid "People"
-msgstr "Personas"
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:20
-msgid "Create event"
-msgstr "Crear evento"
-
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:25
-msgid "Add event name"
+#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:32
+msgid "Pull to start new calculation"
 msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:99
-msgid "Location"
-msgstr "Ubicación"
+#. TRANSLATORS: Refers to Clear, keep the translation to 2 characters
+#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:54
+msgid "C"
+msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:104
-msgid "Add Location"
-msgstr "Añadir ubicación"
+#. TRANSLATORS: Refers to All Clear, keep the translation to 2 characters
+#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:192
+msgid "AC"
+msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:117
-msgid "Invite People"
-msgstr "Invitar personas"
+#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:115
+#, qt-format
+msgid "%1 minute ago"
+msgid_plural "%1 minutes ago"
+msgstr[0] ""
+msgstr[1] ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calendar-app/NewEvent.qml:128
-msgid "Save"
-msgstr "Guardar"
+#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:119
+#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/SimplePage.qml:113
+msgid "A few seconds ago..."
+msgstr ""
+
+#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:125
+#, qt-format
+msgid "%1 hour ago"
+msgid_plural "%1 hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: What comes after 'at' is a time, e.g. 'Yesterday at 05:55 PM'
+#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:137
+#, qt-format
+msgid "Yesterday at %1"
+msgstr ""
