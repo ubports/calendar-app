@@ -7,56 +7,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-20 13:51+0200\n"
-"PO-Revision-Date: 2013-05-22 11:07+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-05-23 23:02+0900\n"
+"PO-Revision-Date: 2013-05-18 10:47+0000\n"
+"Last-Translator: Nizar Kerkeni <nizarus@nizarus.tn>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2013-05-23 06:20+0000\n"
+"X-Launchpad-Export-Date: 2013-05-24 06:45+0000\n"
 "X-Generator: Launchpad (build 16640)\n"
 
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:32
-msgid "Release to start new calculation"
+#: DiaryView.qml:54
+msgid "(+) New Event"
+msgstr "(+) Nouvel évènement"
+
+#: NewEvent.qml:104
+msgid "Add Location"
 msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:32
-msgid "Pull to start new calculation"
+#: NewEvent.qml:25
+msgid "Add event name"
 msgstr ""
 
-#. TRANSLATORS: Refers to Clear, keep the translation to 2 characters
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:54
-msgid "C"
+#: EventDetails.qml:69
+msgid "Add invite"
 msgstr ""
 
-#. TRANSLATORS: Refers to All Clear, keep the translation to 2 characters
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:192
-msgid "AC"
+#: NewEvent.qml:20
+msgid "Create event"
+msgstr "Créer un évènement"
+
+#: calendar.qml:45
+msgid "Diary"
 msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:115
-#, qt-format
-msgid "%1 minute ago"
-msgid_plural "%1 minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+#: EventDetails.qml:75
+msgid "Edit"
+msgstr "Modifier"
 
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:119
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/SimplePage.qml:113
-msgid "A few seconds ago..."
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: TimeLineView.qml:147
+msgid "HH:mm"
 msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:125
-#, qt-format
-msgid "%1 hour ago"
-msgid_plural "%1 hours ago"
-msgstr[0] ""
-msgstr[1] ""
+#: NewEvent.qml:117
+msgid "Invite People"
+msgstr ""
 
-#. TRANSLATORS: What comes after 'at' is a time, e.g. 'Yesterday at 05:55 PM'
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:137
-#, qt-format
-msgid "Yesterday at %1"
+#: NewEvent.qml:99
+msgid "Location"
+msgstr ""
+
+#: calendar.qml:36
+msgid "New Event"
+msgstr "Nouvel évènement"
+
+#: EventDetails.qml:150 NewEvent.qml:112
+msgid "People"
+msgstr ""
+
+#: NewEvent.qml:128
+msgid "Save"
+msgstr ""
+
+#: calendar.qml:41 calendar.qml:48
+msgid "Timeline"
+msgstr ""
+
+#: calendar.qml:31
+msgid "To-do"
 msgstr ""

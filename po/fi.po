@@ -7,56 +7,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-20 13:51+0200\n"
-"PO-Revision-Date: 2013-05-22 18:24+0000\n"
+"POT-Creation-Date: 2013-05-23 23:02+0900\n"
+"PO-Revision-Date: 2013-05-18 07:28+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2013-05-23 06:20+0000\n"
+"X-Launchpad-Export-Date: 2013-05-24 06:45+0000\n"
 "X-Generator: Launchpad (build 16640)\n"
 
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:32
-msgid "Release to start new calculation"
-msgstr "Vapauta käynnistääksesi uuden laskutoimituksen"
+#: DiaryView.qml:54
+msgid "(+) New Event"
+msgstr "(+) Uusi tapahtuma"
 
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:32
-msgid "Pull to start new calculation"
-msgstr "Vedä käynnistääksesi uuden laskutoimituksen"
+#: NewEvent.qml:104
+msgid "Add Location"
+msgstr "Lisää sijainti"
 
-#. TRANSLATORS: Refers to Clear, keep the translation to 2 characters
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:54
-msgid "C"
-msgstr "C"
+#: NewEvent.qml:25
+msgid "Add event name"
+msgstr "Lisää tapahtuman nimi"
 
-#. TRANSLATORS: Refers to All Clear, keep the translation to 2 characters
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/CalcKeyboard.qml:192
-msgid "AC"
-msgstr "AC"
+#: EventDetails.qml:69
+msgid "Add invite"
+msgstr "Lisää kutsu"
 
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:115
-#, qt-format
-msgid "%1 minute ago"
-msgid_plural "%1 minutes ago"
-msgstr[0] "%1 minuutti sitten"
-msgstr[1] "%1 minuuttia sitten"
+#: NewEvent.qml:20
+msgid "Create event"
+msgstr "Luo tapahtuma"
 
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:119
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Simple/SimplePage.qml:113
-msgid "A few seconds ago..."
-msgstr "Muutama sekunti sitten..."
+#: calendar.qml:45
+msgid "Diary"
+msgstr ""
 
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:125
-#, qt-format
-msgid "%1 hour ago"
-msgid_plural "%1 hours ago"
-msgstr[0] "%1 tunti sitten"
-msgstr[1] "%1 tuntia sitten"
+#: EventDetails.qml:75
+msgid "Edit"
+msgstr "Muokkaa"
 
-#. TRANSLATORS: What comes after 'at' is a time, e.g. 'Yesterday at 05:55 PM'
-#: /home/dpm/dev/coreapps/ubuntu-calculator-app/Storage.qml:137
-#, qt-format
-msgid "Yesterday at %1"
-msgstr "Eilen %1"
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: TimeLineView.qml:147
+msgid "HH:mm"
+msgstr ""
+
+#: NewEvent.qml:117
+msgid "Invite People"
+msgstr "Kutsu ihmisisä"
+
+#: NewEvent.qml:99
+msgid "Location"
+msgstr "Sijainti"
+
+#: calendar.qml:36
+msgid "New Event"
+msgstr "Uusi tapahtuma"
+
+#: EventDetails.qml:150 NewEvent.qml:112
+msgid "People"
+msgstr "Ihmiset"
+
+#: NewEvent.qml:128
+msgid "Save"
+msgstr "Tallenna"
+
+#: calendar.qml:41 calendar.qml:48
+msgid "Timeline"
+msgstr "Aikajana"
+
+#: calendar.qml:31
+msgid "To-do"
+msgstr "Tehtävät"
