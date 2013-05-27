@@ -27,4 +27,4 @@ class CalendarTestCase(CalendarTestCase):
         super(CalendarTestCase, self).tearDown()
 
     def test_this(self):
-        print "yy"
+        print "Now start writing your tests"

@@ -48,7 +48,7 @@ class CalendarTestCase(AutopilotTestCase):
     def launch_test_installed(self):
         self.app = self.launch_test_application(
             "qmlscene",
-            "/usr/share/ubuntu-calendar-app/ubuntu-calendar-app.qml",
+            "/usr/share/ubuntu-calendar-app/calendar.qml",
             "--desktop_file_hint=/usr/share/applications/ubuntu-calendar-app.desktop",
             app_type='qt')
 
