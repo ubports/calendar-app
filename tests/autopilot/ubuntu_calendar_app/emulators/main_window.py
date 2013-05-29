@@ -25,11 +25,9 @@ class MainWindow(object):
 
     def get_toolbar_button(self, button_idx):
         toolbar = self.app.select_single("Toolbar")
-        item = toolbar.get_children_by_type("QQuickItem")[0]
-        row = item.get_children_by_type("QQuickRow")[0]
-        button_loaders = row.get_children_by_type("QQuickLoader")
-        button_loader = button_loaders[button_idx]
-        return button_loader
+        row = toolbar.select_single("QQuickRow")
+        buttons = row.select_many("Button")
+        return buttons[button_idx]
 
     def get_toolbar_new_event_button(self):
         return self.get_toolbar_button(1)

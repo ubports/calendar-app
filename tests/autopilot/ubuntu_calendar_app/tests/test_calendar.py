@@ -25,7 +25,7 @@ class TestMainWindow(CalendarTestCase):
     def tearDown(self):
         super(TestMainWindow, self).tearDown()
 
-    def test_timline_view_shows(self):
+    def test_timeline_view_shows(self):
         timeline_button = self.main_window.get_toolbar_timeline_button()
         event_view = self.main_window.get_event_view()
         self.reveal_toolbar()
