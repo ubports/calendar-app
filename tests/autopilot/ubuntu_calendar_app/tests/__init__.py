@@ -10,8 +10,10 @@
 import os.path
 
 from autopilot.input import Mouse, Touch, Pointer
+from autopilot.matchers import Eventually
 from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
+from testtools.matchers import Equals
 
 from ubuntu_calendar_app.emulators.main_window import MainWindow
 
@@ -49,6 +51,16 @@ class CalendarTestCase(AutopilotTestCase):
             "/usr/share/ubuntu-calendar-app/calendar.qml",
             "--desktop_file_hint=/usr/share/applications/ubuntu-calendar-app.desktop",
             app_type='qt')
+
+    def ensure_toolbar_visible(self):
+        toolbar = self.main_window.get_panel()
+
+        x, y, h, w = toolbar.globalRect
+        tx = x + (h / 2)
+        ty = y + (w - 2)
+
+        self.pointing_device.drag(tx, ty, tx, ty - w)
+        self.assertThat(toolbar.state, Eventually(Equals("spread")))
 
     @property
     def main_window(self):
