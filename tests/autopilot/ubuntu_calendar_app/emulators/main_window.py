@@ -23,11 +23,19 @@ class MainWindow(object):
     def get_panel(self):
         return self.app.select_single("Toolbar")
 
-    def get_new_event_button(self):
-        return self.app.select_many("Button", visible=True)[1]
+    def get_toolbar_button(self, button_idx):
+        toolbar = self.app.select_single("Toolbar")
+        item = toolbar.get_children_by_type("QQuickItem")[0]
+        row = item.get_children_by_type("QQuickRow")[0]
+        button_loaders = row.get_children_by_type("QQuickLoader")
+        button_loader = button_loaders[button_idx]
+        return button_loader
 
-    def get_timeline_button(self):
-        return self.app.select_many("Button", visible=True)[2]
+    def get_toolbar_new_event_button(self):
+        return self.get_toolbar_button(1)
+
+    def get_toolbar_timeline_button(self):
+        return self.get_toolbar_button(2)
 
     def get_create_event_page(self):
         return self.app.select_single("NewEvent")
@@ -51,3 +59,6 @@ class MainWindow(object):
 
     def get_event_save_button(self):
         return self.app.select_single("Button", objectName="eventSaveButton")
+
+    def get_event_view(self):
+        return self.app.select_single("EventView")

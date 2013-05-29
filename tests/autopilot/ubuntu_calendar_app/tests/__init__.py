@@ -52,14 +52,14 @@ class CalendarTestCase(AutopilotTestCase):
             "--desktop_file_hint=/usr/share/applications/ubuntu-calendar-app.desktop",
             app_type='qt')
 
-    def ensure_toolbar_visible(self):
+    def reveal_toolbar(self):
         toolbar = self.main_window.get_panel()
 
-        x, y, h, w = toolbar.globalRect
-        tx = x + (h / 2)
-        ty = y + (w - 2)
+        x, y, w, h = toolbar.globalRect
+        tx = x + (w / 2)
+        ty = y + (h - 2)
 
-        self.pointing_device.drag(tx, ty, tx, ty - w)
+        self.pointing_device.drag(tx, ty, tx, ty - h)
         self.assertThat(toolbar.state, Eventually(Equals("spread")))
 
     @property

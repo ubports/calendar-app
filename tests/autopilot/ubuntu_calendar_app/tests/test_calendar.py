@@ -25,39 +25,13 @@ class TestMainWindow(CalendarTestCase):
     def tearDown(self):
         super(TestMainWindow, self).tearDown()
 
-    def test_new_event_page(self):
-        new_event_button = self.main_window.get_new_event_button()
-        self.ensure_toolbar_visible()
+    def test_timline_view_shows(self):
+        timeline_button = self.main_window.get_toolbar_timeline_button()
+        event_view = self.main_window.get_event_view()
+        self.reveal_toolbar()
 
-        self.pointing_device.click_object(new_event_button)
-
-        create_event_page = self.main_window.get_create_event_page()
-        name_input = self.main_window.get_new_event_name_input_box()
-        start_input = self.main_window.get_event_start_time_field()
-        end_input = self.main_window.get_event_end_time_field()
-        location_input = self.main_window.get_event_location_field()
-        people_input = self.main_window.get_event_people_field()
-
-        self.assertThat(create_event_page.opacity, Eventually(Equals(1.0)))
-
-        self.pointing_device.click_object(name_input)
-        self.keyboard.type("test")
-        self.assertThat(name_input.text, Eventually(Equals("test")))
-
-        self.pointing_device.click_object(start_input)
-        self.keyboard.press_and_release("Ctrl+a")
-        self.keyboard.type("26")
-        self.assertThat(start_input.text, Eventually(Equals("26")))
-
-        self.pointing_device.click_object(end_input)
-        self.keyboard.press_and_release("Ctrl+a")
-        self.keyboard.type("27")
-        self.assertThat(end_input.text, Eventually(Equals("27")))
-
-        self.pointing_device.click_object(location_input)
-        self.keyboard.type("Multan")
-        self.assertThat(location_input.text, Eventually(Equals("Multan")))
-
-        self.pointing_device.click_object(people_input)
-        self.keyboard.type("Mardy")
-        self.assertThat(people_input.text, Eventually(Equals("Mardy")))
+        self.assertThat(event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
+        self.pointing_device.click_object(timeline_button)
+        self.assertThat(event_view.eventViewType, Eventually(Equals("TimeLineView.qml")))
+        self.pointing_device.click_object(timeline_button)
+        self.assertThat(event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
