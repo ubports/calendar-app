@@ -16,15 +16,15 @@ from testtools.matchers import Equals
 from ubuntu_calendar_app.tests import CalendarTestCase
 
 
-class CalendarTestCase(CalendarTestCase):
+class TestMainWindow(CalendarTestCase):
 
     def setUp(self):
-        super(CalendarTestCase, self).setUp()
+        super(TestMainWindow, self).setUp()
         self.assertThat(
             self.main_window.get_qml_view().visible, Eventually(Equals(True)))
 
     def tearDown(self):
-        super(CalendarTestCase, self).tearDown()
+        super(TestMainWindow, self).tearDown()
 
     def test_this(self):
         print "Now start writing your tests"
