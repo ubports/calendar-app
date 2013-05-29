@@ -21,14 +21,14 @@ Item {
     function showEventData() {
         // FIXME: remove test value, need to decide what to do if there is no location, hide it ?
         var venues = [{"name":"Test Venue"}]
-        DataService.getVenues(eventModel.get(index), venues)
+        DataService.getVenues(diaryView.model.get(index), venues)
         if( venues.length > 0 ) {
             locationLabel.text = venues[0].name;
         }
 
         // FIXME: remove test value, need to decide what to do if there are no attendees, hide it ?
         var attendees = ["Test One","Test Two"]
-        DataService.getAttendees(eventModel.get(index),attendees)
+        DataService.getAttendees(diaryView.model.get(index),attendees)
         attendeeLabel.text = attendees.toString();
     }
 
@@ -36,7 +36,7 @@ Item {
         collapse(true);
 
         var now = new Date;
-        var lastEvent = eventModel.get(index-1);
+        var lastEvent = diaryView.model.get(index-1);
 
         if( endTime >= now
                 && (lastEvent === undefined || lastEvent.endTime < now )
@@ -54,14 +54,12 @@ Item {
     height: eventRoot.height + seperator.height + (seperator.visible ? units.gu(1.5) : units.gu(0.5)) /*margins*/
     width: parent.width
 
-    Rectangle {
-        id: seperator
-        height: units.gu(0.5)
+    TimeSeperator {
+        id: seperator        
         width: delegateRoot.width - units.gu(2)
         anchors.top: parent.top
         anchors.topMargin: units.gu(1)
-        anchors.horizontalCenter: parent.horizontalCenter
-        color: "#c94212"
+        anchors.horizontalCenter: parent.horizontalCenter        
         visible: false
     }
 

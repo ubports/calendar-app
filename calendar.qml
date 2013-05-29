@@ -94,19 +94,17 @@ MainView {
                 width: mainView.width
                 height: parent.height - y
 
-                expanded: monthView.compressed
-
                 Component.onCompleted: {
                     incrementCurrentDay.connect(monthView.incrementCurrentDay)
                     decrementCurrentDay.connect(monthView.decrementCurrentDay)
                 }
 
-                onExpand: {
+                onExpand: {                    
                     monthView.compressed = true
                     yBehavior.enabled = true
                     y = minY
                 }
-                onCompress: {
+                onCompress: {                    
                     monthView.compressed = false
                     y = maxY
                 }

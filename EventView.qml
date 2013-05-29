@@ -11,8 +11,6 @@ PathView {
     signal incrementCurrentDay
     signal decrementCurrentDay
 
-    property bool expanded: false
-
     signal compress()
     signal expand()
     signal newEvent()
@@ -83,12 +81,6 @@ PathView {
             target: item
             property: "dayStart"
             value: eventViewDelegate.dayStart
-        }
-
-        Binding {
-            target: item
-            property: "expanded"
-            value: eventView.expanded
         }
     }
 }
