@@ -7,7 +7,7 @@ import "dataService.js" as DataService
 EventViewBase{
     id: root
 
-    flickbleChild: timeLineView
+    flickableChild: timeLineView
 
     onModelRefreshed: {
         timeLineView.createEvents();

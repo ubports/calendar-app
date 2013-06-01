@@ -9,7 +9,7 @@ Item {
 
     property var dayStart: new Date()
     property alias eventModel: model;
-    property Flickable flickbleChild;
+    property Flickable flickableChild;
 
     state: "COMPRESSED"
 
@@ -31,21 +31,21 @@ Item {
     }
 
     Connections{
-        target: flickbleChild
+        target: flickableChild
 
         onContentYChanged: {                        
-            if (state == "COMPRESSING" || state == "EXPANDING" || !flickbleChild.dragging ) return
+            if (state == "COMPRESSING" || state == "EXPANDING" || !flickableChild.dragging ) return
 
-            if ( state == "EXPANDED" && flickbleChild.contentY < -units.gu(0.5) ) {
+            if ( state == "EXPANDED" && flickableChild.contentY < -units.gu(0.5) ) {
                 state = "COMPRESSING";
             }
-            else if (flickbleChild.contentY < -units.gu(0.5)) {
+            else if (flickableChild.contentY < -units.gu(0.5)) {
                 state = "EXPANDING";
             }            
         }
 
         onDraggingChanged: {
-            if (flickbleChild.dragging) return;
+            if (flickableChild.dragging) return;
 
             if( state == "EXPANDING" ) {
                 state = "EXPANDED";

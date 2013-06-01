@@ -8,7 +8,7 @@ import "colorUtils.js" as Color
 EventViewBase{
     id: root
 
-    flickbleChild: diaryView
+    flickableChild: diaryView
 
     ListView {
         id: diaryView
