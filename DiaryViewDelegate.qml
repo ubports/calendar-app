@@ -55,11 +55,11 @@ Item {
     width: parent.width
 
     TimeSeparator {
-        id: seperator        
+        id: seperator
         width: delegateRoot.width - units.gu(2)
         anchors.top: parent.top
         anchors.topMargin: units.gu(1)
-        anchors.horizontalCenter: parent.horizontalCenter        
+        anchors.horizontalCenter: parent.horizontalCenter
         visible: false
     }
 

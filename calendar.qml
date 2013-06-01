@@ -81,7 +81,7 @@ MainView {
                 //y: units.gu(9.5) // FIXME
                 onMovementEnded: eventView.currentDayStart = currentDayStart
                 onCurrentDayStartChanged: if (!(dragging || flicking)) eventView.currentDayStart = currentDayStart
-                Component.onCompleted: eventView.currentDayStart = currentDayStart                                
+                Component.onCompleted: eventView.currentDayStart = currentDayStart
             }
 
             EventView {
@@ -99,12 +99,12 @@ MainView {
                     decrementCurrentDay.connect(monthView.decrementCurrentDay)
                 }
 
-                onExpand: {                    
+                onExpand: {
                     monthView.compressed = true
                     yBehavior.enabled = true
                     y = minY
                 }
-                onCompress: {                    
+                onCompress: {
                     monthView.compressed = false
                     y = maxY
                 }
