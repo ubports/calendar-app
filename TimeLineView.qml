@@ -153,11 +153,13 @@ EventViewBase{
             }
 
             function createSeparator(hour) {
-                var separator = separatorComponent.createObject(bubbleOverLay);
-                var yPos = ((intern.now.getMinutes() * intern.hourHeight) / 60) + hour * intern.hourHeight
-                separator.visible = true;
-                separator.y = yPos;
-                separator.x = (parent.width - separator.width)/2
+                var w = timeLineView.width - units.gu(2);
+                var y = ((intern.now.getMinutes() * intern.hourHeight) / 60) + hour * intern.hourHeight;
+                var x = (parent.width -  w)/ 2;
+                var properties = {"x": x, "y": y, "width": w}
+
+                var component = Qt.createComponent("TimeSeparator.qml");
+                var separator = component.createObject(bubbleOverLay, properties);
             }
         }
 
@@ -198,15 +200,6 @@ EventViewBase{
                         timeLineView.showEventDetails(hour);
                     }
                 }
-            }
-        }
-
-        Component {
-            id: separatorComponent
-            TimeSeparator {
-                id: separator
-                width: timeLineView.width - units.gu(2)
-                visible: false
             }
         }
     }
