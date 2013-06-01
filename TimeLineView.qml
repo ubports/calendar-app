@@ -203,7 +203,7 @@ EventViewBase{
 
         Component {
             id: separatorComponent
-            TimeSeperator {
+            TimeSeparator {
                 id: separator
                 width: timeLineView.width - units.gu(2)
                 visible: false

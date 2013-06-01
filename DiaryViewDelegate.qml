@@ -54,7 +54,7 @@ Item {
     height: eventRoot.height + seperator.height + (seperator.visible ? units.gu(1.5) : units.gu(0.5)) /*margins*/
     width: parent.width
 
-    TimeSeperator {
+    TimeSeparator {
         id: seperator        
         width: delegateRoot.width - units.gu(2)
         anchors.top: parent.top
