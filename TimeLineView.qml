@@ -20,7 +20,7 @@ EventViewBase{
         function scroll() {
             //scroll to first event or current hour
             var hour = intern.now.getHours();
-            if(eventModel.count > 0) {
+            if( eventModel.count > 0) {
                 hour = eventModel.get(0).startTime.getHours();
             }
 

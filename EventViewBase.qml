@@ -13,8 +13,6 @@ Item {
 
     state: "COMPRESSED"
 
-    signal expand()
-    signal compress()
     signal newEvent()
     signal modelRefreshed();
 
@@ -33,7 +31,7 @@ Item {
     Connections{
         target: flickableChild
 
-        onContentYChanged: {                        
+        onContentYChanged: {
             if (state == "COMPRESSING" || state == "EXPANDING" || !flickableChild.dragging ) return
 
             if ( state == "EXPANDED" && flickableChild.contentY < -units.gu(0.5) ) {
@@ -41,7 +39,7 @@ Item {
             }
             else if (flickableChild.contentY < -units.gu(0.5)) {
                 state = "EXPANDING";
-            }            
+            }
         }
 
         onDraggingChanged: {
@@ -51,7 +49,7 @@ Item {
                 state = "EXPANDED";
             } else if ( state == "COMPRESSING") {
                 state = "COMPRESSED";
-            }            
+            }
         }
     }
 
@@ -64,11 +62,9 @@ Item {
             },
             State {
                 name: "EXPANDED"
-                StateChangeScript { script: expand();}
             },
             State {
                 name: "COMPRESSED"
-                StateChangeScript { script: compress();}
             }
         ]
 }

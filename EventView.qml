@@ -11,11 +11,7 @@ PathView {
     signal incrementCurrentDay
     signal decrementCurrentDay
 
-    signal compress()
-    signal expand()
     signal newEvent()
-
-    readonly property real visibleHeight: parent.height - y
 
     QtObject {
         id: intern
@@ -64,6 +60,8 @@ PathView {
         height: eventView.height
         source: eventView.eventViewType
 
+        property string previousItemState: "COMPRESSED";
+
         property var dayStart: {
             if (index == intern.currentIndex) return intern.currentDayStart
             var previousIndex = intern.currentIndex > 0 ? intern.currentIndex - 1 : 2
@@ -71,16 +69,28 @@ PathView {
             return intern.currentDayStart.addDays(1)
         }
 
+        function itemStateChange(ns){
+            previousItemState = ns;
+        }
+
         onLoaded: {
-            item.expand.connect(eventView.expand);
-            item.compress.connect(eventView.compress);
             item.newEvent.connect(eventView.newEvent);
+            item.stateChanged.connect(eventViewDelegate.itemStateChange);
+            //set the same state as previous view
+            item.state = previousItemState;
         }
 
         Binding {
             target: item
             property: "dayStart"
             value: eventViewDelegate.dayStart
+        }
+
+        Binding {
+            target: eventView
+            property: "state"
+            value: eventViewDelegate.item.state;
+            when: index == eventView.currentIndex
         }
     }
 }

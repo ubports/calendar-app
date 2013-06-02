@@ -87,26 +87,22 @@ MainView {
             EventView {
                 id: eventView
 
-                property real minY: monthView.y + monthView.compressedHeight
-                property real maxY: monthView.y + monthView.expandedHeight
-
-                y: maxY
+                height: parent.height - monthView.height
                 width: mainView.width
-                height: parent.height - y
+                anchors.top: monthView.bottom
 
                 Component.onCompleted: {
                     incrementCurrentDay.connect(monthView.incrementCurrentDay)
                     decrementCurrentDay.connect(monthView.decrementCurrentDay)
                 }
 
-                onExpand: {
-                    monthView.compressed = true
-                    yBehavior.enabled = true
-                    y = minY
-                }
-                onCompress: {
-                    monthView.compressed = false
-                    y = maxY
+                onStateChanged: {
+                    if( state == "EXPANDED") {
+                        monthView.compressed = true
+                        yBehavior.enabled = true
+                    } else if( state == "COMPRESSED") {
+                        monthView.compressed = false
+                    }
                 }
 
                 Behavior on y {
