@@ -22,3 +22,12 @@ Description: Calendar application for Ubuntu devices
  It’s about the task and the context; use the calendar app as a todo list,
  a diary, a planner, a journal, a life log; and the calendar will behave how
  you need it to.
+
+Package: ubuntu-calendar-app-autopilot
+Architecture: all
+Depends: libautopilot-qt,
+         libqt5test5,
+         ubuntu-calendar-app (= ${source:Version}),
+Description: Autopilot tests for Ubuntu Calendar Application
+ This package contains autopilot tests for the Ubuntu Calendar application.
+
