@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-23 23:02+0900\n"
-"PO-Revision-Date: 2013-05-17 19:10+0000\n"
+"PO-Revision-Date: 2013-06-04 16:33+0000\n"
 "Last-Translator: Anthony Wong <anthony.wong@canonical.com>\n"
 "Language-Team: Chinese (Hong Kong) <zh_HK@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-24 06:45+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-06-05 06:34+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 
 #: DiaryView.qml:54
 msgid "(+) New Event"
@@ -49,7 +49,7 @@ msgstr "編輯"
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: TimeLineView.qml:147
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: NewEvent.qml:117
 msgid "Invite People"
@@ -69,7 +69,7 @@ msgstr ""
 
 #: NewEvent.qml:128
 msgid "Save"
-msgstr ""
+msgstr "儲存"
 
 #: calendar.qml:41 calendar.qml:48
 msgid "Timeline"
