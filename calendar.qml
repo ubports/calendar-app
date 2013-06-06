@@ -97,17 +97,12 @@ MainView {
                 }
 
                 onStateChanged: {
-                    if( state == "EXPANDED") {
-                        monthView.compressed = true
-                        yBehavior.enabled = true
-                    } else if( state == "COMPRESSED") {
-                        monthView.compressed = false
-                    }
+                    monthView.compressed = (eventView.state == "EXPANDED");
                 }
 
                 Behavior on y {
                     id: yBehavior
-                    enabled: false
+                    enabled: (eventView.state == "EXPANDED")
                     NumberAnimation { duration: 100 }
                 }
 
