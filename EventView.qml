@@ -90,7 +90,6 @@ PathView {
             target: eventView
             property: "state"
             value: eventViewDelegate.item.state;
-            when: index == eventView.currentIndex
         }
     }
 }
