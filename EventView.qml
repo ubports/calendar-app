@@ -60,8 +60,6 @@ PathView {
         height: eventView.height
         source: eventView.eventViewType
 
-        property string previousItemState: "COMPRESSED";
-
         property var dayStart: {
             if (index == intern.currentIndex) return intern.currentDayStart
             var previousIndex = intern.currentIndex > 0 ? intern.currentIndex - 1 : 2
@@ -69,15 +67,8 @@ PathView {
             return intern.currentDayStart.addDays(1)
         }
 
-        function itemStateChange(ns){
-            previousItemState = ns;
-        }
-
         onLoaded: {
             item.newEvent.connect(eventView.newEvent);
-            item.stateChanged.connect(eventViewDelegate.itemStateChange);
-            //set the same state as previous view
-            item.state = previousItemState;
         }
 
         Binding {
@@ -86,10 +77,19 @@ PathView {
             value: eventViewDelegate.dayStart
         }
 
+        //share state from delegate to eventView, if state change is from current delegate
         Binding {
             target: eventView
             property: "state"
             value: eventViewDelegate.item.state;
+            when: index == eventView.currentIndex
+        }
+
+        //share state from eventview to delegate, so that all delegate share the same state
+        Binding{
+            target: eventViewDelegate.item
+            property: "state"
+            value: eventView.state
         }
     }
 }
