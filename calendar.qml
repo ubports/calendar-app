@@ -82,6 +82,7 @@ MainView {
                 onMovementEnded: eventView.currentDayStart = currentDayStart
                 onCurrentDayStartChanged: if (!(dragging || flicking)) eventView.currentDayStart = currentDayStart
                 Component.onCompleted: eventView.currentDayStart = currentDayStart
+                compressed: (eventView.state == "EXPANDED")
                 Behavior on height {
                     NumberAnimation { duration: 100 }
                 }
@@ -97,10 +98,6 @@ MainView {
                 Component.onCompleted: {
                     incrementCurrentDay.connect(monthView.incrementCurrentDay)
                     decrementCurrentDay.connect(monthView.decrementCurrentDay)
-                }
-
-                onStateChanged: {
-                    monthView.compressed = (eventView.state == "EXPANDED");
                 }
 
                 onNewEvent: monthViewPage.newEvent()
