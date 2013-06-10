@@ -81,40 +81,23 @@ MainView {
                 //y: units.gu(9.5) // FIXME
                 onMovementEnded: eventView.currentDayStart = currentDayStart
                 onCurrentDayStartChanged: if (!(dragging || flicking)) eventView.currentDayStart = currentDayStart
-                Component.onCompleted: eventView.currentDayStart = currentDayStart                                
+                Component.onCompleted: eventView.currentDayStart = currentDayStart
+                compressed: (eventView.state == "EXPANDED")
+                Behavior on height {
+                    NumberAnimation { duration: 100 }
+                }
             }
 
             EventView {
                 id: eventView
 
-                property real minY: monthView.y + monthView.compressedHeight
-                property real maxY: monthView.y + monthView.expandedHeight
-
-                y: maxY
+                height: parent.height - monthView.height
                 width: mainView.width
-                height: parent.height - y
-
-                expanded: monthView.compressed
+                anchors.top: monthView.bottom
 
                 Component.onCompleted: {
                     incrementCurrentDay.connect(monthView.incrementCurrentDay)
                     decrementCurrentDay.connect(monthView.decrementCurrentDay)
-                }
-
-                onExpand: {
-                    monthView.compressed = true
-                    yBehavior.enabled = true
-                    y = minY
-                }
-                onCompress: {
-                    monthView.compressed = false
-                    y = maxY
-                }
-
-                Behavior on y {
-                    id: yBehavior
-                    enabled: false
-                    NumberAnimation { duration: 100 }
                 }
 
                 onNewEvent: monthViewPage.newEvent()

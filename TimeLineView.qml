@@ -4,256 +4,203 @@ import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
 import "dataService.js" as DataService
 
+EventViewBase{
+    id: root
 
-Flickable{
-    id: timeLineView
+    flickableChild: timeLineView
 
-    property var dayStart : new Date();
-
-    property bool expanded: false
-    property bool expanding: false
-    property bool compressing: false
-
-    signal expand()
-    signal compress()
-    signal newEvent()
-
-    function scroll() {
-        //scroll to first event or current hour
-        var hour = intern.now.getHours();
-        if(eventListModel.count > 0) {
-            hour = eventListModel.get(0).startTime.getHours();
-        }
-
-        timeLineView.contentY = hour * units.gu(10);
-
-        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
-            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
-        }
+    onModelRefreshed: {
+        timeLineView.createEvents();
     }
 
-    function createEventMap() {
-        var eventMap = {};
-        for(var i = 0 ; i < eventListModel.count ; ++i) {
-            var event = eventListModel.get(i);
-            eventMap[event.startTime.getHours()] = event
-        }
-        return eventMap;
-    }
+    Flickable{
+        id: timeLineView
+        anchors.fill: parent
 
-    function createEvents() {
-        intern.eventMap = createEventMap();
+        function scroll() {
+            //scroll to first event or current hour
+            var hour = intern.now.getHours();
+            if( eventModel.count > 0) {
+                hour = eventModel.get(0).startTime.getHours();
+            }
 
-        bubbleOverLay.destroyAllChildren();
+            timeLineView.contentY = hour * intern.hourHeight;
 
-        for( var i=0; i < 24; ++i ) {
-            var event = intern.eventMap[i];
-            if( event ) {
-                bubbleOverLay.createEvent(event,i);
-            } else if( i === intern.now.getHours()
-                      && intern.now.isSameDay( timeLineView.dayStart )) {
-                bubbleOverLay.createSeparator(i);
+            if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
+                timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
             }
         }
 
-        scroll();
-    }
-
-    function showEventDetails(hour) {
-        var event = intern.eventMap[hour];
-        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event});
-    }
-
-    onContentYChanged: {
-        // console.log(expanded, expanding, compressing, dragging, flicking, moving, contentY)
-        if (expanding || compressing || !dragging) return
-
-        if (expanded) {
-            if (contentY < -units.gu(0.5)) {
-                compressing = true
-                expanding = false
+        function createEventMap() {
+            var eventMap = {};
+            for(var i = 0 ; i < eventModel.count ; ++i) {
+                var event = eventModel.get(i);
+                eventMap[event.startTime.getHours()] = event
             }
+            return eventMap;
         }
-        else {
-            if (contentY < -units.gu(0.5)) {
-                expanding = true
-                compressing = false
+
+        function createEvents() {
+            intern.eventMap = createEventMap();
+
+            bubbleOverLay.destroyAllChildren();
+
+            for( var i=0; i < 24; ++i ) {
+                var event = intern.eventMap[i];
+                if( event ) {
+                    bubbleOverLay.createEvent(event,i);
+                } else if( i === intern.now.getHours()
+                          && intern.now.isSameDay( root.dayStart )) {
+                    bubbleOverLay.createSeparator(i);
+                }
             }
+
+            scroll();
         }
-    }
 
-    onDraggingChanged: {
-        if (dragging) return
-
-        if (expanding) {
-            expanding = false
-            expand()
+        function showEventDetails(hour) {
+            var event = intern.eventMap[hour];
+            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event});
         }
-        else if (compressing) {
-            compressing = false
-            compress()
+
+        contentHeight: timeLineColumn.height + units.gu(3)
+        contentWidth: width
+
+        QtObject {
+            id: intern
+            property var eventMap;
+            property var now : new Date();
+            property var hourHeight : units.gu(10)
         }
-    }
 
-    clip: true
-
-    contentHeight: timeLineColumn.height + units.gu(3)
-    contentWidth: width
-
-    QtObject {
-        id: intern
-        property var eventMap;
-        property var now : new Date();
-        property var hourHeight : units.gu(10)
-    }
-
-    EventListModel {
-        id: eventListModel
-        termStart: timeLineView.dayStart
-        termLength: Date.msPerDay
-
-        onReload: {
-            createEvents();
+        Rectangle{
+            id: background; anchors.fill: parent
+            color: "white"
         }
-    }
 
-    Rectangle{
-        id: background; anchors.fill: parent
-        color: "white"
-    }
+        //Time line view
+        Column{
+            id: timeLineColumn
+            anchors.top: parent.top
+            anchors.topMargin: units.gu(3)
+            width: parent.width
 
-    //Time line view
-    Column{
-        id: timeLineColumn
-        anchors.top: parent.top
-        anchors.topMargin: units.gu(3)
-        width: parent.width        
+            Repeater{
+                model: 24 // hour in a day
 
-        Repeater{
-            model: 24 // hour in a day
-
-            delegate: Item {
-                id: delegate
-                width: parent.width
-                height: intern.hourHeight
-
-                Row {
+                delegate: Item {
+                    id: delegate
                     width: parent.width
-                    y: -timeLabel.height/2
-                    Label{
-                        id: timeLabel
-                        // TRANSLATORS: this is a time formatting string,
-                        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-                        text: new Date(0, 0, 0, index).toLocaleTimeString(Qt.locale(), i18n.tr("HH:mm"))
-                        color:"gray"
-                        anchors.top: parent.top
+                    height: intern.hourHeight
+
+                    Row {
+                        width: parent.width
+                        y: -timeLabel.height/2
+                        Label{
+                            id: timeLabel
+                            // TRANSLATORS: this is a time formatting string,
+                            // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+                            text: new Date(0, 0, 0, index).toLocaleTimeString(Qt.locale(), i18n.tr("HH:mm"))
+                            color:"gray"
+                            anchors.top: parent.top
+                        }
+                        Rectangle{
+                            width: parent.width -timeLabel.width
+                            height:units.dp(1)
+                            color:"gray"
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
                     }
+
                     Rectangle{
-                        width: parent.width -timeLabel.width
+                        width: parent.width - units.gu(5)
                         height:units.dp(1)
                         color:"gray"
                         anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
                 }
+            }
+        }
 
-                Rectangle{
-                    width: parent.width - units.gu(5)
-                    height:units.dp(1)
-                    color:"gray"
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
+        Item {
+            id: bubbleOverLay
+
+            width: timeLineColumn.width
+            height: timeLineColumn.height
+            anchors.top: parent.top
+            anchors.topMargin: units.gu(3)
+
+            function destroyAllChildren() {
+                for( var i = children.length - 1; i >= 0; --i ) {
+                    children[i].destroy();
                 }
             }
-        }
-    }
 
-    Item {
-        id: bubbleOverLay
+            function createEvent( event ,hour) {
+                var eventBubble = infoBubbleComponent.createObject(bubbleOverLay);
+                eventBubble.title = event.title;
+                eventBubble.location = "test";
+                eventBubble.hour = hour;
 
-        width: timeLineColumn.width
-        height: timeLineColumn.height
-        anchors.top: parent.top
-        anchors.topMargin: units.gu(3)
+                var yPos = (( event.startTime.getMinutes() * intern.hourHeight) / 60) + hour * intern.hourHeight
+                eventBubble.y = yPos;
 
-        function destroyAllChildren() {
-            for( var i = children.length - 1; i >= 0; --i ) {
-                children[i].destroy();
+                var durationMin = (event.endTime.getHours() - event.startTime.getHours()) * 60;
+                durationMin += (event.endTime.getMinutes() - event.startTime.getMinutes());
+                var height = (durationMin * intern.hourHeight )/ 60;
+                eventBubble.height = height;
+            }
+
+            function createSeparator(hour) {
+                var w = timeLineView.width - units.gu(2);
+                var y = ((intern.now.getMinutes() * intern.hourHeight) / 60) + hour * intern.hourHeight;
+                var x = (parent.width -  w)/ 2;
+                var properties = {"x": x, "y": y, "width": w}
+
+                var component = Qt.createComponent("TimeSeparator.qml");
+                var separator = component.createObject(bubbleOverLay, properties);
             }
         }
 
-        function createEvent( event ,hour) {
-            var eventBubble = infoBubbleComponent.createObject(bubbleOverLay);
-            eventBubble.title = event.title;
-            eventBubble.location = "test";
-            eventBubble.hour = hour;
+        Component{
+            id: infoBubbleComponent
+            Rectangle{
+                id: infoBubble
 
-            var yPos = (( event.startTime.getMinutes() * intern.hourHeight) / 60) + hour * intern.hourHeight
-            eventBubble.y = yPos;
+                property string title;
+                property string location;
+                property int hour;
 
-            var durationMin = (event.endTime.getHours() - event.startTime.getHours()) * 60;
-            durationMin += (event.endTime.getMinutes() - event.startTime.getMinutes());
-            var height = (durationMin * intern.hourHeight )/ 60;
-            eventBubble.height = height;
-        }
+                color:'#fffdaa';
+                width: timeLineView.width - units.gu(8)
+                x: units.gu(5)
 
-        function createSeparator(hour) {
-            var separator = separatorComponent.createObject(bubbleOverLay);
-            var yPos = ((intern.now.getMinutes() * intern.hourHeight) / 60) + hour * intern.hourHeight
-            separator.visible = true;
-            separator.y = yPos;
-            separator.x = (parent.width - separator.width)/2
-        }
-    }
+                border.color: "#f4d690"
 
-    Component{
-        id: infoBubbleComponent
-        Rectangle{
-            id: infoBubble
+                Column{
+                    id: column
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        top: parent.top
 
-            property string title;
-            property string location;
-            property int hour;
-
-            color:'#fffdaa';
-            width: timeLineView.width - units.gu(8)
-            x: units.gu(5)
-
-            border.color: "#f4d690"
-
-            Column{
-                id: column
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-
-                    leftMargin: units.gu(1)
-                    rightMargin: units.gu(1)
-                    topMargin: units.gu(1)
+                        leftMargin: units.gu(1)
+                        rightMargin: units.gu(1)
+                        topMargin: units.gu(1)
+                    }
+                    spacing: units.gu(1)
+                    Label{text:infoBubble.title;fontSize:"medium";color:"black"}
+                    Label{text:infoBubble.location; fontSize:"small"; color:"black"}
                 }
-                spacing: units.gu(1)
-                Label{text:infoBubble.title;fontSize:"medium";color:"black"}
-                Label{text:infoBubble.location; fontSize:"small"; color:"black"}
-            }
 
-            MouseArea{
-                anchors.fill: parent
-                onClicked: {
-                    timeLineView.showEventDetails(hour);
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        timeLineView.showEventDetails(hour);
+                    }
                 }
             }
-        }
-    }
-
-    Component {
-        id: separatorComponent
-        Rectangle {
-            id: separator
-            height: units.gu(0.5)
-            width: timeLineView.width - units.gu(2)
-            color: "#c94212"
-            visible: false
         }
     }
 }
-
