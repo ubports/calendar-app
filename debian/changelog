@@ -1,3 +1,9 @@
+calendar-app (0.4) raring; urgency=low
+
+  * Renamed package
+
+ -- David Planella <david.planella@ubuntu.com>  Wed, 12 Jun 2013 17:25:52 +0200
+
 ubuntu-calendar-app (0.3) raring; urgency=low
 
   * Updated packaging to install translations
