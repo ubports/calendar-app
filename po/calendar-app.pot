@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) YEAR Canonical Ltd. 
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-calendar-app\n"
+"Project-Id-Version: calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-23 23:02+0900\n"
+"POT-Creation-Date: 2013-06-12 17:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,64 +17,68 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: DiaryView.qml:54
+#: ../DiaryView.qml:54
 msgid "(+) New Event"
 msgstr ""
 
-#: NewEvent.qml:104
-msgid "Add Location"
-msgstr ""
-
-#: NewEvent.qml:25
-msgid "Add event name"
-msgstr ""
-
-#: EventDetails.qml:69
+#: ../EventDetails.qml:69
 msgid "Add invite"
 msgstr ""
 
-#: NewEvent.qml:20
+#: ../EventDetails.qml:75
+msgid "Edit"
+msgstr ""
+
+#: ../EventDetails.qml:150 ../NewEvent.qml:112
+msgid "People"
+msgstr ""
+
+#: ../NewEvent.qml:20
 msgid "Create event"
 msgstr ""
 
-#: calendar.qml:45
-msgid "Diary"
+#: ../NewEvent.qml:25
+msgid "Add event name"
 msgstr ""
 
-#: EventDetails.qml:75
-msgid "Edit"
+#: ../NewEvent.qml:99
+msgid "Location"
+msgstr ""
+
+#: ../NewEvent.qml:104
+msgid "Add Location"
+msgstr ""
+
+#: ../NewEvent.qml:117
+msgid "Invite People"
+msgstr ""
+
+#: ../NewEvent.qml:128
+msgid "Save"
 msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: TimeLineView.qml:147
+#: ../TimeLineView.qml:147
 msgid "HH:mm"
 msgstr ""
 
-#: NewEvent.qml:117
-msgid "Invite People"
+#: ../calendar.qml:31
+msgid "To-do"
 msgstr ""
 
-#: NewEvent.qml:99
-msgid "Location"
-msgstr ""
-
-#: calendar.qml:36
+#: ../calendar.qml:36
 msgid "New Event"
 msgstr ""
 
-#: EventDetails.qml:150 NewEvent.qml:112
-msgid "People"
-msgstr ""
-
-#: NewEvent.qml:128
-msgid "Save"
-msgstr ""
-
-#: calendar.qml:41 calendar.qml:48
+#: ../calendar.qml:41 ../calendar.qml:48
 msgid "Timeline"
 msgstr ""
 
-#: calendar.qml:31
-msgid "To-do"
+#: ../calendar.qml:45
+msgid "Diary"
+msgstr ""
+
+#: ../.build/calendar-app.desktop.js:1
+msgid "Calendar"
 msgstr ""
