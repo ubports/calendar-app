@@ -9,7 +9,7 @@
 
 override_dh_install:
 	dh_install --fail-missing
-	appname=ubuntu-calendar-app; \
+	appname=calendar-app; \
 	for pofile in $(shell find ./po -name "*.po"); do \
 		pofilename="$${pofile##*/}"; \
 		langcode="$${pofilename%.*}"; \

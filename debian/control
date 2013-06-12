@@ -1,4 +1,4 @@
-Source: ubuntu-calendar-app
+Source: calendar-app
 Priority: extra
 Maintainer: Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>
 Build-Depends: debhelper (>= 9), 
@@ -7,7 +7,7 @@ Section: misc
 Homepage: https://launchpad.net/ubuntu-calendar-app
 Vcs-Bzr: https://code.launchpad.net/~ubuntu-calendar-dev/ubuntu-calendar-app/trunk
 
-Package: ubuntu-calendar-app
+Package: calendar-app
 Architecture: all
 Depends: ${misc:Depends},
          qmlscene,

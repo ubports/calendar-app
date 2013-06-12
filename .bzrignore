@@ -4,3 +4,5 @@ debian/files
 debian/app-template/
 debian/*.debhelper.log
 debian/*.substvars
+.build
+po/Makefile

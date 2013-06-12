@@ -6,7 +6,7 @@ MainView {
     id: mainView
 
     objectName: "calendar"
-    applicationName: "ubuntu-calendar-app"
+    applicationName: "calendar-app"
 
     width: units.gu(45)
     height: units.gu(80)
