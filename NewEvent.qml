@@ -21,6 +21,7 @@ Popover {
         ListItem.Empty {
             highlightWhenPressed: false
             TextField {
+                objectName: "newEventName"
                 id: titleEdit
                 placeholderText: i18n.tr("Add event name")
                 anchors {
@@ -69,6 +70,7 @@ Popover {
                         anchors.left: timeContainer.left
                         width: units.gu(12)
                         TextField {
+                            objectName: "startTimeInput"
                             id: startTimeEdit
                             text: Qt.formatDateTime(defaultDate,"hh")
                             anchors {
@@ -84,6 +86,7 @@ Popover {
                         anchors.right: timeContainer.right
                         width: units.gu(12)
                         TextField {
+                            objectName: "endTimeInput"
                             id: endTimeEdit
                             text: Qt.formatDateTime(defaultDate,"hh")
                             anchors {
@@ -100,6 +103,7 @@ Popover {
         ListItem.Empty {
             highlightWhenPressed: false
             TextField {
+                objectName: "eventLocationInput"
                 id: locationEdit
                 placeholderText: i18n.tr("Add Location")
                 anchors {
@@ -113,6 +117,7 @@ Popover {
         ListItem.Empty {
             highlightWhenPressed: false
             TextField {
+                objectName: "eventPeopleInput"
                 id: personEdit
                 placeholderText: i18n.tr("Invite People")
                 anchors {
@@ -125,6 +130,7 @@ Popover {
         ListItem.SingleControl {
             highlightWhenPressed: false
             control: Button {
+                objectName: "eventSaveButton"
                 text: i18n.tr("Save")
                 anchors {
                     fill: parent

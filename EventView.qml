@@ -11,13 +11,7 @@ PathView {
     signal incrementCurrentDay
     signal decrementCurrentDay
 
-    property bool expanded: false
-
-    signal compress()
-    signal expand()
     signal newEvent()
-
-    readonly property real visibleHeight: parent.height - y
 
     QtObject {
         id: intern
@@ -74,8 +68,6 @@ PathView {
         }
 
         onLoaded: {
-            item.expand.connect(eventView.expand);
-            item.compress.connect(eventView.compress);
             item.newEvent.connect(eventView.newEvent);
         }
 
@@ -85,10 +77,19 @@ PathView {
             value: eventViewDelegate.dayStart
         }
 
+        //share state from delegate to eventView, if state change is from current delegate
         Binding {
-            target: item
-            property: "expanded"
-            value: eventView.expanded
+            target: eventView
+            property: "state"
+            value: eventViewDelegate.item.state;
+            when: index == eventView.currentIndex
+        }
+
+        //share state from eventview to delegate, so that all delegate share the same state
+        Binding{
+            target: eventViewDelegate.item
+            property: "state"
+            value: eventView.state
         }
     }
 }
