@@ -82,6 +82,12 @@ ListView {
         else intern.currentDayStart = dayStart
     }
 
+    function goToToday() {
+        var today = (new Date()).midnight();
+        intern.currentDayStart = today;
+        gotoNextMonth(today.getMonth());
+    }
+
     focus: true
     Keys.onLeftPressed: decrementCurrentDay()
     Keys.onRightPressed: incrementCurrentDay()

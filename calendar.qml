@@ -49,6 +49,13 @@ MainView {
                         }
                     }
                 }
+                Action {
+                    iconSource: Qt.resolvedUrl("avatar.png");
+                    text: i18n.tr("Today");
+                    onTriggered: {
+                        monthView.goToToday();
+                    }
+                }
             }
 
             Tabs {
