@@ -15,6 +15,9 @@ Depends: ${misc:Depends},
          qtdeclarative5-qtquick2-plugin,
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
          ${misc:Depends},
+Replaces: ubuntu-calendar-app
+Conflicts: ubuntu-calendar-app
+Provides: ubuntu-calendar-app
 Description: Calendar application for Ubuntu devices
  The Calendar application for Ubuntu devices lets you organise your life your
  way by month, week or daily diary.
