@@ -1,3 +1,9 @@
+ubuntu-calendar-app (0.3) raring; urgency=low
+
+  * Updated packaging to install translations
+
+ -- David Planella <david.planella@ubuntu.com>  Tue, 28 May 2013 13:53:10 +0200
+
 ubuntu-calendar-app (0.2) raring; urgency=low
 
   * Changing the app name so it can be closed by the hud (LP: #1164130).
