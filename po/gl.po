@@ -7,74 +7,78 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-23 23:02+0900\n"
+"POT-Creation-Date: 2013-06-12 17:24+0200\n"
 "PO-Revision-Date: 2013-06-03 19:12+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-04 06:27+0000\n"
-"X-Generator: Launchpad (build 16660)\n"
+"X-Launchpad-Export-Date: 2013-06-14 07:04+0000\n"
+"X-Generator: Launchpad (build 16667)\n"
 
-#: DiaryView.qml:54
+#: ../DiaryView.qml:54
 msgid "(+) New Event"
 msgstr "(+) Nova actividade"
 
-#: NewEvent.qml:104
-msgid "Add Location"
-msgstr "Engadir o lugar"
-
-#: NewEvent.qml:25
-msgid "Add event name"
-msgstr "Engadir o nome da actividade"
-
-#: EventDetails.qml:69
+#: ../EventDetails.qml:69
 msgid "Add invite"
 msgstr "Engadir convite"
 
-#: NewEvent.qml:20
-msgid "Create event"
-msgstr "Crear unha actividade"
-
-#: calendar.qml:45
-msgid "Diary"
-msgstr "Diario"
-
-#: EventDetails.qml:75
+#: ../EventDetails.qml:75
 msgid "Edit"
 msgstr "Editar"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: TimeLineView.qml:147
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: NewEvent.qml:117
-msgid "Invite People"
-msgstr "Convidar persoas"
-
-#: NewEvent.qml:99
-msgid "Location"
-msgstr "Lugar"
-
-#: calendar.qml:36
-msgid "New Event"
-msgstr "Nova actividade"
-
-#: EventDetails.qml:150 NewEvent.qml:112
+#: ../EventDetails.qml:150 ../NewEvent.qml:112
 msgid "People"
 msgstr "Persoas"
 
-#: NewEvent.qml:128
+#: ../NewEvent.qml:20
+msgid "Create event"
+msgstr "Crear unha actividade"
+
+#: ../NewEvent.qml:25
+msgid "Add event name"
+msgstr "Engadir o nome da actividade"
+
+#: ../NewEvent.qml:99
+msgid "Location"
+msgstr "Lugar"
+
+#: ../NewEvent.qml:104
+msgid "Add Location"
+msgstr "Engadir o lugar"
+
+#: ../NewEvent.qml:117
+msgid "Invite People"
+msgstr "Convidar persoas"
+
+#: ../NewEvent.qml:128
 msgid "Save"
 msgstr "Gardar"
 
-#: calendar.qml:41 calendar.qml:48
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: ../TimeLineView.qml:147
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: ../calendar.qml:31
+msgid "To-do"
+msgstr "Tarefas pendentes"
+
+#: ../calendar.qml:36
+msgid "New Event"
+msgstr "Nova actividade"
+
+#: ../calendar.qml:41 ../calendar.qml:48
 msgid "Timeline"
 msgstr "Liña de tempo"
 
-#: calendar.qml:31
-msgid "To-do"
-msgstr "Tarefas pendentes"
+#: ../calendar.qml:45
+msgid "Diary"
+msgstr "Diario"
+
+#: ../.build/calendar-app.desktop.js:1
+msgid "Calendar"
+msgstr ""

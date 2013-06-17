@@ -31,3 +31,9 @@ Depends: libautopilot-qt,
 Description: Autopilot tests for Ubuntu Calendar Application
  This package contains autopilot tests for the Ubuntu Calendar application.
 
+Package: ubuntu-calendar-app
+Architecture: all
+Depends: calendar-app, ${misc:Depends}
+Section: oldlibs
+Description: transitional dummy package
+ This is a transitional dummy package. It can safely be removed.

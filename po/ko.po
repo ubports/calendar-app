@@ -7,74 +7,78 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-23 23:02+0900\n"
+"POT-Creation-Date: 2013-06-12 17:24+0200\n"
 "PO-Revision-Date: 2013-05-18 13:58+0000\n"
 "Last-Translator: Jinkyu Yi <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-24 06:45+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-06-14 07:04+0000\n"
+"X-Generator: Launchpad (build 16667)\n"
 
-#: DiaryView.qml:54
+#: ../DiaryView.qml:54
 msgid "(+) New Event"
 msgstr "(+) 새 이벤트"
 
-#: NewEvent.qml:104
-msgid "Add Location"
-msgstr "위치 넣기"
-
-#: NewEvent.qml:25
-msgid "Add event name"
-msgstr "이벤트 이름 넣기"
-
-#: EventDetails.qml:69
+#: ../EventDetails.qml:69
 msgid "Add invite"
 msgstr ""
 
-#: NewEvent.qml:20
-msgid "Create event"
-msgstr "새 이벤트 만들기"
-
-#: calendar.qml:45
-msgid "Diary"
-msgstr ""
-
-#: EventDetails.qml:75
+#: ../EventDetails.qml:75
 msgid "Edit"
 msgstr "고치기"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: TimeLineView.qml:147
-msgid "HH:mm"
-msgstr ""
-
-#: NewEvent.qml:117
-msgid "Invite People"
-msgstr "오는 사람들"
-
-#: NewEvent.qml:99
-msgid "Location"
-msgstr "장소"
-
-#: calendar.qml:36
-msgid "New Event"
-msgstr "새 이벤트"
-
-#: EventDetails.qml:150 NewEvent.qml:112
+#: ../EventDetails.qml:150 ../NewEvent.qml:112
 msgid "People"
 msgstr "사람들"
 
-#: NewEvent.qml:128
+#: ../NewEvent.qml:20
+msgid "Create event"
+msgstr "새 이벤트 만들기"
+
+#: ../NewEvent.qml:25
+msgid "Add event name"
+msgstr "이벤트 이름 넣기"
+
+#: ../NewEvent.qml:99
+msgid "Location"
+msgstr "장소"
+
+#: ../NewEvent.qml:104
+msgid "Add Location"
+msgstr "위치 넣기"
+
+#: ../NewEvent.qml:117
+msgid "Invite People"
+msgstr "오는 사람들"
+
+#: ../NewEvent.qml:128
 msgid "Save"
 msgstr "저장"
 
-#: calendar.qml:41 calendar.qml:48
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: ../TimeLineView.qml:147
+msgid "HH:mm"
+msgstr ""
+
+#: ../calendar.qml:31
+msgid "To-do"
+msgstr "할 일"
+
+#: ../calendar.qml:36
+msgid "New Event"
+msgstr "새 이벤트"
+
+#: ../calendar.qml:41 ../calendar.qml:48
 msgid "Timeline"
 msgstr ""
 
-#: calendar.qml:31
-msgid "To-do"
-msgstr "할 일"
+#: ../calendar.qml:45
+msgid "Diary"
+msgstr ""
+
+#: ../.build/calendar-app.desktop.js:1
+msgid "Calendar"
+msgstr ""

@@ -7,74 +7,78 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-23 23:02+0900\n"
-"PO-Revision-Date: 2013-05-28 11:02+0000\n"
+"POT-Creation-Date: 2013-06-12 17:24+0200\n"
+"PO-Revision-Date: 2013-06-13 08:53+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-29 07:58+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-06-14 07:04+0000\n"
+"X-Generator: Launchpad (build 16667)\n"
 
-#: DiaryView.qml:54
+#: ../DiaryView.qml:54
 msgid "(+) New Event"
 msgstr "(+) Uusi tapahtuma"
 
-#: NewEvent.qml:104
-msgid "Add Location"
-msgstr "Lisää sijainti"
-
-#: NewEvent.qml:25
-msgid "Add event name"
-msgstr "Lisää tapahtuman nimi"
-
-#: EventDetails.qml:69
+#: ../EventDetails.qml:69
 msgid "Add invite"
 msgstr "Lisää kutsu"
 
-#: NewEvent.qml:20
-msgid "Create event"
-msgstr "Luo tapahtuma"
-
-#: calendar.qml:45
-msgid "Diary"
-msgstr "Päivyri"
-
-#: EventDetails.qml:75
+#: ../EventDetails.qml:75
 msgid "Edit"
 msgstr "Muokkaa"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: TimeLineView.qml:147
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: NewEvent.qml:117
-msgid "Invite People"
-msgstr "Kutsu ihmisisä"
-
-#: NewEvent.qml:99
-msgid "Location"
-msgstr "Sijainti"
-
-#: calendar.qml:36
-msgid "New Event"
-msgstr "Uusi tapahtuma"
-
-#: EventDetails.qml:150 NewEvent.qml:112
+#: ../EventDetails.qml:150 ../NewEvent.qml:112
 msgid "People"
 msgstr "Ihmiset"
 
-#: NewEvent.qml:128
+#: ../NewEvent.qml:20
+msgid "Create event"
+msgstr "Luo tapahtuma"
+
+#: ../NewEvent.qml:25
+msgid "Add event name"
+msgstr "Lisää tapahtuman nimi"
+
+#: ../NewEvent.qml:99
+msgid "Location"
+msgstr "Sijainti"
+
+#: ../NewEvent.qml:104
+msgid "Add Location"
+msgstr "Lisää sijainti"
+
+#: ../NewEvent.qml:117
+msgid "Invite People"
+msgstr "Kutsu ihmisisä"
+
+#: ../NewEvent.qml:128
 msgid "Save"
 msgstr "Tallenna"
 
-#: calendar.qml:41 calendar.qml:48
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: ../TimeLineView.qml:147
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: ../calendar.qml:31
+msgid "To-do"
+msgstr "Tehtävät"
+
+#: ../calendar.qml:36
+msgid "New Event"
+msgstr "Uusi tapahtuma"
+
+#: ../calendar.qml:41 ../calendar.qml:48
 msgid "Timeline"
 msgstr "Aikajana"
 
-#: calendar.qml:31
-msgid "To-do"
-msgstr "Tehtävät"
+#: ../calendar.qml:45
+msgid "Diary"
+msgstr "Päivyri"
+
+#: ../.build/calendar-app.desktop.js:1
+msgid "Calendar"
+msgstr "Kalenteri"
