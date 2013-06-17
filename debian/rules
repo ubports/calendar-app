@@ -13,8 +13,8 @@ override_dh_install:
 	for pofile in $(shell find ./po -name "*.po"); do \
 		pofilename="$${pofile##*/}"; \
 		langcode="$${pofilename%.*}"; \
-		localedir="debian/$$appname/usr/share/locale/$$langcode/LC_MESSAGES"; \
-		mkdir -p $$localedir; \
-		mofile="$$localedir/$$appname.mo"; \
+		localedir="usr/share/locale/$$langcode/LC_MESSAGES"; \
+		mofile="$$appname.mo"; \
 		msgfmt -o $$mofile $$pofile; \
+		dh_install $$mofile $$localedir; \
 	done
