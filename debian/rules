@@ -17,4 +17,5 @@ override_dh_install:
 		mofile="$$appname.mo"; \
 		msgfmt -o $$mofile $$pofile; \
 		dh_install $$mofile $$localedir; \
+		rm -f $$mofile; \
 	done
