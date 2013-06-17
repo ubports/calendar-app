@@ -1,0 +1,5 @@
+calendar-app usr/bin/
+calendar-app.desktop usr/share/applications/
+*.qml usr/share/calendar-app/
+*.png usr/share/calendar-app/
+*.js usr/share/calendar-app/

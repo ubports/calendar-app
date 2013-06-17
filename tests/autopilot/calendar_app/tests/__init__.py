@@ -15,7 +15,7 @@ from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 from testtools.matchers import Equals
 
-from ubuntu_calendar_app.emulators.main_window import MainWindow
+from calendar_app.emulators.main_window import MainWindow
 
 
 class CalendarTestCase(AutopilotTestCase):
@@ -48,8 +48,8 @@ class CalendarTestCase(AutopilotTestCase):
     def launch_test_installed(self):
         self.app = self.launch_test_application(
             "qmlscene",
-            "/usr/share/ubuntu-calendar-app/calendar.qml",
-            "--desktop_file_hint=/usr/share/applications/ubuntu-calendar-app.desktop",
+            "/usr/share/calendar-app/calendar.qml",
+            "--desktop_file_hint=/usr/share/applications/calendar-app.desktop",
             app_type='qt')
 
     def reveal_toolbar(self):
