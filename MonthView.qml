@@ -84,8 +84,8 @@ ListView {
 
     function goToToday() {
         var today = (new Date()).midnight();
-        intern.currentDayStart = today;
-        gotoNextMonth(today.getMonth());
+        intern.currentDayStart = today
+        currentIndex= intern.monthIndex0
     }
 
     focus: true
