@@ -34,6 +34,9 @@ class MainWindow(object):
 
     def get_toolbar_timeline_button(self):
         return self.get_toolbar_button(2)
+        
+    def get_toolbar_today_button(self):
+        return self.get_toolbar_button(3)
 
     def get_create_event_page(self):
         return self.app.select_single("NewEvent")
@@ -60,3 +63,6 @@ class MainWindow(object):
 
     def get_event_view(self):
         return self.app.select_single("EventView")
+        
+    def get_month_view(self):
+        return self.app.select_single("MonthView")

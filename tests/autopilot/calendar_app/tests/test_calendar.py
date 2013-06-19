@@ -35,3 +35,20 @@ class TestMainWindow(CalendarTestCase):
         self.assertThat(event_view.eventViewType, Eventually(Equals("TimeLineView.qml")))
         self.pointing_device.click_object(timeline_button)
         self.assertThat(event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
+        
+    def test_monthview_change_month(self):
+        self.reveal_toolbar();
+        today_button = self.main_window.get_toolbar_today_button()
+        self.pointing_device.click_object(today_button)
+        
+        month_view = self.main_window.get_month_view()
+        compressed = month_view.compressed
+        month_start = month_view.monthStart
+        
+        start_x = month_view.x + month_view.width * 0.85
+        stop_x = month_view.x + month_view.width * 0.15
+        y_line = month_view.y +  300
+        self.pointing_device.drag(start_x, y_line, stop_x, y_line)
+        
+        endDate = month_view.currentDayStart
+        
