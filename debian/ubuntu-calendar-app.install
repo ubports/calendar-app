@@ -1,5 +1,0 @@
-ubuntu-calendar-app usr/bin/
-ubuntu-calendar-app.desktop usr/share/applications/
-*.qml usr/share/ubuntu-calendar-app/
-*.png usr/share/ubuntu-calendar-app/
-*.js usr/share/ubuntu-calendar-app/

@@ -1,4 +1,4 @@
-Source: ubuntu-calendar-app
+Source: calendar-app
 Priority: extra
 Maintainer: Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>
 Build-Depends: debhelper (>= 9), 
@@ -7,7 +7,7 @@ Section: misc
 Homepage: https://launchpad.net/ubuntu-calendar-app
 Vcs-Bzr: https://code.launchpad.net/~ubuntu-calendar-dev/ubuntu-calendar-app/trunk
 
-Package: ubuntu-calendar-app
+Package: calendar-app
 Architecture: all
 Depends: ${misc:Depends},
          qmlscene,
@@ -23,11 +23,17 @@ Description: Calendar application for Ubuntu devices
  a diary, a planner, a journal, a life log; and the calendar will behave how
  you need it to.
 
-Package: ubuntu-calendar-app-autopilot
+Package: calendar-app-autopilot
 Architecture: all
 Depends: libautopilot-qt,
          libqt5test5,
-         ubuntu-calendar-app (= ${source:Version}),
+         calendar-app (= ${source:Version}),
 Description: Autopilot tests for Ubuntu Calendar Application
  This package contains autopilot tests for the Ubuntu Calendar application.
 
+Package: ubuntu-calendar-app
+Architecture: all
+Depends: calendar-app, ${misc:Depends}
+Section: oldlibs
+Description: transitional dummy package
+ This is a transitional dummy package. It can safely be removed.

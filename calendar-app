@@ -1,0 +1,2 @@
+#!/bin/bash
+qmlscene /usr/share/calendar-app/calendar.qml

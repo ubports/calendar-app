@@ -1,61 +1,61 @@
-# Latvian translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
-# This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Canonical Ltd. 
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ubuntu-calendar-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Project-Id-Version: calendar-app\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-12 17:24+0200\n"
-"PO-Revision-Date: 2013-05-18 09:31+0000\n"
-"Last-Translator: admresdeserv. <jeanmarc.gailis@gmail.com>\n"
-"Language-Team: Latvian <lv@li.org>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-18 06:51+0000\n"
-"X-Generator: Launchpad (build 16673)\n"
 
 #: ../DiaryView.qml:54
 msgid "(+) New Event"
-msgstr "(+) Jauns Notikums"
+msgstr ""
 
 #: ../EventDetails.qml:69
 msgid "Add invite"
-msgstr "Pievienot ciemiņu"
+msgstr ""
 
 #: ../EventDetails.qml:75
 msgid "Edit"
-msgstr "Rediģēt"
+msgstr ""
 
 #: ../EventDetails.qml:150 ../NewEvent.qml:112
 msgid "People"
-msgstr "Cilvēki"
+msgstr ""
 
 #: ../NewEvent.qml:20
 msgid "Create event"
-msgstr "Pievienot pasākumu"
+msgstr ""
 
 #: ../NewEvent.qml:25
 msgid "Add event name"
-msgstr "Pievienot pasākuma nosaukums"
+msgstr ""
 
 #: ../NewEvent.qml:99
 msgid "Location"
-msgstr "Atrašanās vieta"
+msgstr ""
 
 #: ../NewEvent.qml:104
 msgid "Add Location"
-msgstr "Pievienot atrašanās vietu"
+msgstr ""
 
 #: ../NewEvent.qml:117
 msgid "Invite People"
-msgstr "Uzaicināt cilvēkus"
+msgstr ""
 
 #: ../NewEvent.qml:128
 msgid "Save"
-msgstr "Saglabāt"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -65,15 +65,15 @@ msgstr ""
 
 #: ../calendar.qml:31
 msgid "To-do"
-msgstr "Darāmais"
+msgstr ""
 
 #: ../calendar.qml:36
 msgid "New Event"
-msgstr "Jauns notikums"
+msgstr ""
 
 #: ../calendar.qml:41 ../calendar.qml:48
 msgid "Timeline"
-msgstr "Laika līnija"
+msgstr ""
 
 #: ../calendar.qml:45
 msgid "Diary"

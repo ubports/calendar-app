@@ -9,3 +9,13 @@
 
 override_dh_install:
 	dh_install --fail-missing
+	appname=calendar-app; \
+	for pofile in $(shell find ./po -name "*.po"); do \
+		pofilename="$${pofile##*/}"; \
+		langcode="$${pofilename%.*}"; \
+		localedir="usr/share/locale/$$langcode/LC_MESSAGES"; \
+		mofile="$$appname.mo"; \
+		msgfmt -o $$mofile $$pofile; \
+		dh_install $$mofile $$localedir; \
+		rm -f $$mofile; \
+	done
