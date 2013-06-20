@@ -1,4 +1,4 @@
-# Spanish translation for ubuntu-calendar-app
+# Persian translation for ubuntu-calendar-app
 # Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
 # This file is distributed under the same license as the ubuntu-calendar-app package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-12 17:24+0200\n"
-"PO-Revision-Date: 2013-06-20 02:14+0000\n"
-"Last-Translator: Samuel Rivera <samuelp1errot@gmail.com>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"PO-Revision-Date: 2013-06-19 12:38+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,66 +19,66 @@ msgstr ""
 
 #: ../DiaryView.qml:54
 msgid "(+) New Event"
-msgstr "(+) Evento nuevo"
+msgstr ""
 
 #: ../EventDetails.qml:69
 msgid "Add invite"
-msgstr "Añadir invitado"
+msgstr ""
 
 #: ../EventDetails.qml:75
 msgid "Edit"
-msgstr "Editar"
+msgstr ""
 
 #: ../EventDetails.qml:150 ../NewEvent.qml:112
 msgid "People"
-msgstr "Personas"
+msgstr ""
 
 #: ../NewEvent.qml:20
 msgid "Create event"
-msgstr "Crear evento"
+msgstr ""
 
 #: ../NewEvent.qml:25
 msgid "Add event name"
-msgstr "Añadir el nombre del evento"
+msgstr ""
 
 #: ../NewEvent.qml:99
 msgid "Location"
-msgstr "Ubicación"
+msgstr ""
 
 #: ../NewEvent.qml:104
 msgid "Add Location"
-msgstr "Añadir ubicación"
+msgstr ""
 
 #: ../NewEvent.qml:117
 msgid "Invite People"
-msgstr "Invitar personas"
+msgstr ""
 
 #: ../NewEvent.qml:128
 msgid "Save"
-msgstr "Guardar"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineView.qml:147
 msgid "HH:mm"
-msgstr "HH:mm"
+msgstr ""
 
 #: ../calendar.qml:31
 msgid "To-do"
-msgstr "Por realizar"
+msgstr ""
 
 #: ../calendar.qml:36
 msgid "New Event"
-msgstr "Evento nuevo"
+msgstr ""
 
 #: ../calendar.qml:41 ../calendar.qml:48
 msgid "Timeline"
-msgstr "Cronología"
+msgstr ""
 
 #: ../calendar.qml:45
 msgid "Diary"
-msgstr "Diario"
+msgstr ""
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr "Calendario"
+msgstr ""
