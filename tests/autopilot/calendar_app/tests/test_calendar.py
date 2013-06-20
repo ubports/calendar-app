@@ -38,10 +38,6 @@ class TestMainWindow(CalendarTestCase):
         #click on new event button
         self.ubuntusdk.click_toolbar_button('New Event')
 
-        #check that "create event" window opens
-        #create_event_page = self.main_window.get_create_event_page()
-        #self.assertThat(lambda: self.main_window.get_create_event_page(), Eventually(Equals("True")))
-
         #grab all the fields
         #event_view = self.main_window.get_event_view()
         event_name_field = self.main_window.get_new_event_name_input_box()
@@ -50,7 +46,8 @@ class TestMainWindow(CalendarTestCase):
         location_field = self.main_window.get_event_location_field()
         people_field = self.main_window.get_event_people_field()
         save_button = self.main_window.get_event_save_button()
-
+        title_label = self.main_window.get_title_label()
+        
         #input a new event name
         self.pointing_device.click_object(event_name_field)
         self.keyboard.type("Test event")
@@ -80,4 +77,7 @@ class TestMainWindow(CalendarTestCase):
 
         #click save button
         self.pointing_device.click_object(save_button)
+        
+        #verify that the event has been created in timeline
+        self.assertThat(title_label.text, Eventually(Equals("Test event")))
 

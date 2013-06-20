@@ -41,3 +41,7 @@ class MainWindow(object):
 
     def get_event_view(self):
         return self.app.select_single("EventView")
+    
+    def get_title_label(self):
+        return self.app.select_single("Label", objectName="titleLabel")
+    
