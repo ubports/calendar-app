@@ -10,9 +10,11 @@
 from __future__ import absolute_import
 
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals
+from testtools.matchers import Equals, NotEquals
 
 from calendar_app.tests import CalendarTestCase
+
+import time
 
 class TestMainWindow(CalendarTestCase):
 
@@ -46,12 +48,13 @@ class TestMainWindow(CalendarTestCase):
         location_field = self.main_window.get_event_location_field()
         people_field = self.main_window.get_event_people_field()
         save_button = self.main_window.get_event_save_button()
-        title_label = self.main_window.get_title_label()
-        
+
         #input a new event name
+        eventTitle = "Test event" + str(time.time())
+
         self.pointing_device.click_object(event_name_field)
-        self.keyboard.type("Test event")
-        self.assertThat(event_name_field.text, Eventually(Equals("Test event")))
+        self.keyboard.type(eventTitle)
+        self.assertThat(event_name_field.text, Eventually(Equals(eventTitle)))
 
         #input start time
         self.pointing_device.click_object(start_time_field)
@@ -77,7 +80,8 @@ class TestMainWindow(CalendarTestCase):
 
         #click save button
         self.pointing_device.click_object(save_button)
-        
+
         #verify that the event has been created in timeline
-        self.assertThat(title_label.text, Eventually(Equals("Test event")))
+        title_label = lambda: self.main_window.get_title_label(eventTitle)
+        self.assertThat(title_label, Eventually(NotEquals(None)))
 
