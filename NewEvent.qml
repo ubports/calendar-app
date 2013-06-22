@@ -72,7 +72,7 @@ Popover {
                         TextField {
                             objectName: "startTimeInput"
                             id: startTimeEdit
-                            text: Qt.formatDateTime(defaultDate,"hh")
+                            text: Qt.formatDateTime(defaultDate,"hh:mm")
                             anchors {
                                 fill: parent
                                 margins: units.gu(1)
@@ -80,7 +80,16 @@ Popover {
                         }
                     }
 
-                    ListItem.Empty {
+                    Label {
+                        id: endTimeLabel
+                        text: i18n.tr("to");
+                        anchors {
+                            horizontalCenter: parent.horizontalCenter;
+                            verticalCenter: startTime.verticalCenter;
+                        }
+                    }
+
+                   ListItem.Empty {
                         id: endTime
                         highlightWhenPressed: false
                         anchors.right: timeContainer.right
@@ -88,7 +97,7 @@ Popover {
                         TextField {
                             objectName: "endTimeInput"
                             id: endTimeEdit
-                            text: Qt.formatDateTime(defaultDate,"hh")
+                            text: Qt.formatDateTime(defaultDate,"hh:mm")
                             anchors {
                                 fill: parent
                                 margins: units.gu(1)
@@ -140,13 +149,11 @@ Popover {
                 onClicked: {
                     var startDate = new Date(defaultDate)
                     print(startDate)
-                    startDate.setHours(startTimeEdit.text)
-                    print(startTimeEdit.text)
+                    startDate.setHours(startTimeEdit.text.substr(0,2), startTimeEdit.text.substr(3,4))
 
                     var endDate = new Date(defaultDate)
                     print(endDate)
-                    endDate.setHours(endTimeEdit.text)
-                    print(endTimeEdit.text)
+                    endDate.setHours(endTimeEdit.text.substr(0,2), endTimeEdit.text.substr(3,4))
 
                     var event = {
                         title: titleEdit.text,
