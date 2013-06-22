@@ -8,77 +8,77 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-12 17:24+0200\n"
-"PO-Revision-Date: 2013-05-30 22:04+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-06-21 16:14+0000\n"
+"Last-Translator: Mathias Bynke <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-18 06:51+0000\n"
-"X-Generator: Launchpad (build 16673)\n"
+"X-Launchpad-Export-Date: 2013-06-22 06:25+0000\n"
+"X-Generator: Launchpad (build 16677)\n"
 
 #: ../DiaryView.qml:54
 msgid "(+) New Event"
-msgstr ""
+msgstr "(+) Ny hendelse"
 
 #: ../EventDetails.qml:69
 msgid "Add invite"
-msgstr ""
+msgstr "Legg til invitasjon"
 
 #: ../EventDetails.qml:75
 msgid "Edit"
-msgstr ""
+msgstr "Rediger"
 
 #: ../EventDetails.qml:150 ../NewEvent.qml:112
 msgid "People"
-msgstr ""
+msgstr "Personer"
 
 #: ../NewEvent.qml:20
 msgid "Create event"
-msgstr ""
+msgstr "Opprett hendelse"
 
 #: ../NewEvent.qml:25
 msgid "Add event name"
-msgstr ""
+msgstr "Legg til navn på hendelse"
 
 #: ../NewEvent.qml:99
 msgid "Location"
-msgstr ""
+msgstr "Sted"
 
 #: ../NewEvent.qml:104
 msgid "Add Location"
-msgstr ""
+msgstr "Legg til sted"
 
 #: ../NewEvent.qml:117
 msgid "Invite People"
-msgstr ""
+msgstr "Inviter folk"
 
 #: ../NewEvent.qml:128
 msgid "Save"
-msgstr ""
+msgstr "Lagre"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineView.qml:147
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: ../calendar.qml:31
 msgid "To-do"
-msgstr ""
+msgstr "Gjøremål"
 
 #: ../calendar.qml:36
 msgid "New Event"
-msgstr ""
+msgstr "Ny hendelse"
 
 #: ../calendar.qml:41 ../calendar.qml:48
 msgid "Timeline"
-msgstr ""
+msgstr "Tidslinje"
 
 #: ../calendar.qml:45
 msgid "Diary"
-msgstr ""
+msgstr "Dagbok"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr ""
+msgstr "Kalender"

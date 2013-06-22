@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-12 17:24+0200\n"
-"PO-Revision-Date: 2013-05-18 09:09+0000\n"
+"PO-Revision-Date: 2013-06-21 07:46+0000\n"
 "Last-Translator: Emin Mastizada <emin25@ovi.com>\n"
 "Language-Team: Azerbaijani <az@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-18 06:51+0000\n"
-"X-Generator: Launchpad (build 16673)\n"
+"X-Launchpad-Export-Date: 2013-06-22 06:25+0000\n"
+"X-Generator: Launchpad (build 16677)\n"
 
 #: ../DiaryView.qml:54
 msgid "(+) New Event"
@@ -61,7 +61,7 @@ msgstr "Qeyd et"
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineView.qml:147
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: ../calendar.qml:31
 msgid "To-do"
@@ -77,8 +77,8 @@ msgstr "Zaman Şkalası"
 
 #: ../calendar.qml:45
 msgid "Diary"
-msgstr ""
+msgstr "Gündəlik"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr ""
+msgstr "Təqvim"
