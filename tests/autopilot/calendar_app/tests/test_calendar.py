@@ -14,7 +14,6 @@ from testtools.matchers import Equals
 
 from calendar_app.tests import CalendarTestCase
 
-
 class TestMainWindow(CalendarTestCase):
 
     def setUp(self):
@@ -42,13 +41,9 @@ class TestMainWindow(CalendarTestCase):
         self.pointing_device.click_object(today_button)
         
         month_view = self.main_window.get_month_view()
-        compressed = month_view.compressed
-        month_start = month_view.monthStart
         
         start_x = month_view.x + month_view.width * 0.85
         stop_x = month_view.x + month_view.width * 0.15
         y_line = month_view.y +  300
-        self.pointing_device.drag(start_x, y_line, stop_x, y_line)
-        
-        endDate = month_view.currentDayStart
+        self.pointing_device.drag(start_x, y_line, stop_x, y_line)       
         
