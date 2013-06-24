@@ -147,13 +147,52 @@ Popover {
                 }
 
                 onClicked: {
-                    var startDate = new Date(defaultDate)
-                    print(startDate)
-                    startDate.setHours(startTimeEdit.text.substr(0,2), startTimeEdit.text.substr(3,4))
+                    // TRANSLATORS: This is separator between hours and minutes (HH:MM)
+                    // var separator = i18n.tr(":");
+                    var separator = ":";
 
-                    var endDate = new Date(defaultDate)
-                    print(endDate)
-                    endDate.setHours(endTimeEdit.text.substr(0,2), endTimeEdit.text.substr(3,4))
+                    var error = 0;
+
+                    var startDate = new Date(defaultDate);
+                    var startTime = startTimeEdit.text.split(separator);
+
+                    if (startTime.length === 2 && startTime[0].length < 3 && startTime[1].length < 3) {
+                        //HH:MM format
+                        startDate.setHours(startTime[0]);
+                        startDate.setMinutes(startTime[1]);
+                    } else if (startTime.length === 1 && startTime[0].length < 3) {
+                        //HH format
+                        startDate.setHours(startTime[0]);
+                        startDate.setMinutes(0);
+
+                        startTime[1] = 0;
+                    } else {
+                        print ('Invalid format');
+                        error = 1;
+                    }
+
+                    var endDate = new Date(defaultDate);
+                    var endTime = endTimeEdit.text.split(separator);
+
+                    if (endTime.length === 2 && endTime[0].length < 3 && endTime[1].length < 3) {
+                        //HH:MM format
+                        endDate.setHours(endTime[0]);
+                        endDate.setMinutes(endTime[1]);
+                    } else if (endTime.length === 1 && endTime[0].length < 3) {
+                        //HH format
+                        endDate.setHours(endTime[0]);
+                        endDate.setMinutes(0);
+
+                        endTime[1] = 0;
+                    } else {
+                        print ('Invalid format');
+                        error = 1;
+                    }
+
+                    if (startDate > endDate) {
+                        print ('startTime > endTime');
+                        error = 1;
+                    }
 
                     var event = {
                         title: titleEdit.text,
@@ -162,7 +201,8 @@ Popover {
                         endTime: endDate.getTime()
                     }
 
-                    DataService.addEvent(event)
+                    if (!error)
+                        DataService.addEvent(event)
 
                     PopupUtils.close(popover);
                 }
