@@ -8,6 +8,7 @@ import "dataService.js" as DataService
 Popover {
     id: popover
     property var defaultDate;
+    property string errorText;
 
     Column {
         id: containerLayout
@@ -138,6 +139,15 @@ Popover {
 
         ListItem.SingleControl {
             highlightWhenPressed: false
+            Dialog {
+                id: errorPopupDialog
+                title: i18n.tr("Error")
+                text: errorText
+                Button {
+                    text: i18n.tr("Ok")
+                    onClicked: PopupUtils.close(errorPopupDialog)
+                }
+            }
             control: Button {
                 objectName: "eventSaveButton"
                 text: i18n.tr("Save")
@@ -150,49 +160,16 @@ Popover {
                     // TRANSLATORS: This is separator between hours and minutes (HH:MM)
                     // var separator = i18n.tr(":");
                     var separator = ":";
-
                     var error = 0;
 
-                    var startDate = new Date(defaultDate);
                     var startTime = startTimeEdit.text.split(separator);
+                    var startDate = setTime(startTime);
 
-                    if (startTime.length === 2 && startTime[0].length < 3 && startTime[1].length < 3) {
-                        //HH:MM format
-                        startDate.setHours(startTime[0]);
-                        startDate.setMinutes(startTime[1]);
-                    } else if (startTime.length === 1 && startTime[0].length < 3) {
-                        //HH format
-                        startDate.setHours(startTime[0]);
-                        startDate.setMinutes(0);
-
-                        startTime[1] = 0;
-                    } else {
-                        print ('Invalid format');
-                        error = 1;
-                    }
-
-                    var endDate = new Date(defaultDate);
                     var endTime = endTimeEdit.text.split(separator);
+                    var endDate = setTime(endTime);
 
-                    if (endTime.length === 2 && endTime[0].length < 3 && endTime[1].length < 3) {
-                        //HH:MM format
-                        endDate.setHours(endTime[0]);
-                        endDate.setMinutes(endTime[1]);
-                    } else if (endTime.length === 1 && endTime[0].length < 3) {
-                        //HH format
-                        endDate.setHours(endTime[0]);
-                        endDate.setMinutes(0);
-
-                        endTime[1] = 0;
-                    } else {
-                        print ('Invalid format');
-                        error = 1;
-                    }
-
-                    if (startDate > endDate) {
-                        print ('startTime > endTime');
-                        error = 1;
-                    }
+                    if (startDate > endDate)
+                        error = 2;
 
                     var event = {
                         title: titleEdit.text,
@@ -201,10 +178,36 @@ Popover {
                         endTime: endDate.getTime()
                     }
 
-                    if (!error)
-                        DataService.addEvent(event)
+                    if (!error) {
+                        DataService.addEvent(event);
+                        errorPopupDialog.destroy();
+                        PopupUtils.close(popover);
+                    } else if (error === 1)
+                        errorText = i18n.tr("Time format not valid");
+                    else if (error === 2)
+                        errorText = i18n.tr("End time can't be before start time");
 
-                    PopupUtils.close(popover);
+                    errorPopupDialog.show();
+                    error = 0;
+
+                    // Control time validity and return date with time
+                    function setTime(time) {
+                        var date = new Date(defaultDate);
+                        if (time.length === 2 && time[0].length < 3 && time[1].length < 3) {
+                            //HH:MM format
+                            date.setHours(time[0]);
+                            date.setMinutes(time[1]);
+                        }
+                        else if (time.length === 1 && time[0].length < 3) {
+                            //HH format
+                            date.setHours(time[0]);
+                            date.setMinutes(0);
+                        }
+                        else
+                            error = 1;
+
+                        return date;
+                    }
                 }
             }
         }
