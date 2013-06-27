@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-12 17:24+0200\n"
-"PO-Revision-Date: 2013-06-20 12:24+0000\n"
-"Last-Translator: Pierre Slamich <pierre.slamich@gmail.com>\n"
+"PO-Revision-Date: 2013-06-26 14:20+0000\n"
+"Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-21 06:07+0000\n"
-"X-Generator: Launchpad (build 16677)\n"
+"X-Launchpad-Export-Date: 2013-06-27 06:19+0000\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #: ../DiaryView.qml:54
 msgid "(+) New Event"
@@ -23,7 +23,7 @@ msgstr "(+) Nouvel évènement"
 
 #: ../EventDetails.qml:69
 msgid "Add invite"
-msgstr ""
+msgstr "Ajouter un participant"
 
 #: ../EventDetails.qml:75
 msgid "Edit"
@@ -31,7 +31,7 @@ msgstr "Modifier"
 
 #: ../EventDetails.qml:150 ../NewEvent.qml:112
 msgid "People"
-msgstr ""
+msgstr "Participants"
 
 #: ../NewEvent.qml:20
 msgid "Create event"
@@ -43,29 +43,29 @@ msgstr ""
 
 #: ../NewEvent.qml:99
 msgid "Location"
-msgstr ""
+msgstr "Emplacement"
 
 #: ../NewEvent.qml:104
 msgid "Add Location"
-msgstr ""
+msgstr "Ajouter un emplacement"
 
 #: ../NewEvent.qml:117
 msgid "Invite People"
-msgstr ""
+msgstr "Inviter des participants"
 
 #: ../NewEvent.qml:128
 msgid "Save"
-msgstr ""
+msgstr "Enregistrer"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineView.qml:147
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: ../calendar.qml:31
 msgid "To-do"
-msgstr ""
+msgstr "Tâches"
 
 #: ../calendar.qml:36
 msgid "New Event"
@@ -73,7 +73,7 @@ msgstr "Nouvel évènement"
 
 #: ../calendar.qml:41 ../calendar.qml:48
 msgid "Timeline"
-msgstr ""
+msgstr "Chronologie"
 
 #: ../calendar.qml:45
 msgid "Diary"
