@@ -48,11 +48,11 @@ class TestMainWindow(CalendarTestCase):
              
         for i in range(0,count):               
             if direction: #next month
-                start_x = month_view.x + month_view.width * 0.85
-                stop_x = month_view.x + month_view.width * 0.15
+                start_x = int(month_view.x + month_view.width * 0.85)
+                stop_x = int(month_view.x + month_view.width * 0.15)
             else: #previous month
-                stop_x = month_view.x + month_view.width * 0.85
-                start_x = month_view.x + month_view.width * 0.15
+                stop_x = int(month_view.x + month_view.width * 0.85)
+                start_x = int(month_view.x + month_view.width * 0.15)
             
             self.pointing_device.drag(start_x, y_line, stop_x, y_line)  
      
