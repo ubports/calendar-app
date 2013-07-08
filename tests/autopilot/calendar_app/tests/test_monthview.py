@@ -27,16 +27,13 @@ class TestMainWindow(CalendarTestCase):
     def tearDown(self):
         super(TestMainWindow, self).tearDown()
 
-    # direction 1 for next month, -1 for previous month    
-    def changeMonth( self, goToNextMonth  = True, count = -1):
-    
-        if count == -1 :
-            return
-    
+    # goToNextMonth True for next month, False for previous month  
+    def changeMonth( self, goToNextMonth  = True, count = 0):
+        
         month_view = self.main_window.get_month_view()
         y_line =  int(month_view.y + (month_view.height / 2))
         
-        for i in range(0,count):  
+        for i in range( count ):  
             if goToNextMonth == True :          
                 start_x = int(month_view.x + month_view.width * 0.85)
                 stop_x = int(month_view.x + month_view.width * 0.25)
@@ -58,8 +55,9 @@ class TestMainWindow(CalendarTestCase):
     def test_monthview_today_prev_month_multi(self):
         self.test_monthview_today(False, 12);         
      
-    # direction 1 for next month, -1 for previous month           
+    # goToNextMonth True for next month, False for previous month          
     def test_monthview_today(self, goToNextMonth = True, count = -1):
+        
         if count == -1 :
             return
             
@@ -92,7 +90,7 @@ class TestMainWindow(CalendarTestCase):
     def test_monthview_change_month_prev_multiple(self):
         self.test_monthview_change_month(False, 3);
        
-    # direction 1 for next month, -1 for previous month         
+    # goToNextMonth True for next month, False for previous month      
     def test_monthview_change_month(self, goToNextMonth = True, count = -1):
     
         if count == -1 :
