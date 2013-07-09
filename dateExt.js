@@ -85,3 +85,18 @@ Date.prototype.isSameDay = function ( otherDay ) {
     && this.getMonth() === otherDay.getMonth()
     && this.getFullYear() === otherDay.getFullYear() );
 }
+
+function weekCount(year, month_number) {
+    var firstOfMonth = new Date(year, month_number, 1);
+    var lastOfMonth = new Date(year, month_number+1, 0);
+
+    var used = firstOfMonth.getDay() + lastOfMonth.getDate();
+
+    return Math.ceil( used / 7);
+}
+
+function getFirstDateofWeek( year, month) {
+    var date = new Date(year, month, 1);
+    var first = date.getDate() - date.getDay();
+    return new Date(date.setDate(first));
+}
