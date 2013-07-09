@@ -35,11 +35,11 @@ class TestMainWindow(CalendarTestCase):
         
         for i in range( count ):  
             if goToNextMonth == True :          
-                start_x = int(month_view.x + month_view.width * 0.85)
-                stop_x = int(month_view.x + month_view.width * 0.25)
+                start_x = int(month_view.x + month_view.width * 0.80)
+                stop_x = int(month_view.x + month_view.width * 0.20)
             else:
-                start_x = int(month_view.x + month_view.width * 0.25)
-                stop_x = int(month_view.x + month_view.width * 0.85)
+                start_x = int(month_view.x + month_view.width * 0.20)
+                stop_x = int(month_view.x + month_view.width * 0.80)
                                             
             self.pointing_device.drag(start_x, y_line, stop_x, y_line)  
      
