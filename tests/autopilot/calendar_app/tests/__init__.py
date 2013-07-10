@@ -16,6 +16,7 @@ from autopilot.testcase import AutopilotTestCase
 from testtools.matchers import Equals
 
 from calendar_app.emulators.main_window import MainWindow
+from calendar_app.emulators.ubuntusdk import ubuntusdk
 
 
 class CalendarTestCase(AutopilotTestCase):
@@ -52,16 +53,10 @@ class CalendarTestCase(AutopilotTestCase):
             "--desktop_file_hint=/usr/share/applications/calendar-app.desktop",
             app_type='qt')
 
-    def reveal_toolbar(self):
-        toolbar = self.main_window.get_panel()
-
-        x, y, w, h = toolbar.globalRect
-        tx = x + (w / 2)
-        ty = y + (h - 2)
-
-        self.pointing_device.drag(tx, ty, tx, ty - h)
-        self.assertThat(toolbar.state, Eventually(Equals("spread")))
-
     @property
     def main_window(self):
         return MainWindow(self.app)
+
+    @property
+    def ubuntusdk(self):
+        return ubuntusdk(self, self.app)

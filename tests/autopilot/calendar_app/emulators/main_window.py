@@ -16,25 +16,6 @@ class MainWindow(object):
     def __init__(self, app):
         self.app = app
 
-    def get_qml_view(self):
-        """Get the main QML view"""
-        return self.app.select_single("QQuickView")
-
-    def get_panel(self):
-        return self.app.select_single("Toolbar")
-
-    def get_toolbar_button(self, button_idx):
-        toolbar = self.app.select_single("Toolbar")
-        row = toolbar.select_single("QQuickRow")
-        buttons = row.select_many("Button")
-        return buttons[button_idx]
-
-    def get_toolbar_new_event_button(self):
-        return self.get_toolbar_button(1)
-
-    def get_toolbar_timeline_button(self):
-        return self.get_toolbar_button(2)
-
     def get_create_event_page(self):
         return self.app.select_single("NewEvent")
 
@@ -60,3 +41,6 @@ class MainWindow(object):
 
     def get_event_view(self):
         return self.app.select_single("EventView")
+
+    def get_title_label(self, title):
+        return self.app.select_many("Label", text=title)
