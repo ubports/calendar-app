@@ -49,6 +49,11 @@ MainView {
                         }
                     }
                 }
+                Action {
+                    iconSource: Qt.resolvedUrl("avatar.png")
+                    text: i18n.tr("Year view")
+                    onTriggered: pageStack.push(yearView);
+                }
             }
 
             Tabs {
@@ -109,6 +114,16 @@ MainView {
             Component {
                 id: newEventComponent
                 NewEvent {}
+            }
+
+            Component{
+                id: yearView
+                YearView{
+                    onMonthSelected: {
+                        // TODO: select month in monthView
+                        pageStack.pop();
+                    }
+                }
             }
         }
     }

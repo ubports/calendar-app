@@ -91,19 +91,19 @@ Page {
             Label{
                 id: timeLabel
                 anchors.left: parent.left
-                anchors.verticalCenter: parent.verticalCenter                
+                anchors.verticalCenter: parent.verticalCenter
                 fontSize: "large"
             }
             Label{
                 id: dateLabel
                 anchors.right: parent.right
-                anchors.verticalCenter: parent.verticalCenter                
+                anchors.verticalCenter: parent.verticalCenter
                 fontSize: "small"
             }
         }
 
         Label{
-            id: titleLabel            
+            id: titleLabel
             fontSize: "x-large"
             width: parent.width
             wrapMode: Text.WordWrap
@@ -114,7 +114,7 @@ Page {
             id: descLabel
             // FIXME: temporaty text, in ui there is no field to enter message
             text:"Hi both, please turn up on time, it gets really busy by 1pm! Anna x"
-            wrapMode: Text.WordWrap            
+            wrapMode: Text.WordWrap
             fontSize: "medium"
             width: parent.width
         }
@@ -131,7 +131,7 @@ Page {
             }
             Label{
                 id:locationLabel
-                wrapMode: Text.WordWrap                
+                wrapMode: Text.WordWrap
                 fontSize: "medium"
                 width: parent.width
                 //color:"#c94212"
@@ -147,7 +147,7 @@ Page {
         }
 
         Label{
-            text: i18n.tr("People");            
+            text: i18n.tr("People");
             fontSize: "small"
         }
         ThinDivider{}
@@ -169,7 +169,7 @@ Page {
                 id: contactModel
             }
 
-            Label{                
+            Label{
                 fontSize: "medium"
                 visible: contactModel.count <= 0
                 anchors.verticalCenter: parent.verticalCenter
