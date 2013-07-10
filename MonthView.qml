@@ -144,8 +144,8 @@ ListView {
                     id: dayItem
                     property var dayStart: gridStart.addDays(index)
                     property bool isCurrentMonth: monthStart <= dayStart && dayStart < monthEnd
-                    property bool isToday: dayStart.getTime() == intern.today.getTime()
-                    property bool isCurrent: dayStart.getTime() == intern.currentDayStart.getTime()
+                    property bool isToday: dayStart.getTime() === intern.today.getTime()
+                    property bool isCurrent: dayStart.getTime() === intern.currentDayStart.getTime()
                     property int weekday: (index % 7 + intern.weekstartDay) % 7
                     property bool isSunday: weekday == 0
                     property int row: Math.floor(index / 7)
