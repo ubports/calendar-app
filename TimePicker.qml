@@ -20,7 +20,7 @@ import Ubuntu.Components.Popups 0.1
 
 Dialog {
     id: root
-    title: qsTr("Time")
+    title: i18n.tr("Time")
     height: units.gu(100)
 
     property alias hour: hourScroller.currentIndex
@@ -45,7 +45,7 @@ Dialog {
                     bottom: parent.bottom
                 }
                 width: parent.width / 2
-                labelText: qsTr("Hour")
+                labelText: i18n.tr("Hour")
                 min: 00
                 max: 23
                 currentIndex: priv.now.getHours()
@@ -57,7 +57,7 @@ Dialog {
                     bottom: parent.bottom
                 }
                 width: parent.width / 2
-                labelText: qsTr("Minute")
+                labelText: i18n.tr("Minute")
 
                 min: 00
                 max: 59
@@ -67,7 +67,7 @@ Dialog {
         Row {
             spacing: units.gu(1)
             Button {
-                text: "Cancel"
+                text: i18n.tr("Cancel")
                 onClicked: {
                     root.rejected()
                     PopupUtils.close(root)
@@ -75,7 +75,7 @@ Dialog {
                 width: (parent.width - parent.spacing) / 2
             }
             Button {
-                text: "OK"
+                text: i18n.tr("OK")
                 color: "#dd4814"
 
                 onClicked: {
