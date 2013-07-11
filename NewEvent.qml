@@ -8,7 +8,9 @@ import "dataService.js" as DataService
 Popover {
     id: popover
     property var defaultDate;
-    property string errorText;
+    property alias errorText: errorPopupDialog.text;
+    property var startDate: defaultDate;
+    property var endDate: defaultDate;
 
     Column {
         id: containerLayout
@@ -59,13 +61,18 @@ Popover {
                         }
                     }
                 }
+                Component {
+                    id: timePicker
+                    TimePicker {
+                    }
+                }
 
                 Item {
                     id: timeContainer
                     width: parent.width
                     height: startTime.height
 
-                    ListItem.Empty {
+                    /*ListItem.Empty {
                         id: startTime
                         highlightWhenPressed: false
                         anchors.left: timeContainer.left
@@ -77,6 +84,29 @@ Popover {
                             anchors {
                                 fill: parent
                                 margins: units.gu(1)
+                            }
+                        }
+                    }*/
+
+                    ListItem.Empty {
+                        id: startTime
+                        anchors.left: timeContainer.left
+                        width: units.gu(12)
+                        Button {
+                            objectName: "startTimeInput"
+                            id: startTimeEdit
+                            text: Qt.formatDateTime(startDate,"hh:mm")
+                            anchors {
+                                fill: parent
+                                margins: units.gu(1)
+                            }
+                            onClicked: {
+                                var popupObj = PopupUtils.open(timePicker);
+                                popupObj.accepted.connect(function(hour, minute) {
+                                    var newDate = startDate;
+                                    newDate.setHours(hour, minute);
+                                    startDate = newDate;
+                                })
                             }
                         }
                     }
@@ -95,13 +125,21 @@ Popover {
                         highlightWhenPressed: false
                         anchors.right: timeContainer.right
                         width: units.gu(12)
-                        TextField {
+                        Button {
                             objectName: "endTimeInput"
                             id: endTimeEdit
-                            text: Qt.formatDateTime(defaultDate,"hh:mm")
+                            text: Qt.formatDateTime(endDate,"hh:mm")
                             anchors {
                                 fill: parent
                                 margins: units.gu(1)
+                            }
+                            onClicked: {
+                                var popupObj = PopupUtils.open(timePicker);
+                                popupObj.accepted.connect(function(hour, minute) {
+                                    var newDate = endDate;
+                                    newDate.setHours(hour, minute);
+                                    endDate = newDate;
+                                })
                             }
                         }
                     }
@@ -142,7 +180,7 @@ Popover {
             Dialog {
                 id: errorPopupDialog
                 title: i18n.tr("Error")
-                text: errorText
+                text: ""
                 Button {
                     text: i18n.tr("Ok")
                     onClicked: PopupUtils.close(errorPopupDialog)
@@ -182,32 +220,11 @@ Popover {
                         DataService.addEvent(event);
                         errorPopupDialog.destroy();
                         PopupUtils.close(popover);
-                    } else if (error === 1)
-                        errorText = i18n.tr("Time format not valid");
-                    else if (error === 2)
+                    } else
                         errorText = i18n.tr("End time can't be before start time");
 
                     errorPopupDialog.show();
                     error = 0;
-
-                    // Control time validity and return date with time
-                    function setTime(time) {
-                        var date = new Date(defaultDate);
-                        if (time.length === 2 && time[0].length < 3 && time[1].length < 3) {
-                            //HH:MM format
-                            date.setHours(time[0]);
-                            date.setMinutes(time[1]);
-                        }
-                        else if (time.length === 1 && time[0].length < 3) {
-                            //HH format
-                            date.setHours(time[0]);
-                            date.setMinutes(0);
-                        }
-                        else
-                            error = 1;
-
-                        return date;
-                    }
                 }
             }
         }
