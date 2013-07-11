@@ -9,8 +9,8 @@ Popover {
     id: popover
     property var defaultDate;
     property alias errorText: errorPopupDialog.text;
-    property var startDate: defaultDate;
-    property var endDate: defaultDate;
+    property var startDate: new Date()
+    property var endDate: new Date()
 
     Column {
         id: containerLayout
@@ -61,6 +61,7 @@ Popover {
                         }
                     }
                 }
+
                 Component {
                     id: timePicker
                     TimePicker {
@@ -70,15 +71,15 @@ Popover {
                 Item {
                     id: timeContainer
                     width: parent.width
-                    height: startTime.height
+                    height: startTimeItem.height
 
                     ListItem.Empty {
-                        id: startTime
+                        id: startTimeItem
                         anchors.left: timeContainer.left
                         width: units.gu(12)
                         Button {
                             objectName: "startTimeInput"
-                            id: startTimeEdit
+                            id: startTimeButton
                             text: Qt.formatDateTime(startDate,"hh:mm")
                             anchors {
                                 fill: parent
@@ -86,9 +87,9 @@ Popover {
                             }
                             onClicked: {
                                 var popupObj = PopupUtils.open(timePicker);
-                                popupObj.accepted.connect(function(hour, minute) {
+                                popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = startDate;
-                                    newDate.setHours(hour, minute);
+                                    newDate.setHours(startHour, startMinute);
                                     startDate = newDate;
                                 })
                             }
@@ -100,18 +101,18 @@ Popover {
                         text: i18n.tr("to");
                         anchors {
                             horizontalCenter: parent.horizontalCenter;
-                            verticalCenter: startTime.verticalCenter;
+                            verticalCenter: startTimeItem.verticalCenter;
                         }
                     }
 
                    ListItem.Empty {
-                        id: endTime
+                        id: endTimeItem
                         highlightWhenPressed: false
                         anchors.right: timeContainer.right
                         width: units.gu(12)
                         Button {
                             objectName: "endTimeInput"
-                            id: endTimeEdit
+                            id: endTimeButton
                             text: Qt.formatDateTime(endDate,"hh:mm")
                             anchors {
                                 fill: parent
@@ -119,9 +120,9 @@ Popover {
                             }
                             onClicked: {
                                 var popupObj = PopupUtils.open(timePicker);
-                                popupObj.accepted.connect(function(hour, minute) {
+                                popupObj.accepted.connect(function(endHour, endMinute) {
                                     var newDate = endDate;
-                                    newDate.setHours(hour, minute);
+                                    newDate.setHours(endHour, endMinute);
                                     endDate = newDate;
                                 })
                             }
@@ -179,19 +180,13 @@ Popover {
                 }
 
                 onClicked: {
-                    // TRANSLATORS: This is separator between hours and minutes (HH:MM)
-                    // var separator = i18n.tr(":");
-                    var separator = ":";
                     var error = 0;
-
-                    var startTime = startTimeEdit.text.split(separator);
-                    var startDate = setTime(startTime);
-
-                    var endTime = endTimeEdit.text.split(separator);
-                    var endDate = setTime(endTime);
 
                     if (startDate > endDate)
                         error = 2;
+
+                    startDate.setDate(defaultDate.getDate());
+                    endDate.setDate(defaultDate.getDate());
 
                     var event = {
                         title: titleEdit.text,
