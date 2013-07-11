@@ -202,12 +202,12 @@ Popover {
 
                     if (!error) {
                         DataService.addEvent(event);
-                        errorPopupDialog.destroy();
                         PopupUtils.close(popover);
-                    } else
+                    } else {
                         errorText = i18n.tr("End time can't be before start time");
+                        errorPopupDialog.show();
+                    }
 
-                    errorPopupDialog.show();
                     error = 0;
                 }
             }
