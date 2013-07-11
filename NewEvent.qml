@@ -72,22 +72,6 @@ Popover {
                     width: parent.width
                     height: startTime.height
 
-                    /*ListItem.Empty {
-                        id: startTime
-                        highlightWhenPressed: false
-                        anchors.left: timeContainer.left
-                        width: units.gu(12)
-                        TextField {
-                            objectName: "startTimeInput"
-                            id: startTimeEdit
-                            text: Qt.formatDateTime(defaultDate,"hh:mm")
-                            anchors {
-                                fill: parent
-                                margins: units.gu(1)
-                            }
-                        }
-                    }*/
-
                     ListItem.Empty {
                         id: startTime
                         anchors.left: timeContainer.left
