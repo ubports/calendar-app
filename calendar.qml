@@ -32,11 +32,13 @@ MainView {
                     onTriggered:; // FIXME
                 }
                 Action {
+                    objectName: "neweventbutton"
                     iconSource: Qt.resolvedUrl("avatar.png")
                     text: i18n.tr("New Event")
                     onTriggered: monthViewPage.newEvent()
                 }
                 Action {
+                    objectName: "timelinebutton"
                     iconSource: Qt.resolvedUrl("avatar.png")
                     text: i18n.tr("Timeline")
                     onTriggered: {

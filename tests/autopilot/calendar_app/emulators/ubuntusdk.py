@@ -38,6 +38,10 @@ class ubuntusdk(object):
         """Get more than one object"""
         return self.app.select_many(typeName, objectName=name)
 
+    def get_tabs(self):
+        """Return all tabs"""
+        return self.app.select_single("Tabs")
+
     def switch_to_tab(self, tab):
         """Switch to the specified tab number"""
         tabs = self.get_tabs()
@@ -46,10 +50,36 @@ class ubuntusdk(object):
         #perform operations until tab == currentTab
         while tab != currentTab:
             if tab > currentTab:
-                self._previous_tab()
-            if tab < currentTab:
                 self._next_tab()
+            if tab < currentTab:
+                self._previous_tab()
             currentTab = tabs.selectedTabIndex
+
+    def _previous_tab(self):
+        """Switch to the previous tab"""
+        qmlView = self.get_qml_view()
+
+        startX = int(qmlView.x + qmlView.width * 0.10)
+        stopX = int(qmlView.x + qmlView.width * 0.45)
+        lineY = int(qmlView.y + qmlView.height * 0.05)
+
+        self.autopilot.pointing_device.drag(startX, lineY, stopX, lineY)
+        self.autopilot.pointing_device.move(startX, lineY)
+        self.autopilot.pointing_device.click()
+        self.autopilot.pointing_device.click()
+
+    def _next_tab(self):
+        """Switch to the next tab"""
+        qmlView = self.get_qml_view()
+
+        startX = int(qmlView.x + qmlView.width * 0.45)
+        stopX = int(qmlView.x + qmlView.width * 0.10)
+        lineY = int(qmlView.y + qmlView.height * 0.05)
+
+        self.autopilot.pointing_device.drag(startX, lineY, stopX, lineY)
+        self.autopilot.pointing_device.move(startX, lineY)
+        self.autopilot.pointing_device.click()
+        self.autopilot.pointing_device.click()
 
     def toggle_toolbar(self):
         """Toggle the toolbar between revealed and hidden"""
@@ -90,9 +120,9 @@ class ubuntusdk(object):
         """Open the toolbar"""
         qmlView = self.get_qml_view()
 
-        lineX = qmlView.x + qmlView.width * 0.50
-        startY = qmlView.y + qmlView.height - 1
-        stopY = qmlView.y + qmlView.height * 0.95
+        lineX = int(qmlView.x + qmlView.width * 0.50)
+        startY = int(qmlView.y + qmlView.height - 1)
+        stopY = int(qmlView.y + qmlView.height * 0.95)
 
         self.autopilot.pointing_device.drag(lineX, startY, lineX, stopY)
 
@@ -100,9 +130,9 @@ class ubuntusdk(object):
         """Hide the toolbar"""
         qmlView = self.get_qml_view()
 
-        lineX = qmlView.x + qmlView.width * 0.50
-        startY = qmlView.y + qmlView.height * 0.95
-        stopY = qmlView.y + qmlView.height - 1
+        lineX = int(qmlView.x + qmlView.width * 0.50)
+        startY = int(qmlView.y + qmlView.height * 0.95)
+        stopY = int(qmlView.y + qmlView.height - 1)
 
         self.autopilot.pointing_device.drag(lineX, startY, lineX, stopY)
 
@@ -111,44 +141,16 @@ class ubuntusdk(object):
         At the moment this only works for values that are currently visible. To
         access the remaining items, a help method to drag and recheck is needed."""
         #The popover is assumed to be the following format
-        #    Popover {
-        #        Column {
-        #            ListView {
-        #                delegate: Standard {
-        #                    objectName: "name"
-        #                    text: value
+        #Component {
+        #    id: actionSelectionPopover
+        #
+        #ActionSelectionPopover {
+        #                actions: ActionList {
+        #                    Action {
 
-        self.autopilot.pointing_device.click_object(button)
-        #we'll get all matching objects, incase the popover is reused between buttons
-        itemList = lambda: self.get_objects("Standard", popover)
-
-        for item in itemList():
-            if item.get_properties()['text'] == value:
+        popList = self.get_object("ActionSelectionPopover", popover)
+        itemList = popList.select_many("Label")
+        for item in itemList:
+            if item.text == value:
                 self.autopilot.pointing_device.click_object(item)
-
-    def get_tabs(self):
-        """Return all tabs"""
-        return self.get_object("Tabs", "rootTabs")
-
-    def _previous_tab(self):
-        """Switch to the previous tab"""
-        qmlView = self.get_qml_view()
-
-        startX = qmlView.x + qmlView.width * 0.35
-        stopX = qmlView.x + qmlView.width * 0.50
-        lineY = qmlView.y + qmlView.height * 0.05
-
-        self.autopilot.pointing_device.drag(startX, lineY, stopX, lineY)
-        self.autopilot.pointing_device.click()
-        self.autopilot.pointing_device.click()
-
-    def _next_tab(self):
-        """Switch to the next tab"""
-        qmlView = self.get_qml_view()
-
-        startX = qmlView.x + qmlView.width * 0.50
-        stopX = qmlView.x + qmlView.width * 0.35
-        lineY = qmlView.y + qmlView.height * 0.05
-
-        self.autopilot.pointing_device.drag(startX, lineY, stopX, lineY)
-        self.autopilot.pointing_device.click()
+                return item
