@@ -16,6 +16,7 @@ from autopilot.testcase import AutopilotTestCase
 from testtools.matchers import Equals
 
 from calendar_app.emulators.main_window import MainWindow
+from calendar_app.emulators.ubuntusdk import ubuntusdk
 
 
 class CalendarTestCase(AutopilotTestCase):
@@ -65,3 +66,7 @@ class CalendarTestCase(AutopilotTestCase):
     @property
     def main_window(self):
         return MainWindow(self.app)
+
+    @property
+    def ubuntusdk(self):
+        return ubuntusdk(self, self.app)
