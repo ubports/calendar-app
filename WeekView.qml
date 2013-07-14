@@ -10,10 +10,6 @@ Item{
 
     property var dayStart: new Date()
 
-    //    onDayStartChanged: {
-    //        timeLineView.scroll();
-    //    }
-
     Label{
         id: todayLabel
         text: Qt.formatDateTime( new Date(),"d MMMM yyyy");
@@ -45,7 +41,7 @@ Item{
     PathViewBase{
         id: weekViewPath
 
-        property var weekStart: root.dayStart.addDays(7)
+        property var weekStart: root.dayStart
 
         anchors.top: weekRibbon.bottom
         width: parent.width
@@ -83,31 +79,18 @@ Item{
 
             weekStart: {
                 if (index === weekViewPath.currentIndex) {
-                    //print("currentIndex: "+ weekViewPath.weekStart);
                     return weekViewPath.weekStart;
                 }
                 var previousIndex = weekViewPath.currentIndex > 0 ? weekViewPath.currentIndex - 1 : 2
                 if ( index === previousIndex ) {
                     var weekStartDay= weekViewPath.weekStart.weekStart( Qt.locale().firstDayOfWeek);
-                    //print("previousIndex: "+ weekStartDay.addDays(-7));
                     return weekStartDay.addDays(-7);
                 }
 
                 var weekStartDay = weekViewPath.weekStart.weekStart( Qt.locale().firstDayOfWeek);
-                //print("nextIndex: " + weekStartDay.addDays(0));
                 return weekStartDay.addDays(0);
             }
         }
     }
-
-//    WeekComponent{
-//        id: timeLineView
-
-//        weekStart: dayStart
-
-//        anchors.top: weekRibbon.bottom
-//        width: parent.width
-//        height: parent.height - weekRibbon.height - units.gu(3)
-//    }
 }
 

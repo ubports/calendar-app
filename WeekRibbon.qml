@@ -14,10 +14,6 @@ PathViewBase{
     property var weekStart: startDay.addDays(-7)
     property int selectedIndex: 0
 
-    onStartDayChanged: {
-        weekStart = startDay.addDays(-7)
-    }
-
     signal daySelected(var day);
 
     QtObject{
@@ -36,31 +32,23 @@ PathViewBase{
 
     function nextWeek() {
         var weekStartDay= weekStart.weekStart( intern.weekstartDay);
-        weekRibbonRoot.weekStart = weekStartDay.addDays(7);
-        weekRibbonRoot.selectedIndex = 0
+        startDay = weekStartDay.addDays(14);
+        selectedIndex = 0
 
-        daySelected( weekStart.addDays(7) );
+        daySelected( startDay );
     }
 
     function previousWeek(){
         var weekStartDay = weekStart.weekStart(intern.weekstartDay);
-        weekRibbonRoot.weekStart = weekStartDay.addDays(-7);
-        weekRibbonRoot.selectedIndex = 0
+        startDay = weekStartDay;
+        selectedIndex = 0
 
-        daySelected( weekStart.addDays(7) );
+        daySelected( startDay );
     }
 
     delegate: Row{
         id: dayLabelRow
         width: parent.width
-
-//        Connections{
-//            target: weekRibbonRoot
-//            onWeekStartChanged: {
-//                dayLabelRow.weekStart = getWeekStart();
-//                print("WeekStart:" + dayLabelRow.weekStart);
-//            }
-//        }
 
         function getWeekStart() {
             if (index === weekRibbonRoot.currentIndex) {

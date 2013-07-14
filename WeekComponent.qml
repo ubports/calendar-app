@@ -7,12 +7,16 @@ import "dataService.js" as DataService
 Flickable{
     id: timeLineView
 
-    property var weekStart: dayStart
+    property var weekStart: new Date()
 
     contentHeight: timeLineColumn.height + units.gu(3)
     contentWidth: width
 
     clip: true
+
+    onWeekStartChanged: {
+        scroll();
+    }
 
     function scroll() {
         //scroll to 9 o'clock
