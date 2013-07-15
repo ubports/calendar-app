@@ -8,77 +8,77 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-12 17:24+0200\n"
-"PO-Revision-Date: 2013-07-12 06:27+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-07-14 08:39+0000\n"
+"Last-Translator: Sai Mawn Kham <Unknown>\n"
 "Language-Team: Shan <shn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-07-13 06:35+0000\n"
+"X-Launchpad-Export-Date: 2013-07-15 05:14+0000\n"
 "X-Generator: Launchpad (build 16696)\n"
 
 #: ../DiaryView.qml:54
 msgid "(+) New Event"
-msgstr ""
+msgstr "(+) ပၢင်ၵႅဝ်ႈ ဢၼ်မႂ်ႇ"
 
 #: ../EventDetails.qml:69
 msgid "Add invite"
-msgstr ""
+msgstr "ထႅမ်သႂ်ႇ ပၢင်ၵႅဝ်ႈ"
 
 #: ../EventDetails.qml:75
 msgid "Edit"
-msgstr ""
+msgstr "မႄးထတ်း"
 
 #: ../EventDetails.qml:150 ../NewEvent.qml:112
 msgid "People"
-msgstr ""
+msgstr "ၵူၼ်း"
 
 #: ../NewEvent.qml:20
 msgid "Create event"
-msgstr ""
+msgstr "ၵေႃႇသၢင်ႈ ပၢင်ၵႅဝ်ႈ"
 
 #: ../NewEvent.qml:25
 msgid "Add event name"
-msgstr ""
+msgstr "ထႅမ်သႂ်ႇ ၸိုဝ်ႈပၢင်ၵႅဝ်ႈ"
 
 #: ../NewEvent.qml:99
 msgid "Location"
-msgstr ""
+msgstr "ဢွင်ႈတီႈ"
 
 #: ../NewEvent.qml:104
 msgid "Add Location"
-msgstr ""
+msgstr "ထႅမ်သႂ်ႇ ဢွင်ႈတီႈ"
 
 #: ../NewEvent.qml:117
 msgid "Invite People"
-msgstr ""
+msgstr "ၽိတ်ႈမွၵ်ႈ ၵူၼ်း"
 
 #: ../NewEvent.qml:128
 msgid "Save"
-msgstr ""
+msgstr "သိမ်း"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineView.qml:147
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: ../calendar.qml:31
 msgid "To-do"
-msgstr ""
+msgstr "တႃႇႁဵတ်း"
 
 #: ../calendar.qml:36
 msgid "New Event"
-msgstr ""
+msgstr "ပၢင်ၵႅဝ်ႈ ဢၼ်မႂ်ႇ"
 
 #: ../calendar.qml:41 ../calendar.qml:48
 msgid "Timeline"
-msgstr ""
+msgstr "သဵၼ်ႈၶၢဝ်း"
 
 #: ../calendar.qml:45
 msgid "Diary"
-msgstr ""
+msgstr "တွၼ်ႈမၢႆတွင်း"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr ""
+msgstr "ပၵ်းယဵမ်ႈဝၼ်း"
