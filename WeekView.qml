@@ -10,6 +10,11 @@ Item{
 
     property var dayStart: new Date()
 
+    onDayStartChanged:{
+        weekRibbon.visibleWeek = dayStart.weekStart(Qt.locale().firstDayOfWeek);
+        weekViewPath.visibleWeek = dayStart.weekStart(Qt.locale().firstDayOfWeek);
+    }
+
     Label{
         id: todayLabel
         text: Qt.formatDateTime( new Date(),"d MMMM yyyy");
@@ -28,24 +33,28 @@ Item{
 
     WeekRibbon{
         id: weekRibbon
-        startDay: dayStart.weekStart( Qt.locale().firstDayOfWeek);
+        visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
         anchors.top: todayLabel.bottom
         anchors.left: timeLabel.right
         width: parent.width - timeLabel.width
         height: units.gu(10)
         weekWidth: dummy.width + units.gu(1)
 
-        onDaySelected: {
-            root.dayStart = day
-            weekViewPath.weekStart = day
-            print( "####Day selected: "+ day)
+        onWeekChanged: {
+            dayStart = visibleWeek
         }
     }
 
     PathViewBase{
         id: weekViewPath
 
-        property var weekStart: root.dayStart
+        property var visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
+
+        QtObject{
+            id: intern
+            property int firstDayOfWeek: Qt.locale().firstDayOfWeek
+            property var weekStart: weekViewPath.visibleWeek.addDays(-7)
+        }
 
         anchors.top: weekRibbon.bottom
         width: parent.width
@@ -60,19 +69,15 @@ Item{
         }
 
         function nextWeek() {
-            var weekStartDay= weekStart.weekStart( Qt.locale().firstDayOfWeek);
-            weekStart = weekStartDay.addDays(7);
-
-            dayStart = weekStart
-            weekRibbon.startDay = dayStart.weekStart( Qt.locale().firstDayOfWeek);
+            var weekStartDay = visibleWeek.weekStart(intern.firstDayOfWeek);
+            visibleWeek = weekStartDay.addDays(7);
+            dayStart = visibleWeek
         }
 
         function previousWeek(){
-            var weekStartDay = weekStart.weekStart(Qt.locale().firstDayOfWeek);
-            weekStart = weekStartDay.addDays(-7)
-
-            dayStart = weekStart
-            weekRibbon.startDay = dayStart.weekStart( Qt.locale().firstDayOfWeek);
+            var weekStartDay = visibleWeek.weekStart(intern.firstDayOfWeek);
+            visibleWeek = weekStartDay.addDays(-7);
+            dayStart = visibleWeek
         }
 
         delegate: WeekComponent {
@@ -81,19 +86,21 @@ Item{
             width: parent.width
             height: parent.height
             weekWidth: dummy.width + units.gu(1)
+            weekStart: getWeekStart();
 
-            weekStart: {
+            function getWeekStart() {
                 if (index === weekViewPath.currentIndex) {
-                    return weekViewPath.weekStart;
+                    return intern.weekStart;
                 }
                 var previousIndex = weekViewPath.currentIndex > 0 ? weekViewPath.currentIndex - 1 : 2
+
                 if ( index === previousIndex ) {
-                    var weekStartDay= weekViewPath.weekStart.weekStart( Qt.locale().firstDayOfWeek);
+                    var weekStartDay= intern.weekStart.weekStart(intern.firstDayOfWeek);
                     return weekStartDay.addDays(-7);
                 }
 
-                var weekStartDay = weekViewPath.weekStart.weekStart( Qt.locale().firstDayOfWeek);
-                return weekStartDay.addDays(0);
+                var weekStartDay = intern.weekStart.weekStart(intern.firstDayOfWeek);
+                return weekStartDay.addDays(7);
             }
         }
     }

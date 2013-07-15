@@ -8,16 +8,17 @@ PathViewBase{
     id: weekRibbonRoot
 
     property int weekWidth:0;
-    property var startDay: intern.now
-    property var weekStart: startDay.addDays(-7)
-    property int selectedIndex: 0
+    property var visibleWeek: intern.now
 
     signal daySelected(var day);
+    signal weekChanged(var visibleWeek);
 
     QtObject{
         id: intern
         property var now: new Date()
         property int weekstartDay: Qt.locale().firstDayOfWeek
+        property var weekStart: visibleWeek.addDays(-7)
+        property int selectedIndex: 0
     }
 
     onNextItemHighlighted: {
@@ -29,19 +30,19 @@ PathViewBase{
     }
 
     function nextWeek() {
-        var weekStartDay= weekStart.weekStart( intern.weekstartDay);
-        startDay = weekStartDay.addDays(14);
-        selectedIndex = 0
+        var weekStartDay= visibleWeek.weekStart(intern.weekstartDay);
+        visibleWeek = weekStartDay.addDays(7);
+        intern.selectedIndex = 0
 
-        daySelected( startDay );
+        weekChanged( visibleWeek );
     }
 
     function previousWeek(){
-        var weekStartDay = weekStart.weekStart(intern.weekstartDay);
-        startDay = weekStartDay;
-        selectedIndex = 0
+        var weekStartDay = visibleWeek.weekStart(intern.weekstartDay);
+        visibleWeek = weekStartDay.addDays(-7);
+        intern.selectedIndex = 0
 
-        daySelected( startDay );
+        weekChanged( visibleWeek );
     }
 
     delegate: Row{
@@ -50,16 +51,16 @@ PathViewBase{
 
         function getWeekStart() {
             if (index === weekRibbonRoot.currentIndex) {
-                return weekRibbonRoot.weekStart;
+                return intern.weekStart;
             }
             var previousIndex = weekRibbonRoot.currentIndex > 0 ? weekRibbonRoot.currentIndex - 1 : 2
 
             if ( index === previousIndex ) {
-                var weekStartDay= weekRibbonRoot.weekStart.weekStart( Qt.locale().firstDayOfWeek);
+                var weekStartDay= intern.weekStart.weekStart( Qt.locale().firstDayOfWeek);
                 return weekStartDay.addDays(-7);
             }
 
-            var weekStartDay = weekRibbonRoot.weekStart.weekStart( Qt.locale().firstDayOfWeek);
+            var weekStartDay = intern.weekStart.weekStart( Qt.locale().firstDayOfWeek);
             return weekStartDay.addDays(7);
         }
 
@@ -81,12 +82,11 @@ PathViewBase{
             width: column.width
             height: column.height
 
-            color: weekRibbonRoot.selectedIndex == index ? Color.ubuntuOrange : "white"
-
-            property var myIndex: index
+            color: intern.selectedIndex == index ? Color.ubuntuOrange : "white"
 
             property var weekStartDay: parent.weekStart.weekStart( Qt.locale().firstDayOfWeek);
             property var day : weekStartDay.addDays(index)
+
             objectName: "weekDay"+index
 
             Column {
@@ -111,9 +111,8 @@ PathViewBase{
                 anchors.fill: parent
 
                 onClicked: {
-                    weekRibbonRoot.selectedIndex= index
+                    intern.selectedIndex = index
                     weekRibbonRoot.daySelected(day);
-                    print("Day selected: "+ day);
                 }
             }
         }
