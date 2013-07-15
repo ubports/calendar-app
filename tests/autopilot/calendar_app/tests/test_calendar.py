@@ -16,6 +16,7 @@ from calendar_app.tests import CalendarTestCase
 
 import time
 
+
 class TestMainWindow(CalendarTestCase):
 
     def setUp(self):
@@ -29,11 +30,14 @@ class TestMainWindow(CalendarTestCase):
     def test_timeline_view_shows(self):
         event_view = self.main_window.get_event_view()
 
-        self.assertThat(event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
+        self.assertThat(
+            event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
         self.ubuntusdk.click_toolbar_button("Timeline")
-        self.assertThat(event_view.eventViewType, Eventually(Equals("TimeLineView.qml")))
+        self.assertThat(
+            event_view.eventViewType, Eventually(Equals("TimeLineView.qml")))
         self.ubuntusdk.click_toolbar_button("Diary")
-        self.assertThat(event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
+        self.assertThat(
+            event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
 
 #commenting out for now until adding a new event works again
     #def test_new_event(self):
@@ -71,7 +75,8 @@ class TestMainWindow(CalendarTestCase):
         ##input location
         #self.pointing_device.click_object(location_field)
         #self.keyboard.type("My location")
-        #self.assertThat(location_field.text, Eventually(Equals("My location")))
+        #self.assertThat(
+        #    location_field.text, Eventually(Equals("My location")))
 
         ##input people
         #self.pointing_device.click_object(people_field)
