@@ -18,9 +18,12 @@ Item{
     }
 
     Label{
-        id: timeLabel
+        id: timeLabel;visible: false
         text: new Date(0, 0, 0, 0).toLocaleTimeString(Qt.locale(), i18n.tr("HH"))
-        visible: false
+    }
+
+    Label{
+        id: dummy;text: "SUN";visible: false;fontSize: "large"
     }
 
     WeekRibbon{
@@ -30,6 +33,7 @@ Item{
         anchors.left: timeLabel.right
         width: parent.width - timeLabel.width
         height: units.gu(10)
+        weekWidth: dummy.width + units.gu(1)
 
         onDaySelected: {
             root.dayStart = day
@@ -76,6 +80,7 @@ Item{
 
             width: parent.width
             height: parent.height
+            weekWidth: dummy.width + units.gu(1)
 
             weekStart: {
                 if (index === weekViewPath.currentIndex) {

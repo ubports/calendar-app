@@ -7,10 +7,8 @@ import "colorUtils.js" as Color
 PathViewBase{
     id: weekRibbonRoot
 
-    objectName: "weekRibbonRoot"
-
+    property int weekWidth:0;
     property var startDay: intern.now
-
     property var weekStart: startDay.addDays(-7)
     property int selectedIndex: 0
 
@@ -93,21 +91,19 @@ PathViewBase{
 
             Column {
                 id: column
-                width: dummy.width + units.gu(1)
+                width: weekWidth
                 Label{
                     //FIXME: how to get localized day initial ?
                     text: Qt.locale().standaloneDayName(( intern.weekstartDay + index), Locale.ShortFormat)
                     horizontalAlignment: Text.AlignHCenter
                     width: column.width
                     fontSize: "medium"
-                    //anchors.horizontalCenter: parent.horizontalCenter
                 }
                 Label{
                     text: weekDay.day.getDate()
                     horizontalAlignment: Text.AlignHCenter
                     width: column.width
-                    fontSize: dummy.fontSize
-                    //anchors.horizontalCenter: parent.horizontalCenter
+                    fontSize: "large"
                 }
             }
 
@@ -121,12 +117,5 @@ PathViewBase{
                 }
             }
         }
-    }
-
-    Label{
-        id: dummy
-        text: "SUN"
-        visible: false
-        fontSize: "large"
     }
 }

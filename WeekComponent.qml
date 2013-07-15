@@ -8,6 +8,7 @@ Flickable{
     id: timeLineView
 
     property var weekStart: new Date()
+    property int weekWidth:0;
 
     contentHeight: timeLineColumn.height + units.gu(3)
     contentWidth: width
@@ -21,53 +22,43 @@ Flickable{
     function scroll() {
         //scroll to 9 o'clock
         var hour = 9//intern.now.getHours();
-
         timeLineView.contentY = hour * units.gu(10);
-
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
     }
 
     Rectangle{
-        id: background; anchors.fill: parent
+        id: background;
+        anchors.fill: parent
         color: "white"
     }
 
     TimeLineBackground{
         id: timeLineColumn
-
         anchors.top: parent.top
         anchors.topMargin: units.gu(3)
         width: parent.width
     }
 
+    //vertical lines for weeks
     Row{
         id: dayIndicator
 
+        // TODO: get timeline width
         x: timeLabel.width
-
         width: parent.width
         height: timeLineView.contentHeight
-
-        objectName: "dayLabelRow"
 
         Repeater{
             model:7
             delegate: Rectangle{
                 height: dayIndicator.height
-                width: dummy.width + units.gu(1)
+                width: weekWidth
                 border.color: "gray"
                 opacity: 0.1
             }
         }
-    }
-
-    Label{
-        id: dummy
-        text: "SUN"
-        visible: false
-        fontSize: "large"
     }
 
     Row{
@@ -76,11 +67,12 @@ Flickable{
         height: timeLineColumn.height
         anchors.top: parent.top
         anchors.topMargin: units.gu(3)
+        // TODO: get timeline width
         x: timeLabel.width
         spacing: 0
 
         property var weekStartDay: timeLineView.weekStart.weekStart( Qt.locale().firstDayOfWeek );
-        property int timeLineWidth: dummy.width + units.gu(1)//week.width / 7 //units.gu(5)
+        property int timeLineWidth: weekWidth//week.width / 7 //units.gu(5)
 
         Repeater{
             model: 7
