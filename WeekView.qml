@@ -4,11 +4,22 @@ import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
 import "dataService.js" as DataService
 
-Item{
+Page{
     id: root
     anchors.fill: parent
 
     property var dayStart: new Date()
+
+    Component.onCompleted: {
+        if( pageStack.header )
+            pageStack.header.visible = false;
+        showEvent(event);
+    }
+
+    Component.onDestruction: {
+        if( pageStack.header )
+            pageStack.header.visible = true;
+    }
 
     onDayStartChanged:{
         weekRibbon.visibleWeek = dayStart.weekStart(intern.firstDayOfWeek);
