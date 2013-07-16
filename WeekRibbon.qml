@@ -87,13 +87,10 @@ PathViewBase{
             property var weekStartDay: parent.weekStart.weekStart( Qt.locale().firstDayOfWeek);
             property var day : weekStartDay.addDays(index)
 
-            objectName: "weekDay"+index
-
             Column {
                 id: column
                 width: weekWidth
                 Label{
-                    //FIXME: how to get localized day initial ?
                     text: Qt.locale().standaloneDayName(( intern.weekstartDay + index), Locale.ShortFormat)
                     horizontalAlignment: Text.AlignHCenter
                     width: column.width

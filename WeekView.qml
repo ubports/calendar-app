@@ -11,8 +11,8 @@ Item{
     property var dayStart: new Date()
 
     onDayStartChanged:{
-        weekRibbon.visibleWeek = dayStart.weekStart(Qt.locale().firstDayOfWeek);
-        weekViewPath.visibleWeek = dayStart.weekStart(Qt.locale().firstDayOfWeek);
+        weekRibbon.visibleWeek = dayStart.weekStart(intern.firstDayOfWeek);
+        weekViewPath.visibleWeek = dayStart.weekStart(intern.firstDayOfWeek);
     }
 
     Label{
@@ -33,7 +33,7 @@ Item{
 
     WeekRibbon{
         id: weekRibbon
-        visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
+        visibleWeek: dayStart.weekStart(intern.firstDayOfWeek);
         anchors.top: todayLabel.bottom
         anchors.left: timeLabel.right
         width: parent.width - timeLabel.width
@@ -48,7 +48,7 @@ Item{
     PathViewBase{
         id: weekViewPath
 
-        property var visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
+        property var visibleWeek: dayStart.weekStart(intern.firstDayOfWeek);
 
         QtObject{
             id: intern
@@ -71,12 +71,14 @@ Item{
         function nextWeek() {
             var weekStartDay = visibleWeek.weekStart(intern.firstDayOfWeek);
             visibleWeek = weekStartDay.addDays(7);
+
             dayStart = visibleWeek
         }
 
         function previousWeek(){
             var weekStartDay = visibleWeek.weekStart(intern.firstDayOfWeek);
             visibleWeek = weekStartDay.addDays(-7);
+
             dayStart = visibleWeek
         }
 

@@ -67,12 +67,11 @@ Flickable{
         height: timeLineColumn.height
         anchors.top: parent.top
         anchors.topMargin: units.gu(3)
-        // TODO: get timeline width
         x: timeLabel.width
         spacing: 0
 
         property var weekStartDay: timeLineView.weekStart.weekStart( Qt.locale().firstDayOfWeek );
-        property int timeLineWidth: weekWidth//week.width / 7 //units.gu(5)
+        property int timeLineWidth: weekWidth
 
         Repeater{
             model: 7

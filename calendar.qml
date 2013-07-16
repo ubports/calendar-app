@@ -63,24 +63,24 @@ MainView {
                 }
             }
 
-//            Tabs {
-//                id: tabs
+            Tabs {
+                id: tabs
 
-//                Tab { title: Qt.locale().standaloneMonthName(0) }
-//                Tab { title: Qt.locale().standaloneMonthName(1) }
-//                Tab { title: Qt.locale().standaloneMonthName(2) }
-//                Tab { title: Qt.locale().standaloneMonthName(3) }
-//                Tab { title: Qt.locale().standaloneMonthName(4) }
-//                Tab { title: Qt.locale().standaloneMonthName(5) }
-//                Tab { title: Qt.locale().standaloneMonthName(6) }
-//                Tab { title: Qt.locale().standaloneMonthName(7) }
-//                Tab { title: Qt.locale().standaloneMonthName(8) }
-//                Tab { title: Qt.locale().standaloneMonthName(9) }
-//                Tab { title: Qt.locale().standaloneMonthName(10) }
-//                Tab { title: Qt.locale().standaloneMonthName(11) }
+                Tab { title: Qt.locale().standaloneMonthName(0) }
+                Tab { title: Qt.locale().standaloneMonthName(1) }
+                Tab { title: Qt.locale().standaloneMonthName(2) }
+                Tab { title: Qt.locale().standaloneMonthName(3) }
+                Tab { title: Qt.locale().standaloneMonthName(4) }
+                Tab { title: Qt.locale().standaloneMonthName(5) }
+                Tab { title: Qt.locale().standaloneMonthName(6) }
+                Tab { title: Qt.locale().standaloneMonthName(7) }
+                Tab { title: Qt.locale().standaloneMonthName(8) }
+                Tab { title: Qt.locale().standaloneMonthName(9) }
+                Tab { title: Qt.locale().standaloneMonthName(10) }
+                Tab { title: Qt.locale().standaloneMonthName(11) }
 
-//                onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
-//            }
+                onSelectedTabIndexChanged: monthView.gotoNextMonth(selectedTabIndex)
+            }
 
             Rectangle {
                 anchors.fill: monthView

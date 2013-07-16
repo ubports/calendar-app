@@ -25,7 +25,7 @@ Column {
                     anchors.top: parent.top
                 }
                 Rectangle{
-                    width: parent.width -timeLabel.width
+                    width: parent.width - timeLabel.width
                     height:units.dp(1)
                     color:"gray"
                     anchors.verticalCenter: parent.verticalCenter
