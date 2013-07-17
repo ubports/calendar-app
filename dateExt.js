@@ -43,7 +43,7 @@ Date.prototype.addDays = function(days) {
 
 Date.prototype.addMonths = function(months) {
     var date = new Date(this)
-    date.setUTCMonth(date.getUTCMonth() + months)
+    date.setMonth(date.getMonth() + months)
     return date
 }
 
