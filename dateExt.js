@@ -29,9 +29,20 @@ Date.weeksInMonth = function(year, month, weekday) {
     return n
 }
 
+// TODO: Following function is causing regression in monthview
+// It is affecting month view's layout and default date is select
+// Temporarily reverting changes
+//Date.prototype.midnight = function() {
+//    var date = new Date(this)
+//    date.setHours(0,0,0,0);
+//    return date
+//}
+
 Date.prototype.midnight = function() {
     var date = new Date(this)
-    date.setHours(0,0,0,0);
+    var t = date.getTime()
+    if (t % Date.msPerDay != 0)
+        date.setTime(t - t % Date.msPerDay)
     return date
 }
 

@@ -31,15 +31,15 @@ class TestMainWindow(CalendarTestCase):
     def changeMonth( self, goToNextMonth  = True, count = 0):
         
         month_view = self.main_window.get_month_view()
-        y_line =  int(month_view.y + (month_view.height / 2))
+        y_line =  int(self.ubuntusdk.get_qml_view().y + month_view.y + (month_view.height / 2))
         
         for i in range( count ):  
             if goToNextMonth == True :          
-                start_x = int(month_view.x + month_view.width * 0.80)
-                stop_x = int(month_view.x + month_view.width * 0.20)
+                start_x = int(self.ubuntusdk.get_qml_view().x + month_view.x + (month_view.width * 0.85))
+                stop_x = int(self.ubuntusdk.get_qml_view().x+ month_view.x + (month_view.width * 0.15))
             else:
-                start_x = int(month_view.x + month_view.width * 0.20)
-                stop_x = int(month_view.x + month_view.width * 0.80)
+                start_x = int(self.ubuntusdk.get_qml_view().x + month_view.x + (month_view.width * 0.15))
+                stop_x = int(self.ubuntusdk.get_qml_view().x + month_view.x + (month_view.width * 0.85))
                                             
             self.pointing_device.drag(start_x, y_line, stop_x, y_line)  
      
@@ -103,7 +103,7 @@ class TestMainWindow(CalendarTestCase):
         self.changeMonth(goToNextMonth, count)
         
         dayAfterMonthChange = datetime.fromtimestamp(month_view.currentDayStart)
-                
+                        
         self.assertThat(dayAfterMonthChange.day, (Equals(1)));  
         if goToNextMonth == True:
             self.assertThat(dayAfterMonthChange.month, (Equals(startDay.month+count)));
