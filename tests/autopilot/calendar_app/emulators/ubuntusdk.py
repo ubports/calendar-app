@@ -16,11 +16,10 @@
 #
 # Authored by: Nicholas Skaggs <nicholas.skaggs@canonical.com>
 
-from testtools.matchers import Equals, NotEquals, Not, Is
-from autopilot.matchers import Eventually
 
 class ubuntusdk(object):
-    """An emulator class that makes it easy to interact with the ubuntu sdk applications."""
+    """An emulator class that makes it easy to interact with the ubuntu sdk
+    applications."""
 
     def __init__(self, autopilot, app):
         self.app = app
@@ -139,7 +138,8 @@ class ubuntusdk(object):
     def set_popup_value(self, popover, button, value):
         """Changes the given popover selector to the request value
         At the moment this only works for values that are currently visible. To
-        access the remaining items, a help method to drag and recheck is needed."""
+        access the remaining items, a help method to drag and recheck is
+        needed."""
         #The popover is assumed to be the following format
         #Component {
         #    id: actionSelectionPopover
