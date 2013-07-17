@@ -31,9 +31,7 @@ Date.weeksInMonth = function(year, month, weekday) {
 
 Date.prototype.midnight = function() {
     var date = new Date(this)
-    var t = date.getTime()
-    if (t % Date.msPerDay != 0)
-        date.setTime(t - t % Date.msPerDay)
+    date.setHours(0,0,0,0);
     return date
 }
 
@@ -84,4 +82,19 @@ Date.prototype.isSameDay = function ( otherDay ) {
     return ( this.getDate() === otherDay.getDate()
     && this.getMonth() === otherDay.getMonth()
     && this.getFullYear() === otherDay.getFullYear() );
+}
+
+function weekCount(year, month_number) {
+    var firstOfMonth = new Date(year, month_number, 1);
+    var lastOfMonth = new Date(year, month_number+1, 0);
+
+    var used = firstOfMonth.getDay() + lastOfMonth.getDate();
+
+    return Math.ceil( used / 7);
+}
+
+function getFirstDateofWeek( year, month) {
+    var date = new Date(year, month, 1);
+    var first = date.getDate() - date.getDay();
+    return new Date(date.setDate(first));
 }

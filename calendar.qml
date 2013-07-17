@@ -32,11 +32,13 @@ MainView {
                     onTriggered:; // FIXME
                 }
                 Action {
+                    objectName: "neweventbutton"
                     iconSource: Qt.resolvedUrl("avatar.png")
                     text: i18n.tr("New Event")
                     onTriggered: monthViewPage.newEvent()
                 }
                 Action {
+                    objectName: "timelinebutton"
                     iconSource: Qt.resolvedUrl("avatar.png")
                     text: i18n.tr("Timeline")
                     onTriggered: {
@@ -55,6 +57,11 @@ MainView {
                     onTriggered: {
                         monthView.goToToday();
                     }
+                }
+                Action {
+                    iconSource: Qt.resolvedUrl("avatar.png")
+                    text: i18n.tr("Year view")
+                    onTriggered: pageStack.push(yearView);
                 }
             }
 
@@ -116,6 +123,16 @@ MainView {
             Component {
                 id: newEventComponent
                 NewEvent {}
+            }
+
+            Component{
+                id: yearView
+                YearView{
+                    onMonthSelected: {
+                        // TODO: select month in monthView
+                        pageStack.pop();
+                    }
+                }
             }
         }
     }

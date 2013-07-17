@@ -22,7 +22,7 @@ class TestMainWindow(CalendarTestCase):
     def setUp(self):
         super(TestMainWindow, self).setUp()
         self.assertThat(
-            self.main_window.get_qml_view().visible, Eventually(Equals(True)))
+            self.ubuntusdk.get_qml_view().visible, Eventually(Equals(True)))
 
     def tearDown(self):
         super(TestMainWindow, self).tearDown()
@@ -60,10 +60,8 @@ class TestMainWindow(CalendarTestCase):
         
         if count == -1 :
             return
-            
-        self.reveal_toolbar();
-        today_button = self.main_window.get_toolbar_today_button()
-        self.pointing_device.click_object(today_button)  
+                    
+        self.ubuntusdk.click_toolbar_button("Today")
         
         month_view = self.main_window.get_month_view()
         
@@ -71,7 +69,7 @@ class TestMainWindow(CalendarTestCase):
         
         self.changeMonth(goToNextMonth,count) 
         
-        self.pointing_device.click_object(today_button)       
+        self.ubuntusdk.click_toolbar_button("Today")     
         dayAfterMonthChange = datetime.fromtimestamp(month_view.currentDayStart)
         
         self.assertThat(dayAfterMonthChange.day, (Equals(startDay.day)));
@@ -96,9 +94,7 @@ class TestMainWindow(CalendarTestCase):
         if count == -1 :
             return
             
-        self.reveal_toolbar();
-        today_button = self.main_window.get_toolbar_today_button()
-        self.pointing_device.click_object(today_button)
+        self.ubuntusdk.click_toolbar_button("Today")
         
         month_view = self.main_window.get_month_view()
         

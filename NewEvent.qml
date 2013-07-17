@@ -8,6 +8,9 @@ import "dataService.js" as DataService
 Popover {
     id: popover
     property var defaultDate;
+    property alias errorText: errorPopupDialog.text;
+    property var startDate: new Date()
+    property var endDate: new Date()
 
     Column {
         id: containerLayout
@@ -59,39 +62,69 @@ Popover {
                     }
                 }
 
+                Component {
+                    id: timePicker
+                    TimePicker {
+                    }
+                }
+
                 Item {
                     id: timeContainer
                     width: parent.width
-                    height: startTime.height
+                    height: startTimeItem.height
 
                     ListItem.Empty {
-                        id: startTime
-                        highlightWhenPressed: false
+                        id: startTimeItem
                         anchors.left: timeContainer.left
                         width: units.gu(12)
-                        TextField {
+                        Button {
                             objectName: "startTimeInput"
-                            id: startTimeEdit
-                            text: Qt.formatDateTime(defaultDate,"hh")
+                            id: startTimeButton
+                            text: Qt.formatDateTime(startDate,"hh:mm")
                             anchors {
                                 fill: parent
                                 margins: units.gu(1)
                             }
+                            onClicked: {
+                                var popupObj = PopupUtils.open(timePicker);
+                                popupObj.accepted.connect(function(startHour, startMinute) {
+                                    var newDate = startDate;
+                                    newDate.setHours(startHour, startMinute);
+                                    startDate = newDate;
+                                })
+                            }
                         }
                     }
 
-                    ListItem.Empty {
-                        id: endTime
+                    Label {
+                        id: endTimeLabel
+                        text: i18n.tr("to");
+                        anchors {
+                            horizontalCenter: parent.horizontalCenter;
+                            verticalCenter: startTimeItem.verticalCenter;
+                        }
+                    }
+
+                   ListItem.Empty {
+                        id: endTimeItem
                         highlightWhenPressed: false
                         anchors.right: timeContainer.right
                         width: units.gu(12)
-                        TextField {
+                        Button {
                             objectName: "endTimeInput"
-                            id: endTimeEdit
-                            text: Qt.formatDateTime(defaultDate,"hh")
+                            id: endTimeButton
+                            text: Qt.formatDateTime(endDate,"hh:mm")
                             anchors {
                                 fill: parent
                                 margins: units.gu(1)
+                            }
+                            onClicked: {
+                                var popupObj = PopupUtils.open(timePicker);
+                                popupObj.accepted.connect(function(endHour, endMinute) {
+                                    var newDate = endDate;
+                                    newDate.setHours(endHour, endMinute);
+                                    endDate = newDate;
+                                })
                             }
                         }
                     }
@@ -129,6 +162,15 @@ Popover {
 
         ListItem.SingleControl {
             highlightWhenPressed: false
+            Dialog {
+                id: errorPopupDialog
+                title: i18n.tr("Error")
+                text: ""
+                Button {
+                    text: i18n.tr("Ok")
+                    onClicked: PopupUtils.close(errorPopupDialog)
+                }
+            }
             control: Button {
                 objectName: "eventSaveButton"
                 text: i18n.tr("Save")
@@ -138,15 +180,13 @@ Popover {
                 }
 
                 onClicked: {
-                    var startDate = new Date(defaultDate)
-                    print(startDate)
-                    startDate.setHours(startTimeEdit.text)
-                    print(startTimeEdit.text)
+                    var error = 0;
 
-                    var endDate = new Date(defaultDate)
-                    print(endDate)
-                    endDate.setHours(endTimeEdit.text)
-                    print(endTimeEdit.text)
+                    if (startDate > endDate)
+                        error = 2;
+
+                    startDate.setDate(defaultDate.getDate());
+                    endDate.setDate(defaultDate.getDate());
 
                     var event = {
                         title: titleEdit.text,
@@ -155,9 +195,15 @@ Popover {
                         endTime: endDate.getTime()
                     }
 
-                    DataService.addEvent(event)
+                    if (!error) {
+                        DataService.addEvent(event);
+                        PopupUtils.close(popover);
+                    } else {
+                        errorText = i18n.tr("End time can't be before start time");
+                        errorPopupDialog.show();
+                    }
 
-                    PopupUtils.close(popover);
+                    error = 0;
                 }
             }
         }
