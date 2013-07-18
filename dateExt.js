@@ -29,6 +29,12 @@ Date.weeksInMonth = function(year, month, weekday) {
     return n
 }
 
+Date.prototype.midnight = function() {
+    var date = new Date(this)
+    date.setHours(0,0,0,0);
+    return date
+}
+
 Date.prototype.addDays = function(days) {
     var date = new Date(this)
     date.setTime(date.getTime() + Date.msPerDay * days)
