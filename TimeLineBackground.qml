@@ -19,7 +19,6 @@ Column {
                     id: timeLabel
                     // TRANSLATORS: this is a time formatting string,
                     // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-                    //text: new Date(0, 0, 0, index).toLocaleTimeString(Qt.locale(), i18n.tr("HH:mm"))
                     text: new Date(0, 0, 0, index).toLocaleTimeString(Qt.locale(), i18n.tr("HH"))
                     color:"gray"
                     anchors.top: parent.top
