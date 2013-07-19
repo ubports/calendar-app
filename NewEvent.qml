@@ -158,11 +158,8 @@ Popover {
                     margins: units.gu(1)
                 }
 
-                Keys.onEnterPressed:{
-                    saveBtn.focus = true;
-                }
-
                 Keys.onReturnPressed: {
+                    // TODO: temp code untill button problem is solved
                     saveBtn.saveEvent();
                 }
             }
@@ -216,30 +213,7 @@ Popover {
                 }
 
                 onClicked: {
-                    var error = 0;
-
-                    if (startDate > endDate)
-                        error = 2;
-
-                    startDate.setDate(defaultDate.getDate());
-                    endDate.setDate(defaultDate.getDate());
-
-                    var event = {
-                        title: titleEdit.text,
-                        message: null,
-                        startTime: startDate.getTime(),
-                        endTime: endDate.getTime()
-                    }
-
-                    if (!error) {
-                        DataService.addEvent(event);
-                        PopupUtils.close(popover);
-                    } else {
-                        errorText = i18n.tr("End time can't be before start time");
-                        errorPopupDialog.show();
-                    }
-
-                    error = 0;
+                    saveEvent();
                 }
             }
         }
