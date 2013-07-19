@@ -13,7 +13,6 @@ Page{
     Component.onCompleted: {
         if( pageStack.header )
             pageStack.header.visible = false;
-        showEvent(event);
     }
 
     Component.onDestruction: {

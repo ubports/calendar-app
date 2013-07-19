@@ -18,7 +18,7 @@ PathViewBase{
         property var now: new Date()
         property int weekstartDay: Qt.locale().firstDayOfWeek
         property var weekStart: visibleWeek.addDays(-7)
-        property int selectedIndex: 0
+        property var selectedDay: now;
     }
 
     onNextItemHighlighted: {
@@ -29,10 +29,14 @@ PathViewBase{
         previousWeek();
     }
 
+    onVisibleWeekChanged: {
+        setSelectedDay();
+    }
+
     function nextWeek() {
         var weekStartDay= visibleWeek.weekStart(intern.weekstartDay);
         visibleWeek = weekStartDay.addDays(7);
-        intern.selectedIndex = 0
+        setSelectedDay();
 
         weekChanged( visibleWeek );
     }
@@ -40,9 +44,17 @@ PathViewBase{
     function previousWeek(){
         var weekStartDay = visibleWeek.weekStart(intern.weekstartDay);
         visibleWeek = weekStartDay.addDays(-7);
-        intern.selectedIndex = 0
+        setSelectedDay();
 
         weekChanged( visibleWeek );
+    }
+
+    function setSelectedDay() {
+        if( intern.now.weekStart( intern.weekstartDay).isSameDay(visibleWeek) ) {
+            intern.selectedDay =  intern.now
+        } else {
+            intern.selectedDay = visibleWeek
+        }
     }
 
     delegate: Row{
@@ -82,7 +94,7 @@ PathViewBase{
             width: column.width
             height: column.height
 
-            color: intern.selectedIndex == index ? Color.ubuntuOrange : "white"
+            color: intern.selectedDay.isSameDay(day) ? Color.ubuntuOrange : "white"
 
             property var weekStartDay: parent.weekStart.weekStart( Qt.locale().firstDayOfWeek);
             property var day : weekStartDay.addDays(index)
@@ -108,7 +120,7 @@ PathViewBase{
                 anchors.fill: parent
 
                 onClicked: {
-                    intern.selectedIndex = index
+                    intern.selectedDay = day
                     weekRibbonRoot.daySelected(day);
                 }
             }
