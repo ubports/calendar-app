@@ -37,18 +37,15 @@ Page{
         text: new Date(0, 0, 0, 0).toLocaleTimeString(Qt.locale(), i18n.tr("HH"))
     }
 
-    Label{
-        id: dummy;text: "SUN";visible: false;fontSize: "large"
-    }
-
     WeekRibbon{
         id: weekRibbon
         visibleWeek: dayStart.weekStart(intern.firstDayOfWeek);
         anchors.top: todayLabel.bottom
         anchors.left: timeLabel.right
-        width: parent.width - timeLabel.width
+        width: parent.width
         height: units.gu(10)
-        weekWidth: dummy.width + units.gu(1)
+        //removing timeLabel.width from front and back of ribbon
+        weekWidth: ((width - 2* timeLabel.width )/ 7 )
 
         onWeekChanged: {
             dayStart = visibleWeek
@@ -97,7 +94,7 @@ Page{
 
             width: parent.width
             height: parent.height
-            weekWidth: dummy.width + units.gu(1)
+            weekWidth: weekRibbon.weekWidth //dummy.width + units.gu(1)
             weekStart: getWeekStart();
 
             function getWeekStart() {
