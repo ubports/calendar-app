@@ -76,8 +76,8 @@ class TestMainWindow(CalendarTestCase):
         self.changeMonth(goToNextMonth, count)
 
         self.ubuntusdk.click_toolbar_button("Today")
-        dayAfterMonthChange =
-        datetime.fromtimestamp(month_view.currentDayStart)
+        dayAfterMonthChange = datetime.fromtimestamp(month_view
+                                                     .currentDayStart)
 
         self.assertThat(dayAfterMonthChange.day, (Equals(startDay.day)))
         self.assertThat(dayAfterMonthChange.month, (Equals(startDay.month)))
@@ -109,8 +109,8 @@ class TestMainWindow(CalendarTestCase):
 
         self.changeMonth(goToNextMonth, count)
 
-        dayAfterMonthChange =
-        datetime.fromtimestamp(month_view.currentDayStart)
+        dayAfterMonthChange = datetime.fromtimestamp(month_view
+                                                     .currentDayStart)
 
         self.assertThat(dayAfterMonthChange.day, (Equals(1)))
         if goToNextMonth is True:
