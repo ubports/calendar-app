@@ -14,7 +14,6 @@ from testtools.matchers import Equals
 
 from calendar_app.tests import CalendarTestCase
 
-from time import time
 from datetime import datetime
 
 
