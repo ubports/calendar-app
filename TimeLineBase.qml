@@ -19,6 +19,12 @@ Item {
         }
     }
 
+    TimeSeparator{
+        id: separator
+        objectName: "separator"
+        width:  bubbleOverLay.width
+    }
+
     QtObject {
         id: intern
         property var eventMap;
@@ -59,7 +65,11 @@ Item {
 
     function destroyAllChildren() {
         for( var i = children.length - 1; i >= 0; --i ) {
-            children[i].destroy();
+            if( children[i].objectName === "separator") {
+                children[i].visible = false;
+            } else {
+                children[i].destroy();
+            }
         }
     }
 
@@ -82,12 +92,8 @@ Item {
     }
 
     function createSeparator(hour) {
-        var w = bubbleOverLay.width - units.gu(2);
         var y = ((intern.now.getMinutes() * hourHeight) / 60) + hour * hourHeight;
-        var x = (bubbleOverLay.width -  w)/ 2;
-        var properties = {"x": x, "y": y, "width": w}
-
-        var component = Qt.createComponent("TimeSeparator.qml",bubbleOverLay);
-        var separator = component.createObject(bubbleOverLay, properties);
+        separator.y = y;
+        separator.visible = true;
     }
 }
