@@ -17,6 +17,7 @@ from calendar_app.tests import CalendarTestCase
 from time import time
 from datetime import datetime
 
+
 class TestMainWindow(CalendarTestCase):
 
     def setUp(self):
@@ -27,89 +28,96 @@ class TestMainWindow(CalendarTestCase):
     def tearDown(self):
         super(TestMainWindow, self).tearDown()
 
-    # goToNextMonth True for next month, False for previous month  
-    def changeMonth( self, goToNextMonth  = True, count = 0):
-        
+    # goToNextMonth True for next month, False for previous month
+    def changeMonth(self, goToNextMonth=True, count=0):
+
         month_view = self.main_window.get_month_view()
-        y_line =  int(self.ubuntusdk.get_qml_view().y + month_view.y + (month_view.height / 2))
-        
-        for i in range( count ):  
-            if goToNextMonth == True :          
-                start_x = int(self.ubuntusdk.get_qml_view().x + month_view.x + (month_view.width * 0.85))
-                stop_x = int(self.ubuntusdk.get_qml_view().x+ month_view.x + (month_view.width * 0.15))
+        y_line = int(self.ubuntusdk.get_qml_view().y
+                     + month_view.y + (month_view.height / 2))
+
+        for i in range(count):
+            if goToNextMonth is True:
+                start_x = int(self.ubuntusdk.get_qml_view().x
+                              + month_view.x + (month_view.width * 0.85))
+                stop_x = int(self.ubuntusdk.get_qml_view().x
+                             + month_view.x + (month_view.width * 0.15))
             else:
-                start_x = int(self.ubuntusdk.get_qml_view().x + month_view.x + (month_view.width * 0.15))
-                stop_x = int(self.ubuntusdk.get_qml_view().x + month_view.x + (month_view.width * 0.85))
-                                            
-            self.pointing_device.drag(start_x, y_line, stop_x, y_line)  
-     
+                start_x = int(self.ubuntusdk.get_qml_view().x
+                              + month_view.x + (month_view.width * 0.15))
+                stop_x = int(self.ubuntusdk.get_qml_view().x
+                             + month_view.x + (month_view.width * 0.85))
+
+            self.pointing_device.drag(start_x, y_line, stop_x, y_line)
+
     def test_monthview_today_next_month(self):
-        self.test_monthview_today(True, 1);     
-        
+        self.test_monthview_today(True, 1)
+
     def test_monthview_today_prev_month(self):
-        self.test_monthview_today(False, 1); 
-        
+        self.test_monthview_today(False, 1)
+
     def test_monthview_today_next_month_multi(self):
-        self.test_monthview_today(True, 12);  
-        
+        self.test_monthview_today(True, 12)
+
     def test_monthview_today_prev_month_multi(self):
-        self.test_monthview_today(False, 12);         
-     
-    # goToNextMonth True for next month, False for previous month          
-    def test_monthview_today(self, goToNextMonth = True, count = -1):
-        
-        if count == -1 :
+        self.test_monthview_today(False, 12)
+
+    # goToNextMonth True for next month, False for previous month
+    def test_monthview_today(self, goToNextMonth=True, count=-1):
+
+        if count == -1:
             return
-                    
+
         self.ubuntusdk.click_toolbar_button("Today")
-        
+
         month_view = self.main_window.get_month_view()
-        
-        startDay = datetime.fromtimestamp(month_view.currentDayStart)  
-        
-        self.changeMonth(goToNextMonth,count) 
-        
-        self.ubuntusdk.click_toolbar_button("Today")     
-        dayAfterMonthChange = datetime.fromtimestamp(month_view.currentDayStart)
-        
-        self.assertThat(dayAfterMonthChange.day, (Equals(startDay.day)));
-        self.assertThat(dayAfterMonthChange.month, (Equals(startDay.month)));
-        self.assertThat(dayAfterMonthChange.year, (Equals(startDay.year)));  
-                                                                                                      
-    def test_monthview_change_month_next(self):
-        self.test_monthview_change_month(True, 1);                 
-        
-    def test_monthview_change_month_next_multiple(self):
-        self.test_monthview_change_month(True, 3);         
-        
-    def test_monthview_change_month_prev(self):
-        self.test_monthview_change_month(False, 1); 
-        
-    def test_monthview_change_month_prev_multiple(self):
-        self.test_monthview_change_month(False, 3);
-       
-    # goToNextMonth True for next month, False for previous month      
-    def test_monthview_change_month(self, goToNextMonth = True, count = -1):
-    
-        if count == -1 :
-            return
-            
-        self.ubuntusdk.click_toolbar_button("Today")
-        
-        month_view = self.main_window.get_month_view()
-        
+
         startDay = datetime.fromtimestamp(month_view.currentDayStart)
-           
+
         self.changeMonth(goToNextMonth, count)
-        
-        dayAfterMonthChange = datetime.fromtimestamp(month_view.currentDayStart)
-                        
-        self.assertThat(dayAfterMonthChange.day, (Equals(1)));  
-        if goToNextMonth == True:
-            self.assertThat(dayAfterMonthChange.month, (Equals(startDay.month+count)));
+
+        self.ubuntusdk.click_toolbar_button("Today")
+        dayAfterMonthChange =
+        datetime.fromtimestamp(month_view.currentDayStart)
+
+        self.assertThat(dayAfterMonthChange.day, (Equals(startDay.day)))
+        self.assertThat(dayAfterMonthChange.month, (Equals(startDay.month)))
+        self.assertThat(dayAfterMonthChange.year, (Equals(startDay.year)))
+
+    def test_monthview_change_month_next(self):
+        self.test_monthview_change_month(True, 1)
+
+    def test_monthview_change_month_next_multiple(self):
+        self.test_monthview_change_month(True, 3)
+
+    def test_monthview_change_month_prev(self):
+        self.test_monthview_change_month(False, 1)
+
+    def test_monthview_change_month_prev_multiple(self):
+        self.test_monthview_change_month(False, 3)
+
+    # goToNextMonth True for next month, False for previous month
+    def test_monthview_change_month(self, goToNextMonth=True, count=-1):
+
+        if count == -1:
+            return
+
+        self.ubuntusdk.click_toolbar_button("Today")
+
+        month_view = self.main_window.get_month_view()
+
+        startDay = datetime.fromtimestamp(month_view.currentDayStart)
+
+        self.changeMonth(goToNextMonth, count)
+
+        dayAfterMonthChange =
+        datetime.fromtimestamp(month_view.currentDayStart)
+
+        self.assertThat(dayAfterMonthChange.day, (Equals(1)))
+        if goToNextMonth is True:
+            self.assertThat(dayAfterMonthChange.month,
+                            (Equals(startDay.month + count)))
         else:
-            self.assertThat(dayAfterMonthChange.month, (Equals(startDay.month-count)));      
-                        
-        self.assertThat(dayAfterMonthChange.year, (Equals(startDay.year)));                        
-        
-        
+            self.assertThat(dayAfterMonthChange.month,
+                            (Equals(startDay.month - count)))
+
+        self.assertThat(dayAfterMonthChange.year, (Equals(startDay.year)))
