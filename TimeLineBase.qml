@@ -48,13 +48,13 @@ Item {
             var event = intern.eventMap[i];
             if( event ) {
                 bubbleOverLay.createEvent(event,i);
-            } else if( i === intern.now.getHours()
+            }
+
+            if(  i === intern.now.getHours()
                       && intern.now.isSameDay( bubbleOverLay.day )) {
                 bubbleOverLay.createSeparator(i);
             }
         }
-
-        //scroll();
     }
 
     function destroyAllChildren() {
@@ -87,7 +87,7 @@ Item {
         var x = (bubbleOverLay.width -  w)/ 2;
         var properties = {"x": x, "y": y, "width": w}
 
-        var component = Qt.createComponent("TimeSeparator.qml");
+        var component = Qt.createComponent("TimeSeparator.qml",bubbleOverLay);
         var separator = component.createObject(bubbleOverLay, properties);
     }
 }

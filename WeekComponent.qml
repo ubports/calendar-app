@@ -19,13 +19,32 @@ Flickable{
         scroll();
     }
 
+    function setSelectedDay() {
+        if( intern.now.weekStart( intern.weekstartDay).isSameDay(visibleWeek) ) {
+            intern.selectedDay =  intern.now
+        } else {
+            intern.selectedDay = visibleWeek
+        }
+    }
+
     function scroll() {
-        //scroll to 9 o'clock
-        var hour = 9//intern.now.getHours();
+        //scroll to 9 o'clock or to now
+        var now = new Date();
+        var hour = 9
+        if( weekStart !== undefined
+                && now.weekStart(Qt.locale().firstDayOfWeek).isSameDay(weekStart)) {
+            hour = now.getHours();
+        }
+
         timeLineView.contentY = hour * units.gu(10);
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
+    }
+
+    //scroll in case content height changed
+    onContentHeightChanged: {
+        scroll()
     }
 
     Rectangle{
@@ -45,7 +64,6 @@ Flickable{
     Row{
         id: dayIndicator
 
-        // TODO: get timeline width
         x: timeLabel.width
         width: parent.width
         height: timeLineView.contentHeight
@@ -71,7 +89,6 @@ Flickable{
         spacing: 0
 
         property var weekStartDay: timeLineView.weekStart.weekStart( Qt.locale().firstDayOfWeek );
-        property int timeLineWidth: weekWidth
 
         Repeater{
             model: 7
@@ -79,7 +96,7 @@ Flickable{
             delegate: TimeLineBase {
                 anchors.top: parent.top
                 height: parent.height
-                width: week.timeLineWidth
+                width: weekWidth
                 delegate: infoBubbleComponent
                 day: week.weekStartDay.addDays(index)
             }
@@ -98,7 +115,7 @@ Flickable{
             signal clicked(int hour);
 
             color:'#fffdaa';
-            width: week.timeLineWidth
+            width: weekWidth
             x: units.gu(0)
 
             border.color: "#f4d690"

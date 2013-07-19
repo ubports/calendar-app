@@ -157,6 +157,14 @@ Popover {
                     fill: parent
                     margins: units.gu(1)
                 }
+
+                Keys.onEnterPressed:{
+                    saveBtn.focus = true;
+                }
+
+                Keys.onReturnPressed: {
+                    saveBtn.saveEvent();
+                }
             }
         }
 
@@ -172,11 +180,39 @@ Popover {
                 }
             }
             control: Button {
+                id: saveBtn
                 objectName: "eventSaveButton"
                 text: i18n.tr("Save")
                 anchors {
                     fill: parent
                     margins: units.gu(1)
+                }
+
+                function saveEvent() {
+                    var error = 0;
+
+                    if (startDate > endDate)
+                        error = 2;
+
+                    startDate.setDate(defaultDate.getDate());
+                    endDate.setDate(defaultDate.getDate());
+
+                    var event = {
+                        title: titleEdit.text,
+                        message: null,
+                        startTime: startDate.getTime(),
+                        endTime: endDate.getTime()
+                    }
+
+                    if (!error) {
+                        DataService.addEvent(event);
+                        PopupUtils.close(popover);
+                    } else {
+                        errorText = i18n.tr("End time can't be before start time");
+                        errorPopupDialog.show();
+                    }
+
+                    error = 0;
                 }
 
                 onClicked: {

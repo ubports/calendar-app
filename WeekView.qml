@@ -108,7 +108,7 @@ Page{
 
                 if ( index === previousIndex ) {
                     var weekStartDay= intern.weekStart.weekStart(intern.firstDayOfWeek);
-                    return weekStartDay.addDays(-7);
+                    return weekStartDay.addDays(14);
                 }
 
                 var weekStartDay = intern.weekStart.weekStart(intern.firstDayOfWeek);
