@@ -157,11 +157,6 @@ Popover {
                     fill: parent
                     margins: units.gu(1)
                 }
-
-                Keys.onReturnPressed: {
-                    // TODO: temp code untill button problem is solved
-                    saveBtn.saveEvent();
-                }
             }
         }
 
@@ -177,7 +172,6 @@ Popover {
                 }
             }
             control: Button {
-                id: saveBtn
                 objectName: "eventSaveButton"
                 text: i18n.tr("Save")
                 anchors {
@@ -185,7 +179,7 @@ Popover {
                     margins: units.gu(1)
                 }
 
-                function saveEvent() {
+                onClicked: {
                     var error = 0;
 
                     if (startDate > endDate)
@@ -210,10 +204,6 @@ Popover {
                     }
 
                     error = 0;
-                }
-
-                onClicked: {
-                    saveEvent();
                 }
             }
         }
