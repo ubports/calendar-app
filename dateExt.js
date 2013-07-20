@@ -3,6 +3,14 @@
 Date.msPerDay = 86400e3
 Date.msPerWeek = Date.msPerDay * 7
 
+function diffMonths(dateA, dateB) {
+    var months;
+    months = (dateB.getFullYear() - dateA.getFullYear()) * 12;
+    months -= dateA.getMonth();
+    months += dateB.getMonth();
+    return Math.max(months, 0);
+}
+
 Date.leapYear = function(year) {
     return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
 }
@@ -29,9 +37,17 @@ Date.weeksInMonth = function(year, month, weekday) {
     return n
 }
 
+//Date.prototype.midnight = function() {
+//    var date = new Date(this)
+//    date.setHours(0,0,0,0);
+//    return date
+//}
+
 Date.prototype.midnight = function() {
     var date = new Date(this)
-    date.setHours(0,0,0,0);
+    var t = date.getTime()
+    if (t % Date.msPerDay != 0)
+        date.setTime(t - t % Date.msPerDay)
     return date
 }
 

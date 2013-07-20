@@ -10,7 +10,7 @@ PathView {
     signal previousItemHighlighted();
 
     path: Path {
-        startX: -(root.width/2); startY: root.height/2
+        startX: -(root.width/2 ); startY: root.height/2
         PathLine { relativeX: root.width; relativeY: 0 }
         PathLine { relativeX: root.width; relativeY: 0 }
         PathLine { relativeX: root.width; relativeY: 0 }
