@@ -18,6 +18,19 @@ MainView {
         Page{
             id: tabPage
 
+            function newEvent() {
+                 PopupUtils.open(newEventComponent, tabPage, {"defaultDate": new Date()})
+            }
+
+            tools: ToolbarItems {
+                ToolbarButton {
+                    objectName: "neweventbutton"
+                    iconSource: Qt.resolvedUrl("avatar.png")
+                    text: i18n.tr("New Event")
+                    onTriggered: tabPage.newEvent()
+                }
+            }
+
             Tabs{
                 id: tabs
                 Tab{
@@ -36,6 +49,7 @@ MainView {
 
                     Item {
                         anchors.fill: parent
+
                         Label{
                             id: monthLabel
                             fontSize: "large"
@@ -52,24 +66,14 @@ MainView {
                             //onCurrentDayStartChanged: if (!(dragging || flicking)) eventView.currentDayStart = currentDayStart
                             //Component.onCompleted: eventView.currentDayStart = currentDayStart
                             //compressed: (eventView.state == "EXPANDED")
-                            Behavior on height {
-                                NumberAnimation { duration: 100 }
-                            }
 
                             onFocusOnDay: {
                                 tabs.selectedTabIndex  = 2
-                                dayView.dayStart = dayStart
+                                dayView.currentDay = dayStart
                             }
                         }
                     }
                 }
-//                Tab{
-//                    title:"Week"
-//                    WeekView{
-//                        id: weekView
-//                        anchors.fill: parent
-//                    }
-//                }
                 Tab{
                     title:"Day"
                     DayView{
@@ -77,6 +81,11 @@ MainView {
                         anchors.fill: parent
                     }
                 }
+            }
+
+            Component {
+                id: newEventComponent
+                NewEvent {}
             }
         }
     }
