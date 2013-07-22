@@ -58,7 +58,7 @@ Item {
 
             if(  i === intern.now.getHours()
                       && intern.now.isSameDay( bubbleOverLay.day )) {
-                bubbleOverLay.createSeparator(i);
+                bubbleOverLay.showSeparator(i);
             }
         }
     }
@@ -91,7 +91,7 @@ Item {
         eventBubble.height = height;
     }
 
-    function createSeparator(hour) {
+    function showSeparator(hour) {
         var y = ((intern.now.getMinutes() * hourHeight) / 60) + hour * hourHeight;
         separator.y = y;
         separator.visible = true;
