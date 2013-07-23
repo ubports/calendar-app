@@ -49,19 +49,19 @@ class TestMainWindow(CalendarTestCase):
             self.pointing_device.drag(start_x, y_line, stop_x, y_line)
 
     def test_monthview_today_next_month(self):
-        self.test_monthview_today(True, 1)
+        self.monthview_today(True, 1)
 
     def test_monthview_today_prev_month(self):
-        self.test_monthview_today(False, 1)
+        self.monthview_today(False, 1)
 
     def test_monthview_today_next_month_multi(self):
-        self.test_monthview_today(True, 12)
+        self.monthview_today(True, 12)
 
     def test_monthview_today_prev_month_multi(self):
-        self.test_monthview_today(False, 12)
+        self.monthview_today(False, 12)
 
     # goToNextMonth True for next month, False for previous month
-    def test_monthview_today(self, goToNextMonth=True, count=-1):
+    def monthview_today(self, goToNextMonth=True, count=-1):
 
         if count == -1:
             return
@@ -83,19 +83,19 @@ class TestMainWindow(CalendarTestCase):
         self.assertThat(dayAfterMonthChange.year, (Equals(startDay.year)))
 
     def test_monthview_change_month_next(self):
-        self.test_monthview_change_month(True, 1)
+        self.monthview_change_month(True, 1)
 
     def test_monthview_change_month_next_multiple(self):
-        self.test_monthview_change_month(True, 3)
+        self.monthview_change_month(True, 3)
 
     def test_monthview_change_month_prev(self):
-        self.test_monthview_change_month(False, 1)
+        self.monthview_change_month(False, 1)
 
     def test_monthview_change_month_prev_multiple(self):
-        self.test_monthview_change_month(False, 3)
+        self.monthview_change_month(False, 3)
 
     # goToNextMonth True for next month, False for previous month
-    def test_monthview_change_month(self, goToNextMonth=True, count=-1):
+    def monthview_change_month(self, goToNextMonth=True, count=-1):
 
         if count == -1:
             return
