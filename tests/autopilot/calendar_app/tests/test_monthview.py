@@ -77,9 +77,9 @@ class TestMainWindow(CalendarTestCase):
         dayAfterMonthChange = datetime.fromtimestamp(month_view
                                                      .currentDayStart)
 
-        self.assertThat(dayAfterMonthChange.day, (Equals(startDay.day)))
-        self.assertThat(dayAfterMonthChange.month, (Equals(startDay.month)))
-        self.assertThat(dayAfterMonthChange.year, (Equals(startDay.year)))
+        self.assertThat(dayAfterMonthChange.day, Equals(startDay.day))
+        self.assertThat(dayAfterMonthChange.month, Equals(startDay.month))
+        self.assertThat(dayAfterMonthChange.year, Equals(startDay.year))
 
     def test_monthview_change_month_next(self):
         self.monthview_change_month(True, 1)
@@ -108,14 +108,14 @@ class TestMainWindow(CalendarTestCase):
         dayAfterMonthChange = datetime.fromtimestamp(month_view
                                                      .currentDayStart)
 
-        self.assertThat(dayAfterMonthChange.day, (Equals(1)))
+        self.assertThat(dayAfterMonthChange.day, Equals(1))
         if goToNextMonth is True:
             testDate = startDay + relativedelta(months=+count)
             self.assertThat(dayAfterMonthChange.month,
-                            (Equals(testDate.month)))
-            self.assertThat(dayAfterMonthChange.year, (Equals(testDate.year)))
+                            Equals(testDate.month))
+            self.assertThat(dayAfterMonthChange.year, Equals(testDate.year))
         else:
             testDate = startDay + relativedelta(months=-count)
             self.assertThat(dayAfterMonthChange.month,
-                            (Equals(testDate.month)))
-            self.assertThat(dayAfterMonthChange.year, (Equals(testDate.year)))
+                            Equals(testDate.month))
+            self.assertThat(dayAfterMonthChange.year, Equals(testDate.year))
