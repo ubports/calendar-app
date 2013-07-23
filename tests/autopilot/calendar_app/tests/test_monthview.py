@@ -15,6 +15,7 @@ from testtools.matchers import Equals
 from calendar_app.tests import CalendarTestCase
 
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 class TestMainWindow(CalendarTestCase):
@@ -83,7 +84,7 @@ class TestMainWindow(CalendarTestCase):
         self.assertThat(dayAfterMonthChange.year, (Equals(startDay.year)))
 
     def test_monthview_change_month_next(self):
-        self.monthview_change_month(True, 9)
+        self.monthview_change_month(True, 1)
 
     def test_monthview_change_month_next_multiple(self):
         self.monthview_change_month(True, 3)
@@ -113,10 +114,10 @@ class TestMainWindow(CalendarTestCase):
 
         self.assertThat(dayAfterMonthChange.day, (Equals(1)))
         if goToNextMonth is True:
-            self.assertThat(dayAfterMonthChange.month,
-                            (Equals(startDay.month + count)))
+            testDate  = startDay + relativedelta( months = +count )
+            self.assertThat(dayAfterMonthChange.month, (Equals(testDate.month)))
+            self.assertThat(dayAfterMonthChange.year, (Equals(testDate.year)))
         else:
-            self.assertThat(dayAfterMonthChange.month,
-                            (Equals(startDay.month - count)))
-
-        self.assertThat(dayAfterMonthChange.year, (Equals(startDay.year)))
+            testDate  = startDay + relativedelta( months = -count )
+            self.assertThat(dayAfterMonthChange.month, (Equals(testDate.month)))
+            self.assertThat(dayAfterMonthChange.year, (Equals(testDate.year)))
