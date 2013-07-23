@@ -67,8 +67,6 @@ class TestMainWindow(CalendarTestCase):
         if count == -1:
             return
 
-        self.ubuntusdk.click_toolbar_button("Today")
-
         month_view = self.main_window.get_month_view()
 
         startDay = datetime.fromtimestamp(month_view.currentDayStart)
@@ -100,8 +98,6 @@ class TestMainWindow(CalendarTestCase):
 
         if count == -1:
             return
-
-        self.ubuntusdk.click_toolbar_button("Today")
 
         month_view = self.main_window.get_month_view()
 
