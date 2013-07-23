@@ -114,10 +114,12 @@ class TestMainWindow(CalendarTestCase):
 
         self.assertThat(dayAfterMonthChange.day, (Equals(1)))
         if goToNextMonth is True:
-            testDate  = startDay + relativedelta( months = +count )
-            self.assertThat(dayAfterMonthChange.month, (Equals(testDate.month)))
+            testDate = startDay + relativedelta(months=+count)
+            self.assertThat(dayAfterMonthChange.month,
+                            (Equals(testDate.month)))
             self.assertThat(dayAfterMonthChange.year, (Equals(testDate.year)))
         else:
-            testDate  = startDay + relativedelta( months = -count )
-            self.assertThat(dayAfterMonthChange.month, (Equals(testDate.month)))
+            testDate = startDay + relativedelta(months=-count)
+            self.assertThat(dayAfterMonthChange.month,
+                            (Equals(testDate.month)))
             self.assertThat(dayAfterMonthChange.year, (Equals(testDate.year)))
