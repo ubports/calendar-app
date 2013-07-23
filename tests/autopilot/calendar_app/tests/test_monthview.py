@@ -83,7 +83,7 @@ class TestMainWindow(CalendarTestCase):
         self.assertThat(dayAfterMonthChange.year, (Equals(startDay.year)))
 
     def test_monthview_change_month_next(self):
-        self.monthview_change_month(True, 1)
+        self.monthview_change_month(True, 9)
 
     def test_monthview_change_month_next_multiple(self):
         self.monthview_change_month(True, 3)
