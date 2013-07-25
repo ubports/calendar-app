@@ -52,6 +52,13 @@ MainView {
                     }
                 }
                 Action {
+                    iconSource: Qt.resolvedUrl("avatar.png");
+                    text: i18n.tr("Today");
+                    onTriggered: {
+                        monthView.goToToday();
+                    }
+                }
+                Action {
                     iconSource: Qt.resolvedUrl("avatar.png")
                     text: i18n.tr("Year view")
                     onTriggered: pageStack.push(yearView);
