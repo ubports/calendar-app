@@ -18,3 +18,6 @@ class MainWindow(object):
 
     def get_event_view(self):
         return self.app.select_single("EventView")
+
+    def get_month_view(self):
+        return self.app.select_single("MonthView")
