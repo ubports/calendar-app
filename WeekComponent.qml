@@ -19,14 +19,6 @@ Flickable{
         scroll();
     }
 
-    function setSelectedDay() {
-        if( intern.now.weekStart( intern.weekstartDay).isSameDay(visibleWeek) ) {
-            intern.selectedDay =  intern.now
-        } else {
-            intern.selectedDay = visibleWeek
-        }
-    }
-
     function scroll() {
         //scroll to 9 o'clock or to now
         var now = new Date();
