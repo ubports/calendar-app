@@ -19,10 +19,6 @@ PathViewBase{
         property int weekstartDay: Qt.locale().firstDayOfWeek
         property var weekStart: visibleWeek.addDays(-7)
         property var selectedDay: now;
-
-        onSelectedDayChanged: {
-            print("WeekRibbon::onSelectedDayChanged selectedDay="+ selectedDay);
-        }
     }
 
     onNextItemHighlighted: {
@@ -38,7 +34,6 @@ PathViewBase{
     }
 
     Component.onCompleted: {
-        print("WeekRibbon::onCompleted intern.selectedDay="+ intern.selectedDay);
         setSelectedDay();
     }
 
@@ -107,14 +102,6 @@ PathViewBase{
 
             property var weekStartDay: parent.weekStart.weekStart( Qt.locale().firstDayOfWeek);
             property var day : weekStartDay.addDays(index)
-
-            onDayChanged: {
-                print("WeekRibbon::onDayChanged day="+ day + ", color=" + color);
-            }
-
-            Component.onCompleted: {
-                print("WeekRibbon::onDayChanged day="+ day + ", color=" + color);
-            }
 
             Column {
                 id: column
