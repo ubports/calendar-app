@@ -20,11 +20,6 @@ MainView {
         Page {
             id: monthViewPage
 
-            // Fix for UITK detecting any Flickable as a vertical flickable
-            // This line can be removed after https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/internalizePropagated/+merge/164963
-            // was merged into the UITK.
-            flickable: null
-
             tools: ToolbarActions {
                 Action {
                     iconSource: Qt.resolvedUrl("avatar.png")
