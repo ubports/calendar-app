@@ -15,7 +15,6 @@ MainView {
         id: pageStack
 
         Component.onCompleted: push(monthViewPage)
-        __showHeader: false
 
         Page {
             id: monthViewPage
