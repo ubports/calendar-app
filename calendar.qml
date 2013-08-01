@@ -63,6 +63,11 @@ MainView {
                     text: i18n.tr("Year view")
                     onTriggered: pageStack.push(yearView);
                 }
+                Action {
+                    iconSource: Qt.resolvedUrl("avatar.png")
+                    text: i18n.tr("Week view")
+                    onTriggered: pageStack.push(weekView);
+                }
             }
 
             Tabs {
@@ -132,6 +137,12 @@ MainView {
                         // TODO: select month in monthView
                         pageStack.pop();
                     }
+                }
+            }
+
+            Component{
+                id: weekView
+                WeekView{
                 }
             }
         }
