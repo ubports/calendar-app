@@ -92,26 +92,26 @@ class ubuntusdk(object):
         """Returns the toolbar in the main events view."""
         return self.app.select_single("Toolbar")
 
-    def get_toolbar_button(self, buttonLabel):
-        """Returns the toolbar button at position index"""
+    def get_toolbar_buttons(self):
+        """Returns the list of buttons in the toolbar"""
         toolbar = self.get_toolbar()
-        if not toolbar.opened:
-            self.open_toolbar()
-        row = toolbar.select_single("QQuickRow")
-        loaderList = row.select_many("QQuickLoader")
-        for loader in loaderList:
-            buttonList = loader.select_many("Button")
-            for button in buttonList:
-                if button.text == buttonLabel:
-                    return button
+        items = toolbar.select_single("ToolbarItems")
+        return items.select_many("ActionItem")
+
+    def get_toolbar_button(self, buttonLabel):
+        """Returns the toolbar button with a given label"""
+        # FIXME: this is not reliable as labels may be localized
+        buttons = self.get_toolbar_buttons()
+        for button in buttons:
+            if button.text == buttonLabel:
+                return button
+        return None
 
     def click_toolbar_button(self, buttonLabel):
         """Clicks the toolbar button with buttonLabel"""
-        #The toolbar button is assumed to be the following format
-        #ToolbarActions {
-        #           Action {
-        #               objectName: "name"
-        #                text: value
+        toolbar = self.get_toolbar()
+        if not toolbar.opened:
+            self.open_toolbar()
         button = self.get_toolbar_button(buttonLabel)
         self.autopilot.pointing_device.click_object(button)
 
