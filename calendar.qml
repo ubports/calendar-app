@@ -15,58 +15,64 @@ MainView {
         id: pageStack
 
         Component.onCompleted: push(monthViewPage)
-        __showHeader: false
 
         Page {
             id: monthViewPage
 
-            // Fix for UITK detecting any Flickable as a vertical flickable
-            // This line can be removed after https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/internalizePropagated/+merge/164963
-            // was merged into the UITK.
-            flickable: null
-
-            tools: ToolbarActions {
-                Action {
-                    iconSource: Qt.resolvedUrl("avatar.png")
-                    text: i18n.tr("To-do")
-                    onTriggered:; // FIXME
+            tools: ToolbarItems {
+                ToolbarButton {
+                    action: Action {
+                        iconSource: Qt.resolvedUrl("avatar.png")
+                        text: i18n.tr("To-do")
+                        onTriggered:; // FIXME
+                    }
                 }
-                Action {
-                    objectName: "neweventbutton"
-                    iconSource: Qt.resolvedUrl("avatar.png")
-                    text: i18n.tr("New Event")
-                    onTriggered: monthViewPage.newEvent()
+                ToolbarButton {
+                    action: Action {
+                        objectName: "neweventbutton"
+                        iconSource: Qt.resolvedUrl("avatar.png")
+                        text: i18n.tr("New Event")
+                        onTriggered: monthViewPage.newEvent()
+                    }
                 }
-                Action {
-                    objectName: "timelinebutton"
-                    iconSource: Qt.resolvedUrl("avatar.png")
-                    text: i18n.tr("Timeline")
-                    onTriggered: {
-                        if( eventView.eventViewType  === "DiaryView.qml") {
-                            eventView.eventViewType = "TimeLineView.qml";
-                            text = i18n.tr("Diary")
-                        } else {
-                            eventView.eventViewType = "DiaryView.qml";
-                            text = i18n.tr("Timeline")
+                ToolbarButton {
+                    action: Action {
+                        objectName: "timelinebutton"
+                        iconSource: Qt.resolvedUrl("avatar.png")
+                        text: i18n.tr("Timeline")
+                        onTriggered: {
+                            if( eventView.eventViewType  === "DiaryView.qml") {
+                                eventView.eventViewType = "TimeLineView.qml";
+                                text = i18n.tr("Diary")
+                            } else {
+                                eventView.eventViewType = "DiaryView.qml";
+                                text = i18n.tr("Timeline")
+                            }
                         }
                     }
                 }
-                Action {
-                    iconSource: Qt.resolvedUrl("avatar.png");
-                    text: i18n.tr("Today");
-                    onTriggered: {
-                        monthView.goToToday();
+                ToolbarButton {
+                    action: Action {
+                        iconSource: Qt.resolvedUrl("avatar.png");
+                        text: i18n.tr("Today");
+                        onTriggered: {
+                            monthView.goToToday();
+                        }
                     }
                 }
-                Action {
-                    iconSource: Qt.resolvedUrl("avatar.png")
-                    text: i18n.tr("Year view")
-                    onTriggered: pageStack.push(yearView);
+                ToolbarButton {
+                    action: Action {
+                        iconSource: Qt.resolvedUrl("avatar.png")
+                        text: i18n.tr("Year view")
+                        onTriggered: pageStack.push(yearView);
+                    }
                 }
-                Action {
-                    iconSource: Qt.resolvedUrl("avatar.png")
-                    text: i18n.tr("Week view")
-                    onTriggered: pageStack.push(weekView);
+                ToolbarButton {
+                    action: Action {
+                        iconSource: Qt.resolvedUrl("avatar.png")
+                        text: i18n.tr("Week view")
+                        onTriggered: pageStack.push(weekView);
+                    }
                 }
             }
 
