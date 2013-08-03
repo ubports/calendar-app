@@ -79,6 +79,10 @@ MainView {
                     DayView{
                         id: dayView
                         anchors.fill: parent
+
+                        onCurrentDayChanged: {
+                            monthView.startDay = currentDay.midnight();
+                        }
                     }
                 }
             }
