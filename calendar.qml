@@ -13,6 +13,7 @@ MainView {
 
     PageStack {
         id: pageStack
+
         Component.onCompleted: push(tabPage)
 
         Page{
@@ -45,11 +46,12 @@ MainView {
                 opened: true
 
                 ToolbarButton {
-                    action: Action{
+                    action: Action {
                         objectName: "neweventbutton"
                         iconSource: Qt.resolvedUrl("avatar.png")
                         text: i18n.tr("New Event")
                         onTriggered: tabPage.newEvent()
+
                     }
                 }
                 ToolbarButton {
@@ -95,9 +97,6 @@ MainView {
                             anchors.topMargin: units.gu(2)
                             onFocusOnDay: {
                                 tabs.selectedTabIndex  = 3
-                                //dayView.currentDay = dayStart
-                                //weekView.dayStart = dayStart
-
                                 tabPage.currentDay = dayStart;
                             }
                         }
@@ -110,7 +109,6 @@ MainView {
                         anchors.fill: parent
 
                         onDayStartChanged: {
-                            //monthView.startDay = dayStart.midnight();
                             tabPage.currentDay = dayStart;
                         }
                     }
@@ -123,7 +121,6 @@ MainView {
                         anchors.fill: parent
 
                         onCurrentDayChanged: {
-                            //monthView.startDay = currentDay.midnight();
                             tabPage.currentDay = currentDay;
                         }
                     }
