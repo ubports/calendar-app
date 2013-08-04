@@ -11,7 +11,7 @@ Item {
 
     EventListModel {
         id: model
-        termStart: bubbleOverLay.day
+        termStart: bubbleOverLay.day.midnight()
         termLength: Date.msPerDay
 
         onReload: {
