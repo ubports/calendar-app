@@ -42,9 +42,6 @@ MainView {
 
             tools: ToolbarItems {
 
-                locked: true
-                opened: true
-
                 ToolbarButton {
                     action: Action {
                         objectName: "neweventbutton"
@@ -73,8 +70,14 @@ MainView {
                     YearView{
                         onMonthSelected: {
                             tabs.selectedTabIndex = 1
-                            monthView.startDay = date.midnight();
-                            monthView.gotoNextMonth(date.getMonth());
+                            var now = new Date();
+                            if( date.getMonth() == now.getMonth()
+                                    && date.getFullYear() == now.getFullYear()) {
+                                monthView.goToToday();
+                            } else {
+                                monthView.startDay = date.midnight();
+                                monthView.gotoNextMonth(date.getMonth());
+                            }
                         }
                     }
                 }
