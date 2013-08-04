@@ -23,6 +23,7 @@ Item {
         id: separator
         objectName: "separator"
         width:  bubbleOverLay.width
+        z:1
     }
 
     QtObject {

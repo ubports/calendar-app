@@ -22,7 +22,7 @@ MainView {
             property var currentDay: new Date();
 
             onCurrentDayChanged: {
-                if( !monthView.startDay.isSameDay(currentDay))
+                if( monthView.startDay !== undefined && !monthView.startDay.isSameDay(currentDay))
                     monthView.startDay = currentDay.midnight();
 
                 if( !dayView.currentDay.isSameDay(currentDay))
