@@ -18,16 +18,49 @@ MainView {
         Page{
             id: tabPage
 
+            property var currentDay: new Date();
+
+            onCurrentDayChanged: {
+                if( !monthView.startDay.isSameDay(currentDay))
+                    monthView.startDay = currentDay.midnight();
+
+                if( !dayView.currentDay.isSameDay(currentDay))
+                    dayView.currentDay = currentDay
+
+                if( !weekView.dayStart.isSameDay(currentDay))
+                    weekView.dayStart = currentDay
+            }
+
             function newEvent() {
                  PopupUtils.open(newEventComponent, tabPage, {"defaultDate": new Date()})
             }
 
+            Component.onCompleted: {
+                tabs.selectedTabIndex= 1;
+            }
+
             tools: ToolbarItems {
+
+                locked: true
+                opened: true
+
                 ToolbarButton {
-                    objectName: "neweventbutton"
-                    iconSource: Qt.resolvedUrl("avatar.png")
-                    text: i18n.tr("New Event")
-                    onTriggered: tabPage.newEvent()
+                    action: Action{
+                        objectName: "neweventbutton"
+                        iconSource: Qt.resolvedUrl("avatar.png")
+                        text: i18n.tr("New Event")
+                        onTriggered: tabPage.newEvent()
+                    }
+                }
+                ToolbarButton {
+                    action: Action {
+                        iconSource: Qt.resolvedUrl("avatar.png");
+                        text: i18n.tr("Today");
+                        onTriggered: {
+                            tabPage.currentDay = new Date()
+                            monthView.goToToday();
+                        }
+                    }
                 }
             }
 
@@ -60,20 +93,29 @@ MainView {
                             id: monthView
                             anchors.top: monthLabel.top
                             anchors.topMargin: units.gu(2)
-                            //onMonthStartChanged: tabs.selectedTabIndex = monthStart.getMonth()
-                            //y: units.gu(9.5) // FIXME
-                            //onMovementEnded: eventView.currentDayStart = currentDayStart
-                            //onCurrentDayStartChanged: if (!(dragging || flicking)) eventView.currentDayStart = currentDayStart
-                            //Component.onCompleted: eventView.currentDayStart = currentDayStart
-                            //compressed: (eventView.state == "EXPANDED")
-
                             onFocusOnDay: {
-                                tabs.selectedTabIndex  = 2
-                                dayView.currentDay = dayStart
+                                tabs.selectedTabIndex  = 3
+                                //dayView.currentDay = dayStart
+                                //weekView.dayStart = dayStart
+
+                                tabPage.currentDay = dayStart;
                             }
                         }
                     }
                 }
+                Tab{
+                    title:"Week"
+                    WeekView{
+                        id: weekView
+                        anchors.fill: parent
+
+                        onDayStartChanged: {
+                            //monthView.startDay = dayStart.midnight();
+                            tabPage.currentDay = dayStart;
+                        }
+                    }
+                }
+
                 Tab{
                     title:"Day"
                     DayView{
@@ -81,7 +123,8 @@ MainView {
                         anchors.fill: parent
 
                         onCurrentDayChanged: {
-                            monthView.startDay = currentDay.midnight();
+                            //monthView.startDay = currentDay.midnight();
+                            tabPage.currentDay = currentDay;
                         }
                     }
                 }

@@ -10,10 +10,8 @@
 import os.path
 
 from autopilot.input import Mouse, Touch, Pointer
-from autopilot.matchers import Eventually
 from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
-from testtools.matchers import Equals
 
 from calendar_app.emulators.main_window import MainWindow
 from calendar_app.emulators.ubuntusdk import ubuntusdk
