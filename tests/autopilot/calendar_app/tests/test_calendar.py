@@ -25,17 +25,19 @@ class TestMainWindow(CalendarTestCase):
     def tearDown(self):
         super(TestMainWindow, self).tearDown()
 
-    def test_timeline_view_shows(self):
-        event_view = self.main_window.get_event_view()
+#commeting out the test case as according to new design there is no DiaryView
+#http://design.canonical.com/2013/06/solving-multiple-calendar-views/
+    #def test_timeline_view_shows(self):
+        #event_view = self.main_window.get_event_view()
 
-        self.assertThat(
-            event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
-        self.ubuntusdk.click_toolbar_button("Timeline")
-        self.assertThat(
-            event_view.eventViewType, Eventually(Equals("TimeLineView.qml")))
-        self.ubuntusdk.click_toolbar_button("Diary")
-        self.assertThat(
-            event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
+        #self.assertThat(
+        #    event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
+        #self.ubuntusdk.click_toolbar_button("Timeline")
+        #self.assertThat(
+        #    event_view.eventViewType, Eventually(Equals("TimeLineView.qml")))
+        #self.ubuntusdk.click_toolbar_button("Diary")
+        #self.assertThat(
+        #    event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
 
 #commenting out for now until adding a new event works again
     #def test_new_event(self):
