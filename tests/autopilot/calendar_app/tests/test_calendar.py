@@ -33,7 +33,8 @@ class TestMainWindow(CalendarTestCase):
         self.assertThat(
             event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
 
-    @unittest.skip("Adding a new event is broken, needs fixing")
+    @unittest.skip("Adding a new event is broken, needs fixing. "
+                   "See http://pad.lv/1206048.")
     def test_new_event(self):
         #click on new event button
         self.ubuntusdk.click_toolbar_button('New Event')
