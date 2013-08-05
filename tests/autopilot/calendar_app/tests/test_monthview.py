@@ -28,9 +28,12 @@ class TestMainWindow(CalendarTestCase):
     def tearDown(self):
         super(TestMainWindow, self).tearDown()
 
+    def get_currentDayStart(self):
+        month_view = self.main_window.get_month_view()
+        return datetime.fromtimestamp(month_view.currentDayStart)
+
     # goToNextMonth True for next month, False for previous month
     def changeMonth(self, goToNextMonth=True, count=0):
-
         month_view = self.main_window.get_month_view()
         y_line = int(self.ubuntusdk.get_qml_view().y
                      + month_view.y + (month_view.height / 2))
@@ -63,23 +66,21 @@ class TestMainWindow(CalendarTestCase):
 
     # goToNextMonth True for next month, False for previous month
     def monthview_today(self, goToNextMonth=True, count=-1):
-
         if count == -1:
             return
 
-        month_view = self.main_window.get_month_view()
-
-        startDay = datetime.fromtimestamp(month_view.currentDayStart)
+        startDay = self.get_currentDayStart()
 
         self.changeMonth(goToNextMonth, count)
 
         self.ubuntusdk.click_toolbar_button("Today")
-        dayAfterMonthChange = datetime.fromtimestamp(month_view
-                                                     .currentDayStart)
 
-        self.assertThat(dayAfterMonthChange.day, Equals(startDay.day))
-        self.assertThat(dayAfterMonthChange.month, Equals(startDay.month))
-        self.assertThat(dayAfterMonthChange.year, Equals(startDay.year))
+        self.assertThat(lambda: self.get_currentDayStart().day,
+                        Eventually(Equals(startDay.day)))
+        self.assertThat(lambda: self.get_currentDayStart().month,
+                        Eventually(Equals(startDay.month)))
+        self.assertThat(lambda: self.get_currentDayStart().year,
+                        Eventually(Equals(startDay.year)))
 
     def test_monthview_change_month_next(self):
         self.monthview_change_month(True, 1)
@@ -95,27 +96,18 @@ class TestMainWindow(CalendarTestCase):
 
     # goToNextMonth True for next month, False for previous month
     def monthview_change_month(self, goToNextMonth=True, count=-1):
-
         if count == -1:
             return
 
-        month_view = self.main_window.get_month_view()
-
-        startDay = datetime.fromtimestamp(month_view.currentDayStart)
+        startDay = self.get_currentDayStart()
 
         self.changeMonth(goToNextMonth, count)
 
-        dayAfterMonthChange = datetime.fromtimestamp(month_view
-                                                     .currentDayStart)
-
-        self.assertThat(dayAfterMonthChange.day, Equals(1))
-        if goToNextMonth is True:
-            testDate = startDay + relativedelta(months=+count)
-            self.assertThat(dayAfterMonthChange.month,
-                            Equals(testDate.month))
-            self.assertThat(dayAfterMonthChange.year, Equals(testDate.year))
-        else:
-            testDate = startDay + relativedelta(months=-count)
-            self.assertThat(dayAfterMonthChange.month,
-                            Equals(testDate.month))
-            self.assertThat(dayAfterMonthChange.year, Equals(testDate.year))
+        self.assertThat(lambda: self.get_currentDayStart().day,
+                        Eventually(Equals(1)))
+        delta = count * (1 if goToNextMonth else -1)
+        testDate = startDay + relativedelta(months=delta)
+        self.assertThat(lambda: self.get_currentDayStart().month,
+                        Eventually(Equals(testDate.month)))
+        self.assertThat(lambda: self.get_currentDayStart().year,
+                        Eventually(Equals(testDate.year)))
