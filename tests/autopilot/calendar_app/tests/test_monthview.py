@@ -20,14 +20,6 @@ from dateutil.relativedelta import relativedelta
 
 class TestMainWindow(CalendarTestCase):
 
-    def setUp(self):
-        super(TestMainWindow, self).setUp()
-        self.assertThat(
-            self.ubuntusdk.get_qml_view().visible, Eventually(Equals(True)))
-
-    def tearDown(self):
-        super(TestMainWindow, self).tearDown()
-
     def get_currentDayStart(self):
         month_view = self.main_window.get_month_view()
         return datetime.fromtimestamp(month_view.currentDayStart)

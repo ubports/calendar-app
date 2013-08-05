@@ -17,14 +17,6 @@ from calendar_app.tests import CalendarTestCase
 
 class TestMainWindow(CalendarTestCase):
 
-    def setUp(self):
-        super(TestMainWindow, self).setUp()
-        self.assertThat(
-            self.ubuntusdk.get_qml_view().visible, Eventually(Equals(True)))
-
-    def tearDown(self):
-        super(TestMainWindow, self).tearDown()
-
     def test_timeline_view_shows(self):
         event_view = self.main_window.get_event_view()
 
