@@ -4,6 +4,12 @@ Source: https://launchpad.net/ubuntu-calendar-app
 
 Files: *
 Copyright: 2013 Canonical Ltd.
+           2013 Carla Sella <carla.sella@gmail.com>
+           2013 Frank Mertens <frank@cyblogic.de>
+           2013 Kunal Parmar <pkunal.parmar@gmail.com>
+           2013 Mario Boikov <mario@beblue.org>
+           2013 Omer Akram <om26er@ubuntu.com>
+           2013 Riccardo Padovani <rpadovani@ubuntu-it.org>
 License: GPL-3
 
 Files: debian/*
