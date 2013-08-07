@@ -160,7 +160,7 @@ Popover {
             }
         }
 
-        ListItem.SingleControl {
+        ListItem.Empty {
             highlightWhenPressed: false
             Dialog {
                 id: errorPopupDialog
@@ -171,7 +171,7 @@ Popover {
                     onClicked: PopupUtils.close(errorPopupDialog)
                 }
             }
-            control: Button {
+            Button {
                 objectName: "eventSaveButton"
                 text: i18n.tr("Save")
                 anchors {
