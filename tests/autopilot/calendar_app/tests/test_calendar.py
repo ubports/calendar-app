@@ -10,82 +10,79 @@
 from __future__ import absolute_import
 
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals
+
+from testtools.matchers import Equals, NotEquals
+
+import time
+import unittest
 
 from calendar_app.tests import CalendarTestCase
 
 
 class TestMainWindow(CalendarTestCase):
 
-    def setUp(self):
-        super(TestMainWindow, self).setUp()
+    @unittest.skip("According to new design there is no DiaryView now. "
+                   "See design blog.")
+    #http://design.canonical.com/2013/06/solving-multiple-calendar-views/
+    def test_timeline_view_shows(self):
+        event_view = self.main_window.get_event_view()
+
         self.assertThat(
-            self.ubuntusdk.get_qml_view().visible, Eventually(Equals(True)))
+            event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
+        self.ubuntusdk.click_toolbar_button("Timeline")
+        self.assertThat(
+            event_view.eventViewType, Eventually(Equals("TimeLineView.qml")))
+        self.ubuntusdk.click_toolbar_button("Diary")
+        self.assertThat(
+            event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
 
-    def tearDown(self):
-        super(TestMainWindow, self).tearDown()
+    @unittest.skip("Adding a new event is broken, needs fixing. "
+                   "See http://pad.lv/1206048.")
+    def test_new_event(self):
+        #click on new event button
+        self.ubuntusdk.click_toolbar_button('New Event')
 
-#commeting out the test case as according to new design there is no DiaryView
-#http://design.canonical.com/2013/06/solving-multiple-calendar-views/
-    #def test_timeline_view_shows(self):
+        #grab all the fields
         #event_view = self.main_window.get_event_view()
+        event_name_field = self.main_window.get_new_event_name_input_box()
+        start_time_field = self.main_window.get_event_start_time_field()
+        end_time_field = self.main_window.get_event_end_time_field()
+        location_field = self.main_window.get_event_location_field()
+        people_field = self.main_window.get_event_people_field()
+        save_button = self.main_window.get_event_save_button()
 
-        #self.assertThat(
-        #    event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
-        #self.ubuntusdk.click_toolbar_button("Timeline")
-        #self.assertThat(
-        #    event_view.eventViewType, Eventually(Equals("TimeLineView.qml")))
-        #self.ubuntusdk.click_toolbar_button("Diary")
-        #self.assertThat(
-        #    event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
+        #input a new event name
+        eventTitle = "Test event" + str(time.time())
 
-#commenting out for now until adding a new event works again
-    #def test_new_event(self):
-        ##click on new event button
-        #self.ubuntusdk.click_toolbar_button('New Event')
+        self.pointing_device.click_object(event_name_field)
+        self.keyboard.type(eventTitle)
+        self.assertThat(event_name_field.text, Eventually(Equals(eventTitle)))
 
-        ##grab all the fields
-        ##event_view = self.main_window.get_event_view()
-        #event_name_field = self.main_window.get_new_event_name_input_box()
-        #start_time_field = self.main_window.get_event_start_time_field()
-        #end_time_field = self.main_window.get_event_end_time_field()
-        #location_field = self.main_window.get_event_location_field()
-        #people_field = self.main_window.get_event_people_field()
-        #save_button = self.main_window.get_event_save_button()
+        #input start time
+        self.pointing_device.click_object(start_time_field)
+        self.keyboard.press_and_release("Ctrl+a")
+        self.keyboard.type("11")
+        self.assertThat(start_time_field.text, Eventually(Equals("11")))
 
-        ##input a new event name
-        #eventTitle = "Test event" + str(time.time())
+        #input end time
+        self.pointing_device.click_object(end_time_field)
+        self.keyboard.press_and_release("Ctrl+a")
+        self.keyboard.type("00")
+        self.assertThat(end_time_field.text, Eventually(Equals("00")))
 
-        #self.pointing_device.click_object(event_name_field)
-        #self.keyboard.type(eventTitle)
-        #self.assertThat(event_name_field.text, Eventually(Equals(eventTitle)))
+        #input location
+        self.pointing_device.click_object(location_field)
+        self.keyboard.type("My location")
+        self.assertThat(location_field.text, Eventually(Equals("My location")))
 
-        ##input start time
-        #self.pointing_device.click_object(start_time_field)
-        #self.keyboard.press_and_release("Ctrl+a")
-        #self.keyboard.type("11")
-        #self.assertThat(start_time_field.text, Eventually(Equals("11")))
+        #input people
+        self.pointing_device.click_object(people_field)
+        self.keyboard.type("Me")
+        self.assertThat(people_field.text, Eventually(Equals("Me")))
 
-        ##input end time
-        #self.pointing_device.click_object(end_time_field)
-        #self.keyboard.press_and_release("Ctrl+a")
-        #self.keyboard.type("00")
-        #self.assertThat(end_time_field.text, Eventually(Equals("00")))
+        #click save button
+        self.pointing_device.click_object(save_button)
 
-        ##input location
-        #self.pointing_device.click_object(location_field)
-        #self.keyboard.type("My location")
-        #self.assertThat(
-        #    location_field.text, Eventually(Equals("My location")))
-
-        ##input people
-        #self.pointing_device.click_object(people_field)
-        #self.keyboard.type("Me")
-        #self.assertThat(people_field.text, Eventually(Equals("Me")))
-
-        ##click save button
-        #self.pointing_device.click_object(save_button)
-
-        ##verify that the event has been created in timeline
-        #title_label = lambda: self.main_window.get_title_label(eventTitle)
-        #self.assertThat(title_label, Eventually(NotEquals(None)))
+        #verify that the event has been created in timeline
+        title_label = lambda: self.main_window.get_title_label(eventTitle)
+        self.assertThat(title_label, Eventually(NotEquals(None)))
