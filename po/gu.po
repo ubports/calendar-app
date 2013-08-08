@@ -1,0 +1,84 @@
+# Gujarati translation for ubuntu-calendar-app
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the ubuntu-calendar-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-calendar-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-06-12 17:24+0200\n"
+"PO-Revision-Date: 2013-08-07 10:33+0000\n"
+"Last-Translator: Bhaumik Shukla <boom.shukla@gmail.com>\n"
+"Language-Team: Gujarati <gu@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-08-08 04:59+0000\n"
+"X-Generator: Launchpad (build 16723)\n"
+
+#: ../DiaryView.qml:54
+msgid "(+) New Event"
+msgstr "નવી ઘટના"
+
+#: ../EventDetails.qml:69
+msgid "Add invite"
+msgstr "આમંત્રિત ઉમેરો"
+
+#: ../EventDetails.qml:75
+msgid "Edit"
+msgstr "ફેરફાર કરો"
+
+#: ../EventDetails.qml:150 ../NewEvent.qml:112
+msgid "People"
+msgstr "લોકો"
+
+#: ../NewEvent.qml:20
+msgid "Create event"
+msgstr "ઘટના બનાવો"
+
+#: ../NewEvent.qml:25
+msgid "Add event name"
+msgstr "ઘટના નું નામ ઉમેરો"
+
+#: ../NewEvent.qml:99
+msgid "Location"
+msgstr "સ્થળ"
+
+#: ../NewEvent.qml:104
+msgid "Add Location"
+msgstr "સ્થળ ઉમેરો"
+
+#: ../NewEvent.qml:117
+msgid "Invite People"
+msgstr "લોકોને આમંત્રિત કરો"
+
+#: ../NewEvent.qml:128
+msgid "Save"
+msgstr "સાચવો"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: ../TimeLineView.qml:147
+msgid "HH:mm"
+msgstr "કક:મિમિ"
+
+#: ../calendar.qml:31
+msgid "To-do"
+msgstr "કરવું"
+
+#: ../calendar.qml:36
+msgid "New Event"
+msgstr "નવી ઘટના"
+
+#: ../calendar.qml:41 ../calendar.qml:48
+msgid "Timeline"
+msgstr "સમયરેખા"
+
+#: ../calendar.qml:45
+msgid "Diary"
+msgstr "ડાયરી"
+
+#: ../.build/calendar-app.desktop.js:1
+msgid "Calendar"
+msgstr "કેલેન્ડર"
