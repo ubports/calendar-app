@@ -40,7 +40,8 @@ MainView {
                 tabs.selectedTabIndex= 1;
             }
 
-            tools: ToolbarItems {
+            ToolbarItems {
+                id: commanToolBar
 
                 ToolbarButton {
                     action: Action {
@@ -67,16 +68,20 @@ MainView {
                 id: tabs
                 Tab{
                     title: i18n.tr("Year")
-                    YearView{
-                        onMonthSelected: {
-                            tabs.selectedTabIndex = 1
-                            var now = new Date();
-                            if( date.getMonth() == now.getMonth()
-                                    && date.getFullYear() == now.getFullYear()) {
-                                monthView.goToToday();
-                            } else {
-                                monthView.startDay = date.midnight();
-                                monthView.gotoNextMonth(date.getMonth());
+                    page: Page{
+                        anchors.fill: parent
+                        tools: commanToolBar
+                        YearView{
+                            onMonthSelected: {
+                                tabs.selectedTabIndex = 1
+                                var now = new Date();
+                                if( date.getMonth() == now.getMonth()
+                                        && date.getFullYear() == now.getFullYear()) {
+                                    monthView.goToToday();
+                                } else {
+                                    monthView.startDay = date.midnight();
+                                    monthView.gotoNextMonth(date.getMonth());
+                                }
                             }
                         }
                     }
@@ -84,47 +89,58 @@ MainView {
                 Tab {
                     id: monthTab
                     title: i18n.tr("Month")
-
-                    Item {
+                    page: Page{
                         anchors.fill: parent
+                        tools: commanToolBar
+                        Item {
+                            anchors.fill: parent
 
-                        Label{
-                            id: monthLabel
-                            fontSize: "large"
-                            text: Qt.formatDateTime(monthView.startDay,"MMMM yyyy");
-                        }
+                            Label{
+                                id: monthLabel
+                                fontSize: "large"
+                                text: Qt.formatDateTime(monthView.startDay,"MMMM yyyy");
+                            }
 
-                        MonthView {
-                            id: monthView
-                            anchors.top: monthLabel.top
-                            anchors.topMargin: units.gu(2)
-                            onFocusOnDay: {
-                                tabs.selectedTabIndex  = 3
-                                tabPage.currentDay = dayStart;
+                            MonthView {
+                                id: monthView
+                                anchors.top: monthLabel.top
+                                anchors.topMargin: units.gu(2)
+                                onFocusOnDay: {
+                                    tabs.selectedTabIndex  = 3
+                                    tabPage.currentDay = dayStart;
+                                }
                             }
                         }
                     }
                 }
                 Tab{
                     title: i18n.tr("Week")
-                    WeekView{
-                        id: weekView
+                    page: Page{
                         anchors.fill: parent
+                        tools: commanToolBar
+                        WeekView{
+                            id: weekView
+                            anchors.fill: parent
 
-                        onDayStartChanged: {
-                            tabPage.currentDay = dayStart;
+                            onDayStartChanged: {
+                                tabPage.currentDay = dayStart;
+                            }
                         }
                     }
                 }
 
                 Tab{
                     title: i18n.tr("Day")
-                    DayView{
-                        id: dayView
+                    page: Page{
                         anchors.fill: parent
+                        tools: commanToolBar
+                        DayView{
+                            id: dayView
+                            anchors.fill: parent
 
-                        onCurrentDayChanged: {
-                            tabPage.currentDay = currentDay;
+                            onCurrentDayChanged: {
+                                tabPage.currentDay = currentDay;
+                            }
                         }
                     }
                 }
