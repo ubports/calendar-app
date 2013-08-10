@@ -66,7 +66,7 @@ MainView {
             Tabs{
                 id: tabs
                 Tab{
-                    title:"Year"
+                    title: i18n.tr("Year")
                     YearView{
                         onMonthSelected: {
                             tabs.selectedTabIndex = 1
@@ -83,7 +83,7 @@ MainView {
                 }
                 Tab {
                     id: monthTab
-                    title: "Month"
+                    title: i18n.tr("Month")
 
                     Item {
                         anchors.fill: parent
@@ -106,7 +106,7 @@ MainView {
                     }
                 }
                 Tab{
-                    title:"Week"
+                    title: i18n.tr("Week")
                     WeekView{
                         id: weekView
                         anchors.fill: parent
@@ -118,7 +118,7 @@ MainView {
                 }
 
                 Tab{
-                    title:"Day"
+                    title: i18n.tr("Day")
                     DayView{
                         id: dayView
                         anchors.fill: parent
