@@ -13,10 +13,12 @@ from autopilot.matchers import Eventually
 
 from testtools.matchers import Equals, NotEquals
 
+import math
 import time
 import unittest
 
 from calendar_app.tests import CalendarTestCase
+from time import sleep
 
 
 class TestMainWindow(CalendarTestCase):
@@ -33,8 +35,9 @@ class TestMainWindow(CalendarTestCase):
         self.assertThat(
             event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
 
-    @unittest.skip("Adding a new event is broken, needs fixing. "
-                   "See http://pad.lv/1206048.")
+##    @unittest.skip("Adding a new event is broken, needs fixing. "
+##                   "See http://pad.lv/1206048.")
+
     def test_new_event(self):
         #click on new event button
         self.ubuntusdk.click_toolbar_button('New Event')
@@ -46,7 +49,7 @@ class TestMainWindow(CalendarTestCase):
         end_time_field = self.main_window.get_event_end_time_field()
         location_field = self.main_window.get_event_location_field()
         people_field = self.main_window.get_event_people_field()
-        save_button = self.main_window.get_event_save_button()
+        ok_button = self.main_window.get_event_ok_button()
 
         #input a new event name
         eventTitle = "Test event" + str(time.time())
@@ -57,29 +60,42 @@ class TestMainWindow(CalendarTestCase):
 
         #input start time
         self.pointing_device.click_object(start_time_field)
-        self.keyboard.press_and_release("Ctrl+a")
-        self.keyboard.type("11")
-        self.assertThat(start_time_field.text, Eventually(Equals("11")))
 
-        #input end time
-        self.pointing_device.click_object(end_time_field)
-        self.keyboard.press_and_release("Ctrl+a")
-        self.keyboard.type("00")
-        self.assertThat(end_time_field.text, Eventually(Equals("00")))
+        timePicker = self.app.select_single("TimePicker")
+        self.assertThat(timePicker.title, Eventually(Equals("Time")))
 
-        #input location
-        self.pointing_device.click_object(location_field)
-        self.keyboard.type("My location")
-        self.assertThat(location_field.text, Eventually(Equals("My location")))
+        hourBeforeChange = timePicker.hour
 
-        #input people
-        self.pointing_device.click_object(people_field)
-        self.keyboard.type("Me")
-        self.assertThat(people_field.text, Eventually(Equals("Me")))
+        hourScroller = self.ubuntusdk.get_object("Scroller", "hourScroller")
+        self.assertThat(hourScroller.visible, Eventually(Equals(True)))
 
-        #click save button
-        self.pointing_device.click_object(save_button)
+        y_Hscroller = hourScroller.globalRect[1]
+        height_Hscroller = hourScroller.globalRect[3]
+        x_Hscroller = hourScroller.globalRect[0]
+        width_Hscroller = hourScroller.globalRect[2]
 
-        #verify that the event has been created in timeline
-        title_label = lambda: self.main_window.get_title_label(eventTitle)
-        self.assertThat(title_label, Eventually(NotEquals(None)))
+        self.pointing_device.move(x_Hscroller+(width_Hscroller/4), y_Hscroller+((height_Hscroller/4)*2))
+        self.pointing_device.drag(x_Hscroller+(width_Hscroller/4), y_Hscroller+((height_Hscroller/4)*2), x_Hscroller+(width_Hscroller/4), y_Hscroller)
+        sleep(5)
+
+        hourAfterChange = timePicker.hour
+##        self.assertThat(hourAfterChange, Eventually(Equals("23")))
+
+
+##
+##        #input location
+##        self.pointing_device.click_object(location_field)
+##        self.keyboard.type("My location")
+##        self.assertThat(location_field.text, Eventually(Equals("My location")))
+##
+##        #input people
+##        self.pointing_device.click_object(people_field)
+##        self.keyboard.type("Me")
+##        self.assertThat(people_field.text, Eventually(Equals("Me")))
+##
+##        #click ok button
+##        self.pointing_device.click_object(save_button)
+##
+##        #verify that the event has been created in timeline
+##        title_label = lambda: self.main_window.get_title_label(eventTitle)
+##        self.assertThat(title_label, Eventually(NotEquals(None)))

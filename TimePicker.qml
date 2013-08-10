@@ -40,18 +40,21 @@ Dialog {
             height: units.gu(24)
             Scroller {
                 id: hourScroller
+                objectName: "hourScroller"
                 anchors {
                     top: parent.top
                     bottom: parent.bottom
                 }
                 width: parent.width / 2
                 labelText: i18n.tr("Hour")
+
                 min: 00
                 max: 23
                 currentIndex: priv.now.getHours()
             }
             Scroller {
                 id: minuteScroller
+                objectName: "minuteScroller"
                 anchors {
                     top: parent.top
                     bottom: parent.bottom
@@ -75,6 +78,7 @@ Dialog {
                 width: (parent.width - parent.spacing) / 2
             }
             Button {
+                objectName: "OKButton"
                 text: i18n.tr("OK")
                 color: "#dd4814"
 
