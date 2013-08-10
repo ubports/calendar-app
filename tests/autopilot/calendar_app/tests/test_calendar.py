@@ -21,21 +21,6 @@ from calendar_app.tests import CalendarTestCase
 
 class TestMainWindow(CalendarTestCase):
 
-    @unittest.skip("According to new design there is no DiaryView now. "
-                   "See design blog.")
-    #http://design.canonical.com/2013/06/solving-multiple-calendar-views/
-    def test_timeline_view_shows(self):
-        event_view = self.main_window.get_event_view()
-
-        self.assertThat(
-            event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
-        self.ubuntusdk.click_toolbar_button("Timeline")
-        self.assertThat(
-            event_view.eventViewType, Eventually(Equals("TimeLineView.qml")))
-        self.ubuntusdk.click_toolbar_button("Diary")
-        self.assertThat(
-            event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
-
     @unittest.skip("Adding a new event is broken, needs fixing. "
                    "See http://pad.lv/1206048.")
     def test_new_event(self):
