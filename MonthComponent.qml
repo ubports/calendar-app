@@ -80,7 +80,7 @@ Item{
             height: dummy.height
             font.pointSize: dummy.font.pointSize
             color: isToday ? Color.ubuntuOrange : dummy.color
-            scale: isToday /*&& root.date.getMonth() === day.getMonth()*/ ? 1.5 : 1.
+            scale: isToday ? 1.5 : 1.
         }
     }
 
