@@ -39,6 +39,8 @@ class TestMainWindow(CalendarTestCase):
 ##                   "See http://pad.lv/1206048.")
 
     def test_new_event(self):
+        """add new event test"""
+
         #click on new event button
         self.ubuntusdk.click_toolbar_button('New Event')
 
@@ -49,7 +51,7 @@ class TestMainWindow(CalendarTestCase):
         end_time_field = self.main_window.get_event_end_time_field()
         location_field = self.main_window.get_event_location_field()
         people_field = self.main_window.get_event_people_field()
-        ok_button = self.main_window.get_event_ok_button()
+        save_button = self.main_window.get_event_save_button()
 
         #input a new event name
         eventTitle = "Test event" + str(time.time())
@@ -73,28 +75,30 @@ class TestMainWindow(CalendarTestCase):
         height_Hscroller = hourScroller.globalRect[3]
         x_Hscroller = hourScroller.globalRect[0]
         width_Hscroller = hourScroller.globalRect[2]
+        hourScrollerHeight = hourScroller.height
 
-        self.pointing_device.move(x_Hscroller+(width_Hscroller/4), y_Hscroller+((height_Hscroller/4)*2))
-        self.pointing_device.drag(x_Hscroller+(width_Hscroller/4), y_Hscroller+((height_Hscroller/4)*2), x_Hscroller+(width_Hscroller/4), y_Hscroller)
-        sleep(5)
+        self.pointing_device.drag(x_Hscroller+(width_Hscroller/4), y_Hscroller+((height_Hscroller/4)*2),
+                                  x_Hscroller+(width_Hscroller/4), (y_Hscroller+((height_Hscroller/4)*2))+ hourScrollerHeight * 2)
 
         hourAfterChange = timePicker.hour
-##        self.assertThat(hourAfterChange, Eventually(Equals("23")))
+
+        self.assertThat(hourAfterChange, Eventually(Equals(hourBeforeChange - 1)))
+
+        #click ok button
+        ok_button = self.main_window.get_time_ok_button()
+        self.pointing_device.click_object(ok_button)
+
+        #input location
+        self.pointing_device.click_object(location_field)
+        self.keyboard.type("My location")
+        self.assertThat(location_field.text, Eventually(Equals("My location")))
+
+        #input people
+        self.pointing_device.click_object(people_field)
+        self.keyboard.type("Me")
+        self.assertThat(people_field.text, Eventually(Equals("Me")))
 
 
-##
-##        #input location
-##        self.pointing_device.click_object(location_field)
-##        self.keyboard.type("My location")
-##        self.assertThat(location_field.text, Eventually(Equals("My location")))
-##
-##        #input people
-##        self.pointing_device.click_object(people_field)
-##        self.keyboard.type("Me")
-##        self.assertThat(people_field.text, Eventually(Equals("Me")))
-##
-##        #click ok button
-##        self.pointing_device.click_object(save_button)
 ##
 ##        #verify that the event has been created in timeline
 ##        title_label = lambda: self.main_window.get_title_label(eventTitle)

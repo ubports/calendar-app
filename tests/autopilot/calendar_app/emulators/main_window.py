@@ -39,8 +39,11 @@ class MainWindow(object):
         return self.app.select_single(
             "TextField", objectName="eventPeopleInput")
 
-    def get_event_ok_button(self):
+    def get_time_ok_button(self):
         return self.app.select_single("Button", objectName="OKButton")
+
+    def get_event_save_button(self):
+        return self.app.select_single("Button", objectName="eventSaveButton")
 
     def get_title_label(self, title):
         return self.app.select_many("Label", text=title)
