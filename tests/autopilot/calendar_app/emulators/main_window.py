@@ -19,8 +19,8 @@ class MainWindow(object):
     def get_event_view(self):
         return self.app.select_single("EventView")
 
-    def get_month_view(self):
-        return self.app.select_single("MonthView")
+    def get_new_event(self):
+        return self.app.select_single("NewEvent")
 
     def get_new_event_name_input_box(self):
         return self.app.select_single("TextField", objectName="newEventName")
@@ -36,8 +36,7 @@ class MainWindow(object):
             "TextField", objectName="eventLocationInput")
 
     def get_event_people_field(self):
-        return self.app.select_single(
-            "TextField", objectName="eventPeopleInput")
+        return self.app.select_single("TextField", objectName="eventPeopleInput")
 
     def get_time_ok_button(self):
         return self.app.select_single("Button", objectName="OKButton")
