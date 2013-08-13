@@ -78,7 +78,7 @@ Dialog {
                 width: (parent.width - parent.spacing) / 2
             }
             Button {
-                objectName: "OKButton"
+                objectName: "TimePickerOKButton"
                 text: i18n.tr("OK")
                 color: "#dd4814"
 

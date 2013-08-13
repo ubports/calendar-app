@@ -13,13 +13,10 @@ from autopilot.matchers import Eventually
 
 from testtools.matchers import Equals, NotEquals
 
-import math
 import time
 import unittest
 
 from calendar_app.tests import CalendarTestCase
-from time import sleep
-
 
 class TestMainWindow(CalendarTestCase):
 
@@ -36,9 +33,6 @@ class TestMainWindow(CalendarTestCase):
         self.ubuntusdk.click_toolbar_button("Diary")
         self.assertThat(
             event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
-
-##    @unittest.skip("Adding a new event is broken, needs fixing. "
-##                   "See http://pad.lv/1206048.")
 
     def test_new_event(self):
         """test add new event """
@@ -71,8 +65,6 @@ class TestMainWindow(CalendarTestCase):
         timePicker = self.app.select_single("TimePicker")
         self.assertThat(timePicker.title, Eventually(Equals("Time")))
 
-        hourBeforeChange = timePicker.hour
-
         hourScroller = self.ubuntusdk.get_object("Scroller", "hourScroller")
         self.assertThat(hourScroller.visible, Eventually(Equals(True)))
 
@@ -81,13 +73,10 @@ class TestMainWindow(CalendarTestCase):
         x_Hscroller = hourScroller.globalRect[0]
         width_Hscroller = hourScroller.globalRect[2]
 
-        self.pointing_device.drag(x_Hscroller+(width_Hscroller/4),
-                                 (y_Hscroller+((height_Hscroller/4)*3)),
-                                  x_Hscroller+(width_Hscroller/4),
-                                 (y_Hscroller+((height_Hscroller/4)*2)))
-
-        hourAfterChange = timePicker.hour
-##        self.assertThat(hourAfterChange, Eventually(Equals(hourBeforeChange + 1)))
+        self.pointing_device.drag(int(x_Hscroller+(width_Hscroller/4)),
+                                  int((y_Hscroller+((height_Hscroller/4)*3))),
+                                  int(x_Hscroller+(width_Hscroller/4)),
+                                  int((y_Hscroller+((height_Hscroller/4)*2))))
 
         #change minutes
         minutesBeforeChange = timePicker.minute
@@ -100,22 +89,17 @@ class TestMainWindow(CalendarTestCase):
         x_Mscroller = minuteScroller.globalRect[0]
         width_Mscroller = minuteScroller.globalRect[2]
 
-        self.pointing_device.drag(x_Mscroller+(width_Mscroller/4),
-                                 (y_Mscroller+((height_Mscroller/4)*3)),
-                                  x_Mscroller+(width_Mscroller/4),
-                                 (y_Mscroller+((height_Mscroller/4)*2)))
-
-        minutesAfterChange = timePicker.minute
-##        self.assertThat(minutesAfterChange, Eventually(NotEquals(minutesBeforeChange)))
+        self.pointing_device.drag(int(x_Mscroller+(width_Mscroller/4)),
+                                  int((y_Mscroller+((height_Mscroller/4)*3))),
+                                  int(x_Mscroller+(width_Mscroller/4)),
+                                  int((y_Mscroller+((height_Mscroller/4)*2))))
 
         #click ok button
-        ok_button = self.main_window.get_time_ok_button()
+        ok_button = self.main_window.get_time_picker_ok_button()
         self.assertThat(ok_button, NotEquals(None))
         self.pointing_device.click_object(ok_button)
 
         self.assertThat(self.main_window.get_new_event().visible, Eventually(Equals(True)))
-
-        #---> TODO input end time
 
         #input location
         self.pointing_device.click_object(location_field)
