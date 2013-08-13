@@ -113,9 +113,9 @@ class TestMainWindow(CalendarTestCase):
 
        #click save button
         save_button = self.main_window.get_event_save_button()
-        self.assertThat(save_button, NotEquals(None))
+        self.assertThat(lambda: save_button, Eventually(NotEquals(None)))
         self.pointing_device.click_object(save_button)
 
         #verify that the event has been created in timeline
         title_label = self.main_window.get_title_label(eventTitle)
-        self.assertThat(title_label, NotEquals(None))
+        self.assertThat(lambda: title_label, Eventually(NotEquals(None)))
