@@ -58,7 +58,7 @@ class TestMainWindow(CalendarTestCase):
         self.assertThat(event_name_field.text, Eventually(Equals(eventTitle)))
 
         #input start time
-        self.assertThat(start_time_field, NotEquals(None))
+        self.assertThat(lambda: self.main_window.get_event_start_time_field(), Eventually(NotEquals(None)))
         self.pointing_device.click_object(start_time_field)
 
         #change hour
@@ -95,11 +95,11 @@ class TestMainWindow(CalendarTestCase):
                                   int((y_Mscroller+((height_Mscroller/4)*2))))
 
         #click ok button
-        ok_button = self.main_window.get_time_picker_ok_button()
-        self.assertThat(ok_button, NotEquals(None))
-        self.pointing_device.click_object(ok_button)
+        timepicker_ok_button = self.main_window.get_time_picker_ok_button()
+        self.assertThat(lambda: self.main_window.get_time_picker_ok_button(), Eventually(NotEquals(None)))
+        self.pointing_device.click_object(timepicker_ok_button)
 
-        self.assertThat(self.main_window.get_new_event().visible, Eventually(Equals(True)))
+        self.assertThat(lambda: self.main_window.get_new_event().visible, Eventually(Equals(True)))
 
         #input location
         self.pointing_device.click_object(location_field)
