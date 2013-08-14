@@ -63,7 +63,7 @@ class TestMainWindow(CalendarTestCase):
 
         #change hour
         timePicker = self.app.select_single("TimePicker")
-        self.assertThat(timePicker.title, Eventually(Equals("Time")))
+        self.assertThat(timePicker.visible, Eventually(Equals(True)))
 
         hourScroller = self.ubuntusdk.get_object("Scroller", "hourScroller")
         self.assertThat(hourScroller.visible, Eventually(Equals(True)))
@@ -113,9 +113,9 @@ class TestMainWindow(CalendarTestCase):
 
        #click save button
         save_button = self.main_window.get_event_save_button()
-        self.assertThat(lambda: save_button, Eventually(NotEquals(None)))
+        self.assertThat(lambda: self.main_window.get_event_save_button(), Eventually(NotEquals(None)))
         self.pointing_device.click_object(save_button)
 
         #verify that the event has been created in timeline
         title_label = self.main_window.get_title_label(eventTitle)
-        self.assertThat(lambda: title_label, Eventually(NotEquals(None)))
+        self.assertThat(lambda: self.main_window.get_title_label(eventTitle), Eventually(NotEquals(None)))
