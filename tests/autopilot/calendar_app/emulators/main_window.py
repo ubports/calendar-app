@@ -38,6 +38,9 @@ class MainWindow(object):
     def get_event_people_field(self):
         return self.app.select_single("TextField", objectName="eventPeopleInput")
 
+    def get_month_view(self):
+        return self.app.select_single("MonthView")
+
     def get_time_picker_ok_button(self):
         return self.app.select_single("Button", objectName="TimePickerOKButton")
 
