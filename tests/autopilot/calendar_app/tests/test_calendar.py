@@ -14,7 +14,6 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
 import time
-import unittest
 
 from calendar_app.tests import CalendarTestCase
 
@@ -44,7 +43,6 @@ class TestMainWindow(CalendarTestCase):
         #event_view = self.main_window.get_event_view()
         event_name_field = self.main_window.get_new_event_name_input_box()
         start_time_field = self.main_window.get_event_start_time_field()
-        end_time_field = self.main_window.get_event_end_time_field()
         location_field = self.main_window.get_event_location_field()
         people_field = self.main_window.get_event_people_field()
         save_button = self.main_window.get_event_save_button()
@@ -79,7 +77,6 @@ class TestMainWindow(CalendarTestCase):
                                   int((y_Hscroller+((height_Hscroller/4)*2))))
 
         #change minutes
-        minutesBeforeChange = timePicker.minute
         minuteScroller = self.ubuntusdk.get_object("Scroller", "minuteScroller")
         self.assertThat(minuteScroller.visible, Eventually(Equals(True)))
 
@@ -117,5 +114,4 @@ class TestMainWindow(CalendarTestCase):
         self.pointing_device.click_object(save_button)
 
         #verify that the event has been created in timeline
-        title_label = self.main_window.get_title_label(eventTitle)
         self.assertThat(lambda: self.main_window.get_title_label(eventTitle), Eventually(NotEquals(None)))
