@@ -92,9 +92,8 @@ MainView {
                     page: Page{
                         anchors.fill: parent
                         tools: commonToolBar
-                        Item {
+                        Column {
                             anchors.fill: parent
-
                             Label{
                                 id: monthLabel
                                 fontSize: "large"
@@ -103,8 +102,6 @@ MainView {
 
                             MonthView {
                                 id: monthView
-                                anchors.top: monthLabel.top
-                                anchors.topMargin: units.gu(2)
                                 onFocusOnDay: {
                                     tabs.selectedTabIndex  = 3
                                     tabPage.currentDay = dayStart;
