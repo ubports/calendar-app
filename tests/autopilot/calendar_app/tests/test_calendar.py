@@ -17,6 +17,7 @@ import time
 
 from calendar_app.tests import CalendarTestCase
 
+
 class TestMainWindow(CalendarTestCase):
 
     def test_timeline_view_shows(self):
@@ -48,7 +49,8 @@ class TestMainWindow(CalendarTestCase):
         save_button = self.main_window.get_event_save_button()
 
         #input a new event name
-        self.assertThat(self.main_window.get_new_event().visible, Eventually(Equals(True)))
+        self.assertThat(
+            self.main_window.get_new_event().visible, Eventually(Equals(True)))
         eventTitle = "Test event" + str(time.time())
 
         self.pointing_device.click_object(event_name_field)
@@ -56,7 +58,9 @@ class TestMainWindow(CalendarTestCase):
         self.assertThat(event_name_field.text, Eventually(Equals(eventTitle)))
 
         #input start time
-        self.assertThat(lambda: self.main_window.get_event_start_time_field(), Eventually(NotEquals(None)))
+        self.assertThat(
+            lambda: self.main_window.get_event_start_time_field(),
+            Eventually(NotEquals(None)))
         self.pointing_device.click_object(start_time_field)
 
         #change hour
@@ -77,9 +81,10 @@ class TestMainWindow(CalendarTestCase):
                                   int((y_Hscroller+((height_Hscroller/4)*2))))
 
         #change minutes
-        minuteScroller = self.ubuntusdk.get_object("Scroller", "minuteScroller")
-        self.assertThat(minuteScroller.visible, Eventually(Equals(True)))
-
+        minuteScroller = self.ubuntusdk.get_object(
+            "Scroller", "minuteScroller")
+        self.assertThat(
+            minuteScroller.visible, Eventually(Equals(True)))
 
         y_Mscroller = minuteScroller.globalRect[1]
         height_Mscroller = minuteScroller.globalRect[3]
@@ -93,10 +98,14 @@ class TestMainWindow(CalendarTestCase):
 
         #click ok button
         timepicker_ok_button = self.main_window.get_time_picker_ok_button()
-        self.assertThat(lambda: self.main_window.get_time_picker_ok_button(), Eventually(NotEquals(None)))
+        self.assertThat(
+            lambda: self.main_window.get_time_picker_ok_button(),
+            Eventually(NotEquals(None)))
         self.pointing_device.click_object(timepicker_ok_button)
 
-        self.assertThat(lambda: self.main_window.get_new_event().visible, Eventually(Equals(True)))
+        self.assertThat(
+            lambda: self.main_window.get_new_event().visible,
+            Eventually(Equals(True)))
 
         #input location
         self.pointing_device.click_object(location_field)
@@ -110,8 +119,12 @@ class TestMainWindow(CalendarTestCase):
 
        #click save button
         save_button = self.main_window.get_event_save_button()
-        self.assertThat(lambda: self.main_window.get_event_save_button(), Eventually(NotEquals(None)))
+        self.assertThat(
+            lambda: self.main_window.get_event_save_button(),
+            Eventually(NotEquals(None)))
         self.pointing_device.click_object(save_button)
 
         #verify that the event has been created in timeline
-        self.assertThat(lambda: self.main_window.get_title_label(eventTitle), Eventually(NotEquals(None)))
+        self.assertThat(
+            lambda: self.main_window.get_title_label(eventTitle),
+            Eventually(NotEquals(None)))
