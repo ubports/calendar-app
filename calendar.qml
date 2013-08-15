@@ -41,7 +41,7 @@ MainView {
             }
 
             ToolbarItems {
-                id: commanToolBar
+                id: commonToolBar
 
                 ToolbarButton {
                     action: Action {
@@ -70,7 +70,7 @@ MainView {
                     title: i18n.tr("Year")
                     page: Page{
                         anchors.fill: parent
-                        tools: commanToolBar
+                        tools: commonToolBar
                         YearView{
                             onMonthSelected: {
                                 tabs.selectedTabIndex = 1
@@ -91,7 +91,7 @@ MainView {
                     title: i18n.tr("Month")
                     page: Page{
                         anchors.fill: parent
-                        tools: commanToolBar
+                        tools: commonToolBar
                         Item {
                             anchors.fill: parent
 
@@ -117,7 +117,7 @@ MainView {
                     title: i18n.tr("Week")
                     page: Page{
                         anchors.fill: parent
-                        tools: commanToolBar
+                        tools: commonToolBar
                         WeekView{
                             id: weekView
                             anchors.fill: parent
@@ -133,7 +133,7 @@ MainView {
                     title: i18n.tr("Day")
                     page: Page{
                         anchors.fill: parent
-                        tools: commanToolBar
+                        tools: commonToolBar
                         DayView{
                             id: dayView
                             anchors.fill: parent
