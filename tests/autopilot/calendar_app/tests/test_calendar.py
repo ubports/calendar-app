@@ -75,10 +75,11 @@ class TestMainWindow(CalendarTestCase):
         x_Hscroller = hourScroller.globalRect[0]
         width_Hscroller = hourScroller.globalRect[2]
 
-        self.pointing_device.drag(int(x_Hscroller+(width_Hscroller/4)),
-                                  int((y_Hscroller+((height_Hscroller/4)*3))),
-                                  int(x_Hscroller+(width_Hscroller/4)),
-                                  int((y_Hscroller+((height_Hscroller/4)*2))))
+        self.pointing_device.drag(
+            int(x_Hscroller + (width_Hscroller / 4)),
+            int((y_Hscroller + ((height_Hscroller / 4) * 3))),
+            int(x_Hscroller + (width_Hscroller / 4)),
+            int((y_Hscroller + ((height_Hscroller / 4) * 2))))
 
         #change minutes
         minuteScroller = self.ubuntusdk.get_object(
@@ -91,10 +92,11 @@ class TestMainWindow(CalendarTestCase):
         x_Mscroller = minuteScroller.globalRect[0]
         width_Mscroller = minuteScroller.globalRect[2]
 
-        self.pointing_device.drag(int(x_Mscroller+(width_Mscroller/4)),
-                                  int((y_Mscroller+((height_Mscroller/4)*3))),
-                                  int(x_Mscroller+(width_Mscroller/4)),
-                                  int((y_Mscroller+((height_Mscroller/4)*2))))
+        self.pointing_device.drag(
+            int(x_Mscroller + (width_Mscroller / 4)),
+            int((y_Mscroller + ((height_Mscroller / 4) * 3))),
+            int(x_Mscroller + (width_Mscroller / 4)),
+            int((y_Mscroller + ((height_Mscroller / 4) * 2))))
 
         #click ok button
         timepicker_ok_button = self.main_window.get_time_picker_ok_button()
