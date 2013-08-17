@@ -15,7 +15,7 @@ PathViewBase{
 
     QtObject{
         id: intern
-        property var now: new Date()
+        property var now: new Date();
         property int weekstartDay: Qt.locale().firstDayOfWeek
         property var weekStart: visibleWeek.addDays(-7)
         property var selectedDate: visibleWeek
@@ -60,7 +60,7 @@ PathViewBase{
             return;
         }
 
-        if( intern.now.weekStart( intern.weekstartDay).isSameDay(visibleWeek) ) {
+        if( intern.now.weekStart(intern.weekstartDay).isSameDay(visibleWeek) ) {
             intern.selectedDate =  intern.now
         } else {
             intern.selectedDate = visibleWeek

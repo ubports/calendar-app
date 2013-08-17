@@ -98,3 +98,9 @@ function getFirstDateofWeek( year, month) {
     var first = date.getDate() - date.getDay();
     return new Date(date.setDate(first));
 }
+
+function today() {
+    var date = new Date();
+    date.setHours(0,0,0,0);
+    return date
+}

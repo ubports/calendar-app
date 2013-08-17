@@ -2,6 +2,8 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
+import "dateExt.js" as DateExt
+
 MainView {
     id: mainView
 
@@ -19,7 +21,7 @@ MainView {
         Page{
             id: tabPage
 
-            property var currentDay: new Date();
+            property var currentDay: DateExt.today();
 
             onCurrentDayChanged: {
                 if( monthView.startDay !== undefined && !monthView.startDay.isSameDay(currentDay))
@@ -57,7 +59,7 @@ MainView {
                         iconSource: Qt.resolvedUrl("avatar.png");
                         text: i18n.tr("Today");
                         onTriggered: {
-                            tabPage.currentDay = new Date()
+                            tabPage.currentDay = (new Date()).midnight();
                             monthView.goToToday();
                         }
                     }
@@ -75,8 +77,8 @@ MainView {
                             onMonthSelected: {
                                 tabs.selectedTabIndex = 1
                                 var now = new Date();
-                                if( date.getMonth() == now.getMonth()
-                                        && date.getFullYear() == now.getFullYear()) {
+                                if( date.getMonth() === now.getMonth()
+                                        && date.getFullYear() === now.getFullYear()) {
                                     monthView.goToToday();
                                 } else {
                                     monthView.startDay = date.midnight();

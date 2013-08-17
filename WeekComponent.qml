@@ -7,7 +7,7 @@ import "dataService.js" as DataService
 Flickable{
     id: timeLineView
 
-    property var weekStart: new Date()
+    property var weekStart: new Date().midnight();
     property int weekWidth:0;
 
     contentHeight: timeLineColumn.height + units.gu(3)
@@ -21,7 +21,7 @@ Flickable{
 
     function scroll() {
         //scroll to 9 o'clock or to now
-        var now = new Date();
+        var now = new Date().midnight();
         var hour = 9
         if( weekStart !== undefined
                 && now.weekStart(Qt.locale().firstDayOfWeek).isSameDay(weekStart)) {

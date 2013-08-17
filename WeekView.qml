@@ -8,7 +8,7 @@ Item{
     id: root
     anchors.fill: parent
 
-    property var dayStart: new Date()
+    property var dayStart: new Date();
 
     onDayStartChanged:{
         weekRibbon.visibleWeek = dayStart.weekStart(intern.firstDayOfWeek);
