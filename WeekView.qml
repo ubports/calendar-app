@@ -11,8 +11,8 @@ Item{
     property var dayStart: new Date();
 
     onDayStartChanged:{
-        weekRibbon.visibleWeek = dayStart.weekStart(intern.firstDayOfWeek);
-        weekViewPath.visibleWeek = dayStart.weekStart(intern.firstDayOfWeek);
+        weekRibbon.visibleWeek = dayStart.weekStart(Qt.locale().firstDayOfWeek);
+        weekViewPath.visibleWeek = dayStart.weekStart(Qt.locale().firstDayOfWeek);
     }
 
     Label{
@@ -29,7 +29,7 @@ Item{
 
     WeekRibbon{
         id: weekRibbon
-        visibleWeek: dayStart.weekStart(intern.firstDayOfWeek);
+        visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
         anchors.top: todayLabel.bottom
         anchors.left: timeLabel.right
         width: parent.width
@@ -45,11 +45,10 @@ Item{
     PathViewBase{
         id: weekViewPath
 
-        property var visibleWeek: dayStart.weekStart(intern.firstDayOfWeek);
+        property var visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
 
         QtObject{
             id: intern
-            property int firstDayOfWeek: Qt.locale().firstDayOfWeek
             property var weekStart: weekViewPath.visibleWeek.addDays(-7)
         }
 
@@ -66,14 +65,14 @@ Item{
         }
 
         function nextWeek() {
-            var weekStartDay = visibleWeek.weekStart(intern.firstDayOfWeek);
+            var weekStartDay = visibleWeek.weekStart(Qt.locale().firstDayOfWeek);
             visibleWeek = weekStartDay.addDays(7);
 
             dayStart = visibleWeek
         }
 
         function previousWeek(){
-            var weekStartDay = visibleWeek.weekStart(intern.firstDayOfWeek);
+            var weekStartDay = visibleWeek.weekStart(Qt.locale().firstDayOfWeek);
             visibleWeek = weekStartDay.addDays(-7);
 
             dayStart = visibleWeek
@@ -94,11 +93,11 @@ Item{
                 var previousIndex = weekViewPath.currentIndex > 0 ? weekViewPath.currentIndex - 1 : 2
 
                 if ( index === previousIndex ) {
-                    var weekStartDay= intern.weekStart.weekStart(intern.firstDayOfWeek);
+                    var weekStartDay= intern.weekStart.weekStart(Qt.locale().firstDayOfWeek);
                     return weekStartDay.addDays(14);
                 }
 
-                var weekStartDay = intern.weekStart.weekStart(intern.firstDayOfWeek);
+                var weekStartDay = intern.weekStart.weekStart(Qt.locale().firstDayOfWeek);
                 return weekStartDay.addDays(7);
             }
         }
