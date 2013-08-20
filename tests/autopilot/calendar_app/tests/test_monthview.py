@@ -20,14 +20,14 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 
-class TestMainWindow(CalendarTestCase):
+class TestMonthView(CalendarTestCase):
 
     def get_currentDayStart(self):
-        month_view = self.main_window.get_month_view()
+        month_view = self.main_view.get_month_view()
         return datetime.fromtimestamp(month_view.currentDayStart)
 
     def change_month(self, delta):
-        month_view = self.main_window.get_month_view()
+        month_view = self.main_view.get_month_view()
         y_line = month_view.globalRect[1] + month_view.globalRect[3] / 2
         x_pad = 0.15
         sign = int(math.copysign(1, delta))
@@ -47,7 +47,7 @@ class TestMainWindow(CalendarTestCase):
     def _test_go_to_today(self, delta):
         start = self.get_currentDayStart()
         self.change_month(delta)
-        self.ubuntusdk.click_toolbar_button("Today")
+        self.main_view.open_toolbar().click_button("todaybutton")
         self.assertThat(lambda: self.get_currentDayStart().day,
                         Eventually(Equals(start.day)))
         self.assertThat(lambda: self.get_currentDayStart().month,

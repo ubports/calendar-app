@@ -29,6 +29,7 @@ Depends: libautopilot-qt,
          libqt5test5,
          calendar-app (= ${source:Version}),
          python-dateutil,
+         ubuntu-ui-toolkit-autopilot,
 Description: Autopilot tests for Ubuntu Calendar Application
  This package contains autopilot tests for the Ubuntu Calendar application.
 

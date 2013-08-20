@@ -46,15 +46,15 @@ MainView {
                 id: commonToolBar
 
                 ToolbarButton {
+                    objectName: "neweventbutton"
                     action: Action {
-                        objectName: "neweventbutton"
                         iconSource: Qt.resolvedUrl("avatar.png")
                         text: i18n.tr("New Event")
                         onTriggered: tabPage.newEvent()
-
                     }
-                }
+                }                    
                 ToolbarButton {
+                    objectName: "todaybutton"
                     action: Action {
                         iconSource: Qt.resolvedUrl("avatar.png");
                         text: i18n.tr("Today");
