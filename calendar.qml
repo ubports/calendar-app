@@ -21,23 +21,23 @@ MainView {
 
             tools: ToolbarItems {
                 ToolbarButton {
-                    action: Action {
+                    action: Action {
                         iconSource: Qt.resolvedUrl("avatar.png")
                         text: i18n.tr("To-do")
                         onTriggered:; // FIXME
                     }
                 }
                 ToolbarButton {
+                    objectName: "neweventbutton"
                     action: Action {
-                        objectName: "neweventbutton"
                         iconSource: Qt.resolvedUrl("avatar.png")
                         text: i18n.tr("New Event")
                         onTriggered: monthViewPage.newEvent()
                     }
                 }
                 ToolbarButton {
+                    objectName: "timelinebutton"
                     action: Action {
-                        objectName: "timelinebutton"
                         iconSource: Qt.resolvedUrl("avatar.png")
                         text: i18n.tr("Timeline")
                         onTriggered: {
@@ -52,6 +52,7 @@ MainView {
                     }
                 }
                 ToolbarButton {
+                    objectName: "todaybutton"
                     action: Action {
                         iconSource: Qt.resolvedUrl("avatar.png");
                         text: i18n.tr("Today");

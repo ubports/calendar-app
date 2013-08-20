@@ -18,38 +18,37 @@ import time
 from calendar_app.tests import CalendarTestCase
 
 
-class TestMainWindow(CalendarTestCase):
+class TestMainView(CalendarTestCase):
 
     def test_timeline_view_shows(self):
-        """test timeline view"""
+        event_view = self.main_view.get_event_view()
+        self.assertThat(event_view.eventViewType,
+                        Eventually(Equals("DiaryView.qml")))
 
-        event_view = self.main_window.get_event_view()
+        self.main_view.open_toolbar().click_button("timelinebutton")
+        self.assertThat(event_view.eventViewType,
+                        Eventually(Equals("TimeLineView.qml")))
 
-        self.assertThat(
-            event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
-        self.ubuntusdk.click_toolbar_button("Timeline")
-        self.assertThat(
-            event_view.eventViewType, Eventually(Equals("TimeLineView.qml")))
-        self.ubuntusdk.click_toolbar_button("Diary")
-        self.assertThat(
-            event_view.eventViewType, Eventually(Equals("DiaryView.qml")))
+        self.main_view.open_toolbar().click_button("timelinebutton")
+        self.assertThat(event_view.eventViewType,
+                        Eventually(Equals("DiaryView.qml")))
 
     def test_new_event(self):
         """test add new event """
 
         #click on new event button
-        self.ubuntusdk.click_toolbar_button('New Event')
+        self.main_view.open_toolbar().click_button("neweventbutton")
 
         #grab all the fields
-        event_name_field = self.main_window.get_new_event_name_input_box()
-        end_time_field = self.main_window.get_event_end_time_field()
-        location_field = self.main_window.get_event_location_field()
-        people_field = self.main_window.get_event_people_field()
-        save_button = self.main_window.get_event_save_button()
+        event_name_field = self.main_view.get_new_event_name_input_box()
+        end_time_field = self.main_view.get_event_end_time_field()
+        location_field = self.main_view.get_event_location_field()
+        people_field = self.main_view.get_event_people_field()
+        save_button = self.main_view.get_event_save_button()
 
         #input a new event name
         self.assertThat(
-            self.main_window.get_new_event().visible, Eventually(Equals(True)))
+            self.main_view.get_new_event().visible, Eventually(Equals(True)))
         eventTitle = "Test event " + str(int(time.time()))
 
         self.pointing_device.click_object(event_name_field)
@@ -60,10 +59,11 @@ class TestMainWindow(CalendarTestCase):
         self.pointing_device.click_object(end_time_field)
 
         #change hour
-        timePicker = self.app.select_single("TimePicker")
+        timePicker = self.main_view.select_single("TimePicker")
         self.assertThat(timePicker.visible, Eventually(Equals(True)))
 
-        hourScroller = self.ubuntusdk.get_object("Scroller", "hourScroller")
+        hourScroller = timePicker.select_single("Scroller",
+                                                objectName="hourScroller")
         self.assertThat(hourScroller.visible, Eventually(Equals(True)))
 
         y_Hscroller = hourScroller.globalRect[1]
@@ -78,8 +78,8 @@ class TestMainWindow(CalendarTestCase):
             int((y_Hscroller + ((height_Hscroller / 4) * 2))))
 
         #change minutes
-        minuteScroller = self.ubuntusdk.get_object("Scroller",
-                                                   "minuteScroller")
+        minuteScroller = timePicker.select_single("Scroller",
+                                                  objectName="minuteScroller")
         self.assertThat(minuteScroller.visible, Eventually(Equals(True)))
 
         y_Mscroller = minuteScroller.globalRect[1]
@@ -94,9 +94,9 @@ class TestMainWindow(CalendarTestCase):
             int((y_Mscroller + ((height_Mscroller / 4) * 2))))
 
         #click ok button
-        timepicker_ok_button = self.main_window.get_time_picker_ok_button()
+        timepicker_ok_button = self.main_view.get_time_picker_ok_button()
         self.pointing_device.click_object(timepicker_ok_button)
-        self.assertThat(lambda: self.app.select_single("TimePicker"),
+        self.assertThat(lambda: self.main_view.select_single("TimePicker"),
                         Eventually(Is(None)))
 
         #input location
@@ -110,11 +110,11 @@ class TestMainWindow(CalendarTestCase):
         self.assertThat(people_field.text, Eventually(Equals("Me")))
 
         #click save button
-        save_button = self.main_window.get_event_save_button()
+        save_button = self.main_view.get_event_save_button()
         self.pointing_device.click_object(save_button)
-        self.assertThat(lambda: self.main_window.get_new_event(),
+        self.assertThat(lambda: self.main_view.get_new_event(),
                         Eventually(Is(None)))
 
         #verify that the event has been created in timeline
-        self.assertThat(lambda: self.main_window.get_title_label(eventTitle),
+        self.assertThat(lambda: self.main_view.get_title_label(eventTitle),
                         Eventually(NotEquals(None)))
