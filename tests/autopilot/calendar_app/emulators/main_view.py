@@ -19,35 +19,40 @@ class MainView(uitk.MainView):
     def get_event_view(self):
         return self.select_single("EventView")
 
+    def get_month_view(self):
+        return self.select_single("MonthView")
+
+    def get_title_label(self, title):
+        return self.select_single("Label", text=title)
+
     def get_new_event(self):
         return self.select_single("NewEvent")
 
     def get_new_event_name_input_box(self):
-        return self.select_single("TextField", objectName="newEventName")
+        new_event = self.get_new_event()
+        return new_event.select_single("TextField", objectName="newEventName")
 
     def get_event_start_time_field(self):
-        return self.select_single("Button", objectName="startTimeInput")
+        new_event = self.get_new_event()
+        return new_event.select_single("Button", objectName="startTimeInput")
 
     def get_event_end_time_field(self):
-        return self.select_single("Button", objectName="endTimeInput")
+        new_event = self.get_new_event()
+        return new_event.select_single("Button", objectName="endTimeInput")
 
     def get_event_location_field(self):
-        return self.select_single("TextField", objectName="eventLocationInput")
+        new_event = self.get_new_event()
+        return new_event.select_single("TextField",
+                                       objectName="eventLocationInput")
 
     def get_event_people_field(self):
-        return self.select_single("TextField", objectName="eventPeopleInput")
+        new_event = self.get_new_event()
+        return new_event.select_single("TextField",
+                                       objectName="eventPeopleInput")
 
-    def get_month_view(self):
-        return self.select_single("MonthView")
+    def get_event_save_button(self):
+        new_event = self.get_new_event()
+        return new_event.select_single("Button", objectName="eventSaveButton")
 
     def get_time_picker(self):
         return self.select_single("TimePicker")
-
-    def get_time_picker_ok_button(self):
-        return self.select_single("Button", objectName="TimePickerOKButton")
-
-    def get_event_save_button(self):
-        return self.select_single("Button", objectName="eventSaveButton")
-
-    def get_title_label(self, title):
-        return self.select_single("Label", text=title)
