@@ -86,6 +86,7 @@ Popover {
                                 margins: units.gu(1)
                             }
                             onClicked: {
+                                internal.clearFocus()
                                 var popupObj = PopupUtils.open(timePicker);
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = startDate;
@@ -119,6 +120,7 @@ Popover {
                                 margins: units.gu(1)
                             }
                             onClicked: {
+                                internal.clearFocus()
                                 var popupObj = PopupUtils.open(timePicker);
                                 popupObj.accepted.connect(function(endHour, endMinute) {
                                     var newDate = endDate;
@@ -180,6 +182,8 @@ Popover {
                 }
 
                 onClicked: {
+                    internal.clearFocus()
+
                     var error = 0;
 
                     if (startDate > endDate)
@@ -206,6 +210,17 @@ Popover {
                     error = 0;
                 }
             }
+        }
+    }
+
+    QtObject {
+        id: internal
+
+        function clearFocus() {
+            Qt.inputMethod.hide()
+            titleEdit.focus = false
+            locationEdit.focus = false
+            personEdit.focus = false
         }
     }
 }

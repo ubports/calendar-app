@@ -16,8 +16,9 @@ from autopilot.testcase import AutopilotTestCase
 
 from testtools.matchers import Equals
 
-from calendar_app.emulators.main_window import MainWindow
-from calendar_app.emulators.ubuntusdk import ubuntusdk
+from ubuntuuitoolkit import emulators as uitk
+
+from calendar_app.emulators.main_view import MainView
 
 
 class CalendarTestCase(AutopilotTestCase):
@@ -40,26 +41,23 @@ class CalendarTestCase(AutopilotTestCase):
             self.launch_test_local()
         else:
             self.launch_test_installed()
-        self.assertThat(self.ubuntusdk.get_qml_view().visible,
-                        Eventually(Equals(True)))
+        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
 
     def launch_test_local(self):
         self.app = self.launch_test_application(
             "qmlscene",
             self.local_location,
-            app_type='qt')
+            app_type='qt',
+            emulator_base=uitk.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_installed(self):
         self.app = self.launch_test_application(
             "qmlscene",
             "/usr/share/calendar-app/calendar.qml",
             "--desktop_file_hint=/usr/share/applications/calendar-app.desktop",
-            app_type='qt')
+            app_type='qt',
+            emulator_base=uitk.UbuntuUIToolkitEmulatorBase)
 
     @property
-    def main_window(self):
-        return MainWindow(self.app)
-
-    @property
-    def ubuntusdk(self):
-        return ubuntusdk(self, self.app)
+    def main_view(self):
+        return self.app.select_single(MainView)
