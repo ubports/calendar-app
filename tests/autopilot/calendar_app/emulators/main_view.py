@@ -40,6 +40,9 @@ class MainView(uitk.MainView):
     def get_month_view(self):
         return self.select_single("MonthView")
 
+    def get_time_picker(self):
+        return self.select_single("TimePicker")
+
     def get_time_picker_ok_button(self):
         return self.select_single("Button", objectName="TimePickerOKButton")
 

@@ -11,7 +11,7 @@ from __future__ import absolute_import
 
 from autopilot.matchers import Eventually
 
-from testtools.matchers import Equals, NotEquals, Is
+from testtools.matchers import Equals, Not, Is
 
 import time
 
@@ -33,6 +33,25 @@ class TestMainView(CalendarTestCase):
         self.assertThat(event_view.eventViewType,
                         Eventually(Equals("DiaryView.qml")))
 
+    def scroll_time_picker_to_time(self, picker, hours, minutes):
+        # Scroll hours to selected value
+        scroller = picker.select_single("Scroller", objectName="hourScroller")
+        x = int(scroller.globalRect[0] + scroller.globalRect[2] / 2)
+        y = int(scroller.globalRect[1] + 0.9 * scroller.globalRect[3])
+        self.pointing_device.move(x, y)
+        while (scroller.currentIndex != hours):
+            self.pointing_device.click()
+            scroller.currentIndex.wait_for((scroller.currentIndex + 1) % 24)
+        # Scroll minutes to selected value
+        scroller = picker.select_single("Scroller",
+                                        objectName="minuteScroller")
+        x = int(scroller.globalRect[0] + scroller.globalRect[2] / 2)
+        y = int(scroller.globalRect[1] + 0.9 * scroller.globalRect[3])
+        self.pointing_device.move(x, y)
+        while (scroller.currentIndex != minutes):
+            self.pointing_device.click()
+            scroller.currentIndex.wait_for((scroller.currentIndex + 1) % 60)
+
     def test_new_event(self):
         """test add new event """
 
@@ -41,7 +60,6 @@ class TestMainView(CalendarTestCase):
 
         #grab all the fields
         event_name_field = self.main_view.get_new_event_name_input_box()
-        end_time_field = self.main_view.get_event_end_time_field()
         location_field = self.main_view.get_event_location_field()
         people_field = self.main_view.get_event_people_field()
         save_button = self.main_view.get_event_save_button()
@@ -55,49 +73,29 @@ class TestMainView(CalendarTestCase):
         self.keyboard.type(eventTitle)
         self.assertThat(event_name_field.text, Eventually(Equals(eventTitle)))
 
-        #input end time
+        # Set the start time
+        start_time_field = self.main_view.get_event_start_time_field()
+        self.pointing_device.click_object(start_time_field)
+        self.assertThat(self.main_view.get_time_picker,
+                        Eventually(Not(Is(None))))
+        picker = self.main_view.get_time_picker()
+        self.assertThat(picker.visible, Eventually(Equals(True)))
+        self.scroll_time_picker_to_time(picker, 10, 15)
+        ok = picker.select_single("Button", objectName="TimePickerOKButton")
+        self.pointing_device.click_object(ok)
+        self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
+
+        # Set the end time
+        end_time_field = self.main_view.get_event_end_time_field()
         self.pointing_device.click_object(end_time_field)
-
-        #change hour
-        timePicker = self.main_view.select_single("TimePicker")
-        self.assertThat(timePicker.visible, Eventually(Equals(True)))
-
-        hourScroller = timePicker.select_single("Scroller",
-                                                objectName="hourScroller")
-        self.assertThat(hourScroller.visible, Eventually(Equals(True)))
-
-        y_Hscroller = hourScroller.globalRect[1]
-        height_Hscroller = hourScroller.globalRect[3]
-        x_Hscroller = hourScroller.globalRect[0]
-        width_Hscroller = hourScroller.globalRect[2]
-
-        self.pointing_device.drag(
-            int(x_Hscroller + (width_Hscroller / 4)),
-            int((y_Hscroller + ((height_Hscroller / 4) * 3))),
-            int(x_Hscroller + (width_Hscroller / 4)),
-            int((y_Hscroller + ((height_Hscroller / 4) * 2))))
-
-        #change minutes
-        minuteScroller = timePicker.select_single("Scroller",
-                                                  objectName="minuteScroller")
-        self.assertThat(minuteScroller.visible, Eventually(Equals(True)))
-
-        y_Mscroller = minuteScroller.globalRect[1]
-        height_Mscroller = minuteScroller.globalRect[3]
-        x_Mscroller = minuteScroller.globalRect[0]
-        width_Mscroller = minuteScroller.globalRect[2]
-
-        self.pointing_device.drag(
-            int(x_Mscroller + (width_Mscroller / 4)),
-            int((y_Mscroller + ((height_Mscroller / 4) * 3))),
-            int(x_Mscroller + (width_Mscroller / 4)),
-            int((y_Mscroller + ((height_Mscroller / 4) * 2))))
-
-        #click ok button
-        timepicker_ok_button = self.main_view.get_time_picker_ok_button()
-        self.pointing_device.click_object(timepicker_ok_button)
-        self.assertThat(lambda: self.main_view.select_single("TimePicker"),
-                        Eventually(Is(None)))
+        self.assertThat(self.main_view.get_time_picker,
+                        Eventually(Not(Is(None))))
+        picker = self.main_view.get_time_picker()
+        self.assertThat(picker.visible, Eventually(Equals(True)))
+        self.scroll_time_picker_to_time(picker, 11, 45)
+        ok = picker.select_single("Button", objectName="TimePickerOKButton")
+        self.pointing_device.click_object(ok)
+        self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
 
         #input location
         self.pointing_device.click_object(location_field)
@@ -117,4 +115,4 @@ class TestMainView(CalendarTestCase):
 
         #verify that the event has been created in timeline
         self.assertThat(lambda: self.main_view.get_title_label(eventTitle),
-                        Eventually(NotEquals(None)))
+                        Eventually(Not(Is(None))))
