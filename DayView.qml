@@ -82,6 +82,7 @@ Item{
 
         delegate: DayComponent {
             id: timeLineView
+            objectName: "day"
 
             width: parent.width
             height: parent.height

@@ -14,6 +14,7 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals, Not, Is
 
 import time
+import datetime
 
 from calendar_app.tests import CalendarTestCase
 
@@ -41,6 +42,9 @@ class TestMainView(CalendarTestCase):
 
     def test_new_event(self):
         """test add new event """
+        now = datetime.datetime.now()
+        hour = now.hour
+        minute = now.minute
 
         #click on new event button
         self.main_view.open_toolbar().click_button("neweventbutton")
@@ -61,7 +65,7 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_time_picker,
                         Eventually(Not(Is(None))))
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 10, 15)
+        self.scroll_time_picker_to_time(picker, hour, minute+2)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
         self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
@@ -72,7 +76,7 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_time_picker,
                         Eventually(Not(Is(None))))
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 11, 45)
+        self.scroll_time_picker_to_time(picker, hour+1, minute+2)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
         self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
