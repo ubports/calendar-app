@@ -23,7 +23,7 @@ class MainView(uitk.MainView):
         return self.select_single("MonthView")
 
     def get_title_label(self, title):
-        return self.select_single("Label", text=title)
+        return self.select_many("Label", text=title)[0]
 
     def get_new_event(self):
         return self.select_single("NewEvent")
