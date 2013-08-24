@@ -54,6 +54,7 @@ Flickable{
 
     TimeLineBase {
         id: bubbleOverLay
+        objectName: "timeLineBase"
 
         width: timeLineColumn.width
         height: timeLineColumn.height

@@ -6,6 +6,8 @@ import "dataService.js" as DataService
 
 Item{
     id: root
+    objectName: "DayView"
+
     anchors.fill: parent
 
     property var currentDay: new Date()
@@ -51,6 +53,7 @@ Item{
 
     PathViewBase{
         id: weekViewPath
+        objectName:"DayViewPathBase"
 
         property var visibleDay: currentDay;
 
@@ -82,6 +85,8 @@ Item{
 
         delegate: DayComponent {
             id: timeLineView
+
+            objectName: "DayComponent-"+index
 
             width: parent.width
             height: parent.height
