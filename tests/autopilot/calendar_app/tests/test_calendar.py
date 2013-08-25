@@ -65,7 +65,7 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_time_picker,
                         Eventually(Not(Is(None))))
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, hour, minute+2)
+        self.scroll_time_picker_to_time(picker, hour, minute + 2)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
         self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
@@ -76,7 +76,7 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_time_picker,
                         Eventually(Not(Is(None))))
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, hour+1, minute+2)
+        self.scroll_time_picker_to_time(picker, hour + 1, minute + 2)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
         self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
