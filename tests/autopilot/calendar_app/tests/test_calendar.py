@@ -14,6 +14,7 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals, Not, Is
 
 import time
+import datetime
 
 from calendar_app.tests import CalendarTestCase
 
@@ -39,31 +40,11 @@ class TestMainView(CalendarTestCase):
             self.pointing_device.click()
             scroller.currentIndex.wait_for((scroller.currentIndex + 1) % 60)
 
-    def event_count_for_dayview(self):
-        #retuns event count for dayview
-        day_view = self.main_view.get_day_view()
-        self.assertThat(lambda: day_view, Eventually(Not(Is(None))))
-
-        path_base = day_view.select_single("PathViewBase",
-                                           objectName="DayViewPathBase")
-        current_index = path_base.currentIndex
-        com_name = "DayComponent-" + str(current_index)
-        #print("Comp Name:" , com_name)
-        day_component = path_base.select_single("DayComponent",
-                                                objectName=com_name)
-        self.assertThat(lambda: day_component, Eventually(Not(Is(None))))
-
-        timeline_base = day_component.select_single("TimeLineBase",
-                                                    objectName="timeLineBase")
-        self.assertThat(lambda: timeline_base, Eventually(Not(Is(None))))
-
-        print("Event count:", timeline_base.eventCount)
-        return (timeline_base.eventCount)
-
     def test_new_event(self):
         """test add new event """
-
-        count_before_insert = self.event_count_for_dayview()
+        now = datetime.datetime.now()
+        hour = now.hour
+        minute = now.minute
 
         #click on new event button
         self.main_view.open_toolbar().click_button("neweventbutton")
@@ -84,7 +65,7 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_time_picker,
                         Eventually(Not(Is(None))))
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 10, 15)
+        self.scroll_time_picker_to_time(picker, hour, minute+2)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
         self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
@@ -95,7 +76,7 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_time_picker,
                         Eventually(Not(Is(None))))
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 11, 45)
+        self.scroll_time_picker_to_time(picker, hour+1, minute+2)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
         self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
@@ -120,5 +101,5 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_new_event, Eventually(Is(None)))
 
         #verify that the event has been created in timeline
-        self.assertThat(lambda: self.event_count_for_dayview(),
-                        Eventually(Equals(count_before_insert + 1)))
+        self.assertThat(lambda: self.main_view.get_title_label(eventTitle),
+                        Eventually(Not(Is(None))))
