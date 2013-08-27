@@ -85,7 +85,6 @@ Item{
 
         delegate: DayComponent {
             id: timeLineView
-
             objectName: "DayComponent-"+index
 
             width: parent.width

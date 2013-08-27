@@ -9,8 +9,6 @@ Item {
     property var day;
     property int hourHeight: units.gu(10)
 
-    readonly property int eventCount: model.count
-
     EventListModel {
         id: model
         termStart: bubbleOverLay.day.midnight()
