@@ -22,6 +22,9 @@ class MainView(uitk.MainView):
     def get_month_view(self):
         return self.select_single("MonthView")
 
+    def get_day_view(self):
+        return self.select_single("DayView")
+
     def get_title_label(self, title):
         return self.select_single("Label", text=title)
 
