@@ -7,7 +7,7 @@ import "dataService.js" as DataService
 Flickable{
     id: timeLineView
 
-    property var weekStart: new Date().midnight();
+    property var day: new Date()
     property int weekWidth:0;
 
     contentHeight: timeLineColumn.height + units.gu(3)
@@ -15,16 +15,21 @@ Flickable{
 
     clip: true
 
-    onWeekStartChanged: {
+    onDayChanged: {
         scroll();
+    }
+
+    //scroll in case content height changed
+    onContentHeightChanged: {
+        scroll()
     }
 
     function scroll() {
         //scroll to 9 o'clock or to now
-        var now = new Date().midnight();
+        var now = new Date();
         var hour = 9
-        if( weekStart !== undefined
-                && now.weekStart(Qt.locale().firstDayOfWeek).isSameDay(weekStart)) {
+        if( day !== undefined
+                && now.isSameDay(day)) {
             hour = now.getHours();
         }
 
@@ -32,11 +37,6 @@ Flickable{
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
-    }
-
-    //scroll in case content height changed
-    onContentHeightChanged: {
-        scroll()
     }
 
     Rectangle{
@@ -52,47 +52,16 @@ Flickable{
         width: parent.width
     }
 
-    //vertical lines for weeks
-    Row{
-        id: dayIndicator
+    TimeLineBase {
+        id: bubbleOverLay
+        objectName: "timeLineBase"
 
-        x: timeLabel.width
-        width: parent.width
-        height: timeLineView.contentHeight
-
-        Repeater{
-            model:7
-            delegate: Rectangle{
-                height: dayIndicator.height
-                width: weekWidth
-                border.color: "gray"
-                opacity: 0.1
-            }
-        }
-    }
-
-    Row{
-        id: week
-        width: timeLineColumn.width - x
+        width: timeLineColumn.width
         height: timeLineColumn.height
         anchors.top: parent.top
         anchors.topMargin: units.gu(3)
-        x: timeLabel.width
-        spacing: 0
-
-        property var weekStartDay: timeLineView.weekStart.weekStart( Qt.locale().firstDayOfWeek );
-
-        Repeater{
-            model: 7
-
-            delegate: TimeLineBase {
-                anchors.top: parent.top
-                height: parent.height
-                width: weekWidth
-                delegate: infoBubbleComponent
-                day: week.weekStartDay.addDays(index)
-            }
-        }
+        delegate: infoBubbleComponent
+        day: timeLineView.day
     }
 
     Component{
@@ -107,17 +76,25 @@ Flickable{
             signal clicked(int hour);
 
             color:'#fffdaa';
-            width: weekWidth
-            x: units.gu(0)
+            width: timeLineView.width - units.gu(8)
+            x: units.gu(5)
 
             border.color: "#f4d690"
 
-            Label{
-                text:infoBubble.title;
-                fontSize:"small";
-                color:"black"
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                width: parent.width
+            Column{
+                id: column
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+
+                    leftMargin: units.gu(1)
+                    rightMargin: units.gu(1)
+                    topMargin: units.gu(1)
+                }
+                spacing: units.gu(1)
+                Label{text:infoBubble.title;fontSize:"medium";color:"black"}
+                Label{text:infoBubble.location; fontSize:"small"; color:"black"}
             }
 
             MouseArea{

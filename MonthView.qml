@@ -6,6 +6,9 @@ import "colorUtils.js" as Color
 ListView {
     id: monthView
 
+    // FIXME: change monthview to use this date as start date
+    property alias startDay: intern.currentDayStart
+
     readonly property var monthStart: currentItem != null ? currentItem.monthStart : (new Date()).monthStart()
     readonly property var monthEnd: currentItem != null ? currentItem.monthEnd : (new Date()).monthStart().addMonths(1)
     readonly property var currentDayStart: intern.currentDayStart

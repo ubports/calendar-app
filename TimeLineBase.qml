@@ -11,7 +11,7 @@ Item {
 
     EventListModel {
         id: model
-        termStart: bubbleOverLay.day
+        termStart: bubbleOverLay.day.midnight()
         termLength: Date.msPerDay
 
         onReload: {
@@ -23,6 +23,7 @@ Item {
         id: separator
         objectName: "separator"
         width:  bubbleOverLay.width
+        z:1
     }
 
     QtObject {

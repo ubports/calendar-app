@@ -20,19 +20,6 @@ from calendar_app.tests import CalendarTestCase
 
 class TestMainView(CalendarTestCase):
 
-    def test_timeline_view_shows(self):
-        event_view = self.main_view.get_event_view()
-        self.assertThat(event_view.eventViewType,
-                        Eventually(Equals("DiaryView.qml")))
-
-        self.main_view.open_toolbar().click_button("timelinebutton")
-        self.assertThat(event_view.eventViewType,
-                        Eventually(Equals("TimeLineView.qml")))
-
-        self.main_view.open_toolbar().click_button("timelinebutton")
-        self.assertThat(event_view.eventViewType,
-                        Eventually(Equals("DiaryView.qml")))
-
     def scroll_time_picker_to_time(self, picker, hours, minutes):
         # Scroll hours to selected value
         scroller = picker.select_single("Scroller", objectName="hourScroller")
