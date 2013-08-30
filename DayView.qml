@@ -38,7 +38,7 @@ Item{
         visibleWeek: currentDay.weekStart(intern.firstDayOfWeek);
         anchors.top: todayLabel.bottom
         anchors.left: timeLabel.right
-        width: parent.width - timeLabel.width
+        width: parent.width
         height: units.gu(10)
         weekWidth: dummy.width + units.gu(1)
 
