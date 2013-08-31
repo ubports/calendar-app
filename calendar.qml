@@ -24,8 +24,8 @@ MainView {
             property var currentDay: DateExt.today();
 
             onCurrentDayChanged: {
-                if( monthView.startDay !== undefined && !monthView.startDay.isSameDay(currentDay))
-                    monthView.startDay = currentDay.midnight();
+                if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
+                    monthView.currentMonth = currentDay.midnight();
 
                 if( !dayView.currentDay.isSameDay(currentDay))
                     dayView.currentDay = currentDay
@@ -60,7 +60,6 @@ MainView {
                         text: i18n.tr("Today");
                         onTriggered: {
                             tabPage.currentDay = (new Date()).midnight();
-                            monthView.goToToday();
                         }
                     }
                 }
@@ -76,13 +75,12 @@ MainView {
                         YearView{
                             onMonthSelected: {
                                 tabs.selectedTabIndex = 1
-                                var now = new Date();
+                                var now = DateExt.today();
                                 if( date.getMonth() === now.getMonth()
                                         && date.getFullYear() === now.getFullYear()) {
-                                    monthView.goToToday();
+                                    monthView.currentMonth = now
                                 } else {
-                                    monthView.startDay = date.midnight();
-                                    monthView.gotoNextMonth(date.getMonth());
+                                    monthView.currentMonth = date.midnight();
                                 }
                             }
                         }
@@ -91,24 +89,14 @@ MainView {
                 Tab {
                     id: monthTab
                     title: i18n.tr("Month")
-                    page: Page{
+                    page: MonthView{
                         anchors.fill: parent
                         tools: commonToolBar
-                        Column {
-                            anchors.fill: parent
-                            Label{
-                                id: monthLabel
-                                fontSize: "large"
-                                text: Qt.formatDateTime(monthView.startDay,"MMMM yyyy");
-                            }
+                        id: monthView
 
-                            MonthView {
-                                id: monthView
-                                onFocusOnDay: {
-                                    tabs.selectedTabIndex  = 3
-                                    tabPage.currentDay = dayStart;
-                                }
-                            }
+                        onDateSelected: {
+                            tabs.selectedTabIndex  = 3
+                            tabPage.currentDay = date;
                         }
                     }
                 }
