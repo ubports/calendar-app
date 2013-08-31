@@ -10,7 +10,7 @@ Flickable{
     property var weekStart: new Date().midnight();
     property int weekWidth:0;
 
-    contentHeight: timeLineColumn.height + units.gu(3)
+    contentHeight: timeLineColumn.height
     contentWidth: width
 
     clip: true
@@ -21,7 +21,7 @@ Flickable{
 
     function scroll() {
         //scroll to 9 o'clock or to now
-        var now = new Date().midnight();
+        var now = new Date();
         var hour = 9
         if( weekStart !== undefined
                 && now.weekStart(Qt.locale().firstDayOfWeek).isSameDay(weekStart)) {
@@ -48,7 +48,6 @@ Flickable{
     TimeLineBackground{
         id: timeLineColumn
         anchors.top: parent.top
-        anchors.topMargin: units.gu(3)
         width: parent.width
     }
 
@@ -76,7 +75,6 @@ Flickable{
         width: timeLineColumn.width - x
         height: timeLineColumn.height
         anchors.top: parent.top
-        anchors.topMargin: units.gu(3)
         x: timeLabel.width
         spacing: 0
 
