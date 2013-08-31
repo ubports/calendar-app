@@ -13,7 +13,7 @@ Item{
     property var currentDay: new Date()
 
     onCurrentDayChanged:{
-        weekRibbon.visibleWeek = currentDay.weekStart(intern.firstDayOfWeek);
+        weekRibbon.visibleWeek = currentDay.weekStart(Qt.locale().firstDayOfWeek);
         weekRibbon.setSelectedDay(currentDay);
     }
 
@@ -31,7 +31,7 @@ Item{
 
     WeekRibbon{
         id: weekRibbon
-        visibleWeek: currentDay.weekStart(intern.firstDayOfWeek);
+        visibleWeek: currentDay.weekStart(Qt.locale().firstDayOfWeek);
         anchors.top: todayLabel.bottom
         anchors.left: timeLabel.right
         width: parent.width
@@ -56,7 +56,6 @@ Item{
 
         QtObject{
             id: intern
-            property int firstDayOfWeek: Qt.locale().firstDayOfWeek
             property var startDay: weekViewPath.visibleDay.addDays(-1)
         }
 
