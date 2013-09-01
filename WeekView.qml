@@ -11,7 +11,6 @@ Item{
     property var dayStart: new Date();
 
     onDayStartChanged:{
-        weekRibbon.visibleWeek = dayStart.weekStart(Qt.locale().firstDayOfWeek);
         weekViewPath.visibleWeek = dayStart.weekStart(Qt.locale().firstDayOfWeek);
     }
 
@@ -20,26 +19,6 @@ Item{
         text: Qt.formatDateTime( new Date(),"d MMMM yyyy");
         fontSize: "large"
         width: parent.width
-    }
-
-    Label{
-        id: timeLabel;visible: false
-        text: new Date(0, 0, 0, 0).toLocaleTimeString(Qt.locale(), i18n.tr("HH"))
-    }
-
-    WeekRibbon{
-        id: weekRibbon
-        visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
-        anchors.top: todayLabel.bottom
-        anchors.left: timeLabel.right
-        width: parent.width
-        height: units.gu(10)
-        //removing timeLabel.width from front and back of ribbon
-        weekWidth: ((width - 2* timeLabel.width )/ 7 )
-
-        onWeekChanged: {
-            dayStart = visibleWeek
-        }
     }
 
     PathViewBase{
@@ -52,9 +31,9 @@ Item{
             property var weekStart: weekViewPath.visibleWeek.addDays(-7)
         }
 
-        anchors.top: weekRibbon.bottom
+        anchors.top: todayLabel.bottom
         width: parent.width
-        height: parent.height - weekRibbon.height - units.gu(3)
+        height: parent.height - todayLabel.height - units.gu(3)
 
         onNextItemHighlighted: {
             nextWeek();
@@ -78,13 +57,14 @@ Item{
             dayStart = visibleWeek
         }
 
-        delegate: WeekComponent {
+        delegate: TimeLineBaseComponent {
             id: timeLineView
 
-            width: parent.width
+            type: typeWeek
+
+            width: parent.width - units.gu(2)
             height: parent.height
-            weekWidth: weekRibbon.weekWidth //dummy.width + units.gu(1)
-            weekStart: getWeekStart();
+            startDay: getWeekStart();
 
             function getWeekStart() {
                 if (index === weekViewPath.currentIndex) {

@@ -6,14 +6,20 @@ import "dateExt.js" as DateExt
 UbuntuShape {
     id: root
 
-    property var weekStart: DateExt.today();
+    property var startDay: DateExt.today();
+
+    property int type: typeWeek
+
+    readonly property int typeWeek: 0
+    readonly property int typeDay: 1
 
     color: "#e6e4e9"
 
     TimeLineHeader{
         id: header
-        type: typeWeek
+        type: root.type
         anchors.top: parent.top
+        startDay: root.startDay
     }
 
     Flickable{
@@ -38,14 +44,20 @@ UbuntuShape {
             anchors.top: parent.top
 
             Repeater{
-                model: 7
+                model: type == typeWeek ? 7 : 3
 
                 delegate: TimeLineBase {
                     anchors.top: parent.top
-                    width: parent.width/7
+                    width: {
+                        if( type == typeWeek || (type == typeDay && index != 1 ) ) {
+                             header.width/7
+                        } else {
+                            (header.width/7) * 5
+                        }
+                    }
                     height: parent.height
                     delegate: comp
-                    day: weekStart.addDays(index)
+                    day: startDay.addDays(index)
                 }
             }
         }
@@ -54,7 +66,13 @@ UbuntuShape {
     Component{
         id: comp
         EventBubble{
-            type: narrowType
+            type: {
+                if( root.type == typeWeek || (root.type == typeDay && index != 1 ) ) {
+                    narrowType
+                } else {
+                    wideType
+                }
+            }
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.leftMargin: units.gu(0.1)

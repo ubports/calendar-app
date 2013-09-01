@@ -79,9 +79,17 @@ Item {
 
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
 
-        eventBubble.title = event.title;
-        eventBubble.location = "Test"//event.location;
-        eventBubble.hour = hour;
+        if(eventBubble.event)
+            eventBubble.event = event
+
+        if( eventBubble.title)
+            eventBubble.title = event.title;
+
+        if( eventBubble.location)
+            eventBubble.location = "Test"//event.location;
+
+        if( eventBubble.hour)
+            eventBubble.hour = hour;
 
         var yPos = (( event.startTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
         eventBubble.y = yPos;
