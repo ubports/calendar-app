@@ -64,21 +64,24 @@ Page {
         mapImage.source=imageSrc;
     }
 
-    tools: ToolbarActions {
-        Action {
-            text: i18n.tr("Add invite");
-            onTriggered: {
-                print(text + " not implemented");
+    tools: ToolbarItems {
+        ToolbarButton {
+            action: Action {
+                text: i18n.tr("Add invite");
+                onTriggered: {
+                    print(text + " not implemented");
+                }
             }
         }
-        Action {
-            text: i18n.tr("Edit");
-            onTriggered: {
-                print(text + " not implemented");
+
+        ToolbarButton {
+            action:Action {
+                text: i18n.tr("Edit");
+                onTriggered: {
+                    print(text + " not implemented");
+                }
             }
         }
-        active: true
-        lock: false
     }
 
     Column{
