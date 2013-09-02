@@ -134,7 +134,7 @@ Popover {
             }
         }
 
-        ListItem.Header { text: i18n.tr("Location") }
+        ListItem.Header { text: i18n.tr("Location & People") }
         ListItem.Empty {
             highlightWhenPressed: false
             TextField {
@@ -148,7 +148,6 @@ Popover {
             }
         }
 
-        ListItem.Header { text: i18n.tr("People") }
         ListItem.Empty {
             highlightWhenPressed: false
             TextField {
