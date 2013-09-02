@@ -23,7 +23,7 @@ Item {
         termStart: dayStart
         termLength: Date.msPerDay
 
-        onReload: {
+        onReloaded: {
             modelRefreshed();
         }
     }

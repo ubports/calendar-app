@@ -14,7 +14,7 @@ Item {
         termStart: bubbleOverLay.day.midnight()
         termLength: Date.msPerDay
 
-        onReload: {
+        onReloaded: {
             bubbleOverLay.createEvents();
         }
     }
