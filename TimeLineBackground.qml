@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 Column {
+    id: root
     width: parent.width
     Repeater{
         model: 24 // hour in a day
