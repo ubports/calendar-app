@@ -12,47 +12,66 @@ Item{
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
     property string monthLabelFontSize: "large"
+    property string yearLabelFontSize: "medium"
 
     property alias dayLabelDelegate : dayLabelRepeater.delegate
     property alias dateLabelDelegate : dateLabelRepeater.delegate
 
     signal dateSelected(var date)
 
-    height: column.height
+    height: ubuntuShape.height
 
-    Column{
-        id: column
+    UbuntuShape {
+        id: ubuntuShape
 
         anchors.fill: parent
-        spacing: units.gu(1.5)
+        radius: "medium"
 
-        Label{
-            id: monthLabel
-            fontSize: monthLabelFontSize
-            text: Qt.locale().standaloneMonthName(root.monthDate.getMonth())
-            anchors.leftMargin: units.gu(1)
-            anchors.left: parent.left
-            anchors.right: parent.right
-        }
+        Column{
+            id: column
 
-        Row{
-            id: dayLabelRow
-            width: parent.width
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.topMargin: units.gu(1.5)
+            anchors.fill: parent
+            spacing: units.gu(1.5)
 
-            Repeater{
-                id: dayLabelRepeater
-                model:7
-                delegate: dafaultDayLabelComponent
+            Item{
+                id: monthHeader
+                width: parent.width
+                height: monthLabel.height
+
+                Label{
+                    id: monthLabel
+                    fontSize: monthLabelFontSize
+                    text: Qt.locale().standaloneMonthName(root.monthDate.getMonth())
+                    anchors.leftMargin: units.gu(1)
+                    anchors.left: parent.left
+                    //color:"white"
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                Label{
+                    id: yearLabel
+                    fontSize: yearLabelFontSize
+                    text: root.monthDate.getFullYear()
+                    anchors.right: parent.right
+                    anchors.rightMargin: units.gu(1)
+                    color:"#AEA79F"
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
-        }
 
-        UbuntuShape {
+            Row{
+                id: dayLabelRow
+                width: parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
 
-            width: parent.width
-            height: parent.height - monthLabel.height - dayLabelRow.height - units.gu(5) - units.gu(3)
-
-            radius: "medium"
+                Repeater{
+                    id: dayLabelRepeater
+                    model:7
+                    delegate: dafaultDayLabelComponent
+                }
+            }
 
             Grid{
                 id: monthGrid
@@ -60,11 +79,8 @@ Item{
                 property int weekCount : 6
                 property var monthStart: DateExt.getFirstDateofWeek(root.monthDate.getFullYear(),root.monthDate.getMonth())
 
-                anchors {
-                    fill: parent
-                    topMargin: units.gu(1)
-                    bottomMargin: units.gu(1)
-                }
+                width: parent.width
+                height: parent.height - monthHeader.height - dayLabelRow.height - units.gu(3)
 
                 rows: weekCount
                 columns: 7
@@ -92,13 +108,11 @@ Item{
             UbuntuShape{
                 id: highLightRect
 
-                anchors {
-                    fill: parent
-                    topMargin: units.gu(1)
-                    bottomMargin: units.gu(1)
-                }
+                width: parent.width
+                height: width
+                anchors.centerIn: parent
 
-                color: "#e5dbe6"
+                color: "white"
                 visible: date.isSameDay(DateExt.today())
             }
 
@@ -108,8 +122,15 @@ Item{
                 text: date.getDate()
                 horizontalAlignment: Text.AlignHCenter
                 fontSize: root.dateLabelFontSize
-                color: "#57365E"
-                opacity: parent.isCurrentMonth ? 1. : 0.5
+                color: {
+                    if( date.isSameDay(DateExt.today()) ) {
+                        "#2C001E"
+                    } else if( parent.isCurrentMonth ) {
+                        "#333333"
+                    } else {
+                        "#AEA79F"
+                    }
+                }
             }
 
             MouseArea{
@@ -131,6 +152,7 @@ Item{
             text: day.toUpperCase();
             horizontalAlignment: Text.AlignHCenter
             fontSize: root.dayLabelFontSize
+            color: "#AEA79F"
         }
     }
 }

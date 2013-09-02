@@ -10,21 +10,15 @@ Page {
 
     signal dateSelected(var date);
 
-    TodayLabel{
-        id: todayLabel
-        anchors.top:parent.top
-        anchors.topMargin: units.gu(1.5)
-    }
-
     PathViewBase{
         id: monthViewPath
 
         property var startMonth: addMonth(currentMonth,-1);
 
-        anchors.top: todayLabel.bottom
+        anchors.top:parent.top
 
         width:parent.width
-        height: parent.height - todayLabel.height
+        height: parent.height
 
         onNextItemHighlighted: {
             nextMonth();
@@ -50,7 +44,7 @@ Page {
 
         delegate: MonthComponent{
             width: parent.width - units.gu(5)
-            height: parent.height
+            height: parent.height - units.gu(5)
 
             monthDate: getMonthDate();
 
