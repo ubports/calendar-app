@@ -2,7 +2,6 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 Column {
-    id: root
     width: parent.width
     Repeater{
         model: 24 // hour in a day
@@ -13,6 +12,8 @@ Column {
             color: ( index % 2 == 0) ? "#e5dbe6" : "#e6e4e9"
             Label{
                 id: timeLabel
+                // TRANSLATORS: this is a time formatting string,
+                // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
                 text: new Date(0, 0, 0, index).toLocaleTimeString(Qt.locale(), i18n.tr("hh ap"))
                 color:"gray"
                 anchors.horizontalCenter: parent.horizontalCenter
