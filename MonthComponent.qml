@@ -73,13 +73,14 @@ Item{
 
             property var day: parent.monthStart.addDays(index)
             property var isToday: day.isSameDay(intern.now)
+            property bool isPaddingDate: day.getMonth() != root.date.getMonth()
 
             text: day.getDate()
             horizontalAlignment: Text.AlignHCenter
             width: dummy.width
             height: dummy.height
             font.pointSize: dummy.font.pointSize
-            color: isToday ? Color.ubuntuOrange : dummy.color
+            color: isToday ? Color.ubuntuOrange : (isPaddingDate ? Color.warmGrey : dummy.color)
             scale: isToday ? 1.5 : 1.
         }
     }
