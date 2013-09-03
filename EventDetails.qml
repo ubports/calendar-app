@@ -25,14 +25,14 @@ Page {
     }
 
     function showEvent(e) {
-
         // FIXME: temp location in case there is no vanue is defined
         var location="-15.800513,-47.91378";
         //var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
 
         timeLabel.text = Qt.formatDateTime(e.startTime,"hh:mm") + " - " + Qt.formatDateTime(e.endTime,"hh:mm");
         dateLabel.text = Qt.formatDateTime(e.startTime,"ddd, d MMMM");
-        titleLabel.text = e.title;
+        if( e.title)
+            titleLabel.text = e.title;
 
         locationLabel.text = location;
         if( e.message ) {
@@ -64,21 +64,24 @@ Page {
         mapImage.source=imageSrc;
     }
 
-    tools: ToolbarActions {
-        Action {
-            text: i18n.tr("Add invite");
-            onTriggered: {
-                print(text + " not implemented");
+    tools: ToolbarItems {
+        ToolbarButton {
+            action: Action {
+                text: i18n.tr("Add invite");
+                onTriggered: {
+                    print(text + " not implemented");
+                }
             }
         }
-        Action {
-            text: i18n.tr("Edit");
-            onTriggered: {
-                print(text + " not implemented");
+
+        ToolbarButton {
+            action:Action {
+                text: i18n.tr("Edit");
+                onTriggered: {
+                    print(text + " not implemented");
+                }
             }
         }
-        active: true
-        lock: false
     }
 
     Column{

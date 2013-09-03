@@ -7,17 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-06-12 17:24+0200\n"
-"PO-Revision-Date: 2013-06-13 08:53+0000\n"
+"POT-Creation-Date: 2013-08-30 10:23+0200\n"
+"PO-Revision-Date: 2013-09-01 07:49+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-28 05:38+0000\n"
-"X-Generator: Launchpad (build 16738)\n"
+"X-Launchpad-Export-Date: 2013-09-02 05:37+0000\n"
+"X-Generator: Launchpad (build 16750)\n"
 
-#: ../DiaryView.qml:54
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: ../DayView.qml:29 ../TimeLineBackground.qml:22 ../TimeLineView.qml:103
+#: ../WeekView.qml:27
+msgid "HH"
+msgstr ""
+
+#: ../DiaryView.qml:43
 msgid "(+) New Event"
 msgstr "(+) Uusi tapahtuma"
 
@@ -29,55 +36,93 @@ msgstr "Lisää kutsu"
 msgid "Edit"
 msgstr "Muokkaa"
 
-#: ../EventDetails.qml:150 ../NewEvent.qml:112
+#: ../EventDetails.qml:150
 msgid "People"
 msgstr "Ihmiset"
 
-#: ../NewEvent.qml:20
+#: ../NewEvent.qml:23
 msgid "Create event"
 msgstr "Luo tapahtuma"
 
-#: ../NewEvent.qml:25
+#: ../NewEvent.qml:29
 msgid "Add event name"
 msgstr "Lisää tapahtuman nimi"
 
-#: ../NewEvent.qml:99
-msgid "Location"
-msgstr "Sijainti"
+#: ../NewEvent.qml:102
+msgid "to"
+msgstr ""
 
-#: ../NewEvent.qml:104
+#: ../NewEvent.qml:137
+msgid "Location & People"
+msgstr "Sijainti ja ihmiset"
+
+#: ../NewEvent.qml:143
 msgid "Add Location"
 msgstr "Lisää sijainti"
 
-#: ../NewEvent.qml:117
+#: ../NewEvent.qml:156
 msgid "Invite People"
-msgstr "Kutsu ihmisisä"
+msgstr "Kutsu ihmisiä"
 
-#: ../NewEvent.qml:128
+#: ../NewEvent.qml:168
+msgid "Error"
+msgstr "Virhe"
+
+#: ../NewEvent.qml:171
+msgid "Ok"
+msgstr "Ok"
+
+#: ../NewEvent.qml:177
 msgid "Save"
 msgstr "Tallenna"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../TimeLineView.qml:147
-msgid "HH:mm"
-msgstr "HH:mm"
+#: ../NewEvent.qml:205
+msgid "End time can't be before start time"
+msgstr "Päättymisaika ei voi olla ennen aloitusaikaa"
 
-#: ../calendar.qml:31
-msgid "To-do"
-msgstr "Tehtävät"
+#: ../TimePicker.qml:23
+msgid "Time"
+msgstr "Aika"
 
-#: ../calendar.qml:36
+#: ../TimePicker.qml:49
+msgid "Hour"
+msgstr "Tunti"
+
+#: ../TimePicker.qml:63
+msgid "Minute"
+msgstr "Minuutti"
+
+#: ../TimePicker.qml:73
+msgid "Cancel"
+msgstr "Peru"
+
+#: ../TimePicker.qml:82
+msgid "OK"
+msgstr "OK"
+
+#: ../calendar.qml:52
 msgid "New Event"
 msgstr "Uusi tapahtuma"
 
-#: ../calendar.qml:41 ../calendar.qml:48
-msgid "Timeline"
-msgstr "Aikajana"
+#: ../calendar.qml:60
+msgid "Today"
+msgstr "Tänään"
 
-#: ../calendar.qml:45
-msgid "Diary"
-msgstr "Päivyri"
+#: ../calendar.qml:72
+msgid "Year"
+msgstr "Vuosi"
+
+#: ../calendar.qml:93
+msgid "Month"
+msgstr "Kuukausi"
+
+#: ../calendar.qml:116
+msgid "Week"
+msgstr "Viikko"
+
+#: ../calendar.qml:132
+msgid "Day"
+msgstr "Päivä"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"

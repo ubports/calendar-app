@@ -7,17 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-06-12 17:24+0200\n"
-"PO-Revision-Date: 2013-06-13 09:52+0000\n"
+"POT-Creation-Date: 2013-08-30 10:23+0200\n"
+"PO-Revision-Date: 2013-09-02 19:00+0000\n"
 "Last-Translator: Phillip Sz <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-28 05:38+0000\n"
-"X-Generator: Launchpad (build 16738)\n"
+"X-Launchpad-Export-Date: 2013-09-03 06:08+0000\n"
+"X-Generator: Launchpad (build 16753)\n"
 
-#: ../DiaryView.qml:54
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: ../DayView.qml:29 ../TimeLineBackground.qml:22 ../TimeLineView.qml:103
+#: ../WeekView.qml:27
+msgid "HH"
+msgstr "HH"
+
+#: ../DiaryView.qml:43
 msgid "(+) New Event"
 msgstr "(+) Neuer Termin"
 
@@ -29,55 +36,93 @@ msgstr "Einladung hinzufügen"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../EventDetails.qml:150 ../NewEvent.qml:112
+#: ../EventDetails.qml:150
 msgid "People"
 msgstr "Personen"
 
-#: ../NewEvent.qml:20
+#: ../NewEvent.qml:23
 msgid "Create event"
 msgstr "Termin anlegen"
 
-#: ../NewEvent.qml:25
+#: ../NewEvent.qml:29
 msgid "Add event name"
 msgstr "Terminbezeichnung hinzufügen"
 
-#: ../NewEvent.qml:99
-msgid "Location"
-msgstr "Ort"
+#: ../NewEvent.qml:102
+msgid "to"
+msgstr ""
 
-#: ../NewEvent.qml:104
+#: ../NewEvent.qml:137
+msgid "Location & People"
+msgstr "Standort & Personen"
+
+#: ../NewEvent.qml:143
 msgid "Add Location"
 msgstr "Ort hinzufügen"
 
-#: ../NewEvent.qml:117
+#: ../NewEvent.qml:156
 msgid "Invite People"
 msgstr "Personen einladen"
 
-#: ../NewEvent.qml:128
+#: ../NewEvent.qml:168
+msgid "Error"
+msgstr "Fehler"
+
+#: ../NewEvent.qml:171
+msgid "Ok"
+msgstr "Ok"
+
+#: ../NewEvent.qml:177
 msgid "Save"
 msgstr "Speichern"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../TimeLineView.qml:147
-msgid "HH:mm"
-msgstr "HH:mm"
+#: ../NewEvent.qml:205
+msgid "End time can't be before start time"
+msgstr "Endzeit kann nicht vor der Startzeit liegen."
 
-#: ../calendar.qml:31
-msgid "To-do"
-msgstr "Aufgaben"
+#: ../TimePicker.qml:23
+msgid "Time"
+msgstr "Zeit"
 
-#: ../calendar.qml:36
+#: ../TimePicker.qml:49
+msgid "Hour"
+msgstr "Stunde"
+
+#: ../TimePicker.qml:63
+msgid "Minute"
+msgstr "Minute"
+
+#: ../TimePicker.qml:73
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: ../TimePicker.qml:82
+msgid "OK"
+msgstr "OK"
+
+#: ../calendar.qml:52
 msgid "New Event"
 msgstr "Neuer Termin"
 
-#: ../calendar.qml:41 ../calendar.qml:48
-msgid "Timeline"
-msgstr "Zeitleiste"
+#: ../calendar.qml:60
+msgid "Today"
+msgstr "Heute"
 
-#: ../calendar.qml:45
-msgid "Diary"
-msgstr "Kalender"
+#: ../calendar.qml:72
+msgid "Year"
+msgstr "Jahr"
+
+#: ../calendar.qml:93
+msgid "Month"
+msgstr "Monat"
+
+#: ../calendar.qml:116
+msgid "Week"
+msgstr "Woche"
+
+#: ../calendar.qml:132
+msgid "Day"
+msgstr "Tag"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"

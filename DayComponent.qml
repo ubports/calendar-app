@@ -72,8 +72,9 @@ Flickable{
             property string title;
             property string location;
             property int hour;
+            property var event;
 
-            signal clicked(int hour);
+            signal clicked(var event);
 
             color:'#fffdaa';
             width: timeLineView.width - units.gu(8)
@@ -100,7 +101,7 @@ Flickable{
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    infoBubble.clicked(hour);
+                    infoBubble.clicked(infoBubble.event);
                 }
             }
         }
