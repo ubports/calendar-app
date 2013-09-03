@@ -43,11 +43,10 @@ Item {
             if( event ) {
                 bubbleOverLay.createEvent(event,event.startTime.getHours());
             }
+        }
 
-            if(  i === intern.now.getHours()
-                      && intern.now.isSameDay( bubbleOverLay.day )) {
-                bubbleOverLay.showSeparator(event.startTime.getHours());
-            }
+        if( intern.now.isSameDay( bubbleOverLay.day ) ) {
+            bubbleOverLay.showSeparator(intern.now.getHours());
         }
     }
 
