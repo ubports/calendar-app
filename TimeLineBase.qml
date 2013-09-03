@@ -28,39 +28,25 @@ Item {
 
     QtObject {
         id: intern
-        property var eventMap;
         property var now : new Date();
     }
 
-    function showEventDetails(hour) {
-        var event = intern.eventMap[hour];
+    function showEventDetails(event) {
         pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event});
     }
 
-    function createEventMap() {
-        var eventMap = {};
-        for(var i = 0 ; i < model.count ; ++i) {
-            var event = model.get(i);
-            eventMap[event.startTime.getHours()] = event
-        }
-        return eventMap;
-    }
-
     function createEvents() {
-        intern.eventMap = createEventMap();
-
         bubbleOverLay.destroyAllChildren();
 
-        for( var i=0; i < 24; ++i ) {
-            var event = intern.eventMap[i];
+        for(var i = 0 ; i < model.count ; ++i) {
+            var event = model.get(i);
             if( event ) {
-                bubbleOverLay.createEvent(event,i);
+                bubbleOverLay.createEvent(event,event.startTime.getHours());
             }
+        }
 
-            if(  i === intern.now.getHours()
-                      && intern.now.isSameDay( bubbleOverLay.day )) {
-                bubbleOverLay.showSeparator(i);
-            }
+        if( intern.now.isSameDay( bubbleOverLay.day ) ) {
+            bubbleOverLay.showSeparator(intern.now.getHours());
         }
     }
 
