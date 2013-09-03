@@ -77,7 +77,7 @@ Item{
                 id: monthGrid
 
                 property int weekCount : 6
-                property var monthStart: DateExt.getFirstDateofWeek(root.monthDate.getFullYear(),root.monthDate.getMonth())
+                property var monthStart: root.monthDate.weekStart( Qt.locale().firstDayOfWeek )
 
                 width: parent.width
                 height: parent.height - monthHeader.height - dayLabelRow.height - units.gu(3)
