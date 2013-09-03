@@ -21,7 +21,7 @@ Flickable{
 
     function scroll() {
         //scroll to 9 o'clock or to now
-        var now = new Date().midnight();
+        var now = new Date();
         var hour = 9
         if( weekStart !== undefined
                 && now.weekStart(Qt.locale().firstDayOfWeek).isSameDay(weekStart)) {
@@ -103,8 +103,9 @@ Flickable{
             property string title;
             property string location;
             property int hour;
+            property var event;
 
-            signal clicked(int hour);
+            signal clicked(var event);
 
             color:'#fffdaa';
             width: weekWidth
@@ -123,7 +124,7 @@ Flickable{
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    infoBubble.clicked(hour);
+                    infoBubble.clicked(infoBubble.event);
                 }
             }
         }
