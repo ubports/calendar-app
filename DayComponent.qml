@@ -10,7 +10,7 @@ Flickable{
     property var day: new Date()
     property int weekWidth:0;
 
-    contentHeight: timeLineColumn.height + units.gu(3)
+    contentHeight: timeLineColumn.height
     contentWidth: width
 
     clip: true
@@ -48,7 +48,6 @@ Flickable{
     TimeLineBackground{
         id: timeLineColumn
         anchors.top: parent.top
-        anchors.topMargin: units.gu(3)
         width: parent.width
     }
 
@@ -59,7 +58,6 @@ Flickable{
         width: timeLineColumn.width
         height: timeLineColumn.height
         anchors.top: parent.top
-        anchors.topMargin: units.gu(3)
         delegate: infoBubbleComponent
         day: timeLineView.day
     }

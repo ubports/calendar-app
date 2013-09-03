@@ -83,7 +83,7 @@ Item{
 
             width: parent.width
             height: parent.height
-            weekWidth: weekRibbon.weekWidth //dummy.width + units.gu(1)
+            weekWidth: weekRibbon.weekWidth
             weekStart: getWeekStart();
 
             function getWeekStart() {
