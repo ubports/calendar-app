@@ -37,7 +37,7 @@ Date.prototype.midnight = function() {
 
 Date.prototype.addDays = function(days) {
     var date = new Date(this)
-    date.setTime(date.getTime() + Date.msPerDay * days)
+    date.setDate(date.getDate() + days);
     return date
 }
 
