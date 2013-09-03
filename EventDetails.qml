@@ -25,14 +25,14 @@ Page {
     }
 
     function showEvent(e) {
-
         // FIXME: temp location in case there is no vanue is defined
         var location="-15.800513,-47.91378";
         //var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
 
         timeLabel.text = Qt.formatDateTime(e.startTime,"hh:mm") + " - " + Qt.formatDateTime(e.endTime,"hh:mm");
         dateLabel.text = Qt.formatDateTime(e.startTime,"ddd, d MMMM");
-        titleLabel.text = e.title;
+        if( e.title)
+            titleLabel.text = e.title;
 
         locationLabel.text = location;
         if( e.message ) {
