@@ -16,7 +16,6 @@ PathViewBase{
     QtObject{
         id: intern
         property var now: new Date();
-        property int weekstartDay: Qt.locale().firstDayOfWeek
         property var weekStart: visibleWeek.addDays(-7)
         property var selectedDate: visibleWeek
     }
@@ -38,7 +37,7 @@ PathViewBase{
     }
 
     function nextWeek() {
-        var weekStartDay= visibleWeek.weekStart(intern.weekstartDay);
+        var weekStartDay= visibleWeek.weekStart(Qt.locale().firstDayOfWeek);
         visibleWeek = weekStartDay.addDays(7);
         setSelectedDay();
 
@@ -46,7 +45,7 @@ PathViewBase{
     }
 
     function previousWeek(){
-        var weekStartDay = visibleWeek.weekStart(intern.weekstartDay);
+        var weekStartDay = visibleWeek.weekStart(Qt.locale().firstDayOfWeek);
         visibleWeek = weekStartDay.addDays(-7);
         setSelectedDay();
 
@@ -60,7 +59,7 @@ PathViewBase{
             return;
         }
 
-        if( intern.now.weekStart(intern.weekstartDay).isSameDay(visibleWeek) ) {
+        if( intern.now.weekStart(Qt.locale().firstDayOfWeek).isSameDay(visibleWeek) ) {
             intern.selectedDate =  intern.now
         } else {
             intern.selectedDate = visibleWeek
@@ -113,7 +112,7 @@ PathViewBase{
                 id: column
                 width: weekWidth
                 Label{
-                    text: Qt.locale().standaloneDayName(( intern.weekstartDay + index), Locale.ShortFormat)
+                    text: Qt.locale().standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat)
                     horizontalAlignment: Text.AlignHCenter
                     width: column.width
                     fontSize: "medium"
