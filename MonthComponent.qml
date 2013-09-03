@@ -99,6 +99,7 @@ Item{
 
         Item{
             id: dateRootItem
+
             property var date: parent.monthStart.addDays(index);
             property bool isCurrentMonth: DateExt.isSameMonth(root.monthDate,date)
 
@@ -113,7 +114,7 @@ Item{
                 anchors.centerIn: parent
 
                 color: "white"
-                visible: date.isSameDay(DateExt.today())
+                visible: date.isSameDay(DateExt.today()) && isCurrentMonth
             }
 
             Label{
@@ -123,7 +124,7 @@ Item{
                 horizontalAlignment: Text.AlignHCenter
                 fontSize: root.dateLabelFontSize
                 color: {
-                    if( date.isSameDay(DateExt.today()) ) {
+                    if( date.isSameDay(DateExt.today()) && isCurrentMonth ) {
                         "#2C001E"
                     } else if( parent.isCurrentMonth ) {
                         "#333333"
