@@ -3,7 +3,7 @@ import Ubuntu.Components 0.1
 
 import "dateExt.js" as DateExt
 
-UbuntuShape {
+Item {
     id: root
 
     property var startDay: DateExt.today();
@@ -13,7 +13,14 @@ UbuntuShape {
     readonly property int typeWeek: 0
     readonly property int typeDay: 1
 
-    color: "#e6e4e9"
+    onStartDayChanged: {
+        timeLineView.scroll();
+    }
+
+    //scroll in case content height changed
+    onHeightChanged: {
+        timeLineView.scroll()
+    }
 
     TimeLineHeader{
         id: header
@@ -33,6 +40,16 @@ UbuntuShape {
         contentWidth: width
 
         clip: true
+
+        function scroll() {
+            //scroll to 9 o'clock
+            var hour = 9
+
+            timeLineView.contentY = hour * units.gu(10);
+            if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
+                timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
+            }
+        }
 
         TimeLineBackground{
         }

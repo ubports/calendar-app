@@ -12,43 +12,25 @@ Item{
 
     property var currentDay: new Date()
 
-    Label{
-        id: todayLabel
-        text: Qt.formatDateTime( new Date(),"d MMMM yyyy");
-        fontSize: "large"
-        width: parent.width
-    }
-
     PathViewBase{
-        id: weekViewPath
-        objectName:"DayViewPathBase"
+        id: dayViewPath
+        objectName: "DayViewPathBase"
 
-        property var visibleDay: currentDay;
+        property var startDay: currentDay.addDays(-1)
 
-        QtObject{
-            id: intern
-            property int firstDayOfWeek: Qt.locale().firstDayOfWeek
-            property var startDay: weekViewPath.visibleDay.addDays(-1)
-        }
-
-        anchors.top: todayLabel.bottom
+        anchors.top: parent.top
+        anchors.topMargin: units.gu(1.5)
         width: parent.width
-        height: parent.height - todayLabel.height - units.gu(3)
+        height: parent.height - units.gu(3)
 
         onNextItemHighlighted: {
-            nextDay();
+            //next day
+            currentDay = currentDay.addDays(1);
         }
 
         onPreviousItemHighlighted: {
-            previousDay();
-        }
-
-        function nextDay() {
-            currentDay = visibleDay.addDays(1);
-        }
-
-        function previousDay(){
-            currentDay = visibleDay.addDays(-1);
+            //previous day
+            currentDay = currentDay.addDays(-1);
         }
 
         delegate: TimeLineBaseComponent {
@@ -63,18 +45,18 @@ Item{
 
             function getStartDay() {
                 //previous page
-                if (index === weekViewPath.currentIndex) {
-                    return intern.startDay;
+                if (index === dayViewPath.currentIndex) {
+                    return dayViewPath.startDay;
                 }
 
                 //next page
-                var previousIndex = weekViewPath.currentIndex > 0 ? weekViewPath.currentIndex - 1 : 2
+                var previousIndex = dayViewPath.currentIndex > 0 ? dayViewPath.currentIndex - 1 : 2
                 if ( index === previousIndex ) {
-                    return intern.startDay.addDays(2);
+                    return dayViewPath.startDay.addDays(2);
                 }
 
                 //current page
-                return intern.startDay.addDays(1);
+                return dayViewPath.startDay.addDays(1);
             }
         }
     }

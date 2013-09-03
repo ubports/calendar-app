@@ -22,12 +22,23 @@ Rectangle{
     color: "#f4f2f3"
 
     onEventChanged: {
+        setDetails();
+    }
+
+    Component.onCompleted: {
+        setDetails();
+    }
+
+    function setDetails() {
         if(event === null || event === undefined) {
             return;
         }
 
         var startTime= Qt.formatDateTime(event.startTime,"hh:mm");
         var endTime= Qt.formatDateTime(event.endTime,"hh:mm");
+
+        timeLabel.text = ""
+        titleLabel.text = ""
 
         if( type == wideType) {
             timeLabel.text = startTime +" - "+ endTime
