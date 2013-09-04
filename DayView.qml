@@ -20,6 +20,7 @@ Item{
 
         anchors.top: parent.top
         anchors.topMargin: units.gu(1.5)
+
         width: parent.width
         height: parent.height - units.gu(3)
 
@@ -41,6 +42,7 @@ Item{
 
             width: parent.width
             height: parent.height
+
             startDay: getStartDay().addDays(-1);
 
             function getStartDay() {
