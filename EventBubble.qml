@@ -6,11 +6,9 @@ import "dataService.js" as DataService
 Item{
     id: infoBubble
 
-    property int type: narrowType
     property var event;
 
-    property var hour;
-
+    property int type: narrowType
     property int wideType: 1;
     property int narrowType: 2;
 
