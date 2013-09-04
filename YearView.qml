@@ -1,20 +1,23 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 
+import "dateExt.js" as DateExt
+
 PathViewBase {
     id: root
 
-    anchors.fill: parent
-    property var year: getDateFromYear(intern.now.getFullYear()-1);
+    property var currentYear: DateExt.today();
 
     signal monthSelected(var date);
 
+    anchors.fill: parent
+
     onNextItemHighlighted: {
-        year = getDateFromYear(year.getFullYear() + 1);
+        currentYear = getDateFromYear(currentYear.getFullYear() + 1);
     }
 
     onPreviousItemHighlighted: {
-        year = getDateFromYear(year.getFullYear() - 1);
+        currentYear = getDateFromYear(currentYear.getFullYear() - 1);
     }
 
     function getDateFromYear(year) {
@@ -23,54 +26,62 @@ PathViewBase {
 
     QtObject{
         id: intern
-        property var now: new Date()
-        property int weekstartDay: Qt.locale().firstDayOfWeek
+        property var startYear: getDateFromYear(currentYear.getFullYear()-1);
     }
 
-    delegate: Item{
+    delegate: Flickable{
         id: yearView
+        clip: true
 
-        property var year: {
+        property var year: getYear();
+
+        function getYear(){
             if (index === root.currentIndex) {
-                return root.year;
+                return intern.startYear;
             }
             var previousIndex = root.currentIndex > 0 ? root.currentIndex - 1 : 2
 
             if ( index === previousIndex ) {
-                return getDateFromYear(root.year.getFullYear()-1);
+                return getDateFromYear(intern.startYear.getFullYear() - 1);
             }
 
-            return getDateFromYear(root.year.getFullYear()+ 1);
+            return getDateFromYear(intern.startYear.getFullYear() + 1);
         }
 
         width: parent.width
         height: parent.height
 
-        Label{
-            id: yearLabel
-            text: year.getFullYear()
-            fontSize: "large"
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.bold: true
-        }
+        contentHeight: yearGrid.height + units.gu(2)
+        contentWidth: width
 
         Grid{
             id: yearGrid
-            rows: 4
-            columns: 3
+            rows: 6
+            columns: 2
 
-            width: parent.width
-            height: parent.height
-            anchors.top: yearLabel.bottom
-            spacing: units.gu(2.5)
+            anchors.top: parent.top
+            anchors.topMargin: units.gu(1.5)
+
+            width: parent.width - ((columns-1) * yearGrid.spacing)
+            spacing: units.gu(2)
+            anchors.horizontalCenter: parent.horizontalCenter
 
             Repeater{
                 model: yearGrid.rows * yearGrid.columns
                 delegate: MonthComponent{
-                    date: new Date(year.getFullYear(),index,1,0,0,0,0)
+                    monthDate: new Date(yearView.year.getFullYear(),index,1,0,0,0,0)
+                    width: (parent.width - units.gu(2))/2
+                    height: width * 1.5
+                    dayLabelFontSize:"x-small"
+                    dateLabelFontSize: "medium"
+                    monthLabelFontSize: "medium"
+                    yearLabelFontSize: "small"
 
-                    onMonthSelected: {
-                        root.monthSelected(date);
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            root.monthSelected(monthDate);
+                        }
                     }
                 }
             }

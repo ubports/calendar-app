@@ -24,7 +24,7 @@ class TestMonthView(CalendarTestCase):
 
     def get_currentDayStart(self):
         month_view = self.main_view.get_month_view()
-        return datetime.fromtimestamp(month_view.currentDayStart)
+        return datetime.fromtimestamp(month_view.currentMonth)
 
     def change_month(self, delta):
         month_view = self.main_view.get_month_view()
