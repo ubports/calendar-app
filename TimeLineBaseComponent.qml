@@ -64,6 +64,7 @@ Item {
                 model: type == typeWeek ? 7 : 3
 
                 delegate: TimeLineBase {
+                    property int idx: index
                     anchors.top: parent.top
                     width: {
                         if( type == typeWeek || (type == typeDay && index != 1 ) ) {
@@ -84,7 +85,8 @@ Item {
         id: comp
         EventBubble{
             type: {
-                if( root.type == typeWeek || (root.type == typeDay && index != 1 ) ) {
+                if( root.type == typeWeek
+                        || (root.type == typeDay && parent.idx !== 1) ) {
                     narrowType
                 } else {
                     wideType

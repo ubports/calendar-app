@@ -94,9 +94,9 @@ Column {
                         horizontalAlignment: Text.AlignHCenter
                         color: {
                             if( type == typeDay && index == 1 ) {
-                                "#715772"
+                                "white"
                             } else if( type == typeWeek && date.isSameDay(DateExt.today())){
-                                 "#715772"
+                                 "white"
                             } else {
                                 "#AEA79F"
                             }

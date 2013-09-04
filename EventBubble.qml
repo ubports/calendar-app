@@ -3,7 +3,7 @@ import Ubuntu.Components 0.1
 
 import "dataService.js" as DataService
 
-Rectangle{
+Item{
     id: infoBubble
 
     property int type: narrowType
@@ -14,12 +14,13 @@ Rectangle{
     property int wideType: 1;
     property int narrowType: 2;
 
-    signal clicked(int hour);
+    signal clicked(var event);
 
-    border.color: "#715772"
-
-    radius: 5
-    color: "#f4f2f3"
+    UbuntuShape{
+        id: bg
+        anchors.fill: parent
+        color: "white"
+    }
 
     onEventChanged: {
         setDetails();
@@ -39,10 +40,16 @@ Rectangle{
 
         timeLabel.text = ""
         titleLabel.text = ""
+        descriptionLabel.text = ""
 
         if( type == wideType) {
             timeLabel.text = startTime +" - "+ endTime
-            titleLabel.text = event.title;
+
+            if( event.title)
+                titleLabel.text = event.title;
+
+            if( event.message)
+                descriptionLabel.text = event.message
         } else {
             timeLabel.text = startTime
         }
@@ -65,7 +72,7 @@ Rectangle{
             Label{
                 id: timeLabel
                 fontSize:"small";
-                color:"#715772"
+                color:"gray"
                 width: parent.width
             }
         }
@@ -74,7 +81,17 @@ Rectangle{
             id: titleLabel
             x: units.gu(1)
             fontSize:"small";
-            color:"#715772"
+            color:"black"
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            width: parent.width
+            visible: type == wideType
+        }
+
+        Label{
+            id: descriptionLabel
+            x: units.gu(1)
+            fontSize:"small";
+            color:"gray"
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             width: parent.width
             visible: type == wideType
@@ -84,7 +101,7 @@ Rectangle{
     MouseArea{
         anchors.fill: parent
         onClicked: {
-            infoBubble.clicked(hour);
+            infoBubble.clicked(event);
         }
     }
 }
