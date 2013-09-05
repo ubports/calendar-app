@@ -33,15 +33,19 @@ Item{
             return;
         }
 
-        var startTime= Qt.formatDateTime(event.startTime,"hh:mm");
-        var endTime= Qt.formatDateTime(event.endTime,"hh:mm");
+        // TRANSLATORS: this is a time formatting string,
+        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        var timeFormat = i18n.tr("hh:mm");
+        var startTime = event.startTime.toLocaleTimeString(Qt.locale(), timeFormat)
+        var endTime = event.endTime.toLocaleTimeString(Qt.locale(), timeFormat)
+        var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
 
         timeLabel.text = ""
         titleLabel.text = ""
         descriptionLabel.text = ""
 
         if( type == wideType) {
-            timeLabel.text = startTime +" - "+ endTime
+            timeLabel.text = timeString
 
             if( event.title)
                 titleLabel.text = event.title;
