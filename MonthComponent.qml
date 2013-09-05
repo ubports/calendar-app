@@ -11,8 +11,8 @@ Item{
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
-    property string monthLabelFontSize: "large"
-    property string yearLabelFontSize: "medium"
+    property string monthLabelFontSize: "x-large"
+    property string yearLabelFontSize: "large"
 
     property alias dayLabelDelegate : dayLabelRepeater.delegate
     property alias dateLabelDelegate : dateLabelRepeater.delegate
@@ -127,7 +127,7 @@ Item{
                     if( date.isSameDay(DateExt.today()) && isCurrentMonth ) {
                         "#2C001E"
                     } else if( parent.isCurrentMonth ) {
-                        "#333333"
+                        "white"
                     } else {
                         "#AEA79F"
                     }
