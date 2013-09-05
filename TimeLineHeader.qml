@@ -25,7 +25,13 @@ Column {
          Label{
              id: monthLabel
              fontSize: "large"
-             text: Qt.locale().standaloneMonthName(root.startDay.getMonth())
+             text: {
+                 var monthDate = startDay;
+                 if( type === typeDay ) {
+                     monthDate = monthDate.addDays(1)
+                 }
+                 Qt.locale().standaloneMonthName(monthDate.getMonth())
+             }
              anchors.leftMargin: units.gu(1)
              anchors.left: parent.left
              //color:"white"
