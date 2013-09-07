@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-08-30 10:23+0200\n"
-"PO-Revision-Date: 2013-07-19 22:10+0000\n"
+"PO-Revision-Date: 2013-09-06 18:13+0000\n"
 "Last-Translator: Tiago Hillebrandt <tiagohillebrandt@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-31 05:28+0000\n"
-"X-Generator: Launchpad (build 16750)\n"
+"X-Launchpad-Export-Date: 2013-09-07 05:41+0000\n"
+"X-Generator: Launchpad (build 16760)\n"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../DayView.qml:29 ../TimeLineBackground.qml:22 ../TimeLineView.qml:103
 #: ../WeekView.qml:27
 msgid "HH"
-msgstr ""
+msgstr "HH"
 
 #: ../DiaryView.qml:43
 msgid "(+) New Event"
@@ -50,11 +50,11 @@ msgstr "Adicionar nome do evento"
 
 #: ../NewEvent.qml:102
 msgid "to"
-msgstr ""
+msgstr "para"
 
 #: ../NewEvent.qml:137
 msgid "Location & People"
-msgstr ""
+msgstr "Pessoas e locais"
 
 #: ../NewEvent.qml:143
 msgid "Add Location"
@@ -66,11 +66,11 @@ msgstr "Convidar pessoas"
 
 #: ../NewEvent.qml:168
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 #: ../NewEvent.qml:171
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../NewEvent.qml:177
 msgid "Save"
@@ -78,27 +78,27 @@ msgstr "Salvar"
 
 #: ../NewEvent.qml:205
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "Horário final não pode ser antes do horário inicial"
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr ""
+msgstr "Horário"
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr ""
+msgstr "Hora"
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr ""
+msgstr "Minuto"
 
 #: ../TimePicker.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: ../TimePicker.qml:82
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../calendar.qml:52
 msgid "New Event"
@@ -106,23 +106,23 @@ msgstr "Novo evento"
 
 #: ../calendar.qml:60
 msgid "Today"
-msgstr ""
+msgstr "Hoje"
 
 #: ../calendar.qml:72
 msgid "Year"
-msgstr ""
+msgstr "Ano"
 
 #: ../calendar.qml:93
 msgid "Month"
-msgstr ""
+msgstr "Mês"
 
 #: ../calendar.qml:116
 msgid "Week"
-msgstr ""
+msgstr "Semana"
 
 #: ../calendar.qml:132
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
