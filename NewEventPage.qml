@@ -9,28 +9,19 @@ import "dataService.js" as DataService
 Page {
     id: root
 
-    property var defaultDate: new Date();
+    property var date: new Date();
     property alias errorText: errorPopupDialog.text;
-    property var startDate: defaultDate
-    property var endDate: defaultDate
+    property var startDate: date
+    property var endDate: date
 
     Component.onCompleted: {
-        //if( pageStack.header )
-            //pageStack.header.visible = false;
-
-        //showEvent(event);
-        startDate = new Date(defaultDate)
-        endDate = new Date(defaultDate)
+        startDate = new Date(date)
+        endDate = new Date(date)
         endDate.setMinutes( endDate.getMinutes() + 10)
 
         startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
     }
-
-//    Component.onDestruction: {
-//        if( pageStack.header )
-//            pageStack.header.visible = true;
-//    }
 
     anchors {
         top: parent.top

@@ -138,11 +138,6 @@ MainView {
                     }
                 }
             }
-
-            Component {
-                id: newEventComponent
-                NewEvent {}
-            }
         }
     }
 }
