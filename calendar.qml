@@ -50,20 +50,22 @@ MainView {
                 id: commonToolBar
 
                 ToolbarButton {
-                    objectName: "neweventbutton"
-                    action: Action {
-                        iconSource: Qt.resolvedUrl("avatar.png")
-                        text: i18n.tr("New Event")
-                        onTriggered: tabPage.newEvent()
-                    }
-                }                    
-                ToolbarButton {
                     objectName: "todaybutton"
                     action: Action {
                         iconSource: Qt.resolvedUrl("avatar.png");
                         text: i18n.tr("Today");
                         onTriggered: {
                             tabPage.currentDay = (new Date()).midnight();
+                        }
+                    }
+                }
+                ToolbarButton {
+                    objectName: "neweventbutton"
+                    action: Action {
+                        iconSource: Qt.resolvedUrl("avatar.png");
+                        text: i18n.tr("New Event");
+                        onTriggered: {
+                            pageStack.push(Qt.resolvedUrl("NewEventPage.qml"));
                         }
                     }
                 }
