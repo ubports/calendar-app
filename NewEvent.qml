@@ -113,11 +113,11 @@ Page {
 
             UbuntuShape{
                 width:parent.width
-                height: timeColumn.height + units.gu(1)
+                height: timeColumn.height
 
                 Column{
                     id: timeColumn
-                    width: parent.width - units.gu(1)
+                    width: parent.width
                     anchors.centerIn: parent
                     spacing: units.gu(1)
 
@@ -171,31 +171,28 @@ Page {
                 }
             }
 
-            UbuntuShape{
-                width:parent.width
-                height: titleEdit.height + units.gu(1)
-
-                NewEventEntryField{
-                    id: titleEdit
-                    width: parent.width - units.gu(1)
-                    anchors.centerIn: parent
-                    title: i18n.tr("New Event")
-                    objectName: "newEventName"
-                }
+            NewEventEntryField{
+                id: titleEdit
+                width: parent.width
+                title: i18n.tr("New Event")
+                objectName: "newEventName"
             }
 
             UbuntuShape{
                 width:parent.width
-                height: descriptionColumn.height + units.gu(1)
+                height: descriptionColumn.height
 
                 Column{
                     id: descriptionColumn
-                    width: parent.width - units.gu(1)
-                    anchors.centerIn: parent
+                    width: parent.width
+                    anchors.top: parent.top
+                    anchors.topMargin: units.gu(0.5)
                     spacing: units.gu(1)
 
                     Label {
                         text: i18n.tr("Description")
+                        anchors.margins: units.gu(0.5)
+                        anchors.left: parent.left
                     }
 
                     TextArea{
@@ -205,17 +202,11 @@ Page {
                 }
             }
 
-            UbuntuShape{
-                width:parent.width
-                height: locationEdit.height + units.gu(1)
-
-                NewEventEntryField{
-                    id: locationEdit
-                    width: parent.width - units.gu(1)
-                    anchors.centerIn: parent
-                    title: i18n.tr("Location")
-                    objectName: "eventLocationInput"
-                }
+            NewEventEntryField{
+                id: locationEdit
+                width: parent.width
+                title: i18n.tr("Location")
+                objectName: "eventLocationInput"
             }
 
             OptionSelector{
@@ -269,17 +260,11 @@ Page {
                 }
             }
 
-            UbuntuShape{
-                width:parent.width
-                height: personEdit.height + units.gu(1)
-
-                NewEventEntryField{
-                    id: personEdit
-                    width: parent.width - units.gu(1)
-                    anchors.centerIn: parent
-                    title: i18n.tr("Guests")
-                    objectName: "eventPeopleInput"
-                }
+            NewEventEntryField{
+                id: personEdit
+                width: parent.width
+                title: i18n.tr("Guests")
+                objectName: "eventPeopleInput"
             }
         }
     }
