@@ -29,11 +29,10 @@ class TestMonthView(CalendarTestCase):
         tx = x + (w / 3)
         ty = y + (h / 3)
 
-        currentMonth = self.get_currentDayStart().month
-        currentYear = self.get_currentDayStart().year
-
         #swipe to change page
         for i in range(abs(delta)):
+            currentMonth = self.get_currentDayStart().month
+            currentYear = self.get_currentDayStart().year
             if delta < 0:
                 #swipe backward
                 self.pointing_device.drag(tx, ty, tx + (w / 2), ty)
