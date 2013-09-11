@@ -12,12 +12,9 @@ from __future__ import absolute_import
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
 
-import math
-
 from calendar_app.tests import CalendarTestCase
 
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 
 class TestMonthView(CalendarTestCase):
