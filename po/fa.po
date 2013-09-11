@@ -8,122 +8,122 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-08-30 10:23+0200\n"
-"PO-Revision-Date: 2013-06-19 12:38+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2013-09-08 12:03+0000\n"
+"Last-Translator: MohamadReza Mirdamadi <Unknown>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-31 05:28+0000\n"
-"X-Generator: Launchpad (build 16750)\n"
+"X-Launchpad-Export-Date: 2013-09-09 04:59+0000\n"
+"X-Generator: Launchpad (build 16760)\n"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../DayView.qml:29 ../TimeLineBackground.qml:22 ../TimeLineView.qml:103
 #: ../WeekView.qml:27
 msgid "HH"
-msgstr ""
+msgstr "HH"
 
 #: ../DiaryView.qml:43
 msgid "(+) New Event"
-msgstr ""
+msgstr "(+) رویداد تازه"
 
 #: ../EventDetails.qml:69
 msgid "Add invite"
-msgstr ""
+msgstr "اضافه کردن دعوت"
 
 #: ../EventDetails.qml:75
 msgid "Edit"
-msgstr ""
+msgstr "ویرایش"
 
 #: ../EventDetails.qml:150
 msgid "People"
-msgstr ""
+msgstr "افراد"
 
 #: ../NewEvent.qml:23
 msgid "Create event"
-msgstr ""
+msgstr "ساختن رویداد"
 
 #: ../NewEvent.qml:29
 msgid "Add event name"
-msgstr ""
+msgstr "افزودن نام رویداد"
 
 #: ../NewEvent.qml:102
 msgid "to"
-msgstr ""
+msgstr "به"
 
 #: ../NewEvent.qml:137
 msgid "Location & People"
-msgstr ""
+msgstr "مکانها و افراد"
 
 #: ../NewEvent.qml:143
 msgid "Add Location"
-msgstr ""
+msgstr "افزودن مکان"
 
 #: ../NewEvent.qml:156
 msgid "Invite People"
-msgstr ""
+msgstr "دعوت‌کردن افراد"
 
 #: ../NewEvent.qml:168
 msgid "Error"
-msgstr ""
+msgstr "خطا"
 
 #: ../NewEvent.qml:171
 msgid "Ok"
-msgstr ""
+msgstr "تایید"
 
 #: ../NewEvent.qml:177
 msgid "Save"
-msgstr ""
+msgstr "ذخیره‌کردن"
 
 #: ../NewEvent.qml:205
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "زمان پایان نمیتواند قبل از زمان آغاز باشد"
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr ""
+msgstr "زمان"
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr ""
+msgstr "ساعت"
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr ""
+msgstr "دقیقه"
 
 #: ../TimePicker.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "انصراف"
 
 #: ../TimePicker.qml:82
 msgid "OK"
-msgstr ""
+msgstr "تایید"
 
 #: ../calendar.qml:52
 msgid "New Event"
-msgstr ""
+msgstr "رویداد تازه"
 
 #: ../calendar.qml:60
 msgid "Today"
-msgstr ""
+msgstr "امروز"
 
 #: ../calendar.qml:72
 msgid "Year"
-msgstr ""
+msgstr "سال"
 
 #: ../calendar.qml:93
 msgid "Month"
-msgstr ""
+msgstr "ماه"
 
 #: ../calendar.qml:116
 msgid "Week"
-msgstr ""
+msgstr "هفته"
 
 #: ../calendar.qml:132
 msgid "Day"
-msgstr ""
+msgstr "روز"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr ""
+msgstr "تقویم"
