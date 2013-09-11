@@ -34,7 +34,7 @@ class TestMonthView(CalendarTestCase):
 
         currentMonth = self.get_currentDayStart().month
         currentYear = self.get_currentDayStart().year
-        
+
         #swipe to change page
         for i in range(abs(delta)):
             if delta < 0:
@@ -45,23 +45,25 @@ class TestMonthView(CalendarTestCase):
                 #swipe forward
                 self.pointing_device.drag(tx + (w / 2), ty, tx, ty)
                 diff = 1
-                
+
             #check for switched ui
             if currentMonth + diff <= 12 and currentMonth + diff > 0:
                 self.assertThat(lambda: self.get_currentDayStart().month,
-                    Eventually(Equals(currentMonth + diff)))
+                                Eventually(Equals(currentMonth + diff)))
                 self.assertThat(lambda: self.get_currentDayStart().year,
-                    Eventually(Equals(currentYear)))
+                                Eventually(Equals(currentYear)))
             else:
                 self.assertThat(lambda: self.get_currentDayStart().year,
-                    Eventually(Equals(currentYear + diff)))
+                                Eventually(Equals(currentYear + diff)))
                 #account for rolled over months
                 if currentMonth + diff > 12:
                     self.assertThat(lambda: self.get_currentDayStart().month,
-                        Eventually(Equals((currentMonth + diff) - 12)))
+                                    Eventually(
+                                    Equals((currentMonth + diff) - 12)))
                 else:
                     self.assertThat(lambda: self.get_currentDayStart().month,
-                        Eventually(Equals((currentMonth + diff) + 12)))
+                                    Eventually(
+                                    Equals((currentMonth + diff) + 12)))
 
     def _test_go_to_today(self, delta):
         start = self.get_currentDayStart()
