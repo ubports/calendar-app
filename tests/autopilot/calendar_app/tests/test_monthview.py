@@ -54,13 +54,13 @@ class TestMonthView(CalendarTestCase):
                                 Eventually(Equals(currentYear + diff)))
                 #account for rolled over months
                 if currentMonth + diff > 12:
+                    newMonth = currentMonth + diff - 12
                     self.assertThat(lambda: self.get_currentDayStart().month,
-                                    Eventually(
-                                    Equals((currentMonth + diff) - 12)))
+                                    Eventually(Equals(newMonth)))
                 else:
+                    newMonth = currentMonth + diff + 12
                     self.assertThat(lambda: self.get_currentDayStart().month,
-                                    Eventually(
-                                    Equals((currentMonth + diff) + 12)))
+                                    Eventually(Equals(newMonth)))
 
     def _test_go_to_today(self, delta):
         start = self.get_currentDayStart()
