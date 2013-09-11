@@ -24,10 +24,7 @@ Page {
     }
 
     anchors {
-        top: parent.top
-        bottom: parent.bottom
-        left: parent.left
-        right: parent.right
+        fill: parent
         margins: units.gu(2)
     }
 
@@ -35,6 +32,7 @@ Page {
 
     tools: ToolbarItems {
         ToolbarButton {
+            objectName: "eventSaveButton"
             action: Action {
                 text: i18n.tr("Save");
                 onTriggered: {
@@ -127,6 +125,7 @@ Page {
                         id: startTime
                         title: i18n.tr("Start")
                         width: parent.width
+                        objectName: "startTimeInput"
 
                         text: Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
 
@@ -151,6 +150,7 @@ Page {
                         id: endTime
                         title: i18n.tr("End")
                         width: parent.width
+                        objectName: "endTimeInput"
 
                         text: Qt.formatDateTime(endDate,"dd MMM yyyy hh:mm");
 
@@ -180,6 +180,7 @@ Page {
                     width: parent.width - units.gu(1)
                     anchors.centerIn: parent
                     title: i18n.tr("New Event")
+                    objectName: "newEventName"
                 }
             }
 
@@ -213,6 +214,7 @@ Page {
                     width: parent.width - units.gu(1)
                     anchors.centerIn: parent
                     title: i18n.tr("Location")
+                    objectName: "eventLocationInput"
                 }
             }
 
@@ -230,7 +232,7 @@ Page {
                 }
                 OptionSelector{
                     model:[i18n.tr("Once"),i18n.tr("Daily"),i18n.tr("Weekly"),i18n.tr("Monthly"),i18n.tr("Yearly")]
-                    width: parent.width - frequencyLabel.width
+                    width: parent.width - frequencyLabel.width - units.gu(1)
                 }
             }
 
@@ -243,7 +245,7 @@ Page {
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
-                    width: parent.width - remindLabel.width
+                    width: parent.width - remindLabel.width - units.gu(1)
                     model:[i18n.tr("No Reminder"),
                         i18n.tr("At Event"),
                         i18n.tr("5 Minutes"),
@@ -276,6 +278,7 @@ Page {
                     width: parent.width - units.gu(1)
                     anchors.centerIn: parent
                     title: i18n.tr("Guests")
+                    objectName: "eventPeopleInput"
                 }
             }
         }

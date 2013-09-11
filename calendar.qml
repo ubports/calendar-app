@@ -65,7 +65,7 @@ MainView {
                         iconSource: Qt.resolvedUrl("avatar.png");
                         text: i18n.tr("New Event");
                         onTriggered: {
-                            pageStack.push(Qt.resolvedUrl("NewEventPage.qml"),{"date":tabPage.currentDay});
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay});
                         }
                     }
                 }
