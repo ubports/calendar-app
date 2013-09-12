@@ -12,12 +12,9 @@ from __future__ import absolute_import
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
 
-import math
-
 from calendar_app.tests import CalendarTestCase
 
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 
 class TestMonthView(CalendarTestCase):
@@ -28,21 +25,41 @@ class TestMonthView(CalendarTestCase):
 
     def change_month(self, delta):
         month_view = self.main_view.get_month_view()
-        y_line = month_view.globalRect[1] + month_view.globalRect[3] / 2
-        x_pad = 0.15
-        sign = int(math.copysign(1, delta))
-        start = (-sign * x_pad) % 1
-        stop = (sign * x_pad) % 1
-        x_start = month_view.globalRect[0] + month_view.globalRect[2] * start
-        x_stop = month_view.globalRect[0] + month_view.globalRect[2] * stop
+        x, y, w, h = month_view.globalRect
+        tx = x + (w / 3)
+        ty = y + (h / 3)
+
+        #swipe to change page
         for i in range(abs(delta)):
-            before = self.get_currentDayStart()
-            self.pointing_device.drag(x_start, y_line, x_stop, y_line)
-            after = before + relativedelta(months=sign)
-            self.assertThat(lambda: self.get_currentDayStart().month,
-                            Eventually(Equals(after.month)))
-            self.assertThat(lambda: self.get_currentDayStart().year,
-                            Eventually(Equals(after.year)))
+            currentMonth = self.get_currentDayStart().month
+            currentYear = self.get_currentDayStart().year
+            if delta < 0:
+                #swipe backward
+                self.pointing_device.drag(tx, ty, tx + (w / 2), ty)
+                diff = -1
+            else:
+                #swipe forward
+                self.pointing_device.drag(tx + (w / 2), ty, tx, ty)
+                diff = 1
+
+            #check for switched ui
+            if currentMonth + diff <= 12 and currentMonth + diff > 0:
+                self.assertThat(lambda: self.get_currentDayStart().month,
+                                Eventually(Equals(currentMonth + diff)))
+                self.assertThat(lambda: self.get_currentDayStart().year,
+                                Eventually(Equals(currentYear)))
+            else:
+                self.assertThat(lambda: self.get_currentDayStart().year,
+                                Eventually(Equals(currentYear + diff)))
+                #account for rolled over months
+                if currentMonth + diff > 12:
+                    newMonth = currentMonth + diff - 12
+                    self.assertThat(lambda: self.get_currentDayStart().month,
+                                    Eventually(Equals(newMonth)))
+                else:
+                    newMonth = currentMonth + diff + 12
+                    self.assertThat(lambda: self.get_currentDayStart().month,
+                                    Eventually(Equals(newMonth)))
 
     def _test_go_to_today(self, delta):
         start = self.get_currentDayStart()
