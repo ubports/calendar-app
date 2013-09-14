@@ -31,6 +31,21 @@ Page {
     title: i18n.tr("New Event")
 
     tools: ToolbarItems {
+        //keeping toolbar always open
+        opened: true
+        locked: true
+
+        //FIXME: set the icons for toolbar buttons
+        back: ToolbarButton {
+            objectName: "eventCancelButton"
+            action: Action {
+                text: i18n.tr("Cancel");
+                onTriggered: {
+                    pageStack.pop();
+                }
+            }
+        }
+
         ToolbarButton {
             objectName: "eventSaveButton"
             action: Action {
