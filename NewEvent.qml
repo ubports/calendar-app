@@ -209,10 +209,6 @@ Page {
                 objectName: "eventLocationInput"
             }
 
-            OptionSelector{
-                model:[i18n.tr("Catagory"),"test1","test2"]
-            }
-
             Row{
                 width: parent.width
                 spacing: units.gu(1)
