@@ -234,25 +234,15 @@ Page {
                 OptionSelector{
                     width: parent.width - remindLabel.width - units.gu(1)
                     model:[i18n.tr("No Reminder"),
-                        i18n.tr("At Event"),
                         i18n.tr("5 Minutes"),
-                        i18n.tr("10 Minutes"),
                         i18n.tr("15 Minutes"),
                         i18n.tr("30 Minutes"),
-                        i18n.tr("45 Minutes"),
                         i18n.tr("1 Hour"),
                         i18n.tr("2 Hours"),
-                        i18n.tr("3 Hours"),
-                        i18n.tr("4 Hours"),
-                        i18n.tr("5 Hours"),
-                        i18n.tr("6 Hours"),
-                        i18n.tr("7 Hours"),
-                        i18n.tr("8 Hours"),
-                        i18n.tr("9 Hours"),
-                        i18n.tr("10 Hours"),
-                        i18n.tr("11 Hours"),
-                        i18n.tr("12 Hours"),
-                        i18n.tr("18 Hours")]
+                        i18n.tr("1 Day"),
+                        i18n.tr("2 Day"),
+                        i18n.tr("1 week"),
+                        i18n.tr("2 Week")]
                 }
             }
 
