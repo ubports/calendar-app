@@ -12,53 +12,74 @@ Item{
 
     property var currentDay: new Date()
 
-    PathViewBase{
-        id: dayViewPath
-        objectName: "DayViewPathBase"
-
-        property var startDay: currentDay.addDays(-1)
-
+    Column {
+        id: column
         anchors.top: parent.top
         anchors.topMargin: units.gu(1.5)
+        width: parent.width; height: parent.height
 
-        width: parent.width
-        height: parent.height - units.gu(3)
-
-        onNextItemHighlighted: {
-            //next day
-            currentDay = currentDay.addDays(1);
+        ViewHeader{
+            id: viewHeader
+            date: currentDay
         }
 
-        onPreviousItemHighlighted: {
-            //previous day
-            currentDay = currentDay.addDays(-1);
-        }
-
-        delegate: TimeLineBaseComponent {
-            id: timeLineView
-            objectName: "DayComponent-"+index
-
+        TimeLineHeader{
+            id: dayHeader
             type: typeDay
+            date: currentDay.addDays(-2)
+        }
+
+        PathViewBase{
+            id: dayViewPath
+            objectName: "DayViewPathBase"
+
+            property var startDay: currentDay
+
+            preferredHighlightBegin: 0.5
+            preferredHighlightEnd: 0.5
 
             width: parent.width
-            height: parent.height
+            height: column.height - viewHeader.height - dayHeader.height
 
-            startDay: getStartDay().addDays(-1);
+            path: Path {
+                startX: -(dayViewPath.width/1.75); startY: dayViewPath.height/2
+                PathLine { x: (dayViewPath.width/7) * 11  ; relativeY: 0;  }
+            }
 
-            function getStartDay() {
-                //previous page
-                if (index === dayViewPath.currentIndex) {
-                    return dayViewPath.startDay;
+            onNextItemHighlighted: {
+                //next day
+                currentDay = currentDay.addDays(1);
+                dayHeader.incrementCurrentIndex()
+            }
+
+            onPreviousItemHighlighted: {
+                //previous day
+                currentDay = currentDay.addDays(-1);
+                dayHeader.decrementCurrentIndex()
+            }
+
+            delegate: TimeLineBaseComponent {
+                id: timeLineView
+                objectName: "DayComponent-"+index
+
+                type: typeDay
+
+                width: parent.width/7 * 5
+                height: parent.height
+                z: index == dayViewPath.currentIndex ? 2 : 1
+
+                startDay: getStartDay()
+
+                function getStartDay() {
+                    switch( dayViewPath.indexType(index)) {
+                    case 0:
+                        return dayViewPath.startDay;
+                    case -1:
+                        return dayViewPath.startDay.addDays(-1);
+                    case 1:
+                        return dayViewPath.startDay.addDays(1);
+                    }
                 }
-
-                //next page
-                var previousIndex = dayViewPath.currentIndex > 0 ? dayViewPath.currentIndex - 1 : 2
-                if ( index === previousIndex ) {
-                    return dayViewPath.startDay.addDays(2);
-                }
-
-                //current page
-                return dayViewPath.startDay.addDays(1);
             }
         }
     }

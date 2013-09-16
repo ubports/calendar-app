@@ -22,19 +22,12 @@ Item {
         timeLineView.scroll()
     }
 
-    TimeLineHeader{
-        id: header
-        type: root.type
-        anchors.top: parent.top
-        startDay: root.startDay
-    }
-
     Flickable{
         id: timeLineView
 
-        anchors.top: header.bottom
+        anchors.top: parent.top
         width: parent.width
-        height: parent.height - header.height
+        height: parent.height
 
         contentHeight: units.gu(10) * 24
         contentWidth: width
@@ -61,16 +54,16 @@ Item {
             anchors.top: parent.top
 
             Repeater{
-                model: type == typeWeek ? 7 : 3
+                model: type == typeWeek ? 7 : 1
 
                 delegate: TimeLineBase {
                     property int idx: index
                     anchors.top: parent.top
                     width: {
-                        if( type == typeWeek || (type == typeDay && index != 1 ) ) {
-                             header.width/7
+                        if( type == typeWeek ) {
+                             parent.width/7
                         } else {
-                            (header.width/7) * 5
+                            (parent.width)
                         }
                     }
                     height: parent.height
@@ -85,8 +78,7 @@ Item {
         id: comp
         EventBubble{
             type: {
-                if( root.type == typeWeek
-                        || (root.type == typeDay && parent.idx !== 1) ) {
+                if( root.type == typeWeek ) {
                     narrowType
                 } else {
                     wideType
