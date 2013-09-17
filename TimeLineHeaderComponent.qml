@@ -27,7 +27,7 @@ Column {
             delegate: HeaderDateComponent{
                 date: startDay.addDays(index);
                 dayFormat: {
-                    if( type == typeWeek || (type == typeDay && index != 1) ) {
+                    if( type == typeWeek || (type == typeDay && !root.isCurrentItem) ) {
                         Locale.ShortFormat
                     } else {
                         Locale.LongFormat
