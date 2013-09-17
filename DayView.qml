@@ -26,7 +26,13 @@ Item{
         TimeLineHeader{
             id: dayHeader
             type: typeDay
-            date: currentDay.addDays(-2)
+            date: currentDay
+            preferredHighlightBegin: 0.5
+            preferredHighlightEnd: 0.5
+            path: Path {
+                startX: -(dayHeader.width/7); startY: dayHeader.height/2
+                PathLine { x: (dayHeader.width/7) * 8  ; relativeY: 0;  }
+            }
         }
 
         PathViewBase{

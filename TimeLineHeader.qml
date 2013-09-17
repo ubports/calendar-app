@@ -19,9 +19,20 @@ PathViewBase {
     property var date;
 
     delegate: TimeLineHeaderComponent{
-        width: parent.width
-        height: parent.height
         type: header.type
+
+        height: parent.height
+        isCurrentItem: index == header.currentIndex
+
+        width: {
+            if( type == typeWeek ) {
+                 parent.width
+            } else if( type == typeDay && isCurrentItem ){
+                (header.width/7) * 5
+            } else {
+                (header.width/7)
+            }
+        }
 
         startDay: getStartDate();
 
@@ -39,7 +50,7 @@ PathViewBase {
             case 0:
                 return date;
             case -1:
-                return date.addDays(2);
+                return date.addDays(-1);
             case 1:
                 return date.addDays(1);
             }

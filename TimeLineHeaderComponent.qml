@@ -11,6 +11,7 @@ Column {
     property int type: typeWeek
 
     property var startDay: DateExt.today();
+    property bool isCurrentItem: false
 
     width: parent.width
 
@@ -21,7 +22,7 @@ Column {
         height: parent.height
 
         Repeater{
-            model: type == typeWeek ? 7 : 3
+            model: type == typeWeek ? 7 : 1
 
             delegate: HeaderDateComponent{
                 date: startDay.addDays(index);
@@ -36,7 +37,7 @@ Column {
                 dateColor: {
                     if( type == typeWeek && date.isSameDay(DateExt.today())){
                         "white"
-                    } else if( type == typeDay && index == 1) {
+                    } else if( type == typeDay && root.isCurrentItem ) {
                         "white"
                     } else {
                         "#AEA79F"
@@ -44,10 +45,10 @@ Column {
                 }
 
                 width: {
-                    if( type == typeWeek || (type == typeDay && index != 1 ) ) {
+                    if( type == typeWeek ) {
                          header.width/7
                     } else {
-                        (header.width/7) * 5
+                        header.width
                     }
                 }
             }
