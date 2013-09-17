@@ -44,16 +44,20 @@ class TestMonthView(CalendarTestCase):
             self.assertThat(lambda: self.get_currentDayStart().year,
                             Eventually(Equals(after.year)))
 
+    def _assert_today(self):
+        today = datetime.today()
+        self.assertThat(lambda: self.get_currentDayStart().day,
+                        Eventually(Equals(today.day)))
+        self.assertThat(lambda: self.get_currentDayStart().month,
+                        Eventually(Equals(today.month)))
+        self.assertThat(lambda: self.get_currentDayStart().year,
+                        Eventually(Equals(today.year)))
+
     def _test_go_to_today(self, delta):
-        start = self.get_currentDayStart()
+        self._assert_today()
         self.change_month(delta)
         self.main_view.open_toolbar().click_button("todaybutton")
-        self.assertThat(lambda: self.get_currentDayStart().day,
-                        Eventually(Equals(start.day)))
-        self.assertThat(lambda: self.get_currentDayStart().month,
-                        Eventually(Equals(start.month)))
-        self.assertThat(lambda: self.get_currentDayStart().year,
-                        Eventually(Equals(start.year)))
+        self._assert_today()
 
     def test_monthview_go_to_today_next_month(self):
         self._test_go_to_today(1)
