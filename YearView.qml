@@ -35,17 +35,15 @@ PathViewBase {
 
         property var year: getYear();
 
-        function getYear(){
-            if (index === root.currentIndex) {
+        function getYear() {
+            switch( root.indexType(index)) {
+            case 0:
                 return intern.startYear;
-            }
-            var previousIndex = root.currentIndex > 0 ? root.currentIndex - 1 : 2
-
-            if ( index === previousIndex ) {
+            case -1:
                 return getDateFromYear(intern.startYear.getFullYear() - 1);
+            case 1:
+                return getDateFromYear(intern.startYear.getFullYear() + 1);
             }
-
-            return getDateFromYear(intern.startYear.getFullYear() + 1);
         }
 
         width: parent.width

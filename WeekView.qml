@@ -2,13 +2,26 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 import "dateExt.js" as DateExt
-import "dataService.js" as DataService
 
-Item{
+Column {
     id: root
-    anchors.fill: parent
 
     property var dayStart: new Date();
+    anchors.top: parent.top
+    anchors.topMargin: units.gu(1.5)
+
+    anchors.fill: parent
+
+    ViewHeader{
+        id: viewHeader
+        date: dayStart
+    }
+
+    TimeLineHeader{
+        id: weekHeader
+        type: typeWeek
+        date: weekViewPath.weekStart
+    }
 
     PathViewBase{
         id: weekViewPath
@@ -16,17 +29,17 @@ Item{
         property var visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
         property var weekStart: weekViewPath.visibleWeek.addDays(-7)
 
-        anchors.top: parent.top
-        anchors.topMargin: units.gu(1.5)
         width: parent.width
-        height: parent.height - units.gu(3)
+        height: root.height - viewHeader.height - weekHeader.height
 
         onNextItemHighlighted: {
             nextWeek();
+            weekHeader.incrementCurrentIndex()
         }
 
         onPreviousItemHighlighted: {
             previousWeek();
+            weekHeader.decrementCurrentIndex()
         }
 
         function nextWeek() {
@@ -49,20 +62,19 @@ Item{
             startDay: getWeekStart();
 
             function getWeekStart() {
-                if (index === weekViewPath.currentIndex) {
+                switch( weekViewPath.indexType(index)) {
+                case 0:
                     return weekViewPath.weekStart;
-                }
-                var previousIndex = weekViewPath.currentIndex > 0 ? weekViewPath.currentIndex - 1 : 2
-
-                if ( index === previousIndex ) {
+                case -1:
                     var weekStartDay= weekViewPath.weekStart.weekStart(Qt.locale().firstDayOfWeek);
                     return weekStartDay.addDays(14);
+                case 1:
+                    var weekStartDay = weekViewPath.weekStart.weekStart(Qt.locale().firstDayOfWeek);
+                    return weekStartDay.addDays(7);
                 }
-
-                var weekStartDay = weekViewPath.weekStart.weekStart(Qt.locale().firstDayOfWeek);
-                return weekStartDay.addDays(7);
             }
         }
     }
 }
+
 

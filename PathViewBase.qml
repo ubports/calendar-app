@@ -16,6 +16,20 @@ PathView {
         PathLine { relativeX: root.width; relativeY: 0 }
     }
 
+    // 0= current index, -1= previous index, 1 next index
+    function indexType(index) {
+        if (index === root.currentIndex) {
+            return 0;
+        }
+
+        var previousIndex = root.currentIndex > 0 ? root.currentIndex - 1 : 2
+        if ( index === previousIndex ) {
+            return -1;
+        }
+
+        return 1;
+    }
+
     onCurrentIndexChanged: {
         var diff = currentIndex - intern.previousIndex
 

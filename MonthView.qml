@@ -49,19 +49,14 @@ Page {
             monthDate: getMonthDate();
 
             function getMonthDate() {
-                //previous page
-                if (index === monthViewPath.currentIndex) {
+                switch( monthViewPath.indexType(index)) {
+                case 0:
                     return monthViewPath.startMonth;
-                }
-
-                //next page
-                var previousIndex = monthViewPath.currentIndex > 0 ? monthViewPath.currentIndex - 1 : 2
-                if ( index === previousIndex ) {
+                case -1:
                     return monthViewPath.addMonth(monthViewPath.startMonth,2);
+                case 1:
+                    return monthViewPath.addMonth(monthViewPath.startMonth,1);
                 }
-
-                //current page
-                return monthViewPath.addMonth(monthViewPath.startMonth,1);
             }
 
             onDateSelected: {
