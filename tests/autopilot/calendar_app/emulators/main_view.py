@@ -25,8 +25,10 @@ class MainView(uitk.MainView):
     def get_day_view(self):
         return self.select_single("DayView")
 
-    def get_title_label(self, title):
-        labels = self.select_many("Label", text=title)
+    def get_label_with_text(self, text, root=None):
+        if root is None:
+            root = self
+        labels = root.select_many("Label", text=text)
         if (len(labels) > 0):
             return labels[0]
         else:
