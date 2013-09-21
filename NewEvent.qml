@@ -150,7 +150,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker);
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startDate.getHours(),"minute":startDate.getMinutes()});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = startDate;
                                     newDate.setHours(startHour, startMinute);
@@ -175,7 +175,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker);
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endDate.getHours(),"minute":endDate.getMinutes()});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = endDate;
                                     newDate.setHours(startHour, startMinute);
