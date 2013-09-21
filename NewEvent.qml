@@ -191,7 +191,7 @@ Page {
             NewEventEntryField{
                 id: titleEdit
                 width: parent.width
-                title: i18n.tr("New Event")
+                title: i18n.tr("Event Name")
                 objectName: "newEventName"
             }
 
