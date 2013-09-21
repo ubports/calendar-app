@@ -25,7 +25,8 @@ Page {
 
     anchors {
         fill: parent
-        margins: units.gu(2)
+        leftMargin: units.gu(2)
+        rightMargin: units.gu(2)
     }
 
     title: i18n.tr("New Event")
@@ -114,6 +115,7 @@ Page {
 
     Flickable{
         anchors.top: parent.top
+        anchors.topMargin: units.gu(2)
         height: parent.height
         width: parent.width
 
