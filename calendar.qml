@@ -16,6 +16,7 @@ MainView {
     headerColor: "#266249"
     backgroundColor: "#478158"
     footerColor: "#478158"
+    anchorToKeyboard: true
 
     PageStack {
         id: pageStack
