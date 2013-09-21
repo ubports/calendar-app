@@ -64,7 +64,7 @@ MainView {
                     objectName: "neweventbutton"
                     action: Action {
                         iconSource: Qt.resolvedUrl("avatar.png");
-                        text: i18n.tr("New Event");
+                        text: i18n.tr("Event Name");
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay});
                         }
