@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtTest 1.0
-import "../dateExt.js" as DATE
+import "../../dateExt.js" as DATE
 
 TestCase{
     name: "Date tests"
