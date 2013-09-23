@@ -83,8 +83,8 @@ TestCase{
     function test_today() {
         var todayReal = new Date(), todayTest = DATE.today();
         compare(todayTest.getFullYear(), todayReal.getFullYear(), "Today's year");
-        compare(todayTest.getMonth(), todayReal.getMonth(), "Today's year");
-        compare(todayTest.getDate(), todayReal.getDate(), "Today's year");
+        compare(todayTest.getMonth(), todayReal.getMonth(), "Today's month");
+        compare(todayTest.getDate(), todayReal.getDate(), "Today's date");
         compare(todayTest.getHours(), 0, "Midnight, zero hours");
         compare(todayTest.getMinutes(), 0, "Midnight, zero minutes");
         compare(todayTest.getSeconds(), 0, "Midnight, zero seconds");
