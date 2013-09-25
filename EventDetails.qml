@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
+import Ubuntu.Components.Themes.Ambiance 0.1
 
 import "dataService.js" as DataService
 
@@ -29,8 +30,9 @@ Page {
         var location="-15.800513,-47.91378";
         //var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
 
-        timeLabel.text = Qt.formatDateTime(e.startTime,"hh:mm") + " - " + Qt.formatDateTime(e.endTime,"hh:mm");
-        dateLabel.text = Qt.formatDateTime(e.startTime,"ddd, d MMMM");
+        startTimeLabel.text =  Qt.formatDateTime(e.startTime,"hh:mm d MMM yyyy")
+        endTimeLabel.text = Qt.formatDateTime(e.endTime,"hh:mm d MMM yyyy")
+        dateLabel.text = Qt.formatDateTime(e.startTime,"dddd d MMMM");
         if( e.title)
             titleLabel.text = e.title;
 
@@ -65,6 +67,7 @@ Page {
     }
 
     tools: ToolbarItems {
+
         ToolbarButton {
             action: Action {
                 text: i18n.tr("Add invite");
@@ -87,32 +90,61 @@ Page {
     Column{
         anchors.fill: parent
         spacing: units.gu(1)
-
-        Item{
+        Rectangle {
+            id:dateRect
             width: parent.width
-            height: timeLabel.height
-            Label{
-                id: timeLabel
-                anchors.left: parent.left
-                anchors.verticalCenter: parent.verticalCenter
-                fontSize: "large"
-            }
+            height: dateLabel.height + 10
+            color: "#86C06F"
+            radius: 5
             Label{
                 id: dateLabel
-                anchors.right: parent.right
-                anchors.verticalCenter: parent.verticalCenter
-                fontSize: "small"
+                anchors.horizontalCenter: dateRect.horizontalCenter
+                anchors.verticalCenter: dateRect.verticalCenter
+                font.pixelSize:FontUtils.sizeToPixels("medium")
+
             }
         }
+        Item{
+            width: parent.width
+            height: startTimeLabel.height
+            Label{
+                id:startHeader
+                text: i18n.tr("Start")
+                font.pixelSize:FontUtils.sizeToPixels("medium")
+                anchors.left: parent.left
+                font.bold: true
+            }
 
+            Label{
+                id: startTimeLabel
+                x: 50
+                font.pixelSize:FontUtils.sizeToPixels("medium")
+            }
+        }
+        Item{
+            width: parent.width
+            height: startTimeLabel.height
+            Label{
+                id:endHeader
+                text: i18n.tr("End")
+                font.pixelSize:FontUtils.sizeToPixels("medium")
+                anchors.left: parent.left
+                font.bold: true
+            }
+
+            Label{
+                id: endTimeLabel
+                x: 50
+                font.pixelSize:FontUtils.sizeToPixels("medium")
+            }
+        }
+        ThinDivider{}
         Label{
             id: titleLabel
-            fontSize: "x-large"
+           font.pixelSize:FontUtils.sizeToPixels("large")
             width: parent.width
             wrapMode: Text.WordWrap
         }
-        ThinDivider{}
-
         Label{
             id: descLabel
             // FIXME: temporaty text, in ui there is no field to enter message
@@ -121,12 +153,20 @@ Page {
             fontSize: "medium"
             width: parent.width
         }
-
+        ThinDivider{}
+        Label{
+            id: mapHeader
+            font.pixelSize:FontUtils.sizeToPixels("medium")
+            width: parent.width
+            wrapMode: Text.WordWrap
+            text:i18n.tr("Location")
+        }
         //map control with location
         Rectangle{
             id: mapContainer
             width:parent.width
-            height: units.gu(25)
+            height: units.gu(10)
+
             Image {
                 id: mapImage
                 anchors.fill: parent
@@ -148,11 +188,76 @@ Page {
                 }
             }
         }
-
+        ThinDivider{}
         Label{
-            text: i18n.tr("People");
-            fontSize: "small"
+            text: i18n.tr("Guests");
+            font.pixelSize:FontUtils.sizeToPixels("medium")
         }
+        //Temp Guest Entries
+        CheckBox {
+                id: guest1
+                Label {
+                    text:"Guest1"
+                    x:50
+                    anchors.verticalCenter:  guest1.verticalCenter
+                }
+            }
+        CheckBox {
+            id: guest2
+            Label {
+                text:"Guest2"
+                x:50
+                anchors.verticalCenter:  guest2.verticalCenter
+            }
+
+        }
+        CheckBox {
+            id: guest3
+            Label {
+                text:"Guest3"
+                x:50
+                anchors.verticalCenter:  guest3.verticalCenter
+            }
+
+        }
+        //Temp Guest Entries ends
+         ThinDivider{}
+         Item{
+             width: parent.width
+             height: recurrentHeader.height
+             Label{
+                 id:recurrentHeader
+                 text: i18n.tr("This happens")
+                 font.pixelSize:FontUtils.sizeToPixels("medium")
+                 anchors.left: parent.left
+                 font.bold: true
+             }
+
+             Label{
+                 id: recurrentText
+                 x: 100
+                 font.pixelSize:FontUtils.sizeToPixels("medium")
+                 text: "Only once" //Neds to change
+             }
+         }
+         Item{
+             width: parent.width
+             height: reminderHeader.height
+             Label{
+                 id:reminderHeader
+                 text: i18n.tr("Remind me")
+                 font.pixelSize:FontUtils.sizeToPixels("medium")
+                 anchors.left: parent.left
+                 font.bold: true
+             }
+
+             Label{
+                 id: reminderText
+                 x: 100
+                 font.pixelSize:FontUtils.sizeToPixels("medium")
+                 text: "15 minutes before" //Neds to change
+             }
+         }
         ThinDivider{}
 
         //contact list view
