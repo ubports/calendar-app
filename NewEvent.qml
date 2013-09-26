@@ -168,7 +168,7 @@ Popover {
                 title: i18n.tr("Error")
                 text: ""
                 Button {
-                    text: i18n.tr("Ok")
+                    text: i18n.tr("OK")
                     onClicked: PopupUtils.close(errorPopupDialog)
                 }
             }
