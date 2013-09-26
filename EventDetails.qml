@@ -100,7 +100,7 @@ Page {
                 id: dateLabel
                 anchors.horizontalCenter: dateRect.horizontalCenter
                 anchors.verticalCenter: dateRect.verticalCenter
-                font.pixelSize:FontUtils.sizeToPixels("medium")
+                fontSize: "medium"
 
             }
         }
@@ -110,7 +110,7 @@ Page {
             Label{
                 id:startHeader
                 text: i18n.tr("Start")
-                font.pixelSize:FontUtils.sizeToPixels("medium")
+                fontSize: "medium"
                 anchors.left: parent.left
                 font.bold: true
             }
@@ -118,7 +118,7 @@ Page {
             Label{
                 id: startTimeLabel
                 x: 50
-                font.pixelSize:FontUtils.sizeToPixels("medium")
+                fontSize: "medium"
             }
         }
         Item{
@@ -127,7 +127,7 @@ Page {
             Label{
                 id:endHeader
                 text: i18n.tr("End")
-                font.pixelSize:FontUtils.sizeToPixels("medium")
+                fontSize: "medium"
                 anchors.left: parent.left
                 font.bold: true
             }
@@ -135,13 +135,13 @@ Page {
             Label{
                 id: endTimeLabel
                 x: 50
-                font.pixelSize:FontUtils.sizeToPixels("medium")
+                fontSize: "medium"
             }
         }
         ThinDivider{}
         Label{
             id: titleLabel
-           font.pixelSize:FontUtils.sizeToPixels("large")
+           fontSize: "large"
             width: parent.width
             wrapMode: Text.WordWrap
         }
@@ -228,7 +228,7 @@ Page {
              Label{
                  id:recurrentHeader
                  text: i18n.tr("This happens")
-                 font.pixelSize:FontUtils.sizeToPixels("medium")
+                 fontSize: "medium"
                  anchors.left: parent.left
                  font.bold: true
              }
@@ -236,7 +236,7 @@ Page {
              Label{
                  id: recurrentText
                  x: 100
-                 font.pixelSize:FontUtils.sizeToPixels("medium")
+                 fontSize: "medium"
                  text: "Only once" //Neds to change
              }
          }
@@ -246,16 +246,19 @@ Page {
              Label{
                  id:reminderHeader
                  text: i18n.tr("Remind me")
-                 font.pixelSize:FontUtils.sizeToPixels("medium")
+                 fontSize: "medium"
                  anchors.left: parent.left
                  font.bold: true
              }
 
              Label{
                  id: reminderText
-                 x: 100
-                 font.pixelSize:FontUtils.sizeToPixels("medium")
+                 fontSize: "medium"
                  text: "15 minutes before" //Neds to change
+                 anchors{
+                     left:parent.left
+                     leftMargin: units.gu(10)
+                 }
              }
          }
         ThinDivider{}
