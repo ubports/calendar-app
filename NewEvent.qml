@@ -9,8 +9,8 @@ Popover {
     id: popover
     property var defaultDate;
     property alias errorText: errorPopupDialog.text;
-    property var startDate: new Date()
-    property var endDate: new Date()
+    property var startDate;
+    property var endDate;
 
     Column {
         id: containerLayout
