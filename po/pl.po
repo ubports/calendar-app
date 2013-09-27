@@ -7,36 +7,38 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-08-30 10:23+0200\n"
+"POT-Creation-Date: 2013-09-26 07:05+0200\n"
 "PO-Revision-Date: 2013-07-05 13:26+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-31 05:28+0000\n"
-"X-Generator: Launchpad (build 16750)\n"
+"X-Launchpad-Export-Date: 2013-09-27 06:17+0000\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../DayView.qml:29 ../TimeLineBackground.qml:22 ../TimeLineView.qml:103
-#: ../WeekView.qml:27
-msgid "HH"
+#: ../EventBubble.qml:38
+msgid "hh:mm"
 msgstr ""
 
-#: ../DiaryView.qml:43
-msgid "(+) New Event"
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../EventBubble.qml:43
+#, qt-format
+msgid "%1 - %2"
 msgstr ""
 
-#: ../EventDetails.qml:69
+#: ../EventDetails.qml:70
 msgid "Add invite"
 msgstr ""
 
-#: ../EventDetails.qml:75
+#: ../EventDetails.qml:79
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:150
+#: ../EventDetails.qml:153
 msgid "People"
 msgstr ""
 
@@ -68,8 +70,8 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: ../NewEvent.qml:171
-msgid "Ok"
+#: ../NewEvent.qml:171 ../TimePicker.qml:82
+msgid "OK"
 msgstr ""
 
 #: ../NewEvent.qml:177
@@ -78,6 +80,12 @@ msgstr ""
 
 #: ../NewEvent.qml:205
 msgid "End time can't be before start time"
+msgstr ""
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: ../TimeLineBackground.qml:18
+msgid "hh ap"
 msgstr ""
 
 #: ../TimePicker.qml:23
@@ -96,31 +104,27 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../TimePicker.qml:82
-msgid "OK"
-msgstr ""
-
-#: ../calendar.qml:52
+#: ../calendar.qml:56
 msgid "New Event"
 msgstr ""
 
-#: ../calendar.qml:60
+#: ../calendar.qml:64
 msgid "Today"
 msgstr ""
 
-#: ../calendar.qml:72
+#: ../calendar.qml:75
 msgid "Year"
 msgstr ""
 
-#: ../calendar.qml:93
+#: ../calendar.qml:95
 msgid "Month"
 msgstr ""
 
-#: ../calendar.qml:116
+#: ../calendar.qml:108
 msgid "Week"
 msgstr ""
 
-#: ../calendar.qml:132
+#: ../calendar.qml:124
 msgid "Day"
 msgstr ""
 
