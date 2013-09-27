@@ -25,10 +25,11 @@ from autopilot.input import Mouse, Touch, Pointer
 from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 from autopilot.matchers import Eventually
-from testtools.matchers import GreaterThan, Equals
+from testtools.matchers import Equals
 
 from ubuntuuitoolkit import emulators as toolkit_emulators
 from calendar_app import emulators
+
 
 class CalendarTestCase(AutopilotTestCase):
 
@@ -77,7 +78,9 @@ class CalendarTestCase(AutopilotTestCase):
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_click(self):
-        self.app = self.launch_click_package("com.ubuntu.calendar-app", emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
+        self.app = self.launch_click_package(
+            "com.ubuntu.calendar-app",
+            emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def temp_move_sqlite_db(self):
         if os.path.exists(self.backup_dir):
