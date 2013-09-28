@@ -29,13 +29,6 @@ MainView {
             property var currentDay: DateExt.today();
             property var globalModel;
 
-            function setStartEndDateToModel() {
-                if(globalModel) {
-                    globalModel.startPeriod =  new Date(currentDay.getFullYear(),0,1,0,0,0,0);
-                    globalModel.endPeriod = new Date(currentDay.getFullYear(),11,31,0,0,0,0);
-                }
-            }
-
             onCurrentDayChanged: {
                 if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
                     monthView.currentMonth = currentDay.midnight();
@@ -47,6 +40,13 @@ MainView {
                     weekView.dayStart = currentDay
 
                 setStartEndDateToModel();
+            }
+
+            function setStartEndDateToModel() {
+                if(globalModel) {
+                    globalModel.startPeriod =  new Date(currentDay.getFullYear(),0,1,0,0,0,0);
+                    globalModel.endPeriod = new Date(currentDay.getFullYear(),11,31,0,0,0,0);
+                }
             }
 
             function newEvent() {
