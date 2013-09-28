@@ -17,6 +17,7 @@ Item{
         anchors.top: parent.top
         anchors.topMargin: units.gu(1.5)
         width: parent.width; height: parent.height
+        spacing: units.gu(1)
 
         ViewHeader{
             id: viewHeader

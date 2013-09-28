@@ -13,15 +13,18 @@ PathViewBase {
     interactive: false
     model:3
 
-    height: units.gu(10)
+    height: units.gu(8)
     width: parent.width
 
     property var date;
 
+    DayHeaderBackground{
+        height: FontUtils.sizeToPixels("medium") + units.gu(1.5)
+    }
+
     delegate: TimeLineHeaderComponent{
         type: header.type
 
-        height: parent.height
         isCurrentItem: index == header.currentIndex
 
         width: {
