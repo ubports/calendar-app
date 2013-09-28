@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import "dataServiceTests.js" as DataServiceTests
 
 MainView {
     width: units.gu(20)

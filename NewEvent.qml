@@ -3,7 +3,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
-import "dataService.js" as DataService
+import "GlobalEventModel.js" as GlobalModel
 
 Popover {
     id: popover
@@ -11,6 +11,10 @@ Popover {
     property alias errorText: errorPopupDialog.text;
     property var startDate: new Date()
     property var endDate: new Date()
+
+    Component.onCompleted: {
+        internal.eventModel = GlobalModel.gloablModel();
+    }
 
     Column {
         id: containerLayout
@@ -199,7 +203,7 @@ Popover {
                     }
 
                     if (!error) {
-                        DataService.addEvent(event);
+                        popover.saveToQtPim();
                         PopupUtils.close(popover);
                     } else {
                         errorText = i18n.tr("End time can't be before start time");
@@ -212,8 +216,29 @@ Popover {
         }
     }
 
+    function saveToQtPim() {
+        var event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+
+        event.startDateTime = startDate;
+        event.endDateTime = endDate;
+        event.displayLabel = titleEdit.text;
+        event.description = "New event from Organizer model!!"
+
+        event.location = locationEdit.text
+
+        if( personEdit.text != "") {
+            var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
+            attendee.name = personEdit.text;
+            attendee.emailAddress = "none@nowhere.com";
+            event.setDetail(attendee);
+        }
+
+        internal.eventModel.saveItem(event);
+    }
+
     QtObject {
         id: internal
+        property var eventModel;
 
         function clearFocus() {
             Qt.inputMethod.hide()
