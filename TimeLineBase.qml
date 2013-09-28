@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
+import "GlobalEventModel.js" as GlobalModel
 
 Item {
     id: bubbleOverLay
@@ -15,7 +16,7 @@ Item {
     }
 
     onDayChanged: {
-        if( model)
+        if( intern.model)
             bubbleOverLay.createEvents();
     }
 

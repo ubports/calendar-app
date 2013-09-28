@@ -36,8 +36,8 @@ Item{
         // TRANSLATORS: this is a time formatting string,
         // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
         var timeFormat = i18n.tr("hh:mm");
-        var startTime = event.startTime.toLocaleTimeString(Qt.locale(), timeFormat)
-        var endTime = event.endTime.toLocaleTimeString(Qt.locale(), timeFormat)
+        var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
+        var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
         // TRANSLATORS: the first argument (%1) refers to a start time for an event,
         // while the second one (%2) refers to the end time
         var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
@@ -49,11 +49,11 @@ Item{
         if( type == wideType) {
             timeLabel.text = timeString
 
-            if( event.title)
-                titleLabel.text = event.title;
+            if( event.displayLabel)
+                titleLabel.text = event.displayLabel;
 
-            if( event.message)
-                descriptionLabel.text = event.message
+            if( event.description)
+                descriptionLabel.text = event.description
         } else {
             timeLabel.text = startTime
         }

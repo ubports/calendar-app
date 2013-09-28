@@ -29,32 +29,23 @@ Page {
         var location="-15.800513,-47.91378";
         //var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
 
-        timeLabel.text = Qt.formatDateTime(e.startTime,"hh:mm") + " - " + Qt.formatDateTime(e.endTime,"hh:mm");
-        dateLabel.text = Qt.formatDateTime(e.startTime,"ddd, d MMMM");
-        if( e.title)
-            titleLabel.text = e.title;
+        timeLabel.text = Qt.formatDateTime(e.startDateTime,"hh:mm") + " - " + Qt.formatDateTime(e.endDateTime,"hh:mm");
+        dateLabel.text = Qt.formatDateTime(e.startDateTime,"ddd, d MMMM");
+        if( e.displayLabel)
+            titleLabel.text = e.displayLabel;
 
-        locationLabel.text = location;
-        if( e.message ) {
-            descLabel.text = e.message;
+        locationLabel.text = e.location;;
+        if( e.description ) {
+            descLabel.text = e.description;
         }
 
-        var venues = []
-        DataService.getVenues(e, venues)
-        if( venues.length > 0 ) {
-            //FIXME: what to do for multiple venue
-            var place = venues[0];
-            locationLabel.text = place.address;
-            if( place.latitude && place.longitude) {
-                location = place.latitude +"," + place.longitude;
-            }
-        }
+        var attendees = e.attendees;
 
-        var attendees = []
-        DataService.getAttendees(e, attendees)
         contactModel.clear();
-        for( var j = 0 ; j < attendees.length ; ++j ) {
-            contactModel.append( {"name": attendees[j] } );
+        if( attendees !== undefined ) {
+            for( var j = 0 ; j < attendees.length ; ++j ) {
+                contactModel.append( {"name": attendees[j].name } );
+            }
         }
 
         // FIXME: need to cache map image to avoid duplicate download every time
