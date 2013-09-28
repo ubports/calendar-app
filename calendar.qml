@@ -3,6 +3,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
 import "dateExt.js" as DateExt
+import "GlobalEventModel.js" as GlobalModel
 
 MainView {
     id: mainView
@@ -26,6 +27,14 @@ MainView {
             id: tabPage
 
             property var currentDay: DateExt.today();
+            property var globalModel;
+
+            function setStartEndDateToModel() {
+                if(globalModel) {
+                    globalModel.startPeriod =  new Date(currentDay.getFullYear(),0,1,0,0,0,0);
+                    globalModel.endPeriod = new Date(currentDay.getFullYear(),11,31,0,0,0,0);
+                }
+            }
 
             onCurrentDayChanged: {
                 if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
@@ -36,6 +45,8 @@ MainView {
 
                 if( !weekView.dayStart.isSameDay(currentDay))
                     weekView.dayStart = currentDay
+
+                setStartEndDateToModel();
             }
 
             function newEvent() {
@@ -43,7 +54,9 @@ MainView {
             }
 
             Component.onCompleted: {
-                tabs.selectedTabIndex= 1;
+                globalModel = GlobalModel.gloablModel();
+                setStartEndDateToModel();
+                tabs.selectedTabIndex = 1;
             }
 
             ToolbarItems {
