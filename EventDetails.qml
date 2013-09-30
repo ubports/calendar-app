@@ -11,7 +11,7 @@ Page {
 
     property var event;
     property string headerColor :"black"
-    property string detailColor :"black"
+    property string detailColor :"grey"
     anchors.fill: parent
     Component.onCompleted: {
         if( pageStack.header )
@@ -87,7 +87,7 @@ Page {
         anchors.fill: parent
         width: parent.width
         height: parent.height
-        color: UbuntuColors.warmGrey
+        color: "#F0F0F0"
         Column{
             anchors.fill: parent
             width: parent.width
@@ -166,7 +166,7 @@ Page {
                 // FIXME: temporaty text, in ui there is no field to enter message
                 text:"Hi both, please turn up on time, it gets really busy by 1pm! Anna x"
                 wrapMode: Text.WordWrap
-                fontSize: "medium"
+                fontSize: "small"
                 width: parent.width
                 color: detailColor
                 anchors{
