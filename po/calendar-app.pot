@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-30 10:23+0200\n"
+"POT-Creation-Date: 2013-09-30 16:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,24 +19,24 @@ msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../DayView.qml:29 ../TimeLineBackground.qml:22 ../TimeLineView.qml:103
-#: ../WeekView.qml:27
-msgid "HH"
+#: ../EventBubble.qml:38
+msgid "hh:mm"
 msgstr ""
 
-#: ../DiaryView.qml:43
-msgid "(+) New Event"
+#: ../EventBubble.qml:41
+#, qt-format
+msgid "%1 - %2"
 msgstr ""
 
-#: ../EventDetails.qml:69
+#: ../EventDetails.qml:70
 msgid "Add invite"
 msgstr ""
 
-#: ../EventDetails.qml:75
+#: ../EventDetails.qml:79
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:150
+#: ../EventDetails.qml:153
 msgid "People"
 msgstr ""
 
@@ -80,6 +80,12 @@ msgstr ""
 msgid "End time can't be before start time"
 msgstr ""
 
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: ../TimeLineBackground.qml:18
+msgid "hh ap"
+msgstr ""
+
 #: ../TimePicker.qml:23
 msgid "Time"
 msgstr ""
@@ -100,27 +106,49 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: ../calendar.qml:52
+#: ../calendar.qml:22
+msgid ""
+"Create a new event. If --starttime or --endtime are set they are used to set "
+"start and end time"
+msgstr ""
+
+#: ../calendar.qml:30
+msgid ""
+"If --newevent is set it's the start time of the event. Otherwise is the date "
+"on which app is focused. It accepts an integer value of the number of "
+"seconds since UNIX epoch in the UTC timezone. 0 means today."
+msgstr ""
+
+#: ../calendar.qml:37
+msgid ""
+"If --newevent is set it's the end time of the event, has to be > of --"
+"starttime, if set. If --newevent isn't set and --startime is set, its value "
+"is used to choose the right view. If neither of precendet flags are set, --"
+"endtime is ignored. It accepts an integer value of the number of seconds "
+"since UNIX epoch in the UTC timezone."
+msgstr ""
+
+#: ../calendar.qml:154
 msgid "New Event"
 msgstr ""
 
-#: ../calendar.qml:60
+#: ../calendar.qml:162
 msgid "Today"
 msgstr ""
 
-#: ../calendar.qml:72
+#: ../calendar.qml:173
 msgid "Year"
 msgstr ""
 
-#: ../calendar.qml:93
+#: ../calendar.qml:193
 msgid "Month"
 msgstr ""
 
-#: ../calendar.qml:116
+#: ../calendar.qml:206
 msgid "Week"
 msgstr ""
 
-#: ../calendar.qml:132
+#: ../calendar.qml:222
 msgid "Day"
 msgstr ""
 
