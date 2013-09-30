@@ -31,7 +31,7 @@ MainView {
                             It accepts an integer value of the number of seconds since UNIX epoch in the UTC timezone.
                             0 means today.");
             required: false;
-            valueNames: ["TIME"]
+            valueNames: ["START-TIME"]
         }
 
         Argument {
@@ -41,7 +41,7 @@ MainView {
                             If neither of precendet flag are set, --endtime is ignored
                             It accepts an integer value of the number of seconds since UNIX epoch in the UTC timezone.");
             required: false;
-            valueNames: ["TIME"]
+            valueNames: ["END-TIME"]
         }
     }
 
@@ -126,6 +126,7 @@ MainView {
 
             Component.onCompleted: {
                 // If --newevent has been called on startup
+
                 if (args.values.newevent) {
                     tabPage.newEvent()
                 }
