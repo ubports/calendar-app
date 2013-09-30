@@ -25,8 +25,6 @@ import logging
 from autopilot.input import Mouse, Touch, Pointer
 from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
-from autopilot.matchers import Eventually
-from testtools.matchers import Equals
 
 from ubuntuuitoolkit import emulators as toolkit_emulators
 from calendar_app import emulators
