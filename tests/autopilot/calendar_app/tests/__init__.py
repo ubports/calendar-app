@@ -33,6 +33,7 @@ from calendar_app import emulators
 
 logger = logging.getLogger(__name__)
 
+
 class CalendarTestCase(AutopilotTestCase):
 
     """A common test case class that provides several useful methods for
