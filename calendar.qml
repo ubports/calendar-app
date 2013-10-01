@@ -27,14 +27,19 @@ MainView {
         // Otherwise is the day on which app is focused on startup
         Argument {
             name: "starttime";
-            help: i18n.tr("If --newevent is set it's the start time of the event. Otherwise is the date on which app is focused. It accepts an integer value of the number of seconds since UNIX epoch in the UTC timezone. 0 means today.");
+            help: i18n.tr("If --newevent is set it's the start time of the event. Otherwise is the date on which app is focused.
+It accepts an integer value of the number of seconds since UNIX epoch in the UTC timezone.
+0 means today.");
             required: false;
             valueNames: ["START-TIME"]
         }
 
         Argument {
             name: "endtime";
-            help: i18n.tr("If --newevent is set it's the end time of the event, has to be > of --starttime, if set. If --newevent isn't set and --startime is set, its value is used to choose the right view. If neither of precendet flags are set, --endtime is ignored. It accepts an integer value of the number of seconds since UNIX epoch in the UTC timezone.");
+            help: i18n.tr("If --newevent is set it's the end time of the event, has to be > of --starttime, if set.
+If --newevent isn't set and --startime is set, its value is used to choose the right view
+If neither of precendet flags are set, --endtime is ignored
+It accepts an integer value of the number of seconds since UNIX epoch in the UTC timezone.");
             required: false;
             valueNames: ["END-TIME"]
         }
