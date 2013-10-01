@@ -94,9 +94,9 @@ class CalendarTestCase(AutopilotTestCase):
         try:
             shutil.move(self.sqlite_dir, self.backup_dir)
         except:
-            logger.debug("Backed up database")
-        else:
             logger.warning("No current database found")
+        else:
+            logger.debug("Backed up database")
 
     def restore_sqlite_db(self):
         if os.path.exists(self.backup_dir):
@@ -105,6 +105,8 @@ class CalendarTestCase(AutopilotTestCase):
                     shutil.rmtree(self.sqlite_dir)
                 except:
                     logger.error("Failed to remove test database")
+                    logger.error("Failed to restore database")
+                    return
             try:
                 shutil.move(self.backup_dir, self.sqlite_dir)
             except:
