@@ -222,7 +222,7 @@ Popover {
         event.startDateTime = startDate;
         event.endDateTime = endDate;
         event.displayLabel = titleEdit.text;
-        event.description = "New event from Organizer model!!"
+        event.description = ""
 
         event.location = locationEdit.text
 
