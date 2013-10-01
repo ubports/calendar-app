@@ -27,12 +27,25 @@ Page {
         var location="-15.800513,-47.91378";
         //var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
 
-        timeLabel.text = Qt.formatDateTime(e.startDateTime,"hh:mm") + " - " + Qt.formatDateTime(e.endDateTime,"hh:mm");
-        dateLabel.text = Qt.formatDateTime(e.startDateTime,"ddd, d MMMM");
-        if( e.displayLabel)
-            titleLabel.text = e.displayLabel;
+        // TRANSLATORS: this is a time formatting string,
+        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        var timeFormat = i18n.tr("hh:mm");
+        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        // TRANSLATORS: the first argument (%1) refers to a start time for an event,
+        // while the second one (%2) refers to the end time
+        timeLabel.text =  i18n.tr("%1 - %2").arg(startTime).arg(endTime);
+        var dateFormat = i18n.tr("ddd, d MMMM");
+        dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(),dateFormat);
 
-        locationLabel.text = e.location;;
+        if( e.displayLabel) {
+            titleLabel.text = e.displayLabel;
+        }
+
+        if( e.location ) {
+            locationLabel.text = e.location;
+        }
+
         if( e.description ) {
             descLabel.text = e.description;
         }
