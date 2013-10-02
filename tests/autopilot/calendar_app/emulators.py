@@ -7,10 +7,10 @@
 
 """Calendar app autopilot emulators."""
 
-from ubuntuuitoolkit import emulators as uitk
+from ubuntuuitoolkit import emulators as toolkit_emulators
 
 
-class MainView(uitk.MainView):
+class MainView(toolkit_emulators.MainView):
 
     """
     An emulator class that makes it easy to interact with the calendar-app.
@@ -21,6 +21,9 @@ class MainView(uitk.MainView):
 
     def get_month_view(self):
         return self.select_single("MonthView")
+
+    def get_year_view(self):
+        return self.select_single("YearView")
 
     def get_day_view(self):
         return self.select_single("DayView")
