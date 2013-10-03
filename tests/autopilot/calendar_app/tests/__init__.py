@@ -45,8 +45,7 @@ class CalendarTestCase(AutopilotTestCase):
 
     local_location = "../../calendar.qml"
     installed_location = "/usr/share/calendar-app/calendar.qml"
-    sqlite_dir = os.path.expanduser(
-        "~/.local/share/Qt Project/QtQmlViewer/QML/OfflineStorage/Databases")
+    sqlite_dir = os.path.expanduser("~/.local/share/calendar-app/Databases")
     backup_dir = sqlite_dir + ".backup"
 
     def setUp(self):
