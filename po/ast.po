@@ -1,0 +1,133 @@
+# Asturian translation for ubuntu-calendar-app
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the ubuntu-calendar-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-calendar-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-09-26 07:05+0200\n"
+"PO-Revision-Date: 2013-10-03 10:34+0000\n"
+"Last-Translator: ivarela <ivarela@ubuntu.com>\n"
+"Language-Team: Asturian <ast@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-04 05:45+0000\n"
+"X-Generator: Launchpad (build 16791)\n"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: ../EventBubble.qml:38
+msgid "hh:mm"
+msgstr "hh:mm"
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../EventBubble.qml:43
+#, qt-format
+msgid "%1 - %2"
+msgstr "%1 - %2"
+
+#: ../EventDetails.qml:70
+msgid "Add invite"
+msgstr ""
+
+#: ../EventDetails.qml:79
+msgid "Edit"
+msgstr "Editar"
+
+#: ../EventDetails.qml:153
+msgid "People"
+msgstr "Xente"
+
+#: ../NewEvent.qml:23
+msgid "Create event"
+msgstr "Crear eventu"
+
+#: ../NewEvent.qml:29
+msgid "Add event name"
+msgstr "Amestar el nome del eventu"
+
+#: ../NewEvent.qml:102
+msgid "to"
+msgstr "a"
+
+#: ../NewEvent.qml:137
+msgid "Location & People"
+msgstr "Llocalización y persones"
+
+#: ../NewEvent.qml:143
+msgid "Add Location"
+msgstr "Amestar llocalización"
+
+#: ../NewEvent.qml:156
+msgid "Invite People"
+msgstr ""
+
+#: ../NewEvent.qml:168
+msgid "Error"
+msgstr ""
+
+#: ../NewEvent.qml:171 ../TimePicker.qml:82
+msgid "OK"
+msgstr ""
+
+#: ../NewEvent.qml:177
+msgid "Save"
+msgstr ""
+
+#: ../NewEvent.qml:205
+msgid "End time can't be before start time"
+msgstr ""
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+#: ../TimeLineBackground.qml:18
+msgid "hh ap"
+msgstr ""
+
+#: ../TimePicker.qml:23
+msgid "Time"
+msgstr ""
+
+#: ../TimePicker.qml:49
+msgid "Hour"
+msgstr ""
+
+#: ../TimePicker.qml:63
+msgid "Minute"
+msgstr ""
+
+#: ../TimePicker.qml:73
+msgid "Cancel"
+msgstr ""
+
+#: ../calendar.qml:56
+msgid "New Event"
+msgstr ""
+
+#: ../calendar.qml:64
+msgid "Today"
+msgstr ""
+
+#: ../calendar.qml:75
+msgid "Year"
+msgstr ""
+
+#: ../calendar.qml:95
+msgid "Month"
+msgstr ""
+
+#: ../calendar.qml:108
+msgid "Week"
+msgstr ""
+
+#: ../calendar.qml:124
+msgid "Day"
+msgstr ""
+
+#: ../.build/calendar-app.desktop.js:1
+msgid "Calendar"
+msgstr ""
