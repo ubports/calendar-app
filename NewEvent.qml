@@ -23,6 +23,9 @@ Page {
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
     }
 
+    width: parent.width
+    height: parent.height
+
     title: i18n.tr("New Event")
 
     tools: ToolbarItems {
