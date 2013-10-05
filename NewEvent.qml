@@ -189,7 +189,12 @@ Popover {
                         error = 2;
 
                     startDate.setDate(defaultDate.getDate());
+                    startDate.setMonth(defaultDate.getMonth());
+                    startDate.setFullYear(defaultDate.getFullYear());
+
                     endDate.setDate(defaultDate.getDate());
+                    endDate.setMonth(defaultDate.getMonth());
+                    endDate.setFullYear(defaultDate.getFullYear());
 
                     var event = {
                         title: titleEdit.text,
