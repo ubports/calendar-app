@@ -40,7 +40,7 @@ MainView {
             }
 
             function newEvent() {
-                 PopupUtils.open(newEventComponent, tabPage, {"defaultDate": new Date()})
+                 PopupUtils.open(newEventComponent, tabPage, {"defaultDate": currentDay})
             }
 
             Component.onCompleted: {

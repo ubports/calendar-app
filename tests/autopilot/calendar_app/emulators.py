@@ -7,10 +7,10 @@
 
 """Calendar app autopilot emulators."""
 
-from ubuntuuitoolkit import emulators as uitk
+from ubuntuuitoolkit import emulators as toolkit_emulators
 
 
-class MainView(uitk.MainView):
+class MainView(toolkit_emulators.MainView):
 
     """
     An emulator class that makes it easy to interact with the calendar-app.
@@ -22,11 +22,16 @@ class MainView(uitk.MainView):
     def get_month_view(self):
         return self.select_single("MonthView")
 
+    def get_year_view(self):
+        return self.select_single("YearView")
+
     def get_day_view(self):
         return self.select_single("DayView")
 
-    def get_title_label(self, title):
-        labels = self.select_many("Label", text=title)
+    def get_label_with_text(self, text, root=None):
+        if root is None:
+            root = self
+        labels = root.select_many("Label", text=text)
         if (len(labels) > 0):
             return labels[0]
         else:
@@ -37,27 +42,24 @@ class MainView(uitk.MainView):
 
     def get_new_event_name_input_box(self):
         new_event = self.get_new_event()
-        return new_event.select_single("NewEventEntryField",
-                                       objectName="newEventName")
+        return new_event.select_single("TextField", objectName="newEventName")
 
     def get_event_start_time_field(self):
         new_event = self.get_new_event()
-        return new_event.select_single("NewEventEntryField",
-                                       objectName="startTimeInput")
+        return new_event.select_single("Button", objectName="startTimeInput")
 
     def get_event_end_time_field(self):
         new_event = self.get_new_event()
-        return new_event.select_single("NewEventEntryField",
-                                       objectName="endTimeInput")
+        return new_event.select_single("Button", objectName="endTimeInput")
 
     def get_event_location_field(self):
         new_event = self.get_new_event()
-        return new_event.select_single("NewEventEntryField",
+        return new_event.select_single("TextField",
                                        objectName="eventLocationInput")
 
     def get_event_people_field(self):
         new_event = self.get_new_event()
-        return new_event.select_single("NewEventEntryField",
+        return new_event.select_single("TextField",
                                        objectName="eventPeopleInput")
 
     def get_event_save_button(self):

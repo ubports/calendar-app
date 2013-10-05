@@ -3,113 +3,67 @@ import Ubuntu.Components 0.1
 
 import "dateExt.js" as DateExt
 
-Column {
-    id: root
-
-    property int type: typeWeek
-
-    property var startDay: DateExt.today();
+PathViewBase {
+    id: header
 
     readonly property int typeWeek: 0
     readonly property int typeDay: 1
+    property int type: typeWeek
 
-    clip: true
+    interactive: false
+    model:3
 
+    height: units.gu(10)
     width: parent.width
 
-    Item{
-         id: monthHeader
-         width: parent.width
-         height: monthLabel.height
+    property var date;
 
-         Label{
-             id: monthLabel
-             fontSize: "large"
-             text: {
-                 var monthDate = startDay;
-                 if( type === typeDay ) {
-                     monthDate = monthDate.addDays(1)
-                 }
-                 Qt.locale().standaloneMonthName(monthDate.getMonth())
-             }
-             anchors.leftMargin: units.gu(1)
-             anchors.left: parent.left
-             //color:"white"
-             anchors.verticalCenter: parent.verticalCenter
-         }
+    delegate: TimeLineHeaderComponent{
+        type: header.type
 
-         Label{
-             id: yearLabel
-             fontSize: "medium"
-             text: root.startDay.getFullYear()
-             anchors.right: parent.right
-             anchors.rightMargin: units.gu(1)
-             color:"#AEA79F"
-             anchors.verticalCenter: parent.verticalCenter
-         }
-     }
+        height: parent.height
+        isCurrentItem: index == header.currentIndex
 
-    Row{
-        id: header
+        width: {
+            if( type == typeWeek ) {
+                 parent.width
+            } else if( type == typeDay && isCurrentItem ){
+                (header.width/7) * 5
+            } else {
+                (header.width/7)
+            }
+        }
 
-        width: parent.width
-        height: units.gu(10)
+        startDay: getStartDate();
 
-        Repeater{
-            model: type == typeWeek ? 7 : 3
+        function getStartDate() {
+            switch(type) {
+            case typeWeek:
+                return getDateForWeek();
+            case typeDay:
+                return getDateForDay();
+            }
+        }
 
-            delegate: Item {
-                property var date : startDay.addDays(index);
-                property int weekDayWidth: header.width / 7
+        function getDateForDay() {
+            switch( header.indexType(index)) {
+            case 0:
+                return date;
+            case -1:
+                return date.addDays(-1);
+            case 1:
+                return date.addDays(1);
+            }
+        }
 
-                width: {
-                    if( type == typeWeek || (type == typeDay && index != 1 ) ) {
-                         weekDayWidth
-                    } else {
-                        weekDayWidth * 5
-                    }
-                }
-
-                height: parent.height
-
-                Column{
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    width: parent.width
-                    spacing: units.gu(0.5)
-
-                    Label{
-                        property var day: {
-                            if( type == typeWeek || (type == typeDay && index != 1 ) ) {
-                                 Qt.locale().standaloneDayName(date.getDay(), Locale.ShortFormat)
-                            } else {
-                                Qt.locale().standaloneDayName(date.getDay(), Locale.LongFormat)
-                            }
-                        }
-
-                        text: day.toUpperCase();
-                        fontSize: "medium"
-                        horizontalAlignment: Text.AlignHCenter
-                        color: "#AEA79F"
-                        width: parent.width
-                    }
-
-                    Label{
-                        text: date.getDate();
-                        fontSize: "large"
-                        horizontalAlignment: Text.AlignHCenter
-                        color: {
-                            if( type == typeDay && index == 1 ) {
-                                "white"
-                            } else if( type == typeWeek && date.isSameDay(DateExt.today())){
-                                 "white"
-                            } else {
-                                "#AEA79F"
-                            }
-                        }
-                        width: parent.width
-                    }
-                }
+        function getDateForWeek() {
+            switch( header.indexType(index)) {
+            case 0:
+                return date;
+            case -1:
+                return date.addDays(14);
+            case 1:
+                return date.addDays(7);
             }
         }
     }

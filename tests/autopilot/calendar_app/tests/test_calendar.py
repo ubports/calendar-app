@@ -93,5 +93,6 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_new_event, Eventually(Is(None)))
 
         #verify that the event has been created in timeline
-        self.assertThat(lambda: self.main_view.get_title_label(eventTitle),
+        self.assertThat(lambda: self.main_view.get_label_with_text(
+                        eventTitle, root=self.main_view.get_day_view()),
                         Eventually(Not(Is(None))))
