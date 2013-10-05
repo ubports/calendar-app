@@ -23,12 +23,6 @@ Page {
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
     }
 
-    anchors {
-        fill: parent
-        leftMargin: units.gu(2)
-        rightMargin: units.gu(2)
-    }
-
     title: i18n.tr("New Event")
 
     tools: ToolbarItems {
@@ -114,8 +108,15 @@ Page {
     }
 
     Flickable{
-        anchors.top: parent.top
-        anchors.topMargin: units.gu(2)
+        anchors {
+            top: parent.top
+            topMargin: units.gu(2)
+            left: parent.left
+            right: parent.right
+            leftMargin: units.gu(2)
+            rightMargin: units.gu(2)
+        }
+
         height: parent.height
         width: parent.width
 
