@@ -111,14 +111,12 @@ Page {
         anchors {
             top: parent.top
             topMargin: units.gu(2)
+            bottom: parent.bottom
             left: parent.left
             right: parent.right
             leftMargin: units.gu(2)
             rightMargin: units.gu(2)
         }
-
-        height: parent.height
-        width: parent.width
 
         contentWidth: width
         contentHeight: column.height
