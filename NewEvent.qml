@@ -13,6 +13,7 @@ Page {
     property alias errorText: errorPopupDialog.text;
     property var startDate: date
     property var endDate: date
+    property alias scrollY: flickable.contentY
 
     Component.onCompleted: {
         startDate = new Date(date)
@@ -111,6 +112,7 @@ Page {
     }
 
     Flickable{
+        id: flickable
         anchors {
             top: parent.top
             topMargin: units.gu(2)

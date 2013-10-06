@@ -14,6 +14,7 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals, Not, Is
 
 import time
+from time import sleep
 
 from calendar_app.tests import CalendarTestCase
 
@@ -38,6 +39,21 @@ class TestMainView(CalendarTestCase):
         while (scroller.currentIndex != minutes):
             self.pointing_device.click()
             scroller.currentIndex.wait_for((scroller.currentIndex + 1) % 60)
+
+    def swipe_newevent(self,yDistance):
+        distance = yDistance
+        newEvent = self.main_view.get_new_event()
+        x_line = newEvent.globalRect[0] + newEvent.globalRect[2] / 2
+        x_pad = 0.25
+        start = (-x_pad) % 1
+        stop = (x_pad) % 1
+        while (distance > 0) :
+            yBefore = newEvent.scrollY;
+            y_start = newEvent.globalRect[1] + newEvent.globalRect[3] * start
+            y_stop = newEvent.globalRect[1] + newEvent.globalRect[3] * stop
+            self.pointing_device.drag(x_line, y_start, x_line, y_stop)
+            sleep(.25)
+            distance = distance - ( yBefore + newEvent.scrollY);
 
     def test_new_event(self):
         """test add new event """
@@ -77,7 +93,9 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
 
         #input location
+        newEvent = self.main_view.get_new_event()
         location_field = self.main_view.get_event_location_field()
+        self.swipe_newevent(location_field.y - (newEvent.height/2));
         self.pointing_device.click_object(location_field)
         self.keyboard.type("My location")
         self.assertThat(location_field.text, Eventually(Equals("My location")))
