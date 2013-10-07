@@ -63,6 +63,7 @@ class TestMainView(CalendarTestCase):
         eventTitle = "Test event " + str(int(time.time()))
         event_name_field = self.main_view.get_new_event_name_input_box()
         self.pointing_device.click_object(event_name_field)
+        self.assertThat(event_name_field.activeFocus, Eventually(Equals(True)))
         self.keyboard.type(eventTitle)
         self.assertThat(event_name_field.text, Eventually(Equals(eventTitle)))
 
@@ -92,6 +93,7 @@ class TestMainView(CalendarTestCase):
         self.hideOSK()
         location_field = self.main_view.get_event_location_field()
         self.pointing_device.click_object(location_field)
+        self.assertThat(location_field.activeFocus, Eventually(Equals(True)))
         self.keyboard.type("My location")
         self.assertThat(location_field.text, Eventually(Equals("My location")))
 
@@ -99,6 +101,7 @@ class TestMainView(CalendarTestCase):
         self.hideOSK()
         people_field = self.main_view.get_event_people_field()
         self.pointing_device.click_object(people_field)
+        self.assertThat(people_field.activeFocus, Eventually(Equals(True)))
         self.keyboard.type("Me")
         self.assertThat(people_field.text, Eventually(Equals("Me")))
 
