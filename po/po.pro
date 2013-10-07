@@ -1,3 +1,10 @@
+## This .pro file is used to create a Makefile with the necessary rules
+## to create an initial translations template and to update it whenever
+## there are new translatable strings in the project that are ready to be
+## exposed to translators
+##
+## See the ../README.translations file for more information
+
 TEMPLATE = subdirs
 
 PROJECTNAME = $$system(basename ../*.qmlproject)
