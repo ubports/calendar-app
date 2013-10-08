@@ -168,6 +168,11 @@ MainView {
                             tabs.selectedTabIndex = 3
                         }
                     } // End of else if (starttime)
+                    else {
+                    	// Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
+                    	// After the fix we can delete this else
+                    	tabs.selectedTabIndex= 1;
+                    }
                 } // End of if about args.values
                 else {
                     tabs.selectedTabIndex= 1;
