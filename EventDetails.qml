@@ -88,6 +88,7 @@ Page {
         anchors.fill: parent
         color: "white"
         Column{
+            id: column
             anchors.fill: parent
             width: parent.width
             spacing: units.gu(1)
@@ -97,6 +98,7 @@ Page {
                 right: parent.right
                 rightMargin: units.gu(2)
             }
+            property int timeLabelMaxLen: Math.max( startHeader.width, endHeader.width)// Dynamic Height
             Item{
                 id:startTime
                 width: parent.width
@@ -117,7 +119,7 @@ Page {
                 }
                 Label{
                     id: startTimeLabel
-                    x: units.gu(6)
+                    x:column.timeLabelMaxLen + units.gu(1)
                     fontSize: "medium"
                     color: detailColor
                 }
@@ -141,7 +143,7 @@ Page {
                 }
                 Label{
                     id: endTimeLabel
-                    x: units.gu(6)
+                    x: column.timeLabelMaxLen + units.gu(1)
                     fontSize: "medium"
                     color: detailColor
                 }
@@ -179,7 +181,7 @@ Page {
                 fontSize: "medium"
                 width: parent.width
                 wrapMode: Text.WordWrap
-                text:i18n.tr("Location ")
+                text:i18n.tr("Location")
                 color: headerColor
                 font.bold: true
                 anchors{
@@ -242,14 +244,11 @@ Page {
                 model: ListModel {
                     id: contactModel
                 }
-                delegate: CheckBox{
-                    anchors{
-                        left:parent.left
-                        leftMargin: units.gu(2)
-                    }
+                delegate: Row{
+                    spacing: units.gu(1)
+                    CheckBox{}
                     Label {
                         text:name
-                        x:units.gu(6)
                         anchors.verticalCenter:  parent.verticalCenter
                         color: detailColor
                     }
@@ -257,6 +256,7 @@ Page {
             }
             //Guest Entries ends
             ThinDivider{}
+            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.width, reminderHeader.width) //Dynamic Height
             Item{
                 width: parent.width
                 height: recurrentHeader.height
@@ -275,7 +275,7 @@ Page {
                 Label{
                     id: recurrentText
                     fontSize: "medium"
-                    x:units.gu(15)
+                    x:column.recurranceAreaMaxWidth + units.gu(1)
                     text: "Only once" //Neds to change
                     color:detailColor
                 }
@@ -298,7 +298,7 @@ Page {
                 Label{
                     id: reminderText
                     fontSize: "medium"
-                    x:units.gu(15)
+                    x:column.recurranceAreaMaxWidth + units.gu(1)
                     text: "15 minutes before" //Neds to change
                     color:detailColor
                 }
