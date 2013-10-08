@@ -45,7 +45,8 @@ class CalendarTestCase(AutopilotTestCase):
 
     local_location = "../../calendar.qml"
     installed_location = "/usr/share/calendar-app/calendar.qml"
-    sqlite_dir = os.path.expanduser("~/.local/share/calendar-app/Databases")
+    sqlite_dir = os.path.expanduser(
+        "~/.local/share/com.ubuntu.calendar/Databases")
     backup_dir = sqlite_dir + ".backup"
 
     def setUp(self):
@@ -79,7 +80,7 @@ class CalendarTestCase(AutopilotTestCase):
 
     def launch_test_click(self):
         self.app = self.launch_click_package(
-            "com.ubuntu.calendar-app",
+            "com.ubuntu.calendar",
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def temp_move_sqlite_db(self):
