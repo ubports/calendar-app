@@ -63,6 +63,7 @@ PathViewBase {
             height: yearView.cellHeight
 
             MonthComponent{
+                id: monthComponent
                 monthDate: new Date(yearView.year.getFullYear(),index,1,0,0,0,0)
                 width: parent.width - units.gu(1)
                 height: parent.height - units.gu(1)
@@ -76,7 +77,7 @@ PathViewBase {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        root.monthSelected(monthDate);
+                        root.monthSelected(monthComponent.monthDate);
                     }
                 }
             }
