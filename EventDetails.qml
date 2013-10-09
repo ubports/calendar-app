@@ -31,8 +31,8 @@ Page {
         mapAddress.text = location;
 
 
-        startTimeLabel.text =  Qt.formatDateTime(e.startTime,"hh:mm d MMM yyyy")
-        endTimeLabel.text = Qt.formatDateTime(e.endTime,"hh:mm d MMM yyyy")
+        startHeader.value=  Qt.formatDateTime(e.startTime,"hh:mm d MMM yyyy")
+        endHeader.value= Qt.formatDateTime(e.endTime,"hh:mm d MMM yyyy")
         if( e.title)
             titleLabel.text = e.title;
 
@@ -99,43 +99,16 @@ Page {
                 left:parent.left
                 leftMargin: units.gu(2)
             }
-            property int timeLabelMaxLen: Math.max( startHeader.width, endHeader.width)// Dynamic Height
-            Item{
-                id:startTime
-                width: parent.width
-                height: startTimeLabel.height
-                Label{
-                    id:startHeader
-                    text: i18n.tr("Start")
-                    fontSize: "medium"
-                    anchors.left: parent.left
-                    font.bold: true
-                    color: headerColor
-                }
-                Label{
-                    id: startTimeLabel
-                    x:column.timeLabelMaxLen + units.gu(1)
-                    fontSize: "medium"
-                    color: detailColor
-                }
+            property int timeLabelMaxLen: Math.max( startHeader.headerWidth, endHeader.headerWidth)// Dynamic Width
+            EventDetailsInfo{
+                id: startHeader
+                xMargin:column.timeLabelMaxLen
+                header: i18n.tr("Start")
             }
-            Item{
-                width: parent.width
-                height: startTimeLabel.height
-                Label{
-                    id:endHeader
-                    text: i18n.tr("End")
-                    fontSize: "medium"
-                    anchors.left: parent.left
-                    font.bold: true
-                    color: headerColor
-                }
-                Label{
-                    id: endTimeLabel
-                    x: column.timeLabelMaxLen + units.gu(1)
-                    fontSize: "medium"
-                    color: detailColor
-                }
+            EventDetailsInfo{
+                id: endHeader
+                xMargin: column.timeLabelMaxLen
+                header: i18n.tr("End")
             }
             ThinDivider{}
             Label{
@@ -155,14 +128,9 @@ Page {
                 color: detailColor
             }
             ThinDivider{}
-            Label{
+            EventDetailsInfo{
                 id: mapHeader
-                fontSize: "medium"
-                width: parent.width
-                wrapMode: Text.WordWrap
-                text:i18n.tr("Location")
-                color: headerColor
-                font.bold: true
+                header: i18n.tr("Location")
             }
             Label{
                 id: mapAddress
@@ -213,46 +181,19 @@ Page {
             }
             //Guest Entries ends
             ThinDivider{}
-            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.width, reminderHeader.width) //Dynamic Height
-            Item{
-                width: parent.width
-                height: recurrentHeader.height
-
-                Label{
-                    id:recurrentHeader
-                    text: i18n.tr("This happens")
-                    fontSize: "medium"
-                    font.bold: true
-                    color:headerColor
-                }
-                Label{
-                    id: recurrentText
-                    fontSize: "medium"
-                    x:column.recurranceAreaMaxWidth + units.gu(1)
-                    text: "Only once" //Neds to change
-                    color:detailColor
-                }
+            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth) //Dynamic Height
+            EventDetailsInfo{
+                id: recurrentHeader
+                xMargin: column.recurranceAreaMaxWidth
+                header: i18n.tr("This happens")
+                value :"Only once" //Neds to change
             }
-            Item{
-                width: parent.width
-                height: reminderHeader.height
-                Label{
-                    id:reminderHeader
-                    text: i18n.tr("Remind me")
-                    fontSize: "medium"
-                    font.bold: true
-                    color:headerColor
-                }
-
-                Label{
-                    id: reminderText
-                    fontSize: "medium"
-                    x:column.recurranceAreaMaxWidth + units.gu(1)
-                    text: "15 minutes before" //Neds to change
-                    color:detailColor
-                }
+            EventDetailsInfo{
+                id: reminderHeader
+                xMargin: column.recurranceAreaMaxWidth
+                header: i18n.tr("Remind me")
+                value :"15 minutes before" //Neds to change
             }
-
         }
     }
 }
