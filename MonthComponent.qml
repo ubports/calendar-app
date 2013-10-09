@@ -87,23 +87,12 @@ Item{
             width: parent.width / 7;
             height: parent.height / parent.weekCount
 
-            property bool shouldCreateHighlight: date.isSameDay(DateExt.today()) && isCurrentMonth
-
-            onShouldCreateHighlightChanged: {
-                if( shouldCreateHighlight ) {
-                    highlightLoader.sourceComponent = highLightComp;
-                } else {
-                    //unloading the highlight
-                    highlightLoader.sourceComponent = undefined
-                }
-            }
-
-             Loader {
-                id: highlightLoader
+            Loader {
                 width: parent.width
                 height: width
                 anchors.centerIn: parent
-             }
+                sourceComponent: date.isSameDay(DateExt.today()) && isCurrentMonth ? highLightComp : undefined
+            }
 
             Label{
                 id: dateLabel
