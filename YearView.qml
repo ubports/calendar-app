@@ -46,8 +46,6 @@ PathViewBase {
             }
         }
 
-        flow: Grid.LeftToRight
-
         width: parent.width
         height: parent.height
         anchors.top: parent.top
