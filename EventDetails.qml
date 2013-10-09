@@ -97,18 +97,14 @@ Page {
                 topMargin: units.gu(2)
                 right: parent.right
                 rightMargin: units.gu(2)
+                left:parent.left
+                leftMargin: units.gu(2)
             }
             property int timeLabelMaxLen: Math.max( startHeader.width, endHeader.width)// Dynamic Height
             Item{
                 id:startTime
                 width: parent.width
                 height: startTimeLabel.height
-                anchors{
-                    left:parent.left
-                    leftMargin: units.gu(2)
-                    right: parent.right
-                    rightMargin: units.gu(2)
-                }
                 Label{
                     id:startHeader
                     text: i18n.tr("Start")
@@ -127,12 +123,6 @@ Page {
             Item{
                 width: parent.width
                 height: startTimeLabel.height
-                anchors{
-                    left:parent.left
-                    leftMargin: units.gu(2)
-                    right: parent.right
-                    rightMargin: units.gu(2)
-                }
                 Label{
                     id:endHeader
                     text: i18n.tr("End")
@@ -155,12 +145,7 @@ Page {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 color: headerColor
-                anchors{
-                    left:parent.left
-                    leftMargin: units.gu(2)
-                    right: parent.right
-                    rightMargin: units.gu(2)
-                }
+
             }
             Label{
                 id: descLabel
@@ -170,10 +155,7 @@ Page {
                 fontSize: "small"
                 width: parent.width
                 color: detailColor
-                anchors{
-                    left:parent.left
-                    leftMargin: units.gu(2)
-                }
+
             }
             ThinDivider{}
             Label{
@@ -184,12 +166,7 @@ Page {
                 text:i18n.tr("Location")
                 color: headerColor
                 font.bold: true
-                anchors{
-                    left:parent.left
-                    leftMargin: units.gu(2)
-                    right: parent.right
-                    rightMargin: units.gu(2)
-                }
+
             }
             Label{
                 id: mapAddress
@@ -197,12 +174,7 @@ Page {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 color: detailColor
-                anchors{
-                    left:parent.left
-                    leftMargin: units.gu(2)
-                    right: parent.right
-                    rightMargin: units.gu(2)
-                }
+
             }
 
             //map control with location
@@ -210,12 +182,7 @@ Page {
                 id: mapContainer
                 width:parent.width
                 height: units.gu(10)
-                anchors{
-                    left:parent.left
-                    leftMargin: units.gu(2)
-                    right: parent.right
-                    rightMargin: units.gu(2)
-                }
+
                 Image {
                     id: mapImage
                     anchors.fill: parent
@@ -228,10 +195,7 @@ Page {
                 fontSize: "medium"
                 color: headerColor
                 font.bold: true
-                anchors{
-                    left:parent.left
-                    leftMargin: units.gu(2)
-                }
+
 
             }
             //Guest Entery Model starts
@@ -260,10 +224,7 @@ Page {
             Item{
                 width: parent.width
                 height: recurrentHeader.height
-                anchors{
-                    left:parent.left
-                    leftMargin: units.gu(2)
-                }
+
                 Label{
                     id:recurrentHeader
                     text: i18n.tr("This happens")
@@ -271,7 +232,6 @@ Page {
                     font.bold: true
                     color:headerColor
                 }
-
                 Label{
                     id: recurrentText
                     fontSize: "medium"
@@ -283,10 +243,6 @@ Page {
             Item{
                 width: parent.width
                 height: reminderHeader.height
-                anchors{
-                    left:parent.left
-                    leftMargin: units.gu(2)
-                }
                 Label{
                     id:reminderHeader
                     text: i18n.tr("Remind me")
