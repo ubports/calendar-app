@@ -106,15 +106,18 @@ Item{
             width: parent.width / 7;
             height: parent.height / parent.weekCount
 
-            UbuntuShape{
-                id: highLightRect
+            property bool shouldCreateHighlight: date.isSameDay(DateExt.today()) && isCurrentMonth
+            property var hightlightObj;
 
-                width: parent.width
-                height: width
-                anchors.centerIn: parent
-
-                color: "white"
-                visible: date.isSameDay(DateExt.today()) && isCurrentMonth
+            onShouldCreateHighlightChanged: {
+                if( shouldCreateHighlight ) {
+                    hightlightObj = highLightComp.createObject(dateRootItem);
+                    hightlightObj.z = hightlightObj.z -1;
+                } else {
+                    if( hightlightObj) {
+                        hightlightObj.destroy();
+                    }
+                }
             }
 
             Label{
@@ -154,6 +157,18 @@ Item{
             horizontalAlignment: Text.AlignHCenter
             fontSize: root.dayLabelFontSize
             color: "#AEA79F"
+        }
+    }
+
+    Component{
+        id: highLightComp
+        UbuntuShape{
+            id: highLightRect
+
+            width: parent.width
+            height: width
+            anchors.centerIn: parent
+            color: "white"
         }
     }
 }
