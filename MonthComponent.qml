@@ -35,30 +35,11 @@ Item{
             anchors.fill: parent
             spacing: units.gu(1.5)
 
-            Item{
+            ViewHeader{
                 id: monthHeader
-                width: parent.width
-                height: monthLabel.height
-
-                Label{
-                    id: monthLabel
-                    fontSize: monthLabelFontSize
-                    text: Qt.locale().standaloneMonthName(root.monthDate.getMonth())
-                    anchors.leftMargin: units.gu(1)
-                    anchors.left: parent.left
-                    //color:"white"
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-
-                Label{
-                    id: yearLabel
-                    fontSize: yearLabelFontSize
-                    text: root.monthDate.getFullYear()
-                    anchors.right: parent.right
-                    anchors.rightMargin: units.gu(1)
-                    color:"#AEA79F"
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                date: root.monthDate
+                monthLabelFontSize: root.monthLabelFontSize
+                yearLabelFontSize: root.yearLabelFontSize
             }
 
             Row{
