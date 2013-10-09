@@ -54,7 +54,6 @@ PathViewBase {
         cellHeight: cellWidth * 1.2
 
         model: 12 /* months in a year */
-        //snapMode: GridView.SnapToRow
         snapMode: GridView.SnapOneRow
         delegate: Item {
             width: yearView.cellWidth
@@ -63,9 +62,8 @@ PathViewBase {
             MonthComponent{
                 id: monthComponent
                 monthDate: new Date(yearView.year.getFullYear(),index,1,0,0,0,0)
-                width: parent.width - units.gu(1)
-                height: parent.height - units.gu(1)
-                anchors.centerIn: parent
+                anchors.fill: parent
+                anchors.margins: units.gu(0.5)
 
                 dayLabelFontSize:"x-small"
                 dateLabelFontSize: "medium"
