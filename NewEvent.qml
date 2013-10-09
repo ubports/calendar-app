@@ -230,6 +230,13 @@ Page {
                 objectName: "eventLocationInput"
             }
 
+            NewEventEntryField{
+                id: personEdit
+                width: parent.width
+                title: i18n.tr("Guests")
+                objectName: "eventPeopleInput"
+            }
+
             Row{
                 width: parent.width
                 spacing: units.gu(1)
@@ -265,13 +272,6 @@ Page {
                         i18n.tr("1 week"),
                         i18n.tr("2 weeks")]
                 }
-            }
-
-            NewEventEntryField{
-                id: personEdit
-                width: parent.width
-                title: i18n.tr("Guests")
-                objectName: "eventPeopleInput"
             }
         }
     }

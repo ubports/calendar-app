@@ -59,7 +59,6 @@ class TestMainView(CalendarTestCase):
                         Eventually(Not(Is(None))))
 
         #input a new event name
-        self.hideOSK()
         eventTitle = "Test event " + str(int(time.time()))
         event_name_field = self.main_view.get_new_event_name_input_box()
         self.pointing_device.click_object(event_name_field)
