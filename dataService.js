@@ -79,6 +79,17 @@ values (?, ?, ?, ?)',
 
     return event
 }
+function updateEvent(event)
+{
+    db().transaction(
+        function(tx) {
+            tx.executeSql(
+                'update Event set title=?,message=?,startTime=?,endTime=? where id = ?',
+                        [ event.title, event.message, event.startTime.getTime(), event.endTime.getTime() ,event.id ]
+            )
+        }
+    )
+}
 
 function removeEvent(event)
 {

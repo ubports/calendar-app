@@ -78,7 +78,7 @@ Page {
             action:Action {
                 text: i18n.tr("Edit");
                 onTriggered: {
-                    print(text + " not implemented");
+                   pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event});
                 }
             }
         }
