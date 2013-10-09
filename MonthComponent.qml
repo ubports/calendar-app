@@ -148,7 +148,6 @@ Item{
     Component{
         id: highLightComp
         UbuntuShape{
-            id: highLightRect
             color: "white"
         }
     }
