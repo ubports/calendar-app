@@ -53,7 +53,7 @@ PathViewBase {
         cellWidth: width/2
         cellHeight: cellWidth * 1.2
 
-        model: 6/*rows*/ * 2 /*columns*/
+        model: 12 /* months in a year */
         //snapMode: GridView.SnapToRow
         snapMode: GridView.SnapOneRow
         delegate: Item {
