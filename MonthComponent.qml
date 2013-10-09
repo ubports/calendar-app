@@ -88,18 +88,22 @@ Item{
             height: parent.height / parent.weekCount
 
             property bool shouldCreateHighlight: date.isSameDay(DateExt.today()) && isCurrentMonth
-            property var hightlightObj;
 
             onShouldCreateHighlightChanged: {
                 if( shouldCreateHighlight ) {
-                    hightlightObj = highLightComp.createObject(dateRootItem);
-                    hightlightObj.z = hightlightObj.z -1;
+                    highlightLoader.sourceComponent = highLightComp;
                 } else {
-                    if( hightlightObj) {
-                        hightlightObj.destroy();
-                    }
+                    //unloading the highlight
+                    highlightLoader.sourceComponent = undefined
                 }
             }
+
+             Loader {
+                id: highlightLoader
+                width: parent.width
+                height: width
+                anchors.centerIn: parent
+             }
 
             Label{
                 id: dateLabel
@@ -145,10 +149,6 @@ Item{
         id: highLightComp
         UbuntuShape{
             id: highLightRect
-
-            width: parent.width
-            height: width
-            anchors.centerIn: parent
             color: "white"
         }
     }
