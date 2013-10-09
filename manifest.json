@@ -1,0 +1,14 @@
+{
+    "description": "description of calendar-app",
+    "framework": "ubuntu-sdk-13.10",
+    "hooks": {
+        "calendar-app": {
+            "apparmor": "calendar-app.json",
+            "desktop": "calendar-app.desktop"
+        }
+    },
+    "maintainer": "Riccardo Padovani <rpadovani@ubuntu-it.org>",
+    "name": "com.ubuntu.developer.rpadovani.calendar-app",
+    "title": "calendar-app",
+    "version": "0.1"
+}

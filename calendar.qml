@@ -48,7 +48,7 @@ MainView {
     }
 
     objectName: "calendar"
-    applicationName: "calendar-app"
+    applicationName: "com.ubuntu.calendar"
 
     width: units.gu(45)
     height: units.gu(80)
@@ -56,6 +56,7 @@ MainView {
     headerColor: "#266249"
     backgroundColor: "#478158"
     footerColor: "#478158"
+    anchorToKeyboard: true
 
     PageStack {
         id: pageStack
@@ -84,32 +85,28 @@ MainView {
             }
 
             function newEvent() {
-                var defaultDate = currentDay;
-                var startDate = new Date;
-                var endDate = new Date;
+                var startDate = new Date();
+                var endDate = new Date();
                 var startTime;
                 var endTime;
 
-                if (newevent) { // If newevent has been invoked
-                    if (starttime === 0) { // startime 0 means now
-                        if (endtime !== -1) { // If also endtime has been invoked
-                           endTime = parseInt(endtime);
-                            if (endTime > startDate) // If endtime is after startime
-                                endDate = new Date(endTime);
-                        }
-                    }
-                    else if (starttime !== -1) { // If starttime has been invoked
-                        startTime = parseInt(starttime);
-                        defaultDate = new Date(startTime);
-                        startDate = new Date(startTime);
-                        if (endtime !== -1) { // If --endtime has been invoked
-                            endTime = parseInt(endtime);
-                            if (endTime > startDate)
-                                endDate = new Date(endTime);
-                        }
+                if (starttime === 0) { // startime 0 means now
+                    if (endtime !== -1) { // If also endtime has been invoked
+                        endTime = parseInt(endtime);
+                        if (endTime > startDate) // If endtime is after startime
+                            endDate = new Date(endTime);
                     }
                 }
-                PopupUtils.open(newEventComponent, tabPage, {"defaultDate": defaultDate, "startDate": startDate, "endDate": endDate})
+                else if (starttime !== -1) { // If starttime has been invoked
+                    startTime = parseInt(starttime);
+                    startDate = new Date(startTime);
+                    if (endtime !== -1) { // If --endtime has been invoked
+                        endTime = parseInt(endtime);
+                        if (endTime > startDate)
+                            endDate = new Date(endTime);
+                    }
+                }
+                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"startDate": startDate, "endDate": endDate});
             }
 
             // This function calculate the difference between --endtime and --starttime and choose the better view
@@ -124,7 +121,7 @@ MainView {
                 if (difference > month)
                     return 0;   // Year view
                 else if (difference > 7 * day)
-                    return 1;   // Month view
+                    return 1;   // Month view}
                 else if (difference > day)
                     return 2;   // Week view
                 else
@@ -144,15 +141,17 @@ MainView {
 
                 if (endtimepattern.test(url))
                     endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
+
             }
 
             Component.onCompleted: {
                 // If an url has been set
                 if (args.defaultArgument.at(0)) {
                     parseArguments(args.defaultArgument.at(0))
+                    tabPage.currentDay = new Date()
                     // If newevent has been called on startup
                     if (newevent) {
-                        tabPage.newEvent()
+                        newEvent();
                     }
                     else if (starttime !== -1) { // If no newevent has been setted, but starttime
                         var startTime = parseInt(starttime);
@@ -165,13 +164,13 @@ MainView {
                         }
                         else {
                             // If no endtime has been setted, open the starttime date in day view
-                            tabs.selectedTabIndex = 3
+                            tabs.selectedTabIndex = 3;
                         }
                     } // End of else if (starttime)
                     else {
                     	// Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                     	// After the fix we can delete this else
-                    	tabs.selectedTabIndex= 1;
+                        tabs.selectedTabIndex= 1;
                     }
                 } // End of if about args.values
                 else {
@@ -183,20 +182,22 @@ MainView {
                 id: commonToolBar
 
                 ToolbarButton {
-                    objectName: "neweventbutton"
-                    action: Action {
-                        iconSource: Qt.resolvedUrl("avatar.png")
-                        text: i18n.tr("New Event")
-                        onTriggered: tabPage.newEvent()
-                    }
-                }                    
-                ToolbarButton {
                     objectName: "todaybutton"
                     action: Action {
                         iconSource: Qt.resolvedUrl("avatar.png");
                         text: i18n.tr("Today");
                         onTriggered: {
                             tabPage.currentDay = (new Date()).midnight();
+                        }
+                    }
+                }
+                ToolbarButton {
+                    objectName: "neweventbutton"
+                    action: Action {
+                        iconSource: Qt.resolvedUrl("avatar.png");
+                        text: i18n.tr("New Event");
+                        onTriggered: {
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay});
                         }
                     }
                 }
@@ -268,11 +269,6 @@ MainView {
                         }
                     }
                 }
-            }
-
-            Component {
-                id: newEventComponent
-                NewEvent {}
             }
         }
     }
