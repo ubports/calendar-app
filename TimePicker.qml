@@ -70,6 +70,7 @@ Dialog {
         Row {
             spacing: units.gu(1)
             Button {
+                objectName: "TimePickerCancelButton"
                 text: i18n.tr("Cancel")
                 onClicked: {
                     root.rejected()
