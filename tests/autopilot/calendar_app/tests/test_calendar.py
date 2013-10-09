@@ -39,6 +39,17 @@ class TestMainView(CalendarTestCase):
             self.pointing_device.click()
             scroller.currentIndex.wait_for((scroller.currentIndex + 1) % 60)
 
+    def hideOSK(self):
+        start_time_field = self.main_view.get_event_start_time_field()
+        self.pointing_device.click_object(start_time_field)
+        self.assertThat(self.main_view.get_time_picker,
+                        Eventually(Not(Is(None))))
+        picker = self.main_view.get_time_picker()
+        cancel = picker.select_single("Button",
+                                      objectName="TimePickerCancelButton")
+        self.pointing_device.click_object(cancel)
+        self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
+
     def test_new_event(self):
         """test add new event """
 
@@ -78,6 +89,7 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
 
         #input location
+        self.hideOSK()
         location_field = self.main_view.get_event_location_field()
         self.pointing_device.click_object(location_field)
         self.assertThat(location_field.activeFocus, Eventually(Equals(True)))
@@ -85,6 +97,7 @@ class TestMainView(CalendarTestCase):
         self.assertThat(location_field.text, Eventually(Equals("My location")))
 
         #input people
+        self.hideOSK()
         people_field = self.main_view.get_event_people_field()
         self.pointing_device.click_object(people_field)
         self.assertThat(people_field.activeFocus, Eventually(Equals(True)))
@@ -92,8 +105,7 @@ class TestMainView(CalendarTestCase):
         self.assertThat(people_field.text, Eventually(Equals("Me")))
 
         #click save button
-        save_button = self.main_view.get_event_save_button()
-        self.pointing_device.click_object(save_button)
+        self.main_view.open_toolbar().click_button("eventSaveButton")
         self.assertThat(self.main_view.get_new_event, Eventually(Is(None)))
 
         #verify that the event has been created in timeline

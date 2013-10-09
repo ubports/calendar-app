@@ -16,6 +16,7 @@ MainView {
     headerColor: "#266249"
     backgroundColor: "#478158"
     footerColor: "#478158"
+    anchorToKeyboard: true
 
     PageStack {
         id: pageStack
@@ -50,20 +51,22 @@ MainView {
                 id: commonToolBar
 
                 ToolbarButton {
-                    objectName: "neweventbutton"
-                    action: Action {
-                        iconSource: Qt.resolvedUrl("avatar.png")
-                        text: i18n.tr("New Event")
-                        onTriggered: tabPage.newEvent()
-                    }
-                }                    
-                ToolbarButton {
                     objectName: "todaybutton"
                     action: Action {
                         iconSource: Qt.resolvedUrl("avatar.png");
                         text: i18n.tr("Today");
                         onTriggered: {
                             tabPage.currentDay = (new Date()).midnight();
+                        }
+                    }
+                }
+                ToolbarButton {
+                    objectName: "neweventbutton"
+                    action: Action {
+                        iconSource: Qt.resolvedUrl("avatar.png");
+                        text: i18n.tr("New Event");
+                        onTriggered: {
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay});
                         }
                     }
                 }
@@ -135,11 +138,6 @@ MainView {
                         }
                     }
                 }
-            }
-
-            Component {
-                id: newEventComponent
-                NewEvent {}
             }
         }
     }
