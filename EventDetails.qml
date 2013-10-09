@@ -73,7 +73,6 @@ Page {
                 }
             }
         }
-
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
@@ -145,7 +144,6 @@ Page {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 color: headerColor
-
             }
             Label{
                 id: descLabel
@@ -155,7 +153,6 @@ Page {
                 fontSize: "small"
                 width: parent.width
                 color: detailColor
-
             }
             ThinDivider{}
             Label{
@@ -166,7 +163,6 @@ Page {
                 text:i18n.tr("Location")
                 color: headerColor
                 font.bold: true
-
             }
             Label{
                 id: mapAddress
@@ -174,7 +170,6 @@ Page {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 color: detailColor
-
             }
 
             //map control with location
@@ -195,8 +190,6 @@ Page {
                 fontSize: "medium"
                 color: headerColor
                 font.bold: true
-
-
             }
             //Guest Entery Model starts
             ListView {
