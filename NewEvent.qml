@@ -10,7 +10,6 @@ Page {
     id: root
 
     property var date: new Date();
-    property alias errorText: errorPopupDialog.text;
     property var startDate: date
     property var endDate: date
     property alias scrollY: flickable.contentY
@@ -31,8 +30,7 @@ Page {
         internal.clearFocus()
 
         if ( startDate >= endDate ) {
-            errorText = i18n.tr("End time can't be before start time");
-            errorPopupDialog.show();
+            PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
         } else {
 
             var event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
@@ -40,7 +38,7 @@ Page {
             event.startDateTime = startDate;
             event.endDateTime = endDate;
             event.displayLabel = titleEdit.text;
-            event.description = ""
+            event.description = messageEdit.text;
 
             event.location = locationEdit.text
 
@@ -52,6 +50,7 @@ Page {
             }
 
             internal.eventModel.saveItem(event);
+            pageStack.pop();
         }
     }
 
@@ -82,19 +81,20 @@ Page {
                 text: i18n.tr("Save");
                 onTriggered: {
                     saveToQtPim();
-                    pageStack.pop();
                 }
             }
         }
     }
 
-    Dialog {
-        id: errorPopupDialog
-        title: i18n.tr("Error")
-        text: ""
-        Button {
-            text: i18n.tr("Ok")
-            onClicked: PopupUtils.close(errorPopupDialog)
+    Component{
+        id: errorDlgComponent
+        Dialog {
+            id: dialog
+            title: i18n.tr("Error")
+            Button {
+                text: i18n.tr("Ok")
+                onClicked: PopupUtils.close(dialog)
+            }
         }
     }
 
