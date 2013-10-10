@@ -8,27 +8,27 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-09-26 07:05+0200\n"
-"PO-Revision-Date: 2013-05-31 12:13+0000\n"
+"PO-Revision-Date: 2013-10-09 10:35+0000\n"
 "Last-Translator: Pyae Sone <Unknown>\n"
 "Language-Team: Burmese <my@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-09-27 06:17+0000\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Launchpad-Export-Date: 2013-10-10 05:25+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../EventBubble.qml:38
 msgid "hh:mm"
-msgstr ""
+msgstr "hh:mm"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../EventBubble.qml:43
 #, qt-format
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #: ../EventDetails.qml:70
 msgid "Add invite"
@@ -52,11 +52,11 @@ msgstr "ပွဲအမည်ထည့်မည်"
 
 #: ../NewEvent.qml:102
 msgid "to"
-msgstr ""
+msgstr "သို့"
 
 #: ../NewEvent.qml:137
 msgid "Location & People"
-msgstr ""
+msgstr "တည်နေရာနှင့်လူများ"
 
 #: ../NewEvent.qml:143
 msgid "Add Location"
@@ -68,11 +68,11 @@ msgstr "လူများဖိတ်မည်"
 
 #: ../NewEvent.qml:168
 msgid "Error"
-msgstr ""
+msgstr "ချို့ယွင်းချက်"
 
 #: ../NewEvent.qml:171 ../TimePicker.qml:82
 msgid "OK"
-msgstr ""
+msgstr "အိုကေ"
 
 #: ../NewEvent.qml:177
 msgid "Save"
@@ -80,7 +80,7 @@ msgstr "သိမ်းမည်"
 
 #: ../NewEvent.qml:205
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "အဆုံးသတ်သည့်အချိန်သည် စသည့်အချိန်ထက် မစောရပါ"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -90,19 +90,19 @@ msgstr ""
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr ""
+msgstr "အချိန်"
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr ""
+msgstr "နာရီ"
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr ""
+msgstr "မိနစ်"
 
 #: ../TimePicker.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "ပယ်ဖျက်မည်"
 
 #: ../calendar.qml:56
 msgid "New Event"
@@ -110,24 +110,24 @@ msgstr "ပွဲအသစ်"
 
 #: ../calendar.qml:64
 msgid "Today"
-msgstr ""
+msgstr "ယနေ့"
 
 #: ../calendar.qml:75
 msgid "Year"
-msgstr ""
+msgstr "နှစ်"
 
 #: ../calendar.qml:95
 msgid "Month"
-msgstr ""
+msgstr "လ"
 
 #: ../calendar.qml:108
 msgid "Week"
-msgstr ""
+msgstr "အပတ်"
 
 #: ../calendar.qml:124
 msgid "Day"
-msgstr ""
+msgstr "နေ့ရက်"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr ""
+msgstr "ပြက္ခဒိန်"

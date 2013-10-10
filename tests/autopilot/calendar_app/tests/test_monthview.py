@@ -29,7 +29,7 @@ class TestMonthView(CalendarTestCase):
     def change_month(self, delta):
         month_view = self.main_view.get_month_view()
         y_line = month_view.globalRect[1] + month_view.globalRect[3] / 2
-        x_pad = 0.15
+        x_pad = 0.35
         sign = int(math.copysign(1, delta))
         start = (-sign * x_pad) % 1
         stop = (sign * x_pad) % 1
