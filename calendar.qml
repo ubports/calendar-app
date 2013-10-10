@@ -151,7 +151,7 @@ MainView {
                     tabPage.currentDay = new Date()
                     // If newevent has been called on startup
                     if (newevent) {
-                        newEvent();
+                        timer.running = true;
                     }
                     else if (starttime !== -1) { // If no newevent has been setted, but starttime
                         var startTime = parseInt(starttime);
@@ -177,6 +177,16 @@ MainView {
                     tabs.selectedTabIndex= 1;
                 }
             } // End of Component.onCompleted:
+
+            Timer {
+                id: timer
+                interval: 200;
+                running: false;
+                repeat: false
+                onTriggered: {
+                    tabPage.newEvent();
+                }
+            }
 
             ToolbarItems {
                 id: commonToolBar
