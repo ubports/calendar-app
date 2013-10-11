@@ -53,7 +53,7 @@ MainView {
                 ToolbarButton {
                     objectName: "todaybutton"
                     action: Action {
-                        iconSource: Qt.resolvedUrl("avatar.png");
+                        iconSource: Qt.resolvedUrl("calendar-today.svg");
                         text: i18n.tr("Today");
                         onTriggered: {
                             tabPage.currentDay = (new Date()).midnight();
@@ -63,7 +63,7 @@ MainView {
                 ToolbarButton {
                     objectName: "neweventbutton"
                     action: Action {
-                        iconSource: Qt.resolvedUrl("avatar.png");
+                        iconSource: Qt.resolvedUrl("new-event.svg");
                         text: i18n.tr("New Event");
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay});
