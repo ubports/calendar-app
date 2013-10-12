@@ -42,6 +42,7 @@ Item{
 
                 Label{
                     id: monthLabel
+                    objectName: "monthLabel"
                     fontSize: monthLabelFontSize
                     text: Qt.locale().standaloneMonthName(root.monthDate.getMonth())
                     anchors.leftMargin: units.gu(1)
@@ -52,6 +53,7 @@ Item{
 
                 Label{
                     id: yearLabel
+                    objectName: "yearLabel"
                     fontSize: yearLabelFontSize
                     text: root.monthDate.getFullYear()
                     anchors.right: parent.right
@@ -75,6 +77,7 @@ Item{
 
             Grid{
                 id: monthGrid
+                objectName: "monthGrid"
 
                 property int weekCount : 6
                 property var monthStart: root.monthDate.weekStart( Qt.locale().firstDayOfWeek )

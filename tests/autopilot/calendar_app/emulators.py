@@ -20,10 +20,10 @@ class MainView(toolkit_emulators.MainView):
         return self.select_single("EventView")
 
     def get_month_view(self):
-        return self.select_single("MonthView")
+        return self.wait_select_single("MonthView")
 
     def get_year_view(self):
-        return self.select_single("YearView")
+        return self.wait_select_single("YearView")
 
     def get_day_view(self):
         return self.select_single("DayView")
@@ -67,3 +67,4 @@ class MainView(toolkit_emulators.MainView):
 
     def get_time_picker(self):
         return self.select_single("TimePicker")
+
