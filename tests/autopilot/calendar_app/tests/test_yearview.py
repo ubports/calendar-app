@@ -23,6 +23,9 @@ class TestYearView(CalendarTestCase):
         super(TestYearView, self).setUp()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
         self.main_view.switch_to_tab("yearTab")
+        self.assertThat(
+            self.main_view.get_year_view, Eventually(NotEquals(None)))
+
         self.year_view = self.main_view.get_year_view()
 
     def test_selecting_a_month_switch_to_month_view(self):
@@ -37,6 +40,9 @@ class TestYearView(CalendarTestCase):
 
         self.pointing_device.click_object(february)
 
+        self.assertThat(
+            self.main_view.get_month_view, Eventually(NotEquals(None)))
+
         month_view = self.main_view.get_month_view()
         self.assertThat(month_view.visible, Eventually(Equals(True)))
         selected_month = month_view.select_many("MonthComponent")[1]
@@ -50,9 +56,9 @@ class TestYearView(CalendarTestCase):
 
         months = self.months_from_selected_year()
         current_month = months[datetime.now().month - 1]
-        month_grid = current_month.wait_select_single(objectName="monthGrid")
+        month_grid = current_month.select_single(objectName="monthGrid")
 
-        current_day_label = month_grid.wait_select_single(
+        current_day_label = month_grid.select_single(
             "Label", text=str(datetime.now().day))
 
         # probably better to check the sorrounding UbuntuShape object,
@@ -86,11 +92,11 @@ class TestYearView(CalendarTestCase):
                         Equals(datetime.now().year))
 
     def get_year(self, month_component):
-        return int(month_component.wait_select_single(
+        return int(month_component.select_single(
             "Label", objectName="yearLabel").text)
 
     def get_month_name(self, month_component):
-        return month_component.wait_select_single(
+        return month_component.select_single(
             "Label", objectName="monthLabel").text
 
     def months_from_selected_year(self):
