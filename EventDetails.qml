@@ -3,8 +3,6 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 
-import "dataService.js" as DataService
-
 Page {
     id: root
 
@@ -29,32 +27,36 @@ Page {
         var location="-15.800513,-47.91378";
         //var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
 
-        timeLabel.text = Qt.formatDateTime(e.startTime,"hh:mm") + " - " + Qt.formatDateTime(e.endTime,"hh:mm");
-        dateLabel.text = Qt.formatDateTime(e.startTime,"ddd, d MMMM");
-        if( e.title)
-            titleLabel.text = e.title;
+        // TRANSLATORS: this is a time formatting string,
+        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        var timeFormat = i18n.tr("hh:mm");
+        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        // TRANSLATORS: the first argument (%1) refers to a start time for an event,
+        // while the second one (%2) refers to the end time
+        timeLabel.text =  i18n.tr("%1 - %2").arg(startTime).arg(endTime);
+        var dateFormat = i18n.tr("ddd, d MMMM");
+        dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(),dateFormat);
 
-        locationLabel.text = location;
-        if( e.message ) {
-            descLabel.text = e.message;
+        if( e.displayLabel) {
+            titleLabel.text = e.displayLabel;
         }
 
-        var venues = []
-        DataService.getVenues(e, venues)
-        if( venues.length > 0 ) {
-            //FIXME: what to do for multiple venue
-            var place = venues[0];
-            locationLabel.text = place.address;
-            if( place.latitude && place.longitude) {
-                location = place.latitude +"," + place.longitude;
-            }
+        if( e.location ) {
+            locationLabel.text = e.location;
         }
 
-        var attendees = []
-        DataService.getAttendees(e, attendees)
+        if( e.description ) {
+            descLabel.text = e.description;
+        }
+
+        var attendees = e.attendees;
+
         contactModel.clear();
-        for( var j = 0 ; j < attendees.length ; ++j ) {
-            contactModel.append( {"name": attendees[j] } );
+        if( attendees !== undefined ) {
+            for( var j = 0 ; j < attendees.length ; ++j ) {
+                contactModel.append( {"name": attendees[j].name } );
+            }
         }
 
         // FIXME: need to cache map image to avoid duplicate download every time
