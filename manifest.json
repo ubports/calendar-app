@@ -6,7 +6,7 @@
             "apparmor": "apparmor/calendar.json",
             "desktop": "calendar-app.desktop"
         }
-    }, 
+    },
     "icon": "calendar64.png",
     "maintainer": "Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>",
     "name": "com.ubuntu.calendar",
