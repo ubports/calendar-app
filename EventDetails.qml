@@ -23,11 +23,8 @@ Page {
     }
 
     function showEvent(e) {
-        // FIXME: temp location in case there is no vanue is defined
-
-        var location="-15.800513,-47.91378";
+        var location=e.location;
         //var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
-
         // TRANSLATORS: this is a time formatting string,
         // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
         var timeFormat = i18n.tr("hh:mm");
@@ -38,15 +35,12 @@ Page {
         timeLabel.text =  i18n.tr("%1 - %2").arg(startTime).arg(endTime);
         var dateFormat = i18n.tr("ddd, d MMMM");
         dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(),dateFormat);
-
         if( e.displayLabel) {
             titleLabel.text = e.displayLabel;
         }
-
         if( e.location ) {
             locationLabel.text = e.location;
         }
-
         if( e.description ) {
             descLabel.text = e.description;
         }
