@@ -53,8 +53,8 @@ Page {
         var attendees = e.attendees;
         contactModel.clear();
         if( attendees !== undefined ) {
-            for( var j = 0 ; j < 5 ; ++j ) {
-                contactModel.append( {"name": "Guest "+j } ); // FIXME: temporaty guests, Modify with length loop & text
+            for( var j = 0 ; j < attendees.length ; ++j ) {
+                contactModel.append( {"name": attendees[j].name } );
             }
 
         }
