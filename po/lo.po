@@ -1,4 +1,4 @@
-# Chinese (Traditional) translation for ubuntu-calendar-app
+# Lao translation for ubuntu-calendar-app
 # Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
 # This file is distributed under the same license as the ubuntu-calendar-app package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-09-26 07:05+0200\n"
-"PO-Revision-Date: 2013-09-28 10:24+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"PO-Revision-Date: 2013-10-02 07:17+0000\n"
+"Last-Translator: Anousak <anousak@gmail.com>\n"
+"Language-Team: Lao <lo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-09-29 05:46+0000\n"
-"X-Generator: Launchpad (build 16774)\n"
+"X-Launchpad-Export-Date: 2013-10-03 05:56+0000\n"
+"X-Generator: Launchpad (build 16791)\n"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../EventBubble.qml:38
 msgid "hh:mm"
-msgstr "hh:mm"
+msgstr "ມມ:ນນ"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -32,102 +32,102 @@ msgstr "%1 - %2"
 
 #: ../EventDetails.qml:70
 msgid "Add invite"
-msgstr "加入邀請"
+msgstr "ເພີ່ມເຊີນ"
 
 #: ../EventDetails.qml:79
 msgid "Edit"
-msgstr "編輯"
+msgstr "ດັດແກ້"
 
 #: ../EventDetails.qml:153
 msgid "People"
-msgstr "朋友"
+msgstr "ຄົນ"
 
 #: ../NewEvent.qml:23
 msgid "Create event"
-msgstr "建立事件"
+msgstr "ສ້າງໂອກາດ"
 
 #: ../NewEvent.qml:29
 msgid "Add event name"
-msgstr "加入事件名稱"
+msgstr "ເພີ່ມຊື່ໂອກາດ"
 
 #: ../NewEvent.qml:102
 msgid "to"
-msgstr "到"
+msgstr "ເຖີງ"
 
 #: ../NewEvent.qml:137
 msgid "Location & People"
-msgstr "地點與人物"
+msgstr "ສະຖານທີ່ ແລະ ປະຊາຊົນ"
 
 #: ../NewEvent.qml:143
 msgid "Add Location"
-msgstr "加入地點"
+msgstr "ເພີ່ມສະຖານທີ່"
 
 #: ../NewEvent.qml:156
 msgid "Invite People"
-msgstr "邀請朋友"
+msgstr "ເຊີນຄົນ"
 
 #: ../NewEvent.qml:168
 msgid "Error"
-msgstr "錯誤"
+msgstr "ຜິດພາດ"
 
 #: ../NewEvent.qml:171 ../TimePicker.qml:82
 msgid "OK"
-msgstr "確定"
+msgstr "ຕົກລົງ"
 
 #: ../NewEvent.qml:177
 msgid "Save"
-msgstr "儲存"
+msgstr "ບັນທຶກ"
 
 #: ../NewEvent.qml:205
 msgid "End time can't be before start time"
-msgstr "結束時間不能早於開始時間"
+msgstr "ເວລາສຸດທ້າຍບໍ່ສາມາດຈະໃຊ້ເວລາກ່ອນຈະເລີ່ມຕົ້ນ"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:18
 msgid "hh ap"
-msgstr "AP hh:mm"
+msgstr "hh ap"
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr "時間"
+msgstr "ເວລາ"
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr "小時"
+msgstr "ຊົ່ວໂມງ"
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr "分鐘"
+msgstr "ນາທີ"
 
 #: ../TimePicker.qml:73
 msgid "Cancel"
-msgstr "取消"
+msgstr "ຍົກເລີກ"
 
 #: ../calendar.qml:56
 msgid "New Event"
-msgstr "新事件"
+msgstr "ໂອກາດໄໝ່"
 
 #: ../calendar.qml:64
 msgid "Today"
-msgstr "今日"
+msgstr "ວົນນີ້"
 
 #: ../calendar.qml:75
 msgid "Year"
-msgstr "年"
+msgstr "ປີ"
 
 #: ../calendar.qml:95
 msgid "Month"
-msgstr "月"
+msgstr "ເດືອນ"
 
 #: ../calendar.qml:108
 msgid "Week"
-msgstr "週"
+msgstr "ອາທິດ"
 
 #: ../calendar.qml:124
 msgid "Day"
-msgstr "日"
+msgstr "ວັນ"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr "行事曆"
+msgstr "ປະຕິທິນ"

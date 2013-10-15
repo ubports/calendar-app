@@ -4,8 +4,6 @@ import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
 
-import "dataService.js" as DataService
-
 Page {
     id: root
 
@@ -26,36 +24,40 @@ Page {
 
     function showEvent(e) {
         // FIXME: temp location in case there is no vanue is defined
-        //var location="-15.800513,-47.91378";
-        var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
-        mapAddress.text = location;
 
+        var location="-15.800513,-47.91378";
+        //var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
 
-        startHeader.value=  Qt.formatDateTime(e.startTime,"hh:mm d MMM yyyy")
-        endHeader.value= Qt.formatDateTime(e.endTime,"hh:mm d MMM yyyy")
-        if( e.title)
-            titleLabel.text = e.title;
+        // TRANSLATORS: this is a time formatting string,
+        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        var timeFormat = i18n.tr("hh:mm");
+        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        // TRANSLATORS: the first argument (%1) refers to a start time for an event,
+        // while the second one (%2) refers to the end time
+        timeLabel.text =  i18n.tr("%1 - %2").arg(startTime).arg(endTime);
+        var dateFormat = i18n.tr("ddd, d MMMM");
+        dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(),dateFormat);
 
-        if( e.message ) {
-            descLabel.text = e.message;
+        if( e.displayLabel) {
+            titleLabel.text = e.displayLabel;
         }
 
-        var venues = []
-        DataService.getVenues(e, venues)
-        if( venues.length > 0 ) {
-            //FIXME: what to do for multiple venue
-            var place = venues[0];
-            if( place.latitude && place.longitude) {
-                location = place.latitude +"," + place.longitude;
-            }
+        if( e.location ) {
+            locationLabel.text = e.location;
         }
-        var attendees = []
-        DataService.getAttendees(e, attendees)
+
+        if( e.description ) {
+            descLabel.text = e.description;
+        }
+        var attendees = e.attendees;
         contactModel.clear();
-        for( var j = 0 ; j < 5 ; ++j ) {
-            contactModel.append( {"name": "Guest "+j } ); // FIXME: temporaty guests, Modify with length loop & text
-        }
+        if( attendees !== undefined ) {
+            for( var j = 0 ; j < 5 ; ++j ) {
+                contactModel.append( {"name": "Guest "+j } ); // FIXME: temporaty guests, Modify with length loop & text
+            }
 
+        }
         // FIXME: need to cache map image to avoid duplicate download every time
         var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
                 "&markers=color:red|"+location+"&zoom=15&size="+mapContainer.width+

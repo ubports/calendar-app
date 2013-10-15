@@ -3,12 +3,13 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
 import "dateExt.js" as DateExt
+import "GlobalEventModel.js" as GlobalModel
 
 MainView {
     id: mainView
 
     objectName: "calendar"
-    applicationName: "calendar-app"
+    applicationName: "com.ubuntu.calendar"
 
     width: units.gu(45)
     height: units.gu(80)
@@ -16,6 +17,7 @@ MainView {
     headerColor: "#266249"
     backgroundColor: "#478158"
     footerColor: "#478158"
+    anchorToKeyboard: true
 
     PageStack {
         id: pageStack
@@ -26,6 +28,7 @@ MainView {
             id: tabPage
 
             property var currentDay: DateExt.today();
+            property var globalModel;
 
             onCurrentDayChanged: {
                 if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
@@ -36,6 +39,15 @@ MainView {
 
                 if( !weekView.dayStart.isSameDay(currentDay))
                     weekView.dayStart = currentDay
+
+                setStartEndDateToModel();
+            }
+
+            function setStartEndDateToModel() {
+                if(globalModel) {
+                    globalModel.startPeriod =  new Date(currentDay.getFullYear(),0,1,0,0,0,0);
+                    globalModel.endPeriod = new Date(currentDay.getFullYear(),11,31,0,0,0,0);
+                }
             }
 
             function newEvent() {
@@ -43,20 +55,14 @@ MainView {
             }
 
             Component.onCompleted: {
-                tabs.selectedTabIndex= 1;
+                globalModel = GlobalModel.gloablModel();
+                setStartEndDateToModel();
+                tabs.selectedTabIndex = 1;
             }
 
             ToolbarItems {
                 id: commonToolBar
 
-                ToolbarButton {
-                    objectName: "neweventbutton"
-                    action: Action {
-                        iconSource: Qt.resolvedUrl("avatar.png")
-                        text: i18n.tr("New Event")
-                        onTriggered: tabPage.newEvent()
-                    }
-                }                    
                 ToolbarButton {
                     objectName: "todaybutton"
                     action: Action {
@@ -64,6 +70,16 @@ MainView {
                         text: i18n.tr("Today");
                         onTriggered: {
                             tabPage.currentDay = (new Date()).midnight();
+                        }
+                    }
+                }
+                ToolbarButton {
+                    objectName: "neweventbutton"
+                    action: Action {
+                        iconSource: Qt.resolvedUrl("avatar.png");
+                        text: i18n.tr("New Event");
+                        onTriggered: {
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay});
                         }
                     }
                 }
@@ -135,11 +151,6 @@ MainView {
                         }
                     }
                 }
-            }
-
-            Component {
-                id: newEventComponent
-                NewEvent {}
             }
         }
     }

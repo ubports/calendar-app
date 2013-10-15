@@ -1,212 +1,269 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.ListItems 0.1
+import Ubuntu.Components.Themes.Ambiance 0.1
 
-import "dataService.js" as DataService
+import "GlobalEventModel.js" as GlobalModel
 
-Popover {
-    id: popover
-    property var defaultDate;
-    property alias errorText: errorPopupDialog.text;
-    property var startDate: new Date()
-    property var endDate: new Date()
+Page {
+    id: root
 
-    Column {
-        id: containerLayout
-        anchors {
-            left: parent.left
-            top: parent.top
-            right: parent.right
+    property var date: new Date();
+    property var startDate: date
+    property var endDate: date
+    property alias scrollY: flickable.contentY
+
+    Component.onCompleted: {
+        internal.eventModel = GlobalModel.gloablModel();
+
+        startDate = new Date(date)
+        endDate = new Date(date)
+        endDate.setMinutes( endDate.getMinutes() + 10)
+
+        startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
+        endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
+    }
+
+    function saveToQtPim() {
+
+        internal.clearFocus()
+
+        if ( startDate >= endDate ) {
+            PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
+        } else {
+
+            var event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+
+            event.startDateTime = startDate;
+            event.endDateTime = endDate;
+            event.displayLabel = titleEdit.text;
+            event.description = messageEdit.text;
+
+            event.location = locationEdit.text
+
+            if( personEdit.text != "") {
+                var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
+                attendee.name = personEdit.text;
+                attendee.emailAddress = "none@nowhere.com";
+                event.setDetail(attendee);
+            }
+
+            internal.eventModel.saveItem(event);
+            pageStack.pop();
         }
+    }
 
-        ListItem.Header { text: i18n.tr("Create event") }
-        ListItem.Empty {
-            highlightWhenPressed: false
-            TextField {
-                objectName: "newEventName"
-                id: titleEdit
-                placeholderText: i18n.tr("Add event name")
-                anchors {
-                    fill: parent
-                    margins: units.gu(1)
+    width: parent.width
+    height: parent.height
+
+    title: i18n.tr("New Event")
+
+    tools: ToolbarItems {
+        //keeping toolbar always open
+        opened: true
+        locked: true
+
+        //FIXME: set the icons for toolbar buttons
+        back: ToolbarButton {
+            objectName: "eventCancelButton"
+            action: Action {
+                text: i18n.tr("Cancel");
+                onTriggered: {
+                    pageStack.pop();
                 }
             }
         }
 
-        ListItem.Empty {
-            id: dateItem
+        ToolbarButton {
+            objectName: "eventSaveButton"
+            action: Action {
+                text: i18n.tr("Save");
+                onTriggered: {
+                    saveToQtPim();
+                }
+            }
+        }
+    }
 
-            height: column.height
+    Component{
+        id: errorDlgComponent
+        Dialog {
+            id: dialog
+            title: i18n.tr("Error")
+            Button {
+                text: i18n.tr("Ok")
+                onClicked: PopupUtils.close(dialog)
+            }
+        }
+    }
+
+    Component {
+        id: timePicker
+        TimePicker {
+        }
+    }
+
+    Flickable{
+        id: flickable
+        anchors {
+            top: parent.top
+            topMargin: units.gu(2)
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+            leftMargin: units.gu(2)
+            rightMargin: units.gu(2)
+        }
+
+        contentWidth: width
+        contentHeight: column.height
+
+        Column{
+            id: column
+
             width: parent.width
+            spacing: units.gu(1)
 
-            Column {
-                id: column
+            UbuntuShape{
+                width:parent.width
+                height: timeColumn.height
 
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-
-                Item {
-                    width: popover.width
-                    height: dateLabel.height
-                    Label {
-                        id: dateLabel
-                        text: Qt.formatDateTime(defaultDate, "ddd, d MMMM yyyy");
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                            margins: units.gu(1)
-                        }
-                    }
-                }
-
-                Component {
-                    id: timePicker
-                    TimePicker {
-                    }
-                }
-
-                Item {
-                    id: timeContainer
+                Column{
+                    id: timeColumn
                     width: parent.width
-                    height: startTimeItem.height
+                    anchors.centerIn: parent
+                    spacing: units.gu(1)
 
-                    ListItem.Empty {
-                        id: startTimeItem
-                        anchors.left: timeContainer.left
-                        width: units.gu(12)
-                        Button {
-                            objectName: "startTimeInput"
-                            id: startTimeButton
-                            text: Qt.formatDateTime(startDate,"hh:mm")
-                            anchors {
-                                fill: parent
-                                margins: units.gu(1)
-                            }
+                    NewEventEntryField{
+                        id: startTime
+                        title: i18n.tr("Start")
+                        width: parent.width
+                        objectName: "startTimeInput"
+
+                        text: Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
+
+                        MouseArea{
+                            anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker);
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startDate.getHours(),"minute":startDate.getMinutes()});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = startDate;
                                     newDate.setHours(startHour, startMinute);
                                     startDate = newDate;
+                                    startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
                                 })
                             }
                         }
                     }
 
-                    Label {
-                        id: endTimeLabel
-                        text: i18n.tr("to");
-                        anchors {
-                            horizontalCenter: parent.horizontalCenter;
-                            verticalCenter: startTimeItem.verticalCenter;
-                        }
-                    }
+                    ThinDivider{}
 
-                   ListItem.Empty {
-                        id: endTimeItem
-                        highlightWhenPressed: false
-                        anchors.right: timeContainer.right
-                        width: units.gu(12)
-                        Button {
-                            objectName: "endTimeInput"
-                            id: endTimeButton
-                            text: Qt.formatDateTime(endDate,"hh:mm")
-                            anchors {
-                                fill: parent
-                                margins: units.gu(1)
-                            }
+                    NewEventEntryField{
+                        id: endTime
+                        title: i18n.tr("End")
+                        width: parent.width
+                        objectName: "endTimeInput"
+
+                        text: Qt.formatDateTime(endDate,"dd MMM yyyy hh:mm");
+
+                        MouseArea{
+                            anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker);
-                                popupObj.accepted.connect(function(endHour, endMinute) {
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endDate.getHours(),"minute":endDate.getMinutes()});
+                                popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = endDate;
-                                    newDate.setHours(endHour, endMinute);
+                                    newDate.setHours(startHour, startMinute);
                                     endDate = newDate;
+                                    endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
                                 })
                             }
                         }
                     }
                 }
             }
-        }
 
-        ListItem.Header { text: i18n.tr("Location & People") }
-        ListItem.Empty {
-            highlightWhenPressed: false
-            TextField {
-                objectName: "eventLocationInput"
+            NewEventEntryField{
+                id: titleEdit
+                width: parent.width
+                title: i18n.tr("Event Name")
+                objectName: "newEventName"
+            }
+
+            UbuntuShape{
+                width:parent.width
+                height: descriptionColumn.height
+
+                Column{
+                    id: descriptionColumn
+                    width: parent.width
+                    anchors.top: parent.top
+                    anchors.topMargin: units.gu(0.5)
+                    spacing: units.gu(1)
+
+                    Label {
+                        text: i18n.tr("Description")
+                        anchors.margins: units.gu(0.5)
+                        anchors.left: parent.left
+                    }
+
+                    TextArea{
+                        id: messageEdit
+                        width: parent.width
+                    }
+                }
+            }
+
+            NewEventEntryField{
                 id: locationEdit
-                placeholderText: i18n.tr("Add Location")
-                anchors {
-                    fill: parent
-                    margins: units.gu(1)
-                }
+                width: parent.width
+                title: i18n.tr("Location")
+                objectName: "eventLocationInput"
             }
-        }
 
-        ListItem.Empty {
-            highlightWhenPressed: false
-            TextField {
-                objectName: "eventPeopleInput"
+            NewEventEntryField{
                 id: personEdit
-                placeholderText: i18n.tr("Invite People")
-                anchors {
-                    fill: parent
-                    margins: units.gu(1)
+                width: parent.width
+                title: i18n.tr("Guests")
+                objectName: "eventPeopleInput"
+            }
+
+            Row{
+                width: parent.width
+                spacing: units.gu(1)
+                Label{
+                    id: frequencyLabel
+                    text: i18n.tr("This happens");
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                OptionSelector{
+                    model:[i18n.tr("Once"),i18n.tr("Daily"),i18n.tr("Weekly"),i18n.tr("Monthly"),i18n.tr("Yearly")]
+                    width: parent.width - frequencyLabel.width - units.gu(1)
                 }
             }
-        }
 
-        ListItem.Empty {
-            highlightWhenPressed: false
-            Dialog {
-                id: errorPopupDialog
-                title: i18n.tr("Error")
-                text: ""
-                Button {
-                    text: i18n.tr("Ok")
-                    onClicked: PopupUtils.close(errorPopupDialog)
+            Row{
+                width: parent.width
+                spacing: units.gu(1)
+                Label{
+                    id: remindLabel
+                    text: i18n.tr("Remind me");
+                    anchors.verticalCenter: parent.verticalCenter
                 }
-            }
-            Button {
-                objectName: "eventSaveButton"
-                text: i18n.tr("Save")
-                anchors {
-                    fill: parent
-                    margins: units.gu(1)
-                }
-
-                onClicked: {
-                    internal.clearFocus()
-
-                    var error = 0;
-
-                    if (startDate > endDate)
-                        error = 2;
-
-                    startDate.setDate(defaultDate.getDate());
-                    endDate.setDate(defaultDate.getDate());
-
-                    var event = {
-                        title: titleEdit.text,
-                        message: null,
-                        startTime: startDate.getTime(),
-                        endTime: endDate.getTime()
-                    }
-
-                    if (!error) {
-                        DataService.addEvent(event);
-                        PopupUtils.close(popover);
-                    } else {
-                        errorText = i18n.tr("End time can't be before start time");
-                        errorPopupDialog.show();
-                    }
-
-                    error = 0;
+                OptionSelector{
+                    width: parent.width - remindLabel.width - units.gu(1)
+                    model:[i18n.tr("No Reminder"),
+                        i18n.tr("5 minutes"),
+                        i18n.tr("15 minutes"),
+                        i18n.tr("30 minutes"),
+                        i18n.tr("1 hour"),
+                        i18n.tr("2 hours"),
+                        i18n.tr("1 day"),
+                        i18n.tr("2 days"),
+                        i18n.tr("1 week"),
+                        i18n.tr("2 weeks")]
                 }
             }
         }
@@ -214,12 +271,16 @@ Popover {
 
     QtObject {
         id: internal
+        property var eventModel;
 
         function clearFocus() {
             Qt.inputMethod.hide()
             titleEdit.focus = false
             locationEdit.focus = false
             personEdit.focus = false
+            startTime.focus = false
+            endTime.focus = false
+            messageEdit.focus = false
         }
     }
 }
