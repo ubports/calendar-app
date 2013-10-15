@@ -72,6 +72,7 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
+                iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
                     print(text + " not implemented");
                 }

@@ -69,6 +69,7 @@ Page {
             objectName: "eventCancelButton"
             action: Action {
                 text: i18n.tr("Cancel");
+                iconSource: Qt.resolvedUrl("cancel.svg");
                 onTriggered: {
                     pageStack.pop();
                 }
@@ -79,6 +80,7 @@ Page {
             objectName: "eventSaveButton"
             action: Action {
                 text: i18n.tr("Save");
+                iconSource: Qt.resolvedUrl("save.svg");
                 onTriggered: {
                     saveToQtPim();
                 }
