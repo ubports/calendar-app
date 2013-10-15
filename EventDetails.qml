@@ -23,7 +23,7 @@ Page {
     }
 
     function showEvent(e) {
-        var location=e.location;
+        var location = "";
 
         // TRANSLATORS: this is a time formatting string,
         // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -40,6 +40,7 @@ Page {
         }
         if( e.location ) {
             locationLabel.text = e.location;
+            location = e.location;
         }
         if( e.description ) {
             descLabel.text = e.description;
