@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
+import "GlobalEventModel.js" as GlobalModel
 
 Item {
     id: bubbleOverLay
@@ -9,14 +10,14 @@ Item {
     property var day;
     property int hourHeight: units.gu(10)
 
-    EventListModel {
-        id: model
-        termStart: bubbleOverLay.day.midnight()
-        termLength: Date.msPerDay
+    Component.onCompleted: {
+        intern.model = GlobalModel.gloablModel();
+        intern.model.reloaded.connect(bubbleOverLay.createEvents);
+    }
 
-        onReloaded: {
+    onDayChanged: {
+        if( intern.model)
             bubbleOverLay.createEvents();
-        }
     }
 
     TimeSeparator{
@@ -29,6 +30,7 @@ Item {
     QtObject {
         id: intern
         property var now : new Date();
+        property var model;
     }
 
     function showEventDetails(event) {
@@ -38,10 +40,18 @@ Item {
     function createEvents() {
         bubbleOverLay.destroyAllChildren();
 
-        for(var i = 0 ; i < model.count ; ++i) {
-            var event = model.get(i);
+        var startDate = new Date(day);
+        startDate.setHours(0,0,0,0);
+
+        var endDate = startDate.addDays(1);
+        endDate.setHours(0,0,0,0);
+
+        var itemIds = intern.model.itemIds(startDate,endDate);
+        for(var i = 0 ; i < itemIds.length ; ++i) {
+            var eventId = itemIds[(i)];
+            var event = intern.model.item(eventId);
             if( event ) {
-                bubbleOverLay.createEvent(event,event.startTime.getHours());
+                bubbleOverLay.createEvent(event,event.startDateTime.getHours());
             }
         }
 
@@ -62,16 +72,14 @@ Item {
 
     function createEvent( event ,hour) {
         var eventBubble = delegate.createObject(bubbleOverLay);
-
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
-
         eventBubble.event = event
 
-        var yPos = (( event.startTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
+        var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
         eventBubble.y = yPos;
 
-        var durationMin = (event.endTime.getHours() - event.startTime.getHours()) * 60;
-        durationMin += (event.endTime.getMinutes() - event.startTime.getMinutes());
+        var durationMin = (event.endDateTime.getHours() - event.startDateTime.getHours()) * 60;
+        durationMin += (event.endDateTime.getMinutes() - event.startDateTime.getMinutes());
         var height = (durationMin * hourHeight )/ 60;
         eventBubble.height = height;
     }
