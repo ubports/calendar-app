@@ -1,14 +1,15 @@
 {
-    "description": "description of calendar-app",
+    "description": "Calendar application for Ubuntu devices",
     "framework": "ubuntu-sdk-13.10",
     "hooks": {
-        "calendar-app": {
-            "apparmor": "calendar-app.json",
+        "calendar": {
+            "apparmor": "apparmor/calendar.json",
             "desktop": "calendar-app.desktop"
         }
     },
-    "maintainer": "Mihir Soni <mihirsoni.123@gmail.com>",
-    "name": "com.ubuntu.developer.mihirsoni-123.calendar-app",
-    "title": "calendar-app",
-    "version": "0.1"
+    "icon": "calendar64.png",
+    "maintainer": "Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>",
+    "name": "com.ubuntu.calendar",
+    "title": "calendar",
+    "version": "0.4"
 }
