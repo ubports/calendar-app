@@ -29,7 +29,7 @@ PathViewBase {
         property var startYear: getDateFromYear(currentYear.getFullYear()-1);
     }
 
-    delegate: Flickable{
+    delegate: GridView{
         id: yearView
         clip: true
 
@@ -48,38 +48,32 @@ PathViewBase {
 
         width: parent.width
         height: parent.height
+        anchors.top: parent.top
 
-        contentHeight: yearGrid.height + units.gu(2)
-        contentWidth: width
+        cellWidth: width/2
+        cellHeight: cellWidth * 1.2
 
-        Grid{
-            id: yearGrid
-            rows: 6
-            columns: 2
+        model: 12 /* months in a year */
+        snapMode: GridView.SnapOneRow
+        delegate: Item {
+            width: yearView.cellWidth
+            height: yearView.cellHeight
 
-            anchors.top: parent.top
-            anchors.topMargin: units.gu(1.5)
+            MonthComponent{
+                id: monthComponent
+                monthDate: new Date(yearView.year.getFullYear(),index,1,0,0,0,0)
+                anchors.fill: parent
+                anchors.margins: units.gu(0.5)
 
-            width: parent.width - ((columns-1) * yearGrid.spacing)
-            spacing: units.gu(2)
-            anchors.horizontalCenter: parent.horizontalCenter
+                dayLabelFontSize:"x-small"
+                dateLabelFontSize: "medium"
+                monthLabelFontSize: "medium"
+                yearLabelFontSize: "small"
 
-            Repeater{
-                model: yearGrid.rows * yearGrid.columns
-                delegate: MonthComponent{
-                    monthDate: new Date(yearView.year.getFullYear(),index,1,0,0,0,0)
-                    width: (parent.width - units.gu(2))/2
-                    height: width * 1.5
-                    dayLabelFontSize:"x-small"
-                    dateLabelFontSize: "medium"
-                    monthLabelFontSize: "medium"
-                    yearLabelFontSize: "small"
-
-                    MouseArea{
-                        anchors.fill: parent
-                        onClicked: {
-                            root.monthSelected(monthDate);
-                        }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        root.monthSelected(monthComponent.monthDate);
                     }
                 }
             }

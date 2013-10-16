@@ -7,10 +7,12 @@ Item{
     height: monthLabel.height
 
     property var date;
+    property string monthLabelFontSize: "x-large"
+    property string yearLabelFontSize: "large"
 
     Label{
         id: monthLabel
-        fontSize: "large"
+        fontSize: monthLabelFontSize
         text: Qt.locale().standaloneMonthName(date.getMonth())
         anchors.leftMargin: units.gu(1)
         anchors.left: parent.left
@@ -20,7 +22,7 @@ Item{
 
     Label{
         id: yearLabel
-        fontSize: "medium"
+        fontSize: yearLabelFontSize
         text: date.getFullYear()
         anchors.right: parent.right
         anchors.rightMargin: units.gu(1)
