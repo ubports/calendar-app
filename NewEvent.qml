@@ -73,7 +73,7 @@ Page {
             event.startDateTime = startDate;
             event.endDateTime = endDate;
             event.displayLabel = titleEdit.text;
-            event.description = "messageEdit.text";
+            event.description = messageEdit.text;
             event.location = locationEdit.text
             if( personEdit.text != "") {
                 var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
