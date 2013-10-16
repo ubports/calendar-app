@@ -19,16 +19,13 @@ Page {
     property bool isEdit: false
 
     Component.onCompleted: {
-        if( pageStack.header )
-            pageStack.header.visible = true;
+        pageStack.header.visible = true;
+        internal.eventModel = GlobalModel.gloablModel();
         if(event === null){
-            internal.eventModel = GlobalModel.gloablModel();
             isEdit =false;
             addEvent();
         }
-        else{
-            pageStack.header.visible = true;
-            internal.eventModel = GlobalModel.gloablModel(event);
+        else{            
             isEdit = true;
             editEvent(event);
         }
