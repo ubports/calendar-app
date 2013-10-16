@@ -10,16 +10,23 @@ Page {
     id: root
 
     property var date: new Date();
-    property var startDate: date
-    property var endDate: date
+    property var startDate;
+    property var endDate;
+
     property alias scrollY: flickable.contentY
 
     Component.onCompleted: {
-        internal.eventModel = GlobalModel.gloablModel();
+        // If startDate is setted by argument we have to not change it
+        if (typeof(startDate) === 'undefined')
+            startDate = new Date(date)
 
-        startDate = new Date(date)
-        endDate = new Date(date)
-        endDate.setMinutes( endDate.getMinutes() + 10)
+        // If endDate is setted by argument we have to not change it
+        if (typeof(endDate) === 'undefined') {
+            endDate = new Date(date)
+            endDate.setMinutes( endDate.getMinutes() + 10)
+        }
+
+        internal.eventModel = GlobalModel.gloablModel();
 
         startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
