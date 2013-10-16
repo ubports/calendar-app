@@ -12,7 +12,6 @@ Page {
     property var date: new Date();
 
     property var event:null;
-    property alias errorText: errorPopupDialog.text;
 
     property var startDate: date
     property var endDate: date
@@ -119,6 +118,18 @@ Page {
             }
         }
     }
+
+    Component{
+        id: errorDlgComponent
+        Dialog {
+            id: dialog
+            title: i18n.tr("Error")
+            Button {
+                text: i18n.tr("Ok")
+                onClicked: PopupUtils.close(dialog)
+            }
+        }
+    }
     function clearFocus() {
         Qt.inputMethod.hide()
         titleEdit.focus = false
@@ -127,17 +138,6 @@ Page {
         startTime.focus = false
         endTime.focus = false
         messageEdit.focus = false
-    }
-
-
-    Dialog {
-        id: errorPopupDialog
-        title: i18n.tr("Error")
-        text: ""
-        Button {
-            text: i18n.tr("Ok")
-            onClicked: PopupUtils.close(errorPopupDialog)
-        }
     }
 
     Component {
