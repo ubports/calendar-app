@@ -112,7 +112,7 @@ Page {
             objectName: "eventSaveButton"
             action: Action {
                 text: i18n.tr("Save");
-                iconSource: Qt.resolvedUrl("edit.svg");
+                iconSource: Qt.resolvedUrl("save.svg");
                 onTriggered: {
                     saveToQtPim();
                 }
