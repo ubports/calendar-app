@@ -4,14 +4,16 @@ import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
 
-import "dataService.js" as DataService
+import "GlobalEventModel.js" as GlobalModel
 
 Page {
     id: root
 
     property var date: new Date();
-    property var event: null;
+
+    property var event:null;
     property alias errorText: errorPopupDialog.text;
+
     property var startDate: date
     property var endDate: date
     property alias scrollY: flickable.contentY
@@ -21,21 +23,71 @@ Page {
         if( pageStack.header )
             pageStack.header.visible = true;
         if(event === null){
-            console.log("I am adding");
-            addEvent();
+            internal.eventModel = GlobalModel.gloablModel();
             isEdit =false;
+            addEvent();
         }
         else{
-            console.log("I am editing");
-            editEvent(event);
+            internal.eventModel = GlobalModel.gloablModel(event);
             isEdit = true;
+            editEvent(event);
+        }
+    }
+    //Data for Add events
+    function addEvent() {
+        startDate = new Date(date)
+        endDate = new Date(date)
+        endDate.setMinutes( endDate.getMinutes() + 10)
+
+        startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
+        endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
+    }
+    //Editing Event
+    function editEvent(e) {
+        startDate =new Date(e.startDateTime);
+        endDate = new Date(e.endDateTime);
+        startTime.text = Qt.formatDateTime(e.startDateTime, "dd MMM yyyy hh:mm");
+        endTime.text = Qt.formatDateTime(e.endDateTime, "dd MMM yyyy hh:mm");
+        if(e.displayLabel)
+            titleEdit.text = e.displayLabel;
+        if(e.location)
+            locationEdit.text = e.location;
+        if( e.description ) {
+            console.log("Description is "+e.description)
+            messageEdit.text = e.description;
+        }
+        if(e.attendees){
+            personEdit.text = e.attendees;
+        }
+    }
+    //Save the new or Existing event
+    function saveToQtPim() {
+        internal.clearFocus()
+        if ( startDate >= endDate ) {
+            PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
+        } else {
+            if(!isEdit) // if it is new event create new object
+                event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+            event.startDateTime = startDate;
+            event.endDateTime = endDate;
+            event.displayLabel = titleEdit.text;
+            event.description = messageEdit.text;
+            event.location = locationEdit.text
+            if( personEdit.text != "") {
+                var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
+                attendee.name = personEdit.text;
+                attendee.emailAddress = "none@nowhere.com";
+                event.setDetail(attendee);
+            }
+            internal.eventModel.saveItem(event);
+            pageStack.pop();
         }
     }
 
     width: parent.width
     height: parent.height
 
-    title: isEdit===false? i18n.tr("New Event"):i18n.tr("Edit Event")
+    title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
 
     tools: ToolbarItems {
         //keeping toolbar always open
@@ -48,10 +100,7 @@ Page {
             action: Action {
                 text: i18n.tr("Cancel");
                 onTriggered: {
-                    if(isEdit)
-                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event});
-                    else
-                        pageStack.pop();
+                    pageStack.pop();
                 }
             }
         }
@@ -61,85 +110,23 @@ Page {
             action: Action {
                 text: i18n.tr("Save");
                 onTriggered: {
-                    saveEvent();
-                    if(isEdit)
-                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event});
-                    else
-                        pageStack.pop();
+                    saveToQtPim();
                 }
             }
         }
     }
-    function addEvent() {
-        startDate = new Date(date)
-        endDate = new Date(date)
-        endDate.setMinutes( endDate.getMinutes() + 10)
 
-        startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
-        endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
-    }
-    //Editing Event
-    function editEvent(e) {
-        startDate =new Date(e.startTime);
-        endDate = new Date(e.endTime);
-        startTime.text = Qt.formatDateTime(e.startTime, "dd MMM yyyy hh:mm");
-        endTime.text = Qt.formatDateTime(e.endTime, "dd MMM yyyy hh:mm");
-        if(e.title)
-            titleEdit.text = e.title;
-        if(e.location)
-            locationEdit.text = e.location;
-        if( e.message ) {
-            messageEdit.text = e.message;
-        }
+
+    function clearFocus() {
+        Qt.inputMethod.hide()
+        titleEdit.focus = false
+        locationEdit.focus = false
+        personEdit.focus = false
+        startTime.focus = false
+        endTime.focus = false
+        messageEdit.focus = false
     }
 
-
-    function saveEvent() {
-        internal.clearFocus()
-
-        var error = 0;
-
-        if ( startDate > endDate )
-            error = 2;
-        if(isEdit){
-            event.message = messageEdit.text;
-            event.startTime = startDate;
-            event.endTime = endDate;
-            event.title = titleEdit.text;
-        }
-        else{
-            event = {
-                title: titleEdit.text,
-                message: null,
-                startTime: startDate.getTime(),
-                endTime: endDate.getTime()
-            }
-        }
-        if (!error) {
-            if(isEdit)
-                DataService.updateEvent(event);
-            else
-                DataService.addEvent(event);
-        } else {
-            errorText = i18n.tr("End time can't be before start time");
-            errorPopupDialog.show();
-        }
-
-        error = 0;
-    }
-
-    QtObject {
-        id: internal
-        function clearFocus() {
-            Qt.inputMethod.hide()
-            titleEdit.focus = false
-            locationEdit.focus = false
-            personEdit.focus = false
-            startTime.focus = false
-            endTime.focus = false
-            messageEdit.focus = false
-        }
-    }
 
     Dialog {
         id: errorPopupDialog
@@ -319,6 +306,21 @@ Page {
                         i18n.tr("2 weeks")]
                 }
             }
+        }
+    }
+
+    QtObject {
+        id: internal
+        property var eventModel;
+
+        function clearFocus() {
+            Qt.inputMethod.hide()
+            titleEdit.focus = false
+            locationEdit.focus = false
+            personEdit.focus = false
+            startTime.focus = false
+            endTime.focus = false
+            messageEdit.focus = false
         }
     }
 }

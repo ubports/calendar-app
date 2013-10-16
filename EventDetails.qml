@@ -2,17 +2,15 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
-
-import "dataService.js" as DataService
+import Ubuntu.Components.Themes.Ambiance 0.1
 
 Page {
     id: root
 
     property var event;
-
+    property string headerColor :"black"
+    property string detailColor :"grey"
     anchors.fill: parent
-    anchors.margins: units.gu(2)
-
     Component.onCompleted: {
         if( pageStack.header )
             pageStack.header.visible = false;
@@ -23,48 +21,56 @@ Page {
         if( pageStack.header )
             pageStack.header.visible = true;
     }
-
-    function showEvent(e) {
-        // FIXME: temp location in case there is no vanue is defined
-        var location="-15.800513,-47.91378";
-        //var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
-
-        timeLabel.text = Qt.formatDateTime(e.startTime,"hh:mm") + " - " + Qt.formatDateTime(e.endTime,"hh:mm");
-        dateLabel.text = Qt.formatDateTime(e.startTime,"ddd, d MMMM");
-        if( e.title)
-            titleLabel.text = e.title;
-
-        locationLabel.text = location;
-        if( e.message ) {
-            descLabel.text = e.message;
-        }
-
-        var venues = []
-        DataService.getVenues(e, venues)
-        if( venues.length > 0 ) {
-            //FIXME: what to do for multiple venue
-            var place = venues[0];
-            locationLabel.text = place.address;
-            if( place.latitude && place.longitude) {
-                location = place.latitude +"," + place.longitude;
+    Connections{
+        target: pageStack
+        onCurrentPageChanged:{
+            if( pageStack.currentPage === root) {
+                pageStack.header.visible = false;
+                showEvent(event);
             }
         }
+    }
+    function showEvent(e) {
+        var location = "";
 
-        var attendees = []
-        DataService.getAttendees(e, attendees)
-        contactModel.clear();
-        for( var j = 0 ; j < attendees.length ; ++j ) {
-            contactModel.append( {"name": attendees[j] } );
+        // TRANSLATORS: this is a time formatting string,
+        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        var timeFormat = i18n.tr("hh:mm");
+        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+
+	startHeader.value = startTime;
+	endHeader.value = endTime;
+
+	// This is the event title
+        if( e.displayLabel) {
+            titleLabel.text = e.displayLabel;
         }
+        if( e.location ) {
+            locationLabel.text = e.location;
+            location = e.location;
+        }
+        if( e.description ) {
+            descLabel.text = e.description;
+        }
+        var attendees = e.attendees;
+        contactModel.clear();
+        if( attendees !== undefined ) {
+            for( var j = 0 ; j < attendees.length ; ++j ) {
+                contactModel.append( {"name": attendees[j].name } );
+            }
 
+        }
         // FIXME: need to cache map image to avoid duplicate download every time
         var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
-                "&markers=color:blue|"+location+"&zoom=15&size="+mapContainer.width+
+                "&markers=color:red|"+location+"&zoom=15&size="+mapContainer.width+
                 "x"+mapContainer.height+"&sensor=false";
         mapImage.source=imageSrc;
     }
 
     tools: ToolbarItems {
+
+	/*
         ToolbarButton {
             action: Action {
                 text: i18n.tr("Add invite");
@@ -73,115 +79,128 @@ Page {
                 }
             }
         }
+	*/
 
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
+                iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event});
                 }
             }
         }
+
     }
-
-    Column{
+    Rectangle {
+        id:eventDetilsView
         anchors.fill: parent
-        spacing: units.gu(1)
-
-        Item{
+        color: "white"
+        Column{
+            id: column
+            anchors.fill: parent
             width: parent.width
-            height: timeLabel.height
+            spacing: units.gu(1)
+            anchors{
+                top:parent.top
+                topMargin: units.gu(2)
+                right: parent.right
+                rightMargin: units.gu(2)
+                left:parent.left
+                leftMargin: units.gu(2)
+            }
+            property int timeLabelMaxLen: Math.max( startHeader.headerWidth, endHeader.headerWidth)// Dynamic Width
+            EventDetailsInfo{
+                id: startHeader
+                xMargin:column.timeLabelMaxLen
+                header: i18n.tr("Start")
+            }
+            EventDetailsInfo{
+                id: endHeader
+                xMargin: column.timeLabelMaxLen
+                header: i18n.tr("End")
+            }
+            ThinDivider{}
             Label{
-                id: timeLabel
-                anchors.left: parent.left
-                anchors.verticalCenter: parent.verticalCenter
+                id: titleLabel
                 fontSize: "large"
-            }
-            Label{
-                id: dateLabel
-                anchors.right: parent.right
-                anchors.verticalCenter: parent.verticalCenter
-                fontSize: "small"
-            }
-        }
-
-        Label{
-            id: titleLabel
-            fontSize: "x-large"
-            width: parent.width
-            wrapMode: Text.WordWrap
-        }
-        ThinDivider{}
-
-        Label{
-            id: descLabel
-            // FIXME: temporaty text, in ui there is no field to enter message
-            text:"Hi both, please turn up on time, it gets really busy by 1pm! Anna x"
-            wrapMode: Text.WordWrap
-            fontSize: "medium"
-            width: parent.width
-        }
-
-        //map control with location
-        Rectangle{
-            id: mapContainer
-            width:parent.width
-            height: units.gu(25)
-            Image {
-                id: mapImage
-                anchors.fill: parent
-                opacity: 0.5
-            }
-            Label{
-                id:locationLabel
+                width: parent.width
                 wrapMode: Text.WordWrap
+                color: headerColor
+            }
+            Label{
+                id: descLabel
+                wrapMode: Text.WordWrap
+                fontSize: "small"
+                width: parent.width
+                color: detailColor
+            }
+            ThinDivider{}
+            EventDetailsInfo{
+                id: mapHeader
+                header: i18n.tr("Location")
+            }
+            Label{
+                id: locationLabel
                 fontSize: "medium"
                 width: parent.width
-                //color:"#c94212"
-                color:"black"
+                wrapMode: Text.WordWrap
+                color: detailColor
+            }
 
-                anchors {
-                    left: parent.left
-                    leftMargin: units.gu(1)
-                    bottom: parent.bottom
-                    bottomMargin: units.gu(1)
+            //map control with location
+            Rectangle{
+                id: mapContainer
+                width:parent.width
+                height: units.gu(10)
+
+                Image {
+                    id: mapImage
+                    anchors.fill: parent
+                    opacity: 0.5
                 }
             }
-        }
-
-        Label{
-            text: i18n.tr("People");
-            fontSize: "small"
-        }
-        ThinDivider{}
-
-        //contact list view
-        ListView {
-            id:contactList
-            width: parent.width
-            height:  {
-                var height = parent.height;
-                //not considering the list view it self
-                for( var i = 0; i < parent.children.length - 1 ; ++i) {
-                    height -= parent.children[i].height;
-                }
-                height -= parent.children.length * parent.spacing;
-            }
-            clip: true
-            model: ListModel {
-                id: contactModel
-            }
-
+            ThinDivider{}
             Label{
+                text: i18n.tr("Guests");
                 fontSize: "medium"
-                visible: contactModel.count <= 0
-                anchors.verticalCenter: parent.verticalCenter
+                color: headerColor
+                font.bold: true
             }
-
-            delegate: Standard{
-                text: name
-                icon: Qt.resolvedUrl("dummy.png")
-                progression: true
+            //Guest Entery Model starts
+            ListView {
+                id:contactList
+                spacing: units.gu(1)
+                width: parent.width
+                height: units.gu((contactModel.count*4.5)+3)
+                clip: true
+                model: ListModel {
+                    id: contactModel
+                }
+                delegate: Row{
+                    spacing: units.gu(1)
+                    CheckBox{}
+                    Label {
+                        text:name
+                        anchors.verticalCenter:  parent.verticalCenter
+                        color: detailColor
+                    }
+                }
+            }
+            //Guest Entries ends
+            ThinDivider{}
+            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth) //Dynamic Height
+            EventDetailsInfo{
+                id: recurrentHeader
+                xMargin: column.recurranceAreaMaxWidth
+                header: i18n.tr("This happens")
+                value :"Only once" //Neds to change
+            }
+            EventDetailsInfo{
+                id: reminderHeader
+                xMargin: column.recurranceAreaMaxWidth
+                header: i18n.tr("Remind me")
+                value :"15 minutes before" //Neds to change
             }
         }
     }

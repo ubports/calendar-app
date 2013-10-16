@@ -35,30 +35,11 @@ Item{
             anchors.fill: parent
             spacing: units.gu(1.5)
 
-            Item{
+            ViewHeader{
                 id: monthHeader
-                width: parent.width
-                height: monthLabel.height
-
-                Label{
-                    id: monthLabel
-                    fontSize: monthLabelFontSize
-                    text: Qt.locale().standaloneMonthName(root.monthDate.getMonth())
-                    anchors.leftMargin: units.gu(1)
-                    anchors.left: parent.left
-                    //color:"white"
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-
-                Label{
-                    id: yearLabel
-                    fontSize: yearLabelFontSize
-                    text: root.monthDate.getFullYear()
-                    anchors.right: parent.right
-                    anchors.rightMargin: units.gu(1)
-                    color:"#AEA79F"
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+                date: root.monthDate
+                monthLabelFontSize: root.monthLabelFontSize
+                yearLabelFontSize: root.yearLabelFontSize
             }
 
             Row{
@@ -106,15 +87,11 @@ Item{
             width: parent.width / 7;
             height: parent.height / parent.weekCount
 
-            UbuntuShape{
-                id: highLightRect
-
+            Loader {
                 width: parent.width
                 height: width
                 anchors.centerIn: parent
-
-                color: "white"
-                visible: date.isSameDay(DateExt.today()) && isCurrentMonth
+                sourceComponent: date.isSameDay(DateExt.today()) && isCurrentMonth ? highLightComp : undefined
             }
 
             Label{
@@ -154,6 +131,13 @@ Item{
             horizontalAlignment: Text.AlignHCenter
             fontSize: root.dayLabelFontSize
             color: "#AEA79F"
+        }
+    }
+
+    Component{
+        id: highLightComp
+        UbuntuShape{
+            color: "white"
         }
     }
 }

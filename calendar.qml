@@ -3,6 +3,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
 import "dateExt.js" as DateExt
+import "GlobalEventModel.js" as GlobalModel
 
 MainView {
     id: mainView
@@ -27,6 +28,7 @@ MainView {
             id: tabPage
 
             property var currentDay: DateExt.today();
+            property var globalModel;
 
             onCurrentDayChanged: {
                 if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
@@ -37,6 +39,15 @@ MainView {
 
                 if( !weekView.dayStart.isSameDay(currentDay))
                     weekView.dayStart = currentDay
+
+                setStartEndDateToModel();
+            }
+
+            function setStartEndDateToModel() {
+                if(globalModel) {
+                    globalModel.startPeriod =  new Date(currentDay.getFullYear(),0,1,0,0,0,0);
+                    globalModel.endPeriod = new Date(currentDay.getFullYear(),11,31,0,0,0,0);
+                }
             }
 
             function newEvent() {
@@ -44,7 +55,9 @@ MainView {
             }
 
             Component.onCompleted: {
-                tabs.selectedTabIndex= 1;
+                globalModel = GlobalModel.gloablModel();
+                setStartEndDateToModel();
+                tabs.selectedTabIndex = 1;
             }
 
             ToolbarItems {
@@ -53,7 +66,7 @@ MainView {
                 ToolbarButton {
                     objectName: "todaybutton"
                     action: Action {
-                        iconSource: Qt.resolvedUrl("avatar.png");
+                        iconSource: Qt.resolvedUrl("calendar-today.svg");
                         text: i18n.tr("Today");
                         onTriggered: {
                             tabPage.currentDay = (new Date()).midnight();
@@ -63,7 +76,7 @@ MainView {
                 ToolbarButton {
                     objectName: "neweventbutton"
                     action: Action {
-                        iconSource: Qt.resolvedUrl("avatar.png");
+                        iconSource: Qt.resolvedUrl("new-event.svg");
                         text: i18n.tr("New Event");
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay});
