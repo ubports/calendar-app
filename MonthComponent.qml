@@ -42,15 +42,23 @@ Item{
                 yearLabelFontSize: root.yearLabelFontSize
             }
 
-            Row{
-                id: dayLabelRow
+            Item {
                 width: parent.width
-                anchors.horizontalCenter: parent.horizontalCenter
+                height: dayLabelRow.height + units.gu(1)
 
-                Repeater{
-                    id: dayLabelRepeater
-                    model:7
-                    delegate: dafaultDayLabelComponent
+                DayHeaderBackground{}
+
+                Row{
+                    id: dayLabelRow
+                    width: parent.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    Repeater{
+                        id: dayLabelRepeater
+                        model:7
+                        delegate: dafaultDayLabelComponent
+                    }
                 }
             }
 
