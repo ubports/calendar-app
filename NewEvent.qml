@@ -130,16 +130,6 @@ Page {
             }
         }
     }
-    function clearFocus() {
-        Qt.inputMethod.hide()
-        titleEdit.focus = false
-        locationEdit.focus = false
-        personEdit.focus = false
-        startTime.focus = false
-        endTime.focus = false
-        messageEdit.focus = false
-    }
-
     Component {
         id: timePicker
         TimePicker {
