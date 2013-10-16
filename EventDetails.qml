@@ -23,23 +23,24 @@ Page {
     }
 
     function showEvent(e) {
-        var location=e.location;
-        //var location ="Terry' Cafe, 158 Great Suffold St, London, SE1 1PE";
+        var location = "";
+
         // TRANSLATORS: this is a time formatting string,
         // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
         var timeFormat = i18n.tr("hh:mm");
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
-        // TRANSLATORS: the first argument (%1) refers to a start time for an event,
-        // while the second one (%2) refers to the end time
-        timeLabel.text =  i18n.tr("%1 - %2").arg(startTime).arg(endTime);
-        var dateFormat = i18n.tr("ddd, d MMMM");
-        dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(),dateFormat);
+
+	startHeader.value = startTime;
+	endHeader.value = endTime;
+
+	// This is the event title
         if( e.displayLabel) {
             titleLabel.text = e.displayLabel;
         }
         if( e.location ) {
             locationLabel.text = e.location;
+            location = e.location;
         }
         if( e.description ) {
             descLabel.text = e.description;
@@ -61,6 +62,7 @@ Page {
 
     tools: ToolbarItems {
 
+	/*
         ToolbarButton {
             action: Action {
                 text: i18n.tr("Add invite");
@@ -69,6 +71,8 @@ Page {
                 }
             }
         }
+	*/
+	/*
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
@@ -78,6 +82,7 @@ Page {
                 }
             }
         }
+	*/
     }
     Rectangle {
         id:eventDetilsView
@@ -117,8 +122,6 @@ Page {
             }
             Label{
                 id: descLabel
-                // FIXME: temporaty text, in ui there is no field to enter message
-                text:"Hi both, please turn up on time, it gets really busy by 1pm! Anna x"
                 wrapMode: Text.WordWrap
                 fontSize: "small"
                 width: parent.width
@@ -130,7 +133,7 @@ Page {
                 header: i18n.tr("Location")
             }
             Label{
-                id: mapAddress
+                id: locationLabel
                 fontSize: "medium"
                 width: parent.width
                 wrapMode: Text.WordWrap
