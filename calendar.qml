@@ -192,6 +192,7 @@ MainView {
                 setStartEndDateToModel();
             } // End of Component.onCompleted:
 
+            // This is for wait that the app is load when newEvent is invoked by argument
             Timer {
                 id: timer
                 interval: 200;

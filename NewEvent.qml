@@ -10,8 +10,6 @@ Page {
     id: root
 
     property var date: new Date();
-    property alias errorText: errorPopupDialog.text;
-
     property var startDate;
     property var endDate;
 
