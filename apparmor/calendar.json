@@ -1,4 +1,4 @@
 {
-    "policy_groups": ["calendar"], 
+    "policy_groups": ["calendar", "networking"], 
     "policy_version": 1.0
 }
