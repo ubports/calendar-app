@@ -28,6 +28,7 @@ Page {
             addEvent();
         }
         else{
+            pageStack.header.visible = true;
             internal.eventModel = GlobalModel.gloablModel(event);
             isEdit = true;
             editEvent(event);
@@ -48,6 +49,7 @@ Page {
         endDate = new Date(e.endDateTime);
         startTime.text = Qt.formatDateTime(e.startDateTime, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(e.endDateTime, "dd MMM yyyy hh:mm");
+        console.log("Description is "+e.description);
         if(e.displayLabel)
             titleEdit.text = e.displayLabel;
         if(e.location)
@@ -71,7 +73,7 @@ Page {
             event.startDateTime = startDate;
             event.endDateTime = endDate;
             event.displayLabel = titleEdit.text;
-            event.description = messageEdit.text;
+            event.description = "messageEdit.text";
             event.location = locationEdit.text
             if( personEdit.text != "") {
                 var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
@@ -99,6 +101,7 @@ Page {
             objectName: "eventCancelButton"
             action: Action {
                 text: i18n.tr("Cancel");
+                iconSource: Qt.resolvedUrl("cancel.svg");
                 onTriggered: {
                     pageStack.pop();
                 }
@@ -109,14 +112,13 @@ Page {
             objectName: "eventSaveButton"
             action: Action {
                 text: i18n.tr("Save");
+                iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
                     saveToQtPim();
                 }
             }
         }
     }
-
-
     function clearFocus() {
         Qt.inputMethod.hide()
         titleEdit.focus = false
@@ -224,7 +226,6 @@ Page {
                     }
                 }
             }
-
             NewEventEntryField{
                 id: titleEdit
                 width: parent.width
