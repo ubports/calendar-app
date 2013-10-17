@@ -15,12 +15,29 @@ Page {
 
     property var startDate: date
     property var endDate: date
+
+    property var startDate;
+    property var endDate;
+
+
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
     Component.onCompleted: {
+
         pageStack.header.visible = true;
+
+        // If startDate is setted by argument we have to not change it
+        if (typeof(startDate) === 'undefined')
+            startDate = new Date(date)
+
+        // If endDate is setted by argument we have to not change it
+        if (typeof(endDate) === 'undefined') {
+            endDate = new Date(date)
+            endDate.setMinutes( endDate.getMinutes() + 10)
+        }
         internal.eventModel = GlobalModel.gloablModel();
+
         if(event === null){
             isEdit =false;
             addEvent();

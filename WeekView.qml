@@ -9,6 +9,7 @@ Column {
     property var dayStart: new Date();
     anchors.top: parent.top
     anchors.topMargin: units.gu(1.5)
+    spacing: units.gu(1)
 
     anchors.fill: parent
 

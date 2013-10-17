@@ -11,10 +11,8 @@ Column{
 
     property int dayFormat: Locale.ShortFormat;
 
-    anchors.verticalCenter: parent.verticalCenter
-
     width: parent.width
-    spacing: units.gu(0.5)
+    spacing: units.gu(2)
 
     Label{
         id: dayLabel

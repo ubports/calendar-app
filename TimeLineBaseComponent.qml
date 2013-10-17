@@ -7,6 +7,8 @@ Item {
     id: root
 
     property var startDay: DateExt.today();
+    property alias contentY: timeLineView.contentY
+    property alias contentInteractive: timeLineView.interactive
 
     property int type: typeWeek
 
