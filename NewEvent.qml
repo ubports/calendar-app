@@ -90,7 +90,6 @@ Page {
             if( personEdit.text != "") {
                 var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
                 attendee.name = personEdit.text;
-                attendee.emailAddress = "none@nowhere.com";
                 event.setDetail(attendee);
             }
             internal.eventModel.saveItem(event);
