@@ -13,12 +13,8 @@ Page {
 
     property var event:null;
 
-    property var startDate: date
-    property var endDate: date
-
     property var startDate;
     property var endDate;
-
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
