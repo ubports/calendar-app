@@ -69,7 +69,7 @@ Page {
         if(e.attendees){
             for( var j = 0 ; j < e.attendees.length ; ++j ) {
                 personEdit.text += e.attendees[j].name;
-                if(j!== e.attendess.length-1)
+                if(j!== e.attendess.length)
                     personEdit.text += ",";
             }
         }
@@ -85,8 +85,7 @@ Page {
             event.displayLabel = titleEdit.text;
             event.description = messageEdit.text;
             event.location = locationEdit.text
-            if(isEdit)
-                event.attendees = []; // if Edit remove all attendes & add them again if any
+            event.attendees = []; // if Edit remove all attendes & add them again if any
             if( personEdit.text != "") {
                 var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
                 attendee.name = personEdit.text;
