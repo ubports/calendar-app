@@ -90,7 +90,6 @@ Page {
                 }
             }
         }
-
     }
     Rectangle {
         id:eventDetilsView

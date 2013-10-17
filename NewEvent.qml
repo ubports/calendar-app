@@ -25,13 +25,14 @@ Page {
             isEdit =false;
             addEvent();
         }
-        else{            
+        else{
             isEdit = true;
             editEvent(event);
         }
     }
     //Data for Add events
     function addEvent() {
+        event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
         startDate = new Date(date)
         endDate = new Date(date)
         endDate.setMinutes( endDate.getMinutes() + 10)
@@ -45,17 +46,19 @@ Page {
         endDate = new Date(e.endDateTime);
         startTime.text = Qt.formatDateTime(e.startDateTime, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(e.endDateTime, "dd MMM yyyy hh:mm");
-        console.log("Description is "+e.description);
         if(e.displayLabel)
             titleEdit.text = e.displayLabel;
         if(e.location)
             locationEdit.text = e.location;
         if( e.description ) {
-            console.log("Description is "+e.description)
             messageEdit.text = e.description;
         }
         if(e.attendees){
-            personEdit.text = e.attendees;
+            for( var j = 0 ; j < e.attendees.length ; ++j ) {
+                personEdit.text += e.attendees[j].name;
+                if(j!== e.attendess.length-1)
+                    personEdit.text += ",";
+            }
         }
     }
     //Save the new or Existing event
@@ -64,13 +67,13 @@ Page {
         if ( startDate >= endDate ) {
             PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
         } else {
-            if(!isEdit) // if it is new event create new object
-                event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
             event.startDateTime = startDate;
             event.endDateTime = endDate;
             event.displayLabel = titleEdit.text;
             event.description = messageEdit.text;
             event.location = locationEdit.text
+            if(isEdit)
+                event.attendees = []; // if Edit remove all attendes & add them again if any
             if( personEdit.text != "") {
                 var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
                 attendee.name = personEdit.text;
