@@ -69,7 +69,7 @@ Page {
         if(e.attendees){
             for( var j = 0 ; j < e.attendees.length ; ++j ) {
                 personEdit.text += e.attendees[j].name;
-                if(j!== e.attendess.length)
+                if(j!== e.attendes.length-1)
                     personEdit.text += ",";
             }
         }
