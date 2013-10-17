@@ -32,6 +32,7 @@ Item{
 
             anchors.top: parent.top
             anchors.topMargin: units.gu(1.5)
+            anchors.bottomMargin: units.gu(1)
             anchors.fill: parent
             spacing: units.gu(1.5)
 
