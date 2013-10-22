@@ -61,8 +61,8 @@ class TestYearView(CalendarTestCase):
         current_day_label = month_grid.select_single(
             "Label", text=str(datetime.now().day))
 
-        # probably better to check the sorrounding UbuntuShape object,
-        # upgrade this when python-autopilot 1.4 will be available.
+        # probably better to check the surrounding UbuntuShape object,
+        # upgrade this when python-autopilot 1.4 will be available (get_parent).
         color = current_day_label.color
         label_color = (color[0], color[1], color[2], color[3])
 
@@ -103,5 +103,5 @@ class TestYearView(CalendarTestCase):
         # TODO: the component indexed at 1 is the one currently displayed,
         # investigate a way to validate this assumption visually.
 
-        year_grid = self.year_view.select_many("QQuickFlickable")[1]
+        year_grid = self.year_view.select_many("QQuickGridView")[1]
         return year_grid.select_many("MonthComponent")

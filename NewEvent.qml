@@ -4,24 +4,61 @@ import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
 
-import "dataService.js" as DataService
+import "GlobalEventModel.js" as GlobalModel
 
 Page {
     id: root
 
     property var date: new Date();
-    property alias errorText: errorPopupDialog.text;
-    property var startDate: date
-    property var endDate: date
+    property var startDate;
+    property var endDate;
+
     property alias scrollY: flickable.contentY
 
     Component.onCompleted: {
-        startDate = new Date(date)
-        endDate = new Date(date)
-        endDate.setMinutes( endDate.getMinutes() + 10)
+        // If startDate is setted by argument we have to not change it
+        if (typeof(startDate) === 'undefined')
+            startDate = new Date(date)
+
+        // If endDate is setted by argument we have to not change it
+        if (typeof(endDate) === 'undefined') {
+            endDate = new Date(date)
+            endDate.setMinutes( endDate.getMinutes() + 10)
+        }
+
+        internal.eventModel = GlobalModel.gloablModel();
 
         startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
+    }
+
+    function saveToQtPim() {
+
+        internal.clearFocus()
+
+        if ( startDate >= endDate ) {
+            PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
+        } else {
+
+            var event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+
+            event.startDateTime = startDate;
+            event.endDateTime = endDate;
+            event.displayLabel = titleEdit.text;
+            event.description = messageEdit.text;
+
+            event.location = locationEdit.text
+
+            if( personEdit.text != "") {
+                var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
+                attendee.name = personEdit.text;
+                attendee.emailAddress = "none@nowhere.com";
+                event.setDetail(attendee);
+            }
+
+            internal.eventModel.saveItem(event);
+            pageStack.pop();
+        }
     }
 
     width: parent.width
@@ -39,6 +76,7 @@ Page {
             objectName: "eventCancelButton"
             action: Action {
                 text: i18n.tr("Cancel");
+                iconSource: Qt.resolvedUrl("cancel.svg");
                 onTriggered: {
                     pageStack.pop();
                 }
@@ -49,59 +87,23 @@ Page {
             objectName: "eventSaveButton"
             action: Action {
                 text: i18n.tr("Save");
+                iconSource: Qt.resolvedUrl("save.svg");
                 onTriggered: {
-                    saveEvent();
-                    pageStack.pop();
+                    saveToQtPim();
                 }
             }
         }
     }
 
-    function saveEvent() {
-        internal.clearFocus()
-
-        var error = 0;
-
-        if ( startDate > endDate )
-            error = 2;
-
-        var event = {
-            title: titleEdit.text,
-            message: null,
-            startTime: startDate.getTime(),
-            endTime: endDate.getTime()
-        }
-
-        if (!error) {
-            DataService.addEvent(event);
-        } else {
-            errorText = i18n.tr("End time can't be before start time");
-            errorPopupDialog.show();
-        }
-
-        error = 0;
-    }
-
-    QtObject {
-        id: internal
-        function clearFocus() {
-            Qt.inputMethod.hide()
-            titleEdit.focus = false
-            locationEdit.focus = false
-            personEdit.focus = false
-            startTime.focus = false
-            endTime.focus = false
-            messageEdit.focus = false
-        }
-    }
-
-    Dialog {
-        id: errorPopupDialog
-        title: i18n.tr("Error")
-        text: ""
-        Button {
-            text: i18n.tr("Ok")
-            onClicked: PopupUtils.close(errorPopupDialog)
+    Component{
+        id: errorDlgComponent
+        Dialog {
+            id: dialog
+            title: i18n.tr("Error")
+            Button {
+                text: i18n.tr("Ok")
+                onClicked: PopupUtils.close(dialog)
+            }
         }
     }
 
@@ -273,6 +275,21 @@ Page {
                         i18n.tr("2 weeks")]
                 }
             }
+        }
+    }
+
+    QtObject {
+        id: internal
+        property var eventModel;
+
+        function clearFocus() {
+            Qt.inputMethod.hide()
+            titleEdit.focus = false
+            locationEdit.focus = false
+            personEdit.focus = false
+            startTime.focus = false
+            endTime.focus = false
+            messageEdit.focus = false
         }
     }
 }

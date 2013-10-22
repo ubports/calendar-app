@@ -2,7 +2,6 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 import "dateExt.js" as DateExt
-import "dataService.js" as DataService
 
 Item{
     id: root
@@ -17,6 +16,7 @@ Item{
         anchors.top: parent.top
         anchors.topMargin: units.gu(1.5)
         width: parent.width; height: parent.height
+        spacing: units.gu(1)
 
         ViewHeader{
             id: viewHeader
@@ -40,6 +40,8 @@ Item{
             objectName: "DayViewPathBase"
 
             property var startDay: currentDay
+            //This is used to scroll all view together when currentItem scrolls
+            property var childContentY;
 
             preferredHighlightBegin: 0.5
             preferredHighlightEnd: 0.5
@@ -73,6 +75,24 @@ Item{
                 width: parent.width/7 * 5
                 height: parent.height
                 z: index == dayViewPath.currentIndex ? 2 : 1
+
+                //get contentY value from PathView, if its not current Item
+                Binding{
+                    target: timeLineView
+                    property: "contentY"
+                    value: dayViewPath.childContentY;
+                    when: !timeLineView.PathView.isCurrentItem
+                }
+
+                //set PathView's contentY property, if its current item
+                Binding{
+                    target: dayViewPath
+                    property: "childContentY"
+                    value: contentY
+                    when: timeLineView.PathView.isCurrentItem
+                }
+
+                contentInteractive: timeLineView.PathView.isCurrentItem
 
                 startDay: getStartDay()
 
