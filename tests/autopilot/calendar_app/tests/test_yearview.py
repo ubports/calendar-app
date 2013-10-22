@@ -62,7 +62,7 @@ class TestYearView(CalendarTestCase):
             "Label", text=str(datetime.now().day))
 
         # probably better to check the surrounding UbuntuShape object,
-        # upgrade this when python-autopilot 1.4 will be available (get_parent).
+        # upgrade when python-autopilot 1.4 will be available (get_parent).
         color = current_day_label.color
         label_color = (color[0], color[1], color[2], color[3])
 
