@@ -35,8 +35,8 @@ class TestYearView(CalendarTestCase):
         self.assert_current_year_is_default_one(months[0])
 
         february = months[1]
-        expected_month_name = self.get_month_name(february)
-        expected_year = self.get_year(february)
+        expected_month_name = self.main_view.get_month_name(february)
+        expected_year = self.main_view.get_year(february)
 
         self.pointing_device.click_object(february)
 
@@ -47,8 +47,10 @@ class TestYearView(CalendarTestCase):
         self.assertThat(month_view.visible, Eventually(Equals(True)))
         selected_month = month_view.select_many("MonthComponent")[1]
 
-        self.assertThat(self.get_year(selected_month), Equals(expected_year))
-        self.assertThat(self.get_month_name(selected_month),
+        self.assertThat(self.main_view.get_year(selected_month),
+                        Equals(expected_year))
+
+        self.assertThat(self.main_view.get_month_name(selected_month),
                         Equals(expected_month_name))
 
     def test_current_day_is_selected(self):
@@ -88,16 +90,8 @@ class TestYearView(CalendarTestCase):
                 selected_year, Equals(current_year + (i * direction)))
 
     def assert_current_year_is_default_one(self, month_component):
-        self.assertThat(self.get_year(month_component),
+        self.assertThat(self.main_view.get_year(month_component),
                         Equals(datetime.now().year))
-
-    def get_year(self, month_component):
-        return int(month_component.select_single(
-            "Label", objectName="yearLabel").text)
-
-    def get_month_name(self, month_component):
-        return month_component.select_single(
-            "Label", objectName="monthLabel").text
 
     def months_from_selected_year(self):
         # TODO: the component indexed at 1 is the one currently displayed,

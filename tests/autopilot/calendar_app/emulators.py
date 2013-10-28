@@ -28,6 +28,9 @@ class MainView(toolkit_emulators.MainView):
     def get_day_view(self):
         return self.select_single("DayView")
 
+    def get_week_view(self):
+        return self.select_single("WeekView")
+
     def get_label_with_text(self, text, root=None):
         if root is None:
             root = self
@@ -85,3 +88,11 @@ class MainView(toolkit_emulators.MainView):
         x_stop = view.globalRect[0] + view.globalRect[2] * stop
 
         self.pointing_device.drag(x_start, y_line, x_stop, y_line)
+
+    def get_year(self, component):
+        return int(component.select_single(
+            "Label", objectName="yearLabel").text)
+
+    def get_month_name(self, component):
+        return component.select_single(
+            "Label", objectName="monthLabel").text

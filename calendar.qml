@@ -266,6 +266,7 @@ MainView {
                     }
                 }
                 Tab{
+                    objectName: "weekTab"
                     title: i18n.tr("Week")
                     page: Page{
                         anchors.fill: parent
