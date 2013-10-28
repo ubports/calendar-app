@@ -231,8 +231,10 @@ MainView {
             Tabs{
                 id: tabs
                 Tab{
+                    objectName: "yearTab"
                     title: i18n.tr("Year")
                     page: Page{
+                        objectName: "yearPage"
                         anchors.fill: parent
                         tools: commonToolBar
                         YearView{

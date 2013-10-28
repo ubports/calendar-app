@@ -28,17 +28,13 @@ class TestMonthView(CalendarTestCase):
 
     def change_month(self, delta):
         month_view = self.main_view.get_month_view()
-        y_line = month_view.globalRect[1] + month_view.globalRect[3] / 2
-        x_pad = 0.35
         sign = int(math.copysign(1, delta))
-        start = (-sign * x_pad) % 1
-        stop = (sign * x_pad) % 1
-        x_start = month_view.globalRect[0] + month_view.globalRect[2] * start
-        x_stop = month_view.globalRect[0] + month_view.globalRect[2] * stop
-        for i in range(abs(delta)):
+
+        for _ in range(abs(delta)):
             before = self.get_currentDayStart()
-            self.pointing_device.drag(x_start, y_line, x_stop, y_line)
+            self.main_view.swipe_view(sign, month_view)
             after = before + relativedelta(months=sign)
+
             self.assertThat(lambda: self.get_currentDayStart().month,
                             Eventually(Equals(after.month)))
             self.assertThat(lambda: self.get_currentDayStart().year,

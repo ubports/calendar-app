@@ -67,3 +67,21 @@ class MainView(toolkit_emulators.MainView):
 
     def get_time_picker(self):
         return self.select_single("TimePicker")
+
+    def swipe_view(self, direction, view, x_pad=0.35):
+        """Swipe the given view to left or right.
+
+        Args:
+            direction: if 1 it swipes from right to left, if -1 from
+                left right.
+
+        """
+
+        start = (-direction * x_pad) % 1
+        stop = (direction * x_pad) % 1
+
+        y_line = view.globalRect[1] + view.globalRect[3] / 2
+        x_start = view.globalRect[0] + view.globalRect[2] * start
+        x_stop = view.globalRect[0] + view.globalRect[2] * stop
+
+        self.pointing_device.drag(x_start, y_line, x_stop, y_line)
