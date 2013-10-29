@@ -283,6 +283,7 @@ MainView {
                 }
 
                 Tab{
+                    objectName: "dayTab"
                     title: i18n.tr("Day")
                     page: Page{
                         anchors.fill: parent
