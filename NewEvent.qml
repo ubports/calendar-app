@@ -255,14 +255,14 @@ Page {
 
             Row{
                 width: parent.width
-                spacing: units.gu(1)
+                spacing: units.gu(1) + (frequencyLabel.width - remindLabel.width) // This is to align right the optionSelector
                 Label{
                     id: remindLabel
                     text: i18n.tr("Remind me");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
-                    width: parent.width - remindLabel.width - units.gu(1)
+                    width: parent.width - frequencyLabel.width - units.gu(1)
                     model:[i18n.tr("No Reminder"),
                         i18n.tr("5 minutes"),
                         i18n.tr("15 minutes"),
