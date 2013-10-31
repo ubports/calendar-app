@@ -12,6 +12,7 @@ Page {
     property var date: new Date();
     property var startDate;
     property var endDate;
+    property int optionSelectorWidth: frequencyLabel.width > remindLabel.width ? frequencyLabel.width : remindLabel.width
 
     property alias scrollY: flickable.contentY
 
@@ -239,30 +240,32 @@ Page {
                 objectName: "eventPeopleInput"
             }
 
-            Row{
+            Item {
                 width: parent.width
-                spacing: units.gu(1)
+                height: childrenRect.height
                 Label{
                     id: frequencyLabel
                     text: i18n.tr("This happens");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
+                    anchors.right: parent.right
+                    width: parent.width - optionSelectorWidth - units.gu(1)
                     model:[i18n.tr("Once"),i18n.tr("Daily"),i18n.tr("Weekly"),i18n.tr("Monthly"),i18n.tr("Yearly")]
-                    width: parent.width - frequencyLabel.width - units.gu(1)
                 }
             }
 
-            Row{
+            Item{
                 width: parent.width
-                spacing: units.gu(1) + (frequencyLabel.width - remindLabel.width) // This is to align right the optionSelector
+                height: childrenRect.height
                 Label{
                     id: remindLabel
                     text: i18n.tr("Remind me");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
-                    width: parent.width - frequencyLabel.width - units.gu(1)
+                    anchors.right: parent.right
+                    width: parent.width - optionSelectorWidth - units.gu(1)
                     model:[i18n.tr("No Reminder"),
                         i18n.tr("5 minutes"),
                         i18n.tr("15 minutes"),
