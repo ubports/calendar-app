@@ -231,8 +231,10 @@ MainView {
             Tabs{
                 id: tabs
                 Tab{
+                    objectName: "yearTab"
                     title: i18n.tr("Year")
                     page: Page{
+                        objectName: "yearPage"
                         anchors.fill: parent
                         tools: commonToolBar
                         YearView{
@@ -264,6 +266,7 @@ MainView {
                     }
                 }
                 Tab{
+                    objectName: "weekTab"
                     title: i18n.tr("Week")
                     page: Page{
                         anchors.fill: parent
@@ -280,6 +283,7 @@ MainView {
                 }
 
                 Tab{
+                    objectName: "dayTab"
                     title: i18n.tr("Day")
                     page: Page{
                         anchors.fill: parent

@@ -20,6 +20,7 @@ Column {
 
     TimeLineHeader{
         id: weekHeader
+        objectName: "weekHeader"
         type: typeWeek
         date: weekViewPath.weekStart
     }

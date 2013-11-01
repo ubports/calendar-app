@@ -26,6 +26,7 @@ Column{
 
     Label{
         id: dateLabel
+        objectName: "dateLabel"
         text: date.getDate();
         fontSize: "large"
         horizontalAlignment: Text.AlignHCenter

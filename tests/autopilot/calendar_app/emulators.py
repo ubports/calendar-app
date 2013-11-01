@@ -29,6 +29,9 @@ class MainView(toolkit_emulators.MainView):
     def get_day_view(self):
         return self.select_single("DayView")
 
+    def get_week_view(self):
+        return self.select_single("WeekView")
+
     def get_label_with_text(self, text, root=None):
         if root is None:
             root = self
@@ -74,3 +77,29 @@ class MainView(toolkit_emulators.MainView):
             return self.select_single("TimePicker")
         except dbus.StateNotFoundError:
             return None
+
+    def swipe_view(self, direction, view, x_pad=0.35):
+        """Swipe the given view to left or right.
+
+        Args:
+            direction: if 1 it swipes from right to left, if -1 from
+                left right.
+
+        """
+
+        start = (-direction * x_pad) % 1
+        stop = (direction * x_pad) % 1
+
+        y_line = view.globalRect[1] + view.globalRect[3] / 2
+        x_start = view.globalRect[0] + view.globalRect[2] * start
+        x_stop = view.globalRect[0] + view.globalRect[2] * stop
+
+        self.pointing_device.drag(x_start, y_line, x_stop, y_line)
+
+    def get_year(self, component):
+        return int(component.select_single(
+            "Label", objectName="yearLabel").text)
+
+    def get_month_name(self, component):
+        return component.select_single(
+            "Label", objectName="monthLabel").text

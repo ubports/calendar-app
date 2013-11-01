@@ -27,8 +27,11 @@ class TestMainView(CalendarTestCase):
         y = int(scroller.globalRect[1] + 0.9 * scroller.globalRect[3])
         self.pointing_device.move(x, y)
         while (scroller.currentIndex != hours):
+            current_index = scroller.currentIndex
             self.pointing_device.click()
-            scroller.currentIndex.wait_for((scroller.currentIndex + 1) % 24)
+            self.assertThat(scroller.currentIndex, Eventually(
+                Equals((current_index + 1) % 24)))
+
         # Scroll minutes to selected value
         scroller = picker.select_single("Scroller",
                                         objectName="minuteScroller")
@@ -36,8 +39,10 @@ class TestMainView(CalendarTestCase):
         y = int(scroller.globalRect[1] + 0.9 * scroller.globalRect[3])
         self.pointing_device.move(x, y)
         while (scroller.currentIndex != minutes):
+            current_index = scroller.currentIndex
             self.pointing_device.click()
-            scroller.currentIndex.wait_for((scroller.currentIndex + 1) % 60)
+            self.assertThat(scroller.currentIndex, Eventually(
+                Equals((current_index + 1) % 60)))
 
     def hideOSK(self):
         start_time_field = self.main_view.get_event_start_time_field()
