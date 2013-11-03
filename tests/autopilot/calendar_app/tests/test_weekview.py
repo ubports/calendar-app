@@ -9,7 +9,6 @@
 Calendar app autopilot tests for the week view.
 """
 
-import calendar
 import datetime
 
 from autopilot.matchers import Eventually
