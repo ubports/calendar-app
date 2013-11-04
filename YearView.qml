@@ -32,7 +32,7 @@ PathViewBase {
     delegate: GridView{
         id: yearView
         clip: true
-        focus: root.indexType(index) === 1
+        focus: root.indexType(index) === 1 || root.dragging
 
         property var year: getYear();
 
