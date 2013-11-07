@@ -81,8 +81,7 @@ class TestWeekView(CalendarTestCase):
 
         for i in xrange(1, 5):
             self.main_view.swipe_view(direction, self.week_view, x_pad=0.15)
-            day_start = datetime.datetime.fromtimestamp(
-                self.week_view.dayStart)
+            day_start = self.week_view.dayStart.datetime
 
             expected_day_start = current_day_start + datetime.timedelta(
                 days=(i * 7 * direction))
