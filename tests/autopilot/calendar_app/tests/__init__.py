@@ -55,6 +55,13 @@ class CalendarTestCase(AutopilotTestCase):
         self.temp_move_sqlite_db()
         self.addCleanup(self.restore_sqlite_db)
 
+        #turn off the OSK so it doesn't block screen elements
+        if model() != 'Desktop':
+            os.system("stop maliit-server")
+            #adding cleanup step seems to restart service immeadiately
+            #disabling for now
+            #self.addCleanup(os.system("start maliit-server"))
+
         if os.path.exists(self.local_location):
             self.launch_test_local()
         elif os.path.exists(self.installed_location):
