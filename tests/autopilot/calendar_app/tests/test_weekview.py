@@ -48,11 +48,11 @@ class TestWeekView(CalendarTestCase):
 
         now = datetime.datetime.now()
         days = self.get_days_of_week()
-        monday = (now - datetime.timedelta(days=now.weekday()))
+        sunday = (now - datetime.timedelta(days=now.weekday() + 1))
 
         for i in xrange(7):
             current_day = int(days[i].text)
-            expected_day = (monday + datetime.timedelta(days=i)).day
+            expected_day = (sunday + datetime.timedelta(days=i)).day
 
             self.assertThat(current_day, Equals(expected_day))
 
@@ -88,5 +88,5 @@ class TestWeekView(CalendarTestCase):
 
     def get_days_of_week(self):
         header = self.main_view.select_single(objectName="weekHeader")
-        timeline = header.select_many("TimeLineHeaderComponent")[1]
-        return timeline.select_many("Label", objectName="dateLabel")
+        timeline = header.select_many("TimeLineHeaderComponent")[0]
+        return sorted(timeline.select_many("Label", objectName="dateLabel"), key=lambda dateLabel: dateLabel.text)
