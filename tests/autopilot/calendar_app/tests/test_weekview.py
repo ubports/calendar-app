@@ -10,7 +10,6 @@ Calendar app autopilot tests for the week view.
 """
 
 import datetime
-import locale
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
@@ -49,10 +48,7 @@ class TestWeekView(CalendarTestCase):
 
         now = datetime.datetime.now()
         days = self.get_days_of_week()
-        if locale.nl_langinfo(locale.DAY_1) == 'Sunday':
-            firstDay = (now - datetime.timedelta(days=now.weekday() + 1))
-        else:
-            firstDay = (now - datetime.timedelta(days=now.weekday()))
+        firstDay = self.week_view.firstDay.datetime
 
         for i in xrange(7):
             current_day = int(days[i].text)
