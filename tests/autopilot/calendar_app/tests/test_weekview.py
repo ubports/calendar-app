@@ -90,4 +90,4 @@ class TestWeekView(CalendarTestCase):
         header = self.main_view.select_single(objectName="weekHeader")
         timeline = header.select_many("TimeLineHeaderComponent")[0]
         return sorted(timeline.select_many("Label", objectName="dateLabel"),
-            key=lambda dateLabel: dateLabel.text)
+                      key=lambda dateLabel: dateLabel.text)
