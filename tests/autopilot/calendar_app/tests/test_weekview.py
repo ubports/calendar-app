@@ -9,7 +9,6 @@
 Calendar app autopilot tests for the week view.
 """
 
-import calendar
 import datetime
 
 from autopilot.matchers import Eventually
@@ -49,15 +48,11 @@ class TestWeekView(CalendarTestCase):
 
         now = datetime.datetime.now()
         days = self.get_days_of_week()
-        monday = (now - datetime.timedelta(days=now.weekday())).day
-        current_month_days = calendar.monthrange(now.year, now.month)[1]
+        monday = (now - datetime.timedelta(days=now.weekday()))
 
         for i in xrange(7):
             current_day = int(days[i].text)
-            expected_day = (monday + i) % current_month_days
-
-            if (monday + i) == current_month_days:
-                expected_day = current_month_days
+            expected_day = (monday + datetime.timedelta(days=i)).day
 
             self.assertThat(current_day, Equals(expected_day))
 
