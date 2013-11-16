@@ -48,7 +48,7 @@ class TestYearView(CalendarTestCase):
 
         month_view = self.main_view.get_month_view()
         self.assertThat(month_view.visible, Eventually(Equals(True)))
-        selected_month = month_view.select_many("MonthComponent")[1]
+        selected_month = month_view.select_many("MonthComponent")[0]
 
         self.assertThat(self.main_view.get_year(selected_month),
                         Equals(expected_year))
