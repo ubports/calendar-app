@@ -8,27 +8,27 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-09-26 07:05+0200\n"
-"PO-Revision-Date: 2013-06-21 07:46+0000\n"
+"PO-Revision-Date: 2013-11-20 11:12+0000\n"
 "Last-Translator: Emin Mastizada <emin25@ovi.com>\n"
 "Language-Team: Azerbaijani <az@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-11-05 06:01+0000\n"
-"X-Generator: Launchpad (build 16820)\n"
+"X-Launchpad-Export-Date: 2013-11-21 06:39+0000\n"
+"X-Generator: Launchpad (build 16831)\n"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../EventBubble.qml:38
 msgid "hh:mm"
-msgstr ""
+msgstr "hh:mm"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../EventBubble.qml:43
 #, qt-format
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #: ../EventDetails.qml:70
 msgid "Add invite"
@@ -52,11 +52,11 @@ msgstr "Tədbir adı əlavə et"
 
 #: ../NewEvent.qml:102
 msgid "to"
-msgstr ""
+msgstr "kimə"
 
 #: ../NewEvent.qml:137
 msgid "Location & People"
-msgstr ""
+msgstr "Mövqelər və İnsanlar"
 
 #: ../NewEvent.qml:143
 msgid "Add Location"
@@ -68,11 +68,11 @@ msgstr "İnsanları Dəvət et"
 
 #: ../NewEvent.qml:168
 msgid "Error"
-msgstr ""
+msgstr "Xəta"
 
 #: ../NewEvent.qml:171 ../TimePicker.qml:82
 msgid "OK"
-msgstr ""
+msgstr "ОК"
 
 #: ../NewEvent.qml:177
 msgid "Save"
@@ -80,29 +80,29 @@ msgstr "Qeyd et"
 
 #: ../NewEvent.qml:205
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "Bitmə vaxtı başlama vaxtından əvvəl ola bilməz"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:18
 msgid "hh ap"
-msgstr ""
+msgstr "hh ap"
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr ""
+msgstr "Vaxt"
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr ""
+msgstr "Saat"
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr ""
+msgstr "Dəqiqə"
 
 #: ../TimePicker.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "Ləğv et"
 
 #: ../calendar.qml:56
 msgid "New Event"
@@ -110,23 +110,23 @@ msgstr "Yeni Tədbir"
 
 #: ../calendar.qml:64
 msgid "Today"
-msgstr ""
+msgstr "Bu gün"
 
 #: ../calendar.qml:75
 msgid "Year"
-msgstr ""
+msgstr "İl"
 
 #: ../calendar.qml:95
 msgid "Month"
-msgstr ""
+msgstr "Ay"
 
 #: ../calendar.qml:108
 msgid "Week"
-msgstr ""
+msgstr "Həftə"
 
 #: ../calendar.qml:124
 msgid "Day"
-msgstr ""
+msgstr "Gün"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
