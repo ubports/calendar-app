@@ -76,7 +76,7 @@ class TestWeekView(CalendarTestCase):
         #is today not sunday/monday? then nab sunday/monday
         #TODO: fix this locale issue. The lab needs a monday start date
         current_date = self.week_view.dayStart.datetime
-        if self.week_view.dayStart.datetime.weekday() != 6 and :
+        if self.week_view.dayStart.datetime.weekday() != 6:
             current_day_start = current_date - (datetime.timedelta(
                 days=current_date.weekday()))
         else:
