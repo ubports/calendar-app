@@ -64,21 +64,23 @@ class TestWeekView(CalendarTestCase):
 
     def test_show_next_weeks(self):
         """It must be possible to show next weeks by swiping the view."""
-        for i in xrange(5):
+        for i in xrange(6):
             self.change_week(1)
 
     def test_show_previous_weeks(self):
         """It must be possible to show previous weeks by swiping the view."""
-        for i in xrange(5):
+        for i in xrange(6):
             self.change_week(-1)
 
     def change_week(self, direction):
         #is today not sunday? then nab sunday
         current_date = self.week_view.dayStart.datetime
         if self.week_view.dayStart.datetime.weekday() != 6:
-            current_day_start = current_date - (datetime.timedelta(days=current_date.weekday() + 1))
+            current_day_start = current_date - (datetime.timedelta(
+                days=current_date.weekday() + 1))
         else:
             current_day_start = current_date
+
         self.main_view.swipe_view(direction, self.week_view, x_pad=0.15)
         day_start = self.week_view.dayStart.datetime
 
