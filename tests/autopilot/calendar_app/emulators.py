@@ -74,7 +74,7 @@ class MainView(toolkit_emulators.MainView):
 
     def get_time_picker(self):
         try:
-            return self.wait_select_single("TimePicker"
+            return self.wait_select_single("TimePicker")
         except dbus.StateNotFoundError:
             return None
 

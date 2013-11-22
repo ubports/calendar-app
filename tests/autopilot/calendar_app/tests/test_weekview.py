@@ -64,27 +64,35 @@ class TestWeekView(CalendarTestCase):
 
     def test_show_next_weeks(self):
         """It must be possible to show next weeks by swiping the view."""
-        self.change_week(1)
+        for i in xrange(5):
+            self.change_week(1)
 
     def test_show_previous_weeks(self):
         """It must be possible to show previous weeks by swiping the view."""
-        self.change_week(-1)
+        for i in xrange(5):
+            self.change_week(-1)
 
     def change_week(self, direction):
-        now = datetime.datetime.now()
-        current_day_start = (now - datetime.timedelta(days=now.weekday()))
+        #is today not sunday? then nab sunday
+        current_date = self.week_view.dayStart.datetime
+        if self.week_view.dayStart.datetime.weekday() != 6:
+            current_day_start = current_date - (datetime.timedelta(days=current_date.weekday() + 1))
+        else:
+            current_day_start = current_date
+        self.main_view.swipe_view(direction, self.week_view, x_pad=0.15)
+        day_start = self.week_view.dayStart.datetime
 
-        for i in xrange(1, 5):
-            self.main_view.swipe_view(direction, self.week_view, x_pad=0.15)
-            day_start = self.week_view.dayStart.datetime
+        expected_day_start = current_day_start + datetime.timedelta(
+            days=(7 * direction))
 
-            expected_day_start = current_day_start + datetime.timedelta(
-                days=(i * 7 * direction))
+        #replace hours / mins / seconds, just need to verify days
+        expected_day_start = expected_day_start.replace(
+            hour=0, minute=0, second=0, microsecond=0)
 
-            expected_day_start = expected_day_start.replace(
-                hour=0, minute=0, second=0, microsecond=0)
+        day_start = day_start.replace(
+            hour=0, minute=0, second=0, microsecond=0)
 
-            self.assertThat(day_start, Equals(expected_day_start))
+        self.assertThat(day_start, Equals(expected_day_start))
 
     def get_days_of_week(self):
         header = self.main_view.select_single(objectName="weekHeader")
