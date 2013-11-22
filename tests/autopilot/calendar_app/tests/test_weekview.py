@@ -73,11 +73,12 @@ class TestWeekView(CalendarTestCase):
             self.change_week(-1)
 
     def change_week(self, direction):
-        #is today not sunday? then nab sunday
+        #is today not sunday/monday? then nab sunday/monday
+        #TODO: fix this locale issue. The lab needs a monday start date
         current_date = self.week_view.dayStart.datetime
-        if self.week_view.dayStart.datetime.weekday() != 6:
+        if self.week_view.dayStart.datetime.weekday() != 6 and :
             current_day_start = current_date - (datetime.timedelta(
-                days=current_date.weekday() + 1))
+                days=current_date.weekday()))
         else:
             current_day_start = current_date
 
