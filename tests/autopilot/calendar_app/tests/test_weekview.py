@@ -9,7 +9,6 @@
 Calendar app autopilot tests for the week view.
 """
 
-import calendar
 import datetime
 
 from autopilot.matchers import Eventually
@@ -49,15 +48,19 @@ class TestWeekView(CalendarTestCase):
 
         now = datetime.datetime.now()
         days = self.get_days_of_week()
-        monday = (now - datetime.timedelta(days=now.weekday())).day
-        current_month_days = calendar.monthrange(now.year, now.month)[1]
+
+        #is today not sunday/monday? then nab sunday/monday
+        #TODO: fix this locale issue. The lab needs a monday start date
+        current_date = self.week_view.dayStart.datetime
+        if self.week_view.dayStart.datetime.weekday() != 6:
+            firstDay = current_date - (datetime.timedelta(
+                days=current_date.weekday()))
+        else:
+            firstDay = current_date
 
         for i in xrange(7):
             current_day = int(days[i].text)
-            expected_day = (monday + i) % current_month_days
-
-            if (monday + i) == current_month_days:
-                expected_day = current_month_days
+            expected_day = (firstDay + datetime.timedelta(days=i)).day
 
             self.assertThat(current_day, Equals(expected_day))
 
@@ -69,30 +72,41 @@ class TestWeekView(CalendarTestCase):
 
     def test_show_next_weeks(self):
         """It must be possible to show next weeks by swiping the view."""
-        self.change_week(1)
+        for i in xrange(6):
+            self.change_week(1)
 
     def test_show_previous_weeks(self):
         """It must be possible to show previous weeks by swiping the view."""
-        self.change_week(-1)
+        for i in xrange(6):
+            self.change_week(-1)
 
     def change_week(self, direction):
-        now = datetime.datetime.now()
-        current_day_start = (now - datetime.timedelta(days=now.weekday()))
+        #is today not sunday/monday? then nab sunday/monday
+        #TODO: fix this locale issue. The lab needs a monday start date
+        current_date = self.week_view.dayStart.datetime
+        if self.week_view.dayStart.datetime.weekday() != 6:
+            current_day_start = current_date - (datetime.timedelta(
+                days=current_date.weekday()))
+        else:
+            current_day_start = current_date
 
-        for i in xrange(1, 5):
-            self.main_view.swipe_view(direction, self.week_view, x_pad=0.15)
-            day_start = datetime.datetime.fromtimestamp(
-                self.week_view.dayStart)
+        self.main_view.swipe_view(direction, self.week_view, x_pad=0.15)
+        day_start = self.week_view.dayStart.datetime
 
-            expected_day_start = current_day_start + datetime.timedelta(
-                days=(i * 7 * direction))
+        expected_day_start = current_day_start + datetime.timedelta(
+            days=(7 * direction))
 
-            expected_day_start = expected_day_start.replace(
-                hour=0, minute=0, second=0, microsecond=0)
+        #replace hours / mins / seconds, just need to verify days
+        expected_day_start = expected_day_start.replace(
+            hour=0, minute=0, second=0, microsecond=0)
 
-            self.assertThat(day_start, Equals(expected_day_start))
+        day_start = day_start.replace(
+            hour=0, minute=0, second=0, microsecond=0)
+
+        self.assertThat(day_start, Equals(expected_day_start))
 
     def get_days_of_week(self):
         header = self.main_view.select_single(objectName="weekHeader")
-        timeline = header.select_many("TimeLineHeaderComponent")[1]
-        return timeline.select_many("Label", objectName="dateLabel")
+        timeline = header.select_many("TimeLineHeaderComponent")[0]
+        return sorted(timeline.select_many("Label", objectName="dateLabel"),
+                      key=lambda dateLabel: dateLabel.text)

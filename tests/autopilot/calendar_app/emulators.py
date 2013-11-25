@@ -7,6 +7,7 @@
 
 """Calendar app autopilot emulators."""
 
+from autopilot.introspection import dbus
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
 
@@ -41,7 +42,10 @@ class MainView(toolkit_emulators.MainView):
             return None
 
     def get_new_event(self):
-        return self.wait_select_single("NewEvent")
+        try:
+            return self.wait_select_single("NewEvent")
+        except dbus.StateNotFoundError:
+            return None
 
     def get_new_event_name_input_box(self):
         new_event = self.get_new_event()
@@ -69,7 +73,10 @@ class MainView(toolkit_emulators.MainView):
                                        objectName="eventPeopleInput")
 
     def get_time_picker(self):
-        return self.wait_select_single("TimePicker")
+        try:
+            return self.wait_select_single("TimePicker")
+        except dbus.StateNotFoundError:
+            return None
 
     def swipe_view(self, direction, view, x_pad=0.35):
         """Swipe the given view to left or right.
