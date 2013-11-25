@@ -15,6 +15,9 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
 from calendar_app.tests import CalendarTestCase
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class TestWeekView(CalendarTestCase):
@@ -62,8 +65,9 @@ class TestWeekView(CalendarTestCase):
             current_day = int(days[i].text)
             expected_day = (firstDay + datetime.timedelta(days=i)).day
 
-            self.assertThat(current_day, Equals(expected_day))
+            logger.debug("Current %s, expected %s, first %s" % (current_day, expected_day, firstDay))
 
+            self.assertThat(current_day, Equals(expected_day))
             color = days[i].color
             # current day is highlighted in white.
             if(current_day == now.day):
