@@ -61,7 +61,7 @@ class TestWeekView(CalendarTestCase):
         return sorted(timeline.select_many("Label", objectName="dateLabel"),
                       key=lambda dateLabel: dateLabel.text)
 
-    def _get_first_day_of_week(self):
+    def _get_first_day_of_week(self, lastweek=False):
         current_date = self.week_view.dayStart.datetime
         firstDay = self.week_view.firstDay.datetime
         if current_date != firstDay:
@@ -80,8 +80,10 @@ class TestWeekView(CalendarTestCase):
             else:
                 logger.debug("Locale has Monday as first day of week")
                 weekday = current_date.weekday()
-                diff = datetime.timedelta(days=weekday-6)
-
+                if lastWeek:
+                    diff = datetime.timedelta(days=weekday-6)
+                else:
+                    diff = datetime.timedelta(days=weekday)
             day_start = current_date - diff
             logger.debug("Setting day_start %s, %s, %s, %s" %
                         (day_start, current_date, diff, weekday))
@@ -110,7 +112,7 @@ class TestWeekView(CalendarTestCase):
         now = datetime.datetime.now()
         days = self._get_days_of_week()
 
-        first_dow = self._get_first_day_of_week()
+        first_dow = self._get_first_day_of_week(True)
 
         for i in xrange(7):
             current_day = int(days[i].text)
