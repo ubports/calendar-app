@@ -127,18 +127,19 @@ class TestWeekView(CalendarTestCase):
         first_dow = self._get_first_day_of_week()
 
         for i in xrange(7):
-            #current_day = int(days[i].text)
             current_day = days[i]
             expected_day = (first_dow + datetime.timedelta(days=i)).day
             logger.debug("first_dow %s, current_day %s, expected_day %s" %
                         (first_dow, current_day, expected_day))
 
             self.assertThat(current_day, Equals(expected_day))
-            color = day_headers[i].color
+
             # current day is highlighted in white.
-            if(current_day == now.day):
-                label_color = (color[0], color[1], color[2], color[3])
-                self.assertThat(label_color, Equals((255, 255, 255, 255)))
+            #days might be out of order, so check header and today
+            color = day_headers[i].color
+            label_color = (color[0], color[1], color[2], color[3])
+            if label_color == (255, 255, 255, 255):
+                self.assertThat(int(day_headers[i].text), Equals(now.day))
 
     def test_show_next_weeks(self):
         """It must be possible to show next weeks by swiping the view."""
