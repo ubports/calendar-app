@@ -61,7 +61,7 @@ class TestWeekView(CalendarTestCase):
             inserted = 0
             for index, sortday in enumerate(sorteddays):
                 if day - sorteddays[index] == 1:
-                    sorteddays.insert(index+1, day)
+                    sorteddays.insert(index + 1, day)
                     inserted = 1
                     break
             if inserted == 0:
