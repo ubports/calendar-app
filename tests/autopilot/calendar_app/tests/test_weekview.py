@@ -10,7 +10,6 @@ Calendar app autopilot tests for the week view.
 """
 
 import datetime
-import operator
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
@@ -51,8 +50,9 @@ class TestWeekView(CalendarTestCase):
 
     def _get_days_of_week(self):
         #sort based on text value of the day
-        days = sorted(self._get_date_label_headers(), key=lambda label: label.text)
-        days = [ int(item.text) for item in days]
+        days = sorted(self._get_date_label_headers(),
+                      key=lambda label: label.text)
+        days = [int(item.text) for item in days]
 
         #resort so beginning of next month comes after the end
         #need to support overlapping months 28,30,31 -> 1
@@ -61,11 +61,11 @@ class TestWeekView(CalendarTestCase):
             inserted = 0
             for index, sortday in enumerate(sorteddays):
                 if day - sorteddays[index] == 1:
-                    sorteddays.insert(index+1,day)
+                    sorteddays.insert(index+1, day)
                     inserted = 1
                     break
             if inserted == 0:
-                sorteddays.insert(0,day)
+                sorteddays.insert(0, day)
         return sorteddays
 
     def _get_date_label_headers(self):
