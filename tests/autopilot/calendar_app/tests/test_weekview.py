@@ -61,7 +61,7 @@ class TestWeekView(CalendarTestCase):
         return sorted(timeline.select_many("Label", objectName="dateLabel"),
                       key=lambda dateLabel: dateLabel.text)
 
-    def _get_first_day_of_week(self, lastweek=False):
+    def _get_first_day_of_week(self, lastWeek=False):
         current_date = self.week_view.dayStart.datetime
         firstDay = self.week_view.firstDay.datetime
         if current_date != firstDay:
