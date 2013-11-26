@@ -54,19 +54,17 @@ class TestWeekView(CalendarTestCase):
         days = sorted(self._get_date_label_headers(), key=lambda label: label.text)
         days = [ int(item.text) for item in days]
 
+        #resort so beginning of next month comes after the end
         #need to support overlapping months 28,30,31 -> 1
         sorteddays = []
         for day in days:
-            logger.debug("Working on %s" % day)
             inserted = 0
             for index, sortday in enumerate(sorteddays):
                 if day - sorteddays[index] == 1:
-                    logger.debug("Inserted %s at %s" % (day, index+1))
                     sorteddays.insert(index+1,day)
                     inserted = 1
                     break
             if inserted == 0:
-                logger.debug("No place found, insert %s" % day)
                 sorteddays.insert(0,day)
         return sorteddays
 
@@ -79,25 +77,26 @@ class TestWeekView(CalendarTestCase):
     def _get_first_day_of_week(self):
         date = self.week_view.dayStart.datetime
         firstDay = self.week_view.firstDay.datetime
+        #sunday
+        if firstDay.weekday() == 6:
+            logger.debug("Locale has Sunday as first day of week")
+            weekday = date.weekday()
+            diff = datetime.timedelta(days=weekday + 1)
+        #saturday
+        elif firstDay.weekday() == 5:
+            logger.debug("Locale has Saturday as first day of week")
+            weekday = date.weekday()
+            diff = datetime.timedelta(days=weekday + 2)
+        #monday
+        else:
+            logger.debug("Locale has Monday as first day of week")
+            weekday = date.weekday()
+            diff = datetime.timedelta(days=weekday)
+
+        #set the start of week
         if date.day != firstDay.day:
-            #sunday
-            if firstDay.weekday() == 6:
-                logger.debug("Locale has Sunday as first day of week")
-                weekday = date.weekday()
-                diff = datetime.timedelta(days=weekday + 1)
-            #saturday
-            elif firstDay.weekday() == 5:
-                logger.debug("Locale has Saturday as first day of week")
-                weekday = date.weekday()
-                diff = datetime.timedelta(days=weekday + 2)
-            #monday
-            else:
-                logger.debug("Locale has Monday as first day of week")
-                weekday = date.weekday()
-                diff = datetime.timedelta(days=weekday)
             day_start = date - diff
-            logger.debug("Setting day_start %s, %s, %s, %s, %s" %
-                        (firstDay.day, day_start, date.day, diff, weekday))
+            logger.debug("Setting day_start %s to " % firstDay.day)
         else:
             day_start = date
             logger.debug("Using today as day_start %s" % date)
@@ -129,13 +128,11 @@ class TestWeekView(CalendarTestCase):
         for i in xrange(7):
             current_day = days[i]
             expected_day = (first_dow + datetime.timedelta(days=i)).day
-            logger.debug("first_dow %s, current_day %s, expected_day %s" %
-                        (first_dow, current_day, expected_day))
 
             self.assertThat(current_day, Equals(expected_day))
 
             # current day is highlighted in white.
-            #days might be out of order, so check header and today
+            # days returned by AP are out of order, so check header and today
             color = day_headers[i].color
             label_color = (color[0], color[1], color[2], color[3])
             if label_color == (255, 255, 255, 255):
