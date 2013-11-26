@@ -7,7 +7,7 @@ Column {
     id: root
 
     property var dayStart: new Date();
-    property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
+    property var firstDay: dayStart.weekStart(1);
     anchors.top: parent.top
     anchors.topMargin: units.gu(1.5)
     spacing: units.gu(1)
@@ -29,7 +29,7 @@ Column {
     PathViewBase{
         id: weekViewPath
 
-        property var visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
+        property var visibleWeek: dayStart.weekStart(1);
         property var weekStart: weekViewPath.visibleWeek.addDays(-7)
 
         width: parent.width
@@ -46,12 +46,12 @@ Column {
         }
 
         function nextWeek() {
-            var weekStartDay = visibleWeek.weekStart(Qt.locale().firstDayOfWeek);
+            var weekStartDay = visibleWeek.weekStart(1);
             dayStart = weekStartDay.addDays(7);
         }
 
         function previousWeek(){
-            var weekStartDay = visibleWeek.weekStart(Qt.locale().firstDayOfWeek);
+            var weekStartDay = visibleWeek.weekStart(1);
             dayStart = weekStartDay.addDays(-7);
         }
 
@@ -69,10 +69,10 @@ Column {
                 case 0:
                     return weekViewPath.weekStart;
                 case -1:
-                    var weekStartDay= weekViewPath.weekStart.weekStart(Qt.locale().firstDayOfWeek);
+                    var weekStartDay= weekViewPath.weekStart.weekStart(1);
                     return weekStartDay.addDays(14);
                 case 1:
-                    var weekStartDay = weekViewPath.weekStart.weekStart(Qt.locale().firstDayOfWeek);
+                    var weekStartDay = weekViewPath.weekStart.weekStart(1);
                     return weekStartDay.addDays(7);
                 }
             }
