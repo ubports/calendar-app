@@ -86,7 +86,7 @@ class TestWeekView(CalendarTestCase):
             else:
                 logger.debug("Locale has Monday as first day of week")
                 weekday = current_date.weekday()
-                diff = datetime.timedelta(days=weekday-1)
+                diff = datetime.timedelta(days=weekday)
                 day_start = current_date - diff
                 logger.debug("Setting day_start %s, %s, %s" %
                             (current_date, diff, weekday))
