@@ -44,17 +44,6 @@ class TestMainView(CalendarTestCase):
             self.assertThat(scroller.currentIndex, Eventually(
                 Equals((current_index + 1) % 60)))
 
-    def hideOSK(self):
-        start_time_field = self.main_view.get_event_start_time_field()
-        self.pointing_device.click_object(start_time_field)
-        self.assertThat(self.main_view.get_time_picker,
-                        Eventually(Not(Is(None))))
-        picker = self.main_view.get_time_picker()
-        cancel = picker.select_single("Button",
-                                      objectName="TimePickerCancelButton")
-        self.pointing_device.click_object(cancel)
-        self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
-
     def test_new_event(self):
         """test add new event """
 
@@ -74,27 +63,20 @@ class TestMainView(CalendarTestCase):
         # Set the start time
         start_time_field = self.main_view.get_event_start_time_field()
         self.pointing_device.click_object(start_time_field)
-        self.assertThat(self.main_view.get_time_picker,
-                        Eventually(Not(Is(None))))
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 10, 15)
+        self.scroll_time_picker_to_time(picker, 12, 28)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
-        self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
 
         # Set the end time
         end_time_field = self.main_view.get_event_end_time_field()
         self.pointing_device.click_object(end_time_field)
-        self.assertThat(self.main_view.get_time_picker,
-                        Eventually(Not(Is(None))))
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 11, 45)
+        self.scroll_time_picker_to_time(picker, 13, 38)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
-        self.assertThat(self.main_view.get_time_picker, Eventually(Is(None)))
 
         #input location
-        self.hideOSK()
         location_field = self.main_view.get_event_location_field()
         self.pointing_device.click_object(location_field)
         self.assertThat(location_field.activeFocus, Eventually(Equals(True)))
@@ -102,7 +84,6 @@ class TestMainView(CalendarTestCase):
         self.assertThat(location_field.text, Eventually(Equals("My location")))
 
         #input people
-        self.hideOSK()
         people_field = self.main_view.get_event_people_field()
         self.pointing_device.click_object(people_field)
         self.assertThat(people_field.activeFocus, Eventually(Equals(True)))
@@ -111,7 +92,6 @@ class TestMainView(CalendarTestCase):
 
         #click save button
         self.main_view.open_toolbar().click_button("eventSaveButton")
-        self.assertThat(self.main_view.get_new_event, Eventually(Is(None)))
 
         #verify that the event has been created in timeline
         self.assertThat(lambda: self.main_view.get_label_with_text(
