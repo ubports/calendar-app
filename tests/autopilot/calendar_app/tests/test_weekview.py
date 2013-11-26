@@ -84,7 +84,7 @@ class TestWeekView(CalendarTestCase):
 
             day_start = current_date - diff
             logger.debug("Setting day_start %s, %s, %s, %s" %
-                            (day_start, current_date, diff, weekday))
+                        (day_start, current_date, diff, weekday))
         else:
             day_start = current_date
             logger.debug("Using today as day_start %s" % current_date)
