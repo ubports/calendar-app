@@ -51,10 +51,9 @@ class TestWeekView(CalendarTestCase):
     def _get_days_of_week(self):
         header = self.main_view.select_single(objectName="weekHeader")
         timeline = header.select_many("TimeLineHeaderComponent")[0]
-        return sorted(timeline.select_many("Label", objectName="dateLabel"),
-                      key=lambda dateLabel: dateLabel.text)
+        return timeline.select_many("Label", objectName="dateLabel")
 
-    def _get_first_day_of_week(self, lastWeek=False):
+    def _get_first_day_of_week(self):
         date = self.week_view.dayStart.datetime
         firstDay = self.week_view.firstDay.datetime
         if date.day != firstDay.day:
@@ -72,10 +71,7 @@ class TestWeekView(CalendarTestCase):
             else:
                 logger.debug("Locale has Monday as first day of week")
                 weekday = date.weekday()
-                if lastWeek:
-                    diff = datetime.timedelta(days=weekday)
-                else:
-                    diff = datetime.timedelta(days=weekday)
+                diff = datetime.timedelta(days=weekday)
             day_start = date - diff
             logger.debug("Setting day_start %s, %s, %s, %s, %s" %
                         (firstDay.day, day_start, date.day, diff, weekday))
@@ -104,7 +100,7 @@ class TestWeekView(CalendarTestCase):
         now = datetime.datetime.now()
         days = self._get_days_of_week()
 
-        first_dow = self._get_first_day_of_week(True)
+        first_dow = self._get_first_day_of_week()
 
         for i in xrange(7):
             current_day = int(days[i].text)
@@ -112,7 +108,7 @@ class TestWeekView(CalendarTestCase):
             logger.debug("current_day %s, expected_day %s" %
                         (current_day, expected_day))
 
-            #self.assertThat(current_day, Equals(expected_day))
+            self.assertThat(current_day, Equals(expected_day))
             color = days[i].color
             # current day is highlighted in white.
             if(current_day == now.day):
