@@ -7,6 +7,7 @@ Column {
     id: root
 
     property var dayStart: new Date();
+    property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
     anchors.top: parent.top
     anchors.topMargin: units.gu(1.5)
     spacing: units.gu(1)

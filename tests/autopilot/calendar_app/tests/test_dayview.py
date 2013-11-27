@@ -76,8 +76,7 @@ class TestDayView(CalendarTestCase):
 
         for i in xrange(1, 5):
             self.main_view.swipe_view(direction, self.day_view, x_pad=0.15)
-            current_day = datetime.datetime.fromtimestamp(
-                self.day_view.currentDay)
+            current_day = self.day_view.currentDay.datetime
 
             expected_day = (now + datetime.timedelta(
                 days=(i * direction)))
