@@ -12,6 +12,7 @@ Item{
 
     Label{
         id: monthLabel
+        objectName: "monthLabel"
         fontSize: monthLabelFontSize
         text: Qt.locale().standaloneMonthName(date.getMonth())
         anchors.leftMargin: units.gu(1)
@@ -22,6 +23,7 @@ Item{
 
     Label{
         id: yearLabel
+        objectName: "yearLabel"
         fontSize: yearLabelFontSize
         text: date.getFullYear()
         anchors.right: parent.right

@@ -65,6 +65,7 @@ Item{
 
             Grid{
                 id: monthGrid
+                objectName: "monthGrid"
 
                 property int weekCount : 6
                 property var monthStart: root.monthDate.weekStart( Qt.locale().firstDayOfWeek )

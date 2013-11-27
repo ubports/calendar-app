@@ -32,7 +32,7 @@ Description: Calendar application for Ubuntu devices
 
 Package: calendar-app-autopilot
 Architecture: all
-Depends: libautopilot-qt,
+Depends: libautopilot-qt (>= 1.4),
          libqt5test5,
          calendar-app (= ${source:Version}),
          python-dateutil,
