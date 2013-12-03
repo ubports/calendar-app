@@ -37,10 +37,13 @@ PathViewBase {
 
         function getYear() {
             switch( root.indexType(index)) {
+            //prevous year
             case 0:
                 return intern.startYear;
+            //next year
             case -1:
-                return getDateFromYear(intern.startYear.getFullYear() - 1);
+                return getDateFromYear(intern.startYear.getFullYear() + 2);
+            //current year
             case 1:
                 return getDateFromYear(intern.startYear.getFullYear() + 1);
             }
