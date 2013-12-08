@@ -52,7 +52,7 @@ PathViewBase {
         anchors.top: parent.top
 
         cellWidth: width/2
-        cellHeight: cellWidth * 1.2
+        cellHeight: cellWidth * 1.4
 
         model: 12 /* months in a year */
         snapMode: GridView.SnapOneRow
