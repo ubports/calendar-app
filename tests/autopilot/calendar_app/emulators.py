@@ -78,7 +78,7 @@ class MainView(toolkit_emulators.MainView):
         except dbus.StateNotFoundError:
             return None
 
-    def swipe_view(self, direction, view, x_pad=0.35):
+    def swipe_view(self, direction, view, x_pad=0.15):
         """Swipe the given view to left or right.
 
         Args:

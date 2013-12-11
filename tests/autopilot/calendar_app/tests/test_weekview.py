@@ -40,7 +40,7 @@ class TestWeekView(CalendarTestCase):
 
         first_dow = self._get_first_day_of_week()
 
-        self.main_view.swipe_view(direction, self.week_view, x_pad=0.15)
+        self.main_view.swipe_view(direction, self.week_view)
         day_start = self.week_view.dayStart.datetime
 
         expected_day_start = first_dow + datetime.timedelta(
@@ -96,7 +96,7 @@ class TestWeekView(CalendarTestCase):
         #set the start of week
         if date.day != firstDay.day:
             day_start = date - diff
-            logger.debug("Setting day_start %s to " % firstDay.day)
+            logger.debug("Setting day_start to %s" % firstDay.day)
         else:
             day_start = date
             logger.debug("Using today as day_start %s" % date)
