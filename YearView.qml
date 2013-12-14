@@ -33,7 +33,7 @@ PathViewBase {
         id: yearView
         clip: true
 
-        property var year: getYear();
+        property var year//: getYear();
 
         function getYear() {
             switch( root.indexType(index)) {
@@ -43,6 +43,19 @@ PathViewBase {
                 return getDateFromYear(intern.startYear.getFullYear() - 1);
             case 1:
                 return getDateFromYear(intern.startYear.getFullYear() + 1);
+            }
+        }
+
+        //To make horizontal movement smooth, not using bindig for year
+        Component.onCompleted: {
+            year = getYear();
+        }
+
+        Connections{
+            target:root
+            onMovementEnded: {
+                //update only when movement ends, to avoid calculation while animation
+                year = getYear();
             }
         }
 
