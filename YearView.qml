@@ -26,7 +26,7 @@ PathViewBase {
 
     QtObject{
         id: intern
-        property var startYear: getDateFromYear(currentYear.getFullYear()-1);
+        property var startYear: currentYear;
     }
 
     delegate: GridView{
@@ -37,13 +37,10 @@ PathViewBase {
 
         function getYear() {
             switch( root.indexType(index)) {
-            //prevous year
             case 0:
                 return intern.startYear;
-            //next year
             case -1:
-                return getDateFromYear(intern.startYear.getFullYear() + 2);
-            //current year
+                return getDateFromYear(intern.startYear.getFullYear() - 1);
             case 1:
                 return getDateFromYear(intern.startYear.getFullYear() + 1);
             }

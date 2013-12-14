@@ -13,7 +13,7 @@ Page {
     PathViewBase{
         id: monthViewPath
 
-        property var startMonth: addMonth(currentMonth,-1);
+        property var startMonth: currentMonth;
 
         anchors.top:parent.top
 
@@ -53,7 +53,7 @@ Page {
                 case 0:
                     return monthViewPath.startMonth;
                 case -1:
-                    return monthViewPath.addMonth(monthViewPath.startMonth,2);
+                    return monthViewPath.addMonth(monthViewPath.startMonth,-1);
                 case 1:
                     return monthViewPath.addMonth(monthViewPath.startMonth,1);
                 }

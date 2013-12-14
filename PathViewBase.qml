@@ -9,11 +9,12 @@ PathView {
     signal nextItemHighlighted();
     signal previousItemHighlighted();
 
+    preferredHighlightBegin: 0.5
+    preferredHighlightEnd: 0.5
+
     path: Path {
-        startX: -(root.width/2); startY: root.height/2
-        PathLine { relativeX: root.width; relativeY: 0 }
-        PathLine { relativeX: root.width; relativeY: 0 }
-        PathLine { relativeX: root.width; relativeY: 0 }
+        startX: -(root.width); startY: root.height/2
+        PathLine { x: (root.width)*2  ; relativeY: 0;  }
     }
 
     // 0= current index, -1= previous index, 1 next index
