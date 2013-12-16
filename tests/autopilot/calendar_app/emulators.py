@@ -43,7 +43,7 @@ class MainView(toolkit_emulators.MainView):
 
     def get_new_event(self):
         try:
-            return self.wait_wait_select_single("NewEvent")
+            return self.wait_select_single("NewEvent")
         except dbus.StateNotFoundError:
             return None
 
@@ -74,7 +74,7 @@ class MainView(toolkit_emulators.MainView):
 
     def get_time_picker(self):
         try:
-            return self.wait_wait_select_single("TimePicker")
+            return self.wait_select_single("TimePicker")
         except dbus.StateNotFoundError:
             return None
 
