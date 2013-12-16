@@ -50,27 +50,27 @@ class MainView(toolkit_emulators.MainView):
     def get_new_event_name_input_box(self):
         new_event = self.get_new_event()
         return new_event.wait_select_single("NewEventEntryField",
-                                       objectName="newEventName")
+                                            objectName="newEventName")
 
     def get_event_start_time_field(self):
         new_event = self.get_new_event()
         return new_event.wait_select_single("NewEventEntryField",
-                                       objectName="startTimeInput")
+                                            objectName="startTimeInput")
 
     def get_event_end_time_field(self):
         new_event = self.get_new_event()
         return new_event.wait_select_single("NewEventEntryField",
-                                       objectName="endTimeInput")
+                                            objectName="endTimeInput")
 
     def get_event_location_field(self):
         new_event = self.get_new_event()
         return new_event.wait_select_single("NewEventEntryField",
-                                       objectName="eventLocationInput")
+                                            objectName="eventLocationInput")
 
     def get_event_people_field(self):
         new_event = self.get_new_event()
         return new_event.wait_select_single("NewEventEntryField",
-                                       objectName="eventPeopleInput")
+                                            objectName="eventPeopleInput")
 
     def get_time_picker(self):
         try:
