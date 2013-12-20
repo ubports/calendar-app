@@ -8,7 +8,6 @@ import "GlobalEventModel.js" as GlobalModel
 
 Page {
     id: root
-
     property var date: new Date();
 
     property var event:null;
