@@ -33,11 +33,11 @@ class TestYearView(CalendarTestCase):
 
         # TODO: the component indexed at 1 is the one currently displayed,
         # investigate a way to validate this assumption visually.
-        year_grid = self.year_view.select_many("QQuickGridView")[0]
+        year_grid = self.year_view.select_many("QQuickGridView")[1]
         months = year_grid.select_many("MonthComponent")
         self.assert_current_year_is_default_one(months[0])
 
-        february = months[1]
+        february = months[0]
         expected_month_name = self.main_view.get_month_name(february)
         expected_year = self.main_view.get_year(february)
 
@@ -48,7 +48,7 @@ class TestYearView(CalendarTestCase):
 
         month_view = self.main_view.get_month_view()
         self.assertThat(month_view.visible, Eventually(Equals(True)))
-        selected_month = month_view.select_many("MonthComponent")[0]
+        selected_month = month_view.select_many("MonthComponent")[1]
 
         self.assertThat(self.main_view.get_year(selected_month),
                         Equals(expected_year))
@@ -107,13 +107,12 @@ class TestYearView(CalendarTestCase):
         if now.month > 6:
             self.drag_page_up()
 
-        year_grid = self.year_view.select_many("QQuickGridView")[0]
+        year_grid = self.year_view.select_many("QQuickGridView")[1]
         months = year_grid.select_many("MonthComponent")
 
         for month in months:
             current_month_label = month.select_single(
                 "Label", objectName="monthLabel")
-
             if current_month_name == current_month_label.text:
                 return month
 
