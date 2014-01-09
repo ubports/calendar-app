@@ -37,7 +37,7 @@ class TestWeekView(CalendarTestCase):
 
         #prevent timing issues with swiping
         old_day = self.week_view.dayStart.datetime
-        self.main_view.swipe_view(direction, self.week_view, x_pad=0.15)
+        self.main_view.swipe_view(direction, self.week_view)
         self.assertThat(lambda: self.week_view.dayStart.datetime, Eventually(NotEquals(old_day)))
 
         new_day_start = self.week_view.dayStart.datetime

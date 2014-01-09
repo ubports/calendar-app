@@ -77,7 +77,7 @@ class TestDayView(CalendarTestCase):
         for i in xrange(1, 5):
             #prevent timing issues with swiping
             old_day = self.day_view.currentDay.datetime
-            self.main_view.swipe_view(direction, self.day_view, x_pad=0.15)
+            self.main_view.swipe_view(direction, self.day_view)
             self.assertThat(lambda: self.day_view.currentDay.datetime, Eventually(NotEquals(old_day)))
 
             current_day = self.day_view.currentDay.datetime
