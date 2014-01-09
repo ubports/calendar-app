@@ -89,11 +89,7 @@ class TestYearView(CalendarTestCase):
 
         for i in xrange(1, how_many):
             #prevent timing issues with swiping
-            #old_day = self.year_view.dayStart.datetime
             self.main_view.swipe_view(direction, self.year_view, x_pad=0.15)
-            #self.assertThat(lambda: self.year_view.dayStart.datetime, Eventually(NotEquals(old_day)))
-
-            #selected_year =
 
             self.assertThat(
                 lambda: self.year_view.currentYear.year,
