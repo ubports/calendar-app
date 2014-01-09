@@ -33,20 +33,19 @@ class TestWeekView(CalendarTestCase):
         self.week_view = self.main_view.get_week_view()
 
     def _change_week(self, direction):
-        #TODO: fix this locale issue. The lab needs a monday start date
-        #http://bugs.python.org/issue17659
-        #weekview has firstDate property we can use instead
-        #uses unix timestamp of first day of current week @ 5 am UTC
-
         first_dow = self._get_first_day_of_week()
 
+        #prevent timing issues with swiping
+        old_day = self.week_view.dayStart.datetime
         self.main_view.swipe_view(direction, self.week_view, x_pad=0.15)
-        day_start = self.week_view.dayStart.datetime
+        self.assertThat(lambda: self.week_view.dayStart.datetime, Eventually(NotEquals(old_day)))
+
+        new_day_start = self.week_view.dayStart.datetime
 
         expected_day_start = first_dow + datetime.timedelta(
             days=(7 * direction))
 
-        self.assertThat(day_start.day, Equals(expected_day_start.day))
+        self.assertThat(new_day_start.day, Equals(expected_day_start.day))
 
     def _get_days_of_week(self):
         #sort based on text value of the day
@@ -96,7 +95,7 @@ class TestWeekView(CalendarTestCase):
         #set the start of week
         if date.day != firstDay.day:
             day_start = date - diff
-            logger.debug("Setting day_start %s to " % firstDay.day)
+            logger.debug("Setting day_start to %s" % firstDay.day)
         else:
             day_start = date
             logger.debug("Using today as day_start %s" % date)
