@@ -46,19 +46,6 @@ PathViewBase {
             }
         }
 
-        //To make horizontal movement smooth, not using bindig for year
-        /*Component.onCompleted: {
-            year = getYear();
-        }
-
-        Connections{
-            target:root
-            onMovementEnded: {
-                //update only when movement ends, to avoid calculation while animation
-                year = getYear();
-            }
-        }*/
-
         width: parent.width
         height: parent.height
         anchors.top: parent.top
