@@ -3,65 +3,60 @@ import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
-Page {
-    id: monthViewPage
+PathViewBase{
+    id: monthViewPath
 
     property var currentMonth: DateExt.today();
+    property var startMonth: addMonth(currentMonth,-1);
 
     signal dateSelected(var date);
 
-    PathViewBase{
-        id: monthViewPath
+    anchors.top:parent.top
 
-        property var startMonth: addMonth(currentMonth,-1);
+    width:parent.width
+    height: parent.height
 
-        anchors.top:parent.top
+    onNextItemHighlighted: {
+        nextMonth();
+    }
 
-        width:parent.width
-        height: parent.height
+    onPreviousItemHighlighted: {
+        previousMonth();
+    }
 
-        onNextItemHighlighted: {
-            nextMonth();
-        }
+    function nextMonth() {
+        currentMonth = addMonth(currentMonth,1);
+    }
 
-        onPreviousItemHighlighted: {
-            previousMonth();
-        }
+    function previousMonth(){
+        currentMonth = addMonth(currentMonth,-1);
+    }
 
-        function nextMonth() {
-            currentMonth = addMonth(currentMonth,1);
-        }
+    function addMonth(date,month){
+        var temp = new Date(date.getFullYear(),date.getMonth(),1,0,0,0);
+        temp.setMonth(date.getMonth() + month);
+        return temp;
+    }
 
-        function previousMonth(){
-            currentMonth = addMonth(currentMonth,-1);
-        }
+    delegate: MonthComponent{
+        width: parent.width - units.gu(5)
+        height: parent.height - units.gu(5)
 
-        function addMonth(date,month){
-            var temp = new Date(date.getFullYear(),date.getMonth(),1,0,0,0);
-            temp.setMonth(date.getMonth() + month);
-            return temp;
-        }
+        monthDate: getMonthDate();
 
-        delegate: MonthComponent{
-            width: parent.width - units.gu(5)
-            height: parent.height - units.gu(5)
-
-            monthDate: getMonthDate();
-
-            function getMonthDate() {
-                switch( monthViewPath.indexType(index)) {
-                case 0:
-                    return monthViewPath.startMonth;
-                case -1:
-                    return monthViewPath.addMonth(monthViewPath.startMonth,2);
-                case 1:
-                    return monthViewPath.addMonth(monthViewPath.startMonth,1);
-                }
+        function getMonthDate() {
+            switch( monthViewPath.indexType(index)) {
+            case 0:
+                return monthViewPath.startMonth;
+            case -1:
+                return monthViewPath.addMonth(monthViewPath.startMonth,2);
+            case 1:
+                return monthViewPath.addMonth(monthViewPath.startMonth,1);
             }
+        }
 
-            onDateSelected: {
-                monthViewPage.dateSelected(date);
-            }
+        onDateSelected: {
+            monthViewPath.dateSelected(date);
         }
     }
 }

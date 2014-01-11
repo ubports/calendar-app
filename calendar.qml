@@ -76,14 +76,16 @@ MainView {
             property int endtime: -1;
 
             onCurrentDayChanged: {
-                if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
-                    monthView.currentMonth = currentDay.midnight();
+                if( monthPage.view
+                        && monthPage.view.currentMonth !== undefined
+                        && !monthPage.view.currentMonth.isSameDay(currentDay))
+                    monthPage.view.currentMonth = currentDay.midnight();
 
-                if( !dayView.currentDay.isSameDay(currentDay))
-                    dayView.currentDay = currentDay
+                if( dayPage.view && !dayPage.view.currentDay.isSameDay(currentDay))
+                    dayPage.view.currentDay = currentDay
 
-                if( !weekView.dayStart.isSameDay(currentDay))
-                    weekView.dayStart = currentDay
+                if( weekPage.view && !weekPage.view.dayStart.isSameDay(currentDay))
+                    weekPage.view.dayStart = currentDay
 
                 setStartEndDateToModel();
             }
@@ -230,23 +232,46 @@ MainView {
 
             Tabs{
                 id: tabs
+
+                onSelectedTabIndexChanged: {
+                    switch(selectedTabIndex) {
+                    case 0:
+                        yearPage.loadView();
+                        break;
+                    case 1:
+                        monthPage.loadView();
+                        break;
+                    case 2:
+                        weekPage.loadView();
+                        break;
+                    case 3:
+                        dayPage.loadView();
+                        break;
+                    }
+                }
+
                 Tab{
                     objectName: "yearTab"
                     title: i18n.tr("Year")
-                    page: Page{
+                    page: LoaderPage{
+                        id: yearPage
                         objectName: "yearPage"
-                        anchors.fill: parent
                         tools: commonToolBar
-                        YearView{
-                            onMonthSelected: {
-                                tabs.selectedTabIndex = 1
-                                var now = DateExt.today();
-                                if( date.getMonth() === now.getMonth()
-                                        && date.getFullYear() === now.getFullYear()) {
-                                    monthView.currentMonth = now
-                                } else {
-                                    monthView.currentMonth = date.midnight();
-                                }
+                        viewSource: "YearView.qml"
+                        onLoaded:{
+                            view.monthSelected.connect(yearPage.monthSelected);
+                        }
+
+                        function monthSelected(date) {
+                            tabs.selectedTabIndex = 1
+                            var now = DateExt.today();
+                            if( date.getMonth() === now.getMonth()
+                                    && date.getFullYear() === now.getFullYear()) {
+                                tabPage.currentDay = now;
+                                //monthTab.view.currentMonth = now
+                            } else {
+                                tabPage.currentDay = date.midnight();
+                                //monthTab.view.currentMonth = date.midnight();
                             }
                         }
                     }
@@ -254,12 +279,17 @@ MainView {
                 Tab {
                     id: monthTab
                     title: i18n.tr("Month")
-                    page: MonthView{
-                        anchors.fill: parent
+                    page: LoaderPage{
+                        id: monthPage
                         tools: commonToolBar
-                        id: monthView
+                        viewSource: "MonthView.qml"
 
-                        onDateSelected: {
+                        onLoaded: {
+                            view.dateSelected.connect(monthPage.dateSelected);
+                            monthPage.view.currentMonth = tabPage.currentDay.midnight();
+                        }
+
+                        function dateSelected(date) {
                             tabs.selectedTabIndex  = 3
                             tabPage.currentDay = date;
                         }
@@ -268,15 +298,19 @@ MainView {
                 Tab{
                     objectName: "weekTab"
                     title: i18n.tr("Week")
-                    page: Page{
-                        anchors.fill: parent
+                    page: LoaderPage{
+                        id: weekPage
                         tools: commonToolBar
-                        WeekView{
-                            id: weekView
-                            anchors.fill: parent
+                        viewSource: "WeekView.qml"
 
+                        onLoaded: {
+                            weekPage.view.dayStart = tabPage.currentDay;
+                        }
+
+                        Connections{
+                            target: weekPage.view
                             onDayStartChanged: {
-                                tabPage.currentDay = dayStart;
+                                tabPage.currentDay = weekPage.view.dayStart;
                             }
                         }
                     }
@@ -285,15 +319,19 @@ MainView {
                 Tab{
                     objectName: "dayTab"
                     title: i18n.tr("Day")
-                    page: Page{
-                        anchors.fill: parent
+                    page: LoaderPage{
+                        id: dayPage
                         tools: commonToolBar
-                        DayView{
-                            id: dayView
-                            anchors.fill: parent
+                        viewSource: "DayView.qml"
 
+                        onLoaded: {
+                            dayPage.view.currentDay = tabPage.currentDay;
+                        }
+
+                        Connections{
+                            target: dayPage.view
                             onCurrentDayChanged: {
-                                tabPage.currentDay = currentDay;
+                                tabPage.currentDay = dayPage.view.currentDay;
                             }
                         }
                     }
