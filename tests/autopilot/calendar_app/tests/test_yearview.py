@@ -37,7 +37,8 @@ class TestYearView(CalendarTestCase):
         months = year_grid.select_many("MonthComponent")
         self.assert_current_year_is_default_one(months[0])
 
-        february = months[0]
+        months.sort(key=lambda month: month.monthDate)
+        february = months[1]
         expected_month_name = self.main_view.get_month_name(february)
         expected_year = self.main_view.get_year(february)
 
