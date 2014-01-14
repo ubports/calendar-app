@@ -4,7 +4,7 @@
     "hooks": {
         "calendar": {
             "apparmor": "apparmor/calendar.json",
-            "desktop": "calendar-app.desktop"
+            "desktop": "calendar-app.desktop",
             "urls": "calendar-app.url-dispatcher"
         }
     },
