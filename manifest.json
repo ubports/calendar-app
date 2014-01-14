@@ -5,6 +5,7 @@
         "calendar": {
             "apparmor": "apparmor/calendar.json",
             "desktop": "calendar-app.desktop"
+            "urls": "calendar-app.url-dispatcher"
         }
     },
     "icon": "calendar64.png",
