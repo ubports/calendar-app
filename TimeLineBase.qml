@@ -51,6 +51,7 @@ Item {
             var eventId = itemIds[(i)];
             var event = intern.model.item(eventId);
             if( event ) {
+                print("ITEM_ID Created--->" + eventId)
                 bubbleOverLay.createEvent(event,event.startDateTime.getHours());
             }
         }
@@ -65,6 +66,7 @@ Item {
             if( children[i].objectName === "separator") {
                 children[i].visible = false;
             } else {
+                children[i].visible = false;
                 children[i].destroy();
             }
         }

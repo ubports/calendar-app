@@ -32,6 +32,7 @@ Item{
 
             anchors.top: parent.top
             anchors.topMargin: units.gu(1.5)
+            anchors.bottomMargin: units.gu(1)
             anchors.fill: parent
             spacing: units.gu(1.5)
 
@@ -64,6 +65,7 @@ Item{
 
             Grid{
                 id: monthGrid
+                objectName: "monthGrid"
 
                 property int weekCount : 6
                 property var monthStart: root.monthDate.weekStart( Qt.locale().firstDayOfWeek )
