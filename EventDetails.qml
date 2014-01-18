@@ -74,7 +74,6 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Delete");
-                //iconSource: Qt.resolvedUrl("delete.svg");
                 iconSource: "image://theme/delete,edit-delete-symbolic"
                 onTriggered: {
                     var eventModel = GlobalModel.gloablModel();
