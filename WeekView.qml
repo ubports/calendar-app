@@ -5,6 +5,7 @@ import "dateExt.js" as DateExt
 
 Column {
     id: root
+    objectName: "WeekView"
 
     property var dayStart: new Date();
     property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);

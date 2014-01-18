@@ -23,7 +23,15 @@ Page {
         if( pageStack.header )
             pageStack.header.visible = true;
     }
-
+    Connections{
+        target: pageStack
+        onCurrentPageChanged:{
+            if( pageStack.currentPage === root) {
+                pageStack.header.visible = false;
+                showEvent(event);
+            }
+        }
+    }
     function showEvent(e) {
         var location = "";
 
@@ -76,28 +84,17 @@ Page {
             }
         }
 
-        /*
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Add invite");
-                onTriggered: {
-                    print(text + " not implemented");
-                }
-            }
-        }
-    */
-        /*
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
                 iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
-                    print(text + " not implemented");
+                   pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event});
                 }
             }
         }
-    */
     }
+
     Rectangle {
         id:eventDetilsView
         anchors.fill: parent
