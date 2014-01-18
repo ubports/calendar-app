@@ -18,19 +18,19 @@ class MainView(toolkit_emulators.MainView):
     """
 
     def get_event_view(self):
-        return self.select_single("EventView")
+        return self.wait_select_single("EventView")
 
     def get_month_view(self):
-        return self.select_single("MonthView")
+        return self.wait_select_single("MonthView")
 
     def get_year_view(self):
-        return self.select_single("YearView")
+        return self.wait_select_single("YearView")
 
     def get_day_view(self):
-        return self.select_single("DayView")
+        return self.wait_select_single("DayView")
 
     def get_week_view(self):
-        return self.select_single("WeekView")
+        return self.wait_select_single("WeekView")
 
     def get_label_with_text(self, text, root=None):
         if root is None:
@@ -49,28 +49,28 @@ class MainView(toolkit_emulators.MainView):
 
     def get_new_event_name_input_box(self):
         new_event = self.get_new_event()
-        return new_event.select_single("NewEventEntryField",
-                                       objectName="newEventName")
+        return new_event.wait_select_single("NewEventEntryField",
+                                            objectName="newEventName")
 
     def get_event_start_time_field(self):
         new_event = self.get_new_event()
-        return new_event.select_single("NewEventEntryField",
-                                       objectName="startTimeInput")
+        return new_event.wait_select_single("NewEventEntryField",
+                                            objectName="startTimeInput")
 
     def get_event_end_time_field(self):
         new_event = self.get_new_event()
-        return new_event.select_single("NewEventEntryField",
-                                       objectName="endTimeInput")
+        return new_event.wait_select_single("NewEventEntryField",
+                                            objectName="endTimeInput")
 
     def get_event_location_field(self):
         new_event = self.get_new_event()
-        return new_event.select_single("NewEventEntryField",
-                                       objectName="eventLocationInput")
+        return new_event.wait_select_single("NewEventEntryField",
+                                            objectName="eventLocationInput")
 
     def get_event_people_field(self):
         new_event = self.get_new_event()
-        return new_event.select_single("NewEventEntryField",
-                                       objectName="eventPeopleInput")
+        return new_event.wait_select_single("NewEventEntryField",
+                                            objectName="eventPeopleInput")
 
     def get_time_picker(self):
         try:
@@ -78,7 +78,7 @@ class MainView(toolkit_emulators.MainView):
         except dbus.StateNotFoundError:
             return None
 
-    def swipe_view(self, direction, view, x_pad=0.35):
+    def swipe_view(self, direction, view, x_pad=0.15):
         """Swipe the given view to left or right.
 
         Args:
@@ -97,9 +97,9 @@ class MainView(toolkit_emulators.MainView):
         self.pointing_device.drag(x_start, y_line, x_stop, y_line)
 
     def get_year(self, component):
-        return int(component.select_single(
+        return int(component.wait_select_single(
             "Label", objectName="yearLabel").text)
 
     def get_month_name(self, component):
-        return component.select_single(
+        return component.wait_select_single(
             "Label", objectName="monthLabel").text

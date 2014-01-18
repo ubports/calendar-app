@@ -181,8 +181,8 @@ MainView {
                         }
                     } // End of else if (starttime)
                     else {
-                    	// Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
-                    	// After the fix we can delete this else
+                        // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
+                        // After the fix we can delete this else
                         tabs.selectedTabIndex= 1;
                     }
                 } // End of if about args.values
@@ -234,20 +234,7 @@ MainView {
                 id: tabs
 
                 onSelectedTabIndexChanged: {
-                    switch(selectedTabIndex) {
-                    case 0:
-                        yearPage.loadView();
-                        break;
-                    case 1:
-                        monthPage.loadView();
-                        break;
-                    case 2:
-                        weekPage.loadView();
-                        break;
-                    case 3:
-                        dayPage.loadView();
-                        break;
-                    }
+                    tabChildren[selectedTabIndex].page.loadView();
                 }
 
                 Tab{
@@ -278,6 +265,7 @@ MainView {
                 }
                 Tab {
                     id: monthTab
+                    objectName: "monthTab"
                     title: i18n.tr("Month")
                     page: LoaderPage{
                         id: monthPage

@@ -5,6 +5,7 @@ import "colorUtils.js" as Color
 
 PathViewBase{
     id: monthViewPath
+    objectName: "MonthView"
 
     property var currentMonth: DateExt.today();
     property var startMonth: addMonth(currentMonth,-1);

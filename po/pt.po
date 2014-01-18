@@ -1,16 +1,16 @@
-# Asturian translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Portuguese translation for ubuntu-calendar-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-09-26 07:05+0200\n"
-"PO-Revision-Date: 2014-01-14 20:54+0000\n"
-"Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
-"Language-Team: Asturian <ast@li.org>\n"
+"PO-Revision-Date: 2014-01-14 20:49+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,113 +21,113 @@ msgstr ""
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../EventBubble.qml:38
 msgid "hh:mm"
-msgstr "hh:mm"
+msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../EventBubble.qml:43
 #, qt-format
 msgid "%1 - %2"
-msgstr "%1 - %2"
+msgstr ""
 
 #: ../EventDetails.qml:70
 msgid "Add invite"
-msgstr "Amestar invitación"
+msgstr ""
 
 #: ../EventDetails.qml:79
 msgid "Edit"
-msgstr "Editar"
+msgstr ""
 
 #: ../EventDetails.qml:153
 msgid "People"
-msgstr "Xente"
+msgstr ""
 
 #: ../NewEvent.qml:23
 msgid "Create event"
-msgstr "Crear eventu"
+msgstr ""
 
 #: ../NewEvent.qml:29
 msgid "Add event name"
-msgstr "Amestar el nome del eventu"
+msgstr ""
 
 #: ../NewEvent.qml:102
 msgid "to"
-msgstr "a"
+msgstr ""
 
 #: ../NewEvent.qml:137
 msgid "Location & People"
-msgstr "Llocalización y persones"
+msgstr ""
 
 #: ../NewEvent.qml:143
 msgid "Add Location"
-msgstr "Amestar llocalización"
+msgstr ""
 
 #: ../NewEvent.qml:156
 msgid "Invite People"
-msgstr "Invitar xente"
+msgstr ""
 
 #: ../NewEvent.qml:168
 msgid "Error"
-msgstr "Error"
+msgstr ""
 
 #: ../NewEvent.qml:171 ../TimePicker.qml:82
 msgid "OK"
-msgstr "Aceutar"
+msgstr ""
 
 #: ../NewEvent.qml:177
 msgid "Save"
-msgstr "Guardar"
+msgstr ""
 
 #: ../NewEvent.qml:205
 msgid "End time can't be before start time"
-msgstr "El tiempu final nun pue ser anterior al d'aniciu"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:18
 msgid "hh ap"
-msgstr "hh ap"
+msgstr ""
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr "Tiempu"
+msgstr ""
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr "Hora"
+msgstr ""
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr "Minutu"
+msgstr ""
 
 #: ../TimePicker.qml:73
 msgid "Cancel"
-msgstr "Encaboxar"
+msgstr ""
 
 #: ../calendar.qml:56
 msgid "New Event"
-msgstr "Nueva actividá"
+msgstr ""
 
 #: ../calendar.qml:64
 msgid "Today"
-msgstr "Güei"
+msgstr ""
 
 #: ../calendar.qml:75
 msgid "Year"
-msgstr "Añu"
+msgstr ""
 
 #: ../calendar.qml:95
 msgid "Month"
-msgstr "Mes"
+msgstr ""
 
 #: ../calendar.qml:108
 msgid "Week"
-msgstr "Selmana"
+msgstr ""
 
 #: ../calendar.qml:124
 msgid "Day"
-msgstr "Día"
+msgstr ""
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr "Calendariu"
+msgstr ""
