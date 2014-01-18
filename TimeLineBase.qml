@@ -51,7 +51,6 @@ Item {
             var eventId = itemIds[(i)];
             var event = intern.model.item(eventId);
             if( event ) {
-                print("ITEM_ID Created--->" + eventId)
                 bubbleOverLay.createEvent(event,event.startDateTime.getHours());
             }
         }
