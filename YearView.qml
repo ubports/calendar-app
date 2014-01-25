@@ -28,6 +28,7 @@ PathViewBase {
     QtObject{
         id: intern
         property var startYear: getDateFromYear(currentYear.getFullYear()-1);
+        property int scrollMonth: 0;
     }
 
     delegate: GridView{
@@ -41,7 +42,7 @@ PathViewBase {
             case 0:
                 return intern.startYear;
             case -1:
-                return getDateFromYear(intern.startYear.getFullYear() - 1);
+                return getDateFromYear(intern.startYear.getFullYear() + 2);
             case 1:
                 return getDateFromYear(intern.startYear.getFullYear() + 1);
             }
@@ -56,6 +57,38 @@ PathViewBase {
 
         model: 12 /* months in a year */
         snapMode: GridView.SnapOneRow
+
+        onYearChanged : {
+            intern.scrollMonth=0;
+            yearView.positionViewAtIndex(intern.scrollMonth,GridView.Beginning);
+        }
+
+        //scroll in case content height changed
+        onHeightChanged: {
+            intern.scrollMonth=0;
+            yearView.positionViewAtIndex(intern.scrollMonth,GridView.Beginning);
+        }
+
+        Connections{
+            target: root
+            onScrollUp:{
+                yearView.positionViewAtIndex(intern.scrollMonth,GridView.Beginning);
+                intern.scrollMonth-=2;
+                if(intern.scrollMonth < 0) {
+                    intern.scrollMonth = 0;
+                }
+            }
+
+            onScrollDown:{
+                yearView.positionViewAtIndex(intern.scrollMonth,GridView.Beginning);
+                intern.scrollMonth+=2;
+                var visibleMonths = yearView.height / cellHeight;
+                if(intern.scrollMonth > (11 - visibleMonths)) {
+                    intern.scrollMonth = (11 - visibleMonths);
+                }
+            }
+        }
+
         delegate: Item {
             width: yearView.cellWidth
             height: yearView.cellHeight

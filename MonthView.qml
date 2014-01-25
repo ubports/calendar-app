@@ -11,6 +11,8 @@ Page {
 
     signal dateSelected(var date);
 
+    Keys.forwardTo: [monthViewPath]
+
     PathViewBase{
         id: monthViewPath
 

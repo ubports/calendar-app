@@ -15,13 +15,49 @@ Item {
     readonly property int typeWeek: 0
     readonly property int typeDay: 1
 
+    //visible hour
+    property int scrollHour: 9;
+
     onStartDayChanged: {
-        timeLineView.scroll();
+        scrollToDefHour();
     }
 
     //scroll in case content height changed
     onHeightChanged: {
-        timeLineView.scroll()
+        scrollToDefHour();
+    }
+
+    Connections{
+        target: parent
+        onScrollUp:{
+            scrollToHour();
+            scrollHour--;
+            if( scrollHour < 0) {
+                scrollHour =0;
+            }
+        }
+
+        onScrollDown:{
+            scrollToHour();
+            scrollHour++;
+            var visibleHour = root.height / units.gu(10);
+            if( scrollHour > (24 -visibleHour)) {
+                scrollHour = 24 - visibleHour;
+            }
+        }
+    }
+
+    function scrollToHour() {
+        timeLineView.contentY = scrollHour * units.gu(10);
+        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
+            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
+        }
+    }
+
+    function scrollToDefHour() {
+        //scroll to 9 o'clock
+        scrollHour = 9
+        scrollToHour();
     }
 
     Flickable{
@@ -35,16 +71,6 @@ Item {
         contentWidth: width
 
         clip: true
-
-        function scroll() {
-            //scroll to 9 o'clock
-            var hour = 9
-
-            timeLineView.contentY = hour * units.gu(10);
-            if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
-                timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
-            }
-        }
 
         TimeLineBackground{
         }

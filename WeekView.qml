@@ -15,6 +15,8 @@ Column {
 
     anchors.fill: parent
 
+    Keys.forwardTo: [weekViewPath]
+
     ViewHeader{
         id: viewHeader
         date: dayStart
@@ -57,8 +59,6 @@ Column {
         }
 
         delegate: TimeLineBaseComponent {
-            id: timeLineView
-
             type: typeWeek
 
             width: parent.width

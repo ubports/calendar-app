@@ -39,10 +39,10 @@ Page {
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
 
-	startHeader.value = startTime;
-	endHeader.value = endTime;
+        startHeader.value = startTime;
+        endHeader.value = endTime;
 
-	// This is the event title
+        // This is the event title
         if( e.displayLabel) {
             titleLabel.text = e.displayLabel;
         }
@@ -68,19 +68,17 @@ Page {
         mapImage.source=imageSrc;
     }
 
-    tools: ToolbarItems {
+    Keys.onEscapePressed: {
+        pageStack.pop();
+    }
 
-	/*
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Add invite");
-                onTriggered: {
-                    print(text + " not implemented");
-                }
-            }
+    Keys.onPressed: {
+        if ((event.key === Qt.Key_E) && ( event.modifiers & Qt.ControlModifier)) {
+            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event});
         }
-	*/
+    }
 
+    tools: ToolbarItems {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
@@ -167,25 +165,28 @@ Page {
                 font.bold: true
             }
             //Guest Entery Model starts
-            ListView {
-                id:contactList
+            Column{
+                id: contactList
                 spacing: units.gu(1)
                 width: parent.width
-                height: units.gu((contactModel.count*4.5)+3)
                 clip: true
-                model: ListModel {
+                ListModel {
                     id: contactModel
                 }
-                delegate: Row{
-                    spacing: units.gu(1)
-                    CheckBox{}
-                    Label {
-                        text:name
-                        anchors.verticalCenter:  parent.verticalCenter
-                        color: detailColor
+                Repeater{
+                    model: contactModel
+                    delegate: Row{
+                        spacing: units.gu(1)
+                        CheckBox{}
+                        Label {
+                            text:name
+                            anchors.verticalCenter:  parent.verticalCenter
+                            color: detailColor
+                        }
                     }
                 }
             }
+
             //Guest Entries ends
             ThinDivider{}
             property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth) //Dynamic Height

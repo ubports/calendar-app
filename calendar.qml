@@ -53,6 +53,8 @@ MainView {
 
     width: units.gu(45)
     height: units.gu(80)
+    focus: true
+    Keys.forwardTo: [yearView,monthView,weekView,dayView,pageStack.currentPage,tabPage]
 
     headerColor: "#266249"
     backgroundColor: "#478158"
@@ -195,9 +197,7 @@ MainView {
             // This is for wait that the app is load when newEvent is invoked by argument
             Timer {
                 id: timer
-                interval: 200;
-                running: false;
-                repeat: false
+                interval: 200; running: false; repeat: false
                 onTriggered: {
                     tabPage.newEvent();
                 }
@@ -228,6 +228,17 @@ MainView {
                 }
             }
 
+            Keys.onTabPressed: {
+                if( event.modifiers & Qt.ControlModifier) {
+                    var currentTab = tabs.selectedTabIndex;
+                    currentTab ++;
+                    if( currentTab >= tabs.tabChildren.length){
+                        currentTab = 0;
+                    }
+                    tabs.selectedTabIndex = currentTab;
+                }
+            }
+
             Tabs{
                 id: tabs
                 Tab{
@@ -238,6 +249,8 @@ MainView {
                         anchors.fill: parent
                         tools: commonToolBar
                         YearView{
+                            id: yearView
+
                             onMonthSelected: {
                                 tabs.selectedTabIndex = 1
                                 var now = DateExt.today();
@@ -275,7 +288,6 @@ MainView {
                         WeekView{
                             id: weekView
                             anchors.fill: parent
-
                             onDayStartChanged: {
                                 tabPage.currentDay = dayStart;
                             }
