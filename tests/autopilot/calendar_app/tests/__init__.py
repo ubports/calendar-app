@@ -80,8 +80,6 @@ class CalendarTestCase(AutopilotTestCase):
         self.app = self.launch_test_application(
             "qmlscene",
             self.installed_location,
-            "--desktop_file_hint=/usr/share/applications/"
-            "calendar-app.desktop",
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
