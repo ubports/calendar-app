@@ -74,7 +74,7 @@ Page {
 
     Keys.onPressed: {
         if ((event.key === Qt.Key_E) && ( event.modifiers & Qt.ControlModifier)) {
-            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event});
+            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event": root.event});
         }
     }
 
