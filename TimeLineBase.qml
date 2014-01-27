@@ -65,6 +65,7 @@ Item {
             if( children[i].objectName === "separator") {
                 children[i].visible = false;
             } else {
+                children[i].visible = false;
                 children[i].destroy();
             }
         }
