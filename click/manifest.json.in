@@ -4,7 +4,8 @@
     "hooks": {
         "@APP_NAME@": {
             "apparmor": "apparmor.json",
-            "desktop": "@DESKTOP_FILE@"
+            "desktop": "@DESKTOP_FILE@",
+            "urls": "@URLS_FILE@"
         }
     },
     "icon": "@ICON@",
