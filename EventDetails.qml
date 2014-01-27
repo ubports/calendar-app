@@ -4,6 +4,8 @@ import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
 
+import "GlobalEventModel.js" as GlobalModel
+
 Page {
     id: root
 
@@ -39,10 +41,10 @@ Page {
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
 
-	startHeader.value = startTime;
-	endHeader.value = endTime;
+        startHeader.value = startTime;
+        endHeader.value = endTime;
 
-	// This is the event title
+        // This is the event title
         if( e.displayLabel) {
             titleLabel.text = e.displayLabel;
         }
@@ -59,7 +61,6 @@ Page {
             for( var j = 0 ; j < attendees.length ; ++j ) {
                 contactModel.append( {"name": attendees[j].name } );
             }
-
         }
         // FIXME: need to cache map image to avoid duplicate download every time
         var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
@@ -70,16 +71,17 @@ Page {
 
     tools: ToolbarItems {
 
-	/*
         ToolbarButton {
-            action: Action {
-                text: i18n.tr("Add invite");
+            action:Action {
+                text: i18n.tr("Delete");
+                iconSource: "image://theme/delete,edit-delete-symbolic"
                 onTriggered: {
-                    print(text + " not implemented");
+                    var eventModel = GlobalModel.gloablModel();
+                    eventModel.removeItem(event);
+                    pageStack.pop();
                 }
             }
         }
-	*/
 
         ToolbarButton {
             action:Action {
@@ -91,6 +93,7 @@ Page {
             }
         }
     }
+
     Rectangle {
         id:eventDetilsView
         anchors.fill: parent
