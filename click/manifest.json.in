@@ -5,7 +5,7 @@
         "@APP_NAME@": {
             "apparmor": "apparmor.json",
             "desktop": "@DESKTOP_FILE@",
-            "urls": "calendar-app.url-dispatcher"
+            "urls": "@URLS_FILE@"
         }
     },
     "icon": "@ICON@",

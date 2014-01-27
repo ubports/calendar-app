@@ -9,6 +9,7 @@ option(CLICK_MODE "Installs to a contained location" off)
 
 set(APP_NAME calendar)
 set(DESKTOP_FILE "${PROJECT_NAME}_${APP_NAME}.desktop")
+set(URLS_FILE "${PROJECT_NAME}_${APP_NAME}.url-dispatcher")
 set(MAIN_QML calendar.qml)
 set(ICON calendar64.png)
 set(AUTOPILOT_DIR calendar_app)
@@ -24,6 +25,7 @@ if(CLICK_MODE)
 	set(DATA_DIR /)
 	set(EXEC "qmlscene %u ${MAIN_QML}")
 	set(DESKTOP_DIR ${DATA_DIR})
+	set(URLS_DIR ${DATA_DIR})
 else(CLICK_MODE)
 	set(DATA_DIR ${CMAKE_INSTALL_DATADIR}/${APP_HARDCODE})
 	set(EXEC ${APP_HARDCODE})
@@ -33,6 +35,7 @@ else(CLICK_MODE)
 	install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${APP_HARDCODE}
 		DESTINATION ${CMAKE_INSTALL_BINDIR})
 	set(DESKTOP_DIR ${CMAKE_INSTALL_DATADIR}/applications)
+	set(URLS_DIR ${CMAKE_INSTALL_DATADIR}/url-dispatcher/urls)
 endif(CLICK_MODE)
 
 file(GLOB_RECURSE I18N_SRC_FILES
@@ -49,6 +52,8 @@ install(FILES ${SRC_FILES}  DESTINATION ${DATA_DIR})
 configure_file(${DESKTOP_FILE}.in ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE})
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE} DESTINATION ${DESKTOP_DIR})
  
+install(FILES ${URLS_FILE} DESTINATION ${URLS_DIR})
+
 # Tests
 enable_testing()
 
