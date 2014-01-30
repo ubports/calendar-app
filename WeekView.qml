@@ -36,7 +36,7 @@ Column {
         property var weekStart: weekViewPath.visibleWeek.addDays(-7)
 
         width: parent.width
-        height: root.height - viewHeader.height - weekHeader.height
+        height: root.height - weekViewPath.y
 
         onNextItemHighlighted: {
             nextWeek();

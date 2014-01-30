@@ -6,6 +6,3 @@
 
 %:
 	dh $@
-
-override_dh_auto_test:
-	QT_QPA_PLATFORM=minimal qmltestrunner -input tests/unittests/

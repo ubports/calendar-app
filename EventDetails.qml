@@ -4,6 +4,8 @@ import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
 
+import "GlobalEventModel.js" as GlobalModel
+
 Page {
     id: root
 
@@ -59,7 +61,6 @@ Page {
             for( var j = 0 ; j < attendees.length ; ++j ) {
                 contactModel.append( {"name": attendees[j].name } );
             }
-
         }
         // FIXME: need to cache map image to avoid duplicate download every time
         var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
@@ -81,6 +82,18 @@ Page {
     tools: ToolbarItems {
         ToolbarButton {
             action:Action {
+                text: i18n.tr("Delete");
+                iconSource: "image://theme/delete,edit-delete-symbolic"
+                onTriggered: {
+                    var eventModel = GlobalModel.gloablModel();
+                    eventModel.removeItem(event);
+                    pageStack.pop();
+                }
+            }
+        }
+
+        ToolbarButton {
+            action:Action {
                 text: i18n.tr("Edit");
                 iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
@@ -89,6 +102,7 @@ Page {
             }
         }
     }
+
     Rectangle {
         id:eventDetilsView
         anchors.fill: parent

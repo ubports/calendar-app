@@ -98,7 +98,7 @@ Item{
             height: parent.height / parent.weekCount
 
             Loader {
-                width: parent.width
+                width: parent.width < parent.height ? parent.width : parent.height
                 height: width
                 anchors.centerIn: parent
                 sourceComponent: date.isSameDay(DateExt.today()) && isCurrentMonth ? highLightComp : undefined
