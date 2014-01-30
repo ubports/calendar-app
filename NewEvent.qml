@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtOrganizer 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
@@ -86,6 +87,28 @@ Page {
             event.description = messageEdit.text;
             event.location = locationEdit.text
             event.attendees = []; // if Edit remove all attendes & add them again if any
+            // Set event's recurrence
+            var recurrenceOption = recurrenceSelector.model[recurrenceSelector.selectedIndex]
+            var recurrenceRule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule { }", event);
+            switch(recurrenceOption) {
+            case i18n.tr("Daily"):
+                recurrenceRule.frequency = RecurrenceRule.Daily
+                break;
+            case i18n.tr("Weekly"):
+                recurrenceRule.frequency = RecurrenceRule.Weekly
+                break;
+            case i18n.tr("Monthly"):
+                recurrenceRule.frequency = RecurrenceRule.Monthly
+                break;
+            case i18n.tr("Yearly"):
+                recurrenceRule.frequency = RecurrenceRule.Yearly
+                break;
+            default:
+                recurrenceRule.frequency = RecurrenceRule.Invalid
+                break;
+            }
+            event.recurrence.recurrenceRules = [ recurrenceRule ]
+
             if( personEdit.text != "") {
                 var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
                 attendee.name = personEdit.text;
@@ -281,6 +304,7 @@ Page {
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
+                    id: recurrenceSelector
                     anchors.right: parent.right
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model:[i18n.tr("Once"),i18n.tr("Daily"),i18n.tr("Weekly"),i18n.tr("Monthly"),i18n.tr("Yearly")]
