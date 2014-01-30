@@ -27,14 +27,14 @@ PathViewBase {
 
     QtObject{
         id: intern
-        property var startYear: getDateFromYear(currentYear.getFullYear()-1);
-        property int scrollMonth: 0;
+        property var startYear: getDateFromYear(currentYear.getFullYear()-1);        
     }
 
     delegate: GridView{
         id: yearView
         clip: true
 
+        property int scrollMonth: 0;
         property var year: getYear();
 
         function getYear() {
@@ -55,37 +55,49 @@ PathViewBase {
         cellWidth: width/2
         cellHeight: cellWidth * 1.4
 
+        function getCellWidth() {
+            if( yearView.width/2  < units.gu(40)) {
+                return yearView.width/2
+            } else {
+                for(var i = 4 ; i > 2; --i) {
+                    if( yearView.width/i > units.gu(35)) {
+                        return yearView.width/i
+                    }
+                }
+            }
+        }
+
         model: 12 /* months in a year */
         snapMode: GridView.SnapOneRow
 
         onYearChanged : {
-            intern.scrollMonth=0;
-            yearView.positionViewAtIndex(intern.scrollMonth,GridView.Beginning);
+            scrollMonth=0;
+            yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
         }
 
         //scroll in case content height changed
         onHeightChanged: {
-            intern.scrollMonth=0;
-            yearView.positionViewAtIndex(intern.scrollMonth,GridView.Beginning);
+            scrollMonth=0;
+            yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
         }
 
         Connections{
             target: root
             onScrollUp:{
-                yearView.positionViewAtIndex(intern.scrollMonth,GridView.Beginning);
-                intern.scrollMonth-=2;
-                if(intern.scrollMonth < 0) {
-                    intern.scrollMonth = 0;
+                scrollMonth -= 2;
+                if(scrollMonth < 0) {
+                    scrollMonth = 0;
                 }
+                yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
             }
 
             onScrollDown:{
-                yearView.positionViewAtIndex(intern.scrollMonth,GridView.Beginning);
-                intern.scrollMonth+=2;
+                scrollMonth += 2;
                 var visibleMonths = yearView.height / cellHeight;
-                if(intern.scrollMonth > (11 - visibleMonths)) {
-                    intern.scrollMonth = (11 - visibleMonths);
+                if( scrollMonth >= (11 - visibleMonths)) {
+                    scrollMonth = (11 - visibleMonths);
                 }
+                yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
             }
         }
 

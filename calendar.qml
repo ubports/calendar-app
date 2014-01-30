@@ -239,6 +239,17 @@ MainView {
                 }
             }
 
+            Keys.onBacktabPressed: {
+                if( event.modifiers & Qt.ControlModifier) {
+                    var currentTab = tabs.selectedTabIndex;
+                    currentTab --;
+                    if( currentTab < 0){
+                        currentTab = tabs.tabChildren.length -1;
+                    }
+                    tabs.selectedTabIndex = currentTab;
+                }
+            }
+
             Tabs{
                 id: tabs
                 Tab{
