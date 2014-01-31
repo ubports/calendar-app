@@ -16,7 +16,6 @@ from testtools.matchers import Equals, NotEquals
 
 from calendar_app.tests import CalendarTestCase
 import logging
-from dateutil import tz
 
 logger = logging.getLogger(__name__)
 
