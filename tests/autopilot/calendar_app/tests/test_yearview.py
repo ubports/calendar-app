@@ -10,7 +10,7 @@ Calendar app autopilot tests for the year view.
 """
 
 from datetime import datetime
-
+from dateutil import tz
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
@@ -28,16 +28,24 @@ class TestYearView(CalendarTestCase):
 
         self.year_view = self.main_view.get_year_view()
 
+    def get_current_year(self):
+        year_grids = self.year_view.select_many("QQuickGridView");
+        for year in year_grids:
+            if year.isCurrentItem == True:
+                return year
+        return None
+
     def test_selecting_a_month_switch_to_month_view(self):
         """It must be possible to select a month and open the month view."""
 
         # TODO: the component indexed at 1 is the one currently displayed,
         # investigate a way to validate this assumption visually.
-        year_grid = self.year_view.select_many("QQuickGridView")[1]
+        year_grid = self.get_current_year()
+        self.assertThat(year_grid, NotEquals(None))
         months = year_grid.select_many("MonthComponent")
+        months.sort(key=lambda month: month.monthDate)
         self.assert_current_year_is_default_one(months[0])
 
-        months.sort(key=lambda month: month.monthDate)
         february = months[1]
         expected_month_name = self.main_view.get_month_name(february)
         expected_year = self.main_view.get_year(february)
@@ -49,7 +57,15 @@ class TestYearView(CalendarTestCase):
 
         month_view = self.main_view.get_month_view()
         self.assertThat(month_view.visible, Eventually(Equals(True)))
-        selected_month = month_view.select_many("MonthComponent")[1]
+
+        months = month_view.select_many("MonthComponent")
+        selected_month = None
+        for current_month in months:
+            if current_month.isCurrentItem == True:
+                selected_month = current_month
+                break
+
+        self.assertThat(selected_month, NotEquals(None))
 
         self.assertThat(self.main_view.get_year(selected_month),
                         Equals(expected_year))
@@ -108,7 +124,8 @@ class TestYearView(CalendarTestCase):
         if now.month > 6:
             self.drag_page_up()
 
-        year_grid = self.year_view.select_many("QQuickGridView")[1]
+        year_grid = self.get_current_year()
+        self.assertThat(year_grid, NotEquals(None))
         months = year_grid.select_many("MonthComponent")
 
         for month in months:

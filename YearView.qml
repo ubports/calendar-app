@@ -28,6 +28,7 @@ PathViewBase {
         id: yearView
         clip: true
 
+        property bool isCurrentItem: index == root.currentIndex
         property var year: getYear();
 
         function getYear() {
