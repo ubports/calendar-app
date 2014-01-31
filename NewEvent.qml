@@ -32,7 +32,7 @@ Page {
             endDate = new Date(date)
             endDate.setMinutes( endDate.getMinutes() + 10)
         }
-        internal.eventModel = GlobalModel.gloablModel();
+        internal.eventModel = GlobalModel.globalModel();
 
         if(event === null){
             isEdit =false;
@@ -43,6 +43,7 @@ Page {
             editEvent(event);
         }
     }
+
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
@@ -53,6 +54,7 @@ Page {
         startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
     }
+
     //Editing Event
     function editEvent(e) {
         startDate =new Date(e.startDateTime);
@@ -74,6 +76,7 @@ Page {
             }
         }
     }
+
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
@@ -85,12 +88,16 @@ Page {
             event.displayLabel = titleEdit.text;
             event.description = messageEdit.text;
             event.location = locationEdit.text
+
             event.attendees = []; // if Edit remove all attendes & add them again if any
             if( personEdit.text != "") {
                 var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
                 attendee.name = personEdit.text;
                 event.setDetail(attendee);
             }
+
+            event.allDay = allDayEventCheckbox.checked;
+
             internal.eventModel.saveItem(event);
             pageStack.pop();
         }
@@ -141,6 +148,7 @@ Page {
             }
         }
     }
+
     Component {
         id: timePicker
         TimePicker {
@@ -177,6 +185,21 @@ Page {
                     width: parent.width
                     anchors.centerIn: parent
                     spacing: units.gu(1)
+
+                    NewEventEntryField{
+                        id: dateField
+                        title: i18n.tr("Date")
+                        width: parent.width
+                        objectName: "dateInput"
+
+                        text: Qt.formatDateTime(startDate,"dd MMM yyyy");
+
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: {
+                            }
+                        }
+                    }
 
                     NewEventEntryField{
                         id: startTime
@@ -227,6 +250,28 @@ Page {
                     }
                 }
             }
+
+            Row {
+                width: parent.width
+                spacing: units.gu(1)
+                anchors.margins: units.gu(0.5)
+
+                Label {
+                    text: i18n.tr("All Day event:")
+                    anchors.verticalCenter: allDayEventCheckbox.verticalCenter
+                }
+
+                CheckBox {
+                    id: allDayEventCheckbox
+                    checked: false
+
+                    onCheckedChanged: {
+                        startTime.visible = !checked;
+                        endTime.visible = !checked;
+                    }
+                }
+            }
+
             NewEventEntryField{
                 id: titleEdit
                 width: parent.width
@@ -274,13 +319,14 @@ Page {
 
             Item {
                 width: parent.width
-                height: childrenRect.height
+                height: recurrenceOptions.height
                 Label{
                     id: frequencyLabel
                     text: i18n.tr("This happens");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
+                    id: recurrenceOptions
                     anchors.right: parent.right
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model:[i18n.tr("Once"),i18n.tr("Daily"),i18n.tr("Weekly"),i18n.tr("Monthly"),i18n.tr("Yearly")]
@@ -289,13 +335,15 @@ Page {
 
             Item{
                 width: parent.width
-                height: childrenRect.height
+                height: reminderOptions.height
                 Label{
                     id: remindLabel
                     text: i18n.tr("Remind me");
                     anchors.verticalCenter: parent.verticalCenter
                 }
+
                 OptionSelector{
+                    id: reminderOptions
                     anchors.right: parent.right
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model:[i18n.tr("No Reminder"),
