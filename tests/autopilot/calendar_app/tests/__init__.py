@@ -58,7 +58,7 @@ class CalendarTestCase(AutopilotTestCase):
         #turn off the OSK so it doesn't block screen elements
         if model() != 'Desktop':
             os.system("stop maliit-server")
-            self.addCleanup(os.system,"start maliit-server")
+            self.addCleanup(os.system, "start maliit-server")
 
         # Unset the current locale to ensure locale-specific data
         # (day and month names, first day of the week, …) doesn’t get
