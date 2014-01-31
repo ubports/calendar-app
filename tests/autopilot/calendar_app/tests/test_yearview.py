@@ -29,9 +29,9 @@ class TestYearView(CalendarTestCase):
         self.year_view = self.main_view.get_year_view()
 
     def get_current_year(self):
-        year_grids = self.year_view.select_many("QQuickGridView");
+        year_grids = self.year_view.select_many("QQuickGridView")
         for year in year_grids:
-            if year.isCurrentItem == True:
+            if year.isCurrentItem is True:
                 return year
         return None
 
@@ -61,7 +61,7 @@ class TestYearView(CalendarTestCase):
         months = month_view.select_many("MonthComponent")
         selected_month = None
         for current_month in months:
-            if current_month.isCurrentItem == True:
+            if current_month.isCurrentItem is True:
                 selected_month = current_month
                 break
 
