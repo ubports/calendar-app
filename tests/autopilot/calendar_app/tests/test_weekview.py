@@ -74,7 +74,6 @@ class TestWeekView(CalendarTestCase):
         timeline = None
 
         for tilelineComponent in compArray:
-            print(tilelineComponent.isCurrentItem)
             if tilelineComponent.isCurrentItem:
                 timeline = tilelineComponent
                 break

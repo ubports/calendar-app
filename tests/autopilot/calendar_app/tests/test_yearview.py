@@ -30,7 +30,7 @@ class TestYearView(CalendarTestCase):
     def get_current_year(self):
         year_grids = self.year_view.select_many("QQuickGridView")
         for year in year_grids:
-            if year.isCurrentItem is True:
+            if year.isCurrentItem:
                 return year
         return None
 
