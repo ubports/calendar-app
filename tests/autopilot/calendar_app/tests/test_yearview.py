@@ -10,7 +10,6 @@ Calendar app autopilot tests for the year view.
 """
 
 from datetime import datetime
-from dateutil import tz
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
