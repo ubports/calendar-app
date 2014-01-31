@@ -60,7 +60,7 @@ class TestYearView(CalendarTestCase):
         months = month_view.select_many("MonthComponent")
         selected_month = None
         for current_month in months:
-            if current_month.isCurrentItem is True:
+            if current_month.isCurrentItem:
                 selected_month = current_month
                 break
 
