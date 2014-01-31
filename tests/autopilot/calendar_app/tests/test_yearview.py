@@ -104,11 +104,12 @@ class TestYearView(CalendarTestCase):
         current_year = datetime.now().year
 
         for i in xrange(1, how_many):
-            self.main_view.swipe_view(direction, self.year_view, x_pad=0.15)
-            selected_year = self.year_view.currentYear.year
+            #prevent timing issues with swiping
+            self.main_view.swipe_view(direction, self.year_view)
 
             self.assertThat(
-                selected_year, Equals(current_year + (i * direction)))
+                lambda: self.year_view.currentYear.year,
+                Eventually(Equals(current_year + (i * direction))))
 
     def assert_current_year_is_default_one(self, month_component):
         self.assertThat(self.main_view.get_year(month_component),

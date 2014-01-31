@@ -179,8 +179,8 @@ MainView {
                         }
                     } // End of else if (starttime)
                     else {
-                    	// Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
-                    	// After the fix we can delete this else
+                        // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
+                        // After the fix we can delete this else
                         tabs.selectedTabIndex= 1;
                     }
                 } // End of if about args.values
@@ -253,6 +253,7 @@ MainView {
                 }
                 Tab {
                     id: monthTab
+                    objectName: "monthTab"
                     title: i18n.tr("Month")
                     page: MonthView{
                         anchors.fill: parent

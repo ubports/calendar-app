@@ -5,6 +5,7 @@ import "dateExt.js" as DateExt
 
 PathViewBase {
     id: root
+    objectName: "YearView"
 
     property var currentYear: DateExt.today();
 

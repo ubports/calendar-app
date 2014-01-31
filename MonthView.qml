@@ -5,6 +5,7 @@ import "colorUtils.js" as Color
 
 Page {
     id: monthViewPage
+    objectName: "MonthView"
 
     property var currentMonth: DateExt.today();
 

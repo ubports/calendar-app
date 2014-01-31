@@ -1,7 +1,9 @@
 Source: calendar-app
 Priority: extra
 Maintainer: Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>
-Build-Depends: debhelper (>= 9), 
+Build-Depends: cmake,
+               debhelper (>= 9),
+               python,
                qtdeclarative5-dev-tools,
                qt5-default,
                qtdeclarative5-qtquick2-plugin,

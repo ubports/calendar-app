@@ -62,6 +62,11 @@ class CalendarTestCase(AutopilotTestCase):
             #disabling for now
             #self.addCleanup(os.system("start maliit-server"))
 
+        # Unset the current locale to ensure locale-specific data
+        # (day and month names, first day of the week, …) doesn’t get
+        # in the way of test expectations.
+        self.patch_environment('LC_ALL', 'C')
+
         if os.path.exists(self.local_location):
             self.launch_test_local()
         elif os.path.exists(self.installed_location):
@@ -80,8 +85,6 @@ class CalendarTestCase(AutopilotTestCase):
         self.app = self.launch_test_application(
             "qmlscene",
             self.installed_location,
-            "--desktop_file_hint=/usr/share/applications/"
-            "calendar-app.desktop",
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 

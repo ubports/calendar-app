@@ -5,6 +5,7 @@ import "dateExt.js" as DateExt
 
 Column {
     id: root
+    objectName: "WeekView"
 
     property var dayStart: new Date();
     property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
@@ -33,7 +34,7 @@ Column {
         property var weekStart: weekViewPath.visibleWeek
 
         width: parent.width
-        height: root.height - viewHeader.height - weekHeader.height
+        height: root.height - weekViewPath.y
 
         onNextItemHighlighted: {
             nextWeek();

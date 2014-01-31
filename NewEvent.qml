@@ -8,15 +8,21 @@ import "GlobalEventModel.js" as GlobalModel
 
 Page {
     id: root
-
     property var date: new Date();
+
+    property var event:null;
+
     property var startDate;
     property var endDate;
     property int optionSelectorWidth: frequencyLabel.width > remindLabel.width ? frequencyLabel.width : remindLabel.width
 
     property alias scrollY: flickable.contentY
+    property bool isEdit: false
 
     Component.onCompleted: {
+
+        pageStack.header.visible = true;
+
         // If startDate is setted by argument we have to not change it
         if (typeof(startDate) === 'undefined')
             startDate = new Date(date)
@@ -26,37 +32,65 @@ Page {
             endDate = new Date(date)
             endDate.setMinutes( endDate.getMinutes() + 10)
         }
-
         internal.eventModel = GlobalModel.gloablModel();
+
+        if(event === null){
+            isEdit =false;
+            addEvent();
+        }
+        else{
+            isEdit = true;
+            editEvent(event);
+        }
+    }
+    //Data for Add events
+    function addEvent() {
+        event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+        startDate = new Date(date)
+        endDate = new Date(date)
+        endDate.setMinutes( endDate.getMinutes() + 10)
 
         startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
     }
-
+    //Editing Event
+    function editEvent(e) {
+        startDate =new Date(e.startDateTime);
+        endDate = new Date(e.endDateTime);
+        startTime.text = Qt.formatDateTime(e.startDateTime, "dd MMM yyyy hh:mm");
+        endTime.text = Qt.formatDateTime(e.endDateTime, "dd MMM yyyy hh:mm");
+        if(e.displayLabel)
+            titleEdit.text = e.displayLabel;
+        if(e.location)
+            locationEdit.text = e.location;
+        if( e.description ) {
+            messageEdit.text = e.description;
+        }
+        if(e.attendees){
+            for( var j = 0 ; j < e.attendees.length ; ++j ) {
+                personEdit.text += e.attendees[j].name;
+                if(j!== e.attendees.length-1)
+                    personEdit.text += ",";
+            }
+        }
+    }
+    //Save the new or Existing event
     function saveToQtPim() {
-
         internal.clearFocus()
-
         if ( startDate >= endDate ) {
             PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
         } else {
-
-            var event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-
             event.startDateTime = startDate;
             event.endDateTime = endDate;
             event.displayLabel = titleEdit.text;
             event.description = messageEdit.text;
-
             event.location = locationEdit.text
-
+            event.attendees = []; // if Edit remove all attendes & add them again if any
             if( personEdit.text != "") {
                 var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
                 attendee.name = personEdit.text;
-                attendee.emailAddress = "none@nowhere.com";
                 event.setDetail(attendee);
             }
-
             internal.eventModel.saveItem(event);
             pageStack.pop();
         }
@@ -65,7 +99,7 @@ Page {
     width: parent.width
     height: parent.height
 
-    title: i18n.tr("New Event")
+    title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
 
     tools: ToolbarItems {
         //keeping toolbar always open
@@ -107,7 +141,6 @@ Page {
             }
         }
     }
-
     Component {
         id: timePicker
         TimePicker {
@@ -194,7 +227,6 @@ Page {
                     }
                 }
             }
-
             NewEventEntryField{
                 id: titleEdit
                 width: parent.width
