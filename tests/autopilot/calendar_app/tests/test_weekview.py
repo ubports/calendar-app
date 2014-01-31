@@ -16,6 +16,7 @@ from testtools.matchers import Equals, NotEquals
 
 from calendar_app.tests import CalendarTestCase
 import logging
+from dateutil import tz
 
 logger = logging.getLogger(__name__)
 
@@ -70,7 +71,14 @@ class TestWeekView(CalendarTestCase):
 
     def _get_date_label_headers(self):
         header = self.main_view.select_single(objectName="weekHeader")
-        timeline = header.select_many("TimeLineHeaderComponent")[1]
+        compArray = header.select_many("TimeLineHeaderComponent")
+        timeline = None
+
+        for tilelineComponent in compArray:
+            if tilelineComponent.isCurrentItem == True:
+                timeline = tilelineComponent
+                break
+
         dateLabels = timeline.select_many("Label", objectName="dateLabel")
         return dateLabels
 
