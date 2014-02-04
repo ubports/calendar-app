@@ -51,11 +51,21 @@ PathViewBase {
         height: parent.height
         anchors.top: parent.top
 
-        cellWidth: width/2
+        cellWidth: getCellWeight();
         cellHeight: cellWidth * 1.4
 
-        model: 12 /* months in a year */
-        snapMode: GridView.SnapOneRow
+        function getCellWeight() {
+            var minimumCellWidth = units.gu(30)
+            //maximum 4 column and minimun 2 column
+            for(var i = 4; i >= 2 ;--i) {
+                if(width/i >= minimumCellWidth) {
+                    return width/i;
+                }
+            }
+            return width/2;
+        }
+
+        model: 12 /* months in a year */        
         delegate: Item {
             width: yearView.cellWidth
             height: yearView.cellHeight
