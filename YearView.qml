@@ -65,7 +65,7 @@ PathViewBase {
             return width/2;
         }
 
-        model: 12 /* months in a year */        
+        model: 12 /* months in a year */
         delegate: Item {
             width: yearView.cellWidth
             height: yearView.cellHeight
