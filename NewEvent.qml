@@ -3,8 +3,10 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
+import QtOrganizer 5.0
 
 import "GlobalEventModel.js" as GlobalModel
+import "Defines.js" as Defines
 
 Page {
     id: root
@@ -43,6 +45,7 @@ Page {
             editEvent(event);
         }
     }
+
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
@@ -53,16 +56,20 @@ Page {
         startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
     }
+
     //Editing Event
     function editEvent(e) {
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
         startTime.text = Qt.formatDateTime(e.startDateTime, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(e.endDateTime, "dd MMM yyyy hh:mm");
-        if(e.displayLabel)
+
+        if(e.displayLabel) {
             titleEdit.text = e.displayLabel;
-        if(e.location)
+        }
+        if(e.location) {
             locationEdit.text = e.location;
+        }
         if( e.description ) {
             messageEdit.text = e.description;
         }
@@ -73,7 +80,20 @@ Page {
                     personEdit.text += ",";
             }
         }
+
+ 		var index = 0;
+        var reminder = e.detail( Detail.VisualReminder);
+        if( reminder ) {
+            var reminderTime = reminder.secondsBeforeStart;
+            for( var i=0; i< Defines.reminderValue.length; ++i ){
+                if(Defines.reminderValue[i] === reminderTime) {
+                    index = i;
+                }
+            }
+        }
+        reminderOption.selectedIndex = index;
     }
+
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
@@ -85,12 +105,30 @@ Page {
             event.displayLabel = titleEdit.text;
             event.description = messageEdit.text;
             event.location = locationEdit.text
+
             event.attendees = []; // if Edit remove all attendes & add them again if any
             if( personEdit.text != "") {
                 var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
                 attendee.name = personEdit.text;
                 event.setDetail(attendee);
             }
+
+            var reminderTime = Defines.reminderValue[ reminderOption.selectedIndex ];
+            if( reminderTime !== 0 ) {
+                var visualReminder =  Qt.createQmlObject("import QtOrganizer 5.0; VisualReminder{}", Qt.application, "NewEvent.qml");
+                visualReminder.repetitionCount = 3;
+                visualReminder.repetitionDelay = 120;
+                visualReminder.message = titleEdit.text
+                visualReminder.secondsBeforeStart = reminderTime;
+                event.setDetail(visualReminder);
+
+                var audibleReminder =  Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder{}", Qt.application, "NewEvent.qml");
+                audibleReminder.repetitionCount = 3;
+                audibleReminder.repetitionDelay = 120;
+                audibleReminder.secondsBeforeStart = reminderTime;
+                event.setDetail(audibleReminder);
+            }
+
             internal.eventModel.saveItem(event);
             pageStack.pop();
         }
@@ -274,13 +312,14 @@ Page {
 
             Item {
                 width: parent.width
-                height: childrenRect.height
+                height: recurrenceOption.height
                 Label{
                     id: frequencyLabel
                     text: i18n.tr("This happens");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
+                    id: recurrenceOption
                     anchors.right: parent.right
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model:[i18n.tr("Once"),i18n.tr("Daily"),i18n.tr("Weekly"),i18n.tr("Monthly"),i18n.tr("Yearly")]
@@ -289,25 +328,18 @@ Page {
 
             Item{
                 width: parent.width
-                height: childrenRect.height
+                height: reminderOption.height
                 Label{
                     id: remindLabel
                     text: i18n.tr("Remind me");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
+                    id: reminderOption
                     anchors.right: parent.right
                     width: parent.width - optionSelectorWidth - units.gu(1)
-                    model:[i18n.tr("No Reminder"),
-                        i18n.tr("5 minutes"),
-                        i18n.tr("15 minutes"),
-                        i18n.tr("30 minutes"),
-                        i18n.tr("1 hour"),
-                        i18n.tr("2 hours"),
-                        i18n.tr("1 day"),
-                        i18n.tr("2 days"),
-                        i18n.tr("1 week"),
-                        i18n.tr("2 weeks")]
+                    containerHeight: itemHeight * 4
+                    model: Defines.reminderLabel
                 }
             }
         }
