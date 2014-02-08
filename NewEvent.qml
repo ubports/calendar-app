@@ -81,7 +81,7 @@ Page {
             }
         }
 
- 		var index = 0;
+        var index = 0;
         var reminder = e.detail( Detail.VisualReminder);
         if( reminder ) {
             var reminderTime = reminder.secondsBeforeStart;
