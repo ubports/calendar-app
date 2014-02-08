@@ -66,16 +66,21 @@ Page {
         }
 
         var index = 0;
+        if(e.recurrence ) {
+            var recurrenceRule = e.recurrence.recurrenceRules;
+            index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+        }
+        recurrentHeader.value = Defines.recurrenceLabel[index];
+
+        index = 0;
         var reminder = e.detail( Detail.VisualReminder);
         if( reminder ) {
             var reminderTime = reminder.secondsBeforeStart;
-            for(var i=0;i< Defines.reminderValue.length;++i){
-                if(Defines.reminderValue[i] === reminderTime) {
-                    index = i;
-                }
-            }
+            var foundIndex = Defines.reminderValue.indexOf(reminderTime);
+            index = foundIndex != -1 ? foundIndex : 0;
         }
         reminderHeader.value = Defines.reminderLabel[index];
+
 
         // FIXME: need to cache map image to avoid duplicate download every time
         var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+

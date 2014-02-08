@@ -1,5 +1,7 @@
 .pragma library
 
+.import QtOrganizer 5.0 as QtPim
+
 var reminderLabel = getReminderLabels();
 //value in seconds
 var reminderValue = [ 0,
@@ -12,6 +14,13 @@ var reminderValue = [ 0,
     172800 /*2*24*60*60*/,
     604800 /*7*24*60*60*/,
     1209600 /*14*24*60*60*/];
+
+var recurrenceLabel = getRecurrenceLabels();
+var recurrenceValue = [ QtPim.RecurrenceRule.Invalid,
+    QtPim.RecurrenceRule.Daily,
+    QtPim.RecurrenceRule.Weekly,
+    QtPim.RecurrenceRule.Monthly,
+    QtPim.RecurrenceRule.Yearly];
 
 function getReminderLabels() {
     var object = Qt.createQmlObject('\
@@ -31,3 +40,15 @@ function getReminderLabels() {
     return object.reminderLabel;
 }
 
+function getRecurrenceLabels() {
+    var object = Qt.createQmlObject('\
+        import QtQuick 2.0;\
+        import Ubuntu.Components 0.1;\
+        QtObject {\
+            property var recurrenceLabel:[i18n.tr("Once"),\
+                i18n.tr("Daily"),\
+                i18n.tr("Weekly"),\
+                i18n.tr("Monthly"),\
+                i18n.tr("Yearly")];}', Qt.application, 'RecurrenceLabelObj');
+    return object.recurrenceLabel;
+}
