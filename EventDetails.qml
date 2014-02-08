@@ -3,6 +3,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
+import QtOrganizer 5.0
 
 import "GlobalEventModel.js" as GlobalModel
 
@@ -62,6 +63,20 @@ Page {
                 contactModel.append( {"name": attendees[j].name } );
             }
         }
+
+        var index = 0;
+        var recurrenceLabel= [ i18n.tr("Once"),
+                              i18n.tr("Daily"),
+                              i18n.tr("Weekly"),
+                              i18n.tr("Monthly"),
+                              i18n.tr("Yearly")];
+
+        if(e.recurrence ) {
+            var recurrenceRule = e.recurrence.recurrenceRules;
+            index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+        }
+        recurrentHeader.value = recurrenceLabel[index];
+
         // FIXME: need to cache map image to avoid duplicate download every time
         var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
                 "&markers=color:red|"+location+"&zoom=15&size="+mapContainer.width+

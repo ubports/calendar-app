@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtOrganizer 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
@@ -73,7 +74,15 @@ Page {
                     personEdit.text += ",";
             }
         }
+
+        var index = 0;
+        if(e.recurrence ) {
+            var recurrenceRule = e.recurrence.recurrenceRules;
+            index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+        }
+        recurrenceOption.selectedIndex = index;
     }
+
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
@@ -91,6 +100,14 @@ Page {
                 attendee.name = personEdit.text;
                 event.setDetail(attendee);
             }
+
+            var recurrenceRule = internal.recurrenceValue[ recurrenceOption.selectedIndex ];
+            if( recurrenceRule !== RecurrenceRule.Invalid ) {
+                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence);
+                rule.frequency = recurrenceRule;
+                event.recurrence.recurrenceRules = [rule];
+            }
+
             internal.eventModel.saveItem(event);
             pageStack.pop();
         }
@@ -274,16 +291,17 @@ Page {
 
             Item {
                 width: parent.width
-                height: childrenRect.height
+                height: recurrenceOption.height
                 Label{
                     id: frequencyLabel
                     text: i18n.tr("This happens");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
+                    id: recurrenceOption
                     anchors.right: parent.right
                     width: parent.width - optionSelectorWidth - units.gu(1)
-                    model:[i18n.tr("Once"),i18n.tr("Daily"),i18n.tr("Weekly"),i18n.tr("Monthly"),i18n.tr("Yearly")]
+                    model: internal.recurrenceLabel
                 }
             }
 
@@ -316,6 +334,17 @@ Page {
     QtObject {
         id: internal
         property var eventModel;
+        property var recurrenceValue: [ RecurrenceRule.Invalid,
+            RecurrenceRule.Daily,
+            RecurrenceRule.Weekly,
+            RecurrenceRule.Monthly,
+            RecurrenceRule.Yearly];
+
+        property var recurrenceLabel: [ i18n.tr("Once"),
+            i18n.tr("Daily"),
+            i18n.tr("Weekly"),
+            i18n.tr("Monthly"),
+            i18n.tr("Yearly")];
 
         function clearFocus() {
             Qt.inputMethod.hide()
