@@ -233,8 +233,14 @@ MainView {
             Tabs{
                 id: tabs
 
+                property Page currentLoadedPage;
+
                 onSelectedTabIndexChanged: {
-                    tabChildren[selectedTabIndex].page.loadView();
+                    if( currentLoadedPage ) {
+                        currentLoadedPage.unloadView();
+                    }
+                    currentLoadedPage = tabChildren[selectedTabIndex].page;
+                    currentLoadedPage.loadView();
                 }
 
                 Tab{

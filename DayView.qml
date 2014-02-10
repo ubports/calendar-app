@@ -7,8 +7,6 @@ Item{
     id: root
     objectName: "DayView"
 
-    anchors.fill: parent
-
     property var currentDay: new Date()
 
     Column {

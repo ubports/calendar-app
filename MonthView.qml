@@ -12,11 +12,6 @@ PathViewBase{
 
     signal dateSelected(var date);
 
-    anchors.top:parent.top
-
-    width:parent.width
-    height: parent.height
-
     onNextItemHighlighted: {
         nextMonth();
     }

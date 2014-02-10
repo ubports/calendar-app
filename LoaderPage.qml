@@ -6,7 +6,7 @@ Page{
     anchors.fill: parent
 
     property var viewSource;
-    property var view: loader.item
+    property alias view: loader.item
 
     signal loaded();
 
@@ -20,5 +20,9 @@ Page{
 
     function loadView(){
         loader.source = root.viewSource
+    }
+
+    function unloadView() {
+        loader.source = "";
     }
 }
