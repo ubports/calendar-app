@@ -28,11 +28,8 @@ class TestYearView(CalendarTestCase):
         self.year_view = self.main_view.get_year_view()
 
     def get_current_year(self):
-        year_grids = self.year_view.select_many("QQuickGridView")
-        for year in year_grids:
-            if year.isCurrentItem:
-                return year
-        return None
+        return self.year_view.select_single("QQuickGridView",
+                                            isCurrentItem=True)
 
     def test_selecting_a_month_switch_to_month_view(self):
         """It must be possible to select a month and open the month view."""
@@ -57,12 +54,8 @@ class TestYearView(CalendarTestCase):
         month_view = self.main_view.get_month_view()
         self.assertThat(month_view.visible, Eventually(Equals(True)))
 
-        months = month_view.select_many("MonthComponent")
-        selected_month = None
-        for current_month in months:
-            if current_month.isCurrentItem:
-                selected_month = current_month
-                break
+        selected_month = month_view.select_single("MonthComponent",
+                                                  isCurrentItem=True)
 
         self.assertThat(selected_month, NotEquals(None))
 
