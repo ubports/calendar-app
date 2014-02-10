@@ -261,10 +261,8 @@ MainView {
                             if( date.getMonth() === now.getMonth()
                                     && date.getFullYear() === now.getFullYear()) {
                                 tabPage.currentDay = now;
-                                //monthTab.view.currentMonth = now
                             } else {
                                 tabPage.currentDay = date.midnight();
-                                //monthTab.view.currentMonth = date.midnight();
                             }
                         }
                     }
