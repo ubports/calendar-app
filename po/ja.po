@@ -1,16 +1,16 @@
-# Shan translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Japanese translation for ubuntu-calendar-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-09-26 07:05+0200\n"
-"PO-Revision-Date: 2013-07-14 08:39+0000\n"
-"Last-Translator: Sai Mawn Kham <Unknown>\n"
-"Language-Team: Shan <shn@li.org>\n"
+"PO-Revision-Date: 2014-01-18 14:44+0000\n"
+"Last-Translator: Shushi Kurose <md81bird@hitaki.net>\n"
+"Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,34 +21,34 @@ msgstr ""
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../EventBubble.qml:38
 msgid "hh:mm"
-msgstr ""
+msgstr "hh:mm"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../EventBubble.qml:43
 #, qt-format
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #: ../EventDetails.qml:70
 msgid "Add invite"
-msgstr "ထႅမ်သႂ်ႇ ပၢင်ၵႅဝ်ႈ"
+msgstr ""
 
 #: ../EventDetails.qml:79
 msgid "Edit"
-msgstr "မႄးထတ်း"
+msgstr "編集"
 
 #: ../EventDetails.qml:153
 msgid "People"
-msgstr "ၵူၼ်း"
+msgstr ""
 
 #: ../NewEvent.qml:23
 msgid "Create event"
-msgstr "ၵေႃႇသၢင်ႈ ပၢင်ၵႅဝ်ႈ"
+msgstr "予定を作成する"
 
 #: ../NewEvent.qml:29
 msgid "Add event name"
-msgstr "ထႅမ်သႂ်ႇ ၸိုဝ်ႈပၢင်ၵႅဝ်ႈ"
+msgstr ""
 
 #: ../NewEvent.qml:102
 msgid "to"
@@ -60,11 +60,11 @@ msgstr ""
 
 #: ../NewEvent.qml:143
 msgid "Add Location"
-msgstr "ထႅမ်သႂ်ႇ ဢွင်ႈတီႈ"
+msgstr "場所の追加"
 
 #: ../NewEvent.qml:156
 msgid "Invite People"
-msgstr "ၽိတ်ႈမွၵ်ႈ ၵူၼ်း"
+msgstr ""
 
 #: ../NewEvent.qml:168
 msgid "Error"
@@ -72,11 +72,11 @@ msgstr ""
 
 #: ../NewEvent.qml:171 ../TimePicker.qml:82
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../NewEvent.qml:177
 msgid "Save"
-msgstr "သိမ်း"
+msgstr "保存"
 
 #: ../NewEvent.qml:205
 msgid "End time can't be before start time"
@@ -90,23 +90,23 @@ msgstr ""
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr ""
+msgstr "時刻"
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr ""
+msgstr "時"
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr ""
+msgstr "分"
 
 #: ../TimePicker.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: ../calendar.qml:56
 msgid "New Event"
-msgstr "ပၢင်ၵႅဝ်ႈ ဢၼ်မႂ်ႇ"
+msgstr "新しいイベント"
 
 #: ../calendar.qml:64
 msgid "Today"
@@ -114,20 +114,20 @@ msgstr ""
 
 #: ../calendar.qml:75
 msgid "Year"
-msgstr ""
+msgstr "年"
 
 #: ../calendar.qml:95
 msgid "Month"
-msgstr ""
+msgstr "月"
 
 #: ../calendar.qml:108
 msgid "Week"
-msgstr ""
+msgstr "週"
 
 #: ../calendar.qml:124
 msgid "Day"
-msgstr ""
+msgstr "日"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr "ပၵ်းယဵမ်ႈဝၼ်း"
+msgstr "カレンダー"

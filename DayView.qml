@@ -16,6 +16,8 @@ Item{
         width: parent.width; height: parent.height
         spacing: units.gu(1)
 
+        anchors.fill: parent
+
         ViewHeader{
             id: viewHeader
             date: currentDay
@@ -45,7 +47,7 @@ Item{
             preferredHighlightEnd: 0.5
 
             width: parent.width
-            height: column.height - viewHeader.height - dayHeader.height
+            height: column.height - dayViewPath.y
 
             path: Path {
                 startX: -(dayViewPath.width/1.75); startY: dayViewPath.height/2

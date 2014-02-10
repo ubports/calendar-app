@@ -8,126 +8,126 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-09-26 07:05+0200\n"
-"PO-Revision-Date: 2013-10-20 15:41+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-01-25 16:34+0000\n"
+"Last-Translator: Gangov <Unknown>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-03 06:16+0000\n"
-"X-Generator: Launchpad (build 16856)\n"
+"X-Launchpad-Export-Date: 2014-02-04 06:49+0000\n"
+"X-Generator: Launchpad (build 16916)\n"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../EventBubble.qml:38
 msgid "hh:mm"
-msgstr ""
+msgstr "чч:мм"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../EventBubble.qml:43
 #, qt-format
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #: ../EventDetails.qml:70
 msgid "Add invite"
-msgstr ""
+msgstr "Добави покана"
 
 #: ../EventDetails.qml:79
 msgid "Edit"
-msgstr ""
+msgstr "Редактиране"
 
 #: ../EventDetails.qml:153
 msgid "People"
-msgstr ""
+msgstr "Хора"
 
 #: ../NewEvent.qml:23
 msgid "Create event"
-msgstr ""
+msgstr "Създай събитие"
 
 #: ../NewEvent.qml:29
 msgid "Add event name"
-msgstr ""
+msgstr "Добави име на събитието"
 
 #: ../NewEvent.qml:102
 msgid "to"
-msgstr ""
+msgstr "до"
 
 #: ../NewEvent.qml:137
 msgid "Location & People"
-msgstr ""
+msgstr "Местоположение и хора"
 
 #: ../NewEvent.qml:143
 msgid "Add Location"
-msgstr ""
+msgstr "Добавяне на местоположение"
 
 #: ../NewEvent.qml:156
 msgid "Invite People"
-msgstr ""
+msgstr "Покани хора"
 
 #: ../NewEvent.qml:168
 msgid "Error"
-msgstr ""
+msgstr "Грешка"
 
 #: ../NewEvent.qml:171 ../TimePicker.qml:82
 msgid "OK"
-msgstr ""
+msgstr "ОК"
 
 #: ../NewEvent.qml:177
 msgid "Save"
-msgstr ""
+msgstr "Запазване"
 
 #: ../NewEvent.qml:205
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "Времето за край не може да бъде преди времето за начало"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:18
 msgid "hh ap"
-msgstr ""
+msgstr "чч ап"
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr ""
+msgstr "Време"
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr ""
+msgstr "Час"
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr ""
+msgstr "Минута"
 
 #: ../TimePicker.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "Отмени"
 
 #: ../calendar.qml:56
 msgid "New Event"
-msgstr ""
+msgstr "Ново събитие"
 
 #: ../calendar.qml:64
 msgid "Today"
-msgstr ""
+msgstr "Днес"
 
 #: ../calendar.qml:75
 msgid "Year"
-msgstr ""
+msgstr "Година"
 
 #: ../calendar.qml:95
 msgid "Month"
-msgstr ""
+msgstr "Месец"
 
 #: ../calendar.qml:108
 msgid "Week"
-msgstr ""
+msgstr "Седмица"
 
 #: ../calendar.qml:124
 msgid "Day"
-msgstr ""
+msgstr "Ден"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr ""
+msgstr "Календар"

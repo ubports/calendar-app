@@ -1,1 +1,2 @@
-tests/autopilot/calendar_app/* usr/lib/python2.7/dist-packages/calendar_app/
+usr/lib/*/dist-packages/calendar_app/*
+
