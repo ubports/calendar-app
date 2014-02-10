@@ -47,11 +47,13 @@ PathViewBase {
         height: parent.height
         anchors.top: parent.top
 
-        cellWidth: width/2
+        readonly property int minCellWidth: units.gu(30)
+        cellWidth: Math.floor(Math.min.apply(Math, [3, 4].map(function(n)
+            { return ((width / n >= minCellWidth) ? width / n : width / 2) })))
+
         cellHeight: cellWidth * 1.4
 
         model: 12 /* months in a year */
-        snapMode: GridView.SnapOneRow
         delegate: Item {
             width: yearView.cellWidth
             height: yearView.cellHeight
