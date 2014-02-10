@@ -51,19 +51,11 @@ PathViewBase {
         height: parent.height
         anchors.top: parent.top
 
-        cellWidth: getCellWeight();
-        cellHeight: cellWidth * 1.4
+        readonly property int minCellWidth: units.gu(30)
+        cellWidth: Math.floor(Math.min.apply(Math, [3, 4].map(function(n)
+            { return ((width / n >= minCellWidth) ? width / n : width / 2) })))
 
-        function getCellWeight() {
-            var minimumCellWidth = units.gu(30)
-            //maximum 4 column and minimun 2 column
-            for(var i = 4; i >= 2 ;--i) {
-                if(width/i >= minimumCellWidth) {
-                    return width/i;
-                }
-            }
-            return width/2;
-        }
+        cellHeight: cellWidth * 1.4
 
         model: 12 /* months in a year */
         delegate: Item {
