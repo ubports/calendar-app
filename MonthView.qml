@@ -34,6 +34,8 @@ PathViewBase{
     }
 
     delegate: MonthComponent{
+        property bool isCurrentItem: index === monthViewPath.currentIndex
+        
         width: parent.width - units.gu(5)
         height: parent.height - units.gu(5)
 
