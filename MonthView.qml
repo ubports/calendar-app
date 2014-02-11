@@ -8,7 +8,6 @@ PathViewBase{
     objectName: "MonthView"
 
     property var currentMonth: DateExt.today();
-    property var startMonth: addMonth(currentMonth,-1);
 
     signal dateSelected(var date);
 
@@ -43,11 +42,11 @@ PathViewBase{
         function getMonthDate() {
             switch( monthViewPath.indexType(index)) {
             case 0:
-                return monthViewPath.startMonth;
+                return monthViewPath.addMonth(monthViewPath.currentMonth,0);
             case -1:
-                return monthViewPath.addMonth(monthViewPath.startMonth,2);
+                return monthViewPath.addMonth(monthViewPath.currentMonth,-1);
             case 1:
-                return monthViewPath.addMonth(monthViewPath.startMonth,1);
+                return monthViewPath.addMonth(monthViewPath.currentMonth,1);
             }
         }
 

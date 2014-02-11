@@ -70,7 +70,8 @@ class TestWeekView(CalendarTestCase):
 
     def _get_date_label_headers(self):
         header = self.main_view.select_single(objectName="weekHeader")
-        timeline = header.select_many("TimeLineHeaderComponent")[0]
+        timeline = header.select_single("TimeLineHeaderComponent",
+                                        isCurrentItem=True)
         dateLabels = timeline.select_many("Label", objectName="dateLabel")
         return dateLabels
 
