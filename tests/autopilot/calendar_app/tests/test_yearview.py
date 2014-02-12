@@ -10,7 +10,6 @@ Calendar app autopilot tests for the year view.
 """
 
 from datetime import datetime
-
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
@@ -28,13 +27,19 @@ class TestYearView(CalendarTestCase):
 
         self.year_view = self.main_view.get_year_view()
 
+    def get_current_year(self):
+        return self.year_view.select_single("QQuickGridView",
+                                            isCurrentItem=True)
+
     def test_selecting_a_month_switch_to_month_view(self):
         """It must be possible to select a month and open the month view."""
 
         # TODO: the component indexed at 1 is the one currently displayed,
         # investigate a way to validate this assumption visually.
-        year_grid = self.year_view.select_many("QQuickGridView")[0]
+        year_grid = self.get_current_year()
+        self.assertThat(year_grid, NotEquals(None))
         months = year_grid.select_many("MonthComponent")
+        months.sort(key=lambda month: month.monthDate)
         self.assert_current_year_is_default_one(months[0])
 
         february = months[1]
@@ -48,7 +53,11 @@ class TestYearView(CalendarTestCase):
 
         month_view = self.main_view.get_month_view()
         self.assertThat(month_view.visible, Eventually(Equals(True)))
-        selected_month = month_view.select_many("MonthComponent")[0]
+
+        selected_month = month_view.select_single("MonthComponent",
+                                                  isCurrentItem=True)
+
+        self.assertThat(selected_month, NotEquals(None))
 
         self.assertThat(self.main_view.get_year(selected_month),
                         Equals(expected_year))
@@ -108,13 +117,13 @@ class TestYearView(CalendarTestCase):
         if now.month > 6:
             self.drag_page_up()
 
-        year_grid = self.year_view.select_many("QQuickGridView")[0]
+        year_grid = self.get_current_year()
+        self.assertThat(year_grid, NotEquals(None))
         months = year_grid.select_many("MonthComponent")
 
         for month in months:
             current_month_label = month.select_single(
                 "Label", objectName="monthLabel")
-
             if current_month_name == current_month_label.text:
                 return month
 

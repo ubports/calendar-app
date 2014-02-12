@@ -63,7 +63,7 @@ PathViewBase {
             case 0:
                 return date;
             case -1:
-                return date.addDays(14);
+                return date.addDays(-7);
             case 1:
                 return date.addDays(7);
             }

@@ -14,7 +14,7 @@ Page {
     PathViewBase{
         id: monthViewPath
 
-        property var startMonth: addMonth(currentMonth,-1);
+        property var startMonth: currentMonth;
 
         anchors.top:parent.top
 
@@ -44,6 +44,8 @@ Page {
         }
 
         delegate: MonthComponent{
+            property bool isCurrentItem: index === monthViewPath.currentIndex
+
             width: parent.width - units.gu(5)
             height: parent.height - units.gu(5)
 
@@ -54,7 +56,7 @@ Page {
                 case 0:
                     return monthViewPath.startMonth;
                 case -1:
-                    return monthViewPath.addMonth(monthViewPath.startMonth,2);
+                    return monthViewPath.addMonth(monthViewPath.startMonth,-1);
                 case 1:
                     return monthViewPath.addMonth(monthViewPath.startMonth,1);
                 }
