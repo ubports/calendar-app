@@ -119,6 +119,15 @@ Page {
         }
     }
 
+    function openDatePicker (element, caller, callerProperty, mode) {
+        element.highlighted = true;
+        var picker = PickerPanel.openDatePicker(caller, callerProperty, mode);
+        if (!picker) return;
+        picker.closed.connect(function () {
+            element.highlighted = false;
+        });
+    }
+
     width: parent.width
     height: parent.height
 
@@ -210,7 +219,7 @@ Page {
 
                             MouseArea{
                                 anchors.fill: parent
-                                onClicked: PickerPanel.openDatePicker(root, "startDate", "Years|Months|Days")
+                                onClicked: openDatePicker(startDateInput, root, "startDate", "Years|Months|Days")
                             }
                         }
 
@@ -227,7 +236,7 @@ Page {
 
                             MouseArea{
                                 anchors.fill: parent
-                                onClicked: PickerPanel.openDatePicker(root, "startDate", "Hours|Minutes")
+                                onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
                             }
                         }
                     }
@@ -249,7 +258,7 @@ Page {
 
                             MouseArea{
                                 anchors.fill: parent
-                                onClicked: PickerPanel.openDatePicker(root, "endDate", "Years|Months|Days")
+                                onClicked: openDatePicker(endDateInput, root, "endDate", "Years|Months|Days")
                             }
                         }
 
@@ -265,7 +274,7 @@ Page {
 
                             MouseArea{
                                 anchors.fill: parent
-                                onClicked: PickerPanel.openDatePicker(root, "endDate", "Hours|Minutes")
+                                onClicked: openDatePicker(endTimeInput, root, "endDate", "Hours|Minutes")
                             }
                         }
                     }
