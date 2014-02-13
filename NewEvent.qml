@@ -20,6 +20,16 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
+    onStartDateChanged: {
+        startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
+        startTimeInput.text = Qt.formatDateTime(startDate, "hh:mm");
+    }
+
+    onEndDateChanged: {
+        endDateInput.text = Qt.formatDateTime(endDate, "dd MMM yyyy");
+        endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
+    }
+
     Component.onCompleted: {
 
         pageStack.header.visible = true;
@@ -50,16 +60,12 @@ Page {
         startDate = new Date(date)
         endDate = new Date(date)
         endDate.setMinutes( endDate.getMinutes() + 10)
-
-        startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
-        endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
     }
     //Editing Event
     function editEvent(e) {
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
-        startTime.text = Qt.formatDateTime(e.startDateTime, "dd MMM yyyy hh:mm");
-        endTime.text = Qt.formatDateTime(e.endDateTime, "dd MMM yyyy hh:mm");
+
         if(e.displayLabel)
             titleEdit.text = e.displayLabel;
         if(e.location)
@@ -158,11 +164,6 @@ Page {
             }
         }
     }
-    Component {
-        id: timePicker
-        TimePicker {
-        }
-    }
 
     Flickable{
         id: flickable
@@ -195,50 +196,76 @@ Page {
                     anchors.centerIn: parent
                     spacing: units.gu(1)
 
-                    NewEventEntryField{
-                        id: startTime
-                        title: i18n.tr("Start")
+                    Item {
                         width: parent.width
-                        objectName: "startTimeInput"
+                        height: startDateInput.height
+                        NewEventEntryField{
+                            id: startDateInput
+                            title: i18n.tr("Start")
+                            objectName: "startDateInput"
 
-                        text: Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
+                            text: ""
 
-                        MouseArea{
-                            anchors.fill: parent
-                            onClicked: {
-                                internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startDate.getHours(),"minute":startDate.getMinutes()});
-                                popupObj.accepted.connect(function(startHour, startMinute) {
-                                    var newDate = startDate;
-                                    newDate.setHours(startHour, startMinute);
-                                    startDate = newDate;
-                                    startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
-                                })
+                            width: parent.width / 2
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: PickerPanel.openDatePicker(root, "startDate", "Years|Months|Days")
+                            }
+                        }
+
+                        NewEventEntryField{
+                            id: startTimeInput
+                            title: i18n.tr("at")
+
+                            objectName: "startTimeInput"
+
+                            text: ""
+
+                            width: (parent.width / 2) - units.gu(1)
+                            anchors.right: parent.right
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: PickerPanel.openDatePicker(root, "startDate", "Hours|Minutes")
                             }
                         }
                     }
 
                     ThinDivider{}
 
-                    NewEventEntryField{
-                        id: endTime
-                        title: i18n.tr("End")
+                    Item {
                         width: parent.width
-                        objectName: "endTimeInput"
+                        height: endDateInput.height
 
-                        text: Qt.formatDateTime(endDate,"dd MMM yyyy hh:mm");
+                        NewEventEntryField{
+                            id: endDateInput
+                            title: i18n.tr("End")
+                            objectName: "endDateInput"
 
-                        MouseArea{
-                            anchors.fill: parent
-                            onClicked: {
-                                internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endDate.getHours(),"minute":endDate.getMinutes()});
-                                popupObj.accepted.connect(function(startHour, startMinute) {
-                                    var newDate = endDate;
-                                    newDate.setHours(startHour, startMinute);
-                                    endDate = newDate;
-                                    endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
-                                })
+                            text: ""
+
+                            width: parent.width / 2
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: PickerPanel.openDatePicker(root, "endDate", "Years|Months|Days")
+                            }
+                        }
+
+                        NewEventEntryField{
+                            id: endTimeInput
+                            title: i18n.tr("at")
+                            objectName: "endTimeInput"
+
+                            text: ""
+
+                            width: (parent.width / 2) - units.gu(1)
+                            anchors.right: parent.right
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: PickerPanel.openDatePicker(root, "endDate", "Hours|Minutes")
                             }
                         }
                     }
@@ -351,8 +378,10 @@ Page {
             titleEdit.focus = false
             locationEdit.focus = false
             personEdit.focus = false
-            startTime.focus = false
-            endTime.focus = false
+            startDateInput.focus = false
+            startDateInput.focus = false
+            endTimeInput.focus = false
+            endDateInput.focus = false
             messageEdit.focus = false
         }
     }
