@@ -4,8 +4,10 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
+import QtOrganizer 5.0
 
 import "GlobalEventModel.js" as GlobalModel
+import "Defines.js" as Defines
 
 Page {
     id: root
@@ -62,10 +64,13 @@ Page {
         endDate = new Date(e.endDateTime);
         startTime.text = Qt.formatDateTime(e.startDateTime, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(e.endDateTime, "dd MMM yyyy hh:mm");
-        if(e.displayLabel)
+
+        if(e.displayLabel) {
             titleEdit.text = e.displayLabel;
-        if(e.location)
+        }
+        if(e.location) {
             locationEdit.text = e.location;
+        }
         if( e.description ) {
             messageEdit.text = e.description;
         }
@@ -83,6 +88,15 @@ Page {
             index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
         }
         recurrenceOption.selectedIndex = index;
+
+        index = 0;
+        var reminder = e.detail( Detail.VisualReminder);
+        if( reminder ) {
+            var reminderTime = reminder.secondsBeforeStart;
+            var foundIndex = Defines.reminderValue.indexOf(reminderTime);
+            index = foundIndex != -1 ? foundIndex : 0;
+        }
+        reminderOption.selectedIndex = index;
     }
 
     //Save the new or Existing event
@@ -99,18 +113,45 @@ Page {
 
             event.attendees = []; // if Edit remove all attendes & add them again if any
             if( personEdit.text != "") {
-                var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", Qt.application, "NewEvent.qml");
+                var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
                 attendee.name = personEdit.text;
                 event.setDetail(attendee);
             }
 
             event.allDay = allDayEventCheckbox.checked;
 
-            var recurrenceRule = internal.recurrenceValue[ recurrenceOption.selectedIndex ];
+            var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
             if( recurrenceRule !== RecurrenceRule.Invalid ) {
-                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence);
+                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 rule.frequency = recurrenceRule;
                 event.recurrence.recurrenceRules = [rule];
+            }
+
+            //remove old reminder value
+            var oldVisualReminder = event.detail(Detail.VisualReminder);
+            if(oldVisualReminder) {
+                event.removeDetail(oldVisualReminder);
+            }
+
+            var oldAudibleReminder = event.detail(Detail.AudibleReminder);
+            if(oldAudibleReminder) {
+                event.removeDetail(oldAudibleReminder);
+            }
+
+            var reminderTime = Defines.reminderValue[ reminderOption.selectedIndex ];
+            if( reminderTime !== 0 ) {
+                var visualReminder =  Qt.createQmlObject("import QtOrganizer 5.0; VisualReminder{}", event, "NewEvent.qml");
+                visualReminder.repetitionCount = 3;
+                visualReminder.repetitionDelay = 120;
+                visualReminder.message = titleEdit.text
+                visualReminder.secondsBeforeStart = reminderTime;
+                event.setDetail(visualReminder);
+
+                var audibleReminder =  Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder{}", event, "NewEvent.qml");
+                audibleReminder.repetitionCount = 3;
+                audibleReminder.repetitionDelay = 120;
+                audibleReminder.secondsBeforeStart = reminderTime;
+                event.setDetail(audibleReminder);
             }
 
             internal.eventModel.saveItem(event);
@@ -344,13 +385,14 @@ Page {
                     id: recurrenceOption
                     anchors.right: parent.right
                     width: parent.width - optionSelectorWidth - units.gu(1)
-                    model: internal.recurrenceLabel
+                    model: Defines.recurrenceLabel
+                    containerHeight: itemHeight * 4
                 }
             }
 
             Item{
                 width: parent.width
-                height: reminderOptions.height
+                height: reminderOption.height
                 Label{
                     id: remindLabel
                     text: i18n.tr("Remind me");
@@ -358,19 +400,11 @@ Page {
                 }
 
                 OptionSelector{
-                    id: reminderOptions
+                    id: reminderOption
                     anchors.right: parent.right
                     width: parent.width - optionSelectorWidth - units.gu(1)
-                    model:[i18n.tr("No Reminder"),
-                        i18n.tr("5 minutes"),
-                        i18n.tr("15 minutes"),
-                        i18n.tr("30 minutes"),
-                        i18n.tr("1 hour"),
-                        i18n.tr("2 hours"),
-                        i18n.tr("1 day"),
-                        i18n.tr("2 days"),
-                        i18n.tr("1 week"),
-                        i18n.tr("2 weeks")]
+                    containerHeight: itemHeight * 4
+                    model: Defines.reminderLabel
                 }
             }
         }
@@ -379,17 +413,6 @@ Page {
     QtObject {
         id: internal
         property var eventModel;
-        property var recurrenceValue: [ RecurrenceRule.Invalid,
-            RecurrenceRule.Daily,
-            RecurrenceRule.Weekly,
-            RecurrenceRule.Monthly,
-            RecurrenceRule.Yearly];
-
-        property var recurrenceLabel: [ i18n.tr("Once"),
-            i18n.tr("Daily"),
-            i18n.tr("Weekly"),
-            i18n.tr("Monthly"),
-            i18n.tr("Yearly")];
 
         function clearFocus() {
             Qt.inputMethod.hide()
