@@ -11,7 +11,7 @@ set(APP_NAME calendar)
 set(DESKTOP_FILE "${PROJECT_NAME}_${APP_NAME}.desktop")
 set(URLS_FILE "${PROJECT_NAME}_${APP_NAME}.url-dispatcher")
 set(MAIN_QML calendar.qml)
-set(ICON_FILE calendar64.png)
+set(ICON_FILE calendar-app@30.png)
 set(AUTOPILOT_DIR calendar_app)
 set(APP_HARDCODE calendar-app)
 
