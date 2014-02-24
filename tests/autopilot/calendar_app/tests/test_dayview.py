@@ -11,6 +11,12 @@ Calendar app autopilot tests for the day view.
 
 import datetime
 
+# from __future__ import range
+# (python3's range, is same as python2's xrange)
+import sys
+if sys.version_info < (3,):
+    range = xrange
+
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
@@ -74,7 +80,7 @@ class TestDayView(CalendarTestCase):
     def change_days(self, direction):
         now = datetime.datetime.now()
 
-        for i in xrange(1, 5):
+        for i in range(1, 5):
             #prevent timing issues with swiping
             old_day = self.day_view.currentDay.datetime
             self.main_view.swipe_view(direction, self.day_view)
