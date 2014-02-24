@@ -1,6 +1,13 @@
-calendar-app (0.4ubuntu1) UNRELEASED; urgency=medium
+calendar-app (0.5) UNRELEASED; urgency=medium
 
+  [ Sergio Schvezov ]
   * Adding cmake 
+
+  [ David Planella  ]
+  * Fix app icon not included in the package.
+
+  [ Alan Pope ]
+  * Remove side-stage hint (LP: #1281236)
 
  -- Sergio Schvezov <sergio.schvezov@canonical.com>  Sat, 18 Jan 2014 17:05:03 -0300
 
