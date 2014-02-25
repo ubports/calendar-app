@@ -1,4 +1,4 @@
-project(com.ubuntu.calendar)
+project(ubuntu-calendar-app)
 cmake_minimum_required(VERSION 2.8.9)
 
 # Standard install paths
@@ -8,8 +8,8 @@ option(INSTALL_TESTS "Install the tests on make install" on)
 option(CLICK_MODE "Installs to a contained location" off)
 
 set(APP_NAME calendar)
-set(DESKTOP_FILE "${PROJECT_NAME}_${APP_NAME}.desktop")
-set(URLS_FILE "${PROJECT_NAME}_${APP_NAME}.url-dispatcher")
+set(DESKTOP_FILE "${PROJECT_NAME}.desktop")
+set(URLS_FILE "${PROJECT_NAME}.url-dispatcher")
 set(MAIN_QML calendar.qml)
 set(ICON calendar64.png)
 set(AUTOPILOT_DIR calendar_app)
