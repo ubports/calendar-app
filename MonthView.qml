@@ -49,7 +49,7 @@ Page {
             width: parent.width - units.gu(5)
             height: parent.height - units.gu(5)
 
-            monthDate: getMonthDate();
+            currentMonth: getMonthDate();
 
             function getMonthDate() {
                 switch( monthViewPath.indexType(index)) {

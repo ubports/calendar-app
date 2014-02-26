@@ -1,3 +1,4 @@
+
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
@@ -7,7 +8,7 @@ Item{
     id: root
     objectName: "MonthComponent"
 
-    property var monthDate;
+    property var currentMonth;
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
@@ -24,29 +25,34 @@ Item{
     QtObject{
         id: intern
 
-        property var monthDay: monthDate.getDate()
-        property int monthMonth: monthDate.getMonth()
-        property var monthYear: monthDate.getFullYear()
+        property int curMonthDate: currentMonth.getDate()
+        property int curMonth: currentMonth.getMonth()
+        property int curMonthYear: currentMonth.getFullYear()
 
         property var today: DateExt.today()
         property int todayDate: today.getDate()
         property int todayMonth: today.getMonth()
-        property var todayYear: today.getFullYear()
+        property int todayYear: today.getFullYear()
 
 
-        property var monthStart: monthDate.weekStart( Qt.locale().firstDayOfWeek )
+        //date from month will start, this date might be from previous month
+        property var monthStart: currentMonth.weekStart( Qt.locale().firstDayOfWeek )
         property int monthStartDate: monthStart.getDate()
         property int monthStartMonth: monthStart.getMonth()
-        property var monthStartYear: monthStart.getFullYear()
+        property int monthStartYear: monthStart.getFullYear()
 
-        property int daysInPrevMonth: Date.daysInMonth(monthStartYear, monthStartMonth)
-        property int daysInCurMonth:  Date.daysInMonth(monthYear,monthMonth)
+        property int daysInStartMonth: Date.daysInMonth(monthStartYear, monthStartMonth)
+        property int daysInCurMonth:  Date.daysInMonth(curMonthYear,curMonth)
 
-        property bool isMonthStartMonth: monthDay === monthStartDate
-                        && monthMonth === monthStartMonth
-                        && monthYear === monthStartYear
+        //check if current month is start month
+        property bool isCurMonthStartMonth: curMonthDate === monthStartDate
+                        && curMonth === monthStartMonth
+                        && curMonthYear === monthStartYear
 
-        property bool isTodayMonthYear: todayYear === monthYear && todayMonth == monthMonth
+        //check current month is same as today's month
+        property bool isCurMonthTodayMonth: todayYear === curMonthYear && todayMonth == curMonth
+        //offset from current month's first date to start date of current month
+        property int offset: isCurMonthStartMonth ? -1 : (daysInStartMonth - monthStartDate)
     }
 
     UbuntuShape {
@@ -66,7 +72,9 @@ Item{
 
             ViewHeader{
                 id: monthHeader
-                date: root.monthDate
+                month: intern.curMonth
+                year: intern.curMonthYear
+
                 monthLabelFontSize: root.monthLabelFontSize
                 yearLabelFontSize: root.yearLabelFontSize
             }
@@ -122,30 +130,32 @@ Item{
             id: dateRootItem
 
             property int date: {
-                var temp = intern.monthStartDate + index
-
-                if( intern.isMonthStartMonth ) {
-                   if( temp > intern.daysInCurMonth) {
-                       temp = temp - intern.daysInCurMonth;
-                   }else {
-                       isCurrentMonth = true;
-                   }
-                   return temp;
-                }
-
-                if( temp > intern.daysInPrevMonth) {
-                   temp = temp - intern.daysInPrevMonth;
-                   if(temp > intern.daysInCurMonth) {
-                       temp = temp - intern.daysInCurMonth;
-                   } else {
-                       isCurrentMonth = true
-                   }
+                //try to find date from index and month's first week's first date
+                var temp = intern.daysInStartMonth - intern.offset + index
+                //date exceeds days in startMonth,
+                //this means previous month's date is over and we are now in current month
+                //to get actual date we need to remove number of days in startMonth
+                if( temp > intern.daysInStartMonth ) {
+                    temp = temp - intern.daysInStartMonth
+                    //date exceeds days in current month
+                    // this means date is from next month
+                    //to get actual date we need to remove number of days in current month
+                    if( temp > intern.daysInCurMonth ) {
+                        temp = temp - intern.daysInCurMonth
+                    }
                 }
                 return temp;
             }
 
-            property bool isCurrentMonth: false
-            property bool isToday: intern.todayDate == date && intern.isTodayMonthYear
+            property bool isCurrentMonth: {
+                //remove offset from index
+                //if index falls in 1 to no of days in current month
+                //then date is inside current month
+                var temp = index - intern.offset
+                return (temp >= 1 && temp <= intern.daysInCurMonth)
+            }
+
+            property bool isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
 
             width: parent.dayWidth
             height: parent.dayHeight

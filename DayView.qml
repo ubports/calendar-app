@@ -20,7 +20,9 @@ Item{
 
         ViewHeader{
             id: viewHeader
-            date: currentDay
+            //date: currentDay
+            month: currentDay.getMonth()
+            year: currentDay.getFullYear()
         }
 
         TimeLineHeader{

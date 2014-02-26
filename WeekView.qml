@@ -17,7 +17,9 @@ Column {
 
     ViewHeader{
         id: viewHeader
-        date: dayStart
+        //date: dayStart
+        month: dayStart.getMonth()
+        year: dayStart.getFullYear()
     }
 
     TimeLineHeader{
