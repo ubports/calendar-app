@@ -1,7 +1,10 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.Popups 0.1
+import QtOrganizer 5.0
 
 import "dateExt.js" as DateExt
+import "ViewType.js" as ViewType
 
 Item {
     id: root
@@ -10,10 +13,7 @@ Item {
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
 
-    property int type: typeWeek
-
-    readonly property int typeWeek: 0
-    readonly property int typeDay: 1
+    property int type: ViewType.ViewTypeWeek
 
     //visible hour
     property int scrollHour: 9;
@@ -60,43 +60,55 @@ Item {
         scrollToHour();
     }
 
-    Flickable{
-        id: timeLineView
-
+    Column {
         anchors.top: parent.top
+
         width: parent.width
         height: parent.height
 
-        contentHeight: units.gu(10) * 24
-        contentWidth: width
-
-        clip: true
-
-        TimeLineBackground{
+        AllDayEventComponent{
+            id: allDayContainer
+            type: root.type
+            startDay: root.startDay
         }
 
-        Row{
-            id: week
+        Flickable{
+            id: timeLineView
+
             width: parent.width
-            height: parent.height
-            anchors.top: parent.top
+            height: parent.height - allDayContainer.height
 
-            Repeater{
-                model: type == typeWeek ? 7 : 1
+            contentHeight: units.gu(10) * 24
+            contentWidth: width
 
-                delegate: TimeLineBase {
-                    property int idx: index
-                    anchors.top: parent.top
-                    width: {
-                        if( type == typeWeek ) {
-                             parent.width/7
-                        } else {
-                            (parent.width)
+            clip: true
+
+            TimeLineBackground{
+            }
+
+            Row{
+                id: week
+                width: parent.width
+                height: parent.height
+                anchors.top: parent.top
+
+                Repeater{
+                    model: type == ViewType.ViewTypeWeek ? 7 : 1
+
+                    delegate: TimeLineBase {
+                        property int idx: index
+                        anchors.top: parent.top
+                        width: {
+                            if( type == ViewType.ViewTypeWeek ) {
+                                 parent.width/7
+                            } else {
+                                (parent.width)
+                            }
                         }
+                        height: parent.height
+                        delegate: comp
+                        day: startDay.addDays(index)
                     }
-                    height: parent.height
-                    delegate: comp
-                    day: startDay.addDays(index)
                 }
             }
         }
@@ -106,7 +118,7 @@ Item {
         id: comp
         EventBubble{
             type: {
-                if( root.type == typeWeek ) {
+                if( root.type == ViewType.ViewTypeWeek ) {
                     narrowType
                 } else {
                     wideType
@@ -116,6 +128,7 @@ Item {
             anchors.right: parent.right
             anchors.leftMargin: units.gu(0.1)
             anchors.rightMargin: units.gu(0.1)
+            clip: true
         }
     }
 }

@@ -193,7 +193,7 @@ MainView {
                     tabs.selectedTabIndex= 1;
                 }
 
-                globalModel = GlobalModel.gloablModel();
+                globalModel = GlobalModel.globalModel();
                 setStartEndDateToModel();
             } // End of Component.onCompleted:
 
