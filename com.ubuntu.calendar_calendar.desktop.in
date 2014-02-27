@@ -6,5 +6,4 @@ Exec=@EXEC@
 Icon=@ICON@
 Name=Calendar
 X-Ubuntu-Touch=true
-X-Ubuntu-StageHint=SideStage
 X-Ubuntu-Gettext-Domain=@PROJECT_NAME@

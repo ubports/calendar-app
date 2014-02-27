@@ -9,6 +9,12 @@
 Calendar app autopilot tests for the week view.
 """
 
+# from __future__ import range
+# (python3's range, is same as python2's xrange)
+import sys
+if sys.version_info < (3,):
+    range = xrange
+
 import datetime
 
 from autopilot.matchers import Eventually
@@ -126,7 +132,7 @@ class TestWeekView(CalendarTestCase):
 
         first_dow = self._get_first_day_of_week()
 
-        for i in xrange(7):
+        for i in range(7):
             current_day = days[i]
             expected_day = (first_dow + datetime.timedelta(days=i)).day
 
@@ -141,10 +147,10 @@ class TestWeekView(CalendarTestCase):
 
     def test_show_next_weeks(self):
         """It must be possible to show next weeks by swiping the view."""
-        for i in xrange(6):
+        for i in range(6):
             self._change_week(1)
 
     def test_show_previous_weeks(self):
         """It must be possible to show previous weeks by swiping the view."""
-        for i in xrange(6):
+        for i in range(6):
             self._change_week(-1)
