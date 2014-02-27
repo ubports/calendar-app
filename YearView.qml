@@ -25,26 +25,22 @@ PathViewBase {
         return new Date(year,0,1,0,0,0,0);
     }
 
-    QtObject{
-        id: intern
-        property var startYear: getDateFromYear(currentYear.getFullYear()-1);        
-    }
-
     delegate: GridView{
         id: yearView
         clip: true
 
         property int scrollMonth: 0;
+        property bool isCurrentItem: index == root.currentIndex
         property var year: getYear();
 
         function getYear() {
             switch( root.indexType(index)) {
             case 0:
-                return intern.startYear;
+                return currentYear;
             case -1:
-                return getDateFromYear(intern.startYear.getFullYear() + 2);
+                return getDateFromYear(currentYear.getFullYear() - 1);
             case 1:
-                return getDateFromYear(intern.startYear.getFullYear() + 1);
+                return getDateFromYear(currentYear.getFullYear() + 1);
             }
         }
 
@@ -52,23 +48,13 @@ PathViewBase {
         height: parent.height
         anchors.top: parent.top
 
-        cellWidth: width/2
+        readonly property int minCellWidth: units.gu(30)
+        cellWidth: Math.floor(Math.min.apply(Math, [3, 4].map(function(n)
+            { return ((width / n >= minCellWidth) ? width / n : width / 2) })))
+
         cellHeight: cellWidth * 1.4
 
-        function getCellWidth() {
-            if( yearView.width/2  < units.gu(40)) {
-                return yearView.width/2
-            } else {
-                for(var i = 4 ; i > 2; --i) {
-                    if( yearView.width/i > units.gu(35)) {
-                        return yearView.width/i
-                    }
-                }
-            }
-        }
-
         model: 12 /* months in a year */
-        snapMode: GridView.SnapOneRow
 
         onYearChanged : {
             scrollMonth=0;

@@ -33,7 +33,7 @@ Column {
         id: weekViewPath
 
         property var visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
-        property var weekStart: weekViewPath.visibleWeek.addDays(-7)
+        property var weekStart: weekViewPath.visibleWeek
 
         width: parent.width
         height: root.height - weekViewPath.y
@@ -71,7 +71,7 @@ Column {
                     return weekViewPath.weekStart;
                 case -1:
                     var weekStartDay= weekViewPath.weekStart.weekStart(Qt.locale().firstDayOfWeek);
-                    return weekStartDay.addDays(14);
+                    return weekStartDay.addDays(-7);
                 case 1:
                     var weekStartDay = weekViewPath.weekStart.weekStart(Qt.locale().firstDayOfWeek);
                     return weekStartDay.addDays(7);

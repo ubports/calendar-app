@@ -94,6 +94,9 @@ MainView {
                 if(globalModel) {
                     globalModel.startPeriod =  new Date(currentDay.getFullYear(),0,1,0,0,0,0);
                     globalModel.endPeriod = new Date(currentDay.getFullYear(),11,31,0,0,0,0);
+                    // only enable auto update after set the date interval
+	            globalModel.autoUpdate = true
+	            globalModel.update()
                 }
             }
 

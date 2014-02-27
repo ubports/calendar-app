@@ -3,8 +3,10 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
+import QtOrganizer 5.0
 
 import "GlobalEventModel.js" as GlobalModel
+import "Defines.js" as Defines
 
 Page {
     id: root
@@ -33,8 +35,6 @@ Page {
         }
     }
     function showEvent(e) {
-        var location = "";
-
         // TRANSLATORS: this is a time formatting string,
         // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
         var timeFormat = i18n.tr("hh:mm");
@@ -48,6 +48,8 @@ Page {
         if( e.displayLabel) {
             titleLabel.text = e.displayLabel;
         }
+
+        var location = "";
         if( e.location ) {
             locationLabel.text = e.location;
             location = e.location;
@@ -62,6 +64,24 @@ Page {
                 contactModel.append( {"name": attendees[j].name } );
             }
         }
+
+        var index = 0;
+        if(e.recurrence ) {
+            var recurrenceRule = e.recurrence.recurrenceRules;
+            index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+        }
+        recurrentHeader.value = Defines.recurrenceLabel[index];
+
+        index = 0;
+        var reminder = e.detail( Detail.VisualReminder);
+        if( reminder ) {
+            var reminderTime = reminder.secondsBeforeStart;
+            var foundIndex = Defines.reminderValue.indexOf(reminderTime);
+            index = foundIndex != -1 ? foundIndex : 0;
+        }
+        reminderHeader.value = Defines.reminderLabel[index];
+
+
         // FIXME: need to cache map image to avoid duplicate download every time
         var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
                 "&markers=color:red|"+location+"&zoom=15&size="+mapContainer.width+
@@ -214,7 +234,6 @@ Page {
                 id: reminderHeader
                 xMargin: column.recurranceAreaMaxWidth
                 header: i18n.tr("Remind me")
-                value :"15 minutes before" //Neds to change
             }
         }
     }

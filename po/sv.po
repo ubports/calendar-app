@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-09-26 07:05+0200\n"
-"PO-Revision-Date: 2013-07-03 21:18+0000\n"
-"Last-Translator: Emanuel Enberg <isakemanuel@gmail.com>\n"
+"PO-Revision-Date: 2014-02-15 11:54+0000\n"
+"Last-Translator: Daniel Holm <d.holmen@gmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-12-03 06:16+0000\n"
-"X-Generator: Launchpad (build 16856)\n"
+"X-Launchpad-Export-Date: 2014-02-16 06:42+0000\n"
+"X-Generator: Launchpad (build 16916)\n"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -32,7 +32,7 @@ msgstr ""
 
 #: ../EventDetails.qml:70
 msgid "Add invite"
-msgstr ""
+msgstr "Lägg till inbjudan"
 
 #: ../EventDetails.qml:79
 msgid "Edit"
@@ -44,19 +44,19 @@ msgstr "Personer"
 
 #: ../NewEvent.qml:23
 msgid "Create event"
-msgstr ""
+msgstr "Skapa händelse"
 
 #: ../NewEvent.qml:29
 msgid "Add event name"
-msgstr ""
+msgstr "Lägg till namn på händelse"
 
 #: ../NewEvent.qml:102
 msgid "to"
-msgstr ""
+msgstr "till"
 
 #: ../NewEvent.qml:137
 msgid "Location & People"
-msgstr ""
+msgstr "Plats & Person"
 
 #: ../NewEvent.qml:143
 msgid "Add Location"
