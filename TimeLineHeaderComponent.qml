@@ -2,14 +2,13 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 import "dateExt.js" as DateExt
+import "ViewType.js" as ViewType
 
 
 Row{
     id: header
 
-    readonly property int typeWeek: 0
-    readonly property int typeDay: 1
-    property int type: typeWeek
+    property int type: ViewType.ViewTypeWeek
 
     property var startDay: DateExt.today();
     property bool isCurrentItem: false
@@ -17,12 +16,12 @@ Row{
     width: parent.width
 
     Repeater{
-        model: type == typeWeek ? 7 : 1
+        model: type == ViewType.ViewTypeWeek ? 7 : 1
 
         delegate: HeaderDateComponent{
             date: startDay.addDays(index);
             dayFormat: {
-                if( type == typeWeek || (type == typeDay && !root.isCurrentItem) ) {
+                if( type == ViewType.ViewTypeWeek || (type == ViewType.ViewTypeDay && !root.isCurrentItem) ) {
                     Locale.ShortFormat
                 } else {
                     Locale.LongFormat
@@ -30,9 +29,9 @@ Row{
             }
 
             dateColor: {
-                if( type == typeWeek && date.isSameDay(DateExt.today())){
+                if( type == ViewType.ViewTypeWeek && date.isSameDay(DateExt.today())){
                     "white"
-                } else if( type == typeDay && root.isCurrentItem ) {
+                } else if( type == ViewType.ViewTypeDay && root.isCurrentItem ) {
                     "white"
                 } else {
                     "#AEA79F"
@@ -40,7 +39,7 @@ Row{
             }
 
             width: {
-                if( type == typeWeek ) {
+                if( type == ViewType.ViewTypeWeek ) {
                     header.width/7
                 } else {
                     header.width
