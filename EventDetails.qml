@@ -44,6 +44,8 @@ Page {
         startHeader.value = startTime;
         endHeader.value = endTime;
 
+        allDayEventCheckbox.checked = e.allDay;
+
         // This is the event title
         if( e.displayLabel) {
             titleLabel.text = e.displayLabel;
@@ -96,7 +98,7 @@ Page {
                 text: i18n.tr("Delete");
                 iconSource: "image://theme/delete,edit-delete-symbolic"
                 onTriggered: {
-                    var eventModel = GlobalModel.gloablModel();
+                    var eventModel = GlobalModel.globalModel();
                     eventModel.removeItem(event);
                     pageStack.pop();
                 }
@@ -142,6 +144,24 @@ Page {
                 xMargin: column.timeLabelMaxLen
                 header: i18n.tr("End")
             }
+            Row {
+                width: parent.width
+                spacing: units.gu(1)
+                anchors.margins: units.gu(0.5)
+
+                Label {
+                    text: i18n.tr("All Day event:")
+                    anchors.verticalCenter: allDayEventCheckbox.verticalCenter
+                    color: headerColor
+                }
+
+                CheckBox {
+                    id: allDayEventCheckbox
+                    checked: false
+                    enabled: false
+                }
+            }
+
             ThinDivider{}
             Label{
                 id: titleLabel

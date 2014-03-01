@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 import "dateExt.js" as DateExt
+import "ViewType.js" as ViewType
 
 Item{
     id: root
@@ -27,7 +28,7 @@ Item{
 
         TimeLineHeader{
             id: dayHeader
-            type: typeDay
+            type: ViewType.ViewTypeDay
             date: currentDay
             preferredHighlightBegin: 0.5
             preferredHighlightEnd: 0.5
@@ -72,7 +73,7 @@ Item{
                 id: timeLineView
                 objectName: "DayComponent-"+index
 
-                type: typeDay
+                type: ViewType.ViewTypeDay
 
                 width: parent.width/7 * 5
                 height: parent.height

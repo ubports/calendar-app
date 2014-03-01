@@ -9,6 +9,12 @@
 Calendar app autopilot tests for the year view.
 """
 
+# from __future__ import range
+# (python3's range, is same as python2's xrange)
+import sys
+if sys.version_info < (3,):
+    range = xrange
+
 from datetime import datetime
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
@@ -96,7 +102,7 @@ class TestYearView(CalendarTestCase):
     def change_year(self, direction, how_many=5):
         current_year = datetime.now().year
 
-        for i in xrange(1, how_many):
+        for i in range(1, how_many):
             #prevent timing issues with swiping
             self.main_view.swipe_view(direction, self.year_view)
 

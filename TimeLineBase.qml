@@ -11,7 +11,7 @@ Item {
     property int hourHeight: units.gu(10)
 
     Component.onCompleted: {
-        intern.model = GlobalModel.gloablModel();
+        intern.model = GlobalModel.globalModel();
         intern.model.reloaded.connect(bubbleOverLay.createEvents);
     }
 
