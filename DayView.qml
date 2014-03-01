@@ -21,7 +21,6 @@ Item{
 
         ViewHeader{
             id: viewHeader
-            //date: currentDay
             month: currentDay.getMonth()
             year: currentDay.getFullYear()
         }

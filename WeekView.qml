@@ -18,7 +18,6 @@ Column {
 
     ViewHeader{
         id: viewHeader
-        //date: dayStart
         month: dayStart.getMonth()
         year: dayStart.getFullYear()
     }

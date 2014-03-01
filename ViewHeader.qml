@@ -6,7 +6,6 @@ Item{
     width: parent.width
     height: monthLabel.height
 
-    //property var date;
     property int month;
     property int year;
 
