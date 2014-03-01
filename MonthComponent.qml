@@ -133,7 +133,7 @@ Item{
                 //try to find date from index and month's first week's first date
                 var temp = intern.daysInStartMonth - intern.offset + index
                 //date exceeds days in startMonth,
-                //this means previous month's date is over and we are now in current month
+                //this means previous month is over and we are now in current month
                 //to get actual date we need to remove number of days in startMonth
                 if( temp > intern.daysInStartMonth ) {
                     temp = temp - intern.daysInStartMonth
@@ -190,7 +190,9 @@ Item{
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    root.dateSelected(date);
+                    root.dateSelected(new Date(intern.monthStartYear,
+                                               intern.monthStartMonth,
+                                               intern.monthStartDate+index,0,0,0,0));
                 }
             }
         }

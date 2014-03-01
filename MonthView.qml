@@ -38,9 +38,7 @@ Page {
         }
 
         function addMonth(date,month){
-            var temp = new Date(date.getFullYear(),date.getMonth(),1,0,0,0);
-            temp.setMonth(date.getMonth() + month);
-            return temp;
+            return  new Date(date.getFullYear(),date.getMonth()+month,1,0,0,0);
         }
 
         delegate: MonthComponent{

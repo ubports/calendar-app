@@ -70,7 +70,7 @@ PathViewBase {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        root.monthSelected(monthComponent.monthDate);
+                        root.monthSelected(monthComponent.currentMonth);
                     }
                 }
             }
