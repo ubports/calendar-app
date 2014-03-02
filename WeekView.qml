@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 import "dateExt.js" as DateExt
+import "ViewType.js" as ViewType
 
 Column {
     id: root
@@ -23,7 +24,7 @@ Column {
     TimeLineHeader{
         id: weekHeader
         objectName: "weekHeader"
-        type: typeWeek
+        type: ViewType.ViewTypeWeek
         date: weekViewPath.weekStart
     }
 
@@ -59,7 +60,7 @@ Column {
         delegate: TimeLineBaseComponent {
             id: timeLineView
 
-            type: typeWeek
+            type: ViewType.ViewTypeWeek
 
             width: parent.width
             height: parent.height

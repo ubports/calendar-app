@@ -1,27 +1,27 @@
-# Swedish translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Sotho, Southern translation for ubuntu-calendar-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-09-26 07:05+0200\n"
-"PO-Revision-Date: 2014-02-15 11:54+0000\n"
-"Last-Translator: Daniel Holm <d.holmen@gmail.com>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"PO-Revision-Date: 2014-02-13 09:04+0000\n"
+"Last-Translator: Pitso Mofokeng <pitso3000@gmail.com>\n"
+"Language-Team: Sotho, Southern <st@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-02-16 06:42+0000\n"
+"X-Launchpad-Export-Date: 2014-02-14 07:48+0000\n"
 "X-Generator: Launchpad (build 16916)\n"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../EventBubble.qml:38
 msgid "hh:mm"
-msgstr ""
+msgstr "hh:mm"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -32,102 +32,102 @@ msgstr ""
 
 #: ../EventDetails.qml:70
 msgid "Add invite"
-msgstr "Lägg till inbjudan"
+msgstr "Eketsa mema"
 
 #: ../EventDetails.qml:79
 msgid "Edit"
-msgstr "Redigera"
+msgstr "Hlophisa"
 
 #: ../EventDetails.qml:153
 msgid "People"
-msgstr "Personer"
+msgstr "Batho"
 
 #: ../NewEvent.qml:23
 msgid "Create event"
-msgstr "Skapa händelse"
+msgstr "Bopa ketsahalo"
 
 #: ../NewEvent.qml:29
 msgid "Add event name"
-msgstr "Lägg till namn på händelse"
+msgstr "Rea ketsahalo"
 
 #: ../NewEvent.qml:102
 msgid "to"
-msgstr "till"
+msgstr ""
 
 #: ../NewEvent.qml:137
 msgid "Location & People"
-msgstr "Plats & Person"
+msgstr "Madulo le Batho"
 
 #: ../NewEvent.qml:143
 msgid "Add Location"
-msgstr "Lägg till plats"
+msgstr "Eketsa madulo"
 
 #: ../NewEvent.qml:156
 msgid "Invite People"
-msgstr "Bjud in personer"
+msgstr "mema batho"
 
 #: ../NewEvent.qml:168
 msgid "Error"
-msgstr ""
+msgstr "Phoso"
 
 #: ../NewEvent.qml:171 ../TimePicker.qml:82
 msgid "OK"
-msgstr ""
+msgstr "Pesetsa"
 
 #: ../NewEvent.qml:177
 msgid "Save"
-msgstr "Spara"
+msgstr "Boloka"
 
 #: ../NewEvent.qml:205
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "nako ya qalo etla pele nako ya ho fela"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:18
 msgid "hh ap"
-msgstr ""
+msgstr "hora motsotso"
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr ""
+msgstr "Nako"
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr ""
+msgstr "Hora"
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr ""
+msgstr "Motsotso"
 
 #: ../TimePicker.qml:73
 msgid "Cancel"
-msgstr ""
+msgstr "phomola"
 
 #: ../calendar.qml:56
 msgid "New Event"
-msgstr "Ny händelse"
+msgstr "Ketsahalo e Ntjha"
 
 #: ../calendar.qml:64
 msgid "Today"
-msgstr ""
+msgstr "Kajeno"
 
 #: ../calendar.qml:75
 msgid "Year"
-msgstr ""
+msgstr "Selemo"
 
 #: ../calendar.qml:95
 msgid "Month"
-msgstr ""
+msgstr "Kgwedi"
 
 #: ../calendar.qml:108
 msgid "Week"
-msgstr ""
+msgstr "Beke"
 
 #: ../calendar.qml:124
 msgid "Day"
-msgstr ""
+msgstr "Letsatsi"
 
 #: ../.build/calendar-app.desktop.js:1
 msgid "Calendar"
-msgstr "Kalender"
+msgstr ""

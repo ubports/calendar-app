@@ -21,16 +21,25 @@ Page {
     property bool isEdit: false
 
     onStartDateChanged: {
-        startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
+        dateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
         startTimeInput.text = Qt.formatDateTime(startDate, "hh:mm");
+        // Make sure the endDate is always same day as start date
+        endDate.mergeDate(startDate);
     }
 
     onEndDateChanged: {
-        endDateInput.text = Qt.formatDateTime(endDate, "dd MMM yyyy");
         endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
     }
 
     Component.onCompleted: {
+        console.log = function () {
+            function do_log (what) {
+                messageEdit.text = messageEdit.text + what + "\n";
+            }
+            for (var i=0,l=arguments.length;i<l;i++) {
+                do_log(arguments[i]);
+            }
+        }
 
         pageStack.header.visible = true;
 
@@ -40,13 +49,15 @@ Page {
 
         // If endDate is setted by argument we have to not change it
         if (typeof(endDate) === 'undefined') {
-            endDate = new Date(date)
-            endDate.setMinutes( endDate.getMinutes() + 10)
+            var d = new Date(date);
+            d.setMinutes(d.getMinutes() + 10); // Change time before setting endDate
+                                               // to trigger onEndDateChanged
+            endDate = d;
         }
-        internal.eventModel = GlobalModel.gloablModel();
+        internal.eventModel = GlobalModel.globalModel();
 
         if(event === null){
-            isEdit =false;
+            isEdit = false;
             addEvent();
         }
         else{
@@ -57,9 +68,6 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        startDate = new Date(date)
-        endDate = new Date(date)
-        endDate.setMinutes( endDate.getMinutes() + 10)
     }
     //Editing Event
     function editEvent(e) {
@@ -106,6 +114,8 @@ Page {
                 attendee.name = personEdit.text;
                 event.setDetail(attendee);
             }
+
+            event.allDay = allDayEventCheckbox.checked;
 
             var recurrenceRule = internal.recurrenceValue[ recurrenceOption.selectedIndex ];
             if( recurrenceRule !== RecurrenceRule.Invalid ) {
@@ -189,13 +199,13 @@ Page {
         contentWidth: width
         contentHeight: column.height
 
-        Column{
+        Column {
             id: column
 
             width: parent.width
             spacing: units.gu(1)
 
-            UbuntuShape{
+            UbuntuShape {
                 width:parent.width
                 height: timeColumn.height
 
@@ -205,66 +215,43 @@ Page {
                     anchors.centerIn: parent
                     spacing: units.gu(1)
 
-                    Item {
+                    NewEventEntryField{
+                        id: dateInput
+                        title: i18n.tr("Date")
                         width: parent.width
-                        height: startDateInput.height
-                        NewEventEntryField{
-                            id: startDateInput
-                            title: i18n.tr("Start")
-                            objectName: "startDateInput"
+                        objectName: "dateInput"
 
-                            text: ""
+                        text: "";
 
-                            width: parent.width / 2
-
-                            MouseArea{
-                                anchors.fill: parent
-                                onClicked: openDatePicker(startDateInput, root, "startDate", "Years|Months|Days")
-                            }
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: openDatePicker(dateInput, root, "startDate", "Years|Months|Days")
                         }
+                    }
+
+                    Item {
+                        id: times
+                        width: parent.width
+                        height: startTimeInput.height
 
                         NewEventEntryField{
                             id: startTimeInput
-                            title: i18n.tr("at")
-
+                            title: i18n.tr("Start")
                             objectName: "startTimeInput"
 
                             text: ""
 
-                            width: (parent.width / 2) - units.gu(1)
-                            anchors.right: parent.right
+                            width: parent.width / 2
 
                             MouseArea{
                                 anchors.fill: parent
                                 onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
                             }
                         }
-                    }
-
-                    ThinDivider{}
-
-                    Item {
-                        width: parent.width
-                        height: endDateInput.height
-
-                        NewEventEntryField{
-                            id: endDateInput
-                            title: i18n.tr("End")
-                            objectName: "endDateInput"
-
-                            text: ""
-
-                            width: parent.width / 2
-
-                            MouseArea{
-                                anchors.fill: parent
-                                onClicked: openDatePicker(endDateInput, root, "endDate", "Years|Months|Days")
-                            }
-                        }
 
                         NewEventEntryField{
                             id: endTimeInput
-                            title: i18n.tr("at")
+                            title: i18n.tr("End")
                             objectName: "endTimeInput"
 
                             text: ""
@@ -278,8 +265,32 @@ Page {
                             }
                         }
                     }
+
                 }
             }
+
+            Row {
+                width: parent.width
+                spacing: units.gu(1)
+                anchors.margins: units.gu(0.5)
+
+                Label {
+                    text: i18n.tr("All Day event:")
+                    anchors.verticalCenter: allDayEventCheckbox.verticalCenter
+                }
+
+                CheckBox {
+                    id: allDayEventCheckbox
+                    checked: false
+
+                    onCheckedChanged: {
+                        times.visible = !checked;
+                    }
+                }
+            }
+
+            ThinDivider{}
+
             NewEventEntryField{
                 id: titleEdit
                 width: parent.width
@@ -387,10 +398,8 @@ Page {
             titleEdit.focus = false
             locationEdit.focus = false
             personEdit.focus = false
-            startDateInput.focus = false
-            startDateInput.focus = false
+            startTimeInput.focus = false
             endTimeInput.focus = false
-            endDateInput.focus = false
             messageEdit.focus = false
         }
     }
