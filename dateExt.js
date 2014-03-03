@@ -37,7 +37,7 @@ Date.prototype.midnight = function() {
 
 Date.prototype.endOfDay = function() {
     var date = new Date(this)
-    date.setHours(23,59,0,0);
+    date.setHours(23,59,59,0);
     return date
 }
 

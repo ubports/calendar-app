@@ -100,7 +100,7 @@ TestCase{
 
     function test_endOfDay(test) {
         var d = new Date(2014, 2, 3)
-        compare(d.endOfDay(), new Date(2014, 2, 3, 23, 59));
+        compare(d.endOfDay(), new Date(2014, 2, 3, 23, 59, 59, 0));
     }
 
 }
