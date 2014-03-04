@@ -21,13 +21,12 @@ Page {
     property bool isEdit: false
 
     onStartDateChanged: {
-        dateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
+        startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
         startTimeInput.text = Qt.formatDateTime(startDate, "hh:mm");
-        // Make sure the endDate is always same day as start date
-        endDate.mergeDate(startDate);
     }
 
     onEndDateChanged: {
+        endDateInput.text = Qt.formatDateTime(endDate, "dd MMM yyyy");
         endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
     }
 
@@ -88,6 +87,7 @@ Page {
                     personEdit.text += ",";
             }
         }
+        allDayEventCheckbox.checked = e.allDay;
 
         var index = 0;
         if(e.recurrence ) {
@@ -100,7 +100,7 @@ Page {
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
-        if ( startDate >= endDate ) {
+        if ( startDate >= endDate && !allDayEventCheckbox.checked) {
             PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
         } else {
             event.startDateTime = startDate;
@@ -215,29 +215,52 @@ Page {
                     anchors.centerIn: parent
                     spacing: units.gu(1)
 
-                    NewEventEntryField{
-                        id: dateInput
-                        title: i18n.tr("Date")
+                    Item {
                         width: parent.width
-                        objectName: "dateInput"
+                        height: startDateInput.height
 
-                        text: "";
+                        NewEventEntryField{
+                            id: startDateInput
+                            title: i18n.tr("Start")
+                            objectName: "startTimeInput"
 
-                        MouseArea{
-                            anchors.fill: parent
-                            onClicked: openDatePicker(dateInput, root, "startDate", "Years|Months|Days")
+                            text: ""
+
+                            width: allDayEventCheckbox.checked ? parent.width : parent.width / 2
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: openDatePicker(startDateInput, root, "startDate", "Years|Months|Days")
+                            }
+                        }
+
+                        NewEventEntryField{
+                            id: startTimeInput
+                            title: i18n.tr("at")
+                            objectName: "startTimeInput"
+
+                            text: ""
+
+                            width: (parent.width / 2) - units.gu(1)
+                            anchors.right: parent.right
+                            visible: !allDayEventCheckbox.checked
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
+                            }
                         }
                     }
 
                     Item {
-                        id: times
                         width: parent.width
-                        height: startTimeInput.height
+                        height: endDateInput.height
+                        visible: !allDayEventCheckbox.checked
 
                         NewEventEntryField{
-                            id: startTimeInput
-                            title: i18n.tr("Start")
-                            objectName: "startTimeInput"
+                            id: endDateInput
+                            title: i18n.tr("End")
+                            objectName: "endDateInput"
 
                             text: ""
 
@@ -245,13 +268,13 @@ Page {
 
                             MouseArea{
                                 anchors.fill: parent
-                                onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
+                                onClicked: openDatePicker(endDateInput, root, "endDate", "Years|Months|Days")
                             }
                         }
 
                         NewEventEntryField{
                             id: endTimeInput
-                            title: i18n.tr("End")
+                            title: i18n.tr("at")
                             objectName: "endTimeInput"
 
                             text: ""
@@ -282,10 +305,6 @@ Page {
                 CheckBox {
                     id: allDayEventCheckbox
                     checked: false
-
-                    onCheckedChanged: {
-                        times.visible = !checked;
-                    }
                 }
             }
 
@@ -398,7 +417,9 @@ Page {
             titleEdit.focus = false
             locationEdit.focus = false
             personEdit.focus = false
+            startDateInput.focus = false
             startTimeInput.focus = false
+            endDateInput.focus = false
             endTimeInput.focus = false
             messageEdit.focus = false
         }
