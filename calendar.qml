@@ -76,16 +76,16 @@ MainView {
             property int endtime: -1;
 
             onCurrentDayChanged: {
-                if( monthPage.view
-                        && monthPage.view.currentMonth !== undefined
-                        && !monthPage.view.currentMonth.isSameDay(currentDay))
-                    monthPage.view.currentMonth = currentDay.midnight();
+                if( monthPage.item
+                        && monthPage.item.currentMonth !== undefined
+                        && !monthPage.item.currentMonth.isSameDay(currentDay))
+                    monthPage.item.currentMonth = currentDay.midnight();
 
-                if( dayPage.view && !dayPage.view.currentDay.isSameDay(currentDay))
-                    dayPage.view.currentDay = currentDay
+                if( dayPage.item && !dayPage.item.currentDay.isSameDay(currentDay))
+                    dayPage.item.currentDay = currentDay
 
-                if( weekPage.view && !weekPage.view.dayStart.isSameDay(currentDay))
-                    weekPage.view.dayStart = currentDay
+                if( weekPage.item && !weekPage.item.dayStart.isSameDay(currentDay))
+                    weekPage.item.dayStart = currentDay
 
                 setStartEndDateToModel();
             }
@@ -183,11 +183,11 @@ MainView {
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex= 1;
+                        tabs.selectedTabIndex = 1;
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex= 1;
+                    tabs.selectedTabIndex = 1;
                 }
 
                 globalModel = GlobalModel.gloablModel();
@@ -233,26 +233,20 @@ MainView {
             Tabs{
                 id: tabs
 
-                property Page currentLoadedPage;
-
-                onSelectedTabIndexChanged: {
-                    if( currentLoadedPage ) {
-                        currentLoadedPage.unloadView();
-                    }
-                    currentLoadedPage = tabChildren[selectedTabIndex].page;
-                    currentLoadedPage.loadView();
-                }
+                property bool initDone: false
 
                 Tab{
+                    id: yearTab
                     objectName: "yearTab"
                     title: i18n.tr("Year")
-                    page: LoaderPage{
+                    page: Loader{
                         id: yearPage
                         objectName: "yearPage"
-                        tools: commonToolBar
-                        viewSource: "YearView.qml"
+                        anchors.fill: parent
+                        source: (tabs.selectedTab === yearTab) ? Qt.resolvedUrl("YearView.qml") : ""
                         onLoaded:{
-                            view.monthSelected.connect(yearPage.monthSelected);
+                            item.monthSelected.connect(yearPage.monthSelected);
+                            item.tools = commonToolBar
                         }
 
                         function monthSelected(date) {
@@ -265,20 +259,23 @@ MainView {
                                 tabPage.currentDay = date.midnight();
                             }
                         }
-                    }
+                    }                    
                 }
+
                 Tab {
                     id: monthTab
                     objectName: "monthTab"
                     title: i18n.tr("Month")
-                    page: LoaderPage{
+
+                    page: Loader{
                         id: monthPage
-                        tools: commonToolBar
-                        viewSource: "MonthView.qml"
+                        anchors.fill: parent
+                        source: (tabs.selectedTab === monthTab) ? Qt.resolvedUrl("MonthView.qml") : ""
 
                         onLoaded: {
-                            view.dateSelected.connect(monthPage.dateSelected);
-                            monthPage.view.currentMonth = tabPage.currentDay.midnight();
+                            item.dateSelected.connect(monthPage.dateSelected);
+                            item.currentMonth = tabPage.currentDay.midnight();
+                            item.tools = commonToolBar
                         }
 
                         function dateSelected(date) {
@@ -287,43 +284,48 @@ MainView {
                         }
                     }
                 }
+
                 Tab{
+                    id: weekTab
                     objectName: "weekTab"
                     title: i18n.tr("Week")
-                    page: LoaderPage{
+                    page: Loader{
                         id: weekPage
-                        tools: commonToolBar
-                        viewSource: "WeekView.qml"
+                        anchors.fill: parent
+                        source: (tabs.selectedTab === weekTab) ? Qt.resolvedUrl("WeekView.qml") : ""
 
                         onLoaded: {
-                            weekPage.view.dayStart = tabPage.currentDay;
+                            item.dayStart = tabPage.currentDay;
+                            item.tools = commonToolBar
                         }
 
                         Connections{
-                            target: weekPage.view
+                            target: weekPage.item
                             onDayStartChanged: {
-                                tabPage.currentDay = weekPage.view.dayStart;
+                                tabPage.currentDay = weekPage.item.dayStart;
                             }
                         }
                     }
                 }
 
                 Tab{
+                    id: dayTab
                     objectName: "dayTab"
                     title: i18n.tr("Day")
-                    page: LoaderPage{
+                    page: Loader{
                         id: dayPage
-                        tools: commonToolBar
-                        viewSource: "DayView.qml"
+                        anchors.fill: parent
+                        source: (tabs.selectedTab === dayTab) ? Qt.resolvedUrl("DayView.qml") : ""
 
                         onLoaded: {
-                            dayPage.view.currentDay = tabPage.currentDay;
+                            item.currentDay = tabPage.currentDay;
+                            item.tools = commonToolBar
                         }
 
                         Connections{
-                            target: dayPage.view
+                            target: dayPage.item
                             onCurrentDayChanged: {
-                                tabPage.currentDay = dayPage.view.currentDay;
+                                tabPage.currentDay = dayPage.item.currentDay;
                             }
                         }
                     }
