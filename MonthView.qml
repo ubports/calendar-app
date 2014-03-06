@@ -9,6 +9,8 @@ Page{
     property var currentMonth: DateExt.today();
     signal dateSelected(var date);
 
+    anchors.fill: parent
+
     PathViewBase{
         id: monthViewPath
         objectName: "MonthView"

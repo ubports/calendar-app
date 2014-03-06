@@ -245,7 +245,12 @@ MainView {
                     page: Loader{
                         id: yearPage
                         objectName: "yearPage"
-                        anchors.fill: parent
+                        anchors {
+                            top: parent.top
+                            left: parent.left
+                            right: parent.right
+                            bottom: parent.bottom
+                        }
                         source: (tabs.selectedTab === yearTab) ? Qt.resolvedUrl("YearView.qml") : ""
                         onLoaded:{
                             item.monthSelected.connect(yearPage.monthSelected);
@@ -272,7 +277,13 @@ MainView {
 
                     page: Loader{
                         id: monthPage
-                        anchors.fill: parent
+                        anchors {
+                            top: parent.top
+                            left: parent.left
+                            right: parent.right
+                            bottom: parent.bottom
+                        }
+
                         source: (tabs.selectedTab === monthTab) ? Qt.resolvedUrl("MonthView.qml") : ""
 
                         onLoaded: {
@@ -294,7 +305,12 @@ MainView {
                     title: i18n.tr("Week")
                     page: Loader{
                         id: weekPage
-                        anchors.fill: parent
+                        anchors {
+                            top: parent.top
+                            left: parent.left
+                            right: parent.right
+                            bottom: parent.bottom
+                        }
                         source: (tabs.selectedTab === weekTab) ? Qt.resolvedUrl("WeekView.qml") : ""
 
                         onLoaded: {
@@ -317,7 +333,12 @@ MainView {
                     title: i18n.tr("Day")
                     page: Loader{
                         id: dayPage
-                        anchors.fill: parent
+                        anchors {
+                            top: parent.top
+                            left: parent.left
+                            right: parent.right
+                            bottom: parent.bottom
+                        }
                         source: (tabs.selectedTab === dayTab) ? Qt.resolvedUrl("DayView.qml") : ""
 
                         onLoaded: {
