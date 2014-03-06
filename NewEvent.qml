@@ -35,7 +35,7 @@ Page {
             endDate = new Date(date)
             endDate.setMinutes( endDate.getMinutes() + 10)
         }
-        internal.eventModel = GlobalModel.gloablModel();
+        internal.eventModel = GlobalModel.globalModel();
 
         if(event === null){
             isEdit =false;
@@ -117,6 +117,8 @@ Page {
                 attendee.name = personEdit.text;
                 event.setDetail(attendee);
             }
+
+            event.allDay = allDayEventCheckbox.checked;
 
             var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
             if( recurrenceRule !== RecurrenceRule.Invalid ) {
@@ -202,6 +204,7 @@ Page {
             }
         }
     }
+
     Component {
         id: timePicker
         TimePicker {
@@ -238,6 +241,21 @@ Page {
                     width: parent.width
                     anchors.centerIn: parent
                     spacing: units.gu(1)
+
+                    NewEventEntryField{
+                        id: dateField
+                        title: i18n.tr("Date")
+                        width: parent.width
+                        objectName: "dateInput"
+
+                        text: Qt.formatDateTime(startDate,"dd MMM yyyy");
+
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: {
+                            }
+                        }
+                    }
 
                     NewEventEntryField{
                         id: startTime
@@ -288,6 +306,28 @@ Page {
                     }
                 }
             }
+
+            Row {
+                width: parent.width
+                spacing: units.gu(1)
+                anchors.margins: units.gu(0.5)
+
+                Label {
+                    text: i18n.tr("All Day event:")
+                    anchors.verticalCenter: allDayEventCheckbox.verticalCenter
+                }
+
+                CheckBox {
+                    id: allDayEventCheckbox
+                    checked: false
+
+                    onCheckedChanged: {
+                        startTime.visible = !checked;
+                        endTime.visible = !checked;
+                    }
+                }
+            }
+
             NewEventEntryField{
                 id: titleEdit
                 width: parent.width
@@ -358,6 +398,7 @@ Page {
                     text: i18n.tr("Remind me");
                     anchors.verticalCenter: parent.verticalCenter
                 }
+
                 OptionSelector{
                     id: reminderOption
                     anchors.right: parent.right

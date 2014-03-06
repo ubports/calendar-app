@@ -6,6 +6,7 @@ import QtOrganizer 5.0
 OrganizerModel {
     id: eventModel
     manager:"eds"
+    autoUpdate: false
 
     signal reloaded
 
