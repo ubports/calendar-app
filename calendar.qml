@@ -252,22 +252,25 @@ MainView {
                             bottom: parent.bottom
                         }
                         source: (tabs.selectedTab === yearTab) ? Qt.resolvedUrl("YearView.qml") : ""
+
                         onLoaded:{
-                            item.monthSelected.connect(yearPage.monthSelected);
                             item.tools = commonToolBar
                         }
 
-                        function monthSelected(date) {
-                            tabs.selectedTabIndex = 1
-                            var now = DateExt.today();
-                            if( date.getMonth() === now.getMonth()
-                                    && date.getFullYear() === now.getFullYear()) {
-                                tabPage.currentDay = now;
-                            } else {
-                                tabPage.currentDay = date.midnight();
+                        Connections{
+                            target: yearPage.item
+                            onMonthSelected: {
+                                tabs.selectedTabIndex = 1
+                                var now = DateExt.today();
+                                if( date.getMonth() === now.getMonth()
+                                        && date.getFullYear() === now.getFullYear()) {
+                                    tabPage.currentDay = now;
+                                } else {
+                                    tabPage.currentDay = date.midnight();
+                                }
                             }
                         }
-                    }                    
+                    }
                 }
 
                 Tab {
@@ -287,14 +290,16 @@ MainView {
                         source: (tabs.selectedTab === monthTab) ? Qt.resolvedUrl("MonthView.qml") : ""
 
                         onLoaded: {
-                            item.dateSelected.connect(monthPage.dateSelected);
                             item.currentMonth = tabPage.currentDay.midnight();
                             item.tools = commonToolBar
                         }
 
-                        function dateSelected(date) {
-                            tabs.selectedTabIndex  = 3
-                            tabPage.currentDay = date;
+                        Connections{
+                            target: monthPage.item
+                            onDateSelected: {
+                                tabs.selectedTabIndex  = 3
+                                tabPage.currentDay = date;
+                            }
                         }
                     }
                 }
