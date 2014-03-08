@@ -297,7 +297,7 @@ MainView {
                         Connections{
                             target: monthPage.item
                             onDateSelected: {
-                                tabs.selectedTabIndex  = 3
+                                tabs.selectedTabIndex = 3
                                 tabPage.currentDay = date;
                             }
                         }
