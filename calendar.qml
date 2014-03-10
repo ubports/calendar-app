@@ -260,7 +260,7 @@ MainView {
                         Connections{
                             target: yearPage.item
                             onMonthSelected: {
-                                tabs.selectedTabIndex = 1
+                                tabs.selectedTabIndex = monthTab.index
                                 var now = DateExt.today();
                                 if( date.getMonth() === now.getMonth()
                                         && date.getFullYear() === now.getFullYear()) {
@@ -297,7 +297,7 @@ MainView {
                         Connections{
                             target: monthPage.item
                             onDateSelected: {
-                                tabs.selectedTabIndex = 3
+                                tabs.selectedTabIndex = dayTab.index
                                 tabPage.currentDay = date;
                             }
                         }
