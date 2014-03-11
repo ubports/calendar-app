@@ -135,13 +135,13 @@ MainView {
                 var difference = endTime - startTime;
 
                 if (difference > month)
-                    return 0;   // Year view
+                    return yearTab.index;   // Year view
                 else if (difference > 7 * day)
-                    return 1;   // Month view}
+                    return monthTab.index;   // Month view}
                 else if (difference > day)
-                    return 2;   // Week view
+                    return weekTab.index;   // Week view
                 else
-                    return 3;   // Day view
+                    return dayTab.index;   // Day view
             }
 
             // This function parse the argument
