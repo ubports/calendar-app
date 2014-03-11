@@ -180,17 +180,17 @@ MainView {
                         }
                         else {
                             // If no endtime has been setted, open the starttime date in day view
-                            tabs.selectedTabIndex = 3;
+                            tabs.selectedTabIndex = dayTab.index;
                         }
                     } // End of else if (starttime)
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex = 1;
+                        tabs.selectedTabIndex = monthTab.index;
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex = 1;
+                    tabs.selectedTabIndex = monthTab.index;
                 }
 
                 globalModel = GlobalModel.globalModel();
