@@ -236,8 +236,6 @@ MainView {
             Tabs{
                 id: tabs
 
-                property bool initDone: false
-
                 Tab{
                     id: yearTab
                     objectName: "yearTab"
