@@ -3,23 +3,18 @@ import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
-Page {
-    id: monthViewPage
-    objectName: "MonthView"
+Page{
+    id: root
 
     property var currentMonth: DateExt.today();
-
     signal dateSelected(var date);
+
+    anchors.fill: parent
 
     PathViewBase{
         id: monthViewPath
-
-        property var startMonth: currentMonth;
-
-        anchors.top:parent.top
-
-        width:parent.width
-        height: parent.height
+        objectName: "MonthView"
+        anchors.fill: parent
 
         onNextItemHighlighted: {
             nextMonth();
@@ -30,11 +25,11 @@ Page {
         }
 
         function nextMonth() {
-            currentMonth = addMonth(currentMonth,1);
+            currentMonth = addMonth(root.currentMonth,1);
         }
 
         function previousMonth(){
-            currentMonth = addMonth(currentMonth,-1);
+            currentMonth = addMonth(root.currentMonth,-1);
         }
 
         function addMonth(date,month){
@@ -54,16 +49,16 @@ Page {
             function getMonthDate() {
                 switch( monthViewPath.indexType(index)) {
                 case 0:
-                    return monthViewPath.startMonth;
+                    return monthViewPath.addMonth(root.currentMonth,0);
                 case -1:
-                    return monthViewPath.addMonth(monthViewPath.startMonth,-1);
+                    return monthViewPath.addMonth(root.currentMonth,-1);
                 case 1:
-                    return monthViewPath.addMonth(monthViewPath.startMonth,1);
+                    return monthViewPath.addMonth(root.currentMonth,1);
                 }
             }
 
             onDateSelected: {
-                monthViewPage.dateSelected(date);
+                root.dateSelected(date);
             }
         }
     }

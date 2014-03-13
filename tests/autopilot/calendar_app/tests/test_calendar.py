@@ -94,6 +94,7 @@ class TestMainView(CalendarTestCase):
         self.main_view.open_toolbar().click_button("eventSaveButton")
 
         #verify that the event has been created in timeline
+        self.main_view.switch_to_tab("dayTab")
         self.assertThat(lambda: self.main_view.get_label_with_text(
                         eventTitle, root=self.main_view.get_day_view()),
                         Eventually(Not(Is(None))))
