@@ -70,6 +70,7 @@ Page {
         var index = 0;
         if(e.recurrence ) {
             var recurrenceRule = e.recurrence.recurrenceRules;
+            limitHeader.value = recurrenceRule[0].limit;
             index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
         }
         recurrentHeader.value = Defines.recurrenceLabel[index];
@@ -231,7 +232,7 @@ Page {
             }
             //Guest Entries ends
             ThinDivider{}
-            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth) //Dynamic Height
+            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth,limitHeader.headerWidth) //Dynamic Height
             EventDetailsInfo{
                 id: recurrentHeader
                 xMargin: column.recurranceAreaMaxWidth
@@ -243,6 +244,11 @@ Page {
                 xMargin: column.recurranceAreaMaxWidth
                 header: i18n.tr("Remind me")
             }
+            EventDetailsInfo{
+                          id: limitHeader
+                          xMargin: column.recurranceAreaMaxWidth
+                          header: i18n.tr("Limit")
+                      }
         }
     }
 }

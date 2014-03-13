@@ -4,6 +4,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
+import Ubuntu.Components.Pickers 0.1
 import QtOrganizer 5.0
 
 import "GlobalEventModel.js" as GlobalModel
@@ -124,6 +125,10 @@ Page {
             if( recurrenceRule !== RecurrenceRule.Invalid ) {
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 rule.frequency = recurrenceRule;
+                if(limitOptions.selectedIndex == 0)
+                    rule.limit = limitCount.text;
+                else
+                    rule.limit =  Qt.formatDate(limitDate.date, "dd-mmm-yyyy");
                 event.recurrence.recurrenceRules = [rule];
             }
 
@@ -387,6 +392,49 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model: Defines.recurrenceLabel
                     containerHeight: itemHeight * 4
+                }
+            }
+            Item {
+                width: parent.width
+                height: limitOptions.height
+                Label{
+                    id: limit
+                    text: i18n.tr("Limit");
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                OptionSelector{
+                    id: limitOptions
+                    anchors.right: parent.right
+                    width: parent.width - optionSelectorWidth - units.gu(1)
+                    model: Defines.limitLabel
+                    containerHeight: itemHeight * 4
+                    onDelegateClicked: {
+                        if(index == 0){
+                            limitDate.visible = false;
+                            limitCount.visible = true;
+
+                        }
+                        if(index == 1){
+                            limitCount.visible = false;
+                            limitDate.visible = true;
+                        }
+                    }
+                }
+            }
+            NewEventEntryField{
+                id: limitCount
+                width: parent.width
+                title: i18n.tr("Count")
+                objectName: "eventLimitCount"
+            }
+            Item {
+                id: limitDate
+                width: parent.width
+                height: datePick.height
+                visible: false
+                DatePicker{
+                    id:datePick;
+                    width: parent.width
                 }
             }
 

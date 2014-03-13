@@ -16,6 +16,7 @@ var reminderValue = [ 0,
     1209600 /*14*24*60*60*/];
 
 var recurrenceLabel = getRecurrenceLabels();
+var limitLabel = getLimitLabels();
 var recurrenceValue = [ QtPim.RecurrenceRule.Invalid,
     QtPim.RecurrenceRule.Daily,
     QtPim.RecurrenceRule.Weekly,
@@ -51,4 +52,13 @@ function getRecurrenceLabels() {
                 i18n.tr("Monthly"),\
                 i18n.tr("Yearly")];}', Qt.application, 'RecurrenceLabelObj');
     return object.recurrenceLabel;
+}
+function getLimitLabels(){
+    var object = Qt.createQmlObject('\
+        import QtQuick 2.0;\
+        import Ubuntu.Components 0.1;\
+        QtObject {\
+            property var limitLabel:[i18n.tr("Count"),\
+                i18n.tr("Date")];}', Qt.application, 'LimitLabelObj');
+    return object.limitLabel;
 }
