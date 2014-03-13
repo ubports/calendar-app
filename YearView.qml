@@ -11,15 +11,14 @@ Page {
 
     PathViewBase {
         id: pathView
-
         anchors.fill: parent
 
         onNextItemHighlighted: {
-            currentYear = currentYear + 1;
+            root.currentYear = root.currentYear + 1;
         }
 
         onPreviousItemHighlighted: {
-            currentYear = currentYear - 1;
+            root.currentYear = root.currentYear - 1;
         }
 
         delegate: GridView{
@@ -27,18 +26,7 @@ Page {
             clip: true
 
             property bool isCurrentItem: index == pathView.currentIndex
-            property var year: getYear();
-
-            function getYear() {
-                switch( root.indexType(index)) {
-                case 0:
-                    return currentYear
-                case -1:
-                    return currentYear - 1;
-                case 1:
-                    return currentYear + 1;
-                }
-            }
+            property int year: (root.currentYear + pathView.indexType(index))
 
             width: parent.width
             height: parent.height
