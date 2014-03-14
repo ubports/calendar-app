@@ -83,6 +83,7 @@ Item {
         durationMin += (event.endDateTime.getMinutes() - event.startDateTime.getMinutes());
         var height = (durationMin * hourHeight )/ 60;
         eventBubble.height = height;
+        eventBubble.height = height > eventBubble.minimumHeight ? height:eventBubble.minimumHeight ;
     }
 
     function showSeparator(hour) {

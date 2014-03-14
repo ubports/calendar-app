@@ -10,6 +10,8 @@ Item{
     property int wideType: 1;
     property int narrowType: 2;
 
+    readonly property int minimumHeight: timeLabel.height
+
     signal clicked(var event);
 
     UbuntuShape{
