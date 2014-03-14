@@ -76,6 +76,12 @@ MainView {
             property int endtime: -1;
 
             onCurrentDayChanged: {
+                if(yearPage.item
+                        && yearPage.item.currentYear !== undefined
+                        && yearPage.item.currentYear.getFullYear() !== currentDay.getFullYear() ) {
+                    yearPage.item.currentYear = tabPage.currentDay.midnight();
+                }
+
                 if( monthPage.item
                         && monthPage.item.currentMonth !== undefined
                         && !monthPage.item.currentMonth.isSameDay(currentDay))
@@ -252,6 +258,7 @@ MainView {
                         source: (tabs.selectedTab === yearTab) ? Qt.resolvedUrl("YearView.qml") : ""
 
                         onLoaded:{
+                            item.currentYear = tabPage.currentDay.midnight();
                             item.tools = commonToolBar
                         }
 
