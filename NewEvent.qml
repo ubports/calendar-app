@@ -84,9 +84,26 @@ Page {
         }
 
         var index = 0;
+        var limitIndex = 0;
         if(e.recurrence ) {
             var recurrenceRule = e.recurrence.recurrenceRules;
             index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+            if(index > 0 ){
+                limit.visible = true;
+                limitCount.visible = true;
+                if(recurrenceRule[0].limit !== undefined){
+                    var temp = recurrenceRule[0].limit;
+                }
+                else{
+                  // Do Nothing
+                }
+            }
+            else{
+                limit.visible = false;
+                limitCount.visible = false;
+                limitDate.visible=false;
+            }
+            //console.log("Index is "  + index);
         }
         recurrenceOption.selectedIndex = index;
 
@@ -125,13 +142,18 @@ Page {
             if( recurrenceRule !== RecurrenceRule.Invalid ) {
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 rule.frequency = recurrenceRule;
-                if(limitOptions.selectedIndex == 0)
+                console.log("Limit selected index is " + limitOptions.selectedIndex);
+                if(limitOptions.selectedIndex === 0){
+                    console.log("I am here")
                     rule.limit = limitCount.text;
-                else
-                    rule.limit =  Qt.formatDate(limitDate.date, "dd-mmm-yyyy");
+                    console.log("Count value is" + rule.limit);
+                }
+                else{
+                    rule.limit =  datePick.date;
+                    console.log("Date value is " + rule.limit);
+                }
                 event.recurrence.recurrenceRules = [rule];
             }
-
             //remove old reminder value
             var oldVisualReminder = event.detail(Detail.VisualReminder);
             if(oldVisualReminder) {
@@ -392,13 +414,26 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model: Defines.recurrenceLabel
                     containerHeight: itemHeight * 4
+                    onDelegateClicked: {
+                        if(index != 0){
+                            limit.visible = true;
+                            limitCount.visible = true;
+                        }
+                        else{
+                            limit.visible = false;
+                            limitCount.visible = false;
+                            limitDate.visible = false;
+                        }
+                    }
                 }
             }
             Item {
+                id: limit
+                visible: false
                 width: parent.width
                 height: limitOptions.height
                 Label{
-                    id: limit
+                    id: limitLabel
                     text: i18n.tr("Limit");
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -426,6 +461,7 @@ Page {
                 width: parent.width
                 title: i18n.tr("Count")
                 objectName: "eventLimitCount"
+                visible: false
             }
             Item {
                 id: limitDate
