@@ -92,7 +92,9 @@ Page {
                 limit.visible = true;
                 limitCount.visible = true;
                 if(recurrenceRule[0].limit !== undefined){
+                    limitOptions.selectedIndex = 0;
                     var temp = recurrenceRule[0].limit;
+                    limitCount.text = temp;
                 }
                 else{
                   // Do Nothing
@@ -144,13 +146,11 @@ Page {
                 rule.frequency = recurrenceRule;
                 console.log("Limit selected index is " + limitOptions.selectedIndex);
                 if(limitOptions.selectedIndex === 0){
-                    console.log("I am here")
-                    rule.limit = limitCount.text;
-                    console.log("Count value is" + rule.limit);
+                    rule.limit = limitCount.text*1;
                 }
                 else{
+                    console.log("I am here");
                     rule.limit =  datePick.date;
-                    console.log("Date value is " + rule.limit);
                 }
                 event.recurrence.recurrenceRules = [rule];
             }
