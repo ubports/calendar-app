@@ -26,7 +26,7 @@ Page{
         TimeLineHeader{
             id: weekHeader
             objectName: "weekHeader"
-            type: typeWeek
+            type: ViewType.ViewTypeWeek
             date: weekViewPath.weekStart
         }
 
@@ -62,7 +62,7 @@ Page{
             delegate: TimeLineBaseComponent {
                 id: timeLineView
 
-                type: typeWeek
+                type: ViewType.ViewTypeWeek
 
                 width: parent.width
                 height: parent.height
