@@ -90,11 +90,18 @@ Page {
             index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
             if(index > 0 ){
                 limit.visible = true;
-                limitCount.visible = true;
                 if(recurrenceRule[0].limit !== undefined){
-                    limitOptions.selectedIndex = 0;
                     var temp = recurrenceRule[0].limit;
-                    limitCount.text = temp;
+                    if(!isNaN(temp)){
+                        limitOptions.selectedIndex = 0;
+                        limitCount.text = temp;
+                        limitCount.visible = true;
+                    }
+                    else{
+                        limitOptions.selectedIndex = 1;
+                        datePick.date= temp;
+                        datePick.visible = true;
+                    }
                 }
                 else{
                   // Do Nothing
@@ -141,19 +148,23 @@ Page {
             event.allDay = allDayEventCheckbox.checked;
 
             var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
+            var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
             if( recurrenceRule !== RecurrenceRule.Invalid ) {
-                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 rule.frequency = recurrenceRule;
-                console.log("Limit selected index is " + limitOptions.selectedIndex);
-                if(limitOptions.selectedIndex === 0){
+                if(limitOptions.selectedIndex === 0 && recurrenceOption.selectedIndex > 0){
                     rule.limit = limitCount.text*1;
                 }
-                else{
-                    console.log("I am here");
+                if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
                     rule.limit =  datePick.date;
                 }
                 event.recurrence.recurrenceRules = [rule];
             }
+            else {
+                rule.frequency = 0;
+                rule.limit = 0;
+                event.recurrence.recurrenceRules = [rule];
+            }
+
             //remove old reminder value
             var oldVisualReminder = event.detail(Detail.VisualReminder);
             if(oldVisualReminder) {
