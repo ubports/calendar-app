@@ -112,7 +112,6 @@ Page {
                 limitCount.visible = false;
                 limitDate.visible=false;
             }
-            //console.log("Index is "  + index);
         }
         recurrenceOption.selectedIndex = index;
 

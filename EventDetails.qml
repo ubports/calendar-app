@@ -70,7 +70,6 @@ Page {
         var index = 0;
         if(e.recurrence ) {
             var recurrenceRule = e.recurrence.recurrenceRules;
-            console.log("Value is " + recurrenceRule[0].limit);
             limitHeader.value = recurrenceRule[0].limit;
             index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
         }
