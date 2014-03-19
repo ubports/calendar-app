@@ -122,4 +122,4 @@ class CalendarTestCase(AutopilotTestCase):
 
     @property
     def main_view(self):
-        return self.app.select_single(emulators.MainView)
+        return self.app.wait_select_single(emulators.MainView)
