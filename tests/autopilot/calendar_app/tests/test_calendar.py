@@ -47,6 +47,9 @@ class TestMainView(CalendarTestCase):
     def test_new_event(self):
         """test add new event """
 
+        #go to today
+        self.main_view.open_toolbar().click_button("todaybutton")
+
         #click on new event button
         self.main_view.open_toolbar().click_button("neweventbutton")
         self.assertThat(self.main_view.get_new_event,
@@ -95,6 +98,7 @@ class TestMainView(CalendarTestCase):
 
         #verify that the event has been created in timeline
         self.main_view.switch_to_tab("dayTab")
+        self.main_view.open_toolbar().click_button("todaybutton")
         self.assertThat(lambda: self.main_view.get_label_with_text(
                         eventTitle, root=self.main_view.get_day_view()),
                         Eventually(Not(Is(None))))
