@@ -22,12 +22,6 @@ import os
 import shutil
 import logging
 
-try:
-    from unittest import mock
-except ImportError:
-    import mock
-import tempfile
-
 from autopilot.input import Mouse, Touch, Pointer
 from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
@@ -51,16 +45,20 @@ class CalendarTestCase(AutopilotTestCase):
 
     local_location = "../../calendar.qml"
     installed_location = "/usr/share/calendar-app/calendar.qml"
+    sqlite_dir = os.path.expanduser(
+        "~/.local/share/com.ubuntu.calendar/Databases")
+    backup_dir = sqlite_dir + ".backup"
 
     def setUp(self):
         self.pointing_device = Pointer(self.input_device_class.create())
-        self.home_dir = self._patch_home()
         super(CalendarTestCase, self).setUp()
+        self.temp_move_sqlite_db()
+        self.addCleanup(self.restore_sqlite_db)
 
         #turn off the OSK so it doesn't block screen elements
-        #if model() != 'Desktop':
-        #    os.system("stop maliit-server")
-        #    self.addCleanup(os.system, "start maliit-server")
+        if model() != 'Desktop':
+            os.system("stop maliit-server")
+            self.addCleanup(os.system, "start maliit-server")
 
         # Unset the current locale to ensure locale-specific data
         # (day and month names, first day of the week, …) doesn’t get
@@ -75,7 +73,6 @@ class CalendarTestCase(AutopilotTestCase):
             self.launch_test_click()
 
     def launch_test_local(self):
-        logger.debug("Running via local installation")
         self.app = self.launch_test_application(
             "qmlscene",
             self.local_location,
@@ -83,7 +80,6 @@ class CalendarTestCase(AutopilotTestCase):
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_installed(self):
-        logger.debug("Running via installed debian package")
         self.app = self.launch_test_application(
             "qmlscene",
             self.installed_location,
@@ -91,29 +87,38 @@ class CalendarTestCase(AutopilotTestCase):
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_click(self):
-        logger.debug("Running via click package")
         self.app = self.launch_click_package(
             "com.ubuntu.calendar",
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
-    def _patch_home(self):
-        #make a temp dir
-        temp_dir = tempfile.mkdtemp()
-        logger.debug("Created fake home directory " + temp_dir)
-        self.addCleanup(shutil.rmtree, temp_dir)
-        #if the Xauthority file is in home directory
-        #make sure we copy it to temp home, otherwise do nothing
-        xauth = os.path.expanduser(os.path.join('~', '.Xauthority'))
-        if os.path.isfile(xauth):
-            logger.debug("Copying .Xauthority to fake home " + temp_dir)
-            shutil.copyfile(
-                os.path.expanduser(os.path.join('~', '.Xauthority')),
-                os.path.join(temp_dir, '.Xauthority'))
-        patcher = mock.patch.dict('os.environ', {'HOME': temp_dir})
-        patcher.start()
-        logger.debug("Patched home to fake home directory " + temp_dir)
-        self.addCleanup(patcher.stop)
-        return temp_dir
+    def temp_move_sqlite_db(self):
+        try:
+            shutil.rmtree(self.backup_dir)
+        except:
+            pass
+        else:
+            logger.warning("Prexisting backup database found and removed")
+
+        try:
+            shutil.move(self.sqlite_dir, self.backup_dir)
+        except:
+            logger.warning("No current database found")
+        else:
+            logger.debug("Backed up database")
+
+    def restore_sqlite_db(self):
+        if os.path.exists(self.backup_dir):
+            if os.path.exists(self.sqlite_dir):
+                try:
+                    shutil.rmtree(self.sqlite_dir)
+                except:
+                    logger.error("Failed to remove test database and restore" /
+                                 "database")
+                    return
+            try:
+                shutil.move(self.backup_dir, self.sqlite_dir)
+            except:
+                logger.error("Failed to restore database")
 
     @property
     def main_view(self):
