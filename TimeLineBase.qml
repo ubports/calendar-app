@@ -38,6 +38,10 @@ Item {
     }
 
     function createEvents() {
+        if(!bubbleOverLay || bubbleOverLay == undefined) {
+            return;
+        }
+
         bubbleOverLay.destroyAllChildren();
 
         var startDate = new Date(day);
