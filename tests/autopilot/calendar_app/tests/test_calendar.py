@@ -92,4 +92,5 @@ class TestMainView(CalendarTestCase):
 
         #verify that the event has been created in timeline
         self.main_view.open_toolbar().click_button("todaybutton")
-        self.assertThat(self.main_view.get_num_events, Eventually(NotEquals(num_events)))
+        self.assertThat(self.main_view.get_num_events,
+                        Eventually(NotEquals(num_events)))
