@@ -58,7 +58,7 @@ function getLimitLabels(){
         import QtQuick 2.0;\
         import Ubuntu.Components 0.1;\
         QtObject {\
-            property var limitLabel:[i18n.tr("Count"),\
-                i18n.tr("Date")];}', Qt.application, 'LimitLabelObj');
+            property var limitLabel:[i18n.tr("Never"),i18n.tr("After No Of Occurences"),\
+                i18n.tr("On Date")];}', Qt.application, 'LimitLabelObj');
     return object.limitLabel;
 }

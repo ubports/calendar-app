@@ -84,7 +84,6 @@ Page {
         }
 
         var index = 0;
-        var limitIndex = 0;
         if(e.recurrence ) {
             var recurrenceRule = e.recurrence.recurrenceRules;
             index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
@@ -93,14 +92,12 @@ Page {
                 if(recurrenceRule[0].limit !== undefined){
                     var temp = recurrenceRule[0].limit;
                     if(!isNaN(temp)){
-                        limitOptions.selectedIndex = 0;
+                        limitOptions.selectedIndex = 1;
                         limitCount.text = temp;
-                        limitCount.visible = true;
                     }
                     else{
-                        limitOptions.selectedIndex = 1;
+                        limitOptions.selectedIndex = 2;
                         datePick.date= temp;
-                        datePick.visible = true;
                     }
                 }
                 else{
@@ -150,20 +147,19 @@ Page {
             var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
             if( recurrenceRule !== RecurrenceRule.Invalid ) {
                 rule.frequency = recurrenceRule;
-                if(limitOptions.selectedIndex === 0 && recurrenceOption.selectedIndex > 0){
-                    rule.limit = limitCount.text*1;
-                }
                 if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
-                    rule.limit =  datePick.date;
+                    rule.limit = limitCount.text*1; // To convert number into Integer.
                 }
-                event.recurrence.recurrenceRules = [rule];
+                else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
+                    rule.limit =  datePick.date;
+                }        
             }
             else {
                 rule.frequency = 0;
                 rule.limit = 0;
-                event.recurrence.recurrenceRules = [rule];
-            }
 
+            }
+            event.recurrence.recurrenceRules = [rule];
             //remove old reminder value
             var oldVisualReminder = event.detail(Detail.VisualReminder);
             if(oldVisualReminder) {
@@ -424,27 +420,16 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model: Defines.recurrenceLabel
                     containerHeight: itemHeight * 4
-                    onDelegateClicked: {
-                        if(index != 0){
-                            limit.visible = true;
-                            limitCount.visible = true;
-                        }
-                        else{
-                            limit.visible = false;
-                            limitCount.visible = false;
-                            limitDate.visible = false;
-                        }
-                    }
                 }
             }
             Item {
                 id: limit
-                visible: false
+                visible: recurrenceOption.selectedIndex != 0
                 width: parent.width
                 height: limitOptions.height
                 Label{
                     id: limitLabel
-                    text: i18n.tr("Limit");
+                    text: i18n.tr("Repetition");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
@@ -453,17 +438,7 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model: Defines.limitLabel
                     containerHeight: itemHeight * 4
-                    onDelegateClicked: {
-                        if(index == 0){
-                            limitDate.visible = false;
-                            limitCount.visible = true;
 
-                        }
-                        if(index == 1){
-                            limitCount.visible = false;
-                            limitDate.visible = true;
-                        }
-                    }
                 }
             }
             NewEventEntryField{
@@ -471,13 +446,15 @@ Page {
                 width: parent.width
                 title: i18n.tr("Count")
                 objectName: "eventLimitCount"
-                visible: false
+                visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
+                validator: IntValidator
+                focus: true
             }
             Item {
                 id: limitDate
                 width: parent.width
                 height: datePick.height
-                visible: false
+                visible: limitOptions.selectedIndex===2;
                 DatePicker{
                     id:datePick;
                     width: parent.width
