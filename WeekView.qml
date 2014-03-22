@@ -10,6 +10,8 @@ Column {
 
     property var dayStart: new Date();
     property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
+    property bool isCurrentPage: false
+
     anchors.top: parent.top
     anchors.topMargin: units.gu(1.5)
     spacing: units.gu(1)
@@ -68,6 +70,15 @@ Column {
             width: parent.width
             height: parent.height
             startDay: getWeekStart();
+
+            Connections{
+                target: root
+                onIsCurrentPageChanged:{
+                    if(root.isCurrentPage){
+                        timeLineView.scrollToCurrentTime();
+                    }
+                }
+            }
 
             //get contentY value from PathView, if its not current Item
             Binding{

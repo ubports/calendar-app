@@ -15,15 +15,16 @@ Item {
 
     property int type: ViewType.ViewTypeWeek
 
-    Connections{
-        target: tabs
-        onSelectedTabIndexChanged :{
-            timeLineView.scroll()
-        }
-    }
+    function scrollToCurrentTime() {
+        //scroll to current time
+        var currentTime = new Date();
+        //TODO: if current time is early morning should we show time from 9 am ?
+        var hour = currentTime.getHours();
 
-    Component.onCompleted: {
-        timeLineView.scroll()
+        timeLineView.contentY = hour * units.gu(10);
+        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
+            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
+        }
     }
 
     Column {
@@ -48,18 +49,6 @@ Item {
             contentWidth: width
 
             clip: true
-
-            function scroll() {
-                //scroll to current time
-                var currentTime = new Date();
-                //TODO: if current time is early morning should we show time from 9 am ?
-                var hour = currentTime.getHours();
-
-                timeLineView.contentY = hour * units.gu(10);
-                if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
-                    timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
-                }
-            }
 
             TimeLineBackground{
             }
