@@ -11,7 +11,7 @@ from __future__ import absolute_import
 
 from autopilot.matchers import Eventually
 
-from testtools.matchers import Equals, Not, Is
+from testtools.matchers import Equals, Not, Is, NotEquals
 
 import time
 
@@ -46,6 +46,10 @@ class TestMainView(CalendarTestCase):
 
     def test_new_event(self):
         """test add new event """
+        #go to today
+        self.main_view.switch_to_tab("dayTab")
+        self.main_view.open_toolbar().click_button("todaybutton")
+        num_events = self.main_view.get_num_events()
 
         #click on new event button
         self.main_view.open_toolbar().click_button("neweventbutton")
@@ -68,7 +72,7 @@ class TestMainView(CalendarTestCase):
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
 
-        # Set the end time
+        ## Set the end time
         end_time_field = self.main_view.get_event_end_time_field()
         self.pointing_device.click_object(end_time_field)
         picker = self.main_view.get_time_picker()
@@ -83,18 +87,10 @@ class TestMainView(CalendarTestCase):
         self.keyboard.type("My location")
         self.assertThat(location_field.text, Eventually(Equals("My location")))
 
-        #input people
-        people_field = self.main_view.get_event_people_field()
-        self.pointing_device.click_object(people_field)
-        self.assertThat(people_field.activeFocus, Eventually(Equals(True)))
-        self.keyboard.type("Me")
-        self.assertThat(people_field.text, Eventually(Equals("Me")))
-
         #click save button
         self.main_view.open_toolbar().click_button("eventSaveButton")
 
         #verify that the event has been created in timeline
-        self.main_view.switch_to_tab("dayTab")
-        self.assertThat(lambda: self.main_view.get_label_with_text(
-                        eventTitle, root=self.main_view.get_day_view()),
-                        Eventually(Not(Is(None))))
+        self.main_view.open_toolbar().click_button("todaybutton")
+        self.assertThat(self.main_view.get_num_events,
+                        Eventually(NotEquals(num_events)))
