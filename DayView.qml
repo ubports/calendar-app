@@ -9,6 +9,7 @@ Item{
     objectName: "DayView"
 
     property var currentDay: new Date()
+    property bool isCurrentPage: false
 
     Column {
         id: column
@@ -76,6 +77,15 @@ Item{
                 width: parent.width/7 * 5
                 height: parent.height
                 z: index == dayViewPath.currentIndex ? 2 : 1
+
+                Connections{
+                    target: root
+                    onIsCurrentPageChanged:{
+                        if(root.isCurrentPage){
+                            timeLineView.scrollToCurrentTime();
+                        }
+                    }
+                }
 
                 //get contentY value from PathView, if its not current Item
                 Binding{

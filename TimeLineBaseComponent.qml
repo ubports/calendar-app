@@ -15,13 +15,16 @@ Item {
 
     property int type: ViewType.ViewTypeWeek
 
-    onStartDayChanged: {
-        timeLineView.scroll();
-    }
+    function scrollToCurrentTime() {
+        //scroll to current time
+        var currentTime = new Date();
+        //TODO: if current time is early morning should we show time from 9 am ?
+        var hour = currentTime.getHours();
 
-    //scroll in case content height changed
-    onHeightChanged: {
-        timeLineView.scroll()
+        timeLineView.contentY = hour * units.gu(10);
+        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
+            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
+        }
     }
 
     Column {
@@ -46,16 +49,6 @@ Item {
             contentWidth: width
 
             clip: true
-
-            function scroll() {
-                //scroll to 9 o'clock
-                var hour = 9
-
-                timeLineView.contentY = hour * units.gu(10);
-                if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
-                    timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
-                }
-            }
 
             TimeLineBackground{
             }
