@@ -10,7 +10,7 @@ Item{
     property int wideType: 1;
     property int narrowType: 2;
 
-    readonly property int minimumHeight: timeLabel.height
+    readonly property int minimumHeight: timeLabel.height + titleLabel.height
 
     signal clicked(var event);
 
@@ -46,11 +46,11 @@ Item{
         titleLabel.text = ""
         descriptionLabel.text = ""
 
+        if( event.displayLabel)
+            titleLabel.text = event.displayLabel;
+
         if( type == wideType) {
             timeLabel.text = timeString
-
-            if( event.displayLabel)
-                titleLabel.text = event.displayLabel;
 
             if( event.description)
                 descriptionLabel.text = event.description
@@ -88,7 +88,6 @@ Item{
             color:"black"
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             width: parent.width
-            visible: type == wideType
         }
 
         Label{
