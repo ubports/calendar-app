@@ -15,12 +15,14 @@ Item {
 
     property int type: ViewType.ViewTypeWeek
 
-    onStartDayChanged: {
-        timeLineView.scroll();
+    Connections{
+        target: tabs
+        onSelectedTabIndexChanged :{
+            timeLineView.scroll()
+        }
     }
 
-    //scroll in case content height changed
-    onHeightChanged: {
+    Component.onCompleted: {
         timeLineView.scroll()
     }
 
@@ -48,8 +50,10 @@ Item {
             clip: true
 
             function scroll() {
-                //scroll to 9 o'clock
-                var hour = 9
+                //scroll to current time
+                var currentTime = new Date();
+                //TODO: if current time is early morning should we show time from 9 am ?
+                var hour = currentTime.getHours();
 
                 timeLineView.contentY = hour * units.gu(10);
                 if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {

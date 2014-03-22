@@ -37,6 +37,9 @@ Column {
         width: parent.width
         height: root.height - weekViewPath.y
 
+        //This is used to scroll all view together when currentItem scrolls
+        property var childContentY;
+
         onNextItemHighlighted: {
             nextWeek();
             weekHeader.incrementCurrentIndex()
@@ -65,6 +68,22 @@ Column {
             width: parent.width
             height: parent.height
             startDay: getWeekStart();
+
+            //get contentY value from PathView, if its not current Item
+            Binding{
+                target: timeLineView
+                property: "contentY"
+                value: weekViewPath.childContentY;
+                when: !timeLineView.PathView.isCurrentItem
+            }
+
+            //set PathView's contentY property, if its current item
+            Binding{
+                target: weekViewPath
+                property: "childContentY"
+                value: contentY
+                when: timeLineView.PathView.isCurrentItem
+            }
 
             function getWeekStart() {
                 switch( weekViewPath.indexType(index)) {
