@@ -46,8 +46,6 @@ Item{
         titleLabel.text = ""
         descriptionLabel.text = ""
 
-        print(height +":"+ minimumHeight);
-
         //height is less then set only event title
         if( height > minimumHeight ) {
             //on wide type show all details
