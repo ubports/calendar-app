@@ -52,7 +52,7 @@ Page {
             function getMonthDate() {
                 switch( monthViewPath.indexType(index)) {
                 case 0:
-                    return monthViewPath.startMonth;
+                    return monthViewPath.addMonth(monthViewPath.startMonth,0);
                 case -1:
                     return monthViewPath.addMonth(monthViewPath.startMonth,-1);
                 case 1:
