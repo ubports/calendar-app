@@ -44,11 +44,9 @@ Item {
 
         bubbleOverLay.destroyAllChildren();
 
-        var startDate = new Date(day);
-        startDate.setHours(0,0,0,0);
+        var startDate = new Date(day).midnight();
 
-        var endDate = startDate.addDays(1);
-        endDate.setHours(0,0,0,0);
+        var endDate = new Date(day).endOfDay();
 
         var itemIds = intern.model.itemIds(startDate,endDate);
         for(var i = 0 ; i < itemIds.length ; ++i) {

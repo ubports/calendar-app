@@ -103,3 +103,6 @@ class MainView(toolkit_emulators.MainView):
     def get_month_name(self, component):
         return component.wait_select_single(
             "Label", objectName="monthLabel").text
+
+    def get_num_events(self):
+        return len(self.select_many("EventBubble"))
