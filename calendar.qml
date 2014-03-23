@@ -76,6 +76,11 @@ MainView {
             property int endtime: -1;
 
             onCurrentDayChanged: {
+                if( yearView.currentYear !== undefined &&
+                        yearView.currentYear.getFullYear() !== currentDay.getFullYear() ) {
+                    yearView.currentYear = tabPage.currentDay.midnight();
+                }
+
                 if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
                     monthView.currentMonth = currentDay.midnight();
 
@@ -242,6 +247,7 @@ MainView {
                         anchors.fill: parent
                         tools: commonToolBar
                         YearView{
+                            id: yearView
                             onMonthSelected: {
                                 tabs.selectedTabIndex = 1
                                 var now = DateExt.today();
