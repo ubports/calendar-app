@@ -4,19 +4,21 @@ import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
-
-Page{
+Item{
     id: root
     objectName: "DayView"
 
     property var currentDay: new Date()
+    property bool isCurrentPage: false
 
     Column {
         id: column
-        anchors.fill: parent
         anchors.top: parent.top
         anchors.topMargin: units.gu(1.5)
+        width: parent.width; height: parent.height
         spacing: units.gu(1)
+
+        anchors.fill: parent
 
         ViewHeader{
             id: viewHeader
@@ -75,6 +77,15 @@ Page{
                 width: parent.width/7 * 5
                 height: parent.height
                 z: index == dayViewPath.currentIndex ? 2 : 1
+
+                Connections{
+                    target: root
+                    onIsCurrentPageChanged:{
+                        if(root.isCurrentPage){
+                            timeLineView.scrollToCurrentTime();
+                        }
+                    }
+                }
 
                 //get contentY value from PathView, if its not current Item
                 Binding{
