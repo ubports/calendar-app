@@ -72,7 +72,6 @@ Item {
     function createEvent( event ,hour) {
         var eventBubble = delegate.createObject(bubbleOverLay);
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
-        eventBubble.event = event
 
         var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
         eventBubble.y = yPos;
@@ -80,7 +79,9 @@ Item {
         var durationMin = (event.endDateTime.getHours() - event.startDateTime.getHours()) * 60;
         durationMin += (event.endDateTime.getMinutes() - event.startDateTime.getMinutes());
         var height = (durationMin * hourHeight )/ 60;
-        eventBubble.height = height;
+        eventBubble.height = (height > eventBubble.minimumHeight) ? height:eventBubble.minimumHeight ;
+
+        eventBubble.event = event
     }
 
     function showSeparator(hour) {

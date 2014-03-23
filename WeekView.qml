@@ -69,6 +69,7 @@ Column {
 
             width: parent.width
             height: parent.height
+
             startDay: getWeekStart();
 
             Connections{
