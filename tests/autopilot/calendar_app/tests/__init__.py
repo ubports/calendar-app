@@ -73,6 +73,7 @@ class CalendarTestCase(AutopilotTestCase):
             self.launch_test_click()
 
     def launch_test_local(self):
+        logger.debug("Running via local installation")
         self.app = self.launch_test_application(
             "qmlscene",
             self.local_location,
@@ -80,6 +81,7 @@ class CalendarTestCase(AutopilotTestCase):
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_installed(self):
+        logger.debug("Running via installed debian package")
         self.app = self.launch_test_application(
             "qmlscene",
             self.installed_location,
@@ -87,6 +89,7 @@ class CalendarTestCase(AutopilotTestCase):
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_click(self):
+        logger.debug("Running via click package")
         self.app = self.launch_click_package(
             "com.ubuntu.calendar",
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
@@ -122,4 +125,4 @@ class CalendarTestCase(AutopilotTestCase):
 
     @property
     def main_view(self):
-        return self.app.select_single(emulators.MainView)
+        return self.app.wait_select_single(emulators.MainView)

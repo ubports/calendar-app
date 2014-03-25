@@ -35,6 +35,12 @@ Date.prototype.midnight = function() {
     return date
 }
 
+Date.prototype.endOfDay = function() {
+    var date = new Date(this)
+    date.setHours(23,59,59,0);
+    return date
+}
+
 Date.prototype.addDays = function(days) {
     var date = new Date(this)
     date.setDate(date.getDate() + days);

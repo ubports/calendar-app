@@ -10,6 +10,8 @@ Item{
     property int wideType: 1;
     property int narrowType: 2;
 
+    readonly property int minimumHeight: timeLabel.height
+
     signal clicked(var event);
 
     UbuntuShape{
@@ -44,16 +46,27 @@ Item{
         titleLabel.text = ""
         descriptionLabel.text = ""
 
-        if( type == wideType) {
-            timeLabel.text = timeString
+        //height is less then set only event title
+        if( height > minimumHeight ) {
+            //on wide type show all details
+            if( type == wideType) {
+                timeLabel.text = timeString
 
-            if( event.displayLabel)
-                titleLabel.text = event.displayLabel;
+                if( event.displayLabel)
+                    titleLabel.text = event.displayLabel;
 
-            if( event.description)
-                descriptionLabel.text = event.description
+                if( event.description)
+                    descriptionLabel.text = event.description
+            } else {
+                //narrow type shows only time and title
+                timeLabel.text = startTime
+
+                if( event.displayLabel)
+                    titleLabel.text = event.displayLabel;
+            }
         } else {
-            timeLabel.text = startTime
+            if( event.displayLabel)
+                timeLabel.text = event.displayLabel;
         }
     }
 
@@ -86,7 +99,6 @@ Item{
             color:"black"
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             width: parent.width
-            visible: type == wideType
         }
 
         Label{
