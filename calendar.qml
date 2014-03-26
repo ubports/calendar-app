@@ -76,6 +76,10 @@ MainView {
             property int endtime: -1;
 
             onCurrentDayChanged: {
+                if( yearView.currentYear !== currentDay.getFullYear() ) {
+                    yearView.currentYear = tabPage.currentDay.getFullYear();
+                }
+
                 if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
                     monthView.currentMonth = currentDay.midnight();
 
@@ -233,6 +237,7 @@ MainView {
 
             Tabs{
                 id: tabs
+
                 Tab{
                     objectName: "yearTab"
                     title: i18n.tr("Year")
@@ -241,6 +246,7 @@ MainView {
                         anchors.fill: parent
                         tools: commonToolBar
                         YearView{
+                            id: yearView
                             onMonthSelected: {
                                 tabs.selectedTabIndex = 1
                                 var now = DateExt.today();
@@ -270,6 +276,7 @@ MainView {
                     }
                 }
                 Tab{
+                    id: weekTab
                     objectName: "weekTab"
                     title: i18n.tr("Week")
                     page: Page{
@@ -278,6 +285,7 @@ MainView {
                         WeekView{
                             id: weekView
                             anchors.fill: parent
+                            isCurrentPage: tabs.selectedTab == weekTab
 
                             onDayStartChanged: {
                                 tabPage.currentDay = dayStart;
@@ -287,6 +295,7 @@ MainView {
                 }
 
                 Tab{
+                    id: dayTab
                     objectName: "dayTab"
                     title: i18n.tr("Day")
                     page: Page{
@@ -295,6 +304,7 @@ MainView {
                         DayView{
                             id: dayView
                             anchors.fill: parent
+                            isCurrentPage: tabs.selectedTab == dayTab
 
                             onCurrentDayChanged: {
                                 tabPage.currentDay = currentDay;
