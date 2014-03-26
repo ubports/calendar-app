@@ -262,6 +262,8 @@ Page {
                         title: i18n.tr("Start")
                         width: parent.width
                         objectName: "startTimeInput"
+                        property int defaultHour: 0
+                        property int defaultMinute: 0
 
                         text: Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
 
@@ -269,7 +271,9 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startDate.getHours(),"minute":startDate.getMinutes()});
+                                startTime.defaultHour = (startDate.getMinutes() < 30) ? startDate.getHours() : startDate.getHours() + 1
+                                startTime.defaultMinute = (startDate.getMinutes() < 30) ? 30 : 0
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startTime.defaultHour,"minute":startTime.defaultMinute});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = startDate;
                                     newDate.setHours(startHour, startMinute);
@@ -287,6 +291,8 @@ Page {
                         title: i18n.tr("End")
                         width: parent.width
                         objectName: "endTimeInput"
+                        property int defaultHour: 0
+                        property int defaultMinute: 0
 
                         text: Qt.formatDateTime(endDate,"dd MMM yyyy hh:mm");
 
@@ -294,7 +300,9 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endDate.getHours(),"minute":endDate.getMinutes()});
+                                endTime.defaultHour = (startDate.getMinutes() < 30) ? startDate.getHours() : startDate.getHours() + 1
+                                endTime.defaultMinute = (startDate.getMinutes() < 30) ? 30 : 0
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endTime.defaultHour,"minute":endTime.defaultMinute});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = endDate;
                                     newDate.setHours(startHour, startMinute);
