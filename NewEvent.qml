@@ -33,14 +33,6 @@ Page {
     }
 
     Component.onCompleted: {
-        console.log = function () {
-            function do_log (what) {
-                messageEdit.text = messageEdit.text + what + "\n";
-            }
-            for (var i=0,l=arguments.length;i<l;i++) {
-                do_log(arguments[i]);
-            }
-        }
 
         pageStack.header.visible = true;
 
