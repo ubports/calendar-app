@@ -11,6 +11,8 @@ Column{
 
     property int dayFormat: Locale.ShortFormat;
 
+    signal dateSelected(var date);
+
     width: parent.width
     spacing: units.gu(2)
 
@@ -22,6 +24,12 @@ Column{
         horizontalAlignment: Text.AlignHCenter
         color: "#AEA79F"
         width: parent.width
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                root.dateSelected(date);
+            }
+        }
     }
 
     Label{
@@ -31,5 +39,11 @@ Column{
         fontSize: "large"
         horizontalAlignment: Text.AlignHCenter
         width: parent.width
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                root.dateSelected(date);
+            }
+        }
     }
 }
