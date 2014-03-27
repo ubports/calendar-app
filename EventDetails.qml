@@ -64,7 +64,7 @@ Page {
         if( attendees !== undefined ) {
             var names = attendees[0].name.split(',');
             for( var j = 0 ; j < names.length ; ++j ) {
-                contactModel.append( {"name": names[j] } );
+                contactModel.append( {"name": names[j],"participationStatus": attendees[j].participationStatus }  );
             }
         }
 
@@ -223,7 +223,7 @@ Page {
                 delegate: Row{
                     spacing: units.gu(1)
                     CheckBox{
-                     enabled: false
+                     checked: participationStatus
                     }
                     Label {
                         text:name
