@@ -308,7 +308,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(startDate),"minute":root.minuteForPickerFromDate(startDate)});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(endTime),"minute":root.minuteForPickerFromDate(endTime)});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = endDate;
                                     newDate.setHours(startHour, startMinute);
