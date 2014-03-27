@@ -51,11 +51,6 @@ Page {
             titleLabel.text = e.displayLabel;
         }
 
-        var location = "";
-        if( e.location ) {
-            locationLabel.text = e.location;
-            location = e.location;
-        }
         if( e.description ) {
             descLabel.text = e.description;
         }
@@ -83,12 +78,18 @@ Page {
         }
         reminderHeader.value = Defines.reminderLabel[index];
 
+        if( e.location ) {
+            locationLabel.text = e.location;
 
-        // FIXME: need to cache map image to avoid duplicate download every time
-        var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
-                "&markers=color:red|"+location+"&zoom=15&size="+mapContainer.width+
-                "x"+mapContainer.height+"&sensor=false";
-        mapImage.source=imageSrc;
+            // FIXME: need to cache map image to avoid duplicate download every time
+            var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+e.location+
+                    "&markers=color:red|"+e.location+"&zoom=15&size="+mapContainer.width+
+                    "x"+mapContainer.height+"&sensor=false";
+            mapImage.source=imageSrc;
+        }
+        else {
+            mapContainer.visible = false;
+        }
     }
 
     tools: ToolbarItems {
@@ -184,6 +185,7 @@ Page {
             }
             Label{
                 id: locationLabel
+                text: i18n.tr("Not specified")
                 fontSize: "medium"
                 width: parent.width
                 wrapMode: Text.WordWrap
