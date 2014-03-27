@@ -87,9 +87,6 @@ Page {
                     "x"+mapContainer.height+"&sensor=false";
             mapImage.source=imageSrc;
         }
-        else {
-            mapContainer.visible = false;
-        }
     }
 
     tools: ToolbarItems {
@@ -197,11 +194,13 @@ Page {
                 id: mapContainer
                 width:parent.width
                 height: units.gu(10)
+                visible: false
 
                 Image {
                     id: mapImage
                     anchors.fill: parent
                     opacity: 0.5
+                    onStatusChanged: if (mapImage.status == Image.Ready) mapContainer.visible = true
                 }
             }
             ThinDivider{}
