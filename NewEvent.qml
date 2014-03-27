@@ -33,7 +33,7 @@ Page {
         // If endDate is setted by argument we have to not change it
         if (typeof(endDate) === 'undefined') {
             endDate = new Date(date)
-            endDate.setMinutes( endDate.getMinutes() + 10)
+            endDate.setMinutes( endDate.getMinutes() + 30)
         }
         internal.eventModel = GlobalModel.globalModel();
 
@@ -52,7 +52,7 @@ Page {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
         startDate = new Date(date)
         endDate = new Date(date)
-        endDate.setMinutes( endDate.getMinutes() + 10)
+        endDate.setMinutes( endDate.getMinutes() + 30)
 
         startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
@@ -308,7 +308,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(endTime),"minute":root.minuteForPickerFromDate(endTime)});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(endDate),"minute":root.minuteForPickerFromDate(endDate)});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = endDate;
                                     newDate.setHours(startHour, startMinute);
