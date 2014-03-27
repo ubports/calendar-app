@@ -148,7 +148,7 @@ Page {
             if( recurrenceRule !== RecurrenceRule.Invalid ) {
                 rule.frequency = recurrenceRule;
                 if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
-                    rule.limit = limitCount.text*1; // To convert number into Integer.
+                    rule.limit =  parseInt(limitCount.text);
                 }
                 else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
                     rule.limit =  datePick.date;
