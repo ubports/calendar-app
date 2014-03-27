@@ -222,7 +222,9 @@ Page {
                 }
                 delegate: Row{
                     spacing: units.gu(1)
-                    CheckBox{}
+                    CheckBox{
+                     enabled: false
+                    }
                     Label {
                         text:name
                         anchors.verticalCenter:  parent.verticalCenter
