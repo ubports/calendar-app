@@ -159,6 +159,20 @@ Page {
         }
     }
 
+    // Calucate default hour for start and end time on event
+    function hourForPickerFromDate(date) {
+        if(date.getMinutes() < 30)
+            return date.getHours()
+        return date.getHours() + 1
+    }
+
+    // Calucate default minute for start and end time on event
+    function minuteForPickerFromDate(date) {
+        if(date.getMinutes() < 30)
+            return 30
+        return 0
+    }
+
     width: parent.width
     height: parent.height
 
@@ -262,8 +276,6 @@ Page {
                         title: i18n.tr("Start")
                         width: parent.width
                         objectName: "startTimeInput"
-                        property int defaultHour: 0
-                        property int defaultMinute: 0
 
                         text: Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
 
@@ -271,9 +283,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                startTime.defaultHour = (startDate.getMinutes() < 30) ? startDate.getHours() : startDate.getHours() + 1
-                                startTime.defaultMinute = (startDate.getMinutes() < 30) ? 30 : 0
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startTime.defaultHour,"minute":startTime.defaultMinute});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(startDate),"minute":root.minuteForPickerFromDate(startDate)});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = startDate;
                                     newDate.setHours(startHour, startMinute);
@@ -291,8 +301,6 @@ Page {
                         title: i18n.tr("End")
                         width: parent.width
                         objectName: "endTimeInput"
-                        property int defaultHour: 0
-                        property int defaultMinute: 0
 
                         text: Qt.formatDateTime(endDate,"dd MMM yyyy hh:mm");
 
@@ -300,9 +308,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                endTime.defaultHour = (startDate.getMinutes() < 30) ? startDate.getHours() : startDate.getHours() + 1
-                                endTime.defaultMinute = (startDate.getMinutes() < 30) ? 30 : 0
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endTime.defaultHour,"minute":endTime.defaultMinute});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(startDate),"minute":root.minuteForPickerFromDate(startDate)});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = endDate;
                                     newDate.setHours(startHour, startMinute);
