@@ -62,9 +62,8 @@ Page {
         var attendees = e.attendees;
         contactModel.clear();
         if( attendees !== undefined ) {
-            var names = attendees[0].name.split(',');
-            for( var j = 0 ; j < names.length ; ++j ) {
-                contactModel.append( {"name": names[j],"participationStatus": attendees[j].participationStatus }  );
+            for( var j = 0 ; j < attendees.length ; ++j ) {
+                contactModel.append( {"name": attendees[j].name,"participationStatus": attendees[j].participationStatus }  );
             }
         }
 
