@@ -85,7 +85,12 @@ Page {
             var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+e.location+
                     "&markers=color:red|"+e.location+"&zoom=15&size="+mapContainer.width+
                     "x"+mapContainer.height+"&sensor=false";
-            mapImage.source=imageSrc;
+            mapImage.source = imageSrc;
+        }
+        else {
+            // TODO: use different color for empty text
+            locationLabel.text = i18n.tr("Not specified")
+            mapImage.source = "";
         }
     }
 
@@ -182,7 +187,6 @@ Page {
             }
             Label{
                 id: locationLabel
-                text: i18n.tr("Not specified")
                 fontSize: "medium"
                 width: parent.width
                 wrapMode: Text.WordWrap
@@ -194,13 +198,12 @@ Page {
                 id: mapContainer
                 width:parent.width
                 height: units.gu(10)
-                visible: false
+                visible: mapImage.status == Image.Ready
 
                 Image {
                     id: mapImage
                     anchors.fill: parent
                     opacity: 0.5
-                    onStatusChanged: if (mapImage.status == Image.Ready) mapContainer.visible = true
                 }
             }
             ThinDivider{}
