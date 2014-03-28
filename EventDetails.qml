@@ -70,7 +70,7 @@ Page {
         var index = 0;
         if(e.recurrence ) {
             var recurrenceRule = e.recurrence.recurrenceRules;
-            limitHeader.value = recurrenceRule[0].limit;
+            limitHeader.value = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].limit : 0 ;
             index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
         }
         recurrentHeader.value = Defines.recurrenceLabel[index];

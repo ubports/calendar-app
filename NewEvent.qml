@@ -104,11 +104,6 @@ Page {
                   // Do Nothing
                 }
             }
-            else{
-                limit.visible = false;
-                limitCount.visible = false;
-                limitDate.visible=false;
-            }
         }
         recurrenceOption.selectedIndex = index;
 
