@@ -438,7 +438,7 @@ Page {
                 width: parent.width
                 title: i18n.tr("Count")
                 objectName: "eventLimitCount"
-                visible:  limitOptions.selectedIndex == 1;
+                visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
                 validator: IntValidator
                 focus: true
             }
@@ -446,7 +446,7 @@ Page {
                 id: limitDate
                 width: parent.width
                 height: datePick.height
-                visible: limitOptions.selectedIndex===2;
+                visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2;
                 DatePicker{
                     id:datePick;
                     width: parent.width
