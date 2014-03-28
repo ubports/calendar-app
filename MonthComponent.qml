@@ -186,8 +186,16 @@ Item{
                 }
             }
 
-            MouseArea{
+            MouseArea {
                 anchors.fill: parent
+                onPressAndHold: {
+                    var selectedDate = new Date();
+                    selectedDate.setFullYear(intern.monthStartYear)
+                    selectedDate.setMonth(intern.monthStartMonth+1)
+                    selectedDate.setDate(date)
+                    selectedDate.setMinutes(0,0,0)
+                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate});
+                }
                 onClicked: {
                     root.dateSelected(new Date(intern.monthStartYear,
                                                intern.monthStartMonth,

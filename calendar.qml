@@ -83,10 +83,10 @@ MainView {
                 if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
                     monthView.currentMonth = currentDay.midnight();
 
-                if( !dayView.currentDay.isSameDay(currentDay))
+                if( dayView.currentDay !== undefined && !dayView.currentDay.isSameDay(currentDay))
                     dayView.currentDay = currentDay
 
-                if( !weekView.dayStart.isSameDay(currentDay))
+                if( weekView.dayStart !== undefined && !weekView.dayStart.isSameDay(currentDay))
                     weekView.dayStart = currentDay
 
                 setStartEndDateToModel();
