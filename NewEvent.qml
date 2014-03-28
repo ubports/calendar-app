@@ -100,9 +100,6 @@ Page {
                         datePick.date= temp;
                     }
                 }
-                else{
-                  // Do Nothing
-                }
             }
         }
         recurrenceOption.selectedIndex = index;
@@ -441,7 +438,7 @@ Page {
                 width: parent.width
                 title: i18n.tr("Count")
                 objectName: "eventLimitCount"
-                visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
+                visible:  limitOptions.selectedIndex == 1;
                 validator: IntValidator
                 focus: true
             }
