@@ -14,12 +14,14 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals, Not, Is, NotEquals
 
 import time
+import unittest
 
 from calendar_app.tests import CalendarTestCase
 
 
 class TestMainView(CalendarTestCase):
 
+    @unittest.skip
     def scroll_time_picker_to_time(self, picker, hours, minutes):
         # Scroll hours to selected value
         scroller = picker.select_single("Scroller", objectName="hourScroller")
@@ -44,6 +46,7 @@ class TestMainView(CalendarTestCase):
             self.assertThat(scroller.currentIndex, Eventually(
                 Equals((current_index + 1) % 60)))
 
+    @unittest.skip
     def test_new_event(self):
         """test add new event """
         #go to today
