@@ -10,6 +10,10 @@ Item{
     property int wideType: 1;
     property int narrowType: 2;
 
+    property Flickable flickable;
+
+    readonly property int minimumHeight: timeLabel.height
+
     signal clicked(var event);
 
     UbuntuShape{
@@ -44,21 +48,63 @@ Item{
         titleLabel.text = ""
         descriptionLabel.text = ""
 
-        if( type == wideType) {
-            timeLabel.text = timeString
+        //height is less then set only event title
+        if( height > minimumHeight ) {
+            //on wide type show all details
+            if( type == wideType) {
+                timeLabel.text = timeString
 
-            if( event.displayLabel)
-                titleLabel.text = event.displayLabel;
+                if( event.displayLabel)
+                    titleLabel.text = event.displayLabel;
 
-            if( event.description)
-                descriptionLabel.text = event.description
+                if( event.description)
+                    descriptionLabel.text = event.description
+            } else {
+                //narrow type shows only time and title
+                timeLabel.text = startTime
+
+                if( event.displayLabel)
+                    titleLabel.text = event.displayLabel;
+            }
         } else {
-            timeLabel.text = startTime
+            if( event.displayLabel)
+                timeLabel.text = event.displayLabel;
+        }
+
+        layoutBubbleDetails();
+    }
+
+    function layoutBubbleDetails() {
+        if(!flickable || flickable === undefined ) {
+            return;
+        }
+
+        if( infoBubble.y < flickable.contentY && infoBubble.height > flickable.height) {
+            var y = (flickable.contentY - infoBubble.y) * 1.2;
+            if( (y+ detailsColumn.height) > infoBubble.height) {
+                y = infoBubble.height - detailsColumn.height;
+            }
+            detailsColumn.y = y;
+        }
+    }
+
+    Connections{
+        target: flickable
+        onContentYChanged: {
+            layoutBubbleDetails();
+        }
+    }
+    Connections{
+        target: detailsColumn
+        onHeightChanged: {
+            layoutBubbleDetails();
         }
     }
 
     Column{
+        id: detailsColumn
         width: parent.width
+
         Row{
             width: parent.width
 
@@ -86,7 +132,6 @@ Item{
             color:"black"
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             width: parent.width
-            visible: type == wideType
         }
 
         Label{

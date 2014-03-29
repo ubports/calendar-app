@@ -10,17 +10,19 @@ Column {
 
     property var dayStart: new Date();
     property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
+    property bool isCurrentPage: false
+
+    anchors.fill: parent
     anchors.top: parent.top
     anchors.topMargin: units.gu(1.5)
     spacing: units.gu(1)
-
-    anchors.fill: parent
 
     Keys.forwardTo: [weekViewPath]
 
     ViewHeader{
         id: viewHeader
-        date: dayStart
+        month: dayStart.getMonth()
+        year: dayStart.getFullYear()
     }
 
     TimeLineHeader{
@@ -38,6 +40,9 @@ Column {
 
         width: parent.width
         height: root.height - weekViewPath.y
+
+        //This is used to scroll all view together when currentItem scrolls
+        property var childContentY;
 
         onNextItemHighlighted: {
             nextWeek();
@@ -65,7 +70,33 @@ Column {
 
             width: parent.width
             height: parent.height
+
             startDay: getWeekStart();
+
+            Connections{
+                target: root
+                onIsCurrentPageChanged:{
+                    if(root.isCurrentPage){
+                        timeLineView.scrollToCurrentTime();
+                    }
+                }
+            }
+
+            //get contentY value from PathView, if its not current Item
+            Binding{
+                target: timeLineView
+                property: "contentY"
+                value: weekViewPath.childContentY;
+                when: !timeLineView.PathView.isCurrentItem
+            }
+
+            //set PathView's contentY property, if its current item
+            Binding{
+                target: weekViewPath
+                property: "childContentY"
+                value: contentY
+                when: timeLineView.PathView.isCurrentItem
+            }
 
             function getWeekStart() {
                 switch( weekViewPath.indexType(index)) {

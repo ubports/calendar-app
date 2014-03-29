@@ -18,6 +18,18 @@ Item {
     //visible hour
     property int scrollHour: 9;
 
+    function scrollToCurrentTime() {
+        //scroll to current time
+        var currentTime = new Date();
+        //TODO: if current time is early morning should we show time from 9 am ?
+        var hour = currentTime.getHours();
+
+        timeLineView.contentY = hour * units.gu(10);
+        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
+            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
+        }
+    }
+
     onStartDayChanged: {
         scrollToDefHour();
     }
@@ -128,6 +140,7 @@ Item {
             anchors.right: parent.right
             anchors.leftMargin: units.gu(0.1)
             anchors.rightMargin: units.gu(0.1)
+            flickable: timeLineView
             clip: true
         }
     }

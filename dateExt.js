@@ -35,6 +35,12 @@ Date.prototype.midnight = function() {
     return date
 }
 
+Date.prototype.endOfDay = function() {
+    var date = new Date(this)
+    date.setHours(23,59,59,0);
+    return date
+}
+
 Date.prototype.addDays = function(days) {
     var date = new Date(this)
     date.setDate(date.getDate() + days);
@@ -106,6 +112,6 @@ function today() {
 }
 
 function isSameMonth(date1, date2) {
-    return ( date1.getMonth() === date2.getMonth()
-            && date1.getFullYear() === date2.getFullYear())
+    return ( date1.getFullYear() === date2.getFullYear()
+            && date1.getMonth() === date2.getMonth() )
 }
