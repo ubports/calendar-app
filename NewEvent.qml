@@ -97,6 +97,15 @@ Page {
             index = foundIndex != -1 ? foundIndex : 0;
         }
         reminderOption.selectedIndex = index;
+
+        index = 0;
+        for(var i=0; i < calendarsOption.model.length; ++i){
+            if(calendarsOption.model[i].collectionId === e.collectionId){
+                index = i;
+                break;
+            }
+        }
+        calendarsOption.selectedIndex = index
     }
 
     //Save the new or Existing event
@@ -153,6 +162,8 @@ Page {
                 audibleReminder.secondsBeforeStart = reminderTime;
                 event.setDetail(audibleReminder);
             }
+
+            event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
 
             internal.eventModel.saveItem(event);
             pageStack.pop();
@@ -301,6 +312,58 @@ Page {
                                     endDate = newDate;
                                     endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
                                 })
+                            }
+                        }
+                    }
+                }
+            }
+
+            Item{
+                width: parent.width
+                height: calendarsOption.height
+                Label{
+                    id: calendarLabel
+                    text: i18n.tr("Calendar ");
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                OptionSelector{
+                    id: calendarsOption
+                    anchors.right: parent.right
+                    width: parent.width - calendarLabel.width - units.gu(1)
+                    containerHeight: itemHeight * 4
+                    model: GlobalModel.globalModel().getCollections();
+                    delegate: OptionSelectorDelegate{
+                        text: modelData.name
+
+                        UbuntuShape{
+                            id: calColor
+                            width: height
+                            height: parent.height - units.gu(2)
+                            color: modelData.color
+                            anchors.right: parent.right
+                            anchors.rightMargin: units.gu(1)
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+                }
+
+                Component{
+                    id: del
+                    Row{
+                        width: parent.width
+                        spacing: units.gu(1)
+                        UbuntuShape{
+                            width: parent.height
+                            height: parent.height
+                            color: modelData.color
+                        }
+                        Label{
+                            text: modelData.name
+                            onTextChanged: {
+                                if(modelData.collectionId === event.collectionId){
+                                    calendarsOption.selectedIndex = index
+                                }
                             }
                         }
                     }

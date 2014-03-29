@@ -1,13 +1,14 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components.ListItems 0.1
 import QtOrganizer 5.0
 
 import "GlobalEventModel.js" as GlobalModel
 
 Page {
     id: root
-    title: i18n.tr("Calendar Management")
+    title: i18n.tr("Calendars")
 
     Component.onCompleted: {
         pageStack.header.visible = true;
@@ -20,12 +21,13 @@ Page {
         //keeping toolbar always open
         opened: true
         locked: true
+        visible: !isInEditMode
 
         back: ToolbarButton {
             objectName: "eventCancelButton"
             action: Action {
                 text: i18n.tr("Back");
-                iconSource: Qt.resolvedUrl("cancel.svg");
+                iconName: "back"
                 onTriggered: {
                     pageStack.pop();
                 }
@@ -35,7 +37,7 @@ Page {
         ToolbarButton {
             action: Action {
                 text: i18n.tr("Edit");
-                iconSource: Qt.resolvedUrl("save.svg");
+                iconName: "edit"
                 onTriggered: {
                     root.isInEditMode = true
                 }
@@ -68,12 +70,13 @@ Page {
         //keeping toolbar always open
         opened: true
         locked: true
+        visible: isInEditMode
 
         back: ToolbarButton {
             objectName: "eventCancelButton"
             action: Action {
                 text: i18n.tr("Back");
-                iconSource: Qt.resolvedUrl("cancel.svg");
+                iconName: "back"
                 onTriggered: {
                     root.isInEditMode = false
                 }
@@ -85,6 +88,8 @@ Page {
 
     ListView {
         id: calendarsList
+        property var filters;
+
         anchors {
             top: parent.top
             bottom: parent.bottom
@@ -95,6 +100,7 @@ Page {
             rightMargin: units.gu(2)
         }
 
+        model : GlobalModel.globalModel().getCollections();
         delegate: delegateComp
 
         Connections{
@@ -108,80 +114,68 @@ Page {
             populateModel();
         }
 
-        property var filters;
         function populateModel(){
-            print(">>>>> -1");
-            var filter = []
-            var cals = GlobalModel.globalModel().collections;
-            print(">>>>> -11");
+            var filter = {};
             var oldFilter = GlobalModel.globalModel().filter;
-            print(">>>>> 0");
+            for(var i = 0 ; i < model.length ; ++i) {
+                filter[model[i].collectionId] = !oldFilter;
+            }
+
             if( oldFilter ) {
-                print(">>>>> 1");
                 var selectIds = oldFilter.ids
-                for(var i = 0 ; i < cals.length ; ++i) {
-                    var cal = cals[i]
-                    filter[cal.collectionId] = false;
-                }
-                print(">>>>> 2");
-                for(var i=0;i< selectIds.length;++i){
+                for(var i = 0; i< selectIds.length ; ++i){
                     filter[selectIds[i]] = true;
                 }
-            } else {
-                for(var i = 0 ; i < cals.length ; ++i) {
-                    var cal = cals[i]
-                    filter[cal.collectionId] = true;
-                }
             }
-            model = cals;
             filters = filter;
         }
 
         Component{
             id: delegateComp
-            Row{
-                width: parent.width
-                height:checkBox.height + units.gu(2)
-                spacing: units.gu(1)
+            Empty{
+                Row{
+                    width: parent.width
+                    height:checkBox.height + units.gu(2)
+                    spacing: units.gu(1)
 
-                UbuntuShape{
-                    width: parent.height
-                    height: parent.height - units.gu(2)
-                    color: modelData.color
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                Label{
-                    text: modelData.name
-                    fontSize: "large"
-                    width: parent.width - (parent.height*2)
-                    anchors.verticalCenter: parent.verticalCenter
+                    UbuntuShape{
+                        width: parent.height
+                        height: parent.height - units.gu(2)
+                        color: modelData.color
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    Label{
+                        text: modelData.name
+                        fontSize: "large"
+                        width: parent.width - (parent.height*2)
+                        anchors.verticalCenter: parent.verticalCenter
 
-                    MouseArea{
-                        anchors.fill: parent
-                        onClicked: {
-                            if(isInEditMode){
-                                //popup dialog
-                                var dialog = PopupUtils.open(Qt.resolvedUrl("ColorPickerDialog.qml"),root);
-                                dialog.accepted.connect(function(color) {
-                                    //var collection = GlobalModel.globalModel().collection(modelData.collectionId);
-                                    //collection.color = color;
-                                    //GlobalModel.globalModel().saveCollection(collection);
-                                    modelData.color = color
-                                })
-                            } else {
-                                checkBox.checked = !checkBox.checked
-                                calendarsList.filter[modelData.collectionId] = checkBox.checked;
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: {
+                                if(isInEditMode){
+                                    //popup dialog
+                                    var dialog = PopupUtils.open(Qt.resolvedUrl("ColorPickerDialog.qml"),root);
+                                    dialog.accepted.connect(function(color) {
+                                        var collection = GlobalModel.globalModel().collection(modelData.collectionId);
+                                        collection.color = color;
+                                        GlobalModel.globalModel().saveCollection(collection);
+                                    })
+                                } else {
+                                    checkBox.checked = !checkBox.checked
+                                    calendarsList.filter[modelData.collectionId] = checkBox.checked;
+                                }
                             }
                         }
                     }
-                }
-                CheckBox {
-                    id: checkBox
-                    checked: calendarsList.filters[modelData.collectionId]
-                    anchors.verticalCenter: parent.verticalCenter
-                    visible:  !root.isInEditMode
-                    onCheckedChanged: {
-                        calendarsList.filters[modelData.collectionId] = checkBox.checked;
+                    CheckBox {
+                        id: checkBox
+                        checked: calendarsList.filters[modelData.collectionId]
+                        anchors.verticalCenter: parent.verticalCenter
+                        visible:  !root.isInEditMode
+                        onCheckedChanged: {
+                            calendarsList.filters[modelData.collectionId] = checkBox.checked;
+                        }
                     }
                 }
             }

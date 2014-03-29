@@ -72,6 +72,9 @@ Item{
                 timeLabel.text = event.displayLabel;
         }
 
+        var collection = GlobalModel.globalModel().collection( event.collectionId );
+        calendarIndicator.color = collection.color
+
         layoutBubbleDetails();
     }
 
@@ -100,9 +103,6 @@ Item{
         onHeightChanged: {
             layoutBubbleDetails();
         }
-
-        var collection = GlobalModel.globalModel().collection( event.collectionId );
-        calendarIndicator.color = collection.color
     }
 
     Column{
