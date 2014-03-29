@@ -76,9 +76,8 @@ MainView {
             property int endtime: -1;
 
             onCurrentDayChanged: {
-                if( yearView.currentYear !== undefined &&
-                        yearView.currentYear.getFullYear() !== currentDay.getFullYear() ) {
-                    yearView.currentYear = tabPage.currentDay.midnight();
+                if( yearView.currentYear !== currentDay.getFullYear() ) {
+                    yearView.currentYear = tabPage.currentDay.getFullYear();
                 }
 
                 if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
@@ -98,8 +97,8 @@ MainView {
                     globalModel.startPeriod =  new Date(currentDay.getFullYear(),0,1,0,0,0,0);
                     globalModel.endPeriod = new Date(currentDay.getFullYear(),11,31,0,0,0,0);
                     // only enable auto update after set the date interval
-	            globalModel.autoUpdate = true
-	            globalModel.update()
+                    globalModel.autoUpdate = true
+                    globalModel.update()
                 }
             }
 

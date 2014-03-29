@@ -10,6 +10,8 @@ Item{
     property int wideType: 1;
     property int narrowType: 2;
 
+    property Flickable flickable;
+
     readonly property int minimumHeight: timeLabel.height
 
     signal clicked(var event);
@@ -68,10 +70,41 @@ Item{
             if( event.displayLabel)
                 timeLabel.text = event.displayLabel;
         }
+
+        layoutBubbleDetails();
+    }
+
+    function layoutBubbleDetails() {
+        if(!flickable || flickable === undefined ) {
+            return;
+        }
+
+        if( infoBubble.y < flickable.contentY && infoBubble.height > flickable.height) {
+            var y = (flickable.contentY - infoBubble.y) * 1.2;
+            if( (y+ detailsColumn.height) > infoBubble.height) {
+                y = infoBubble.height - detailsColumn.height;
+            }
+            detailsColumn.y = y;
+        }
+    }
+
+    Connections{
+        target: flickable
+        onContentYChanged: {
+            layoutBubbleDetails();
+        }
+    }
+    Connections{
+        target: detailsColumn
+        onHeightChanged: {
+            layoutBubbleDetails();
+        }
     }
 
     Column{
+        id: detailsColumn
         width: parent.width
+
         Row{
             width: parent.width
 

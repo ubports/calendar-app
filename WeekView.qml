@@ -12,15 +12,15 @@ Column {
     property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
 
+    anchors.fill: parent
     anchors.top: parent.top
     anchors.topMargin: units.gu(1.5)
     spacing: units.gu(1)
 
-    anchors.fill: parent
-
     ViewHeader{
         id: viewHeader
-        date: dayStart
+        month: dayStart.getMonth()
+        year: dayStart.getFullYear()
     }
 
     TimeLineHeader{
