@@ -6,7 +6,9 @@ Item{
     width: parent.width
     height: monthLabel.height
 
-    property var date;
+    property int month;
+    property int year;
+
     property string monthLabelFontSize: "x-large"
     property string yearLabelFontSize: "large"
 
@@ -14,7 +16,7 @@ Item{
         id: monthLabel
         objectName: "monthLabel"
         fontSize: monthLabelFontSize
-        text: Qt.locale().standaloneMonthName(date.getMonth())
+        text: Qt.locale().standaloneMonthName(month)
         anchors.leftMargin: units.gu(1)
         anchors.left: parent.left
         //color:"white"
@@ -25,7 +27,7 @@ Item{
         id: yearLabel
         objectName: "yearLabel"
         fontSize: yearLabelFontSize
-        text: date.getFullYear()
+        text: year
         anchors.right: parent.right
         anchors.rightMargin: units.gu(1)
         color:"#AEA79F"

@@ -3,18 +3,23 @@ import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
-Page{
-    id: root
+Page {
+    id: monthViewPage
+    objectName: "MonthView"
 
     property var currentMonth: DateExt.today();
-    signal dateSelected(var date);
 
-    anchors.fill: parent
+    signal dateSelected(var date);
 
     PathViewBase{
         id: monthViewPath
-        objectName: "MonthView"
-        anchors.fill: parent
+
+        property var startMonth: currentMonth;
+
+        anchors.top:parent.top
+
+        width:parent.width
+        height: parent.height
 
         onNextItemHighlighted: {
             nextMonth();
@@ -25,17 +30,15 @@ Page{
         }
 
         function nextMonth() {
-            currentMonth = addMonth(root.currentMonth,1);
+            currentMonth = addMonth(currentMonth,1);
         }
 
         function previousMonth(){
-            currentMonth = addMonth(root.currentMonth,-1);
+            currentMonth = addMonth(currentMonth,-1);
         }
 
         function addMonth(date,month){
-            var temp = new Date(date.getFullYear(),date.getMonth(),1,0,0,0);
-            temp.setMonth(date.getMonth() + month);
-            return temp;
+            return  new Date(date.getFullYear(),date.getMonth()+month,1,0,0,0);
         }
 
         delegate: MonthComponent{
@@ -44,21 +47,21 @@ Page{
             width: parent.width - units.gu(5)
             height: parent.height - units.gu(5)
 
-            monthDate: getMonthDate();
+            currentMonth: getMonthDate();
 
             function getMonthDate() {
                 switch( monthViewPath.indexType(index)) {
                 case 0:
-                    return monthViewPath.addMonth(root.currentMonth,0);
+                    return monthViewPath.addMonth(monthViewPath.startMonth,0);
                 case -1:
-                    return monthViewPath.addMonth(root.currentMonth,-1);
+                    return monthViewPath.addMonth(monthViewPath.startMonth,-1);
                 case 1:
-                    return monthViewPath.addMonth(root.currentMonth,1);
+                    return monthViewPath.addMonth(monthViewPath.startMonth,1);
                 }
             }
 
             onDateSelected: {
-                root.dateSelected(date);
+                monthViewPage.dateSelected(date);
             }
         }
     }

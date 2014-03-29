@@ -36,6 +36,9 @@ Rectangle{
     }
 
     function createAllDayEvents() {
+        if(!startDay || startDay === undefined) {
+            return;
+        }
         var sd = startDay.midnight();
         var ed = sd.addDays( (type == ViewType.ViewTypeDay) ? 1 : 7);
         allDayEvents = getAllDayEvents(sd,ed);
