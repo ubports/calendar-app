@@ -84,6 +84,10 @@ Page {
         reminderHeader.value = Defines.reminderLabel[index];
 
 
+        var collection = GlobalModel.globalModel().collection( e.collectionId );
+        calendarIndicator.color = collection.color
+        calendarName.text = collection.name
+
         // FIXME: need to cache map image to avoid duplicate download every time
         var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
                 "&markers=color:red|"+location+"&zoom=15&size="+mapContainer.width+
@@ -162,6 +166,22 @@ Page {
                 }
             }
 
+            Row{
+                width: parent.width
+                spacing: units.gu(1)
+                UbuntuShape{
+                    id: calendarIndicator
+                    width: parent.height
+                    height: parent.height
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                Label{
+                    id:calendarName
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: headerColor
+                }
+            }
+
             ThinDivider{}
             Label{
                 id: titleLabel
@@ -200,6 +220,7 @@ Page {
                     id: mapImage
                     anchors.fill: parent
                     opacity: 0.5
+                    visible: status !== Image.Error
                 }
             }
             ThinDivider{}

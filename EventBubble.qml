@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import "GlobalEventModel.js" as GlobalModel
 
 Item{
     id: infoBubble
@@ -55,14 +56,17 @@ Item{
         } else {
             timeLabel.text = startTime
         }
+
+        var collection = GlobalModel.globalModel().collection( event.collectionId );
+        calendarIndicator.color = collection.color
     }
 
     Column{
         width: parent.width
         Row{
             width: parent.width
-
             Rectangle{
+                id: calendarIndicator
                 width: units.gu(1)
                 radius: width/2
                 height: width

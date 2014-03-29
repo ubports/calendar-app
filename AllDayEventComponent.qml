@@ -23,7 +23,7 @@ Rectangle{
         var itemIds = GlobalModel.globalModel().itemIds(startDate, endDate);
         for(var i = 0 ; i < itemIds.length ; ++i) {
             var eventId = itemIds[(i)];
-            var event = GlobalModel.globalModel().item(eventId);            
+            var event = GlobalModel.globalModel().item(eventId);
             if( event && event.allDay ) {
                 var key  = Qt.formatDateTime(event.startDateTime, "dd-MMM-yyyy");
                 if( !(key in map)) {

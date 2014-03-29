@@ -95,8 +95,8 @@ MainView {
                     globalModel.startPeriod =  new Date(currentDay.getFullYear(),0,1,0,0,0,0);
                     globalModel.endPeriod = new Date(currentDay.getFullYear(),11,31,0,0,0,0);
                     // only enable auto update after set the date interval
-	            globalModel.autoUpdate = true
-	            globalModel.update()
+                    globalModel.autoUpdate = true
+                    globalModel.update()
                 }
             }
 
@@ -228,6 +228,15 @@ MainView {
                         text: i18n.tr("New Event");
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay});
+                        }
+                    }
+                }
+                ToolbarButton{
+                    action:Action{
+                        iconSource: Qt.resolvedUrl("new-event.svg");
+                        text: i18n.tr("Calendars");
+                        onTriggered: {
+                            pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"));
                         }
                     }
                 }
