@@ -429,17 +429,6 @@ Page {
     QtObject {
         id: internal
         property var eventModel;
-        property var recurrenceValue: [ RecurrenceRule.Invalid,
-            RecurrenceRule.Daily,
-            RecurrenceRule.Weekly,
-            RecurrenceRule.Monthly,
-            RecurrenceRule.Yearly];
-
-        property var recurrenceLabel: [ i18n.tr("Once"),
-            i18n.tr("Daily"),
-            i18n.tr("Weekly"),
-            i18n.tr("Monthly"),
-            i18n.tr("Yearly")];
 
         function clearFocus() {
             Qt.inputMethod.hide()
