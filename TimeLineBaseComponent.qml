@@ -16,46 +16,37 @@ Item {
     property int type: ViewType.ViewTypeWeek
 
     //visible hour
-    property int scrollHour: 9;
+    property int scrollHour;
 
     function scrollToCurrentTime() {
         //scroll to current time
         var currentTime = new Date();
         //TODO: if current time is early morning should we show time from 9 am ?
-        var hour = currentTime.getHours();
+        scrollHour = currentTime.getHours();
 
-        timeLineView.contentY = hour * units.gu(10);
+        timeLineView.contentY = scrollHour * units.gu(10);
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
     }
 
-    onStartDayChanged: {
-        scrollToDefHour();
-    }
-
-    //scroll in case content height changed
-    onHeightChanged: {
-        scrollToDefHour();
-    }
-
     Connections{
         target: parent
         onScrollUp:{
-            scrollToHour();
             scrollHour--;
             if( scrollHour < 0) {
                 scrollHour =0;
             }
+            scrollToHour();
         }
 
         onScrollDown:{
-            scrollToHour();
             scrollHour++;
             var visibleHour = root.height / units.gu(10);
-            if( scrollHour > (24 -visibleHour)) {
-                scrollHour = 24 - visibleHour;
+            if( scrollHour > (25 -visibleHour)) {
+                scrollHour = 25 - visibleHour;
             }
+            scrollToHour();
         }
     }
 
@@ -64,12 +55,6 @@ Item {
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
-    }
-
-    function scrollToDefHour() {
-        //scroll to 9 o'clock
-        scrollHour = 9
-        scrollToHour();
     }
 
     Column {
