@@ -347,27 +347,6 @@ Page {
                         }
                     }
                 }
-
-                Component{
-                    id: del
-                    Row{
-                        width: parent.width
-                        spacing: units.gu(1)
-                        UbuntuShape{
-                            width: parent.height
-                            height: parent.height
-                            color: modelData.color
-                        }
-                        Label{
-                            text: modelData.name
-                            onTextChanged: {
-                                if(modelData.collectionId === event.collectionId){
-                                    calendarsOption.selectedIndex = index
-                                }
-                            }
-                        }
-                    }
-                }
             }
 
             Row {
