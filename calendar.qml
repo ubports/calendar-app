@@ -51,7 +51,7 @@ MainView {
     objectName: "calendar"
     applicationName: "com.ubuntu.calendar"
 
-    width: units.gu(45)
+    width: units.gu(100)
     height: units.gu(80)
 
     headerColor: "#266249"
