@@ -100,6 +100,10 @@ Page {
                         datePick.date= temp;
                     }
                 }
+                else{
+                    // If limit is infinite
+                    limitOptions.selectedIndex = 0;
+                }
             }
         }
         recurrenceOption.selectedIndex = index;
@@ -144,12 +148,10 @@ Page {
                 }
                 else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
                     rule.limit =  datePick.date;
-                }        
-            }
-            else {
-                rule.frequency = 0;
-                rule.limit = 0;
-
+                }
+                else{
+                    rule.limit = undefined;
+                }
             }
             event.recurrence.recurrenceRules = [rule];
             //remove old reminder value
@@ -439,7 +441,7 @@ Page {
                 title: i18n.tr("Count")
                 objectName: "eventLimitCount"
                 visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
-                validator: IntValidator
+                validator: IntValidator{bottom: 1;top:10000;}
                 focus: true
             }
             Item {
