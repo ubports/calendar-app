@@ -223,6 +223,7 @@ Page {
                     spacing: units.gu(1)
                     CheckBox{
                      checked: participationStatus
+                     enabled: false
                     }
                     Label {
                         text:name
