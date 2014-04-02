@@ -441,7 +441,7 @@ Page {
                 title: i18n.tr("Count")
                 objectName: "eventLimitCount"
                 visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
-                validator: IntValidator{bottom: 1;top:10000;}
+                validator: IntValidator{bottom: 1;}
                 focus: true
             }
             Item {
