@@ -7,79 +7,113 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-09-26 07:05+0200\n"
+"POT-Creation-Date: 2014-03-10 19:02-0500\n"
 "PO-Revision-Date: 2013-05-18 09:22+0000\n"
 "Last-Translator: Vu Do Quynh <vdquynh@gmail.com>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-31 06:40+0000\n"
+"X-Launchpad-Export-Date: 2014-04-02 06:45+0000\n"
 "X-Generator: Launchpad (build 16967)\n"
+
+#: ../AllDayEventComponent.qml:101
+#, c-format, qt-format
+msgid "%1E"
+msgstr ""
+
+#: ../AllDayEventComponent.qml:104
+#, qt-format
+msgid "%1 All day events"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../EventBubble.qml:38
+#: ../EventBubble.qml:36 ../EventDetails.qml:40
 msgid "hh:mm"
 msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../EventBubble.qml:43
+#: ../EventBubble.qml:41
 #, qt-format
 msgid "%1 - %2"
 msgstr ""
 
-#: ../EventDetails.qml:70
-msgid "Add invite"
-msgstr "Thêm lời mời"
+#: ../EventDetails.qml:98
+msgid "Delete"
+msgstr ""
 
-#: ../EventDetails.qml:79
+#: ../EventDetails.qml:110
 msgid "Edit"
 msgstr "Sửa"
 
-#: ../EventDetails.qml:153
-msgid "People"
-msgstr "Người"
-
-#: ../NewEvent.qml:23
-msgid "Create event"
-msgstr "Tạo sự kiện"
-
-#: ../NewEvent.qml:29
-msgid "Add event name"
-msgstr "Thêm tên sự kiện"
-
-#: ../NewEvent.qml:102
-msgid "to"
+#: ../EventDetails.qml:140 ../NewEvent.qml:262
+msgid "Start"
 msgstr ""
 
-#: ../NewEvent.qml:137
-msgid "Location & People"
+#: ../EventDetails.qml:145 ../NewEvent.qml:287
+msgid "End"
 msgstr ""
 
-#: ../NewEvent.qml:143
-msgid "Add Location"
-msgstr "Thêm địa điểm"
-
-#: ../NewEvent.qml:156
-msgid "Invite People"
-msgstr "Mời Người"
-
-#: ../NewEvent.qml:168
-msgid "Error"
+#: ../EventDetails.qml:153 ../NewEvent.qml:316
+msgid "All Day event:"
 msgstr ""
 
-#: ../NewEvent.qml:171 ../TimePicker.qml:82
-msgid "OK"
+#: ../EventDetails.qml:183 ../NewEvent.qml:365
+msgid "Location"
 msgstr ""
 
-#: ../NewEvent.qml:177
+#: ../EventDetails.qml:207 ../NewEvent.qml:372
+msgid "Guests"
+msgstr ""
+
+#: ../EventDetails.qml:238 ../NewEvent.qml:381
+msgid "This happens"
+msgstr ""
+
+#: ../EventDetails.qml:244 ../NewEvent.qml:398
+msgid "Remind me"
+msgstr ""
+
+#: ../NewEvent.qml:106
+msgid "End time can't be before start time"
+msgstr ""
+
+#: ../NewEvent.qml:165
+msgid "Edit Event"
+msgstr ""
+
+#: ../NewEvent.qml:165 ../calendar.qml:226
+msgid "New Event"
+msgstr "Sự kiện Mới"
+
+#: ../NewEvent.qml:176 ../TimePicker.qml:74
+msgid "Cancel"
+msgstr ""
+
+#: ../NewEvent.qml:187
 msgid "Save"
 msgstr "Lưu"
 
-#: ../NewEvent.qml:205
-msgid "End time can't be before start time"
+#: ../NewEvent.qml:200
+msgid "Error"
+msgstr ""
+
+#: ../NewEvent.qml:202
+msgid "Ok"
+msgstr ""
+
+#: ../NewEvent.qml:247
+msgid "Date"
+msgstr ""
+
+#: ../NewEvent.qml:334
+msgid "Event Name"
+msgstr ""
+
+#: ../NewEvent.qml:350
+msgid "Description"
 msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
@@ -100,34 +134,36 @@ msgstr ""
 msgid "Minute"
 msgstr ""
 
-#: ../TimePicker.qml:73
-msgid "Cancel"
+#: ../TimePicker.qml:83
+msgid "OK"
 msgstr ""
 
-#: ../calendar.qml:56
-msgid "New Event"
-msgstr "Sự kiện Mới"
+#: ../calendar.qml:21
+msgid ""
+"Calendar app accept three arguments: --starttime, --endtime and --newevet. "
+"They will be managed by system. See the source for a full comment about them"
+msgstr ""
 
-#: ../calendar.qml:64
+#: ../calendar.qml:216
 msgid "Today"
 msgstr ""
 
-#: ../calendar.qml:75
+#: ../calendar.qml:238
 msgid "Year"
 msgstr ""
 
-#: ../calendar.qml:95
+#: ../calendar.qml:260
 msgid "Month"
 msgstr ""
 
-#: ../calendar.qml:108
+#: ../calendar.qml:274
 msgid "Week"
 msgstr ""
 
-#: ../calendar.qml:124
+#: ../calendar.qml:291
 msgid "Day"
 msgstr ""
 
-#: ../.build/calendar-app.desktop.js:1
+#: ../.build/com.ubuntu.calendar_calendar.desktop.in:1
 msgid "Calendar"
 msgstr ""
