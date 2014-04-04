@@ -58,7 +58,7 @@ Page {
         contactModel.clear();
         if( attendees !== undefined ) {
             for( var j = 0 ; j < attendees.length ; ++j ) {
-                contactModel.append( {"name": attendees[j].name } );
+                contactModel.append( {"name": attendees[j].name,"participationStatus": attendees[j].participationStatus }  );
             }
         }
 
@@ -225,7 +225,10 @@ Page {
                 }
                 delegate: Row{
                     spacing: units.gu(1)
-                    CheckBox{}
+                    CheckBox{
+                     checked: participationStatus
+                     enabled: false
+                    }
                     Label {
                         text:name
                         anchors.verticalCenter:  parent.verticalCenter
