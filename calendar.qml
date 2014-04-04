@@ -290,6 +290,11 @@ MainView {
                             onDayStartChanged: {
                                 tabPage.currentDay = dayStart;
                             }
+
+                            onDateSelected: {
+                                tabs.selectedTabIndex = 3;
+                                tabPage.currentDay = date;
+                            }
                         }
                     }
                 }
