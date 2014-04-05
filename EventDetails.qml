@@ -260,7 +260,7 @@ Page {
             EventDetailsInfo{
                           id: limitHeader
                           xMargin: column.recurranceAreaMaxWidth
-                          header: i18n.tr("Limit")
+                          header: i18n.tr("Repetition Ends")
                       }
         }
     }
