@@ -68,11 +68,11 @@ Page {
             var recurrenceRule = e.recurrence.recurrenceRules;
             if(recurrenceRule.length > 0){
                 limitHeader.value =  recurrenceRule[0].limit === undefined ? "Never" :  recurrenceRule[0].limit ;
-                     index =  recurrenceRule[0].frequency ;
+                index =  recurrenceRule[0].frequency ;
             }
             else{
-                    limitHeader.visible = false
-                    index = 0
+                limitHeader.visible = false
+                index = 0
             }
         }
         recurrentHeader.value = Defines.recurrenceLabel[index];
@@ -120,7 +120,7 @@ Page {
                 text: i18n.tr("Edit");
                 iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
-                   pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
                 }
             }
         }
@@ -233,8 +233,8 @@ Page {
                 delegate: Row{
                     spacing: units.gu(1)
                     CheckBox{
-                     checked: participationStatus
-                     enabled: false
+                        checked: participationStatus
+                        enabled: false
                     }
                     Label {
                         text:name
@@ -258,10 +258,10 @@ Page {
                 header: i18n.tr("Remind me")
             }
             EventDetailsInfo{
-                          id: limitHeader
-                          xMargin: column.recurranceAreaMaxWidth
-                          header: i18n.tr("Repetition Ends")
-                      }
+                id: limitHeader
+                xMargin: column.recurranceAreaMaxWidth
+                header: i18n.tr("Repetition Ends")
+            }
         }
     }
 }
