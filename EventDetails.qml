@@ -20,8 +20,6 @@ Page {
         if( pageStack.header )
             pageStack.header.visible = false;
         showEvent(event);
-        print("itemId:"+event.itemId)
-        print("parentId:"+event.parentId);
     }
 
     Component.onDestruction: {
