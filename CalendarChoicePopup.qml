@@ -51,11 +51,14 @@ Page {
                 iconSource: Qt.resolvedUrl("save.svg");
                 onTriggered: {
                     var ids = [];
-                    for(var i in calendarsList.filters) {
-                        if(calendarsList.filters[i] === true) {
+                    var collections = GlobalModel.globalModel().getCollections();
+                    for(var i=0; i < collections.length ; ++i) {
+                        var collection = collections[i]
+                        if(collection.extendedMetaData("collection-selected") === true) {
                             ids.push(i);
                         }
                     }
+
                     var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", root, "CalendarChoice.qml");
                     calFilter.ids = ids;
                     GlobalModel.globalModel().filter = calFilter;
@@ -103,33 +106,6 @@ Page {
         model : GlobalModel.globalModel().getCollections();
         delegate: delegateComp
 
-        Connections{
-            target: GlobalModel.globalModel()
-            onReloaded:{
-                populateModel();
-            }
-        }
-
-        Component.onCompleted: {
-            populateModel();
-        }
-
-        function populateModel(){
-            var filter = {};
-            var oldFilter = GlobalModel.globalModel().filter;
-            for(var i = 0 ; i < model.length ; ++i) {
-                filter[model[i].collectionId] = !oldFilter;
-            }
-
-            if( oldFilter ) {
-                var selectIds = oldFilter.ids
-                for(var i = 0; i< selectIds.length ; ++i){
-                    filter[selectIds[i]] = true;
-                }
-            }
-            filters = filter;
-        }
-
         Component{
             id: delegateComp
             Empty{
@@ -170,11 +146,11 @@ Page {
                     }
                     CheckBox {
                         id: checkBox
-                        checked: calendarsList.filters[modelData.collectionId]
+                        checked: modelData.extendedMetaData("collection-selected")
                         anchors.verticalCenter: parent.verticalCenter
                         visible:  !root.isInEditMode
                         onCheckedChanged: {
-                            calendarsList.filters[modelData.collectionId] = checkBox.checked;
+                            modelData.setExtendedMetaData("collection-selected",checkBox.checked)
                         }
                     }
                 }
