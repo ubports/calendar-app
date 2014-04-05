@@ -17,6 +17,8 @@ PathViewBase {
 
     property var date;
 
+    signal dateSelected(var date);
+
     DayHeaderBackground{
         height: FontUtils.sizeToPixels("medium") + units.gu(1.5)
     }
@@ -37,6 +39,10 @@ PathViewBase {
         }
 
         startDay: getStartDate();
+
+        onDateSelected: {
+            header.dateSelected(date);
+        }
 
         function getStartDate() {
             switch(type) {

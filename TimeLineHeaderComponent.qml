@@ -13,6 +13,8 @@ Row{
     property var startDay: DateExt.today();
     property bool isCurrentItem: false
 
+    signal dateSelected(var date);
+
     width: parent.width
 
     Repeater{
@@ -44,6 +46,10 @@ Row{
                 } else {
                     header.width
                 }
+            }
+
+            onDateSelected: {
+                header.dateSelected(date);
             }
         }
     }

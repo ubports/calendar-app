@@ -12,29 +12,32 @@ Column {
     property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
 
+    signal dateSelected(var date);
+
+    anchors.fill: parent
     anchors.top: parent.top
     anchors.topMargin: units.gu(1.5)
     spacing: units.gu(1)
 
-    anchors.fill: parent
-
     ViewHeader{
         id: viewHeader
-        date: dayStart
+        month: dayStart.getMonth()
+        year: dayStart.getFullYear()
     }
 
     TimeLineHeader{
         id: weekHeader
         objectName: "weekHeader"
         type: ViewType.ViewTypeWeek
-        date: weekViewPath.weekStart
+        date: firstDay
+
+        onDateSelected: {
+            root.dateSelected(date);
+        }
     }
 
     PathViewBase{
         id: weekViewPath
-
-        property var visibleWeek: dayStart.weekStart(Qt.locale().firstDayOfWeek);
-        property var weekStart: weekViewPath.visibleWeek
 
         width: parent.width
         height: root.height - weekViewPath.y
@@ -53,13 +56,11 @@ Column {
         }
 
         function nextWeek() {
-            var weekStartDay = visibleWeek.weekStart(Qt.locale().firstDayOfWeek);
-            dayStart = weekStartDay.addDays(7);
+            dayStart = firstDay.addDays(7);
         }
 
         function previousWeek(){
-            var weekStartDay = visibleWeek.weekStart(Qt.locale().firstDayOfWeek);
-            dayStart = weekStartDay.addDays(-7);
+            dayStart = firstDay.addDays(-7);
         }
 
         delegate: TimeLineBaseComponent {
@@ -69,7 +70,8 @@ Column {
 
             width: parent.width
             height: parent.height
-            startDay: getWeekStart();
+
+            startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
 
             Connections{
                 target: root
@@ -94,19 +96,6 @@ Column {
                 property: "childContentY"
                 value: contentY
                 when: timeLineView.PathView.isCurrentItem
-            }
-
-            function getWeekStart() {
-                switch( weekViewPath.indexType(index)) {
-                case 0:
-                    return weekViewPath.weekStart;
-                case -1:
-                    var weekStartDay= weekViewPath.weekStart.weekStart(Qt.locale().firstDayOfWeek);
-                    return weekStartDay.addDays(-7);
-                case 1:
-                    var weekStartDay = weekViewPath.weekStart.weekStart(Qt.locale().firstDayOfWeek);
-                    return weekStartDay.addDays(7);
-                }
             }
         }
     }

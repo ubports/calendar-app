@@ -27,6 +27,13 @@ Item {
         }
     }
 
+    EventListModel {
+        id: mainModel
+        startPeriod: startDay.midnight();
+        endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
+    }
+
+
     Column {
         anchors.top: parent.top
 
@@ -37,6 +44,10 @@ Item {
             id: allDayContainer
             type: root.type
             startDay: root.startDay
+            model: mainModel
+            Component.onCompleted: {
+                model.addModelChangeListener(createAllDayEvents);
+            }
         }
 
         Flickable{
@@ -75,6 +86,11 @@ Item {
                         height: parent.height
                         delegate: comp
                         day: startDay.addDays(index)
+
+                        model: mainModel
+                        Component.onCompleted: {
+                            model.addModelChangeListener(createEvents);
+                        }
                     }
                 }
             }
@@ -95,6 +111,7 @@ Item {
             anchors.right: parent.right
             anchors.leftMargin: units.gu(0.1)
             anchors.rightMargin: units.gu(0.1)
+            flickable: timeLineView
             clip: true
         }
     }

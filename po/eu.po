@@ -1,31 +1,31 @@
-# Asturian translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Basque translation for ubuntu-calendar-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-03-10 19:02-0500\n"
-"PO-Revision-Date: 2014-04-04 02:27+0000\n"
-"Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
-"Language-Team: Asturian <ast@li.org>\n"
+"PO-Revision-Date: 2014-03-22 19:19+0000\n"
+"Last-Translator: Ibai Oihanguren Sala <Unknown>\n"
+"Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-05 06:19+0000\n"
-"X-Generator: Launchpad (build 16976)\n"
+"X-Launchpad-Export-Date: 2014-04-02 06:45+0000\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #: ../AllDayEventComponent.qml:101
 #, c-format, qt-format
 msgid "%1E"
-msgstr "%1E"
+msgstr ""
 
 #: ../AllDayEventComponent.qml:104
 #, qt-format
 msgid "%1 All day events"
-msgstr "%1 Actividaes pal día enteru"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -42,79 +42,79 @@ msgstr "%1 - %2"
 
 #: ../EventDetails.qml:98
 msgid "Delete"
-msgstr "Desaniciar"
+msgstr ""
 
 #: ../EventDetails.qml:110
 msgid "Edit"
-msgstr "Editar"
+msgstr "Editatu"
 
 #: ../EventDetails.qml:140 ../NewEvent.qml:262
 msgid "Start"
-msgstr "Principiu"
+msgstr ""
 
 #: ../EventDetails.qml:145 ../NewEvent.qml:287
 msgid "End"
-msgstr "Fin"
+msgstr ""
 
 #: ../EventDetails.qml:153 ../NewEvent.qml:316
 msgid "All Day event:"
-msgstr "Actividá pal día enteru:"
+msgstr ""
 
 #: ../EventDetails.qml:183 ../NewEvent.qml:365
 msgid "Location"
-msgstr "Llugar"
+msgstr ""
 
 #: ../EventDetails.qml:207 ../NewEvent.qml:372
 msgid "Guests"
-msgstr "Invitaos"
+msgstr ""
 
 #: ../EventDetails.qml:238 ../NewEvent.qml:381
 msgid "This happens"
-msgstr "Asocede esto"
+msgstr ""
 
 #: ../EventDetails.qml:244 ../NewEvent.qml:398
 msgid "Remind me"
-msgstr "Recordámelo"
+msgstr ""
 
 #: ../NewEvent.qml:106
 msgid "End time can't be before start time"
-msgstr "El tiempu final nun pue ser anterior al d'aniciu"
+msgstr "Amaierako ordua ezin da hasierakoa baino lehenago izan"
 
 #: ../NewEvent.qml:165
 msgid "Edit Event"
-msgstr "Editar actividá"
+msgstr ""
 
 #: ../NewEvent.qml:165 ../calendar.qml:226
 msgid "New Event"
-msgstr "Nueva actividá"
+msgstr "Gertaera berria"
 
 #: ../NewEvent.qml:176 ../TimePicker.qml:74
 msgid "Cancel"
-msgstr "Encaboxar"
+msgstr "Utzi"
 
 #: ../NewEvent.qml:187
 msgid "Save"
-msgstr "Guardar"
+msgstr "Gorde"
 
 #: ../NewEvent.qml:200
 msgid "Error"
-msgstr "Error"
+msgstr "Errorea"
 
 #: ../NewEvent.qml:202
 msgid "Ok"
-msgstr "Aceutar"
+msgstr ""
 
 #: ../NewEvent.qml:247
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 #: ../NewEvent.qml:334
 msgid "Event Name"
-msgstr "Nome de l'actividá"
+msgstr ""
 
 #: ../NewEvent.qml:350
 msgid "Description"
-msgstr "Descripción"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -124,49 +124,46 @@ msgstr "hh ap"
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr "Tiempu"
+msgstr "Ordua"
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr "Hora"
+msgstr "Orduak"
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr "Minutu"
+msgstr "Minutuak"
 
 #: ../TimePicker.qml:83
 msgid "OK"
-msgstr "Aceutar"
+msgstr "Ados"
 
 #: ../calendar.qml:21
 msgid ""
 "Calendar app accept three arguments: --starttime, --endtime and --newevet. "
 "They will be managed by system. See the source for a full comment about them"
 msgstr ""
-"La app de calendariu aceuta trés argumentos: --starttime, --endtime y --"
-"newevet. Estos xestionarálos el sistema. Vea'l códigu fonte pa un comentariu "
-"completu d'ellos"
 
 #: ../calendar.qml:216
 msgid "Today"
-msgstr "Güei"
+msgstr "Gaur"
 
 #: ../calendar.qml:238
 msgid "Year"
-msgstr "Añu"
+msgstr "Urtea"
 
 #: ../calendar.qml:260
 msgid "Month"
-msgstr "Mes"
+msgstr "Hila"
 
 #: ../calendar.qml:274
 msgid "Week"
-msgstr "Selmana"
+msgstr "Astea"
 
 #: ../calendar.qml:291
 msgid "Day"
-msgstr "Día"
+msgstr "Eguna"
 
 #: ../.build/com.ubuntu.calendar_calendar.desktop.in:1
 msgid "Calendar"
-msgstr "Calendariu"
+msgstr "Egutegia"

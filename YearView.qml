@@ -6,42 +6,27 @@ import "dateExt.js" as DateExt
 PathViewBase {
     id: root
     objectName: "YearView"
-
-    property var currentYear: DateExt.today();
+    property int currentYear: DateExt.today().getFullYear();
 
     signal monthSelected(var date);
 
     anchors.fill: parent
 
     onNextItemHighlighted: {
-        currentYear = getDateFromYear(currentYear.getFullYear() + 1);
+        currentYear = currentYear + 1;
     }
 
     onPreviousItemHighlighted: {
-        currentYear = getDateFromYear(currentYear.getFullYear() - 1);
-    }
-
-    function getDateFromYear(year) {
-        return new Date(year,0,1,0,0,0,0);
+        currentYear = currentYear - 1;
     }
 
     delegate: GridView{
         id: yearView
         clip: true
+        focus: index == root.currentIndex
 
         property bool isCurrentItem: index == root.currentIndex
-        property var year: getYear();
-
-        function getYear() {
-            switch( root.indexType(index)) {
-            case 0:
-                return currentYear;
-            case -1:
-                return getDateFromYear(currentYear.getFullYear() - 1);
-            case 1:
-                return getDateFromYear(currentYear.getFullYear() + 1);
-            }
-        }
+        property int year: (root.currentYear + root.indexType(index))
 
         width: parent.width
         height: parent.height
@@ -60,7 +45,7 @@ PathViewBase {
 
             MonthComponent{
                 id: monthComponent
-                monthDate: new Date(yearView.year.getFullYear(),index,1,0,0,0,0)
+                currentMonth: new Date(yearView.year,index,1,0,0,0,0)
                 anchors.fill: parent
                 anchors.margins: units.gu(0.5)
 
@@ -72,7 +57,7 @@ PathViewBase {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        root.monthSelected(monthComponent.monthDate);
+                        root.monthSelected(monthComponent.currentMonth);
                     }
                 }
             }
