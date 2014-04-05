@@ -71,7 +71,7 @@ Page {
                      index =  recurrenceRule[0].frequency ;
             }
             else{
-                    limitHeader.value = 0
+                    limitHeader.visible = false
                     index = 0
             }
         }
@@ -151,7 +151,7 @@ Page {
             }
             EventDetailsInfo{
                 id: endHeader
-                xMargin: column.timeLabelMaxLen
+                xMargin: column.timeLabelMaxLenLimit
                 header: i18n.tr("End")
             }
             Row {
