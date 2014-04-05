@@ -436,13 +436,13 @@ Page {
                 height: limitOptions.height
                 Label{
                     id: limitLabel
-                    text: i18n.tr("Repetition");
+                    text: i18n.tr("Repetition Ends");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
                     id: limitOptions
                     anchors.right: parent.right
-                    width: parent.width - optionSelectorWidth - units.gu(1)
+                    width: parent.width - optionSelectorWidth - units.gu(3)
                     model: Defines.limitLabel
                     containerHeight: itemHeight * 4
 
