@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
-import "GlobalEventModel.js" as GlobalModel
 
 Item {
     id: bubbleOverLay
@@ -10,49 +9,38 @@ Item {
     property var day;
     property int hourHeight: units.gu(10)
 
-    Component.onCompleted: {
-        intern.model = GlobalModel.globalModel();
-        intern.model.reloaded.connect(bubbleOverLay.createEvents);
-    }
-
-    onDayChanged: {
-        if( intern.model)
-            bubbleOverLay.createEvents();
-    }
+    property var model;
 
     TimeSeparator{
         id: separator
         objectName: "separator"
         width:  bubbleOverLay.width
+        visible: false
         z:1
     }
 
     QtObject {
         id: intern
         property var now : new Date();
-        property var model;
     }
 
     function showEventDetails(event) {
-        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event});
+        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model":model});
     }
 
     function createEvents() {
         if(!bubbleOverLay || bubbleOverLay == undefined) {
             return;
         }
-
-        bubbleOverLay.destroyAllChildren();
+        destroyAllChildren();
 
         var startDate = new Date(day).midnight();
-
         var endDate = new Date(day).endOfDay();
 
-        var itemIds = intern.model.itemIds(startDate,endDate);
-        for(var i = 0 ; i < itemIds.length ; ++i) {
-            var eventId = itemIds[(i)];
-            var event = intern.model.item(eventId);
-            if( event ) {
+        var items = model.getItems(startDate,endDate);
+        for(var i = 0 ; i < items.length ; ++i) {
+            var event = items[i];
+            if(event.allDay === false) {
                 bubbleOverLay.createEvent(event,event.startDateTime.getHours());
             }
         }
@@ -64,10 +52,8 @@ Item {
 
     function destroyAllChildren() {
         for( var i = children.length - 1; i >= 0; --i ) {
-            if( children[i].objectName === "separator") {
-                children[i].visible = false;
-            } else {
-                children[i].visible = false;
+            children[i].visible = false;
+            if( children[i].objectName !== "separator") {
                 children[i].destroy();
             }
         }
@@ -75,6 +61,7 @@ Item {
 
     function createEvent( event ,hour) {
         var eventBubble = delegate.createObject(bubbleOverLay);
+
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
 
         var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
