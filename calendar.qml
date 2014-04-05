@@ -218,7 +218,7 @@ MainView {
                         iconSource: Qt.resolvedUrl("new-event.svg");
                         text: i18n.tr("New Event");
                         onTriggered: {
-                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay,"model":eventModel});
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabs.currentDay,"model":eventModel});
                         }
                     }
                 }
