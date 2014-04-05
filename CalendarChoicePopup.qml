@@ -50,17 +50,17 @@ Page {
                 text: i18n.tr("Save");
                 iconSource: Qt.resolvedUrl("save.svg");
                 onTriggered: {
-                    var ids = [];
+                    var collectionIds = [];
                     var collections = calendarsList.model;
                     for(var i=0; i < collections.length ; ++i) {
                         var collection = collections[i]
                         if(collection.extendedMetaData("collection-selected") === true) {
-                            ids.push(i);
+                            collectionIds.push(collection.collectionId);
                         }
                     }
 
                     var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", root, "CalendarChoice.qml");
-                    calFilter.ids = ids;
+                    calFilter.ids = collectionIds;
                     GlobalModel.globalModel().filter = calFilter;
                     pageStack.pop();
                 }
