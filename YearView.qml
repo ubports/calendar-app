@@ -23,6 +23,7 @@ PathViewBase {
     delegate: GridView{
         id: yearView
         clip: true
+        focus: index == root.currentIndex
 
         property int scrollMonth: 0;
         property bool isCurrentItem: index == root.currentIndex

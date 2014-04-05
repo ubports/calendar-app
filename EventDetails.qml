@@ -5,7 +5,6 @@ import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
 import QtOrganizer 5.0
 
-import "GlobalEventModel.js" as GlobalModel
 import "Defines.js" as Defines
 
 Page {
@@ -14,6 +13,8 @@ Page {
     property var event;
     property string headerColor :"black"
     property string detailColor :"grey"
+    property var model;
+
     anchors.fill: parent
     Component.onCompleted: {
         if( pageStack.header )
@@ -51,11 +52,6 @@ Page {
             titleLabel.text = e.displayLabel;
         }
 
-        var location = "";
-        if( e.location ) {
-            locationLabel.text = e.location;
-            location = e.location;
-        }
         if( e.description ) {
             descLabel.text = e.description;
         }
@@ -63,7 +59,7 @@ Page {
         contactModel.clear();
         if( attendees !== undefined ) {
             for( var j = 0 ; j < attendees.length ; ++j ) {
-                contactModel.append( {"name": attendees[j].name } );
+                contactModel.append( {"name": attendees[j].name,"participationStatus": attendees[j].participationStatus }  );
             }
         }
 
@@ -83,12 +79,20 @@ Page {
         }
         reminderHeader.value = Defines.reminderLabel[index];
 
+        if( e.location ) {
+            locationLabel.text = e.location;
 
-        // FIXME: need to cache map image to avoid duplicate download every time
-        var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
-                "&markers=color:red|"+location+"&zoom=15&size="+mapContainer.width+
-                "x"+mapContainer.height+"&sensor=false";
-        mapImage.source=imageSrc;
+            // FIXME: need to cache map image to avoid duplicate download every time
+            var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+e.location+
+                    "&markers=color:red|"+e.location+"&zoom=15&size="+mapContainer.width+
+                    "x"+mapContainer.height+"&sensor=false";
+            mapImage.source = imageSrc;
+        }
+        else {
+            // TODO: use different color for empty text
+            locationLabel.text = i18n.tr("Not specified")
+            mapImage.source = "";
+        }
     }
 
     Keys.onEscapePressed: {
@@ -107,8 +111,7 @@ Page {
                 text: i18n.tr("Delete");
                 iconSource: "image://theme/delete,edit-delete-symbolic"
                 onTriggered: {
-                    var eventModel = GlobalModel.globalModel();
-                    eventModel.removeItem(event);
+                    model.removeItem(event);
                     pageStack.pop();
                 }
             }
@@ -119,7 +122,7 @@ Page {
                 text: i18n.tr("Edit");
                 iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
-                   pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event});
+                   pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
                 }
             }
         }
@@ -204,6 +207,7 @@ Page {
                 id: mapContainer
                 width:parent.width
                 height: units.gu(10)
+                visible: mapImage.status == Image.Ready
 
                 Image {
                     id: mapImage
@@ -231,7 +235,10 @@ Page {
                     model: contactModel
                     delegate: Row{
                         spacing: units.gu(1)
-                        CheckBox{}
+                        CheckBox{
+                            checked: participationStatus
+                            enabled: false
+                        }
                         Label {
                             text:name
                             anchors.verticalCenter:  parent.verticalCenter

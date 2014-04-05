@@ -3,7 +3,6 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
 import "dateExt.js" as DateExt
-import "GlobalEventModel.js" as GlobalModel
 
 MainView {
     id: mainView
@@ -51,7 +50,7 @@ MainView {
     objectName: "calendar"
     applicationName: "com.ubuntu.calendar"
 
-    width: units.gu(45)
+    width: units.gu(100)
     height: units.gu(80)
     focus: true
     Keys.forwardTo: [yearView,monthView,weekView,dayView,pageStack.currentPage,tabPage]
@@ -70,7 +69,6 @@ MainView {
             id: tabPage
 
             property var currentDay: DateExt.today();
-            property var globalModel;
 
             // Arguments on startup
             property bool newevent: false;
@@ -90,18 +88,6 @@ MainView {
 
                 if( !weekView.dayStart.isSameDay(currentDay))
                     weekView.dayStart = currentDay
-
-                setStartEndDateToModel();
-            }
-
-            function setStartEndDateToModel() {
-                if(globalModel) {
-                    globalModel.startPeriod =  new Date(currentDay.getFullYear(),0,1,0,0,0,0);
-                    globalModel.endPeriod = new Date(currentDay.getFullYear(),11,31,0,0,0,0);
-                    // only enable auto update after set the date interval
-                    globalModel.autoUpdate = true
-                    globalModel.update()
-                }
             }
 
             function newEvent() {
@@ -126,7 +112,7 @@ MainView {
                             endDate = new Date(endTime);
                     }
                 }
-                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"startDate": startDate, "endDate": endDate});
+                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"startDate": startDate, "endDate": endDate, "model":eventModel});
             }
 
             // This function calculate the difference between --endtime and --starttime and choose the better view
@@ -161,7 +147,6 @@ MainView {
 
                 if (endtimepattern.test(url))
                     endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
-
             }
 
             Component.onCompleted: {
@@ -196,9 +181,6 @@ MainView {
                 else {
                     tabs.selectedTabIndex= 1;
                 }
-
-                globalModel = GlobalModel.globalModel();
-                setStartEndDateToModel();
             } // End of Component.onCompleted:
 
             // This is for wait that the app is load when newEvent is invoked by argument
@@ -208,6 +190,13 @@ MainView {
                 onTriggered: {
                     tabPage.newEvent();
                 }
+            }
+
+            EventListModel{
+                id: eventModel
+                //This model is just for newevent
+                //so we dont need any update
+                autoUpdate: false
             }
 
             ToolbarItems {
@@ -229,7 +218,7 @@ MainView {
                         iconSource: Qt.resolvedUrl("new-event.svg");
                         text: i18n.tr("New Event");
                         onTriggered: {
-                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay});
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay,"model":eventModel});
                         }
                     }
                 }
@@ -310,6 +299,11 @@ MainView {
                             isCurrentPage: tabs.selectedTab == weekTab
                             onDayStartChanged: {
                                 tabPage.currentDay = dayStart;
+                            }
+
+                            onDateSelected: {
+                                tabs.selectedTabIndex = 3;
+                                tabPage.currentDay = date;
                             }
                         }
                     }
