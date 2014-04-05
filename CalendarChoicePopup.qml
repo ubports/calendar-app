@@ -51,7 +51,7 @@ Page {
                 iconSource: Qt.resolvedUrl("save.svg");
                 onTriggered: {
                     var ids = [];
-                    var collections = GlobalModel.globalModel().getCollections();
+                    var collections = calendarsList.model;
                     for(var i=0; i < collections.length ; ++i) {
                         var collection = collections[i]
                         if(collection.extendedMetaData("collection-selected") === true) {
