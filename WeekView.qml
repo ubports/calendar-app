@@ -71,13 +71,6 @@ Column {
             width: parent.width
             height: parent.height
 
-//            Connections{
-//                target: weekViewPath
-//                onMovementEnded:{
-//                    startDay = firstDay.addDays( weekViewPath.indexType(index) * 7)
-//                }
-//            }
-
             startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
 
             Connections{
