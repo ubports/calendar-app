@@ -5,7 +5,6 @@ import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
 import QtOrganizer 5.0
 
-import "GlobalEventModel.js" as GlobalModel
 import "Defines.js" as Defines
 
 Page {
@@ -14,11 +13,15 @@ Page {
     property var event;
     property string headerColor :"black"
     property string detailColor :"grey"
+    property var model;
+
     anchors.fill: parent
     Component.onCompleted: {
         if( pageStack.header )
             pageStack.header.visible = false;
         showEvent(event);
+        print("itemId:"+event.itemId)
+        print("parentId:"+event.parentId);
     }
 
     Component.onDestruction: {
@@ -101,8 +104,7 @@ Page {
                 text: i18n.tr("Delete");
                 iconSource: "image://theme/delete,edit-delete-symbolic"
                 onTriggered: {
-                    var eventModel = GlobalModel.globalModel();
-                    eventModel.removeItem(event);
+                    model.removeItem(event);
                     pageStack.pop();
                 }
             }
