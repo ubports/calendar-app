@@ -113,7 +113,7 @@ Page {
                 text: i18n.tr("Edit");
                 iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
-                   pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event});
+                   pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
                 }
             }
         }
