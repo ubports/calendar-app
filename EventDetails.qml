@@ -51,11 +51,6 @@ Page {
             titleLabel.text = e.displayLabel;
         }
 
-        var location = "";
-        if( e.location ) {
-            locationLabel.text = e.location;
-            location = e.location;
-        }
         if( e.description ) {
             descLabel.text = e.description;
         }
@@ -63,7 +58,7 @@ Page {
         contactModel.clear();
         if( attendees !== undefined ) {
             for( var j = 0 ; j < attendees.length ; ++j ) {
-                contactModel.append( {"name": attendees[j].name } );
+                contactModel.append( {"name": attendees[j].name,"participationStatus": attendees[j].participationStatus }  );
             }
         }
 
@@ -83,16 +78,24 @@ Page {
         }
         reminderHeader.value = Defines.reminderLabel[index];
 
-
         var collection = GlobalModel.globalModel().collection( e.collectionId );
         calendarIndicator.color = collection.color
         calendarName.text = collection.name
 
-        // FIXME: need to cache map image to avoid duplicate download every time
-        var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+location+
-                "&markers=color:red|"+location+"&zoom=15&size="+mapContainer.width+
-                "x"+mapContainer.height+"&sensor=false";
-        mapImage.source=imageSrc;
+        if( e.location ) {
+            locationLabel.text = e.location;
+
+            // FIXME: need to cache map image to avoid duplicate download every time
+            var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+e.location+
+                    "&markers=color:red|"+e.location+"&zoom=15&size="+mapContainer.width+
+                    "x"+mapContainer.height+"&sensor=false";
+            mapImage.source = imageSrc;
+        }
+        else {
+            // TODO: use different color for empty text
+            locationLabel.text = i18n.tr("Not specified")
+            mapImage.source = "";
+        }
     }
 
     tools: ToolbarItems {
@@ -215,6 +218,7 @@ Page {
                 id: mapContainer
                 width:parent.width
                 height: units.gu(10)
+                visible: mapImage.status == Image.Ready
 
                 Image {
                     id: mapImage
@@ -242,7 +246,10 @@ Page {
                 }
                 delegate: Row{
                     spacing: units.gu(1)
-                    CheckBox{}
+                    CheckBox{
+                     checked: participationStatus
+                     enabled: false
+                    }
                     Label {
                         text:name
                         anchors.verticalCenter:  parent.verticalCenter

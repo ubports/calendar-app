@@ -12,6 +12,8 @@ Column {
     property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
 
+    signal dateSelected(var date);
+
     anchors.fill: parent
     anchors.top: parent.top
     anchors.topMargin: units.gu(1.5)
@@ -28,6 +30,10 @@ Column {
         objectName: "weekHeader"
         type: ViewType.ViewTypeWeek
         date: weekViewPath.weekStart
+
+        onDateSelected: {
+            root.dateSelected(date);
+        }
     }
 
     PathViewBase{
