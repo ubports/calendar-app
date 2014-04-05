@@ -62,10 +62,10 @@ MainView {
     PageStack {
         id: pageStack
 
-        Component.onCompleted: push(tabPage)
+        Component.onCompleted: push(tabs)
 
-        Page{
-            id: tabPage
+        Tabs{
+            id: tabs
 
             property var currentDay: DateExt.today();
             property var globalModel;
@@ -77,7 +77,7 @@ MainView {
 
             onCurrentDayChanged: {
                 if( yearView.currentYear !== currentDay.getFullYear() ) {
-                    yearView.currentYear = tabPage.currentDay.getFullYear();
+                    yearView.currentYear = tabs.currentDay.getFullYear();
                 }
 
                 if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
@@ -137,13 +137,13 @@ MainView {
                 var difference = endTime - startTime;
 
                 if (difference > month)
-                    return 0;   // Year view
+                    return yearTab.index;   // Year view
                 else if (difference > 7 * day)
-                    return 1;   // Month view}
+                    return monthTab.index;   // Month view}
                 else if (difference > day)
-                    return 2;   // Week view
+                    return weekTab.index;   // Week view
                 else
-                    return 3;   // Day view
+                    return dayTab.index;   // Day view
             }
 
             // This function parse the argument
@@ -166,14 +166,14 @@ MainView {
                 // If an url has been set
                 if (args.defaultArgument.at(0)) {
                     parseArguments(args.defaultArgument.at(0))
-                    tabPage.currentDay = new Date()
+                    tabs.currentDay = new Date()
                     // If newevent has been called on startup
                     if (newevent) {
                         timer.running = true;
                     }
                     else if (starttime !== -1) { // If no newevent has been setted, but starttime
                         var startTime = parseInt(starttime);
-                        tabPage.currentDay = new Date(startTime);
+                        tabs.currentDay = new Date(startTime);
 
                         // If also endtime has been settend
                         if (endtime !== -1) {
@@ -206,7 +206,7 @@ MainView {
                 running: false;
                 repeat: false
                 onTriggered: {
-                    tabPage.newEvent();
+                    tabs.newEvent();
                 }
             }
 
@@ -219,7 +219,7 @@ MainView {
                         iconSource: Qt.resolvedUrl("calendar-today.svg");
                         text: i18n.tr("Today");
                         onTriggered: {
-                            tabPage.currentDay = (new Date()).midnight();
+                            tabs.currentDay = (new Date()).midnight();
                         }
                     }
                 }
@@ -229,91 +229,84 @@ MainView {
                         iconSource: Qt.resolvedUrl("new-event.svg");
                         text: i18n.tr("New Event");
                         onTriggered: {
-                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabPage.currentDay});
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabs.currentDay});
                         }
                     }
                 }
             }
 
-            Tabs{
-                id: tabs
-
-                Tab{
-                    objectName: "yearTab"
-                    title: i18n.tr("Year")
-                    page: Page{
-                        objectName: "yearPage"
-                        anchors.fill: parent
-                        tools: commonToolBar
-                        YearView{
-                            id: yearView
-                            onMonthSelected: {
-                                tabs.selectedTabIndex = 1
-                                var now = DateExt.today();
-                                if( date.getMonth() === now.getMonth()
-                                        && date.getFullYear() === now.getFullYear()) {
-                                    monthView.currentMonth = now
-                                } else {
-                                    monthView.currentMonth = date.midnight();
-                                }
+            Tab{
+                id: yearTab
+                objectName: "yearTab"
+                title: i18n.tr("Year")
+                page: Page{
+                    objectName: "yearPage"
+                    tools: commonToolBar
+                    YearView{
+                        id: yearView
+                        onMonthSelected: {
+                            tabs.selectedTabIndex = monthTab.index;
+                            var now = DateExt.today();
+                            if( date.getMonth() === now.getMonth()
+                                    && date.getFullYear() === now.getFullYear()) {
+                                monthView.currentMonth = now
+                            } else {
+                                monthView.currentMonth = date.midnight();
                             }
                         }
                     }
                 }
-                Tab {
-                    id: monthTab
-                    objectName: "monthTab"
-                    title: i18n.tr("Month")
-                    page: MonthView{
+            }
+            Tab {
+                id: monthTab
+                objectName: "monthTab"
+                title: i18n.tr("Month")
+                page: MonthView{
+                    tools: commonToolBar
+                    id: monthView
+
+                    onDateSelected: {
+                        tabs.selectedTabIndex  = dayTab.index;
+                        tabs.currentDay = date;
+                    }
+                }
+            }
+            Tab{
+                id: weekTab
+                objectName: "weekTab"
+                title: i18n.tr("Week")
+                page: Page{
+                    tools: commonToolBar
+                    WeekView{
+                        id: weekView
                         anchors.fill: parent
-                        tools: commonToolBar
-                        id: monthView
+                        isCurrentPage: tabs.selectedTab == weekTab
+
+                        onDayStartChanged: {
+                            tabs.currentDay = dayStart;
+                        }
 
                         onDateSelected: {
-                            tabs.selectedTabIndex  = 3
-                            tabPage.currentDay = date;
+                            tabs.selectedTabIndex = dayTab.index;
+                            tabs.currentDay = date;
                         }
                     }
                 }
-                Tab{
-                    id: weekTab
-                    objectName: "weekTab"
-                    title: i18n.tr("Week")
-                    page: Page{
+            }
+
+            Tab{
+                id: dayTab
+                objectName: "dayTab"
+                title: i18n.tr("Day")
+                page: Page{
+                    tools: commonToolBar
+                    DayView{
+                        id: dayView
                         anchors.fill: parent
-                        tools: commonToolBar
-                        WeekView{
-                            id: weekView
-                            anchors.fill: parent
-                            isCurrentPage: tabs.selectedTab == weekTab
+                        isCurrentPage: tabs.selectedTab == dayTab
 
-                            onDayStartChanged: {
-                                tabPage.currentDay = dayStart;
-                            }
-
-                            onDateSelected: {
-                                tabs.selectedTabIndex = 3;
-                                tabPage.currentDay = date;
-                            }
-                        }
-                    }
-                }
-
-                Tab{
-                    id: dayTab
-                    objectName: "dayTab"
-                    title: i18n.tr("Day")
-                    page: Page{
-                        anchors.fill: parent
-                        tools: commonToolBar
-                        DayView{
-                            id: dayView
-                            anchors.fill: parent
-                            isCurrentPage: tabs.selectedTab == dayTab
-
-                            onCurrentDayChanged: {
-                                tabPage.currentDay = currentDay;
-                            }
+                        onCurrentDayChanged: {
+                            tabs.currentDay = currentDay;
                         }
                     }
                 }
@@ -321,3 +314,4 @@ MainView {
         }
     }
 }
+
