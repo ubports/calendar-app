@@ -138,7 +138,7 @@ Rectangle{
                         anchors.fill: parent
                         onClicked: {
                             popover.hide();
-                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":modelData});
+                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":modelData,"model": model});
                         }
                     }
                 }
