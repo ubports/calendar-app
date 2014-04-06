@@ -4,7 +4,7 @@ import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
 
 PathViewBase {
-    id: root
+    id: yearViewPage
     objectName: "YearView"
     property int currentYear: DateExt.today().getFullYear();
 
@@ -24,8 +24,8 @@ PathViewBase {
         id: yearView
         clip: true
 
-        property bool isCurrentItem: index == root.currentIndex
-        property int year: (root.currentYear + root.indexType(index))
+        property bool isCurrentItem: index == yearViewPage.currentIndex
+        property int year: (yearViewPage.currentYear + yearViewPage.indexType(index))
 
         width: parent.width
         height: parent.height
@@ -52,13 +52,6 @@ PathViewBase {
                 dateLabelFontSize: "medium"
                 monthLabelFontSize: "medium"
                 yearLabelFontSize: "small"
-
-                MouseArea{
-                    anchors.fill: parent
-                    onClicked: {
-                        root.monthSelected(monthComponent.currentMonth);
-                    }
-                }
             }
         }
     }

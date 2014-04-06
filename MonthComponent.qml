@@ -193,13 +193,22 @@ Item{
                     selectedDate.setFullYear(intern.monthStartYear)
                     selectedDate.setMonth(intern.monthStartMonth+1)
                     selectedDate.setDate(date)
-                    selectedDate.setMinutes(0,0,0)
+                    selectedDate.setMinutes(60,0,0)
                     pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate});
                 }
                 onClicked: {
-                    root.dateSelected(new Date(intern.monthStartYear,
-                                               intern.monthStartMonth,
-                                               intern.monthStartDate+index,0,0,0,0));
+                    //If monthView is clicked then open selected DayView
+                    if (tabs.selectedTabIndex == 1) {
+                        root.dateSelected(new Date(intern.monthStartYear,
+                                                   intern.monthStartMonth,
+                                                   intern.monthStartDate+index,0,0,0,0));
+                    }
+                    //If yearView is clicked then open selected MonthView
+                    else if (tabs.selectedTabIndex == 0) {
+                        yearViewPage.monthSelected(new Date(intern.monthStartYear,
+                                                            intern.monthStartMonth,
+                                                            intern.monthStartDate+index,0,0,0,0));
+                    }
                 }
             }
         }
