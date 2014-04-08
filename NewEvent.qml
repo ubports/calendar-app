@@ -6,7 +6,6 @@ import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
 import QtOrganizer 5.0
 
-import "GlobalEventModel.js" as GlobalModel
 import "Defines.js" as Defines
 
 Page {
@@ -14,6 +13,7 @@ Page {
     property var date: new Date();
 
     property var event:null;
+    property var model;
 
     property var startDate;
     property var endDate;
@@ -35,7 +35,6 @@ Page {
             endDate = new Date(date)
             endDate.setMinutes( endDate.getMinutes() + 30)
         }
-        internal.eventModel = GlobalModel.globalModel();
 
         if(event === null){
             isEdit =false;
@@ -164,8 +163,8 @@ Page {
             }
 
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
+            model.saveItem(event);
 
-            internal.eventModel.saveItem(event);
             pageStack.pop();
         }
     }
@@ -468,7 +467,6 @@ Page {
 
     QtObject {
         id: internal
-        property var eventModel;
 
         function clearFocus() {
             Qt.inputMethod.hide()

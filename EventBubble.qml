@@ -1,11 +1,11 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import "GlobalEventModel.js" as GlobalModel
 
 Item{
     id: infoBubble
 
     property var event;
+    property var model;
 
     property int type: narrowType
     property int wideType: 1;
@@ -72,8 +72,10 @@ Item{
                 timeLabel.text = event.displayLabel;
         }
 
-        var collection = GlobalModel.globalModel().collection( event.collectionId );
-        calendarIndicator.color = collection.color
+        if(model) {
+            var collection = model.collection( event.collectionId );
+            calendarIndicator.color = collection.color
+        }
 
         layoutBubbleDetails();
     }

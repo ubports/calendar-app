@@ -4,17 +4,16 @@ import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import QtOrganizer 5.0
 
-import "GlobalEventModel.js" as GlobalModel
-
 Page {
     id: root
     title: i18n.tr("Calendars")
 
+    property bool isInEditMode: false
+    property var model;
+
     Component.onCompleted: {
         pageStack.header.visible = true;
     }
-
-    property bool isInEditMode: false
 
     ToolbarItems {
         id: pickerModeToolbar
@@ -24,7 +23,6 @@ Page {
         visible: !isInEditMode
 
         back: ToolbarButton {
-            objectName: "eventCancelButton"
             action: Action {
                 text: i18n.tr("Back");
                 iconName: "back"
@@ -45,7 +43,6 @@ Page {
         }
 
         ToolbarButton {
-            objectName: "eventSaveButton"
             action: Action {
                 text: i18n.tr("Save");
                 iconSource: Qt.resolvedUrl("save.svg");
@@ -61,7 +58,7 @@ Page {
 
                     var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", root, "CalendarChoice.qml");
                     calFilter.ids = collectionIds;
-                    GlobalModel.globalModel().filter = calFilter;
+                    model.filter = calFilter;
                     pageStack.pop();
                 }
             }
@@ -76,7 +73,6 @@ Page {
         visible: isInEditMode
 
         back: ToolbarButton {
-            objectName: "eventCancelButton"
             action: Action {
                 text: i18n.tr("Back");
                 iconName: "back"
@@ -103,7 +99,7 @@ Page {
             rightMargin: units.gu(2)
         }
 
-        model : GlobalModel.globalModel().getCollections();
+        model : root.model.getCollections();
         delegate: delegateComp
 
         Component{
@@ -133,9 +129,9 @@ Page {
                                     //popup dialog
                                     var dialog = PopupUtils.open(Qt.resolvedUrl("ColorPickerDialog.qml"),root);
                                     dialog.accepted.connect(function(color) {
-                                        var collection = GlobalModel.globalModel().collection(modelData.collectionId);
+                                        var collection = root.model.collection(modelData.collectionId);
                                         collection.color = color;
-                                        GlobalModel.globalModel().saveCollection(collection);
+                                        root.model.saveCollection(collection);
                                     })
                                 } else {
                                     checkBox.checked = !checkBox.checked

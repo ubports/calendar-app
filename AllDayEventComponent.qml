@@ -3,7 +3,6 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 
 import "dateExt.js" as DateExt
-import "GlobalEventModel.js" as GlobalModel
 import "ViewType.js" as ViewType
 
 Rectangle{
@@ -11,6 +10,7 @@ Rectangle{
 
     property var allDayEvents;
     property var startDay: DateExt.today();
+    property var model;
 
     property int type: ViewType.ViewTypeWeek
 
@@ -20,10 +20,9 @@ Rectangle{
 
     function getAllDayEvents(startDate, endDate) {
         var map = {};
-        var itemIds = GlobalModel.globalModel().itemIds(startDate, endDate);
-        for(var i = 0 ; i < itemIds.length ; ++i) {
-            var eventId = itemIds[(i)];
-            var event = GlobalModel.globalModel().item(eventId);
+        var items = model.getItems(startDate,endDate);
+        for(var i = 0 ; i < items.length ; ++i) {
+            var event = items[(i)];
             if( event && event.allDay ) {
                 var key  = Qt.formatDateTime(event.startDateTime, "dd-MMM-yyyy");
                 if( !(key in map)) {
@@ -42,15 +41,6 @@ Rectangle{
         var sd = startDay.midnight();
         var ed = sd.addDays( (type == ViewType.ViewTypeDay) ? 1 : 7);
         allDayEvents = getAllDayEvents(sd,ed);
-    }
-
-    Component.onCompleted: {
-        var model = GlobalModel.globalModel();
-        model.reloaded.connect(root.createAllDayEvents);
-    }
-
-    onStartDayChanged: {
-        createAllDayEvents();
     }
 
     Row {
@@ -81,7 +71,7 @@ Rectangle{
                             if( allDayLabel.events.length > 1 ) {
                                 PopupUtils.open(popoverComponent, root,{"events": allDayLabel.events})
                             } else {
-                                pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayLabel.events[0]});
+                                pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayLabel.events[0],"model": model});
                             }
                         }
                     }
@@ -148,7 +138,7 @@ Rectangle{
                         anchors.fill: parent
                         onClicked: {
                             popover.hide();
-                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":modelData});
+                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":modelData,"model": model});
                         }
                     }
                 }
