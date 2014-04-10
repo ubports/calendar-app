@@ -40,7 +40,7 @@ Item {
         width: parent.width
         height: parent.height
 
-        AllDayEventComponent{
+        AllDayEventComponent {
             id: allDayContainer
             type: root.type
             startDay: root.startDay
@@ -50,7 +50,7 @@ Item {
             }
         }
 
-        Flickable{
+        Flickable {
             id: timeLineView
 
             width: parent.width
@@ -61,16 +61,13 @@ Item {
 
             clip: true
 
-            TimeLineBackground{
-            }
-
             Row{
                 id: week
                 width: parent.width
                 height: parent.height
                 anchors.top: parent.top
 
-                Repeater{
+                Repeater {
                     model: type == ViewType.ViewTypeWeek ? 7 : 1
 
                     delegate: TimeLineBase {
@@ -78,7 +75,7 @@ Item {
                         anchors.top: parent.top
                         width: {
                             if( type == ViewType.ViewTypeWeek ) {
-                                 parent.width/7
+                                parent.width / 7
                             } else {
                                 (parent.width)
                             }
@@ -86,6 +83,9 @@ Item {
                         height: parent.height
                         delegate: comp
                         day: startDay.addDays(index)
+
+                        TimeLineBackground {
+                        }
 
                         model: mainModel
                         Component.onCompleted: {
@@ -99,7 +99,7 @@ Item {
 
     Component{
         id: comp
-        EventBubble{
+        EventBubble {
             type: {
                 if( root.type == ViewType.ViewTypeWeek ) {
                     narrowType

@@ -9,8 +9,16 @@ Column {
         delegate: Rectangle {
             width: parent.width
             height: units.gu(10)
-            color: ( index % 2 == 0) ? "#4c875b" : "#86c07f"
-            Label{
+            color: (index % 2 == 0) ? "#4c875b" : "#86c07f"
+            MouseArea {
+                anchors.fill: parent
+                onPressAndHold: {
+                    var selectedDate = new Date(day);
+                    selectedDate.setHours(index)
+                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate});
+                }
+            }
+            Label {
                 id: timeLabel
 
                 // TRANSLATORS: this is a time formatting string,
