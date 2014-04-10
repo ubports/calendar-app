@@ -23,6 +23,7 @@ PathViewBase {
     delegate: GridView{
         id: yearView
         clip: true
+        focus: index == root.currentIndex
 
         property bool isCurrentItem: index == yearViewPage.currentIndex
         property int year: (yearViewPage.currentYear + yearViewPage.indexType(index))

@@ -7,80 +7,114 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-09-26 07:05+0200\n"
+"POT-Creation-Date: 2014-03-10 19:02-0500\n"
 "PO-Revision-Date: 2013-10-11 02:46+0000\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <km@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-21 06:52+0000\n"
+"X-Launchpad-Export-Date: 2014-04-02 06:45+0000\n"
 "X-Generator: Launchpad (build 16967)\n"
+
+#: ../AllDayEventComponent.qml:101
+#, c-format, qt-format
+msgid "%1E"
+msgstr ""
+
+#: ../AllDayEventComponent.qml:104
+#, qt-format
+msgid "%1 All day events"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../EventBubble.qml:38
+#: ../EventBubble.qml:36 ../EventDetails.qml:40
 msgid "hh:mm"
 msgstr "hh:mm"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../EventBubble.qml:43
+#: ../EventBubble.qml:41
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: ../EventDetails.qml:70
-msgid "Add invite"
-msgstr "បន្ថែម​ការ​អញ្ជើញ"
+#: ../EventDetails.qml:98
+msgid "Delete"
+msgstr ""
 
-#: ../EventDetails.qml:79
+#: ../EventDetails.qml:110
 msgid "Edit"
 msgstr "កែសម្រួល"
 
-#: ../EventDetails.qml:153
-msgid "People"
-msgstr "មនុស្ស"
+#: ../EventDetails.qml:140 ../NewEvent.qml:262
+msgid "Start"
+msgstr ""
 
-#: ../NewEvent.qml:23
-msgid "Create event"
-msgstr "បង្កើតព្រឹត្តិការណ៍"
+#: ../EventDetails.qml:145 ../NewEvent.qml:287
+msgid "End"
+msgstr ""
 
-#: ../NewEvent.qml:29
-msgid "Add event name"
-msgstr "បន្ថែម​ឈ្មោះព្រឹត្តិការណ៍"
+#: ../EventDetails.qml:153 ../NewEvent.qml:316
+msgid "All Day event:"
+msgstr ""
 
-#: ../NewEvent.qml:102
-msgid "to"
-msgstr "ទៅ"
+#: ../EventDetails.qml:183 ../NewEvent.qml:365
+msgid "Location"
+msgstr ""
 
-#: ../NewEvent.qml:137
-msgid "Location & People"
-msgstr "ទីតាំង & មនុស្ស"
+#: ../EventDetails.qml:207 ../NewEvent.qml:372
+msgid "Guests"
+msgstr ""
 
-#: ../NewEvent.qml:143
-msgid "Add Location"
-msgstr "បន្ថែម​ទីតាំង"
+#: ../EventDetails.qml:238 ../NewEvent.qml:381
+msgid "This happens"
+msgstr ""
 
-#: ../NewEvent.qml:156
-msgid "Invite People"
-msgstr "អញ្ជើញមនុស្ស"
+#: ../EventDetails.qml:244 ../NewEvent.qml:398
+msgid "Remind me"
+msgstr ""
 
-#: ../NewEvent.qml:168
-msgid "Error"
-msgstr "កំហុស"
+#: ../NewEvent.qml:106
+msgid "End time can't be before start time"
+msgstr "ពេល​វេលា​បញ្ចប់​មិន​អាច​មុន​ពេលវេលា​ចាប់ផ្ដើម"
 
-#: ../NewEvent.qml:171 ../TimePicker.qml:82
-msgid "OK"
-msgstr "យល់ព្រម"
+#: ../NewEvent.qml:165
+msgid "Edit Event"
+msgstr ""
 
-#: ../NewEvent.qml:177
+#: ../NewEvent.qml:165 ../calendar.qml:226
+msgid "New Event"
+msgstr "ព្រឹត្តិការណ៍​ថ្មី"
+
+#: ../NewEvent.qml:176 ../TimePicker.qml:74
+msgid "Cancel"
+msgstr "បោះ​បង់"
+
+#: ../NewEvent.qml:187
 msgid "Save"
 msgstr "រក្សាទុក"
 
-#: ../NewEvent.qml:205
-msgid "End time can't be before start time"
-msgstr "ពេល​វេលា​បញ្ចប់​មិន​អាច​មុន​ពេលវេលា​ចាប់ផ្ដើម"
+#: ../NewEvent.qml:200
+msgid "Error"
+msgstr "កំហុស"
+
+#: ../NewEvent.qml:202
+msgid "Ok"
+msgstr ""
+
+#: ../NewEvent.qml:247
+msgid "Date"
+msgstr ""
+
+#: ../NewEvent.qml:334
+msgid "Event Name"
+msgstr ""
+
+#: ../NewEvent.qml:350
+msgid "Description"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -100,34 +134,36 @@ msgstr "ម៉ោង"
 msgid "Minute"
 msgstr "នាទី"
 
-#: ../TimePicker.qml:73
-msgid "Cancel"
-msgstr "បោះ​បង់"
+#: ../TimePicker.qml:83
+msgid "OK"
+msgstr "យល់ព្រម"
 
-#: ../calendar.qml:56
-msgid "New Event"
-msgstr "ព្រឹត្តិការណ៍​ថ្មី"
+#: ../calendar.qml:21
+msgid ""
+"Calendar app accept three arguments: --starttime, --endtime and --newevet. "
+"They will be managed by system. See the source for a full comment about them"
+msgstr ""
 
-#: ../calendar.qml:64
+#: ../calendar.qml:216
 msgid "Today"
 msgstr "ថ្ងៃ​នេះ"
 
-#: ../calendar.qml:75
+#: ../calendar.qml:238
 msgid "Year"
 msgstr "ឆ្នាំ"
 
-#: ../calendar.qml:95
+#: ../calendar.qml:260
 msgid "Month"
 msgstr "ខែ"
 
-#: ../calendar.qml:108
+#: ../calendar.qml:274
 msgid "Week"
 msgstr "សប្ដាហ៍"
 
-#: ../calendar.qml:124
+#: ../calendar.qml:291
 msgid "Day"
 msgstr "ថ្ងៃ"
 
-#: ../.build/calendar-app.desktop.js:1
+#: ../.build/com.ubuntu.calendar_calendar.desktop.in:1
 msgid "Calendar"
 msgstr "ប្រតិទិន"
