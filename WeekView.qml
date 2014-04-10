@@ -19,6 +19,8 @@ Column {
     anchors.topMargin: units.gu(1.5)
     spacing: units.gu(1)
 
+    Keys.forwardTo: [weekViewPath]
+
     ViewHeader{
         id: viewHeader
         month: dayStart.getMonth()
@@ -65,7 +67,6 @@ Column {
 
         delegate: TimeLineBaseComponent {
             id: timeLineView
-
             type: ViewType.ViewTypeWeek
 
             width: parent.width

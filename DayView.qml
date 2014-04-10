@@ -11,6 +11,8 @@ Item{
     property var currentDay: new Date()
     property bool isCurrentPage: false
 
+    Keys.forwardTo: [dayViewPath]
+
     Column {
         id: column
         anchors.top: parent.top
