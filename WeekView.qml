@@ -12,6 +12,8 @@ Page{
 
     signal dateSelected(var date);
 
+    Keys.forwardTo: [weekViewPath]
+
     Column {
         objectName: "WeekView"
 

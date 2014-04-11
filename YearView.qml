@@ -27,6 +27,7 @@ Page{
             clip: true
             focus: index == pathView.currentIndex
 
+            property int scrollMonth: 0;
             property bool isCurrentItem: index == pathView.currentIndex
             property int year: (root.currentYear + pathView.indexType(index))
 
@@ -41,6 +42,39 @@ Page{
             cellHeight: cellWidth * 1.4
 
             model: 12 /* months in a year */
+
+            onYearChanged : {
+                scrollMonth=0;
+                yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+            }
+
+            //scroll in case content height changed
+            onHeightChanged: {
+                scrollMonth=0;
+                yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+            }
+
+
+            Connections{
+                target: root
+                onScrollUp:{
+                    scrollMonth -= 2;
+                    if(scrollMonth < 0) {
+                        scrollMonth = 0;
+                    }
+                    yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+                }
+
+                onScrollDown:{
+                    scrollMonth += 2;
+                    var visibleMonths = yearView.height / cellHeight;
+                    if( scrollMonth >= (11 - visibleMonths)) {
+                        scrollMonth = (11 - visibleMonths);
+                    }
+                    yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+                }
+            }
+
             delegate: Item {
                 width: yearView.cellWidth
                 height: yearView.cellHeight
@@ -48,6 +82,7 @@ Page{
                 MonthComponent{
                     id: monthComponent
                     currentMonth: new Date(yearView.year,index,1,0,0,0,0)
+
                     anchors.fill: parent
                     anchors.margins: units.gu(0.5)
 
