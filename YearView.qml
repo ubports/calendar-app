@@ -8,6 +8,8 @@ Page{
     property int currentYear: DateExt.today().getFullYear();
     signal monthSelected(var date);
 
+    Keys.forwardTo: [pathView]
+
     PathViewBase {
         id: pathView
         objectName: "YearView"
@@ -56,7 +58,7 @@ Page{
 
 
             Connections{
-                target: root
+                target: pathView
                 onScrollUp:{
                     scrollMonth -= 2;
                     if(scrollMonth < 0) {
