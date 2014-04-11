@@ -250,23 +250,22 @@ MainView {
                 id: tabs
 
                 Tab{
+                    id: yearTab
                     objectName: "yearTab"
                     title: i18n.tr("Year")
-                    page: Page{
+                    page: YearView{
+                        id: yearView
                         objectName: "yearPage"
-                        anchors.fill: parent
                         tools: commonToolBar
-                        YearView{
-                            id: yearView
-                            onMonthSelected: {
-                                tabs.selectedTabIndex = 1
-                                var now = DateExt.today();
-                                if( date.getMonth() === now.getMonth()
-                                        && date.getFullYear() === now.getFullYear()) {
-                                    monthView.currentMonth = now
-                                } else {
-                                    monthView.currentMonth = date.midnight();
-                                }
+                        anchors.fill: parent
+                        onMonthSelected: {
+                            tabs.selectedTabIndex = 1
+                            var now = DateExt.today();
+                            if( date.getMonth() === now.getMonth()
+                                    && date.getFullYear() === now.getFullYear()) {
+                                monthView.currentMonth = now
+                            } else {
+                                monthView.currentMonth = date.midnight();
                             }
                         }
                     }
@@ -290,21 +289,19 @@ MainView {
                     id: weekTab
                     objectName: "weekTab"
                     title: i18n.tr("Week")
-                    page: Page{
+                    page: WeekView{
+                        id: weekView
                         anchors.fill: parent
                         tools: commonToolBar
-                        WeekView{
-                            id: weekView
-                            anchors.fill: parent
-                            isCurrentPage: tabs.selectedTab == weekTab
-                            onDayStartChanged: {
-                                tabPage.currentDay = dayStart;
-                            }
+                        isCurrentPage: tabs.selectedTab == weekTab
 
-                            onDateSelected: {
-                                tabs.selectedTabIndex = 3;
-                                tabPage.currentDay = date;
-                            }
+                        onDayStartChanged: {
+                            tabPage.currentDay = dayStart;
+                        }
+
+                        onDateSelected: {
+                            tabs.selectedTabIndex = 3;
+                            tabPage.currentDay = date;
                         }
                     }
                 }
@@ -313,17 +310,14 @@ MainView {
                     id: dayTab
                     objectName: "dayTab"
                     title: i18n.tr("Day")
-                    page: Page{
+                    page: DayView{
+                        id: dayView
                         anchors.fill: parent
                         tools: commonToolBar
-                        DayView{
-                            id: dayView
-                            anchors.fill: parent
-                            isCurrentPage: tabs.selectedTab == dayTab
+                        isCurrentPage: tabs.selectedTab == dayTab
 
-                            onCurrentDayChanged: {
-                                tabPage.currentDay = currentDay;
-                            }
+                        onCurrentDayChanged: {
+                            tabPage.currentDay = currentDay;
                         }
                     }
                 }
