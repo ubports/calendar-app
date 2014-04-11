@@ -11,7 +11,7 @@ Item {
 
     property var model;
 
-    TimeSeparator{
+    TimeSeparator {
         id: separator
         objectName: "separator"
         width:  bubbleOverLay.width

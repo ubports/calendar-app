@@ -48,6 +48,7 @@ Page {
             height: parent.height - units.gu(5)
 
             currentMonth: getMonthDate();
+            isYearView: false;
 
             function getMonthDate() {
                 switch( monthViewPath.indexType(index)) {

@@ -45,11 +45,12 @@ PathViewBase {
 
             MonthComponent{
                 id: monthComponent
-                currentMonth: new Date(yearView.year,index,1,0,0,0,0)
+                currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
                 anchors.fill: parent
                 anchors.margins: units.gu(0.5)
+                isYearView: true
 
-                dayLabelFontSize:"x-small"
+                dayLabelFontSize: "x-small"
                 dateLabelFontSize: "medium"
                 monthLabelFontSize: "medium"
                 yearLabelFontSize: "small"
