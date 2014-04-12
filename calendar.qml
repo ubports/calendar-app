@@ -52,6 +52,8 @@ MainView {
 
     width: units.gu(100)
     height: units.gu(80)
+    focus: true
+    Keys.forwardTo: [pageStack.currentPage]
 
     headerColor: "#266249"
     backgroundColor: "#478158"
@@ -63,8 +65,25 @@ MainView {
 
         Component.onCompleted: push(tabs)
 
+        // This is for wait that the app is load when newEvent is invoked by argument
+        Timer {
+            id: timer
+            interval: 200; running: false; repeat: false
+            onTriggered: {
+                tabs.newEvent();
+            }
+        }
+
+        EventListModel{
+            id: eventModel
+            //This model is just for newevent
+            //so we dont need any update
+            autoUpdate: false
+        }
+
         Tabs{
             id: tabs
+            Keys.forwardTo: [tabs.currentPage]
 
             property var currentDay: DateExt.today();
 
@@ -181,24 +200,6 @@ MainView {
                 }
             } // End of Component.onCompleted:
 
-            // This is for wait that the app is load when newEvent is invoked by argument
-            Timer {
-                id: timer
-                interval: 200;
-                running: false;
-                repeat: false
-                onTriggered: {
-                    tabs.newEvent();
-                }
-            }
-
-            EventListModel{
-                id: eventModel
-                //This model is just for newevent
-                //so we dont need any update
-                autoUpdate: false
-            }
-
             ToolbarItems {
                 id: commonToolBar
 
@@ -224,24 +225,44 @@ MainView {
                 }
             }
 
+            Keys.onTabPressed: {
+                if( event.modifiers & Qt.ControlModifier) {
+                    var currentTab = tabs.selectedTabIndex;
+                    currentTab ++;
+                    if( currentTab >= tabs.tabChildren.length){
+                        currentTab = 0;
+                    }
+                    tabs.selectedTabIndex = currentTab;
+                }
+            }
+
+            Keys.onBacktabPressed: {
+                if( event.modifiers & Qt.ControlModifier) {
+                    var currentTab = tabs.selectedTabIndex;
+                    currentTab --;
+                    if( currentTab < 0){
+                        currentTab = tabs.tabChildren.length -1;
+                    }
+                    tabs.selectedTabIndex = currentTab;
+                }
+            }
+
             Tab{
                 id: yearTab
                 objectName: "yearTab"
                 title: i18n.tr("Year")
-                page: Page{
+                page: YearView{
+                    id: yearView
                     objectName: "yearPage"
                     tools: commonToolBar
-                    YearView{
-                        id: yearView
-                        onMonthSelected: {
-                            tabs.selectedTabIndex = monthTab.index;
-                            var now = DateExt.today();
-                            if( date.getMonth() === now.getMonth()
-                                    && date.getFullYear() === now.getFullYear()) {
-                                monthView.currentMonth = now
-                            } else {
-                                monthView.currentMonth = date.midnight();
-                            }
+                    onMonthSelected: {
+                        tabs.selectedTabIndex = monthTab.index;
+                        var now = DateExt.today();
+                        if( date.getMonth() === now.getMonth()
+                                && date.getFullYear() === now.getFullYear()) {
+                            monthView.currentMonth = now
+                        } else {
+                            monthView.currentMonth = date.midnight();
                         }
                     }
                 }
@@ -264,21 +285,18 @@ MainView {
                 id: weekTab
                 objectName: "weekTab"
                 title: i18n.tr("Week")
-                page: Page{
+                page: WeekView{
+                    id: weekView
                     tools: commonToolBar
-                    WeekView{
-                        id: weekView
-                        anchors.fill: parent
-                        isCurrentPage: tabs.selectedTab == weekTab
+                    isCurrentPage: tabs.selectedTab == weekTab
 
-                        onDayStartChanged: {
-                            tabs.currentDay = dayStart;
-                        }
+                    onDayStartChanged: {
+                        tabs.currentDay = dayStart;
+                    }
 
-                        onDateSelected: {
-                            tabs.selectedTabIndex = dayTab.index;
-                            tabs.currentDay = date;
-                        }
+                    onDateSelected: {
+                        tabs.selectedTabIndex = dayTab.index;
+                        tabs.currentDay = date;
                     }
                 }
             }
@@ -287,16 +305,13 @@ MainView {
                 id: dayTab
                 objectName: "dayTab"
                 title: i18n.tr("Day")
-                page: Page{
+                page: DayView{
+                    id: dayView
                     tools: commonToolBar
-                    DayView{
-                        id: dayView
-                        anchors.fill: parent
-                        isCurrentPage: tabs.selectedTab == dayTab
+                    isCurrentPage: tabs.selectedTab == dayTab
 
-                        onCurrentDayChanged: {
-                            tabs.currentDay = currentDay;
-                        }
+                    onCurrentDayChanged: {
+                        tabs.currentDay = currentDay;
                     }
                 }
             }
