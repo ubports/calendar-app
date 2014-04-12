@@ -7,6 +7,8 @@ Item{
     id: root
     objectName: "MonthComponent"
 
+    property bool showEvents: false
+
     property var currentMonth;
 
     property string dayLabelFontSize: "medium"
@@ -21,8 +23,32 @@ Item{
 
     height: ubuntuShape.height
 
+    Loader{
+        id: modelLoader
+        sourceComponent: showEvents ? modelComponent: undefined
+    }
+
+    Component{
+        id: modelComponent
+        EventListModel {
+            id: mainModel
+            startPeriod: intern.monthStart.midnight();
+            endPeriod: intern.monthStart.addDays((monthGrid.weekCount*7)-1).endOfDay()
+
+            onEndPeriodChanged: {
+                print("################# onEndPeriodChanged...."+ startPeriod+"-"+ endPeriod);
+            }
+
+            onModelChanged: {
+                intern.eventStatus = Qt.binding(function() { return mainModel.containsItems(startPeriod,endPeriod,24*60*60)});
+            }
+        }
+    }
+
     QtObject{
         id: intern
+
+        property var eventStatus;
 
         property int curMonthDate: currentMonth.getDate()
         property int curMonth: currentMonth.getMonth()
@@ -184,6 +210,19 @@ Item{
                         "#AEA79F"
                     }
                 }
+            }
+
+            Rectangle{
+                width: units.gu(1)
+                height: width
+                radius: height/2
+                color:"#5E2750"
+                visible: showEvents
+                         && intern.eventStatus !== undefined
+                         && intern.eventStatus[index] !== undefined
+                         &&intern.eventStatus[index]
+                anchors.top: dateLabel.bottom
+                anchors.horizontalCenter: dateLabel.horizontalCenter
             }
 
             MouseArea{
