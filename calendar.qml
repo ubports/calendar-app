@@ -267,6 +267,7 @@ MainView {
                     }
                 }
             }
+
             Tab {
                 id: monthTab
                 objectName: "monthTab"
@@ -281,6 +282,7 @@ MainView {
                     }
                 }
             }
+
             Tab{
                 id: weekTab
                 objectName: "weekTab"
