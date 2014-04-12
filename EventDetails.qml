@@ -111,7 +111,6 @@ Page {
                 text: i18n.tr("Delete");
                 iconSource: "image://theme/delete,edit-delete-symbolic"
                 onTriggered: {
-                    //model.removeItem(event);
                     var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
                     dialog.deleteEvent.connect( function(eventId){
                         model.removeItem(eventId);
