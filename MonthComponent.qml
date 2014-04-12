@@ -35,10 +35,6 @@ Item{
             startPeriod: intern.monthStart.midnight();
             endPeriod: intern.monthStart.addDays((monthGrid.weekCount*7)-1).endOfDay()
 
-            onEndPeriodChanged: {
-                print("################# onEndPeriodChanged...."+ startPeriod+"-"+ endPeriod);
-            }
-
             onModelChanged: {
                 intern.eventStatus = Qt.binding(function() { return mainModel.containsItems(startPeriod,endPeriod,24*60*60)});
             }
