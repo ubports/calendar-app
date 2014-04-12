@@ -25,7 +25,8 @@ Column {
                 // TRANSLATORS: this is a time formatting string,
                 // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
                 text: new Date(0, 0, 0, index).toLocaleTimeString(Qt.locale(), i18n.tr("hh ap"))
-                visible: !(idx % 3)
+                //Display label only at the middle of the week
+                visible: (root.type ? true : (idx === 3))
                 color: "white"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
