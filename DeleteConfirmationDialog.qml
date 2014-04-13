@@ -14,8 +14,8 @@ Dialog {
                i18n.tr("Delete Event") ;
 
     text: event.parentId ?
-              i18n.tr("Delete only this event, or all events in the series?"):
-              i18n.tr('Are you sure you want to delete the event "'+ event.displayLabel +'"');
+              i18n.tr('Delete only this event "'+event.displayLabel+'", or all events in the series?'):
+              i18n.tr('Are you sure you want to delete the event "'+ event.displayLabel +'"?');
 
     Button {
         text: i18n.tr("Delete series")
