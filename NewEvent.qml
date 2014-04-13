@@ -436,7 +436,7 @@ Page {
                 height: limitOptions.height
                 Label{
                     id: limitLabel
-                    text: i18n.tr("Repetition Ends");
+                    text: i18n.tr("Recurring event ends");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
@@ -455,6 +455,7 @@ Page {
                 objectName: "eventLimitCount"
                 visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
                 validator: IntValidator{bottom: 1;}
+                inputMethodHints: Qt.ImhDialableCharactersOnly
                 focus: true
             }
             Item {
