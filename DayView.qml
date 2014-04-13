@@ -4,12 +4,14 @@ import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
-Item{
+Page{
     id: root
     objectName: "DayView"
 
     property var currentDay: new Date()
     property bool isCurrentPage: false
+
+    Keys.forwardTo: [dayViewPath]
 
     Column {
         id: column
