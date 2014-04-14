@@ -9,6 +9,9 @@ PathView {
     signal nextItemHighlighted();
     signal previousItemHighlighted();
 
+    signal scrollUp();
+    signal scrollDown();
+
     preferredHighlightBegin: 0.5
     preferredHighlightEnd: 0.5
 
@@ -31,8 +34,29 @@ PathView {
         return 1;
     }
 
+    Keys.onLeftPressed:{
+        root.decrementCurrentIndex();
+    }
+
+    Keys.onRightPressed:{
+        root.incrementCurrentIndex();
+    }
+
+    Keys.onSpacePressed: {
+        root.scrollDown();
+    }
+
+    Keys.onDownPressed: {
+        root.scrollDown();
+    }
+
+    Keys.onUpPressed: {
+        root.scrollUp();
+    }
+
     onCurrentIndexChanged: {
         var diff = currentIndex - intern.previousIndex
+        if(diff == 0) return;
 
         if (intern.previousIndex === count - 1 && currentIndex === 0) diff = 1
         if (intern.previousIndex === 0 && currentIndex === count - 1) diff = -1
