@@ -349,7 +349,7 @@ Page {
                     anchors.right: parent.right
                     width: parent.width - calendarLabel.width - units.gu(1)
                     containerHeight: itemHeight * 4
-                    model: GlobalModel.globalModel().getCollections();
+                    model: root.model.getCollections();
                     delegate: OptionSelectorDelegate{
                         text: modelData.name
 
