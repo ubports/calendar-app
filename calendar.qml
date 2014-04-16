@@ -1,11 +1,17 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
+import QtQuick.Window 2.0
 
 import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
+
+    // Work-around until this branch lands:
+    // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496 
+    property bool windowActive: typeof window != 'undefined'
+    onWindowActiveChanged: window.title = i18n.tr("Calendar")
 
     // Argument during startup
     Arguments {
