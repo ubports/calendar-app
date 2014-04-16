@@ -86,7 +86,7 @@ MainView {
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
 
-            Component.onCompleted: {
+            onModelChanged: {
                 var collectionIds = [];
                 var collections = eventModel.getCollections();
                 for(var i=0; i < collections.length ; ++i) {
