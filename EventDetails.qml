@@ -236,7 +236,6 @@ Page {
                     id: mapImage
                     anchors.fill: parent
                     opacity: 0.5
-                    visible: status !== Image.Error
                 }
             }
             ThinDivider{}
