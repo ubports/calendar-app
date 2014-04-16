@@ -56,9 +56,13 @@ Page {
                         }
                     }
 
-                    var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", root, "CalendarChoice.qml");
-                    calFilter.ids = collectionIds;
-                    model.filter = calFilter;
+                    //if(model.filter) {
+                    //    model.filter.ids = collectionIds;
+                    //} else {
+                        var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", root, "CalendarChoice.qml");
+                        calFilter.ids = collectionIds;
+                        model.filter = calFilter;
+                    //}
                     pageStack.pop();
                 }
             }
@@ -118,7 +122,7 @@ Page {
                     }
                     Label{
                         text: modelData.name
-                        fontSize: "large"
+                        fontSize: "medium"
                         width: parent.width - (parent.height*2)
                         anchors.verticalCenter: parent.verticalCenter
 
@@ -147,6 +151,7 @@ Page {
                         visible:  !root.isInEditMode
                         onCheckedChanged: {
                             modelData.setExtendedMetaData("collection-selected",checkBox.checked)
+                            root.model.saveCollection(modelData);
                         }
                     }
                 }
