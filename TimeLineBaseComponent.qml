@@ -91,7 +91,10 @@ Item {
 
             clip: true
 
-            Row{
+            TimeLineBackground {
+            }
+
+            Row {
                 id: week
                 width: parent.width
                 height: parent.height
@@ -110,12 +113,10 @@ Item {
                                 (parent.width)
                             }
                         }
+
                         height: parent.height
                         delegate: comp
                         day: startDay.addDays(index)
-
-                        TimeLineBackground {
-                        }
 
                         model: mainModel
                         Component.onCompleted: {
