@@ -51,18 +51,19 @@ Page {
                     var collections = calendarsList.model;
                     for(var i=0; i < collections.length ; ++i) {
                         var collection = collections[i]
+                        root.model.saveCollection(collection);
                         if(collection.extendedMetaData("collection-selected") === true) {
                             collectionIds.push(collection.collectionId);
                         }
                     }
 
-                    //if(model.filter) {
-                    //    model.filter.ids = collectionIds;
-                    //} else {
+                    if(model.filter) {
+                        model.filter.ids = collectionIds;
+                    } else {
                         var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", root, "CalendarChoice.qml");
                         calFilter.ids = collectionIds;
-                        model.filter = calFilter;
-                    //}
+                        root.model.filter = calFilter;
+                    }
                     pageStack.pop();
                 }
             }
@@ -151,7 +152,6 @@ Page {
                         visible:  !root.isInEditMode
                         onCheckedChanged: {
                             modelData.setExtendedMetaData("collection-selected",checkBox.checked)
-                            root.model.saveCollection(modelData);
                         }
                     }
                 }

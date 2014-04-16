@@ -99,15 +99,27 @@ Page {
         }
     }
 
-    tools: ToolbarItems {
+    Keys.onEscapePressed: {
+        pageStack.pop();
+    }
 
+    Keys.onPressed: {
+        if ((event.key === Qt.Key_E) && ( event.modifiers & Qt.ControlModifier)) {
+            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event": root.event});
+        }
+    }
+
+    tools: ToolbarItems {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Delete");
                 iconSource: "image://theme/delete,edit-delete-symbolic"
                 onTriggered: {
-                    model.removeItem(event);
-                    pageStack.pop();
+                    var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
+                    dialog.deleteEvent.connect( function(eventId){
+                        model.removeItem(eventId);
+                        pageStack.pop();
+                    });
                 }
             }
         }
@@ -235,28 +247,31 @@ Page {
                 font.bold: true
             }
             //Guest Entery Model starts
-            ListView {
-                id:contactList
+            Column{
+                id: contactList
                 spacing: units.gu(1)
                 width: parent.width
-                height: units.gu((contactModel.count*4.5)+3)
                 clip: true
-                model: ListModel {
+                ListModel {
                     id: contactModel
                 }
-                delegate: Row{
-                    spacing: units.gu(1)
-                    CheckBox{
-                     checked: participationStatus
-                     enabled: false
-                    }
-                    Label {
-                        text:name
-                        anchors.verticalCenter:  parent.verticalCenter
-                        color: detailColor
+                Repeater{
+                    model: contactModel
+                    delegate: Row{
+                        spacing: units.gu(1)
+                        CheckBox{
+                            checked: participationStatus
+                            enabled: false
+                        }
+                        Label {
+                            text:name
+                            anchors.verticalCenter:  parent.verticalCenter
+                            color: detailColor
+                        }
                     }
                 }
             }
+
             //Guest Entries ends
             ThinDivider{}
             property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth) //Dynamic Height

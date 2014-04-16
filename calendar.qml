@@ -1,11 +1,17 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
+import QtQuick.Window 2.0
 
 import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
+
+    // Work-around until this branch lands:
+    // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496 
+    property bool windowActive: typeof window != 'undefined'
+    onWindowActiveChanged: window.title = i18n.tr("Calendar")
 
     // Argument during startup
     Arguments {
@@ -52,6 +58,8 @@ MainView {
 
     width: units.gu(100)
     height: units.gu(80)
+    focus: true
+    Keys.forwardTo: [pageStack.currentPage]
 
     headerColor: "#266249"
     backgroundColor: "#478158"
@@ -61,10 +69,46 @@ MainView {
     PageStack {
         id: pageStack
 
-        Component.onCompleted: push(tabPage)
+        Component.onCompleted: push(tabs)
 
-        Page{
-            id: tabPage
+        // This is for wait that the app is load when newEvent is invoked by argument
+        Timer {
+            id: timer
+            interval: 200; running: false; repeat: false
+            onTriggered: {
+                tabs.newEvent();
+            }
+        }
+
+        EventListModel{
+            id: eventModel
+            autoUpdate: true
+            startPeriod: tabs.currentDay
+            endPeriod: tabs.currentDay
+
+            Component.onCompleted: {
+                var collectionIds = [];
+                var collections = eventModel.getCollections();
+                for(var i=0; i < collections.length ; ++i) {
+                    var collection = collections[i]
+                    if(collection.extendedMetaData("collection-selected") === true) {
+                        collectionIds.push(collection.collectionId);
+                    }
+                }
+
+                if(eventModel.filter) {
+                    eventModel.filter.ids = collectionIds;
+                } else {
+                    var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", eventModel, "calendar.qml");
+                    calFilter.ids = collectionIds;
+                    eventModel.filter = calFilter;
+                }
+            }
+        }
+
+        Tabs{
+            id: tabs
+            Keys.forwardTo: [tabs.currentPage.item]
 
             property var currentDay: DateExt.today();
 
@@ -72,21 +116,6 @@ MainView {
             property bool newevent: false;
             property int starttime: -1;
             property int endtime: -1;
-
-            onCurrentDayChanged: {
-                if( yearView.currentYear !== currentDay.getFullYear() ) {
-                    yearView.currentYear = tabPage.currentDay.getFullYear();
-                }
-
-                if( monthView.currentMonth !== undefined && !monthView.currentMonth.isSameDay(currentDay))
-                    monthView.currentMonth = currentDay.midnight();
-
-                if( !dayView.currentDay.isSameDay(currentDay))
-                    dayView.currentDay = currentDay
-
-                if( !weekView.dayStart.isSameDay(currentDay))
-                    weekView.dayStart = currentDay
-            }
 
             function newEvent() {
                 var startDate = new Date();
@@ -123,13 +152,13 @@ MainView {
                 var difference = endTime - startTime;
 
                 if (difference > month)
-                    return 0;   // Year view
+                    return yearTab.index;   // Year view
                 else if (difference > 7 * day)
-                    return 1;   // Month view}
+                    return monthTab.index;   // Month view}
                 else if (difference > day)
-                    return 2;   // Week view
+                    return weekTab.index;   // Week view
                 else
-                    return 3;   // Day view
+                    return dayTab.index;   // Day view
             }
 
             // This function parse the argument
@@ -151,14 +180,14 @@ MainView {
                 // If an url has been set
                 if (args.defaultArgument.at(0)) {
                     parseArguments(args.defaultArgument.at(0))
-                    tabPage.currentDay = new Date()
+                    tabs.currentDay = new Date()
                     // If newevent has been called on startup
                     if (newevent) {
                         timer.running = true;
                     }
                     else if (starttime !== -1) { // If no newevent has been setted, but starttime
                         var startTime = parseInt(starttime);
-                        tabPage.currentDay = new Date(startTime);
+                        tabs.currentDay = new Date(startTime);
 
                         // If also endtime has been settend
                         if (endtime !== -1) {
@@ -181,24 +210,6 @@ MainView {
                 }
             } // End of Component.onCompleted:
 
-            // This is for wait that the app is load when newEvent is invoked by argument
-            Timer {
-                id: timer
-                interval: 200;
-                running: false;
-                repeat: false
-                onTriggered: {
-                    tabPage.newEvent();
-                }
-            }
-
-            EventListModel{
-                id: eventModel
-                autoUpdate: true
-                startPeriod: tabPage.currentDay
-                endPeriod: tabPage.currentDay
-            }
-
             ToolbarItems {
                 id: commonToolBar
 
@@ -208,7 +219,11 @@ MainView {
                         iconSource: Qt.resolvedUrl("calendar-today.svg");
                         text: i18n.tr("Today");
                         onTriggered: {
-                            tabPage.currentDay = (new Date()).midnight();
+                            tabs.currentDay = (new Date()).midnight();
+                            if(yearViewLoader.item ) yearViewLoader.item.currentYear = tabs.currentDay.getFullYear();
+                            if(monthViewLoader.item ) monthViewLoader.item.currentMonth = tabs.currentDay.midnight();
+                            if(weekViewLoader.item ) weekViewLoader.item.dayStart = tabs.currentDay;
+                            if(dayViewLoader.item ) dayViewLoader.item.currentDay = tabs.currentDay;
                         }
                     }
                 }
@@ -233,85 +248,151 @@ MainView {
                 }
             }
 
-            Tabs{
-                id: tabs
+            Keys.onTabPressed: {
+                if( event.modifiers & Qt.ControlModifier) {
+                    var currentTab = tabs.selectedTabIndex;
+                    currentTab ++;
+                    if( currentTab >= tabs.tabChildren.length){
+                        currentTab = 0;
+                    }
+                    tabs.selectedTabIndex = currentTab;
+                }
+            }
 
-                Tab{
-                    objectName: "yearTab"
-                    title: i18n.tr("Year")
-                    page: Page{
-                        objectName: "yearPage"
-                        anchors.fill: parent
-                        tools: commonToolBar
-                        YearView{
-                            id: yearView
-                            onMonthSelected: {
-                                tabs.selectedTabIndex = 1
-                                var now = DateExt.today();
-                                if( date.getMonth() === now.getMonth()
-                                        && date.getFullYear() === now.getFullYear()) {
-                                    monthView.currentMonth = now
-                                } else {
-                                    monthView.currentMonth = date.midnight();
-                                }
+            Keys.onBacktabPressed: {
+                if( event.modifiers & Qt.ControlModifier) {
+                    var currentTab = tabs.selectedTabIndex;
+                    currentTab --;
+                    if( currentTab < 0){
+                        currentTab = tabs.tabChildren.length -1;
+                    }
+                    tabs.selectedTabIndex = currentTab;
+                }
+            }
+
+            Tab{
+                id: yearTab
+                objectName: "yearTab"
+                title: i18n.tr("Year")
+                page: Loader{
+                    id: yearViewLoader
+                    objectName: "yearViewLoader"
+                    source: tabs.selectedTab == yearTab ? Qt.resolvedUrl("YearView.qml"):""
+                    onLoaded: {
+                        item.tools = Qt.binding(function() { return commonToolBar })
+                        item.currentYear = tabs.currentDay.getFullYear();
+                    }
+
+                    anchors{
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
+
+                    Connections{
+                        target: yearViewLoader.item
+                        onMonthSelected: {
+                            var now = DateExt.today();
+                            if( date.getMonth() === now.getMonth()
+                                    && date.getFullYear() === now.getFullYear()) {
+                                tabs.currentDay = now;
+                            } else {
+                                tabs.currentDay = date.midnight();
                             }
+                            tabs.selectedTabIndex = monthTab.index;
                         }
                     }
                 }
-                Tab {
-                    id: monthTab
-                    objectName: "monthTab"
-                    title: i18n.tr("Month")
-                    page: MonthView{
-                        anchors.fill: parent
-                        tools: commonToolBar
-                        id: monthView
+            }
+
+            Tab{
+                id: monthTab
+                objectName: "monthTab"
+                title: i18n.tr("Month")
+                page: Loader{
+                    id: monthViewLoader
+                    objectName: "monthViewLoader"
+                    source: tabs.selectedTab == monthTab ? Qt.resolvedUrl("MonthView.qml"):""
+                    onLoaded: {
+                        item.tools = Qt.binding(function() { return commonToolBar })
+                        item.currentMonth = tabs.currentDay.midnight();
+                        print("onLoaded:"+ tabs.currentDay);
+                    }
+
+                    anchors{
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
+
+                    Connections{
+                        target: monthViewLoader.item
+                        onDateSelected: {
+                            tabs.currentDay = date;
+                            tabs.selectedTabIndex = dayTab.index;
+                        }
+                    }
+                }
+            }
+
+            Tab{
+                id: weekTab
+                objectName: "weekTab"
+                title: i18n.tr("Week")
+                page: Loader{
+                    id: weekViewLoader
+                    objectName: "weekViewLoader"
+                    source: tabs.selectedTab == weekTab ? Qt.resolvedUrl("WeekView.qml"):""
+                    onLoaded: {
+                        item.tools = Qt.binding(function() { return commonToolBar })
+                        item.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == weekTab })
+                        item.dayStart = tabs.currentDay;
+                    }
+
+                    anchors{
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
+
+                    Connections{
+                        target: weekViewLoader.item
+                        onDayStartChanged: {
+                            tabs.currentDay = weekViewLoader.item.dayStart;
+                        }
 
                         onDateSelected: {
-                            tabs.selectedTabIndex  = 3
-                            tabPage.currentDay = date;
+                            tabs.currentDay = date;
+                            tabs.selectedTabIndex = dayTab.index;
                         }
                     }
                 }
-                Tab{
-                    id: weekTab
-                    objectName: "weekTab"
-                    title: i18n.tr("Week")
-                    page: Page{
-                        anchors.fill: parent
-                        tools: commonToolBar
-                        WeekView{
-                            id: weekView
-                            anchors.fill: parent
-                            isCurrentPage: tabs.selectedTab == weekTab
+            }
 
-                            onDayStartChanged: {
-                                tabPage.currentDay = dayStart;
-                            }
-
-                            onDateSelected: {
-                                tabs.selectedTabIndex = 3;
-                                tabPage.currentDay = date;
-                            }
-                        }
+            Tab{
+                id: dayTab
+                objectName: "dayTab"
+                title: i18n.tr("Day")
+                page: Loader{
+                    id: dayViewLoader
+                    objectName: "dayViewLoader"
+                    source: tabs.selectedTab == dayTab ? Qt.resolvedUrl("DayView.qml"):""
+                    onLoaded: {
+                        item.tools = Qt.binding(function() { return commonToolBar })
+                        item.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == dayTab })
+                        item.currentDay = tabs.currentDay;
                     }
-                }
 
-                Tab{
-                    id: dayTab
-                    objectName: "dayTab"
-                    title: i18n.tr("Day")
-                    page: Page{
-                        anchors.fill: parent
-                        tools: commonToolBar
-                        DayView{
-                            id: dayView
-                            anchors.fill: parent
-                            isCurrentPage: tabs.selectedTab == dayTab
+                    anchors{
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
 
-                            onCurrentDayChanged: {
-                                tabPage.currentDay = currentDay;
-                            }
+                    Connections{
+                        target: dayViewLoader.item
+                        onCurrentDayChanged: {
+                            tabs.currentDay = dayViewLoader.item.currentDay;
                         }
                     }
                 }

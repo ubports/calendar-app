@@ -188,6 +188,10 @@ Page {
 
     title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
 
+    Keys.onEscapePressed: {
+        pageStack.pop();
+    }
+
     tools: ToolbarItems {
         //keeping toolbar always open
         opened: true
