@@ -30,22 +30,24 @@ Item {
         pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model":model});
     }
 
-    property var eventMap;
     function createEvents() {
         if(!bubbleOverLay || bubbleOverLay == undefined) {
             return;
         }
         destroyAllChildren();
 
-        eventMap = {};
+        var eventMap = {};
         var startDate = new Date(day).midnight();
         var endDate = new Date(day).endOfDay();
-
         var items = model.getItems(startDate,endDate);
+
         for(var i = 0 ; i < items.length ; ++i) {
             var event = items[i];
-            if(event.allDay === false && !eventMap[event.itemId]) {
+            if(event.allDay === false
+                    && !eventMap[event.itemId]) {
+
                 var subItems = getItems(event.startDateTime,event.endDateTime);
+
                 for(var j=0; j < subItems.length ; ++j){
                     var subEvent = subItems[j];
                     eventMap[subEvent.itemId] = true;
