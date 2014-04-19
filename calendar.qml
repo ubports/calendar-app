@@ -98,6 +98,8 @@ MainView {
             property int starttime: -1;
             property int endtime: -1;
 
+            selectedTabIndex: monthTab.index
+
             function newEvent() {
                 var startDate = new Date();
                 var endDate = new Date();
