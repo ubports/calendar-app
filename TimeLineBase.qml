@@ -49,7 +49,7 @@ Item {
         var endDate = new Date(day).endOfDay();
 
         var items = model.getItems(startDate,endDate);
-        for(var i = 0 ; i < items.length ; ++i) {
+        for(var i = 0; i < items.length; ++i) {
             var event = items[i];
             if(event.allDay === false) {
                 bubbleOverLay.createEvent(event, event.startDateTime.getHours());

@@ -128,7 +128,7 @@ Item {
         }
     }
 
-    Component{
+    Component {
         id: comp
         EventBubble {
             type: {
