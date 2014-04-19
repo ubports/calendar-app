@@ -45,35 +45,35 @@ Page {
 
             model: 12 /* months in a year */
 
-            onYearChanged : {
-                scrollMonth=0;
-                yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+            onYearChanged: {
+                scrollMonth = 0;
+                yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
             }
 
             //scroll in case content height changed
             onHeightChanged: {
-                scrollMonth=0;
-                yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+                scrollMonth = 0;
+                yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
             }
 
 
             Connections{
                 target: pathView
-                onScrollUp:{
+                onScrollUp: {
                     scrollMonth -= 2;
                     if(scrollMonth < 0) {
                         scrollMonth = 0;
                     }
-                    yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+                    yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
                 }
 
-                onScrollDown:{
+                onScrollDown: {
                     scrollMonth += 2;
                     var visibleMonths = yearView.height / cellHeight;
                     if( scrollMonth >= (11 - visibleMonths)) {
                         scrollMonth = (11 - visibleMonths);
                     }
-                    yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+                    yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
                 }
             }
 
@@ -84,8 +84,9 @@ Page {
                 MonthComponent {
                     id: monthComponent
                     showEvents: false
-                    currentMonth: new Date(yearView.year,index,1,0,0,0,0)
-
+                    currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
+                    
+                    isYearView: true
                     anchors.fill: parent
                     anchors.margins: units.gu(0.5)
 
@@ -93,6 +94,10 @@ Page {
                     dateLabelFontSize: "medium"
                     monthLabelFontSize: "medium"
                     yearLabelFontSize: "small"
+
+                    onMonthSelected: {
+                       yearViewPage.monthSelected(date);
+                    }
                 }
             }
         }

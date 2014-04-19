@@ -20,6 +20,7 @@ Item{
     property alias dayLabelDelegate : dayLabelRepeater.delegate
     property alias dateLabelDelegate : dateLabelRepeater.delegate
 
+    signal monthSelected(var date);
     signal dateSelected(var date)
 
     height: ubuntuShape.height
@@ -242,7 +243,7 @@ Item{
                     }
                     //If yearView is clicked then open selected MonthView
                     else {
-                        yearViewPage.monthSelected(selectedDate);
+                        root.monthSelected(selectedDate);
                     }
                 }
             }
