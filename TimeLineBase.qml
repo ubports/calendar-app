@@ -75,7 +75,7 @@ Item {
     }
 
     function destroyAllChildren() {
-        for( var i = children.length - 1; i >= 0 ; --i ) {
+        for( var i = children.length - 1; i >= 0 ;--i ) {
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
                 children[i].destroy();
