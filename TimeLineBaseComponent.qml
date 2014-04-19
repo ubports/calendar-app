@@ -137,10 +137,6 @@ Item {
                     wideType
                 }
             }
-            //anchors.left: parent.left
-            //anchors.right: parent.right
-            //anchors.leftMargin: units.gu(0.1)
-            //anchors.rightMargin: units.gu(0.1)
             flickable: timeLineView
             clip: true
         }
