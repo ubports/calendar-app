@@ -15,13 +15,43 @@ Item {
 
     property int type: ViewType.ViewTypeWeek
 
+    //visible hour
+    property int scrollHour;
+
     function scrollToCurrentTime() {
         //scroll to current time
         var currentTime = new Date();
         //TODO: if current time is early morning should we show time from 9 am ?
-        var hour = currentTime.getHours();
+        scrollHour = currentTime.getHours();
 
-        timeLineView.contentY = hour * units.gu(10);
+        timeLineView.contentY = scrollHour * units.gu(10);
+        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
+            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
+        }
+    }
+
+    Connections{
+        target: parent
+        onScrollUp:{
+            scrollHour--;
+            if( scrollHour < 0) {
+                scrollHour =0;
+            }
+            scrollToHour();
+        }
+
+        onScrollDown:{
+            scrollHour++;
+            var visibleHour = root.height / units.gu(10);
+            if( scrollHour > (25 -visibleHour)) {
+                scrollHour = 25 - visibleHour;
+            }
+            scrollToHour();
+        }
+    }
+
+    function scrollToHour() {
+        timeLineView.contentY = scrollHour * units.gu(10);
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
