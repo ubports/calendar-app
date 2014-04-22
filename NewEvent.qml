@@ -86,6 +86,7 @@ Page {
         if(e.recurrence ) {
             var recurrenceRule = e.recurrence.recurrenceRules;
             index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+            console.log("index is " + index);
             if(index > 0 ){
                 limit.visible = true;
                 if(recurrenceRule[0].limit !== undefined){
@@ -440,7 +441,7 @@ Page {
                 height: limitOptions.height
                 Label{
                     id: limitLabel
-                    text: i18n.tr("Recurring event ends");
+                    text: i18n.tr("Recurring \nevent ends");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
