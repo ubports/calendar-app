@@ -83,6 +83,7 @@ Page{
 
                 MonthComponent{
                     id: monthComponent
+                    showEvents: false
                     currentMonth: new Date(yearView.year,index,1,0,0,0,0)
 
                     anchors.fill: parent
