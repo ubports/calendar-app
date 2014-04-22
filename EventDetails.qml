@@ -163,7 +163,7 @@ Page {
             }
             EventDetailsInfo{
                 id: endHeader
-                xMargin: column.timeLabelMaxLenLimit
+                xMargin: column.timeLabelMaxLen
                 header: i18n.tr("End")
             }
             Row {
