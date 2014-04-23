@@ -2,8 +2,8 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 import "dateExt.js" as DateExt
-Page{
-    id: root
+Page {
+    id: yearViewPage
 
     property int currentYear: DateExt.today().getFullYear();
     signal monthSelected(var date);
@@ -31,7 +31,7 @@ Page{
 
             property int scrollMonth: 0;
             property bool isCurrentItem: index == pathView.currentIndex
-            property int year: (root.currentYear + pathView.indexType(index))
+            property int year: (yearViewPage.currentYear + pathView.indexType(index))
 
             width: parent.width
             height: parent.height
@@ -45,35 +45,35 @@ Page{
 
             model: 12 /* months in a year */
 
-            onYearChanged : {
-                scrollMonth=0;
-                yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+            onYearChanged: {
+                scrollMonth = 0;
+                yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
             }
 
             //scroll in case content height changed
             onHeightChanged: {
-                scrollMonth=0;
-                yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+                scrollMonth = 0;
+                yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
             }
 
 
             Connections{
                 target: pathView
-                onScrollUp:{
+                onScrollUp: {
                     scrollMonth -= 2;
                     if(scrollMonth < 0) {
                         scrollMonth = 0;
                     }
-                    yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+                    yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
                 }
 
-                onScrollDown:{
+                onScrollDown: {
                     scrollMonth += 2;
                     var visibleMonths = yearView.height / cellHeight;
                     if( scrollMonth >= (11 - visibleMonths)) {
                         scrollMonth = (11 - visibleMonths);
                     }
-                    yearView.positionViewAtIndex(scrollMonth,GridView.Beginning);
+                    yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
                 }
             }
 
@@ -81,11 +81,12 @@ Page{
                 width: yearView.cellWidth
                 height: yearView.cellHeight
 
-                MonthComponent{
+                MonthComponent {
                     id: monthComponent
                     showEvents: false
-                    currentMonth: new Date(yearView.year,index,1,0,0,0,0)
-
+                    currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
+                    
+                    isYearView: true
                     anchors.fill: parent
                     anchors.margins: units.gu(0.5)
 
@@ -94,11 +95,8 @@ Page{
                     monthLabelFontSize: "medium"
                     yearLabelFontSize: "small"
 
-                    MouseArea{
-                        anchors.fill: parent
-                        onClicked: {
-                            root.monthSelected(monthComponent.currentMonth);
-                        }
+                    onMonthSelected: {
+                       yearViewPage.monthSelected(date);
                     }
                 }
             }
