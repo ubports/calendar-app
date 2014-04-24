@@ -16,6 +16,8 @@ Page {
     property var model;
 
     anchors.fill: parent
+    flickable: null
+
     Component.onCompleted: {
         if( pageStack.header )
             pageStack.header.visible = false;
@@ -125,20 +127,34 @@ Page {
                 text: i18n.tr("Edit");
                 iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
-                   pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
                 }
             }
         }
     }
 
     Rectangle {
-        id:eventDetilsView
-        anchors.fill: parent
+        id:bg
         color: "white"
+        anchors.fill: parent
+    }
+
+    Scrollbar {
+        flickableItem: flicable
+        align: Qt.AlignTrailing
+    }
+
+    Flickable{
+        id: flicable
+        anchors.fill: parent
+
+        contentHeight: column.height + units.gu(3) /*top margin + spacing */
+        contentWidth: parent.width
+
+        interactive: contentHeight > height
+
         Column{
             id: column
-            anchors.fill: parent
-            width: parent.width
             spacing: units.gu(1)
             anchors{
                 top:parent.top
