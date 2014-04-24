@@ -28,12 +28,12 @@ Page {
 
         // If startDate is setted by argument we have to not change it
         if (typeof(startDate) === 'undefined')
-            startDate = new Date(date)
+            startDate = root.roundDate(date.now())
 
         // If endDate is setted by argument we have to not change it
         if (typeof(endDate) === 'undefined') {
-            endDate = new Date(date)
-            endDate.setMinutes( endDate.getMinutes() + 30)
+            endDate = startDate
+            startDate = root.roundDate(endDate)
         }
 
         if(event === null){
@@ -158,18 +158,11 @@ Page {
         }
     }
 
-    // Calucate default hour for start and end time on event
-    function hourForPickerFromDate(date) {
+    // Calucate default hour and minute for start and end time on event
+    function roundDate(date) {
         if(date.getMinutes() < 30)
-            return date.getHours()
-        return date.getHours() + 1
-    }
-
-    // Calucate default minute for start and end time on event
-    function minuteForPickerFromDate(date) {
-        if(date.getMinutes() < 30)
-            return 30
-        return 0
+            return date.setMinutes(30)
+        return date.setHours(date.getHours() + 1)
     }
 
     width: parent.width
@@ -286,7 +279,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(startDate),"minute":root.minuteForPickerFromDate(startDate)});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startDate,"minute":startDate});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = startDate;
                                     newDate.setHours(startHour, startMinute);
@@ -311,7 +304,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(endDate),"minute":root.minuteForPickerFromDate(endDate)});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endDate,"minute":endDate});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = endDate;
                                     newDate.setHours(startHour, startMinute);
