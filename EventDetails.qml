@@ -134,7 +134,7 @@ Page {
     }
 
     Rectangle {
-        id:bg
+        id: bg
         color: "white"
         anchors.fill: parent
     }
