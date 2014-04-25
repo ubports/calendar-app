@@ -372,6 +372,11 @@ Page {
                     TextArea{
                         id: messageEdit
                         width: parent.width
+                        color: focus ? "#2C001E" : "#EAD3A8"
+                        // default style
+                        font {
+                            pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
+                        }
                     }
                 }
             }
