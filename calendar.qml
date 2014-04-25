@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
+import Ubuntu.SyncMonitor 0.1
 import QtQuick.Window 2.0
 
 import "dateExt.js" as DateExt
@@ -9,7 +10,7 @@ MainView {
     id: mainView
 
     // Work-around until this branch lands:
-    // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496 
+    // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
     property bool windowActive: typeof window != 'undefined'
     onWindowActiveChanged: window.title = i18n.tr("Calendar")
 
@@ -65,6 +66,10 @@ MainView {
     backgroundColor: "#478158"
     footerColor: "#478158"
     anchorToKeyboard: true
+
+    SyncMonitor {
+        id: syncMonitor
+    }
 
     PageStack {
         id: pageStack
@@ -218,6 +223,16 @@ MainView {
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabs.currentDay,"model":eventModel});
                         }
+                    }
+                }
+                ToolbarButton {
+                    objectName: "syncbutton"
+                    visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
+                    action: Action {
+                        text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
+                        iconName: "reload"
+                        onTriggered: syncMonitor.sync(["calendar"])
+                        enabled: (syncMonitor.state !== "syncing")
                     }
                 }
             }
