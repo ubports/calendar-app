@@ -162,6 +162,7 @@ Page {
     function roundDate(date) {
         if(date.getMinutes() < 30)
             return date.setMinutes(30)
+        date.setMinutes(0)
         return date.setHours(date.getHours() + 1)
     }
 
