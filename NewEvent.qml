@@ -441,13 +441,13 @@ Page {
                 height: limitOptions.height
                 Label{
                     id: limitLabel
-                    text: i18n.tr("Recurring \nevent ends");
+                    text: i18n.tr("Recurring event ends");
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
                     id: limitOptions
                     anchors.right: parent.right
-                    width: parent.width - optionSelectorWidth - units.gu(3)
+                    width: parent.width - optionSelectorWidth - units.gu(8)
                     model: Defines.limitLabel
                     containerHeight: itemHeight * 4
 
