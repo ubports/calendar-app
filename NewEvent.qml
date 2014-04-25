@@ -6,7 +6,6 @@ import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
 import QtOrganizer 5.0
 
-import "GlobalEventModel.js" as GlobalModel
 import "Defines.js" as Defines
 
 Page {
@@ -14,6 +13,7 @@ Page {
     property var date: new Date();
 
     property var event:null;
+    property var model;
 
     property var startDate;
     property var endDate;
@@ -43,11 +43,10 @@ Page {
         // If endDate is setted by argument we have to not change it
         if (typeof(endDate) === 'undefined') {
             var d = new Date(date);
-            d.setMinutes(d.getMinutes() + 10); // Change time before setting endDate
+            d.setMinutes(d.getMinutes() + 30); // Change time before setting endDate
                                                // to trigger onEndDateChanged
             endDate = d;
         }
-        internal.eventModel = GlobalModel.globalModel();
 
         if(event === null){
             isEdit = false;
@@ -158,7 +157,7 @@ Page {
                 event.setDetail(audibleReminder);
             }
 
-            internal.eventModel.saveItem(event);
+            model.saveItem(event);
             pageStack.pop();
         }
     }
@@ -176,6 +175,10 @@ Page {
     height: parent.height
 
     title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
+
+    Keys.onEscapePressed: {
+        pageStack.pop();
+    }
 
     tools: ToolbarItems {
         //keeping toolbar always open
@@ -322,7 +325,6 @@ Page {
                             }
                         }
                     }
-
                 }
             }
 
@@ -371,6 +373,11 @@ Page {
                     TextArea{
                         id: messageEdit
                         width: parent.width
+                        color: focus ? "#2C001E" : "#EAD3A8"
+                        // default style
+                        font {
+                            pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
+                        }
                     }
                 }
             }
@@ -428,7 +435,6 @@ Page {
 
     QtObject {
         id: internal
-        property var eventModel;
 
         function clearFocus() {
             Qt.inputMethod.hide()

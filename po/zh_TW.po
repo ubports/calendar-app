@@ -7,80 +7,114 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-09-26 07:05+0200\n"
+"POT-Creation-Date: 2014-03-10 19:02-0500\n"
 "PO-Revision-Date: 2013-09-28 10:24+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-21 06:52+0000\n"
+"X-Launchpad-Export-Date: 2014-04-02 06:45+0000\n"
 "X-Generator: Launchpad (build 16967)\n"
+
+#: ../AllDayEventComponent.qml:101
+#, c-format, qt-format
+msgid "%1E"
+msgstr ""
+
+#: ../AllDayEventComponent.qml:104
+#, qt-format
+msgid "%1 All day events"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../EventBubble.qml:38
+#: ../EventBubble.qml:36 ../EventDetails.qml:40
 msgid "hh:mm"
 msgstr "hh:mm"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../EventBubble.qml:43
+#: ../EventBubble.qml:41
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: ../EventDetails.qml:70
-msgid "Add invite"
-msgstr "加入邀請"
+#: ../EventDetails.qml:98
+msgid "Delete"
+msgstr ""
 
-#: ../EventDetails.qml:79
+#: ../EventDetails.qml:110
 msgid "Edit"
 msgstr "編輯"
 
-#: ../EventDetails.qml:153
-msgid "People"
-msgstr "朋友"
+#: ../EventDetails.qml:140 ../NewEvent.qml:262
+msgid "Start"
+msgstr ""
 
-#: ../NewEvent.qml:23
-msgid "Create event"
-msgstr "建立事件"
+#: ../EventDetails.qml:145 ../NewEvent.qml:287
+msgid "End"
+msgstr ""
 
-#: ../NewEvent.qml:29
-msgid "Add event name"
-msgstr "加入事件名稱"
+#: ../EventDetails.qml:153 ../NewEvent.qml:316
+msgid "All Day event:"
+msgstr ""
 
-#: ../NewEvent.qml:102
-msgid "to"
-msgstr "到"
+#: ../EventDetails.qml:183 ../NewEvent.qml:365
+msgid "Location"
+msgstr ""
 
-#: ../NewEvent.qml:137
-msgid "Location & People"
-msgstr "地點與人物"
+#: ../EventDetails.qml:207 ../NewEvent.qml:372
+msgid "Guests"
+msgstr ""
 
-#: ../NewEvent.qml:143
-msgid "Add Location"
-msgstr "加入地點"
+#: ../EventDetails.qml:238 ../NewEvent.qml:381
+msgid "This happens"
+msgstr ""
 
-#: ../NewEvent.qml:156
-msgid "Invite People"
-msgstr "邀請朋友"
+#: ../EventDetails.qml:244 ../NewEvent.qml:398
+msgid "Remind me"
+msgstr ""
 
-#: ../NewEvent.qml:168
-msgid "Error"
-msgstr "錯誤"
+#: ../NewEvent.qml:106
+msgid "End time can't be before start time"
+msgstr "結束時間不能早於開始時間"
 
-#: ../NewEvent.qml:171 ../TimePicker.qml:82
-msgid "OK"
-msgstr "確定"
+#: ../NewEvent.qml:165
+msgid "Edit Event"
+msgstr ""
 
-#: ../NewEvent.qml:177
+#: ../NewEvent.qml:165 ../calendar.qml:226
+msgid "New Event"
+msgstr "新事件"
+
+#: ../NewEvent.qml:176 ../TimePicker.qml:74
+msgid "Cancel"
+msgstr "取消"
+
+#: ../NewEvent.qml:187
 msgid "Save"
 msgstr "儲存"
 
-#: ../NewEvent.qml:205
-msgid "End time can't be before start time"
-msgstr "結束時間不能早於開始時間"
+#: ../NewEvent.qml:200
+msgid "Error"
+msgstr "錯誤"
+
+#: ../NewEvent.qml:202
+msgid "Ok"
+msgstr ""
+
+#: ../NewEvent.qml:247
+msgid "Date"
+msgstr ""
+
+#: ../NewEvent.qml:334
+msgid "Event Name"
+msgstr ""
+
+#: ../NewEvent.qml:350
+msgid "Description"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -100,34 +134,36 @@ msgstr "小時"
 msgid "Minute"
 msgstr "分鐘"
 
-#: ../TimePicker.qml:73
-msgid "Cancel"
-msgstr "取消"
+#: ../TimePicker.qml:83
+msgid "OK"
+msgstr "確定"
 
-#: ../calendar.qml:56
-msgid "New Event"
-msgstr "新事件"
+#: ../calendar.qml:21
+msgid ""
+"Calendar app accept three arguments: --starttime, --endtime and --newevet. "
+"They will be managed by system. See the source for a full comment about them"
+msgstr ""
 
-#: ../calendar.qml:64
+#: ../calendar.qml:216
 msgid "Today"
 msgstr "今日"
 
-#: ../calendar.qml:75
+#: ../calendar.qml:238
 msgid "Year"
 msgstr "年"
 
-#: ../calendar.qml:95
+#: ../calendar.qml:260
 msgid "Month"
 msgstr "月"
 
-#: ../calendar.qml:108
+#: ../calendar.qml:274
 msgid "Week"
 msgstr "週"
 
-#: ../calendar.qml:124
+#: ../calendar.qml:291
 msgid "Day"
 msgstr "日"
 
-#: ../.build/calendar-app.desktop.js:1
+#: ../.build/com.ubuntu.calendar_calendar.desktop.in:1
 msgid "Calendar"
 msgstr "行事曆"

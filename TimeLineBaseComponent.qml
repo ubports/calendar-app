@@ -15,17 +15,54 @@ Item {
 
     property int type: ViewType.ViewTypeWeek
 
+    //visible hour
+    property int scrollHour;
+
     function scrollToCurrentTime() {
         //scroll to current time
         var currentTime = new Date();
         //TODO: if current time is early morning should we show time from 9 am ?
-        var hour = currentTime.getHours();
+        scrollHour = currentTime.getHours();
 
-        timeLineView.contentY = hour * units.gu(10);
+        timeLineView.contentY = scrollHour * units.gu(10);
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
     }
+
+    Connections{
+        target: parent
+        onScrollUp:{
+            scrollHour--;
+            if( scrollHour < 0) {
+                scrollHour =0;
+            }
+            scrollToHour();
+        }
+
+        onScrollDown:{
+            scrollHour++;
+            var visibleHour = root.height / units.gu(10);
+            if( scrollHour > (25 -visibleHour)) {
+                scrollHour = 25 - visibleHour;
+            }
+            scrollToHour();
+        }
+    }
+
+    function scrollToHour() {
+        timeLineView.contentY = scrollHour * units.gu(10);
+        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
+            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
+        }
+    }
+
+    EventListModel {
+        id: mainModel
+        startPeriod: startDay.midnight();
+        endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
+    }
+
 
     Column {
         anchors.top: parent.top
@@ -33,13 +70,17 @@ Item {
         width: parent.width
         height: parent.height
 
-        AllDayEventComponent{
+        AllDayEventComponent {
             id: allDayContainer
             type: root.type
             startDay: root.startDay
+            model: mainModel
+            Component.onCompleted: {
+                model.addModelChangeListener(createAllDayEvents);
+            }
         }
 
-        Flickable{
+        Flickable {
             id: timeLineView
 
             width: parent.width
@@ -50,16 +91,16 @@ Item {
 
             clip: true
 
-            TimeLineBackground{
+            TimeLineBackground {
             }
 
-            Row{
+            Row {
                 id: week
                 width: parent.width
                 height: parent.height
                 anchors.top: parent.top
 
-                Repeater{
+                Repeater {
                     model: type == ViewType.ViewTypeWeek ? 7 : 1
 
                     delegate: TimeLineBase {
@@ -67,23 +108,29 @@ Item {
                         anchors.top: parent.top
                         width: {
                             if( type == ViewType.ViewTypeWeek ) {
-                                 parent.width/7
+                                parent.width / 7
                             } else {
                                 (parent.width)
                             }
                         }
+
                         height: parent.height
                         delegate: comp
                         day: startDay.addDays(index)
+
+                        model: mainModel
+                        Component.onCompleted: {
+                            model.addModelChangeListener(createEvents);
+                        }
                     }
                 }
             }
         }
     }
 
-    Component{
+    Component {
         id: comp
-        EventBubble{
+        EventBubble {
             type: {
                 if( root.type == ViewType.ViewTypeWeek ) {
                     narrowType

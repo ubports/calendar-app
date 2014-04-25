@@ -17,6 +17,8 @@ PathViewBase {
 
     property var date;
 
+    signal dateSelected(var date);
+
     DayHeaderBackground{
         height: FontUtils.sizeToPixels("medium") + units.gu(1.5)
     }
@@ -38,34 +40,17 @@ PathViewBase {
 
         startDay: getStartDate();
 
+        onDateSelected: {
+            header.dateSelected(date);
+        }
+
         function getStartDate() {
+            var indexType = header.indexType(index);
             switch(type) {
             case ViewType.ViewTypeWeek:
-                return getDateForWeek();
+                return date.addDays(7*indexType);
             case ViewType.ViewTypeDay:
-                return getDateForDay();
-            }
-        }
-
-        function getDateForDay() {
-            switch( header.indexType(index)) {
-            case 0:
-                return date;
-            case -1:
-                return date.addDays(-1);
-            case 1:
-                return date.addDays(1);
-            }
-        }
-
-        function getDateForWeek() {
-            switch( header.indexType(index)) {
-            case 0:
-                return date;
-            case -1:
-                return date.addDays(-7);
-            case 1:
-                return date.addDays(7);
+                return date.addDays(1*indexType);
             }
         }
     }

@@ -7,7 +7,10 @@ Item{
     id: root
     objectName: "MonthComponent"
 
+    property bool showEvents: false
+
     property var currentMonth;
+    property var isYearView;
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
@@ -17,12 +20,33 @@ Item{
     property alias dayLabelDelegate : dayLabelRepeater.delegate
     property alias dateLabelDelegate : dateLabelRepeater.delegate
 
+    signal monthSelected(var date);
     signal dateSelected(var date)
 
     height: ubuntuShape.height
 
+    Loader{
+        id: modelLoader
+        sourceComponent: showEvents ? modelComponent: undefined
+    }
+
+    Component{
+        id: modelComponent
+        EventListModel {
+            id: mainModel
+            startPeriod: intern.monthStart.midnight();
+            endPeriod: intern.monthStart.addDays((monthGrid.weekCount*7)-1).endOfDay()
+
+            onModelChanged: {
+                intern.eventStatus = Qt.binding(function() { return mainModel.containsItems(startPeriod,endPeriod,24*60*60)});
+            }
+        }
+    }
+
     QtObject{
         id: intern
+
+        property var eventStatus;
 
         property int curMonthDate: currentMonth.getDate()
         property int curMonth: currentMonth.getMonth()
@@ -166,7 +190,7 @@ Item{
                 sourceComponent: isToday && isCurrentMonth ? highLightComp : undefined
             }
 
-            Label{
+            Label {
                 id: dateLabel
                 anchors.centerIn: parent
                 width: parent.width
@@ -186,12 +210,41 @@ Item{
                 }
             }
 
-            MouseArea{
+            Rectangle {
+                width: units.gu(1)
+                height: width
+                radius: height/2
+                color:"#5E2750"
+                visible: showEvents
+                         && intern.eventStatus !== undefined
+                         && intern.eventStatus[index] !== undefined
+                         &&intern.eventStatus[index]
+                anchors.top: dateLabel.bottom
+                anchors.horizontalCenter: dateLabel.horizontalCenter
+            }
+
+            MouseArea {
                 anchors.fill: parent
+                onPressAndHold: {
+                    var selectedDate = new Date();
+                    selectedDate.setFullYear(intern.monthStartYear)
+                    selectedDate.setMonth(intern.monthStartMonth + 1)
+                    selectedDate.setDate(date)
+                    selectedDate.setMinutes(60, 0, 0)
+                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
+                }
                 onClicked: {
-                    root.dateSelected(new Date(intern.monthStartYear,
-                                               intern.monthStartMonth,
-                                               intern.monthStartDate+index,0,0,0,0));
+                    var selectedDate = new Date(intern.monthStartYear,
+                                                intern.monthStartMonth,
+                                                intern.monthStartDate + index, 0, 0, 0, 0)
+                    //If monthView is clicked then open selected DayView
+                    if ( isYearView === false ) {
+                        root.dateSelected(selectedDate);
+                    }
+                    //If yearView is clicked then open selected MonthView
+                    else {
+                        root.monthSelected(selectedDate);
+                    }
                 }
             }
         }

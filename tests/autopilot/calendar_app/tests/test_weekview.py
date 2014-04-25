@@ -154,3 +154,25 @@ class TestWeekView(CalendarTestCase):
         """It must be possible to show previous weeks by swiping the view."""
         for i in range(6):
             self._change_week(-1)
+
+    def test_selecting_a_day_switches_to_day_view(self):
+        """It must be possible to show a single day by clicking on it."""
+        first_day_date = self.week_view.firstDay
+        expected_day = first_day_date.day
+        expected_month = first_day_date.month
+        expected_year = first_day_date.year
+
+        days = self._get_days_of_week()
+        day_to_select = self.main_view.get_label_with_text(days[0])
+
+        self.pointing_device.click_object(day_to_select)
+
+        #Check that the view changed from 'Week' to 'Day'
+        day_view = self.main_view.get_day_view()
+        self.assertThat(day_view.visible, Eventually(Equals(True)))
+
+        #Check that the 'Day' view is on the correct/selected day.
+        selected_date = day_view.select_single("TimeLineHeader").date
+        self.assertThat(expected_day, Equals(selected_date.day))
+        self.assertThat(expected_month, Equals(selected_date.month))
+        self.assertThat(expected_year, Equals(selected_date.year))

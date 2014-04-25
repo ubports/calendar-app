@@ -10,13 +10,13 @@ TEMPLATE = subdirs
 PROJECTNAME = $$system(basename ../*.qmlproject)
 PROJECTNAME = $$replace(PROJECTNAME,.qmlproject,)
 
-DESKTOPFILE = ../$${PROJECTNAME}.desktop
+DESKTOPFILE = ../com.ubuntu.calendar_calendar.desktop.in
 
 SOURCECODE = ../*.qml \
              ../*.js
 
 BUILDDIR = ../.build
-DESKTOPFILETEMP = $${BUILDDIR}/$${PROJECTNAME}.desktop.js
+DESKTOPFILETEMP = $${BUILDDIR}/com.ubuntu.calendar_calendar.desktop.in
 
 message("")
 message(" Project Name: $$PROJECTNAME ")
