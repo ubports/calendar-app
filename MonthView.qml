@@ -51,19 +51,8 @@ Page {
             width: parent.width - units.gu(5)
             height: parent.height - units.gu(5)
 
-            currentMonth: getMonthDate();
+            currentMonth: monthViewPath.addMonth(monthViewPath.startMonth, monthViewPath.indexType(index));
             isYearView: false
-
-            function getMonthDate() {
-                switch( monthViewPath.indexType(index)) {
-                case 0:
-                    return monthViewPath.addMonth(monthViewPath.startMonth, 0);
-                case -1:
-                    return monthViewPath.addMonth(monthViewPath.startMonth, -1);
-                case 1:
-                    return monthViewPath.addMonth(monthViewPath.startMonth, 1);
-                }
-            }
 
             onDateSelected: {
                 monthViewPage.dateSelected(date);
