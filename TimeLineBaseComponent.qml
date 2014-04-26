@@ -64,7 +64,6 @@ Item {
     }
 
     ActivityIndicator {
-        id: busyIndicator
         visible: running
         running: mainModel.isLoading
         anchors.centerIn: parent
