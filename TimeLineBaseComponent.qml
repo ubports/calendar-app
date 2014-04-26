@@ -19,9 +19,7 @@ Item {
     property int scrollHour;
 
     function scrollToCurrentTime() {
-        //scroll to current time
         var currentTime = new Date();
-        //TODO: if current time is early morning should we show time from 9 am ?
         scrollHour = currentTime.getHours();
 
         timeLineView.contentY = scrollHour * units.gu(10);
@@ -76,7 +74,10 @@ Item {
             startDay: root.startDay
             model: mainModel
             Component.onCompleted: {
-                model.addModelChangeListener(createAllDayEvents);
+                mainModel.addModelChangeListener(createAllDayEvents);
+            }
+            Component.onDestruction: {
+                mainModel.removeModelChangeListener(createAllDayEvents);
             }
         }
 
@@ -121,6 +122,9 @@ Item {
                         model: mainModel
                         Component.onCompleted: {
                             model.addModelChangeListener(createEvents);
+                        }
+                        Component.onDestruction: {
+                            model.removeModelChangeListener(createEvents);
                         }
                     }
                 }

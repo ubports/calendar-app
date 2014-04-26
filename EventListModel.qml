@@ -11,6 +11,13 @@ OrganizerModel {
         listeners.push(listener);
     }
 
+    function removeModelChangeListener(listener) {
+        var i = listeners.indexOf(listener);
+        if(i != -1) {
+            listeners.splice(i, 1);
+        }
+    }
+
     function getItems(startDate, endDate){
         return itemsByTimePeriod(startDate,endDate);
     }
