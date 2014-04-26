@@ -63,6 +63,13 @@ Item {
         endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
     }
 
+    ActivityIndicator {
+        id: busyIndicator
+        visible: running
+        running: mainModel.isLoading
+        anchors.centerIn: parent
+        z:2
+    }
 
     Column {
         anchors.top: parent.top

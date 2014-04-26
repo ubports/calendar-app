@@ -6,6 +6,7 @@ OrganizerModel {
     manager:"eds"
 
     property var listeners:[];
+    property bool isLoading: false
 
     function addModelChangeListener(listener){
         listeners.push(listener);
@@ -16,11 +17,16 @@ OrganizerModel {
     }
 
     onModelChanged: {
+        isLoading = false
         if(listeners === undefined){
             return;
         }
         for(var i=0; i < listeners.length ;++i){
             (listeners[i])();
         }
+    }
+
+    onStartPeriodChanged: {
+        isLoading = true
     }
 }
