@@ -10,13 +10,13 @@ import "Defines.js" as Defines
 
 Page {
     id: root
-    property var date: new Date();
+    property var date
 
     property var event:null;
     property var model;
 
-    property var startDate;
-    property var endDate;
+    property var startDate
+    property var endDate
     property int optionSelectorWidth: frequencyLabel.width > remindLabel.width ? frequencyLabel.width : remindLabel.width
 
     property alias scrollY: flickable.contentY
@@ -24,16 +24,17 @@ Page {
 
     Component.onCompleted: {
 
+        date = new Date()
         pageStack.header.visible = true;
 
         // If startDate is setted by argument we have to not change it
         if (typeof(startDate) === 'undefined')
-            startDate = root.roundDate(date.now())
+            startDate = new Date(root.roundDate(date))
 
         // If endDate is setted by argument we have to not change it
         if (typeof(endDate) === 'undefined') {
-            endDate = startDate
-            startDate = root.roundDate(endDate)
+            endDate = new Date(root.roundDate(date))
+            endDate.setMinutes(endDate.getMinutes() + 30)
         }
 
         if(event === null){
@@ -49,9 +50,6 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        startDate = new Date(date)
-        endDate = new Date(date)
-        endDate.setMinutes( endDate.getMinutes() + 30)
 
         startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
@@ -160,10 +158,11 @@ Page {
 
     // Calucate default hour and minute for start and end time on event
     function roundDate(date) {
-        if(date.getMinutes() < 30)
-            return date.setMinutes(30)
-        date.setMinutes(0)
-        return date.setHours(date.getHours() + 1)
+        var tempDate = new Date(date)
+        if(tempDate.getMinutes() < 30)
+            return tempDate.setMinutes(30)
+        tempDate.setMinutes(0)
+        return tempDate.setHours(tempDate.getHours() + 1)
     }
 
     width: parent.width
@@ -280,7 +279,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startDate,"minute":startDate});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startDate.getHours(),"minute":startDate.getMinutes()});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = startDate;
                                     newDate.setHours(startHour, startMinute);
@@ -305,7 +304,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endDate,"minute":endDate});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endDate.getHours(),"minute":endDate.getMinutes()});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = endDate;
                                     newDate.setHours(startHour, startMinute);
