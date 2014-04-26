@@ -10,13 +10,13 @@ import "Defines.js" as Defines
 
 Page {
     id: root
-    property var date
+    property var date;
 
     property var event:null;
     property var model;
 
-    property var startDate
-    property var endDate
+    property var startDate;
+    property var endDate;
     property int optionSelectorWidth: frequencyLabel.width > remindLabel.width ? frequencyLabel.width : remindLabel.width
 
     property alias scrollY: flickable.contentY
