@@ -51,7 +51,9 @@ Page {
             width: parent.width - units.gu(5)
             height: parent.height - units.gu(5)
 
-            currentMonth: monthViewPath.addMonth(monthViewPath.startMonth, monthViewPath.indexType(index));
+            currentMonth: monthViewPath.addMonth(monthViewPath.startMonth,
+                                                 monthViewPath.indexType(index));
+
             isYearView: false
 
             onDateSelected: {
