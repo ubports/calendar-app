@@ -64,7 +64,6 @@ Page {
         }
 
         var index = 0;
-        console.log("r is " + e.recurrence);
         if(e.recurrence ) {
             var recurrenceRule = e.recurrence.recurrenceRules;
             if(recurrenceRule.length > 0){

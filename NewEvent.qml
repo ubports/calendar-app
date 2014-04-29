@@ -447,12 +447,18 @@ Page {
                 Label{
                     id: limitLabel
                     text: i18n.tr("Recurring event ends");
+                    anchors{
+                          left: parent.left
+                          right: limitOptions.left
+                    }
+                    wrapMode: Text.WordWrap
+                    maximumLineCount: 2
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 OptionSelector{
                     id: limitOptions
                     anchors.right: parent.right
-                    width: parent.width - optionSelectorWidth - units.gu(8)
+                    width: parent.width - optionSelectorWidth - units.gu(3)
                     model: Defines.limitLabel
                     containerHeight: itemHeight * 4
 
@@ -478,7 +484,6 @@ Page {
                     width: parent.width
                 }
             }
-
             Item{
                 width: parent.width
                 height: reminderOption.height
