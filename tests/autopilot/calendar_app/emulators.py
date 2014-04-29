@@ -111,8 +111,8 @@ class MainView(toolkit_emulators.MainView):
         new_event = self.get_new_event()
         return new_event.wait_select_single("Button",
                                             objectName="accept")
+
     def get_new_event_cancel_button(self):
         new_event = self.get_new_event()
         return new_event.wait_select_single("Button",
                                             objectName="cancel")
-
