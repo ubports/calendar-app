@@ -104,27 +104,25 @@ Item{
     Column{
         id: detailsColumn
         width: parent.width
-
         Row{
             width: parent.width
-
             Rectangle{
                 width: units.gu(1)
                 radius: width/2
                 height: width
                 color: "#715772"
-                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                anchors.rightMargin: units.gu(1)
                 antialiasing: true
             }
-
-            Label{
-                id: timeLabel
-                fontSize:"small";
-                color:"gray"
-                width: parent.width
-            }
         }
-
+        Label{
+            id: timeLabel
+            x:units.gu(1)
+            fontSize:"small";
+            color:"gray"
+            width: parent.width
+        }
         Label{
             id: titleLabel
             x: units.gu(1)
@@ -138,10 +136,11 @@ Item{
             id: descriptionLabel
             x: units.gu(1)
             fontSize:"small";
-            color:"gray"
+            color:"grey"
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             width: parent.width
             visible: type == wideType
+
         }
     }
 
