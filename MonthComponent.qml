@@ -57,7 +57,6 @@ Item{
         property int todayMonth: today.getMonth()
         property int todayYear: today.getFullYear()
 
-
         //date from month will start, this date might be from previous month
         property var monthStart: currentMonth.weekStart( Qt.locale().firstDayOfWeek )
         property int monthStartDate: monthStart.getDate()
@@ -210,15 +209,12 @@ Item{
                 }
             }
 
-            Rectangle {
-                width: units.gu(1)
-                height: width
-                radius: height/2
-                color:"#5E2750"
-                visible: showEvents
+            Loader{
+                property bool shouldLoad: showEvents
                          && intern.eventStatus !== undefined
                          && intern.eventStatus[index] !== undefined
                          &&intern.eventStatus[index]
+                sourceComponent: shouldLoad ? eventIndicatorComp : undefined
                 anchors.top: dateLabel.bottom
                 anchors.horizontalCenter: dateLabel.horizontalCenter
             }
@@ -247,6 +243,16 @@ Item{
                     }
                 }
             }
+        }
+    }
+
+    Component{
+        id: eventIndicatorComp
+        Rectangle {
+            width: units.gu(1)
+            height: width
+            radius: height/2
+            color:"#5E2750"
         }
     }
 

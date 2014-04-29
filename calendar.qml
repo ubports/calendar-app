@@ -305,7 +305,6 @@ MainView {
                     onLoaded: {
                         item.tools = Qt.binding(function() { return commonToolBar })
                         item.currentMonth = tabs.currentDay.midnight();
-                        print("onLoaded:"+ tabs.currentDay);
                     }
 
                     anchors{

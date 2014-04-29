@@ -56,7 +56,6 @@ Page {
                 yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
             }
 
-
             Connections{
                 target: pathView
                 onScrollUp: {
