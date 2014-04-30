@@ -116,7 +116,7 @@ Item{
                     id: timeLabel
                     fontSize:"small";
                     color:"gray"
-                    width: parent.width - rect.width - 3
+                    width: parent.width - rect.width - units.gu(1)
                 }
                 Rectangle{
                     id:rect
