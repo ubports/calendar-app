@@ -57,7 +57,7 @@ Item{
                 if( event.displayLabel)
                     titleLabel.text = event.displayLabel;
 
-                if( event.description)
+                if( event.description && descriptionLabel.height > height) //If content is too much don't display.
                     descriptionLabel.text = event.description
             } else {
                 //narrow type shows only time and title
@@ -101,46 +101,50 @@ Item{
         }
     }
 
-    Column{
+    Item{
         id: detailsColumn
         width: parent.width
-        Row{
+        anchors.fill: parent
+        Column{
             width: parent.width
-            Rectangle{
-                width: units.gu(1)
-                radius: width/2
-                height: width
-                color: "#715772"
-                anchors.right: parent.right
-                anchors.rightMargin: units.gu(1)
-                antialiasing: true
+            anchors.fill: parent
+            anchors.topMargin: units.gu(0.5)
+            anchors.leftMargin: units.gu(1)
+            Row{
+                width: parent.width
+                Label{
+                    id: timeLabel
+                    fontSize:"small";
+                    color:"gray"
+                    width: parent.width - rect.width - 3
+                }
+                Rectangle{
+                    id:rect
+                    width: units.gu(1)
+                    radius: width/2
+                    height: width
+                    color: "#715772"
+                }
             }
-        }
-        Label{
-            id: timeLabel
-            x:units.gu(1)
-            fontSize:"small";
-            color:"gray"
-            width: parent.width
-        }
-        Label{
-            id: titleLabel
-            x: units.gu(1)
-            fontSize:"small";
-            color:"black"
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            width: parent.width
-        }
+            Label{
+                id: titleLabel
+                fontSize:"small";
+                color:"black"
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                anchors.bottom: parent.Bottom
 
-        Label{
-            id: descriptionLabel
-            x: units.gu(1)
-            fontSize:"small";
-            color:"grey"
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            width: parent.width
-            visible: type == wideType
+                width: parent.width
+            }
 
+            Label{
+                id: descriptionLabel
+                fontSize:"small";
+                color:"grey"
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: parent.width
+                visible: type == wideType
+
+            }
         }
     }
 
