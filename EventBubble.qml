@@ -139,7 +139,7 @@ Item{
             Label{
                 id: descriptionLabel
                 fontSize:"small";
-                color:"grey"
+                color:"gray"
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width
                 visible: type == wideType
