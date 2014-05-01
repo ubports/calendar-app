@@ -10,7 +10,7 @@ import "Defines.js" as Defines
 
 Page {
     id: root
-    property var date;
+    property var date : new Date();
 
     property var event:null;
     property var model;
@@ -24,7 +24,6 @@ Page {
 
     Component.onCompleted: {
 
-        date = new Date()
         pageStack.header.visible = true;
 
         // If startDate is setted by argument we have to not change it
