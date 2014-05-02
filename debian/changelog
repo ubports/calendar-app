@@ -1,4 +1,4 @@
-calendar-app (0.5) UNRELEASED; urgency=medium
+calendar-app (0.6) raring; urgency=medium
 
   [ Sergio Schvezov ]
   * Adding cmake 
@@ -12,7 +12,10 @@ calendar-app (0.5) UNRELEASED; urgency=medium
   [ Dimitri John Ledkov ]
   * Ship *.svg assets in click-buddy/cmake build.
 
- -- Sergio Schvezov <sergio.schvezov@canonical.com>  Sat, 18 Jan 2014 17:05:03 -0300
+  [ Alan Pope ]
+  * Update click framework and apparmor profile version (LP: #1315318)  
+
+ -- Alan Pope <popey@ubuntu.com>  Fri, 02 May 2014 11:11:47 +0100
 
 calendar-app (0.4) raring; urgency=low
 
