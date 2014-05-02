@@ -112,11 +112,12 @@ Item{
             anchors.leftMargin: units.gu(1)
             Row{
                 width: parent.width
+
                 Label{
                     id: timeLabel
                     fontSize:"small";
                     color:"gray"
-                    width: parent.width - rect.width - units.gu(1)
+                    width: parent.width - rect.width - units.gu(0.5)
                 }
                 Rectangle{
                     id:rect
