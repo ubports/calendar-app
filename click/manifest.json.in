@@ -1,6 +1,6 @@
 {
     "description": "Calendar application for Ubuntu devices",
-    "framework": "ubuntu-sdk-13.10",
+    "framework": "ubuntu-sdk-14.04-qml-dev1",
     "hooks": {
         "@APP_NAME@": {
             "apparmor": "apparmor.json",
