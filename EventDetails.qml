@@ -38,10 +38,13 @@ Page {
         }
     }
     function showEvent(e) {
-        //Now it will show date and time as per locale.
-        var startTime = e.startDateTime.toLocaleString(Qt.locale());
-        var endTime = e.endDateTime.toLocaleString(Qt.locale());
 
+        eventDate.value = e.startDateTime.toLocaleString(Qt.locale(),'dd-MMM-yyyy');
+        // TRANSLATORS: this is a time formatting string,
+        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        var timeFormat = i18n.tr("hh:mm");
+        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         startHeader.value = startTime;
         endHeader.value = endTime;
 
@@ -162,7 +165,12 @@ Page {
                 left:parent.left
                 leftMargin: units.gu(2)
             }
-            property int timeLabelMaxLen: Math.max( startHeader.headerWidth, endHeader.headerWidth)// Dynamic Width
+            property int timeLabelMaxLen: Math.max( startHeader.headerWidth, endHeader.headerWidth,eventDate.headerWidth)// Dynamic Width
+            EventDetailsInfo{
+                id: eventDate
+                xMargin:column.timeLabelMaxLen
+                header: i18n.tr("Date")
+            }
             EventDetailsInfo{
                 id: startHeader
                 xMargin:column.timeLabelMaxLen
