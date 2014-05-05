@@ -16,4 +16,10 @@ TextField{
     font {
         pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
     }
+
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            flickable.makeMeVisible(root)
+        }
+    }
 }
