@@ -27,6 +27,9 @@ Page {
         pageStack.header.visible = true;
 
         // If startDate is setted by argument we have to not change it
+        //Set the nearest current time.
+        var newDate = new Date();
+        date.setHours(newDate.getHours(), newDate.getMinutes());
         if (typeof(startDate) === 'undefined')
             startDate = new Date(root.roundDate(date))
 
