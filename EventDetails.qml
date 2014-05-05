@@ -38,11 +38,9 @@ Page {
         }
     }
     function showEvent(e) {
-        // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-        var timeFormat = i18n.tr("hh:mm");
-        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
-        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        //Now it will show date and time as per locale.
+        var startTime = e.startDateTime.toLocaleString(Qt.locale());
+        var endTime = e.endDateTime.toLocaleString(Qt.locale());
 
         startHeader.value = startTime;
         endHeader.value = endTime;
