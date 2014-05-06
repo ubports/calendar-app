@@ -56,9 +56,14 @@ Item{
 
                 if( event.displayLabel)
                     titleLabel.text = event.displayLabel;
-
-                if( event.description && descriptionLabel.height > height) //If content is too much don't display.
+                if( event.description)
+                {
                     descriptionLabel.text = event.description
+                    //If content is too much don't display.
+                    if( height < descriptionLabel.height + descriptionLabel.y){
+                        descriptionLabel.text = ""
+                    }
+                }
             } else {
                 //narrow type shows only time and title
                 timeLabel.text = startTime
