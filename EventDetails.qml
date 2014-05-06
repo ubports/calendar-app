@@ -37,34 +37,32 @@ Page {
             }
         }
     }
-    function showEvent(e) {
-        // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-        var timeFormat = i18n.tr("hh:mm");
-        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
-        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
 
-        startHeader.value = startTime;
-        endHeader.value = endTime;
-
-        allDayEventCheckbox.checked = e.allDay;
-
-        // This is the event title
-        if( e.displayLabel) {
-            titleLabel.text = e.displayLabel;
+    function updateRecurrence( event ) {
+        var index = 0;
+        if(event.recurrence ) {
+            var recurrenceRule = event.recurrence.recurrenceRules;
+            if(recurrenceRule.length > 0){
+                index =  recurrenceRule[0].frequency ;
+            }
+            else{
+                index = 0
+            }
         }
+        recurrentHeader.value = Defines.recurrenceLabel[index];
+    }
 
-        if( e.description ) {
-            descLabel.text = e.description;
-        }
-        var attendees = e.attendees;
+    function updateContacts(event) {
+        var attendees = event.attendees;
         contactModel.clear();
         if( attendees !== undefined ) {
             for( var j = 0 ; j < attendees.length ; ++j ) {
                 contactModel.append( {"name": attendees[j].name,"participationStatus": attendees[j].participationStatus }  );
             }
         }
+    }
 
+    function updateReminder(event) {
         var index = 0;
         console.log("Recurrence is " + e.recurrence)
         if(e.recurrence ) {
@@ -81,20 +79,23 @@ Page {
         recurrentHeader.value = Defines.recurrenceLabel[index];
 
         index = 0;
-        var reminder = e.detail( Detail.VisualReminder);
+
+        var reminder = event.detail( Detail.VisualReminder);
         if( reminder ) {
             var reminderTime = reminder.secondsBeforeStart;
             var foundIndex = Defines.reminderValue.indexOf(reminderTime);
             index = foundIndex != -1 ? foundIndex : 0;
         }
         reminderHeader.value = Defines.reminderLabel[index];
+    }
 
-        if( e.location ) {
-            locationLabel.text = e.location;
+    function updateLocation(event) {
+        if( event.location ) {
+            locationLabel.text = event.location;
 
             // FIXME: need to cache map image to avoid duplicate download every time
-            var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+e.location+
-                    "&markers=color:red|"+e.location+"&zoom=15&size="+mapContainer.width+
+            var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+event.location+
+                    "&markers=color:red|"+event.location+"&zoom=15&size="+mapContainer.width+
                     "x"+mapContainer.height+"&sensor=false";
             mapImage.source = imageSrc;
         }
@@ -103,6 +104,49 @@ Page {
             locationLabel.text = i18n.tr("Not specified")
             mapImage.source = "";
         }
+    }
+
+    function showEvent(e) {
+        // TRANSLATORS: this is a time formatting string,
+        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        var timeFormat = i18n.tr("hh:mm");
+        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+
+        var parentEvent;
+        if( e.parentId ){
+            var requestId = -1;
+            model.onItemsFetched.connect( function(id,fetchedItems){
+                if(requestId === id && fetchedItems.length > 0) {
+                    parentEvent = fetchedItems[0];
+                    updateRecurrence(parentEvent);
+                    updateContacts(parentEvent);
+                }
+            });
+            requestId = model.fetchItems([e.parentId]);
+        }
+
+        startHeader.value = startTime;
+        endHeader.value = endTime;
+
+        allDayEventCheckbox.checked = e.allDay;
+
+        // This is the event title
+        if( e.displayLabel) {
+            titleLabel.text = e.displayLabel;
+        }
+
+        if( e.description ) {
+            descLabel.text = e.description;
+        }
+
+        updateContacts(e);
+
+        updateRecurrence(e);
+
+        updateReminder(e);
+
+        updateLocation(e);
     }
 
     Keys.onEscapePressed: {
@@ -282,7 +326,6 @@ Page {
                 id: recurrentHeader
                 xMargin: column.recurranceAreaMaxWidth
                 header: i18n.tr("This happens")
-                value :"Only once" //Neds to change
             }
             EventDetailsInfo{
                 id: reminderHeader
