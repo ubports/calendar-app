@@ -88,7 +88,8 @@ class TestMainView(CalendarTestCase):
         self.assertThat(location_field.text, Eventually(Equals("My location")))
 
         #click save button
-        self.main_view.open_toolbar().click_button("eventSaveButton")
+        save_button = self.main_view.get_new_event_save_button()
+        self.pointing_device.click_object(save_button)
 
         #verify that the event has been created in timeline
         self.main_view.open_toolbar().click_button("todaybutton")
