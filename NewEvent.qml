@@ -11,7 +11,7 @@ import "Defines.js" as Defines
 
 Page {
     id: root
-    property var date: new Date();
+    property var date;
 
     property var event:null;
     property var model;
@@ -25,16 +25,17 @@ Page {
 
     Component.onCompleted: {
 
+        date = new Date()
         pageStack.header.visible = true;
 
         // If startDate is setted by argument we have to not change it
         if (typeof(startDate) === 'undefined')
-            startDate = new Date(date)
+            startDate = new Date(root.roundDate(date))
 
         // If endDate is setted by argument we have to not change it
         if (typeof(endDate) === 'undefined') {
-            endDate = new Date(date)
-            endDate.setMinutes( endDate.getMinutes() + 30)
+            endDate = new Date(root.roundDate(date))
+            endDate.setMinutes(endDate.getMinutes() + 30)
         }
 
         if(event === null){
@@ -50,9 +51,6 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        startDate = new Date(date)
-        endDate = new Date(date)
-        endDate.setMinutes( endDate.getMinutes() + 30)
 
         startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
@@ -186,18 +184,13 @@ Page {
         }
     }
 
-    // Calucate default hour for start and end time on event
-    function hourForPickerFromDate(date) {
-        if(date.getMinutes() < 30)
-            return date.getHours()
-        return date.getHours() + 1
-    }
-
-    // Calucate default minute for start and end time on event
-    function minuteForPickerFromDate(date) {
-        if(date.getMinutes() < 30)
-            return 30
-        return 0
+    // Calucate default hour and minute for start and end time on event
+    function roundDate(date) {
+        var tempDate = new Date(date)
+        if(tempDate.getMinutes() < 30)
+            return tempDate.setMinutes(30)
+        tempDate.setMinutes(0)
+        return tempDate.setHours(tempDate.getHours() + 1)
     }
 
     width: parent.width
@@ -209,33 +202,10 @@ Page {
         pageStack.pop();
     }
 
+    // we use a custom toolbar in this view
     tools: ToolbarItems {
-        //keeping toolbar always open
-        opened: true
         locked: true
-
-        //FIXME: set the icons for toolbar buttons
-        back: ToolbarButton {
-            objectName: "eventCancelButton"
-            action: Action {
-                text: i18n.tr("Cancel");
-                iconSource: Qt.resolvedUrl("cancel.svg");
-                onTriggered: {
-                    pageStack.pop();
-                }
-            }
-        }
-
-        ToolbarButton {
-            objectName: "eventSaveButton"
-            action: Action {
-                text: i18n.tr("Save");
-                iconSource: Qt.resolvedUrl("save.svg");
-                onTriggered: {
-                    saveToQtPim();
-                }
-            }
-        }
+        opened: false
     }
 
     Component{
@@ -256,12 +226,51 @@ Page {
         }
     }
 
+    Rectangle {
+        id: availableArea
+
+        width: parent.width
+        color: "red"
+        opacity: 0.5
+        z: 100
+    }
+
+
     Flickable{
         id: flickable
+
+        property var activeItem: null
+
+        function makeMeVisible(item) {
+            if (!item) {
+                return
+            }
+
+            activeItem = item
+            var position = flickable.contentItem.mapFromItem(item, 0, 0);
+
+            // check if the item is already visible
+            var bottomY = flickable.contentY + flickable.height
+            var itemBottom = position.y + item.height
+            if (position.y >= flickable.contentY && itemBottom <= bottomY) {
+                return;
+            }
+
+            // if it is not, try to scroll and make it visible
+            var targetY = position.y + item.height - flickable.height
+            if (targetY >= 0 && position.y) {
+                flickable.contentY = targetY;
+            } else if (position.y < flickable.contentY) {
+                // if it is hidden at the top, also show it
+                flickable.contentY = position.y;
+            }
+            flickable.returnToBounds()
+        }
+
         anchors {
             top: parent.top
             topMargin: units.gu(2)
-            bottom: parent.bottom
+            bottom: toolbar.top
             left: parent.left
             right: parent.right
             leftMargin: units.gu(2)
@@ -314,7 +323,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(startDate),"minute":root.minuteForPickerFromDate(startDate)});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startDate.getHours(),"minute":startDate.getMinutes()});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = startDate;
                                     newDate.setHours(startHour, startMinute);
@@ -339,7 +348,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(endDate),"minute":root.minuteForPickerFromDate(endDate)});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endDate.getHours(),"minute":endDate.getMinutes()});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = endDate;
                                     newDate.setHours(startHour, startMinute);
@@ -500,6 +509,35 @@ Page {
                     containerHeight: itemHeight * 4
                     model: Defines.reminderLabel
                 }
+            }
+        }
+    }
+
+    EditToolbar {
+        id: toolbar
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        height: units.gu(6)
+        acceptAction: Action {
+            text: i18n.tr("Save")
+            onTriggered: saveToQtPim();
+        }
+        rejectAction: Action {
+            text: i18n.tr("Cancel")
+            onTriggered: pageStack.pop();
+        }
+    }
+
+    // used to keep the field visible when the keyboard appear or dismiss
+    KeyboardRectangle {
+        id: keyboard
+
+        onHeightChanged: {
+            if (flickable.activeItem) {
+                flickable.makeMeVisible(flickable.activeItem)
             }
         }
     }

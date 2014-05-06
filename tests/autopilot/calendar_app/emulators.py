@@ -106,3 +106,13 @@ class MainView(toolkit_emulators.MainView):
 
     def get_num_events(self):
         return len(self.select_many("EventBubble"))
+
+    def get_new_event_save_button(self):
+        new_event = self.get_new_event()
+        return new_event.wait_select_single("Button",
+                                            objectName="accept")
+
+    def get_new_event_cancel_button(self):
+        new_event = self.get_new_event()
+        return new_event.wait_select_single("Button",
+                                            objectName="cancel")
