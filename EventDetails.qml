@@ -39,7 +39,8 @@ Page {
     }
     function showEvent(e) {
 
-        eventDate.value = e.startDateTime.toLocaleString(Qt.locale(),'dd-MMM-yyyy');
+        var dateFormat = i18n.tr("dd-MMM-yyyy")
+        eventDate.value = e.startDateTime.toLocaleString(Qt.locale(),dateFormat);
         // TRANSLATORS: this is a time formatting string,
         // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
         var timeFormat = i18n.tr("hh:mm");
