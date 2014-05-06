@@ -64,10 +64,11 @@ Page {
         }
 
         var index = 0;
+        console.log("Recurrence is " + e.recurrence)
         if(e.recurrence ) {
             var recurrenceRule = e.recurrence.recurrenceRules;
             if(recurrenceRule.length > 0){
-                limitHeader.value =  recurrenceRule[0].limit === undefined ? "Never" :  recurrenceRule[0].limit ;
+                limitHeader.value =  recurrenceRule[0].limit === undefined ? i18n.tr("Never") :  recurrenceRule[0].limit ;
                 index =  recurrenceRule[0].frequency ;
             }
             else{
