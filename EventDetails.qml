@@ -98,7 +98,7 @@ Page {
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
 
-        if( e.parentId ){
+        if( e.itemType === Type.EventOccurrence ){
             var requestId = -1;
             model.onItemsFetched.connect( function(id,fetchedItems){
                 if(requestId === id && fetchedItems.length > 0) {
@@ -163,7 +163,7 @@ Page {
                 text: i18n.tr("Edit");
                 iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
-                    if(event.parentId) {
+                    if( event.itemType === Type.EventOccurrence ) {
                         var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
                         dialog.editEvent.connect( function(eventId){
                             if( eventId === event.parentId ) {
