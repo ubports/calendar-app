@@ -52,7 +52,7 @@ class CalendarTestCase(AutopilotTestCase):
         scenarios = [('with touch', dict(input_device_class=Touch))]
 
     local_location = os.path.dirname(os.path.dirname(os.getcwd()))
-    local_location_qml_ = local_location + "/calendar.qml"
+    local_location_qml = local_location + "/calendar.qml"
     installed_location_qml = "/usr/share/calendar-app/calendar.qml"
 
     def setup_environment(self):
