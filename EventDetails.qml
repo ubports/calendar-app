@@ -182,7 +182,7 @@ Page {
 
     QtObject{
         id: internal
-        property var parentId;
+        property var parentEvent;
     }
 
     Rectangle {
