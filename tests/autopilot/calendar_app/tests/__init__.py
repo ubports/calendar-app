@@ -52,20 +52,20 @@ class CalendarTestCase(AutopilotTestCase):
     local_location_qml = local_location + "/calendar.qml"
     installed_location_qml = "/usr/share/calendar-app/calendar.qml"
 
-    def setup_environment(self):
+    def get_launcher_and_type(self):
         if os.path.exists(self.local_location_qml):
-            launch = self.launch_test_local
+            launcher = self.launch_test_local
             test_type = 'local'
         elif os.path.exists(self.installed_location_qml):
-            launch = self.launch_test_installed
+            launcher = self.launch_test_installed
             test_type = 'deb'
         else:
-            launch = self.launch_test_click
+            launcher = self.launch_test_click
             test_type = 'click'
-        return launch, test_type
+        return launcher, test_type
 
     def setUp(self):
-        launch, self.test_type = self.setup_environment()
+        launcher, self.test_type = self.get_launcher_and_type()
         self.home_dir = self._patch_home()
         self.pointing_device = Pointer(self.input_device_class.create())
         super(CalendarTestCase, self).setUp()
@@ -80,7 +80,7 @@ class CalendarTestCase(AutopilotTestCase):
         # in the way of test expectations.
         self.patch_environment('LC_ALL', 'C')
 
-        self.app = launch()
+        self.app = launcher()
 
     @autopilot_logging.log_action(logger.info)
     def launch_test_local(self):
