@@ -106,15 +106,14 @@ Item{
         }
     }
 
-    Item{
+    Column{
         id: detailsColumn
-        width: parent.width
         anchors.fill: parent
         Column{
-            width: parent.width
             anchors.fill: parent
-            anchors.topMargin: units.gu(0.5)
+            anchors.topMargin: units.gu(1)
             anchors.leftMargin: units.gu(1)
+            anchors.rightMargin: units.gu(1)
             Row{
                 width: parent.width
 
@@ -122,7 +121,7 @@ Item{
                     id: timeLabel
                     fontSize:"small";
                     color:"gray"
-                    width: parent.width - rect.width - units.gu(0.5)
+                    width: parent.width - rect.width
                 }
                 Rectangle{
                     id:rect
