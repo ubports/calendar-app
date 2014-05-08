@@ -39,11 +39,11 @@ Page {
     }
     function showEvent(e) {
 
+        // TRANSLATORS: this is a time & Date formatting string,
+        //http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+        var timeFormat = i18n.tr("hh:mm");
         var dateFormat = i18n.tr("dd-MMM-yyyy")
         eventDate.value = e.startDateTime.toLocaleString(Qt.locale(),dateFormat);
-        // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-        var timeFormat = i18n.tr("hh:mm");
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         startHeader.value = startTime;
