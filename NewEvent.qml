@@ -59,11 +59,6 @@ Page {
 
     //Editing Event
     function editEvent(e) {
-        print("###############################################");
-        for(var p in e) {
-            print(p +" : " + e[p]);
-        }
-
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
         startTime.text = Qt.formatDateTime(e.startDateTime, "dd MMM yyyy hh:mm");
