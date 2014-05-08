@@ -92,8 +92,10 @@ Page {
 
     function showEvent(e) {
         // TRANSLATORS: this is a time & Date formatting string,
-        //http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+        //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
         var timeFormat = i18n.tr("hh:mm");
+        // TRANSLATORS: this is a time & Date formatting string,
+        //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
         var dateFormat = i18n.tr("dd-MMM-yyyy")
         eventDate.value = e.startDateTime.toLocaleString(Qt.locale(),dateFormat);
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
