@@ -14,7 +14,6 @@ Page {
     property string headerColor :"black"
     property string detailColor :"grey"
     property var model;
-    property var parentEvent;
 
     anchors.fill: parent
     flickable: null
@@ -29,6 +28,7 @@ Page {
         if( pageStack.header )
             pageStack.header.visible = true;
     }
+
     Connections{
         target: pageStack
         onCurrentPageChanged:{
@@ -102,9 +102,9 @@ Page {
             var requestId = -1;
             model.onItemsFetched.connect( function(id,fetchedItems){
                 if(requestId === id && fetchedItems.length > 0) {
-                    root.parentEvent = fetchedItems[0];
-                    updateRecurrence(root.parentEvent);
-                    updateContacts(root.parentEvent);
+                    internal.parentEvent = fetchedItems[0];
+                    updateRecurrence(internal.parentEvent);
+                    updateContacts(internal.parentEvent);
                 }
             });
             requestId = model.fetchItems([e.parentId]);
@@ -166,8 +166,8 @@ Page {
                     if(event.parentId) {
                         var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
                         dialog.editEvent.connect( function(eventId){
-                            if(eventId === event.parentId) {
-                                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":parentEvent,"model":model});
+                            if( eventId === event.parentId ) {
+                                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":internal.parentEvent,"model":model});
                             } else {
                                 pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
                             }
@@ -178,6 +178,11 @@ Page {
                 }
             }
         }
+    }
+
+    QtObject{
+        id: internal
+        property var parentId;
     }
 
     Rectangle {

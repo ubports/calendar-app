@@ -76,9 +76,8 @@ Page {
             messageEdit.text = e.description;
         }
 
-
-
-        if(e.itemType === Type.Event ) {
+        var index = 0;
+        if( e.itemType === Type.Event ) {
             if(e.attendees){
                 for( var j = 0 ; j < e.attendees.length ; ++j ) {
                     personEdit.text += e.attendees[j].name;
@@ -87,7 +86,7 @@ Page {
                 }
             }
 
-            var index = 0;
+            index = 0;
             if(e.recurrence ) {
                 var recurrenceRule = e.recurrence.recurrenceRules;
                 index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
@@ -119,7 +118,7 @@ Page {
 
             event.allDay = allDayEventCheckbox.checked;
 
-            if(e.itemType === Type.Event ) {
+            if( e.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
                 if( personEdit.text != "") {
                     var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
