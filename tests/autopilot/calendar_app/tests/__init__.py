@@ -51,16 +51,15 @@ class CalendarTestCase(AutopilotTestCase):
     else:
         scenarios = [('with touch', dict(input_device_class=Touch))]
 
-    working_dir = os.getcwd()
-    local_location_dir = os.path.dirname(os.path.dirname(working_dir))
-    local_location = local_location_dir + "/calendar.qml"
-    installed_location = "/usr/share/calendar-app/calendar.qml"
+    local_location = os.path.dirname(os.path.dirname(os.getcwd()))
+    local_location_qml_ = local_location + "/calendar.qml"
+    installed_location_qml = "/usr/share/calendar-app/calendar.qml"
 
     def setup_environment(self):
-        if os.path.exists(self.local_location):
+        if os.path.exists(self.local_location_qml):
             launch = self.launch_test_local
             test_type = 'local'
-        elif os.path.exists(self.installed_location):
+        elif os.path.exists(self.installed_location_qml):
             launch = self.launch_test_installed
             test_type = 'deb'
         else:
@@ -84,27 +83,27 @@ class CalendarTestCase(AutopilotTestCase):
         # in the way of test expectations.
         self.patch_environment('LC_ALL', 'C')
 
-        launch()
+        self.app = launch()
 
     @autopilot_logging.log_action(logger.info)
     def launch_test_local(self):
-        self.app = self.launch_test_application(
+        return self.launch_test_application(
             base.get_qmlscene_launch_command(),
-            self.local_location,
+            self.local_location_qml,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     @autopilot_logging.log_action(logger.info)
     def launch_test_installed(self):
-        self.app = self.launch_test_application(
+        return self.launch_test_application(
             base.get_qmlscene_launch_command(),
-            self.installed_location,
+            self.installed_location_qml,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     @autopilot_logging.log_action(logger.info)
     def launch_test_click(self):
-        self.app = self.launch_click_package(
+        return self.launch_click_package(
             "com.ubuntu.calendar",
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
