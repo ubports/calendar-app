@@ -67,26 +67,32 @@ Page {
         if(e.displayLabel) {
             titleEdit.text = e.displayLabel;
         }
+
         if(e.location) {
             locationEdit.text = e.location;
         }
+
         if( e.description ) {
             messageEdit.text = e.description;
         }
-        if(e.attendees){
-            for( var j = 0 ; j < e.attendees.length ; ++j ) {
-                personEdit.text += e.attendees[j].name;
-                if(j!== e.attendees.length-1)
-                    personEdit.text += ",";
-            }
-        }
 
         var index = 0;
-        if(e.recurrence ) {
-            var recurrenceRule = e.recurrence.recurrenceRules;
-            index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+        if( e.itemType === Type.Event ) {
+            if(e.attendees){
+                for( var j = 0 ; j < e.attendees.length ; ++j ) {
+                    personEdit.text += e.attendees[j].name;
+                    if(j!== e.attendees.length-1)
+                        personEdit.text += ",";
+                }
+            }
+
+            index = 0;
+            if(e.recurrence ) {
+                var recurrenceRule = e.recurrence.recurrenceRules;
+                index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+            }
+            recurrenceOption.selectedIndex = index;
         }
-        recurrenceOption.selectedIndex = index;
 
         index = 0;
         var reminder = e.detail( Detail.VisualReminder);
@@ -110,20 +116,22 @@ Page {
             event.description = messageEdit.text;
             event.location = locationEdit.text
 
-            event.attendees = []; // if Edit remove all attendes & add them again if any
-            if( personEdit.text != "") {
-                var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
-                attendee.name = personEdit.text;
-                event.setDetail(attendee);
-            }
-
             event.allDay = allDayEventCheckbox.checked;
 
-            var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
-            if( recurrenceRule !== RecurrenceRule.Invalid ) {
-                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
-                rule.frequency = recurrenceRule;
-                event.recurrence.recurrenceRules = [rule];
+            if( event.itemType === Type.Event ) {
+                event.attendees = []; // if Edit remove all attendes & add them again if any
+                if( personEdit.text != "") {
+                    var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
+                    attendee.name = personEdit.text;
+                    event.setDetail(attendee);
+                }
+
+                var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
+                if( recurrenceRule !== RecurrenceRule.Invalid ) {
+                    var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
+                    rule.frequency = recurrenceRule;
+                    event.recurrence.recurrenceRules = [rule];
+                }
             }
 
             //remove old reminder value
@@ -404,11 +412,13 @@ Page {
                 width: parent.width
                 title: i18n.tr("Guests")
                 objectName: "eventPeopleInput"
+                visible: event.itemType === Type.Event
             }
 
             Item {
                 width: parent.width
                 height: recurrenceOption.height
+                visible: event.itemType === Type.Event
                 Label{
                     id: frequencyLabel
                     text: i18n.tr("This happens");
