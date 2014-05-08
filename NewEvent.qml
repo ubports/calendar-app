@@ -118,7 +118,7 @@ Page {
 
             event.allDay = allDayEventCheckbox.checked;
 
-            if( e.itemType === Type.Event ) {
+            if( event.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
                 if( personEdit.text != "") {
                     var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
