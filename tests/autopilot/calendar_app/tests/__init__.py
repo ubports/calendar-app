@@ -28,6 +28,7 @@ import logging
 from autopilot.input import Mouse, Touch, Pointer
 from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
+from autopilot import logging as autopilot_logging
 
 from ubuntuuitoolkit import (
     base,
@@ -85,24 +86,24 @@ class CalendarTestCase(AutopilotTestCase):
 
         launch()
 
+    @autopilot_logging.log_action(logger.info)
     def launch_test_local(self):
-        logger.debug("Running via local installation")
         self.app = self.launch_test_application(
             base.get_qmlscene_launch_command(),
             self.local_location,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
+    @autopilot_logging.log_action(logger.info)
     def launch_test_installed(self):
-        logger.debug("Running via installed debian package")
         self.app = self.launch_test_application(
             base.get_qmlscene_launch_command(),
             self.installed_location,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
+    @autopilot_logging.log_action(logger.info)
     def launch_test_click(self):
-        logger.debug("Running via click package")
         self.app = self.launch_click_package(
             "com.ubuntu.calendar",
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
