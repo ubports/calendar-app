@@ -136,8 +136,6 @@ Item{
             fontSize:"small";
             color:"black"
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            anchors.bottom: parent.Bottom
-
             width: parent.width
         }
 
