@@ -108,50 +108,49 @@ Item{
 
     Column{
         id: detailsColumn
+
         anchors.fill: parent
-        Column{
-            anchors.fill: parent
-            anchors.topMargin: units.gu(1)
-            anchors.leftMargin: units.gu(1)
-            anchors.rightMargin: units.gu(1)
-            Row{
-                width: parent.width
+        anchors.topMargin: units.gu(1)
+        anchors.leftMargin: units.gu(1)
+        anchors.rightMargin: units.gu(1)
 
-                Label{
-                    id: timeLabel
-                    fontSize:"small";
-                    color:"gray"
-                    width: parent.width - rect.width
-                }
-                Rectangle{
-                    id:rect
-                    width: units.gu(1)
-                    radius: width/2
-                    height: width
-                    color: "#715772"
-                }
-            }
-            Label{
-                id: titleLabel
-                fontSize:"small";
-                color:"black"
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                anchors.bottom: parent.Bottom
-
-                width: parent.width
-            }
+        Row{
+            width: parent.width
 
             Label{
-                id: descriptionLabel
+                id: timeLabel
                 fontSize:"small";
                 color:"gray"
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                width: parent.width
-                visible: type == wideType
-
+                width: parent.width - rect.width
+            }
+            Rectangle{
+                id:rect
+                width: units.gu(1)
+                radius: width/2
+                height: width
+                color: "#715772"
             }
         }
+        Label{
+            id: titleLabel
+            fontSize:"small";
+            color:"black"
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            anchors.bottom: parent.Bottom
+
+            width: parent.width
+        }
+
+        Label{
+            id: descriptionLabel
+            fontSize:"small";
+            color:"gray"
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            width: parent.width
+            visible: type == wideType
+        }
     }
+
 
     MouseArea{
         anchors.fill: parent
