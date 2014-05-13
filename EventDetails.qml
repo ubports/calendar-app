@@ -28,6 +28,7 @@ Page {
         if( pageStack.header )
             pageStack.header.visible = true;
     }
+
     Connections{
         target: pageStack
         onCurrentPageChanged:{
@@ -101,14 +102,13 @@ Page {
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
 
-        var parentEvent;
-        if( e.parentId ){
+        if( e.itemType === Type.EventOccurrence ){
             var requestId = -1;
             model.onItemsFetched.connect( function(id,fetchedItems){
                 if(requestId === id && fetchedItems.length > 0) {
-                    parentEvent = fetchedItems[0];
-                    updateRecurrence(parentEvent);
-                    updateContacts(parentEvent);
+                    internal.parentEvent = fetchedItems[0];
+                    updateRecurrence(internal.parentEvent);
+                    updateContacts(internal.parentEvent);
                 }
             });
             requestId = model.fetchItems([e.parentId]);
@@ -167,10 +167,26 @@ Page {
                 text: i18n.tr("Edit");
                 iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
-                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                    if( event.itemType === Type.EventOccurrence ) {
+                        var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
+                        dialog.editEvent.connect( function(eventId){
+                            if( eventId === event.parentId ) {
+                                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":internal.parentEvent,"model":model});
+                            } else {
+                                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                            }
+                        });
+                    } else {
+                        pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                    }
                 }
             }
         }
+    }
+
+    QtObject{
+        id: internal
+        property var parentEvent;
     }
 
     Rectangle {
