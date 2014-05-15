@@ -36,7 +36,7 @@ Item{
         }
 
         // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
         var timeFormat = i18n.tr("hh:mm");
         var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
         var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat)

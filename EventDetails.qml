@@ -93,8 +93,12 @@ Page {
 
     function showEvent(e) {
         // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
         var timeFormat = i18n.tr("hh:mm");
+        // TRANSLATORS: this is a time & Date formatting string,
+        //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+        var dateFormat = i18n.tr("dd-MMM-yyyy")
+        eventDate.value = e.startDateTime.toLocaleString(Qt.locale(),dateFormat);
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
 
@@ -216,7 +220,12 @@ Page {
                 left:parent.left
                 leftMargin: units.gu(2)
             }
-            property int timeLabelMaxLen: Math.max( startHeader.headerWidth, endHeader.headerWidth)// Dynamic Width
+            property int timeLabelMaxLen: Math.max( startHeader.headerWidth, endHeader.headerWidth,eventDate.headerWidth)// Dynamic Width
+            EventDetailsInfo{
+                id: eventDate
+                xMargin:column.timeLabelMaxLen
+                header: i18n.tr("Date")
+            }
             EventDetailsInfo{
                 id: startHeader
                 xMargin:column.timeLabelMaxLen
