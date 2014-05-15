@@ -92,8 +92,8 @@ Page {
     }
 
     function showEvent(e) {
-        // TRANSLATORS: this is a time & Date formatting string,
-        //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+        // TRANSLATORS: this is a time formatting string,
+        // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
         var timeFormat = i18n.tr("hh:mm");
         // TRANSLATORS: this is a time & Date formatting string,
         //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
