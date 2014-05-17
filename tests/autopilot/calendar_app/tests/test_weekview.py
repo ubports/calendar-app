@@ -41,7 +41,8 @@ class TestWeekView(CalendarTestCase):
     def _change_week(self, direction):
         first_dow = self._get_first_day_of_week()
 
-        self.main_view.swipe_view(direction, self.week_view)
+        self.main_view.swipe_view(direction, self.week_view,
+                                  lambda: self.week_view.dayStart)
 
         new_day_start = self.week_view.dayStart.datetime
 

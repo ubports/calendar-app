@@ -80,11 +80,17 @@ class MainView(toolkit_emulators.MainView):
         except dbus.StateNotFoundError:
             return None
 
-    def swipe_view(self, sign, view, date):
+    def swipe_view(self, direction, view, date):
+        """
+        direction: direction to swip
+        view: the view you are swiping against
+        date: a function object of the view
+        """
         timeout = 0
         before = date
-        while timeout < 10 and date == before:
-            self._swipe(sign, view)
+        #try up to 3 times to swipe
+        while timeout < 3 and date == before:
+            self._swipe(direction, view)
             #check for up to 3 seconds after swipe for view
             #to have changed before trying again
             for x in range(0, 3):
