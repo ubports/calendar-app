@@ -38,10 +38,14 @@ class TestMonthView(CalendarTestCase):
 
         for _ in range(abs(delta)):
             before = month_view.currentMonth.datetime
+
+            #prevent timing issues with swiping
+            self.main_view.swipe_view(direction, month_view)
+            self.assertThat(lambda: month_view.currentMonth.datetime,
+                            Eventually(NotEquals(before)))
+
             after = before + relativedelta(months=direction)
 
-            self.main_view.swipe_view(direction, month_view,
-                                      lambda: self.month_view.currentMonth)
             self.assertThat(lambda:
                             self.month_view.currentMonth.datetime.month,
                             Eventually(Equals(after.month)))

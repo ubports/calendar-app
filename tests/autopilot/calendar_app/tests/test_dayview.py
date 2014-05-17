@@ -81,8 +81,11 @@ class TestDayView(CalendarTestCase):
         now = datetime.datetime.now()
 
         for i in range(1, 5):
-            self.main_view.swipe_view(direction, self.day_view,
-                                      lambda: self.day_view.currentDay)
+            #prevent timing issues with swiping
+            old_day = self.day_view.currentDay.datetime
+            self.main_view.swipe_view(direction, self.day_view)
+            self.assertThat(lambda: self.day_view.currentDay.datetime,
+                            Eventually(NotEquals(old_day)))
 
             current_day = self.day_view.currentDay.datetime
 

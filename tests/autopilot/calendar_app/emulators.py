@@ -80,7 +80,7 @@ class MainView(toolkit_emulators.MainView):
         except dbus.StateNotFoundError:
             return None
 
-    def swipe_view(self, direction, view, date):
+    def safe_swipe_view(self, direction, view, date):
         """
         direction: direction to swip
         view: the view you are swiping against
@@ -99,7 +99,7 @@ class MainView(toolkit_emulators.MainView):
                 sleep(1)
             timeout += 1
 
-    def _swipe(self, direction, view, x_pad=0.15):
+    def swipe_view(self, direction, view, x_pad=0.15):
         """Swipe the given view to left or right.
 
         Args:
