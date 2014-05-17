@@ -46,7 +46,9 @@ class TestYearView(CalendarTestCase):
         self.assertThat(year_grid, NotEquals(None))
         months = year_grid.select_many("MonthComponent")
         months.sort(key=lambda month: month.currentMonth)
-        self._assert_current_year_is_default_one(months[0])
+        #check that current year is the default
+        self.assertThat(self.main_view.get_year(months[0]),
+                        Equals(datetime.now().year))
 
         february = months[1]
         expected_month_name = self.main_view.get_month_name(february)
@@ -108,10 +110,6 @@ class TestYearView(CalendarTestCase):
             self.assertThat(
                 lambda: self.year_view.currentYear,
                 Eventually(Equals(current_year + (i * direction))))
-
-    def _assert_current_year_is_default_one(self, month_component):
-        self.assertThat(self.main_view.get_year(month_component),
-                        Equals(datetime.now().year))
 
     def _current_month(self):
         now = datetime.now()
