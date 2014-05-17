@@ -11,7 +11,6 @@ from __future__ import absolute_import
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
-import logging
 
 import math
 
@@ -19,9 +18,6 @@ from calendar_app.tests import CalendarTestCase
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from time import sleep
-
-logger = logging.getLogger(__name__)
 
 
 class TestMonthView(CalendarTestCase):
@@ -44,8 +40,8 @@ class TestMonthView(CalendarTestCase):
             before = month_view.currentMonth.datetime
             after = before + relativedelta(months=direction)
 
-            #prevent timing issues with swiping
-            self.main_view.swipe_view(direction, month_view)
+            self.main_view.swipe_view(direction, month_view,
+                                      lambda: self.month_view.currentMonth)
             self.assertThat(lambda:
                             self.month_view.currentMonth.datetime.month,
                             Eventually(Equals(after.month)))

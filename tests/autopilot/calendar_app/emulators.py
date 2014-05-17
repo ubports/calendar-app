@@ -6,16 +6,12 @@
 # by the Free Software Foundation.
 
 """Calendar app autopilot emulators."""
-
-import logging
 from time import sleep
 
 from autopilot.introspection import dbus
-from autopilot import logging as autopilot_logging
 
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
-logger = logging.getLogger(__name__)
 
 class MainView(toolkit_emulators.MainView):
 
@@ -84,15 +80,15 @@ class MainView(toolkit_emulators.MainView):
         except dbus.StateNotFoundError:
             return None
 
-    def swipe_view(self, sign, view):
+    def swipe_view(self, sign, view, date):
         timeout = 0
-        before = view.currentMonth.datetime
-        while timeout < 10 and view.currentMonth.datetime == before:
-            logger.debug("Swiping in direction %s from %s/%s/%s" % (sign, view.currentMonth.datetime.year, view.currentMonth.datetime.month, view.currentMonth.datetime.day ))
+        before = date
+        while timeout < 10 and date == before:
             self._swipe(sign, view)
+            #check for up to 3 seconds after swipe for view
+            #to have changed before trying again
             for x in range(0, 3):
-                logger.debug("Check dates %s, %s" % (view.currentMonth.datetime, before))
-                if view.currentMonth.datetime != before:
+                if date != before:
                     break
                 sleep(1)
             timeout += 1
