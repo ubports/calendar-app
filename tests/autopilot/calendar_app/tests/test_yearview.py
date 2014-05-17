@@ -103,7 +103,6 @@ class TestYearView(CalendarTestCase):
         current_year = datetime.now().year
 
         for i in range(1, how_many):
-            #prevent timing issues with swiping
             self.main_view.swipe_view(direction, self.year_view)
 
             self.assertThat(
