@@ -117,7 +117,7 @@ class CalendarTestCase(AutopilotTestCase):
     def _patch_home(self):
         """ mock /home for testing purposes to preserve user data
         """
-        temp_dir_fixture = fixtures.TempDir()
+        temp_dir_fixture = fixtures.TempDir(os.path.expanduser('~'))
         self.useFixture(temp_dir_fixture)
         temp_dir = temp_dir_fixture.path
 

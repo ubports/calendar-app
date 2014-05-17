@@ -33,7 +33,7 @@ class TestYearView(CalendarTestCase):
 
         self.year_view = self.main_view.get_year_view()
 
-    def get_current_year(self):
+    def _get_current_year(self):
         return self.year_view.select_single("QQuickGridView",
                                             isCurrentItem=True)
 
@@ -42,11 +42,11 @@ class TestYearView(CalendarTestCase):
 
         # TODO: the component indexed at 1 is the one currently displayed,
         # investigate a way to validate this assumption visually.
-        year_grid = self.get_current_year()
+        year_grid = self._get_current_year()
         self.assertThat(year_grid, NotEquals(None))
         months = year_grid.select_many("MonthComponent")
         months.sort(key=lambda month: month.currentMonth)
-        self.assert_current_year_is_default_one(months[0])
+        self._assert_current_year_is_default_one(months[0])
 
         february = months[1]
         expected_month_name = self.main_view.get_month_name(february)
@@ -74,8 +74,8 @@ class TestYearView(CalendarTestCase):
     def test_current_day_is_selected(self):
         """The current day must be selected."""
 
-        current_month = self.current_month()
-        month_grid = current_month.select_single(objectName="monthGrid")
+        _current_month = self._current_month()
+        month_grid = _current_month.select_single(objectName="monthGrid")
 
         # there could actually be two labels with
         # the current day: one is the current day of the current month,
@@ -93,13 +93,13 @@ class TestYearView(CalendarTestCase):
 
     def test_show_next_years(self):
         """It must be possible to show next years by swiping the view."""
-        self.change_year(1)
+        self._change_year(1)
 
     def test_show_previous_years(self):
         """It must be possible to show previous years by swiping the view."""
-        self.change_year(-1)
+        self._change_year(-1)
 
-    def change_year(self, direction, how_many=5):
+    def _change_year(self, direction, how_many=5):
         current_year = datetime.now().year
 
         for i in range(1, how_many):
@@ -110,37 +110,27 @@ class TestYearView(CalendarTestCase):
                 lambda: self.year_view.currentYear,
                 Eventually(Equals(current_year + (i * direction))))
 
-    def assert_current_year_is_default_one(self, month_component):
+    def _assert_current_year_is_default_one(self, month_component):
         self.assertThat(self.main_view.get_year(month_component),
                         Equals(datetime.now().year))
 
-    def current_month(self):
+    def _current_month(self):
         now = datetime.now()
-        current_month_name = now.strftime("%B")
+        _current_month_name = now.strftime("%B")
 
         # for months after June, we must scroll down the page to have
         # the month components loaded in the view.
         if now.month > 6:
-            self.drag_page_up()
+            self.page.drag_page_up()
 
-        year_grid = self.get_current_year()
+        year_grid = self._get_current_year()
         self.assertThat(year_grid, NotEquals(None))
         months = year_grid.select_many("MonthComponent")
 
         for month in months:
-            current_month_label = month.select_single(
+            _current_month_label = month.select_single(
                 "Label", objectName="monthLabel")
-            if current_month_name == current_month_label.text:
+            if _current_month_name == _current_month_label.text:
                 return month
 
         return None
-
-    def drag_page_up(self):
-        x_line = (self.year_view.globalRect[0] +
-                  self.year_view.globalRect[2] / 2)
-
-        y_stop = self.year_view.globalRect[1]
-        y_start = self.year_view.globalRect[3]
-
-        self.pointing_device.drag(x_line, y_start, x_line, y_stop)
-        self.pointing_device.drag(x_line, y_start, x_line, y_stop)

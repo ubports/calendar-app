@@ -11,6 +11,7 @@ from __future__ import absolute_import
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
+import logging
 
 import math
 
@@ -18,6 +19,9 @@ from calendar_app.tests import CalendarTestCase
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from time import sleep
+
+logger = logging.getLogger(__name__)
 
 
 class TestMonthView(CalendarTestCase):
@@ -32,21 +36,16 @@ class TestMonthView(CalendarTestCase):
 
         self.month_view = self.main_view.get_month_view()
 
-    def change_month(self, delta):
+    def _change_month(self, delta):
         month_view = self.main_view.get_month_view()
-        sign = int(math.copysign(1, delta))
+        direction = int(math.copysign(1, delta))
 
         for _ in range(abs(delta)):
             before = month_view.currentMonth.datetime
+            after = before + relativedelta(months=direction)
 
             #prevent timing issues with swiping
-            old_month = month_view.currentMonth.datetime
-            self.main_view.swipe_view(sign, month_view)
-            self.assertThat(lambda: month_view.currentMonth.datetime,
-                            Eventually(NotEquals(old_month)))
-
-            after = before + relativedelta(months=sign)
-
+            self.main_view.swipe_view(direction, month_view)
             self.assertThat(lambda:
                             self.month_view.currentMonth.datetime.month,
                             Eventually(Equals(after.month)))
@@ -65,7 +64,7 @@ class TestMonthView(CalendarTestCase):
 
     def _test_go_to_today(self, delta):
         self._assert_today()
-        self.change_month(delta)
+        self._change_month(delta)
         self.main_view.open_toolbar().click_button("todaybutton")
         self._assert_today()
 
