@@ -92,7 +92,6 @@ Page {
 
     ListView {
         id: calendarsList
-        property var filters;
 
         anchors {
             top: parent.top
@@ -140,7 +139,7 @@ Page {
                                     })
                                 } else {
                                     checkBox.checked = !checkBox.checked
-                                    calendarsList.filter[modelData.collectionId] = checkBox.checked;
+                                    modelData.setExtendedMetaData("collection-selected",checkBox.checked)
                                 }
                             }
                         }
