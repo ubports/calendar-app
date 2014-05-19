@@ -12,6 +12,7 @@ Page{
     property bool isCurrentPage: false
 
     Keys.forwardTo: [dayViewPath]
+    flickable: null
 
     Column {
         id: column

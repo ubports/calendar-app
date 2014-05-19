@@ -14,6 +14,8 @@ Page{
 
     Keys.forwardTo: [weekViewPath]
 
+    flickable: null
+
     Column {
         objectName: "WeekView"
 

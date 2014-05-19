@@ -92,7 +92,7 @@ Page {
     }
 
     function updateCollection(event) {
-        var collection = model.collection( e.collectionId );
+        var collection = model.collection( event.collectionId );
         calendarIndicator.color = collection.color
         calendarName.text = collection.name
     }
