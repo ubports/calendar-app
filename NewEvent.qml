@@ -76,6 +76,8 @@ Page {
             messageEdit.text = e.description;
         }
 
+        allDayEventCheckbox.checked = e.allDay;
+
         var index = 0;
         if( e.itemType === Type.Event ) {
             if(e.attendees){
