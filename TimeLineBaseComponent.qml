@@ -19,9 +19,7 @@ Item {
     property int scrollHour;
 
     function scrollToCurrentTime() {
-        //scroll to current time
         var currentTime = new Date();
-        //TODO: if current time is early morning should we show time from 9 am ?
         scrollHour = currentTime.getHours();
 
         timeLineView.contentY = scrollHour * units.gu(10);
@@ -64,23 +62,33 @@ Item {
         filter: eventModel.filter
     }
 
+    ActivityIndicator {
+        visible: running
+        running: mainModel.isLoading
+        anchors.centerIn: parent
+        z:2
+    }
+
     Column {
         anchors.top: parent.top
 
         width: parent.width
         height: parent.height
 
-        AllDayEventComponent{
+        AllDayEventComponent {
             id: allDayContainer
             type: root.type
             startDay: root.startDay
             model: mainModel
             Component.onCompleted: {
-                model.addModelChangeListener(createAllDayEvents);
+                mainModel.addModelChangeListener(createAllDayEvents);
+            }
+            Component.onDestruction: {
+                mainModel.removeModelChangeListener(createAllDayEvents);
             }
         }
 
-        Flickable{
+        Flickable {
             id: timeLineView
 
             width: parent.width
@@ -91,16 +99,16 @@ Item {
 
             clip: true
 
-            TimeLineBackground{
+            TimeLineBackground {
             }
 
-            Row{
+            Row {
                 id: week
                 width: parent.width
                 height: parent.height
                 anchors.top: parent.top
 
-                Repeater{
+                Repeater {
                     model: type == ViewType.ViewTypeWeek ? 7 : 1
 
                     delegate: TimeLineBase {
@@ -108,11 +116,12 @@ Item {
                         anchors.top: parent.top
                         width: {
                             if( type == ViewType.ViewTypeWeek ) {
-                                 parent.width/7
+                                parent.width / 7
                             } else {
                                 (parent.width)
                             }
                         }
+
                         height: parent.height
                         delegate: comp
                         day: startDay.addDays(index)
@@ -121,15 +130,18 @@ Item {
                         Component.onCompleted: {
                             model.addModelChangeListener(createEvents);
                         }
+                        Component.onDestruction: {
+                            model.removeModelChangeListener(createEvents);
+                        }
                     }
                 }
             }
         }
     }
 
-    Component{
+    Component {
         id: comp
-        EventBubble{
+        EventBubble {
             type: {
                 if( root.type == ViewType.ViewTypeWeek ) {
                     narrowType

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-03-10 19:02-0500\n"
-"PO-Revision-Date: 2013-12-11 10:34+0000\n"
+"PO-Revision-Date: 2014-04-16 12:36+0000\n"
 "Last-Translator: Pyae Sone <Unknown>\n"
 "Language-Team: Burmese <my@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-02 06:45+0000\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Launchpad-Export-Date: 2014-05-01 06:39+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 
 #: ../AllDayEventComponent.qml:101
 #, c-format, qt-format
@@ -25,7 +25,7 @@ msgstr ""
 #: ../AllDayEventComponent.qml:104
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "%1 တစ်နေ့လုံးပွဲများ"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -42,7 +42,7 @@ msgstr "%1 - %2"
 
 #: ../EventDetails.qml:98
 msgid "Delete"
-msgstr ""
+msgstr "ဖျက်မည်"
 
 #: ../EventDetails.qml:110
 msgid "Edit"
@@ -50,31 +50,31 @@ msgstr "ပြင်ဆင်"
 
 #: ../EventDetails.qml:140 ../NewEvent.qml:262
 msgid "Start"
-msgstr ""
+msgstr "စမည်"
 
 #: ../EventDetails.qml:145 ../NewEvent.qml:287
 msgid "End"
-msgstr ""
+msgstr "ပြီးဆုံးချိန်"
 
 #: ../EventDetails.qml:153 ../NewEvent.qml:316
 msgid "All Day event:"
-msgstr ""
+msgstr "တစ်နေကုန်ပွဲ-"
 
 #: ../EventDetails.qml:183 ../NewEvent.qml:365
 msgid "Location"
-msgstr ""
+msgstr "တည်နေရာ"
 
 #: ../EventDetails.qml:207 ../NewEvent.qml:372
 msgid "Guests"
-msgstr ""
+msgstr "ဧည့်သည်များ"
 
 #: ../EventDetails.qml:238 ../NewEvent.qml:381
 msgid "This happens"
-msgstr ""
+msgstr "ထိုအရာဖြစ်သည်"
 
 #: ../EventDetails.qml:244 ../NewEvent.qml:398
 msgid "Remind me"
-msgstr ""
+msgstr "ကျွန်ုပ်ကိုသတိပေးမည်"
 
 #: ../NewEvent.qml:106
 msgid "End time can't be before start time"
@@ -82,7 +82,7 @@ msgstr "အဆုံးသတ်သည့်အချိန်သည် စသ�
 
 #: ../NewEvent.qml:165
 msgid "Edit Event"
-msgstr ""
+msgstr "ပွဲကိုပြင်မည်။"
 
 #: ../NewEvent.qml:165 ../calendar.qml:226
 msgid "New Event"
@@ -102,19 +102,19 @@ msgstr "ချို့ယွင်းချက်"
 
 #: ../NewEvent.qml:202
 msgid "Ok"
-msgstr ""
+msgstr "အိုကေ"
 
 #: ../NewEvent.qml:247
 msgid "Date"
-msgstr ""
+msgstr "ရက်စွဲ"
 
 #: ../NewEvent.qml:334
 msgid "Event Name"
-msgstr ""
+msgstr "ပွဲ−အမည်"
 
 #: ../NewEvent.qml:350
 msgid "Description"
-msgstr ""
+msgstr "ဖော်ပြချက်"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions

@@ -37,7 +37,7 @@ Item{
         }
 
         // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
         var timeFormat = i18n.tr("hh:mm");
         var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
         var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
@@ -57,9 +57,14 @@ Item{
 
                 if( event.displayLabel)
                     titleLabel.text = event.displayLabel;
-
                 if( event.description)
+                {
                     descriptionLabel.text = event.description
+                    //If content is too much don't display.
+                    if( height < descriptionLabel.height + descriptionLabel.y){
+                        descriptionLabel.text = ""
+                    }
+                }
             } else {
                 //narrow type shows only time and title
                 timeLabel.text = startTime
@@ -109,31 +114,31 @@ Item{
 
     Column{
         id: detailsColumn
-        width: parent.width
+
+        anchors.fill: parent
+        anchors.topMargin: units.gu(1)
+        anchors.leftMargin: units.gu(1)
+        anchors.rightMargin: units.gu(1)
 
         Row{
             width: parent.width
+
+            Label{
+                id: timeLabel
+                fontSize:"small";
+                color:"gray"
+                width: parent.width - calendarIndicator.width
+            }
             Rectangle{
                 id: calendarIndicator
                 width: units.gu(1)
                 radius: width/2
                 height: width
                 color: "#715772"
-                anchors.verticalCenter: parent.verticalCenter
-                antialiasing: true
-            }
-
-            Label{
-                id: timeLabel
-                fontSize:"small";
-                color:"gray"
-                width: parent.width
             }
         }
-
         Label{
             id: titleLabel
-            x: units.gu(1)
             fontSize:"small";
             color:"black"
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -142,7 +147,6 @@ Item{
 
         Label{
             id: descriptionLabel
-            x: units.gu(1)
             fontSize:"small";
             color:"gray"
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -150,6 +154,7 @@ Item{
             visible: type == wideType
         }
     }
+
 
     MouseArea{
         anchors.fill: parent

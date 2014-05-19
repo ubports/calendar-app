@@ -1,169 +1,172 @@
-# Telugu translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Punjabi translation for ubuntu-calendar-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-03-10 19:02-0500\n"
-"PO-Revision-Date: 2013-07-13 18:04+0000\n"
-"Last-Translator: tuxnani(రహ్మానుద్దీన్ షేక్) <Unknown>\n"
-"Language-Team: Telugu <te@li.org>\n"
+"PO-Revision-Date: 2014-05-08 05:16+0000\n"
+"Last-Translator: Gursharnjit_singh <ubuntuser13@gmail.com>\n"
+"Language-Team: Punjabi <pa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-01 06:40+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-05-10 07:56+0000\n"
+"X-Generator: Launchpad (build 16996)\n"
 
 #: ../AllDayEventComponent.qml:101
 #, c-format, qt-format
 msgid "%1E"
-msgstr ""
+msgstr "%1E"
 
 #: ../AllDayEventComponent.qml:104
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "%1 ਸਾਰੇ ਦਿਨ ਦੀਆਂ ਘਟਨਾਵਾਂ"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../EventBubble.qml:36 ../EventDetails.qml:40
 msgid "hh:mm"
-msgstr ""
+msgstr "ਘਘ:ਮਮ"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../EventBubble.qml:41
 #, qt-format
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #: ../EventDetails.qml:98
 msgid "Delete"
-msgstr ""
+msgstr "ਹਟਾਓ"
 
 #: ../EventDetails.qml:110
 msgid "Edit"
-msgstr "సవరించు"
+msgstr "ਫੇਰਬਦਲ"
 
 #: ../EventDetails.qml:140 ../NewEvent.qml:262
 msgid "Start"
-msgstr ""
+msgstr "ਸ਼ੁਰੂ"
 
 #: ../EventDetails.qml:145 ../NewEvent.qml:287
 msgid "End"
-msgstr ""
+msgstr "ਸਮਾਪਤ"
 
 #: ../EventDetails.qml:153 ../NewEvent.qml:316
 msgid "All Day event:"
-msgstr ""
+msgstr "ਸਾਰੇ ਦਿਨ ਦੀ ਘਟਨਾ:"
 
 #: ../EventDetails.qml:183 ../NewEvent.qml:365
 msgid "Location"
-msgstr ""
+msgstr "ਸਥਿਤੀ"
 
 #: ../EventDetails.qml:207 ../NewEvent.qml:372
 msgid "Guests"
-msgstr ""
+msgstr "ਮਹਿਮਾਨ"
 
 #: ../EventDetails.qml:238 ../NewEvent.qml:381
 msgid "This happens"
-msgstr ""
+msgstr "ਇਹ ਹੋਇਆ"
 
 #: ../EventDetails.qml:244 ../NewEvent.qml:398
 msgid "Remind me"
-msgstr ""
+msgstr "ਮੇਨੂੰ ਯਾਦ ਦਵਾਓ"
 
 #: ../NewEvent.qml:106
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "ਅੰਤ ਸਮਾਂ ਸ਼ੁਰੂਆਤੀ ਸਮੇਂ ਤੋ ਪਹਿਲੇ ਨਹੀ ਹੋ  ਸਕਦਾ"
 
 #: ../NewEvent.qml:165
 msgid "Edit Event"
-msgstr ""
+msgstr "ਘਟਨਾ ਸੋਧ"
 
 #: ../NewEvent.qml:165 ../calendar.qml:226
 msgid "New Event"
-msgstr "కొత్త సంఘటన"
+msgstr "ਨਵੀਂ ਘਟਨਾ"
 
 #: ../NewEvent.qml:176 ../TimePicker.qml:74
 msgid "Cancel"
-msgstr ""
+msgstr "ਰੱਦ"
 
 #: ../NewEvent.qml:187
 msgid "Save"
-msgstr "భద్రపరుచు"
+msgstr "ਸੰਭਾਲੋ"
 
 #: ../NewEvent.qml:200
 msgid "Error"
-msgstr ""
+msgstr "ਗਲਤੀ"
 
 #: ../NewEvent.qml:202
 msgid "Ok"
-msgstr ""
+msgstr "ਠੀਕ ਹੈ"
 
 #: ../NewEvent.qml:247
 msgid "Date"
-msgstr ""
+msgstr "ਮਿਤੀ"
 
 #: ../NewEvent.qml:334
 msgid "Event Name"
-msgstr ""
+msgstr "ਘਟਨਾ ਦਾ ਨਾਮ"
 
 #: ../NewEvent.qml:350
 msgid "Description"
-msgstr ""
+msgstr "ਵੇਰਵਾ"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:18
 msgid "hh ap"
-msgstr ""
+msgstr "ਘਘ ਏਪੀ"
 
 #: ../TimePicker.qml:23
 msgid "Time"
-msgstr ""
+msgstr "ਸਮਾਂ"
 
 #: ../TimePicker.qml:49
 msgid "Hour"
-msgstr ""
+msgstr "ਘੰਟਾ"
 
 #: ../TimePicker.qml:63
 msgid "Minute"
-msgstr ""
+msgstr "ਮਿੰਟ"
 
 #: ../TimePicker.qml:83
 msgid "OK"
-msgstr ""
+msgstr "ਠੀਕ ਹੈ"
 
 #: ../calendar.qml:21
 msgid ""
 "Calendar app accept three arguments: --starttime, --endtime and --newevet. "
 "They will be managed by system. See the source for a full comment about them"
 msgstr ""
+"ਕਲੰਡਰ ਐਪ ਤਿੰਨ ਤਰਕ ਕਬੂਲਦਾ ਹੈ: --ਸ਼ੁਰੂਆਤ ਸਮਾਂ, --ਅੰਤ  ਸਮਾਂ ਅਤੇ --ਨਵੀ ਘਟਨਾ | ਇਹ "
+"ਸਿਸਟਮ ਵੱਲੋ ਚਲਾਏ ਜਾਣਗੇ | ਇਹਨਾਂ ਬਾਰੇ  ਪੂਰੀ ਸਮੀਖਿਆਂ ਕਰਨ ਲਈ \r\n"
+"ਬਬੁਨਿਆਦ ਵੇਖੋ"
 
 #: ../calendar.qml:216
 msgid "Today"
-msgstr ""
+msgstr "ਅੱਜ"
 
 #: ../calendar.qml:238
 msgid "Year"
-msgstr ""
+msgstr "ਸਾਲ"
 
 #: ../calendar.qml:260
 msgid "Month"
-msgstr ""
+msgstr "ਮਹੀਨਾ"
 
 #: ../calendar.qml:274
 msgid "Week"
-msgstr ""
+msgstr "ਹਫਤਾ"
 
 #: ../calendar.qml:291
 msgid "Day"
-msgstr ""
+msgstr "ਦਿਨ"
 
 #: ../.build/com.ubuntu.calendar_calendar.desktop.in:1
 msgid "Calendar"
-msgstr "క్యాలెండర్"
+msgstr "ਕਲੰਡਰ"

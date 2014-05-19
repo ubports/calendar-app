@@ -108,18 +108,7 @@ Page{
 
                 contentInteractive: timeLineView.PathView.isCurrentItem
 
-                startDay: getStartDay()
-
-                function getStartDay() {
-                    switch( dayViewPath.indexType(index)) {
-                    case 0:
-                        return dayViewPath.startDay;
-                    case -1:
-                        return dayViewPath.startDay.addDays(-1);
-                    case 1:
-                        return dayViewPath.startDay.addDays(1);
-                    }
-                }
+                startDay: dayViewPath.startDay.addDays(dayViewPath.indexType(index))
             }
         }
     }

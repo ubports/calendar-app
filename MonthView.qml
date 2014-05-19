@@ -32,18 +32,18 @@ Page {
         }
 
         function nextMonth() {
-            currentMonth = addMonth(currentMonth,1);
+            currentMonth = addMonth(currentMonth, 1);
         }
 
-        function previousMonth(){
-            currentMonth = addMonth(currentMonth,-1);
+        function previousMonth() {
+            currentMonth = addMonth(currentMonth, -1);
         }
 
-        function addMonth(date,month){
-            return  new Date(date.getFullYear(),date.getMonth()+month,1,0,0,0);
+        function addMonth(date,month) {
+            return  new Date(date.getFullYear(), date.getMonth() + month, 1, 0, 0, 0);
         }
 
-        delegate: MonthComponent{
+        delegate: MonthComponent {
             property bool isCurrentItem: index === monthViewPath.currentIndex
 
             showEvents: true
@@ -51,18 +51,10 @@ Page {
             width: parent.width - units.gu(5)
             height: parent.height - units.gu(5)
 
-            currentMonth: getMonthDate();
+            currentMonth: monthViewPath.addMonth(monthViewPath.startMonth,
+                                                 monthViewPath.indexType(index));
 
-            function getMonthDate() {
-                switch( monthViewPath.indexType(index)) {
-                case 0:
-                    return monthViewPath.addMonth(monthViewPath.startMonth,0);
-                case -1:
-                    return monthViewPath.addMonth(monthViewPath.startMonth,-1);
-                case 1:
-                    return monthViewPath.addMonth(monthViewPath.startMonth,1);
-                }
-            }
+            isYearView: false
 
             onDateSelected: {
                 monthViewPage.dateSelected(date);

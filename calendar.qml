@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
-import QtQuick.Window 2.0
 
 import "dateExt.js" as DateExt
 
@@ -116,6 +115,8 @@ MainView {
             property bool newevent: false;
             property int starttime: -1;
             property int endtime: -1;
+
+            selectedTabIndex: monthTab.index
 
             function newEvent() {
                 var startDate = new Date();
@@ -316,7 +317,6 @@ MainView {
                     onLoaded: {
                         item.tools = Qt.binding(function() { return commonToolBar })
                         item.currentMonth = tabs.currentDay.midnight();
-                        print("onLoaded:"+ tabs.currentDay);
                     }
 
                     anchors{

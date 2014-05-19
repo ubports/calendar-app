@@ -8,24 +8,24 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-03-10 19:02-0500\n"
-"PO-Revision-Date: 2013-09-30 18:21+0000\n"
-"Last-Translator: Sylvie Gallet <Unknown>\n"
+"PO-Revision-Date: 2014-05-06 13:28+0000\n"
+"Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-02 06:45+0000\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Launchpad-Export-Date: 2014-05-07 07:06+0000\n"
+"X-Generator: Launchpad (build 16996)\n"
 
 #: ../AllDayEventComponent.qml:101
 #, c-format, qt-format
 msgid "%1E"
-msgstr ""
+msgstr "%1E"
 
 #: ../AllDayEventComponent.qml:104
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "%1 Évènements sur la journée entière"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -42,7 +42,7 @@ msgstr "%1 - %2"
 
 #: ../EventDetails.qml:98
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 #: ../EventDetails.qml:110
 msgid "Edit"
@@ -50,31 +50,31 @@ msgstr "Modifier"
 
 #: ../EventDetails.qml:140 ../NewEvent.qml:262
 msgid "Start"
-msgstr ""
+msgstr "Début"
 
 #: ../EventDetails.qml:145 ../NewEvent.qml:287
 msgid "End"
-msgstr ""
+msgstr "Fin"
 
 #: ../EventDetails.qml:153 ../NewEvent.qml:316
 msgid "All Day event:"
-msgstr ""
+msgstr "Évènement sur la journée entière :"
 
 #: ../EventDetails.qml:183 ../NewEvent.qml:365
 msgid "Location"
-msgstr ""
+msgstr "Emplacement"
 
 #: ../EventDetails.qml:207 ../NewEvent.qml:372
 msgid "Guests"
-msgstr ""
+msgstr "Invités"
 
 #: ../EventDetails.qml:238 ../NewEvent.qml:381
 msgid "This happens"
-msgstr ""
+msgstr "Cela se produit"
 
 #: ../EventDetails.qml:244 ../NewEvent.qml:398
 msgid "Remind me"
-msgstr ""
+msgstr "Me rappeler"
 
 #: ../NewEvent.qml:106
 msgid "End time can't be before start time"
@@ -82,7 +82,7 @@ msgstr "L'heure de fin ne peut pas précéder l'heure de début"
 
 #: ../NewEvent.qml:165
 msgid "Edit Event"
-msgstr ""
+msgstr "Modifier l'évènement"
 
 #: ../NewEvent.qml:165 ../calendar.qml:226
 msgid "New Event"
@@ -102,19 +102,19 @@ msgstr "Erreur"
 
 #: ../NewEvent.qml:202
 msgid "Ok"
-msgstr ""
+msgstr "Valider"
 
 #: ../NewEvent.qml:247
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #: ../NewEvent.qml:334
 msgid "Event Name"
-msgstr ""
+msgstr "Nom de l’évènement"
 
 #: ../NewEvent.qml:350
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -136,13 +136,16 @@ msgstr "Minute"
 
 #: ../TimePicker.qml:83
 msgid "OK"
-msgstr "OK"
+msgstr "Valider"
 
 #: ../calendar.qml:21
 msgid ""
 "Calendar app accept three arguments: --starttime, --endtime and --newevet. "
 "They will be managed by system. See the source for a full comment about them"
 msgstr ""
+"L'application calendrier accepte trois arguments : --starttime, --endtime et "
+"--newevet. Ils seront gérés par le système. Lisez la documentation pour plus "
+"d'informations à ce sujet."
 
 #: ../calendar.qml:216
 msgid "Today"
