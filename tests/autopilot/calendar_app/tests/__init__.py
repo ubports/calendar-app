@@ -117,7 +117,12 @@ class CalendarTestCase(AutopilotTestCase):
     def _patch_home(self):
         """ mock /home for testing purposes to preserve user data
         """
-        temp_dir_fixture = fixtures.TempDir(os.path.expanduser('~'))
+        #click has TMPDIR (apparmor) set, but the desktop can write
+        #to a traditional /tmp directory
+        if self.test_type == 'click':
+            temp_dir_fixture = fixtures.TempDir(os.environ['XDG_RUNTIME_DIR'])
+        else:
+            temp_dir_fixture = fixtures.TempDir()
         self.useFixture(temp_dir_fixture)
         temp_dir = temp_dir_fixture.path
 
