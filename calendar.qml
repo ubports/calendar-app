@@ -10,8 +10,8 @@ MainView {
 
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496 
-    property bool windowActive: typeof window != 'undefined'
-    onWindowActiveChanged: window.title = i18n.tr("Calendar")
+    //property bool windowActive: typeof window != 'undefined'
+    //onWindowActiveChanged: window.title = i18n.tr("Calendar")
 
     // Argument during startup
     Arguments {
