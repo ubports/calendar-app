@@ -6,6 +6,7 @@ import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
+    useDeprecatedToolbar: false
 
     // Argument during startup
     Arguments {

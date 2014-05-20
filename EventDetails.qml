@@ -15,25 +15,38 @@ Page {
     property string detailColor :"grey"
     property var model;
 
-    anchors.fill: parent
+    anchors{
+        left: parent.left
+        right: parent.right
+        bottom: parent.bottom
+    }
+
     flickable: null
 
+    title: "Event Details"
+
     Component.onCompleted: {
-        if( pageStack.header )
-            pageStack.header.visible = false;
+        if( pageStack.header ) {
+            mainView.headerColor = bg.color
+            pageStack.header.__styleInstance.textColor = "black"
+            findHeaderLabel();
+        }
         showEvent(event);
     }
 
     Component.onDestruction: {
-        if( pageStack.header )
-            pageStack.header.visible = true;
+        if( pageStack.header ) {
+            mainView.headerColor = "#266249"
+            pageStack.header.__styleInstance.textColor = "while"
+        }
     }
 
     Connections{
         target: pageStack
         onCurrentPageChanged:{
             if( pageStack.currentPage === root) {
-                pageStack.header.visible = false;
+                mainView.headerColor = bg.color
+                pageStack.header.__styleInstance.textColor = "black"
                 showEvent(event);
             }
         }
@@ -205,7 +218,9 @@ Page {
 
     Flickable{
         id: flicable
-        anchors.fill: parent
+        width: parent.width
+        height: parent.height
+        clip: true
 
         contentHeight: column.height + units.gu(3) /*top margin + spacing */
         contentWidth: parent.width
