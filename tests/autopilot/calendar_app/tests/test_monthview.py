@@ -19,6 +19,7 @@ from calendar_app.tests import CalendarTestCase
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+
 class TestMonthView(CalendarTestCase):
 
     def setUp(self):
@@ -42,12 +43,12 @@ class TestMonthView(CalendarTestCase):
             #prevent timing issues with swiping
             old_month = self.main_view.to_local_date(
                 month_view.currentMonth.datetime)
-                            
+
             self.main_view.swipe_view(sign, month_view)
-            
+
             month_after = self.main_view.to_local_date(
                 month_view.currentMonth.datetime)
-                            
+
             self.assertThat(lambda: month_after,
                             Eventually(NotEquals(old_month)))
 
@@ -60,11 +61,11 @@ class TestMonthView(CalendarTestCase):
                             month_after.year,
                             Eventually(Equals(after.year)))
 
-    def _assert_today(self):        
+    def _assert_today(self):
         local = self.main_view.to_local_date(
             self.month_view.currentMonth.datetime)
-        today = datetime.now()        
-        
+        today = datetime.now()
+
         self.assertThat(lambda: local.day,
                         Eventually(Equals(today.day)))
         self.assertThat(lambda: local.month,

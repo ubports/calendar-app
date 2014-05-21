@@ -41,10 +41,12 @@ class TestWeekView(CalendarTestCase):
         first_dow = self._get_first_day_of_week()
 
         #prevent timing issues with swiping
-        old_day = self.main_view.to_local_date(self.week_view.dayStart.datetime)
+        old_day = self.main_view.to_local_date(
+            self.week_view.dayStart.datetime)
         self.main_view.swipe_view(direction, self.week_view)
-        self.assertThat(lambda: 
-            self.main_view.to_local_date(self.week_view.dayStart.datetime),
+        self.assertThat(lambda:
+                        self.main_view.to_local_date(
+                            self.week_view.dayStart.datetime),
                         Eventually(NotEquals(old_day)))
 
         new_day_start = self.main_view.to_local_date(
@@ -86,7 +88,7 @@ class TestWeekView(CalendarTestCase):
         date = self.main_view.to_local_date(self.week_view.dayStart.datetime)
         firstDay = self.main_view.to_local_date(
             self.week_view.firstDay.datetime)
-            
+
         #sunday
         if firstDay.weekday() == 6:
             logger.debug("Locale has Sunday as first day of week")
