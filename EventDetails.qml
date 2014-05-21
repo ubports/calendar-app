@@ -36,7 +36,7 @@ Page {
     Component.onDestruction: {
         if( pageStack.header ) {
             mainView.headerColor = "#266249"
-            pageStack.header.__styleInstance.textColor = "while"
+            pageStack.header.__styleInstance.textColor = "white"
         }
     }
 
