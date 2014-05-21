@@ -25,7 +25,7 @@ Page {
     Component.onCompleted: {
 
         mainView.headerColor = "#266249"
-        pageStack.header.__styleInstance.textColor = "while"
+        pageStack.header.__styleInstance.textColor = "white"
 
         // If startDate is setted by argument we have to not change it
         //Set the nearest current time.
