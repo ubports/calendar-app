@@ -29,7 +29,6 @@ Page {
         if( pageStack.header ) {
             mainView.headerColor = bg.color
             pageStack.header.__styleInstance.textColor = "black"
-            findHeaderLabel();
         }
         showEvent(event);
     }
