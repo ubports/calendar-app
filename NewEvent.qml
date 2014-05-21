@@ -93,7 +93,7 @@ Page {
                     limit.visible = true;
                     if(recurrenceRule[0].limit !== undefined){
                         var temp = recurrenceRule[0].limit;
-                        if(!isNaN(temp)){
+                        if(parseInt(temp)){
                             limitOptions.selectedIndex = 1;
                             limitCount.text = temp;
                         }
@@ -135,63 +135,61 @@ Page {
 
             event.allDay = allDayEventCheckbox.checked;
 
-            if( recurrenceRule !== RecurrenceRule.Invalid ) {
 
-                if( event.itemType === Type.Event ) {
-                    event.attendees = []; // if Edit remove all attendes & add them again if any
-                    if( personEdit.text != "") {
-                        var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
-                        attendee.name = personEdit.text;
-                        event.setDetail(attendee);
+            if( event.itemType === Type.Event ) {
+                event.attendees = []; // if Edit remove all attendes & add them again if any
+                if( personEdit.text != "") {
+                    var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
+                    attendee.name = personEdit.text;
+                    event.setDetail(attendee);
+                }
+
+                var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
+                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
+                if( recurrenceRule !== RecurrenceRule.Invalid ) {
+
+                    rule.frequency = recurrenceRule;
+                    if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
+                        rule.limit =  parseInt(limitCount.text);
                     }
-
-                    var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
-                    var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
-                    if( recurrenceRule !== RecurrenceRule.Invalid ) {
-
-                        rule.frequency = recurrenceRule;
-                        if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
-                            rule.limit =  parseInt(limitCount.text);
-                        }
-                        else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
-                            rule.limit =  datePick.date;
-                        }
-                        else{
-                            rule.limit = undefined;
-                        }
+                    else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
+                        rule.limit =  datePick.date;
+                    }
+                    else{
+                        rule.limit = undefined;
                     }
                 }
-                event.recurrence.recurrenceRules = [rule];
-                //remove old reminder value
-                var oldVisualReminder = event.detail(Detail.VisualReminder);
-                if(oldVisualReminder) {
-                    event.removeDetail(oldVisualReminder);
-                }
-
-                var oldAudibleReminder = event.detail(Detail.AudibleReminder);
-                if(oldAudibleReminder) {
-                    event.removeDetail(oldAudibleReminder);
-                }
-
-                var reminderTime = Defines.reminderValue[ reminderOption.selectedIndex ];
-                if( reminderTime !== 0 ) {
-                    var visualReminder =  Qt.createQmlObject("import QtOrganizer 5.0; VisualReminder{}", event, "NewEvent.qml");
-                    visualReminder.repetitionCount = 3;
-                    visualReminder.repetitionDelay = 120;
-                    visualReminder.message = titleEdit.text
-                    visualReminder.secondsBeforeStart = reminderTime;
-                    event.setDetail(visualReminder);
-
-                    var audibleReminder =  Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder{}", event, "NewEvent.qml");
-                    audibleReminder.repetitionCount = 3;
-                    audibleReminder.repetitionDelay = 120;
-                    audibleReminder.secondsBeforeStart = reminderTime;
-                    event.setDetail(audibleReminder);
-                }
-
-                model.saveItem(event);
-                pageStack.pop();
             }
+            event.recurrence.recurrenceRules = [rule];
+            //remove old reminder value
+            var oldVisualReminder = event.detail(Detail.VisualReminder);
+            if(oldVisualReminder) {
+                event.removeDetail(oldVisualReminder);
+            }
+
+            var oldAudibleReminder = event.detail(Detail.AudibleReminder);
+            if(oldAudibleReminder) {
+                event.removeDetail(oldAudibleReminder);
+            }
+
+            var reminderTime = Defines.reminderValue[ reminderOption.selectedIndex ];
+            if( reminderTime !== 0 ) {
+                var visualReminder =  Qt.createQmlObject("import QtOrganizer 5.0; VisualReminder{}", event, "NewEvent.qml");
+                visualReminder.repetitionCount = 3;
+                visualReminder.repetitionDelay = 120;
+                visualReminder.message = titleEdit.text
+                visualReminder.secondsBeforeStart = reminderTime;
+                event.setDetail(visualReminder);
+
+                var audibleReminder =  Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder{}", event, "NewEvent.qml");
+                audibleReminder.repetitionCount = 3;
+                audibleReminder.repetitionDelay = 120;
+                audibleReminder.secondsBeforeStart = reminderTime;
+                event.setDetail(audibleReminder);
+            }
+
+            model.saveItem(event);
+            pageStack.pop();
         }
     }
     // Calucate default hour and minute for start and end time on event
