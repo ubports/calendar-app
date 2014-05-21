@@ -19,9 +19,6 @@ from calendar_app.tests import CalendarTestCase
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from dateutil import tz
-
-
 class TestMonthView(CalendarTestCase):
 
     def setUp(self):
@@ -64,13 +61,9 @@ class TestMonthView(CalendarTestCase):
                             Eventually(Equals(after.year)))
 
     def _assert_today(self):        
-        utc = self.month_view.currentMonth.datetime
-        print(str(utc))
-        utc = utc.replace(tzinfo=tz.tzutc())
-        local = utc.astimezone(tz.tzlocal())
-        print(local)
+        local = self.main_view.to_local_date(
+            self.month_view.currentMonth.datetime)
         today = datetime.now()        
-        print(str(today))
         
         self.assertThat(lambda: local.day,
                         Eventually(Equals(today.day)))
