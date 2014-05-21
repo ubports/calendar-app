@@ -41,12 +41,14 @@ class TestWeekView(CalendarTestCase):
         first_dow = self._get_first_day_of_week()
 
         #prevent timing issues with swiping
-        old_day = self.week_view.dayStart.datetime
+        old_day = self.main_view.to_local_date(self.week_view.dayStart.datetime)
         self.main_view.swipe_view(direction, self.week_view)
-        self.assertThat(lambda: self.week_view.dayStart.datetime,
+        self.assertThat(lambda: 
+            self.main_view.to_local_date(self.week_view.dayStart.datetime),
                         Eventually(NotEquals(old_day)))
 
-        new_day_start = self.week_view.dayStart.datetime
+        new_day_start = self.main_view.to_local_date(
+            self.week_view.dayStart.datetime)
 
         expected_day_start = first_dow + datetime.timedelta(
             days=(7 * direction))
@@ -81,8 +83,10 @@ class TestWeekView(CalendarTestCase):
         return dateLabels
 
     def _get_first_day_of_week(self):
-        date = self.week_view.dayStart.datetime
-        firstDay = self.week_view.firstDay.datetime
+        date = self.main_view.to_local_date(self.week_view.dayStart.datetime)
+        firstDay = self.main_view.to_local_date(
+            self.week_view.firstDay.datetime)
+            
         #sunday
         if firstDay.weekday() == 6:
             logger.debug("Locale has Sunday as first day of week")
@@ -111,7 +115,7 @@ class TestWeekView(CalendarTestCase):
     def test_current_month_and_year_is_selected(self):
         """By default, the week view shows the current month and year."""
 
-        now = datetime.datetime.utcnow()
+        now = datetime.datetime.now()
 
         expected_year = now.year
         expected_month_name = now.strftime("%B")
@@ -125,7 +129,7 @@ class TestWeekView(CalendarTestCase):
     def test_current_week_is_selected(self):
         """By default, the week view shows the current week."""
 
-        now = datetime.datetime.utcnow()
+        now = datetime.datetime.now()
         days = self._get_days_of_week()
         day_headers = self._get_date_label_headers()
 
