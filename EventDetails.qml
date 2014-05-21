@@ -44,9 +44,11 @@ Page {
         if(event.recurrence ) {
             var recurrenceRule = event.recurrence.recurrenceRules;
             if(recurrenceRule.length > 0){
+                limitHeader.value =  recurrenceRule[0].limit === undefined ? i18n.tr("Never") :  recurrenceRule[0].limit ;
                 index =  recurrenceRule[0].frequency ;
             }
             else{
+                limitHeader.visible = false
                 index = 0
             }
         }
@@ -65,21 +67,6 @@ Page {
 
     function updateReminder(event) {
         var index = 0;
-        if(event.recurrence ) {
-            var recurrenceRule = event.recurrence.recurrenceRules;
-            if(recurrenceRule.length > 0){
-                limitHeader.value =  recurrenceRule[0].limit === undefined ? i18n.tr("Never") :  recurrenceRule[0].limit ;
-                index =  recurrenceRule[0].frequency ;
-            }
-            else{
-                limitHeader.visible = false
-                index = 0
-            }
-        }
-        recurrentHeader.value = Defines.recurrenceLabel[index];
-
-        index = 0;
-
         var reminder = event.detail( Detail.VisualReminder);
         if( reminder ) {
             var reminderTime = reminder.secondsBeforeStart;
