@@ -55,7 +55,7 @@ class TestMonthView(CalendarTestCase):
                             Eventually(Equals(after.year)))
 
     def _assert_today(self):
-        today = datetime.today()
+        today = datetime.utcnow()
         self.assertThat(lambda: self.month_view.currentMonth.datetime.day,
                         Eventually(Equals(today.day)))
         self.assertThat(lambda: self.month_view.currentMonth.datetime.month,

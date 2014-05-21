@@ -115,7 +115,7 @@ class TestYearView(CalendarTestCase):
                         Equals(datetime.now().year))
 
     def current_month(self):
-        now = datetime.now()
+        now = datetime.utcnow()
         current_month_name = now.strftime("%B")
 
         # for months after June, we must scroll down the page to have
