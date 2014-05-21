@@ -9,6 +9,7 @@
 
 from autopilot.introspection import dbus
 from ubuntuuitoolkit import emulators as toolkit_emulators
+from dateutil import tz
 
 
 class MainView(toolkit_emulators.MainView):
@@ -116,3 +117,8 @@ class MainView(toolkit_emulators.MainView):
         new_event = self.get_new_event()
         return new_event.wait_select_single("Button",
                                             objectName="cancel")
+
+    def to_local_date(self, date):
+        utc = date.replace(tzinfo=tz.tzutc())
+        local = utc.astimezone(tz.tzlocal())
+        return local

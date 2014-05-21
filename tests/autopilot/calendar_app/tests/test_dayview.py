@@ -38,7 +38,7 @@ class TestDayView(CalendarTestCase):
     def test_current_month_and_year_is_selected(self):
         """By default, the day view shows the current month and year."""
 
-        now = datetime.datetime.utcnow()
+        now = datetime.datetime.now()
 
         expected_year = now.year
         expected_month_name = now.strftime("%B")
@@ -59,7 +59,7 @@ class TestDayView(CalendarTestCase):
         days = self.day_view.select_many(objectName="dateLabel")
         days = [int(day.text) for day in days]
 
-        now = datetime.datetime.utcnow()
+        now = datetime.datetime.now()
 
         today = now.day
         tomorrow = (now + datetime.timedelta(days=1)).day
@@ -78,7 +78,7 @@ class TestDayView(CalendarTestCase):
         self.change_days(-1)
 
     def change_days(self, direction):
-        now = datetime.datetime.utcnow()
+        firstday = self.day_view.currentDay.datetime
 
         for i in range(1, 5):
             #prevent timing issues with swiping
@@ -89,7 +89,7 @@ class TestDayView(CalendarTestCase):
 
             current_day = self.day_view.currentDay.datetime
 
-            expected_day = (now + datetime.timedelta(
+            expected_day = (firstday + datetime.timedelta(
                 days=(i * direction)))
 
             self.assertThat(self.strip(current_day),
