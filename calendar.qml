@@ -17,7 +17,7 @@ MainView {
         // Due to bug #1231558 you have to pass arguments BEFORE app:
         // qmlscene calendar:///new-event calendar.qml
 
-        defaultArgument.help: i18n.tr("Calendar app accept three arguments: --starttime, --endtime and --newevet. They will be managed by system. See the source for a full comment about them");
+        defaultArgument.help: i18n.tr("Calendar app accept four arguments: --starttime, --endtime, --newevent and --eventid. They will be managed by system. See the source for a full comment about them");
         //defaultArgument.required: false;
         defaultArgument.valueNames: ["URL"]
 
@@ -44,6 +44,12 @@ MainView {
          * If newevent isn't set and startime is set, its value is used to choose the right view.
          * If neither of precendet flags are set, endtime is ignored.
          * It accepts an integer value of the number of seconds since UNIX epoch in the UTC timezone.
+         *
+         *
+         * Open an existing event
+         * Keyword: eventid (provisional)
+         *
+         * It takes a id of an event and open that event on full page
          */
     }
 
@@ -91,6 +97,7 @@ MainView {
             property bool newevent: false;
             property int starttime: -1;
             property int endtime: -1;
+            property var eventid: null;
 
             selectedTabIndex: monthTab.index
 
@@ -143,6 +150,7 @@ MainView {
                 var newevenpattern= new RegExp ("newevent");
                 var starttimepattern = new RegExp ("starttime=\\d+");
                 var endtimepattern = new RegExp ("endtime=\\d+");
+                var eventidpattern = new RegExp ("eventid=\\w+");
 
                 newevent = newevenpattern.test(url);
 
@@ -151,6 +159,9 @@ MainView {
 
                 if (endtimepattern.test(url))
                     endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
+
+                if (eventidpattern.test(url))
+                    eventid = url.match(/eventid=(\w+)/)[0].replace("eventid=", '');
             }
 
             Component.onCompleted: {
@@ -176,6 +187,9 @@ MainView {
                             tabs.selectedTabIndex = 3;
                         }
                     } // End of else if (starttime)
+                    else if (eventid) {
+                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":eventid,"model": eventModel});
+                    } // End of else if (eventid)
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
