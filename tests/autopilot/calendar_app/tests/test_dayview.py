@@ -9,7 +9,7 @@
 Calendar app autopilot tests for the day view.
 """
 
-from datetime import datetime
+import datetime
 
 # from __future__ import range
 # (python3's range, is same as python2's xrange)
@@ -38,7 +38,7 @@ class TestDayView(CalendarTestCase):
     def test_current_month_and_year_is_selected(self):
         """By default, the day view shows the current month and year."""
 
-        now = datetime.utcnow()
+        now = datetime.datetime.utcnow()
 
         expected_year = now.year
         expected_month_name = now.strftime("%B")
@@ -59,7 +59,7 @@ class TestDayView(CalendarTestCase):
         days = self.day_view.select_many(objectName="dateLabel")
         days = [int(day.text) for day in days]
 
-        now = datetime.utcnow()
+        now = datetime.datetime.utcnow()
 
         today = now.day
         tomorrow = (now + datetime.timedelta(days=1)).day
@@ -78,7 +78,7 @@ class TestDayView(CalendarTestCase):
         self.change_days(-1)
 
     def change_days(self, direction):
-        now = datetime.utcnow()
+        now = datetime.datetime.utcnow()
 
         for i in range(1, 5):
             #prevent timing issues with swiping

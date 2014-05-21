@@ -15,7 +15,7 @@ import sys
 if sys.version_info < (3,):
     range = xrange
 
-from datetime import datetime
+import datetime
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
@@ -111,7 +111,7 @@ class TestWeekView(CalendarTestCase):
     def test_current_month_and_year_is_selected(self):
         """By default, the week view shows the current month and year."""
 
-        now = datetime.utcnow()
+        now = datetime.datetime.utcnow()
 
         expected_year = now.year
         expected_month_name = now.strftime("%B")
@@ -125,7 +125,7 @@ class TestWeekView(CalendarTestCase):
     def test_current_week_is_selected(self):
         """By default, the week view shows the current week."""
 
-        now = datetime.utcnow()
+        now = datetime.datetime.utcnow()
         days = self._get_days_of_week()
         day_headers = self._get_date_label_headers()
 
