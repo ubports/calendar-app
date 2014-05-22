@@ -44,15 +44,15 @@ Page {
         if(event.recurrence ) {
             var recurrenceRule = event.recurrence.recurrenceRules;
             if(recurrenceRule.length > 0){
-                // TRANSLATORS: this is a time & Date formatting string,
-                //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-                var dateFormat = i18n.tr("dd-MMM-yyyy")
                 if(recurrenceRule[0].limit === undefined)
                     limitHeader.value = i18n.tr("Never");
                 else{
+                    // TRANSLATORS: this is a time & Date formatting string,
+                    //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+                    var dateFormat = i18n.tr("dd-MMM-yyyy")
                     limitHeader.value = parseInt(recurrenceRule[0].limit) ?
-                                i18n.tr("After ") + recurrenceRule[0].limit + i18n.tr(" Occurrences") :
-                                i18n.tr("After Date ") + recurrenceRule[0].limit.toLocaleString(Qt.locale(),dateFormat);
+                                i18n.tr("After %1 Occurrences").arg(recurrenceRule[0].limit):
+                                i18n.tr("After Date %1").arg(recurrenceRule[0].limit.toLocaleString(Qt.locale(),dateFormat));
                 }
 
                 index =  recurrenceRule[0].frequency ;
