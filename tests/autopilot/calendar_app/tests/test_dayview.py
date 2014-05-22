@@ -78,7 +78,7 @@ class TestDayView(CalendarTestCase):
         self.change_days(-1)
 
     def change_days(self, direction):
-        now = datetime.datetime.now()
+        firstday = self.day_view.currentDay.datetime
 
         for i in range(1, 5):
             #prevent timing issues with swiping
@@ -89,7 +89,7 @@ class TestDayView(CalendarTestCase):
 
             current_day = self.day_view.currentDay.datetime
 
-            expected_day = (now + datetime.timedelta(
+            expected_day = (firstday + datetime.timedelta(
                 days=(i * direction)))
 
             self.assertThat(self.strip(current_day),

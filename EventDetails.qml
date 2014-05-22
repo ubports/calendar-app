@@ -120,10 +120,13 @@ Page {
             requestId = model.fetchItems([e.parentId]);
         }
 
+        allDayEventCheckbox.checked = e.allDay;
+
+        startHeader.visible = !e.allDay;
+        endHeader.visible = !e.allDay;
+
         startHeader.value = startTime;
         endHeader.value = endTime;
-
-        allDayEventCheckbox.checked = e.allDay;
 
         // This is the event title
         if( e.displayLabel) {
