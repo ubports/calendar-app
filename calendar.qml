@@ -201,6 +201,10 @@ MainView {
                             if(monthViewLoader.item ) monthViewLoader.item.currentMonth = tabs.currentDay.midnight();
                             if(weekViewLoader.item ) weekViewLoader.item.dayStart = tabs.currentDay;
                             if(dayViewLoader.item ) dayViewLoader.item.currentDay = tabs.currentDay;
+                            if(agendaViewLoader.item ) {
+                                agendaViewLoader.item.currentDay = tabs.currentDay;
+                                agendaViewLoader.item.goToBeginning();
+                            }
                         }
                     }
                 }
@@ -361,6 +365,28 @@ MainView {
                         onCurrentDayChanged: {
                             tabs.currentDay = dayViewLoader.item.currentDay;
                         }
+                    }
+                }
+            }
+
+            Tab {
+                id: agendaTab
+                objectName: "agendaTab"
+                title: i18n.tr("Agenda")
+                page: Loader {
+                    id: agendaViewLoader
+                    objectName: "agendaViewLoader"
+                    source: tabs.selectedTab == agendaTab ? Qt.resolvedUrl("AgendaView.qml"):""
+
+                    onLoaded: {
+                        item.tools = Qt.binding(function() { return commonToolBar })
+                        item.currentDay = tabs.currentDay;
+                    }
+
+                    anchors{
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
                     }
                 }
             }
