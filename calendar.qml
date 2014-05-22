@@ -201,6 +201,10 @@ MainView {
                             if(monthViewLoader.item ) monthViewLoader.item.currentMonth = tabs.currentDay.midnight();
                             if(weekViewLoader.item ) weekViewLoader.item.dayStart = tabs.currentDay;
                             if(dayViewLoader.item ) dayViewLoader.item.currentDay = tabs.currentDay;
+                            if(agendaViewLoader.item ) {
+                                agendaViewLoader.item.currentDay = tabs.currentDay;
+                                agendaViewLoader.item.goToBeginning();
+                            }
                         }
                     }
                 }

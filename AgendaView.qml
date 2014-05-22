@@ -12,6 +12,10 @@ Page{
 
     Keys.forwardTo: [eventList]
 
+    function goToBeginning() {
+        eventList.positionViewAtBeginning();
+    }
+
     EventListModel {
         id: eventModel
         startPeriod: currentDay.midnight();
@@ -86,8 +90,6 @@ Page{
                     headerContainer.visible = true;
                 } else {
                     var prevEvent = eventModel.items[index-1];
-                    //                    print(prevEvent.startDateTime.midnight() + "---" + event.startDateTime.midnight() + " , "
-                    //                       + (prevEvent.startDateTime.midnight() < event.startDateTime.midnight()) );
                     if( prevEvent.startDateTime.midnight() < event.startDateTime.midnight()) {
                         headerContainer.visible = true;
                     }
