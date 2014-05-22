@@ -37,30 +37,40 @@ class TestMonthView(CalendarTestCase):
         sign = int(math.copysign(1, delta))
 
         for _ in range(abs(delta)):
-            before = month_view.currentMonth.datetime
+            before = self.main_view.to_local_date(
+                month_view.currentMonth.datetime)
 
             #prevent timing issues with swiping
-            old_month = month_view.currentMonth.datetime
+            old_month = self.main_view.to_local_date(
+                month_view.currentMonth.datetime)
+
             self.main_view.swipe_view(sign, month_view)
-            self.assertThat(lambda: month_view.currentMonth.datetime,
+
+            month_after = self.main_view.to_local_date(
+                month_view.currentMonth.datetime)
+
+            self.assertThat(lambda: month_after,
                             Eventually(NotEquals(old_month)))
 
             after = before + relativedelta(months=sign)
 
             self.assertThat(lambda:
-                            self.month_view.currentMonth.datetime.month,
+                            month_after.month,
                             Eventually(Equals(after.month)))
             self.assertThat(lambda:
-                            self.month_view.currentMonth.datetime.year,
+                            month_after.year,
                             Eventually(Equals(after.year)))
 
     def _assert_today(self):
-        today = datetime.today()
-        self.assertThat(lambda: self.month_view.currentMonth.datetime.day,
+        local = self.main_view.to_local_date(
+            self.month_view.currentMonth.datetime)
+        today = datetime.now()
+
+        self.assertThat(lambda: local.day,
                         Eventually(Equals(today.day)))
-        self.assertThat(lambda: self.month_view.currentMonth.datetime.month,
+        self.assertThat(lambda: local.month,
                         Eventually(Equals(today.month)))
-        self.assertThat(lambda: self.month_view.currentMonth.datetime.year,
+        self.assertThat(lambda: local.year,
                         Eventually(Equals(today.year)))
 
     def _test_go_to_today(self, delta):
