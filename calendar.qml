@@ -364,6 +364,28 @@ MainView {
                     }
                 }
             }
+
+            Tab {
+                id: agendaTab
+                objectName: "agendaTab"
+                title: i18n.tr("Agenda")
+                page: Loader {
+                    id: agendaViewLoader
+                    objectName: "agendaViewLoader"
+                    source: tabs.selectedTab == agendaTab ? Qt.resolvedUrl("AgendaView.qml"):""
+
+                    onLoaded: {
+                        item.tools = Qt.binding(function() { return commonToolBar })
+                        item.currentDay = tabs.currentDay;
+                    }
+
+                    anchors{
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
+                }
+            }
         }
     }
 }
