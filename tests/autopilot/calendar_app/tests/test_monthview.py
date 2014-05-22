@@ -44,7 +44,7 @@ class TestMonthView(CalendarTestCase):
             old_month = self.main_view.to_local_date(
                 month_view.currentMonth.datetime)
 
-            self.main_view.swipe_view(sign, month_view)
+            self.main_view.swipe_view(direction, month_view)
 
             month_after = self.main_view.to_local_date(
                 month_view.currentMonth.datetime)

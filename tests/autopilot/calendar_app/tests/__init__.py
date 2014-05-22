@@ -129,7 +129,6 @@ class CalendarTestCase(AutopilotTestCase):
         temp_dir = temp_dir_fixture.path
         logger.debug(temp_dir)
 
-
         #If running under xvfb, as jenkins does,
         #xsession will fail to start without xauthority file
         #Thus if the Xauthority file is in the home directory

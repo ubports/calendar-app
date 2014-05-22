@@ -144,6 +144,7 @@ class MainView(toolkit_emulators.MainView):
         local = utc.astimezone(tz.tzlocal())
         return local
 
+
 class Page(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     """Autopilot helper for Pages."""
 
