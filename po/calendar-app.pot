@@ -1,6 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
+# ubuntu-calendar-app translations.
 # Copyright (C) YEAR Canonical Ltd.
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the ubuntu-calendar-app package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
