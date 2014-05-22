@@ -4,6 +4,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
+import Ubuntu.Components.Pickers 0.1
 import QtOrganizer 5.0
 
 import "Defines.js" as Defines
@@ -75,8 +76,6 @@ Page {
         if( e.description ) {
             messageEdit.text = e.description;
         }
-
-        var index = 0;
         if( e.itemType === Type.Event ) {
             if(e.attendees){
                 for( var j = 0 ; j < e.attendees.length ; ++j ) {
@@ -86,10 +85,28 @@ Page {
                 }
             }
 
-            index = 0;
+            var index = 0;
             if(e.recurrence ) {
                 var recurrenceRule = e.recurrence.recurrenceRules;
                 index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+                if(index > 0 ){
+                    limit.visible = true;
+                    if(recurrenceRule[0].limit !== undefined){
+                        var temp = recurrenceRule[0].limit;
+                        if(parseInt(temp)){
+                            limitOptions.selectedIndex = 1;
+                            limitCount.text = temp;
+                        }
+                        else{
+                            limitOptions.selectedIndex = 2;
+                            datePick.date= temp;
+                        }
+                    }
+                    else{
+                        // If limit is infinite
+                        limitOptions.selectedIndex = 0;
+                    }
+                }
             }
             recurrenceOption.selectedIndex = index;
         }
@@ -118,6 +135,7 @@ Page {
 
             event.allDay = allDayEventCheckbox.checked;
 
+
             if( event.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
                 if( personEdit.text != "") {
@@ -127,13 +145,22 @@ Page {
                 }
 
                 var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
+                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 if( recurrenceRule !== RecurrenceRule.Invalid ) {
-                    var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
+
                     rule.frequency = recurrenceRule;
-                    event.recurrence.recurrenceRules = [rule];
+                    if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
+                        rule.limit =  parseInt(limitCount.text);
+                    }
+                    else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
+                        rule.limit =  datePick.date;
+                    }
+                    else{
+                        rule.limit = undefined;
+                    }
                 }
             }
-
+            event.recurrence.recurrenceRules = [rule];
             //remove old reminder value
             var oldVisualReminder = event.detail(Detail.VisualReminder);
             if(oldVisualReminder) {
@@ -165,7 +192,6 @@ Page {
             pageStack.pop();
         }
     }
-
     // Calucate default hour and minute for start and end time on event
     function roundDate(date) {
         var tempDate = new Date(date)
@@ -432,7 +458,51 @@ Page {
                     containerHeight: itemHeight * 4
                 }
             }
+            Item {
+                id: limit
+                visible: recurrenceOption.selectedIndex != 0
+                width: parent.width
+                height: limitOptions.height
+                Label{
+                    id: limitLabel
+                    text: i18n.tr("Recurring event ends");
+                    anchors{
+                        left: parent.left
+                        right: limitOptions.left
+                    }
+                    wrapMode: Text.WordWrap
+                    maximumLineCount: 2
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                OptionSelector{
+                    id: limitOptions
+                    anchors.right: parent.right
+                    width: parent.width - optionSelectorWidth - units.gu(3)
+                    model: Defines.limitLabel
+                    containerHeight: itemHeight * 4
 
+                }
+            }
+            NewEventEntryField{
+                id: limitCount
+                width: parent.width
+                title: i18n.tr("Count")
+                objectName: "eventLimitCount"
+                visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
+                validator: IntValidator{bottom: 1;}
+                inputMethodHints: Qt.ImhDialableCharactersOnly
+                focus: true
+            }
+            Item {
+                id: limitDate
+                width: parent.width
+                height: datePick.height
+                visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2;
+                DatePicker{
+                    id:datePick;
+                    width: parent.width
+                }
+            }
             Item{
                 width: parent.width
                 height: reminderOption.height
