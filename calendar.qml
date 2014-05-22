@@ -188,7 +188,13 @@ MainView {
                         }
                     } // End of else if (starttime)
                     else if (eventid) {
-                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":eventid,"model": eventModel});
+                        eventModel.onItemsFetched.connect( function(id,fetchedItems){
+                            if(requestId === id && fetchedItems.length > 0) {
+                                var event = fetchedItems[0];
+                                pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model": eventModel});
+                            }
+                        });
+                        var requestId = eventModel.fetchItems([eventId]);
                     } // End of else if (eventid)
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
