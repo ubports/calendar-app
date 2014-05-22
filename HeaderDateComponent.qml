@@ -27,7 +27,7 @@ Item {
             text: day.toUpperCase();
             fontSize: "medium"
             horizontalAlignment: Text.AlignHCenter
-            color: "#AEA79F"
+            color: "white"
             width: parent.width
         }
 
