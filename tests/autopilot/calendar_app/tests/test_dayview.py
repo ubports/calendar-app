@@ -77,7 +77,7 @@ class TestDayView(CalendarTestCase):
         """It must be possible to show previous days by swiping the view."""
         self._change_days(-1)
 
-    def change_days(self, direction):
+    def _change_days(self, direction):
         firstday = self.day_view.currentDay.datetime
 
         for i in range(1, 5):
