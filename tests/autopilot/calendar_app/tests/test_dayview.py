@@ -77,8 +77,8 @@ class TestDayView(CalendarTestCase):
         """It must be possible to show previous days by swiping the view."""
         self._change_days(-1)
 
-    def _change_days(self, direction):
-        now = datetime.datetime.now()
+    def change_days(self, direction):
+        firstday = self.day_view.currentDay.datetime
 
         for i in range(1, 5):
             #prevent timing issues with swiping
@@ -89,7 +89,7 @@ class TestDayView(CalendarTestCase):
 
             current_day = self.day_view.currentDay.datetime
 
-            expected_day = (now + datetime.timedelta(
+            expected_day = (firstday + datetime.timedelta(
                 days=(i * direction)))
 
             self.assertThat(self._strip_time(current_day),
