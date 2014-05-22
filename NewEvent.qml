@@ -391,7 +391,7 @@ Page {
                     TextArea{
                         id: messageEdit
                         width: parent.width
-                        color: focus ? "#2C001E" : "#EAD3A8"
+                        color: focus ? "#2C001E" : "#5D5D5D"
                         // default style
                         font {
                             pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
