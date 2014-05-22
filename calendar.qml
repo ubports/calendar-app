@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
+import QtOrganizer 5.0
 
 import "dateExt.js" as DateExt
 
@@ -86,14 +87,24 @@ MainView {
             endPeriod: tabs.currentDay
 
             onCollectionsChanged : {
+
+                print("###### onCollection changed....");
                 var collectionIds = [];
                 var collections = eventModel.getCollections();
                 for(var i=0; i < collections.length ; ++i) {
                     var collection = collections[i]
                     if(collection.extendedMetaData("collection-selected") === true) {
+                        print("###### "+ collection.name);
                         collectionIds.push(collection.collectionId);
                     }
                 }
+
+//                if( collectionIds.length == 0) {
+//                    for(var i=0; i < collections.length ; ++i) {
+//                        var collection = collections[i]
+//                        collectionIds.push(collection.collectionId);
+//                    }
+//                }
 
                 if(eventModel.filter) {
                     eventModel.filter.ids = collectionIds;

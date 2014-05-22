@@ -47,22 +47,10 @@ Page {
                 text: i18n.tr("Save");
                 iconSource: Qt.resolvedUrl("save.svg");
                 onTriggered: {
-                    var collectionIds = [];
                     var collections = calendarsList.model;
                     for(var i=0; i < collections.length ; ++i) {
                         var collection = collections[i]
                         root.model.saveCollection(collection);
-                        if(collection.extendedMetaData("collection-selected") === true) {
-                            collectionIds.push(collection.collectionId);
-                        }
-                    }
-
-                    if(model.filter) {
-                        model.filter.ids = collectionIds;
-                    } else {
-                        var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", root, "CalendarChoice.qml");
-                        calFilter.ids = collectionIds;
-                        root.model.filter = calFilter;
                     }
                     pageStack.pop();
                 }
@@ -140,8 +128,8 @@ Page {
                                 } else {
                                     checkBox.checked = !checkBox.checked
                                     modelData.setExtendedMetaData("collection-selected",checkBox.checked)
-                                    var collection = root.model.collection(modelData.collectionId);
-                                    root.model.saveCollection(collection);
+                                    //var collection = root.model.collection(modelData.collectionId);
+                                    //root.model.saveCollection(collection);
                                 }
                             }
                         }
@@ -153,8 +141,8 @@ Page {
                         visible:  !root.isInEditMode
                         onCheckedChanged: {
                             modelData.setExtendedMetaData("collection-selected",checkBox.checked)
-                            var collection = root.model.collection(modelData.collectionId);
-                            root.model.saveCollection(collection);
+                            //var collection = root.model.collection(modelData.collectionId);
+                            //root.model.saveCollection(collection);
                         }
                     }
                 }
