@@ -140,6 +140,8 @@ Page {
                                 } else {
                                     checkBox.checked = !checkBox.checked
                                     modelData.setExtendedMetaData("collection-selected",checkBox.checked)
+                                    var collection = root.model.collection(modelData.collectionId);
+                                    root.model.saveCollection(collection);
                                 }
                             }
                         }
@@ -151,6 +153,8 @@ Page {
                         visible:  !root.isInEditMode
                         onCheckedChanged: {
                             modelData.setExtendedMetaData("collection-selected",checkBox.checked)
+                            var collection = root.model.collection(modelData.collectionId);
+                            root.model.saveCollection(collection);
                         }
                     }
                 }
