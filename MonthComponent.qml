@@ -201,7 +201,7 @@ Item{
                         if(isToday) {
                             "#2C001E"
                         } else {
-                            "white"
+                            "#5D5D5D"
                         }
                     } else {
                         "#AEA79F"
@@ -266,7 +266,7 @@ Item{
             text: day.toUpperCase();
             horizontalAlignment: Text.AlignHCenter
             fontSize: root.dayLabelFontSize
-            color: "#AEA79F"
+            color: "white"
         }
     }
 

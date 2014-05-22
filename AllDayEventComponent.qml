@@ -16,7 +16,7 @@ Rectangle{
 
     height: units.gu(6)
     width: parent.width
-    color: "#105040"
+    color: "#C8C8C8"
 
     function getAllDayEvents(startDate, endDate) {
         var map = {};
