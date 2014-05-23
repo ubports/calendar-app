@@ -27,7 +27,7 @@ Rectangle {
     property alias acceptAction: accept.action
     property alias rejectAction: reject.action
 
-    color: "gray"
+    color: "grey"
 
     Button {
         id: reject

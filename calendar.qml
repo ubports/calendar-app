@@ -61,9 +61,9 @@ MainView {
     focus: true
     Keys.forwardTo: [pageStack.currentPage]
 
-    headerColor: "#266249"
-    backgroundColor: "#478158"
-    footerColor: "#478158"
+    headerColor: "#E8E8E8"
+    backgroundColor: "#f5f5f5"
+    footerColor: "#ECECEC"
     anchorToKeyboard: true
 
     PageStack {
