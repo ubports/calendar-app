@@ -117,9 +117,17 @@ class CalendarTestCase(AutopilotTestCase):
     def _patch_home(self):
         """ mock /home for testing purposes to preserve user data
         """
-        temp_dir_fixture = fixtures.TempDir()
+        #click requires apparmor profile, and writing to special dir
+        #but the desktop can write to a traditional /tmp directory
+        if self.test_type == 'click':
+            temp_dir = os.path.join('~', 'autopilot', 'fakeenv')
+            logger.debug(temp_dir)
+            temp_dir_fixture = fixtures.TempDir(temp_dir)
+        else:
+            temp_dir_fixture = fixtures.TempDir()
         self.useFixture(temp_dir_fixture)
         temp_dir = temp_dir_fixture.path
+        logger.debug(temp_dir)
 
         #If running under xvfb, as jenkins does,
         #xsession will fail to start without xauthority file

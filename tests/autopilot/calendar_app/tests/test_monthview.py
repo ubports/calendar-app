@@ -32,9 +32,9 @@ class TestMonthView(CalendarTestCase):
 
         self.month_view = self.main_view.get_month_view()
 
-    def change_month(self, delta):
+    def _change_month(self, delta):
         month_view = self.main_view.get_month_view()
-        sign = int(math.copysign(1, delta))
+        direction = int(math.copysign(1, delta))
 
         for _ in range(abs(delta)):
             before = self.main_view.to_local_date(
@@ -44,7 +44,7 @@ class TestMonthView(CalendarTestCase):
             old_month = self.main_view.to_local_date(
                 month_view.currentMonth.datetime)
 
-            self.main_view.swipe_view(sign, month_view)
+            self.main_view.swipe_view(direction, month_view)
 
             month_after = self.main_view.to_local_date(
                 month_view.currentMonth.datetime)
@@ -52,7 +52,7 @@ class TestMonthView(CalendarTestCase):
             self.assertThat(lambda: month_after,
                             Eventually(NotEquals(old_month)))
 
-            after = before + relativedelta(months=sign)
+            after = before + relativedelta(months=direction)
 
             self.assertThat(lambda:
                             month_after.month,
@@ -73,20 +73,20 @@ class TestMonthView(CalendarTestCase):
         self.assertThat(lambda: local.year,
                         Eventually(Equals(today.year)))
 
-    def _test_go_to_today(self, delta):
+    def _go_to_today(self, delta):
         self._assert_today()
-        self.change_month(delta)
+        self._change_month(delta)
         self.main_view.open_toolbar().click_button("todaybutton")
         self._assert_today()
 
     def test_monthview_go_to_today_next_month(self):
-        self._test_go_to_today(1)
+        self._go_to_today(1)
 
     def test_monthview_go_to_today_prev_month(self):
-        self._test_go_to_today(-1)
+        self._go_to_today(-1)
 
     def test_monthview_go_to_today_next_year(self):
-        self._test_go_to_today(12)
+        self._go_to_today(12)
 
     def test_monthview_go_to_today_prev_year(self):
-        self._test_go_to_today(-12)
+        self._go_to_today(-12)
