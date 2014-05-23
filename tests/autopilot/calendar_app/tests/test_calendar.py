@@ -20,7 +20,7 @@ from calendar_app.tests import CalendarTestCase
 
 class TestMainView(CalendarTestCase):
 
-    def scroll_time_picker_to_time(self, picker, hours, minutes):
+    def _scroll_time_picker_to_time(self, picker, hours, minutes):
         # Scroll hours to selected value
         scroller = picker.select_single("Scroller", objectName="hourScroller")
         x = int(scroller.globalRect[0] + scroller.globalRect[2] / 2)
@@ -68,7 +68,7 @@ class TestMainView(CalendarTestCase):
         start_time_field = self.main_view.get_event_start_time_field()
         self.pointing_device.click_object(start_time_field)
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 12, 28)
+        self._scroll_time_picker_to_time(picker, 12, 28)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
 
@@ -76,7 +76,7 @@ class TestMainView(CalendarTestCase):
         end_time_field = self.main_view.get_event_end_time_field()
         self.pointing_device.click_object(end_time_field)
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 13, 38)
+        self._scroll_time_picker_to_time(picker, 13, 38)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
 
