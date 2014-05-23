@@ -120,7 +120,7 @@ class CalendarTestCase(AutopilotTestCase):
         #click requires apparmor profile, and writing to special dir
         #but the desktop can write to a traditional /tmp directory
         if self.test_type == 'click':
-            temp_dir = os.path.join(os.environ['XDG_RUNTIME_DIR'], 'autopilot')
+            temp_dir = os.path.join('~', 'autopilot', 'fakeenv')
             logger.debug(temp_dir)
             temp_dir_fixture = fixtures.TempDir(temp_dir)
         else:
