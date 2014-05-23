@@ -76,7 +76,7 @@ class TestMonthView(CalendarTestCase):
     def _go_to_today(self, delta):
         self._assert_today()
 
-        self.change_month(delta)
+        self._change_month(delta)
         header = self.main_view.get_header()
         header.click_action_button('todaybutton')
 
