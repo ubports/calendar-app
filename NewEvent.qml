@@ -439,6 +439,10 @@ Page {
                 title: i18n.tr("Guests")
                 objectName: "eventPeopleInput"
                 visible: event.itemType === Type.Event
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), personEdit)
+                }
             }
 
             Item {
