@@ -26,26 +26,13 @@ Page {
     title: "Event Details"
 
     Component.onCompleted: {
-        if( pageStack.header ) {
-            mainView.headerColor = bg.color
-            pageStack.header.__styleInstance.textColor = "black"
-        }
         showEvent(event);
-    }
-
-    Component.onDestruction: {
-        if( pageStack.header ) {
-            mainView.headerColor = "#266249"
-            pageStack.header.__styleInstance.textColor = "white"
-        }
     }
 
     Connections{
         target: pageStack
         onCurrentPageChanged:{
             if( pageStack.currentPage === root) {
-                mainView.headerColor = bg.color
-                pageStack.header.__styleInstance.textColor = "black"
                 showEvent(event);
             }
         }
@@ -56,9 +43,21 @@ Page {
         if(event.recurrence ) {
             var recurrenceRule = event.recurrence.recurrenceRules;
             if(recurrenceRule.length > 0){
+                if(recurrenceRule[0].limit === undefined)
+                    limitHeader.value = i18n.tr("Never");
+                else{
+                    // TRANSLATORS: this is a time & Date formatting string,
+                    //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+                    var dateFormat = i18n.tr("dd-MMM-yyyy")
+                    limitHeader.value = parseInt(recurrenceRule[0].limit) ?
+                                i18n.tr("After %1 Occurrences").arg(recurrenceRule[0].limit):
+                                i18n.tr("After Date %1").arg(recurrenceRule[0].limit.toLocaleString(Qt.locale(),dateFormat));
+                }
+
                 index =  recurrenceRule[0].frequency ;
             }
             else{
+                limitHeader.visible = false
                 index = 0
             }
         }
@@ -347,7 +346,7 @@ Page {
 
             //Guest Entries ends
             ThinDivider{}
-            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth) //Dynamic Height
+            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth,limitHeader.headerWidth) //Dynamic Height
             EventDetailsInfo{
                 id: recurrentHeader
                 xMargin: column.recurranceAreaMaxWidth
@@ -357,6 +356,11 @@ Page {
                 id: reminderHeader
                 xMargin: column.recurranceAreaMaxWidth
                 header: i18n.tr("Remind me")
+            }
+            EventDetailsInfo{
+                id: limitHeader
+                xMargin: column.recurranceAreaMaxWidth
+                header: i18n.tr("Repetition Ends")
             }
         }
     }

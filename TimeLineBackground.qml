@@ -9,7 +9,7 @@ Column {
         delegate: Rectangle {
             width: parent.width
             height: units.gu(10)
-            color: (index % 2 == 0) ? "#4c875b" : "#86c07f"
+            color: (index % 2 == 0) ? "#F5F5F5" : "#ECECEC"
 
             Label {
                 id: timeLabel
@@ -17,7 +17,7 @@ Column {
                 // TRANSLATORS: this is a time formatting string,
                 // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
                 text: new Date(0, 0, 0, index).toLocaleTimeString(Qt.locale(), i18n.tr("hh ap"))
-                color: "white"
+                color: "#5D5D5D"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 fontSize: "x-large"
