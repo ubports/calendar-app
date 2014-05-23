@@ -86,8 +86,21 @@ MainView {
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
 
-            onCollectionsChanged : {
+            property var uninionFilter;
 
+            function createDetailFilter(type) {
+                var filter = "import QtOrganizer 5.0;
+                DetailFieldFilter {
+                    detail: Detail.ItemType;
+                    field: Type.FieldType;
+                    value: "+ type + ";"+
+                    "matchFlags: Filter.MatchExactly;
+                }";
+
+                return Qt.createQmlObject(filter, eventModel, "calendar.qml");
+            }
+
+            onCollectionsChanged : {
                 print("###### onCollection changed....");
                 var collectionIds = [];
                 var collections = eventModel.getCollections();
@@ -99,20 +112,17 @@ MainView {
                     }
                 }
 
-//                if( collectionIds.length == 0) {
-//                    for(var i=0; i < collections.length ; ++i) {
-//                        var collection = collections[i]
-//                        collectionIds.push(collection.collectionId);
-//                    }
-//                }
+                var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", eventModel, "calendar.qml");
+                calFilter.ids = collectionIds;
 
-                if(eventModel.filter) {
-                    eventModel.filter.ids = collectionIds;
-                } else {
-                    var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", eventModel, "calendar.qml");
-                    calFilter.ids = collectionIds;
-                    eventModel.filter = calFilter;
-                }
+                var uninionFilters = [];
+                uninionFilters.push( createDetailFilter(Type.Event));
+                uninionFilters.push( createDetailFilter(Type.EventOccurrence));
+                uninionFilters.push( calFilter);
+
+                var uninionFilter =  Qt.createQmlObject("import QtOrganizer 5.0; UnionFilter{}", eventModel, "calendar.qml");
+                uninionFilter.filters = uninionFilters;
+                eventModel.filter = uninionFilter;
             }
         }
 
