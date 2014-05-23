@@ -11,6 +11,8 @@ import "Defines.js" as Defines
 Popover {
     id: root
 
+    signal contactSelected(var contact);
+
     Label {
         anchors.centerIn: parent
         text: "No contact"
@@ -63,11 +65,17 @@ Popover {
             id: contactList
             width: parent.width
             model: contactModel
-            height: units.gu(40)
+            height: units.gu(30)
             clip: true
             delegate: Standard{
                 property var item: contactModel.contacts[index]
+                height: units.gu(4)
                 text: item ? item.name.firstName + ", " + item.name.lastName : ""
+
+                onClicked: {
+                    root.contactSelected(item);
+                    onClicked: PopupUtils.close(root)
+                }
             }
         }
     }

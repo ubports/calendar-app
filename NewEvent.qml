@@ -433,15 +433,35 @@ Page {
                 objectName: "eventLocationInput"
             }
 
-            NewEventEntryField{
-                id: personEdit
+            UbuntuShape {
                 width: parent.width
-                title: i18n.tr("Guests")
-                objectName: "eventPeopleInput"
-                visible: event.itemType === Type.Event
-                MouseArea{
-                    anchors.fill: parent
-                    onClicked: PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), personEdit)
+                height: contactList.height
+                Column{
+                    id: contactList
+                    spacing: units.gu(1)
+                    width: parent.width
+                    clip: true
+                    ListModel {
+                        id: contactModel
+                    }
+                    Button{
+                        text: "Add Guest"
+                        width: parent.width
+                        onClicked: {
+                            var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
+                            popup.contactSelected.connect( function(contact) {
+                                contactModel.append(internal.contactToAttendee(contact));
+                            });
+                        }
+                    }
+
+                    Repeater{
+                        model: contactModel
+                        delegate: Standard {
+                            height: units.gu(4)
+                            text:name
+                        }
+                    }
                 }
             }
 
@@ -567,6 +587,18 @@ Page {
             startTime.focus = false
             endTime.focus = false
             messageEdit.focus = false
+        }
+
+        function contactToAttendee(contact) {
+            for(var p in contact) {
+                print(p + " --- " + contact[p]);
+            }
+
+            var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
+            attendee.name = contact.name.firstName + " " + contact.name.lastName;
+            attendee.emailAddress = contact.email.emailAddress;
+            event.setDetail(attendee);
+            return attendee;
         }
     }
 }
