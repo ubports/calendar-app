@@ -48,11 +48,13 @@ class TestMainView(CalendarTestCase):
         """test add new event """
         #go to today
         self.main_view.switch_to_tab("dayTab")
-        self.main_view.open_toolbar().click_button("todaybutton")
+        header = self.main_view.get_header()
+        header.click_action_button('todaybutton')
         num_events = self.main_view.get_num_events()
 
         #click on new event button
-        self.main_view.open_toolbar().click_button("neweventbutton")
+        header = self.main_view.get_header()
+        header.click_action_button('neweventbutton')
         self.assertThat(self.main_view.get_new_event,
                         Eventually(Not(Is(None))))
 
@@ -92,7 +94,8 @@ class TestMainView(CalendarTestCase):
         self.pointing_device.click_object(save_button)
 
         #verify that the event has been created in timeline
-        self.main_view.open_toolbar().click_button("todaybutton")
+        header = self.main_view.get_header()
+        header.click_action_button('todaybutton')
         self.main_view.switch_to_tab("dayTab")
         self.assertThat(self.main_view.get_num_events,
                         Eventually(NotEquals(num_events)))

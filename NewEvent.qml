@@ -24,9 +24,6 @@ Page {
     property bool isEdit: false
 
     Component.onCompleted: {
-
-        pageStack.header.visible = true;
-
         // If startDate is setted by argument we have to not change it
         //Set the nearest current time.
         var newDate = new Date();

@@ -6,6 +6,7 @@ import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
+    useDeprecatedToolbar: false
 
     // Argument during startup
     Arguments {
@@ -191,10 +192,10 @@ MainView {
                 id: commonToolBar
 
                 ToolbarButton {
-                    objectName: "todaybutton"
                     action: Action {
                         iconSource: Qt.resolvedUrl("calendar-today.svg");
                         text: i18n.tr("Today");
+                        objectName: "todaybutton"
                         onTriggered: {
                             tabs.currentDay = (new Date()).midnight();
                             if(yearViewLoader.item ) yearViewLoader.item.currentYear = tabs.currentDay.getFullYear();
@@ -209,8 +210,8 @@ MainView {
                     }
                 }
                 ToolbarButton {
-                    objectName: "neweventbutton"
                     action: Action {
+                        objectName: "neweventbutton"
                         iconSource: Qt.resolvedUrl("new-event.svg");
                         text: i18n.tr("New Event");
                         onTriggered: {
