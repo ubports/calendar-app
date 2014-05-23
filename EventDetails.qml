@@ -15,25 +15,24 @@ Page {
     property string detailColor :"grey"
     property var model;
 
-    anchors.fill: parent
-    flickable: null
-
-    Component.onCompleted: {
-        if( pageStack.header )
-            pageStack.header.visible = false;
-        showEvent(event);
+    anchors{
+        left: parent.left
+        right: parent.right
+        bottom: parent.bottom
     }
 
-    Component.onDestruction: {
-        if( pageStack.header )
-            pageStack.header.visible = true;
+    flickable: null
+
+    title: "Event Details"
+
+    Component.onCompleted: {
+        showEvent(event);
     }
 
     Connections{
         target: pageStack
         onCurrentPageChanged:{
             if( pageStack.currentPage === root) {
-                pageStack.header.visible = false;
                 showEvent(event);
             }
         }
@@ -217,7 +216,9 @@ Page {
 
     Flickable{
         id: flicable
-        anchors.fill: parent
+        width: parent.width
+        height: parent.height
+        clip: true
 
         contentHeight: column.height + units.gu(3) /*top margin + spacing */
         contentWidth: parent.width
