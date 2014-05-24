@@ -12,7 +12,7 @@ Item{
 
     property Flickable flickable;
 
-    readonly property int minimumHeight: timeLabel.height + units.gu(2)
+    readonly property int minimumHeight: timeLabel.height
 
     signal clicked(var event);
 
