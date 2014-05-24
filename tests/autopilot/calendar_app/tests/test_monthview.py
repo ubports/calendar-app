@@ -32,51 +32,64 @@ class TestMonthView(CalendarTestCase):
 
         self.month_view = self.main_view.get_month_view()
 
-    def change_month(self, delta):
+    def _change_month(self, delta):
         month_view = self.main_view.get_month_view()
-        sign = int(math.copysign(1, delta))
+        direction = int(math.copysign(1, delta))
 
         for _ in range(abs(delta)):
-            before = month_view.currentMonth.datetime
+            before = self.main_view.to_local_date(
+                month_view.currentMonth.datetime)
 
             #prevent timing issues with swiping
-            old_month = month_view.currentMonth.datetime
-            self.main_view.swipe_view(sign, month_view)
-            self.assertThat(lambda: month_view.currentMonth.datetime,
+            old_month = self.main_view.to_local_date(
+                month_view.currentMonth.datetime)
+
+            self.main_view.swipe_view(direction, month_view)
+
+            month_after = self.main_view.to_local_date(
+                month_view.currentMonth.datetime)
+
+            self.assertThat(lambda: month_after,
                             Eventually(NotEquals(old_month)))
 
-            after = before + relativedelta(months=sign)
+            after = before + relativedelta(months=direction)
 
             self.assertThat(lambda:
-                            self.month_view.currentMonth.datetime.month,
+                            month_after.month,
                             Eventually(Equals(after.month)))
             self.assertThat(lambda:
-                            self.month_view.currentMonth.datetime.year,
+                            month_after.year,
                             Eventually(Equals(after.year)))
 
     def _assert_today(self):
-        today = datetime.today()
-        self.assertThat(lambda: self.month_view.currentMonth.datetime.day,
+        local = self.main_view.to_local_date(
+            self.month_view.currentMonth.datetime)
+        today = datetime.now()
+
+        self.assertThat(lambda: local.day,
                         Eventually(Equals(today.day)))
-        self.assertThat(lambda: self.month_view.currentMonth.datetime.month,
+        self.assertThat(lambda: local.month,
                         Eventually(Equals(today.month)))
-        self.assertThat(lambda: self.month_view.currentMonth.datetime.year,
+        self.assertThat(lambda: local.year,
                         Eventually(Equals(today.year)))
 
-    def _test_go_to_today(self, delta):
+    def _go_to_today(self, delta):
         self._assert_today()
-        self.change_month(delta)
-        self.main_view.open_toolbar().click_button("todaybutton")
+
+        self._change_month(delta)
+        header = self.main_view.get_header()
+        header.click_action_button('todaybutton')
+
         self._assert_today()
 
     def test_monthview_go_to_today_next_month(self):
-        self._test_go_to_today(1)
+        self._go_to_today(1)
 
     def test_monthview_go_to_today_prev_month(self):
-        self._test_go_to_today(-1)
+        self._go_to_today(-1)
 
     def test_monthview_go_to_today_next_year(self):
-        self._test_go_to_today(12)
+        self._go_to_today(12)
 
     def test_monthview_go_to_today_prev_year(self):
-        self._test_go_to_today(-12)
+        self._go_to_today(-12)

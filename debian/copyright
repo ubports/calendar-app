@@ -3,7 +3,8 @@ Upstream-Name: calendar-app
 Source: https://launchpad.net/ubuntu-calendar-app
 
 Files: *
-Copyright: 2013 Canonical Ltd.
+Copyright: 2014 Canonical Ltd.
+           2014 Bartosz Kosiorek <gang65@poczta.onet.pl>
            2013 Carla Sella <carla.sella@gmail.com>
            2013 Frank Mertens <frank@cyblogic.de>
            2013 Kunal Parmar <pkunal.parmar@gmail.com>
@@ -13,7 +14,7 @@ Copyright: 2013 Canonical Ltd.
 License: GPL-3
 
 Files: debian/*
-Copyright: 2013 Canonical Ltd.
+Copyright: 2014 Canonical Ltd.
 License: LGPL-3
 
 License: GPL-3

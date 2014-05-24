@@ -16,7 +16,7 @@ Rectangle{
 
     height: units.gu(6)
     width: parent.width
-    color: "#105040"
+    color: "#C8C8C8"
 
     function getAllDayEvents(startDate, endDate) {
         var map = {};
@@ -71,7 +71,7 @@ Rectangle{
                             if( allDayLabel.events.length > 1 ) {
                                 PopupUtils.open(popoverComponent, root,{"events": allDayLabel.events})
                             } else {
-                                pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayLabel.events[0],"model": model});
+                                pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayLabel.events[0],"model": root.model});
                             }
                         }
                     }
@@ -138,7 +138,7 @@ Rectangle{
                         anchors.fill: parent
                         onClicked: {
                             popover.hide();
-                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":modelData,"model": model});
+                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":modelData,"model": root.model});
                         }
                     }
                 }

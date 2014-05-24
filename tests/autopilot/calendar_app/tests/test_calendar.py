@@ -20,7 +20,7 @@ from calendar_app.tests import CalendarTestCase
 
 class TestMainView(CalendarTestCase):
 
-    def scroll_time_picker_to_time(self, picker, hours, minutes):
+    def _scroll_time_picker_to_time(self, picker, hours, minutes):
         # Scroll hours to selected value
         scroller = picker.select_single("Scroller", objectName="hourScroller")
         x = int(scroller.globalRect[0] + scroller.globalRect[2] / 2)
@@ -48,11 +48,13 @@ class TestMainView(CalendarTestCase):
         """test add new event """
         #go to today
         self.main_view.switch_to_tab("dayTab")
-        self.main_view.open_toolbar().click_button("todaybutton")
+        header = self.main_view.get_header()
+        header.click_action_button('todaybutton')
         num_events = self.main_view.get_num_events()
 
         #click on new event button
-        self.main_view.open_toolbar().click_button("neweventbutton")
+        header = self.main_view.get_header()
+        header.click_action_button('neweventbutton')
         self.assertThat(self.main_view.get_new_event,
                         Eventually(Not(Is(None))))
 
@@ -68,7 +70,7 @@ class TestMainView(CalendarTestCase):
         start_time_field = self.main_view.get_event_start_time_field()
         self.pointing_device.click_object(start_time_field)
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 12, 28)
+        self._scroll_time_picker_to_time(picker, 12, 28)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
 
@@ -76,7 +78,7 @@ class TestMainView(CalendarTestCase):
         end_time_field = self.main_view.get_event_end_time_field()
         self.pointing_device.click_object(end_time_field)
         picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 13, 38)
+        self._scroll_time_picker_to_time(picker, 13, 38)
         ok = picker.select_single("Button", objectName="TimePickerOKButton")
         self.pointing_device.click_object(ok)
 
@@ -88,10 +90,12 @@ class TestMainView(CalendarTestCase):
         self.assertThat(location_field.text, Eventually(Equals("My location")))
 
         #click save button
-        self.main_view.open_toolbar().click_button("eventSaveButton")
+        save_button = self.main_view.get_new_event_save_button()
+        self.pointing_device.click_object(save_button)
 
         #verify that the event has been created in timeline
-        self.main_view.open_toolbar().click_button("todaybutton")
+        header = self.main_view.get_header()
+        header.click_action_button('todaybutton')
         self.main_view.switch_to_tab("dayTab")
         self.assertThat(self.main_view.get_num_events,
                         Eventually(NotEquals(num_events)))

@@ -1,17 +1,12 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
-import QtQuick.Window 2.0
 
 import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
-
-    // Work-around until this branch lands:
-    // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496 
-    property bool windowActive: typeof window != 'undefined'
-    onWindowActiveChanged: window.title = i18n.tr("Calendar")
+    useDeprecatedToolbar: false
 
     // Argument during startup
     Arguments {
@@ -61,9 +56,9 @@ MainView {
     focus: true
     Keys.forwardTo: [pageStack.currentPage]
 
-    headerColor: "#266249"
-    backgroundColor: "#478158"
-    footerColor: "#478158"
+    headerColor: "#E8E8E8"
+    backgroundColor: "#f5f5f5"
+    footerColor: "#ECECEC"
     anchorToKeyboard: true
 
     PageStack {
@@ -97,6 +92,8 @@ MainView {
             property bool newevent: false;
             property int starttime: -1;
             property int endtime: -1;
+
+            selectedTabIndex: monthTab.index
 
             function newEvent() {
                 var startDate = new Date();
@@ -195,22 +192,26 @@ MainView {
                 id: commonToolBar
 
                 ToolbarButton {
-                    objectName: "todaybutton"
                     action: Action {
                         iconSource: Qt.resolvedUrl("calendar-today.svg");
                         text: i18n.tr("Today");
+                        objectName: "todaybutton"
                         onTriggered: {
                             tabs.currentDay = (new Date()).midnight();
                             if(yearViewLoader.item ) yearViewLoader.item.currentYear = tabs.currentDay.getFullYear();
                             if(monthViewLoader.item ) monthViewLoader.item.currentMonth = tabs.currentDay.midnight();
                             if(weekViewLoader.item ) weekViewLoader.item.dayStart = tabs.currentDay;
                             if(dayViewLoader.item ) dayViewLoader.item.currentDay = tabs.currentDay;
+                            if(agendaViewLoader.item ) {
+                                agendaViewLoader.item.currentDay = tabs.currentDay;
+                                agendaViewLoader.item.goToBeginning();
+                            }
                         }
                     }
                 }
                 ToolbarButton {
-                    objectName: "neweventbutton"
                     action: Action {
+                        objectName: "neweventbutton"
                         iconSource: Qt.resolvedUrl("new-event.svg");
                         text: i18n.tr("New Event");
                         onTriggered: {
@@ -365,6 +366,28 @@ MainView {
                         onCurrentDayChanged: {
                             tabs.currentDay = dayViewLoader.item.currentDay;
                         }
+                    }
+                }
+            }
+
+            Tab {
+                id: agendaTab
+                objectName: "agendaTab"
+                title: i18n.tr("Agenda")
+                page: Loader {
+                    id: agendaViewLoader
+                    objectName: "agendaViewLoader"
+                    source: tabs.selectedTab == agendaTab ? Qt.resolvedUrl("AgendaView.qml"):""
+
+                    onLoaded: {
+                        item.tools = Qt.binding(function() { return commonToolBar })
+                        item.currentDay = tabs.currentDay;
+                    }
+
+                    anchors{
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
                     }
                 }
             }

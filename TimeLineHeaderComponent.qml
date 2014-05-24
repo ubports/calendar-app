@@ -32,9 +32,9 @@ Row{
 
             dateColor: {
                 if( type == ViewType.ViewTypeWeek && date.isSameDay(DateExt.today())){
-                    "white"
-                } else if( type == ViewType.ViewTypeDay && root.isCurrentItem ) {
-                    "white"
+                    "#5D5D5D"
+                } else if( type == ViewType.ViewTypeDay && header.isCurrentItem ) {
+                    "#5D5D5D"
                 } else {
                     "#AEA79F"
                 }

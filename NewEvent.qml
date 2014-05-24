@@ -4,13 +4,14 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Themes.Ambiance 0.1
+import Ubuntu.Components.Pickers 0.1
 import QtOrganizer 5.0
 
 import "Defines.js" as Defines
 
 Page {
     id: root
-    property var date: new Date();
+    property var date : new Date();
 
     property var event:null;
     property var model;
@@ -23,17 +24,17 @@ Page {
     property bool isEdit: false
 
     Component.onCompleted: {
-
-        pageStack.header.visible = true;
-
         // If startDate is setted by argument we have to not change it
+        //Set the nearest current time.
+        var newDate = new Date();
+        date.setHours(newDate.getHours(), newDate.getMinutes());
         if (typeof(startDate) === 'undefined')
-            startDate = new Date(date)
+            startDate = new Date(root.roundDate(date))
 
         // If endDate is setted by argument we have to not change it
         if (typeof(endDate) === 'undefined') {
-            endDate = new Date(date)
-            endDate.setMinutes( endDate.getMinutes() + 30)
+            endDate = new Date(root.roundDate(date))
+            endDate.setMinutes(endDate.getMinutes() + 30)
         }
 
         if(event === null){
@@ -49,9 +50,6 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        startDate = new Date(date)
-        endDate = new Date(date)
-        endDate.setMinutes( endDate.getMinutes() + 30)
 
         startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
         endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
@@ -67,26 +65,48 @@ Page {
         if(e.displayLabel) {
             titleEdit.text = e.displayLabel;
         }
+
         if(e.location) {
             locationEdit.text = e.location;
         }
+
         if( e.description ) {
             messageEdit.text = e.description;
         }
-        if(e.attendees){
-            for( var j = 0 ; j < e.attendees.length ; ++j ) {
-                personEdit.text += e.attendees[j].name;
-                if(j!== e.attendees.length-1)
-                    personEdit.text += ",";
+        if( e.itemType === Type.Event ) {
+            if(e.attendees){
+                for( var j = 0 ; j < e.attendees.length ; ++j ) {
+                    personEdit.text += e.attendees[j].name;
+                    if(j!== e.attendees.length-1)
+                        personEdit.text += ",";
+                }
             }
-        }
 
-        var index = 0;
-        if(e.recurrence ) {
-            var recurrenceRule = e.recurrence.recurrenceRules;
-            index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+            var index = 0;
+            if(e.recurrence ) {
+                var recurrenceRule = e.recurrence.recurrenceRules;
+                index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
+                if(index > 0 ){
+                    limit.visible = true;
+                    if(recurrenceRule[0].limit !== undefined){
+                        var temp = recurrenceRule[0].limit;
+                        if(parseInt(temp)){
+                            limitOptions.selectedIndex = 1;
+                            limitCount.text = temp;
+                        }
+                        else{
+                            limitOptions.selectedIndex = 2;
+                            datePick.date= temp;
+                        }
+                    }
+                    else{
+                        // If limit is infinite
+                        limitOptions.selectedIndex = 0;
+                    }
+                }
+            }
+            recurrenceOption.selectedIndex = index;
         }
-        recurrenceOption.selectedIndex = index;
 
         index = 0;
         var reminder = e.detail( Detail.VisualReminder);
@@ -110,22 +130,34 @@ Page {
             event.description = messageEdit.text;
             event.location = locationEdit.text
 
-            event.attendees = []; // if Edit remove all attendes & add them again if any
-            if( personEdit.text != "") {
-                var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
-                attendee.name = personEdit.text;
-                event.setDetail(attendee);
-            }
-
             event.allDay = allDayEventCheckbox.checked;
 
-            var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
-            if( recurrenceRule !== RecurrenceRule.Invalid ) {
-                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
-                rule.frequency = recurrenceRule;
-                event.recurrence.recurrenceRules = [rule];
-            }
 
+            if( event.itemType === Type.Event ) {
+                event.attendees = []; // if Edit remove all attendes & add them again if any
+                if( personEdit.text != "") {
+                    var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
+                    attendee.name = personEdit.text;
+                    event.setDetail(attendee);
+                }
+
+                var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
+                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
+                if( recurrenceRule !== RecurrenceRule.Invalid ) {
+
+                    rule.frequency = recurrenceRule;
+                    if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
+                        rule.limit =  parseInt(limitCount.text);
+                    }
+                    else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
+                        rule.limit =  datePick.date;
+                    }
+                    else{
+                        rule.limit = undefined;
+                    }
+                }
+            }
+            event.recurrence.recurrenceRules = [rule];
             //remove old reminder value
             var oldVisualReminder = event.detail(Detail.VisualReminder);
             if(oldVisualReminder) {
@@ -157,19 +189,13 @@ Page {
             pageStack.pop();
         }
     }
-
-    // Calucate default hour for start and end time on event
-    function hourForPickerFromDate(date) {
-        if(date.getMinutes() < 30)
-            return date.getHours()
-        return date.getHours() + 1
-    }
-
-    // Calucate default minute for start and end time on event
-    function minuteForPickerFromDate(date) {
-        if(date.getMinutes() < 30)
-            return 30
-        return 0
+    // Calucate default hour and minute for start and end time on event
+    function roundDate(date) {
+        var tempDate = new Date(date)
+        if(tempDate.getMinutes() < 30)
+            return tempDate.setMinutes(30)
+        tempDate.setMinutes(0)
+        return tempDate.setHours(tempDate.getHours() + 1)
     }
 
     width: parent.width
@@ -181,33 +207,10 @@ Page {
         pageStack.pop();
     }
 
+    // we use a custom toolbar in this view
     tools: ToolbarItems {
-        //keeping toolbar always open
-        opened: true
         locked: true
-
-        //FIXME: set the icons for toolbar buttons
-        back: ToolbarButton {
-            objectName: "eventCancelButton"
-            action: Action {
-                text: i18n.tr("Cancel");
-                iconSource: Qt.resolvedUrl("cancel.svg");
-                onTriggered: {
-                    pageStack.pop();
-                }
-            }
-        }
-
-        ToolbarButton {
-            objectName: "eventSaveButton"
-            action: Action {
-                text: i18n.tr("Save");
-                iconSource: Qt.resolvedUrl("save.svg");
-                onTriggered: {
-                    saveToQtPim();
-                }
-            }
-        }
+        opened: false
     }
 
     Component{
@@ -228,12 +231,51 @@ Page {
         }
     }
 
+    Rectangle {
+        id: availableArea
+
+        width: parent.width
+        color: "red"
+        opacity: 0.5
+        z: 100
+    }
+
+
     Flickable{
         id: flickable
+
+        property var activeItem: null
+
+        function makeMeVisible(item) {
+            if (!item) {
+                return
+            }
+
+            activeItem = item
+            var position = flickable.contentItem.mapFromItem(item, 0, 0);
+
+            // check if the item is already visible
+            var bottomY = flickable.contentY + flickable.height
+            var itemBottom = position.y + item.height
+            if (position.y >= flickable.contentY && itemBottom <= bottomY) {
+                return;
+            }
+
+            // if it is not, try to scroll and make it visible
+            var targetY = position.y + item.height - flickable.height
+            if (targetY >= 0 && position.y) {
+                flickable.contentY = targetY;
+            } else if (position.y < flickable.contentY) {
+                // if it is hidden at the top, also show it
+                flickable.contentY = position.y;
+            }
+            flickable.returnToBounds()
+        }
+
         anchors {
             top: parent.top
             topMargin: units.gu(2)
-            bottom: parent.bottom
+            bottom: toolbar.top
             left: parent.left
             right: parent.right
             leftMargin: units.gu(2)
@@ -286,7 +328,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(startDate),"minute":root.minuteForPickerFromDate(startDate)});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startDate.getHours(),"minute":startDate.getMinutes()});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = startDate;
                                     newDate.setHours(startHour, startMinute);
@@ -311,7 +353,7 @@ Page {
                             anchors.fill: parent
                             onClicked: {
                                 internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": root.hourForPickerFromDate(endDate),"minute":root.minuteForPickerFromDate(endDate)});
+                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endDate.getHours(),"minute":endDate.getMinutes()});
                                 popupObj.accepted.connect(function(startHour, startMinute) {
                                     var newDate = endDate;
                                     newDate.setHours(startHour, startMinute);
@@ -352,26 +394,24 @@ Page {
                 objectName: "newEventName"
             }
 
-            UbuntuShape{
-                width:parent.width
-                height: descriptionColumn.height
+            Column{
+                id: descriptionColumn
+                width: parent.width
+                spacing: units.gu(1)
 
-                Column{
-                    id: descriptionColumn
+                Label {
+                    text: i18n.tr("Description")
+                    anchors.margins: units.gu(0.5)
+                    anchors.left: parent.left
+                }
+
+                TextArea{
+                    id: messageEdit
                     width: parent.width
-                    anchors.top: parent.top
-                    anchors.topMargin: units.gu(0.5)
-                    spacing: units.gu(1)
-
-                    Label {
-                        text: i18n.tr("Description")
-                        anchors.margins: units.gu(0.5)
-                        anchors.left: parent.left
-                    }
-
-                    TextArea{
-                        id: messageEdit
-                        width: parent.width
+                    color: focus ? "#2C001E" : "#5D5D5D"
+                    // default style
+                    font {
+                        pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
                     }
                 }
             }
@@ -388,11 +428,13 @@ Page {
                 width: parent.width
                 title: i18n.tr("Guests")
                 objectName: "eventPeopleInput"
+                visible: event.itemType === Type.Event
             }
 
             Item {
                 width: parent.width
                 height: recurrenceOption.height
+                visible: event.itemType === Type.Event
                 Label{
                     id: frequencyLabel
                     text: i18n.tr("This happens");
@@ -406,7 +448,51 @@ Page {
                     containerHeight: itemHeight * 4
                 }
             }
+            Item {
+                id: limit
+                visible: recurrenceOption.selectedIndex != 0
+                width: parent.width
+                height: limitOptions.height
+                Label{
+                    id: limitLabel
+                    text: i18n.tr("Recurring event ends");
+                    anchors{
+                        left: parent.left
+                        right: limitOptions.left
+                    }
+                    wrapMode: Text.WordWrap
+                    maximumLineCount: 2
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                OptionSelector{
+                    id: limitOptions
+                    anchors.right: parent.right
+                    width: parent.width - optionSelectorWidth - units.gu(3)
+                    model: Defines.limitLabel
+                    containerHeight: itemHeight * 4
 
+                }
+            }
+            NewEventEntryField{
+                id: limitCount
+                width: parent.width
+                title: i18n.tr("Count")
+                objectName: "eventLimitCount"
+                visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
+                validator: IntValidator{bottom: 1;}
+                inputMethodHints: Qt.ImhDialableCharactersOnly
+                focus: true
+            }
+            Item {
+                id: limitDate
+                width: parent.width
+                height: datePick.height
+                visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2;
+                DatePicker{
+                    id:datePick;
+                    width: parent.width
+                }
+            }
             Item{
                 width: parent.width
                 height: reminderOption.height
@@ -423,6 +509,35 @@ Page {
                     containerHeight: itemHeight * 4
                     model: Defines.reminderLabel
                 }
+            }
+        }
+    }
+
+    EditToolbar {
+        id: toolbar
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        height: units.gu(6)
+        acceptAction: Action {
+            text: i18n.tr("Save")
+            onTriggered: saveToQtPim();
+        }
+        rejectAction: Action {
+            text: i18n.tr("Cancel")
+            onTriggered: pageStack.pop();
+        }
+    }
+
+    // used to keep the field visible when the keyboard appear or dismiss
+    KeyboardRectangle {
+        id: keyboard
+
+        onHeightChanged: {
+            if (flickable.activeItem) {
+                flickable.makeMeVisible(flickable.activeItem)
             }
         }
     }

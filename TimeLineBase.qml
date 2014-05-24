@@ -13,7 +13,18 @@ Item {
 
     property var model;
 
-    TimeSeparator{
+    MouseArea {
+        anchors.fill: parent
+        objectName: "mouseArea"
+        onPressAndHold: {
+            var selectedDate = new Date(day);
+            var hour = parseInt(mouseY / hourHeight);
+            selectedDate.setHours(hour)
+            pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
+        }
+    }
+
+    TimeSeparator {
         id: separator
         objectName: "separator"
         width:  bubbleOverLay.width
@@ -28,7 +39,7 @@ Item {
     }
 
     function showEventDetails(event) {
-        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model":model});
+        pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":model});
     }
 
     WorkerScript {
@@ -36,11 +47,11 @@ Item {
         source: "EventLayoutHelper.js"
 
         onMessage: {
-            layoutRects(messageObject.schedules,messageObject.maxDepth);
+            layoutEvents(messageObject.schedules,messageObject.maxDepth);
         }
     }
 
-    function layoutRects(array, depth) {
+    function layoutEvents(array, depth) {
         var width = bubbleOverLay.width;
         var offset = width/(depth+1);
         for(var i=0; i < array.length ; ++i) {
@@ -74,9 +85,9 @@ Item {
         var startDate = new Date(day).midnight();
         var endDate = new Date(day).endOfDay();
         var items = model.getItems(startDate,endDate);
-
-        for(var i=0 ; i < items.length; ++i) {
+        for(var i = 0; i < items.length; ++i) {
             var event = items[i];
+
             if(event.allDay) {
                 continue;
             }
@@ -98,6 +109,9 @@ Item {
 
     function destroyAllChildren() {
         for( var i = children.length - 1; i >= 0; --i ) {
+            if( children[i].objectName === "mouseArea" ) {
+                continue;
+            }
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
                 children[i].destroy();
