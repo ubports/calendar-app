@@ -24,10 +24,42 @@ Item {
     QtObject {
         id: intern
         property var now : new Date();
+        property var eventMap;
     }
 
     function showEventDetails(event) {
         pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model":model});
+    }
+
+    WorkerScript {
+        id: eventLayoutHelper
+        source: "EventLayoutHelper.js"
+
+        onMessage: {
+            layoutRects(messageObject.schedules,messageObject.maxDepth);
+        }
+    }
+
+    function layoutRects(array, depth) {
+        var width = bubbleOverLay.width;
+        var offset = width/(depth+1);
+        for(var i=0; i < array.length ; ++i) {
+            var schedule = array[i];
+            var x = (schedule.depth) * offset
+            var w = width - x;
+            var event = intern.eventMap[schedule.id];
+            bubbleOverLay.createEvent(event , x, w);
+        }
+    }
+
+    function getMinutes(time) {
+        return time.getHours() * 60 + time.getMinutes();
+    }
+
+    function getDuration(event) {
+        var start = getMinutes(event.startDateTime);
+        var end = getMinutes(event.endDateTime);
+        return end - start;
     }
 
     function createEvents() {
@@ -37,43 +69,31 @@ Item {
         destroyAllChildren();
 
         var eventMap = {};
+        var allSchs = [];
+
         var startDate = new Date(day).midnight();
         var endDate = new Date(day).endOfDay();
         var items = model.getItems(startDate,endDate);
 
-        for(var i = 0 ; i < items.length ; ++i) {
+        for(var i=0 ; i < items.length; ++i) {
             var event = items[i];
-            if(event.allDay === false
-                    && !eventMap[event.itemId]) {
-
-                var subItems = getItems(event.startDateTime,event.endDateTime);
-
-                for(var j=0; j < subItems.length ; ++j){
-                    var subEvent = subItems[j];
-                    eventMap[subEvent.itemId] = true;
-                    var width = bubbleOverLay.width/subItems.length;
-                    var x = j * width;
-                    bubbleOverLay.createEvent(subEvent,subEvent.startDateTime.getHours(), x, width);
-                }
+            if(event.allDay) {
+                continue;
             }
+
+            var start = getMinutes(event.startDateTime);
+            var duration = getDuration(event);
+            var schedule = {"start": start, "duration": duration,"id":event.itemId, "depth":0};
+            allSchs.push(schedule);
+            eventMap[event.itemId] = event;
         }
+
+        intern.eventMap = eventMap;
+        eventLayoutHelper.sendMessage(allSchs);
 
         if( intern.now.isSameDay( bubbleOverLay.day ) ) {
             bubbleOverLay.showSeparator(intern.now.getHours());
         }
-    }
-
-    function getItems(start, end){
-        var retItems = [];
-        var items = model.getItems(start, end);
-        for(var i = 0; i < items.length ; ++i){
-            var event = items[i];
-            if( event.allDay === false
-                && event.startDateTime.getHours() === start.getHours() ) {
-                retItems.push(event);
-            }
-        }
-        return retItems;
     }
 
     function destroyAllChildren() {
@@ -85,10 +105,9 @@ Item {
         }
     }
 
-    function createEvent( event ,hour,x, width) {
+    function createEvent( event, x, width ) {
+        var hour = event.startDateTime.getHours();
         var eventBubble = delegate.createObject(bubbleOverLay);
-
-        eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
 
         var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
         eventBubble.y = yPos;
@@ -100,8 +119,8 @@ Item {
 
         eventBubble.x = x;
         eventBubble.width = width;
-
         eventBubble.event = event
+        eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
     }
 
     function showSeparator(hour) {

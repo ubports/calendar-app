@@ -20,6 +20,7 @@ Item{
         id: bg
         anchors.fill: parent
         color: "white"
+        gradientColor: "lightsteelblue"
     }
 
     onEventChanged: {
