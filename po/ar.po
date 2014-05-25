@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-03-10 19:02-0500\n"
-"PO-Revision-Date: 2014-05-22 08:58+0000\n"
+"PO-Revision-Date: 2014-05-24 11:40+0000\n"
 "Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-23 09:08+0000\n"
+"X-Launchpad-Export-Date: 2014-05-25 06:09+0000\n"
 "X-Generator: Launchpad (build 17017)\n"
 
 #: ../AllDayEventComponent.qml:101
@@ -58,7 +58,7 @@ msgstr "النهاية"
 
 #: ../EventDetails.qml:153 ../NewEvent.qml:316
 msgid "All Day event:"
-msgstr ""
+msgstr "الحدث يستمر طوال اليوم:"
 
 #: ../EventDetails.qml:183 ../NewEvent.qml:365
 msgid "Location"
@@ -70,7 +70,7 @@ msgstr "الضيوف"
 
 #: ../EventDetails.qml:238 ../NewEvent.qml:381
 msgid "This happens"
-msgstr ""
+msgstr "الحدوث"
 
 #: ../EventDetails.qml:244 ../NewEvent.qml:398
 msgid "Remind me"
@@ -78,7 +78,7 @@ msgstr "ذكّرني"
 
 #: ../NewEvent.qml:106
 msgid "End time can't be before start time"
-msgstr "وقت الانتهاء لا يمكن أن يكون قبل وقت البدء"
+msgstr "وقت النهاية لا يمكن أن يكون قبل وقت البداية"
 
 #: ../NewEvent.qml:165
 msgid "Edit Event"
