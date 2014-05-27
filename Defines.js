@@ -5,23 +5,24 @@
 var reminderLabel = getReminderLabels();
 //value in seconds
 var reminderValue = [ 0,
-    300 /*5 * 60*/,
-    900 /*15* 60*/,
-    1800 /*30* 60*/,
-    3600 /*1*60*60*/,
-    7200 /*2*60*60*/,
-    86400 /*24*60*60*/,
-    172800 /*2*24*60*60*/,
-    604800 /*7*24*60*60*/,
-    1209600 /*14*24*60*60*/];
+                     300 /*5 * 60*/,
+                     900 /*15* 60*/,
+                     1800 /*30* 60*/,
+                     3600 /*1*60*60*/,
+                     7200 /*2*60*60*/,
+                     86400 /*24*60*60*/,
+                     172800 /*2*24*60*60*/,
+                     604800 /*7*24*60*60*/,
+                     1209600 /*14*24*60*60*/];
 
 var recurrenceLabel = getRecurrenceLabels();
 var limitLabel = getLimitLabels();
+var weekLabel = getWeekLabels();
 var recurrenceValue = [ QtPim.RecurrenceRule.Invalid,
-    QtPim.RecurrenceRule.Daily,
-    QtPim.RecurrenceRule.Weekly,
-    QtPim.RecurrenceRule.Monthly,
-    QtPim.RecurrenceRule.Yearly];
+                       QtPim.RecurrenceRule.Daily,
+                       QtPim.RecurrenceRule.Weekly,
+                       QtPim.RecurrenceRule.Monthly,
+                       QtPim.RecurrenceRule.Yearly];
 
 function getReminderLabels() {
     var object = Qt.createQmlObject('\
@@ -61,4 +62,18 @@ function getLimitLabels(){
             property var limitLabel:[i18n.tr("Never"),i18n.tr("After X Occurrence"),\
                 i18n.tr("After Date")];}', Qt.application, 'LimitLabelObj');
     return object.limitLabel;
+}
+function getWeekLabels(){
+    var object = Qt.createQmlObject('\
+        import QtQuick 2.0;\
+        import Ubuntu.Components 0.1;\
+        QtObject {\
+            property var weekLabel:[i18n.tr("Su"),\
+                                     i18n.tr("Mo"),\
+                                     i18n.tr("Tu"),\
+                                     i18n.tr("We"),\
+                                    i18n.tr("Th"),\
+                                    i18n.tr("Fr"),\
+                                    i18n.tr("Sa")];}', Qt.application, 'weekLabelObj');
+    return object.weekLabel;
 }

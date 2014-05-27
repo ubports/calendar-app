@@ -55,6 +55,15 @@ Page {
                 }
 
                 index =  recurrenceRule[0].frequency ;
+                if(index === 2 ){
+                    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+                    var val = i18n.tr("Every ")
+                    for(var j=0;j<recurrenceRule[0].daysOfWeek.length>0;++j){
+                        val += i18n.tr(days[recurrenceRule[0].daysOfWeek[j]]) + " ,"
+                    }
+                    weekDaysHeader.value = val.slice(0,-1) // Trim last comma from the string
+                    weekDaysHeader.visible = true;
+                }
             }
             else{
                 limitHeader.visible = false
@@ -298,7 +307,7 @@ Page {
                 color: detailColor
             }
 
-            //map control with location
+            //map contweelDaysHeaderrol with location
             Rectangle{
                 id: mapContainer
                 width:parent.width
@@ -346,7 +355,7 @@ Page {
 
             //Guest Entries ends
             ThinDivider{}
-            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth,limitHeader.headerWidth) //Dynamic Height
+            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth,weekDaysHeader.headerWidth,limitHeader.headerWidth) //Dynamic Height
             EventDetailsInfo{
                 id: recurrentHeader
                 xMargin: column.recurranceAreaMaxWidth
@@ -358,10 +367,17 @@ Page {
                 header: i18n.tr("Remind me")
             }
             EventDetailsInfo{
+                id: weekDaysHeader
+                xMargin: column.recurranceAreaMaxWidth
+                header: i18n.tr("Repeats On");
+                visible: false
+            }
+            EventDetailsInfo{
                 id: limitHeader
                 xMargin: column.recurranceAreaMaxWidth
                 header: i18n.tr("Repetition Ends")
             }
+
         }
     }
 }

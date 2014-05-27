@@ -22,6 +22,7 @@ Page {
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
+    property var weekDays : [];
 
     Component.onCompleted: {
         // If startDate is setted by argument we have to not change it
@@ -44,6 +45,7 @@ Page {
         else{
             isEdit = true;
             editEvent(event);
+
         }
     }
 
@@ -103,6 +105,12 @@ Page {
                         // If limit is infinite
                         limitOptions.selectedIndex = 0;
                     }
+                    if(recurrenceRule[0].daysOfWeek.length>0 && index === 2){
+                        for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
+                            //Start childern after first element.
+                            weeksRow.children[recurrenceRule[0].daysOfWeek[j]+1].checked = true;
+                        }
+                    }
                 }
             }
             recurrenceOption.selectedIndex = index;
@@ -144,8 +152,10 @@ Page {
                 var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 if( recurrenceRule !== RecurrenceRule.Invalid ) {
-
                     rule.frequency = recurrenceRule;
+                    if(recurrenceOption.selectedIndex == 2){
+                        rule.daysOfWeek = weekDays.sort();
+                    }
                     if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
                         rule.limit =  parseInt(limitCount.text);
                     }
@@ -453,6 +463,40 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model: Defines.recurrenceLabel
                     containerHeight: itemHeight * 4
+                }
+            }
+
+            Row {
+                id:weeksRow
+                width: parent.width
+                spacing: units.gu(2.5)
+                anchors.margins: units.gu(1)
+                visible: recurrenceOption.selectedIndex == 2
+                Label {
+                    text: i18n.tr("Repeats On:")
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                Repeater{
+                    model: Defines.weekLabel
+                    width: parent.width
+                    anchors.leftMargin:units.gu(3)
+                    CheckBox {
+                        id: weekCheck
+                        anchors.verticalCenter: parent.verticalCenter
+                        onCheckedChanged: {
+                            (checked) ? weekDays.push(index) : weekDays.splice(weekDays.indexOf(index),1);
+                                console.log("changing data " + weekDays)
+                        }
+                        checked: {
+                            (weekDays.length == 0 && index === date.getDay() && isEdit== false) ? true : false;
+                        }
+                        Label{
+                            id:lbl
+                            text:modelData
+                            anchors.centerIn: parent
+                            width: parent.width + units.gu(4)
+                        }
+                    }
                 }
             }
             Item {
