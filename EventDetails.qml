@@ -308,7 +308,7 @@ Page {
                 color: detailColor
             }
 
-            //map contweelDaysHeaderrol with location
+            //map control with location
             Rectangle{
                 id: mapContainer
                 width:parent.width

@@ -485,7 +485,6 @@ Page {
                         anchors.verticalCenter: parent.verticalCenter
                         onCheckedChanged: {
                             (checked) ? weekDays.push(index) : weekDays.splice(weekDays.indexOf(index),1);
-                                console.log("changing data " + weekDays)
                         }
                         checked: {
                             (weekDays.length == 0 && index === date.getDay() && isEdit== false) ? true : false;
