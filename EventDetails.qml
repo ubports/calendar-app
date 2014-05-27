@@ -265,6 +265,7 @@ Page {
                 width: parent.width
                 spacing: units.gu(1)
                 anchors.margins: units.gu(0.5)
+                visible: allDayEventCheckbox.checked
 
                 Label {
                     text: i18n.tr("All Day event:")
