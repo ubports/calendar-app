@@ -68,12 +68,12 @@ function getWeekLabels(){
         import QtQuick 2.0;\
         import Ubuntu.Components 0.1;\
         QtObject {\
-            property var weekLabel:[i18n.tr("Su"),\
-                                     i18n.tr("Mo"),\
-                                     i18n.tr("Tu"),\
-                                     i18n.tr("We"),\
-                                    i18n.tr("Th"),\
-                                    i18n.tr("Fr"),\
-                                    i18n.tr("Sa")];}', Qt.application, 'weekLabelObj');
+            property var weekLabel:["Su",\
+                                     "Mo",\
+                                     "Tu",\
+                                     "We",\
+                                    "Th",\
+                                    "Fr",\
+                                    "Sa"];}', Qt.application, 'weekLabelObj');
     return object.weekLabel;
 }

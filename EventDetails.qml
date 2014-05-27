@@ -59,7 +59,7 @@ Page {
                     var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
                     var val = i18n.tr("Every ")
                     for(var j=0;j<recurrenceRule[0].daysOfWeek.length>0;++j){
-                        val += i18n.tr(days[recurrenceRule[0].daysOfWeek[j]]) + " ,"
+                        val += days[recurrenceRule[0].daysOfWeek[j]] + " ,"
                     }
                     weekDaysHeader.value = val.slice(0,-1) // Trim last comma from the string
                     weekDaysHeader.visible = true;
