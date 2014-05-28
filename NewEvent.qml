@@ -471,7 +471,7 @@ Page {
                 width: parent.width
                 spacing: units.gu(2.5)
                 anchors.margins: units.gu(1)
-                visible: recurrenceOption.selectedIndex == 2
+                //visible: recurrenceOption.selectedIndex == 2
                 Label {
                     text: i18n.tr("Repeats On:")
                     anchors.verticalCenter: parent.verticalCenter
@@ -493,7 +493,7 @@ Page {
                             id:lbl
                             text:modelData
                             anchors.centerIn: parent
-                            width: parent.width + units.gu(4)
+                            width: parent.width + units.gu(5)
                         }
                     }
                 }
