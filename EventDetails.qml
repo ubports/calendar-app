@@ -56,13 +56,12 @@ Page {
 
                 index =  recurrenceRule[0].frequency ;
                 if(index === 2 ){
-                    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
                     var val = i18n.tr("Every ")
                     for(var j=0;j<recurrenceRule[0].daysOfWeek.length>0;++j){
-                        val += days[recurrenceRule[0].daysOfWeek[j]] + " ,"
+                        val += Qt.locale().dayName(recurrenceRule[0].daysOfWeek[j],Locale.LongFormat) + " ,"
                     }
                     weekDaysHeader.value = val.slice(0,-1) // Trim last comma from the string
-                    weekDaysHeader.visible = true;
+                    weekDaysHeader.visible = true;                    
                 }
             }
             else{

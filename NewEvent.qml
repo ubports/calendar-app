@@ -149,7 +149,7 @@ Page {
                     event.setDetail(attendee);
                 }
 
-                var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
+                var recurrenceRule = Defines.recurrenceValue[recurrenceOption.selectedIndex];
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 if( recurrenceRule !== RecurrenceRule.Invalid ) {
                     rule.frequency = recurrenceRule;
@@ -469,7 +469,7 @@ Page {
             Row {
                 id:weeksRow
                 width: parent.width
-                spacing: units.gu(2.5)
+                spacing: units.gu(4)
                 anchors.margins: units.gu(1)
                 visible: recurrenceOption.selectedIndex == 2
                 Label {
@@ -479,7 +479,6 @@ Page {
                 Repeater{
                     model: Defines.weekLabel
                     width: parent.width
-                    anchors.leftMargin:units.gu(3)
                     CheckBox {
                         id: weekCheck
                         anchors.verticalCenter: parent.verticalCenter
@@ -493,7 +492,7 @@ Page {
                             id:lbl
                             text:modelData
                             anchors.centerIn: parent
-                            width: parent.width + units.gu(5)
+                            width: parent.width + units.gu(7)
                         }
                     }
                 }
