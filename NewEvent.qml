@@ -404,31 +404,24 @@ Page {
                 objectName: "newEventName"
             }
 
-            UbuntuShape{
-                width:parent.width
-                height: descriptionColumn.height
+            Column{
+                id: descriptionColumn
+                width: parent.width
+                spacing: units.gu(1)
 
-                Column{
-                    id: descriptionColumn
+                Label {
+                    text: i18n.tr("Description")
+                    anchors.margins: units.gu(0.5)
+                    anchors.left: parent.left
+                }
+
+                TextArea{
+                    id: messageEdit
                     width: parent.width
-                    anchors.top: parent.top
-                    anchors.topMargin: units.gu(0.5)
-                    spacing: units.gu(1)
-
-                    Label {
-                        text: i18n.tr("Description")
-                        anchors.margins: units.gu(0.5)
-                        anchors.left: parent.left
-                    }
-
-                    TextArea{
-                        id: messageEdit
-                        width: parent.width
-                        color: focus ? "#2C001E" : "#5D5D5D"
-                        // default style
-                        font {
-                            pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
-                        }
+                    color: focus ? "#2C001E" : "#5D5D5D"
+                    // default style
+                    font {
+                        pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
                     }
                 }
             }

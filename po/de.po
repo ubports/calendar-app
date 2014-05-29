@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-22 21:21+0530\n"
-"PO-Revision-Date: 2014-05-20 13:52+0000\n"
-"Last-Translator: Michael Hahn <michaelr.hahn97@gmail.com>\n"
+"PO-Revision-Date: 2014-05-27 14:02+0000\n"
+"Last-Translator: Phillip Sz <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-26 06:31+0000\n"
+"X-Launchpad-Export-Date: 2014-05-28 05:51+0000\n"
 "X-Generator: Launchpad (build 17017)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
-msgstr ""
+msgstr "Es sind keine anstehenden Termine vorhanden"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -56,7 +56,7 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
-msgstr ""
+msgstr "Termin löschen"
 
 #: ../DeleteConfirmationDialog.qml:21
 msgid "Delete series"
@@ -64,7 +64,7 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete this"
-msgstr ""
+msgstr "Dieses löschen"
 
 #: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:156
 msgid "Delete"
@@ -85,15 +85,15 @@ msgstr ""
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr ""
+msgstr "Dieses bearbeiten"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "Erledigt"
 
 #: ../EventDetails.qml:89
 msgid "Not specified"
-msgstr ""
+msgstr "Nicht angegeben"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
