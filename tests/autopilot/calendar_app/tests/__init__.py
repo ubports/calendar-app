@@ -78,7 +78,7 @@ class CalendarTestCase(AutopilotTestCase):
         # Unset the current locale to ensure locale-specific data
         # (day and month names, first day of the week, …) doesn’t get
         # in the way of test expectations.
-        self.patch_environment('LC_ALL', 'C')
+        self.useFixture(fixtures.EnvironmentVariable('LC_ALL', newvalue='C'))
 
         self.app = launcher()
 
@@ -120,14 +120,33 @@ class CalendarTestCase(AutopilotTestCase):
         #click requires apparmor profile, and writing to special dir
         #but the desktop can write to a traditional /tmp directory
         if self.test_type == 'click':
-            temp_dir = os.path.join('~', 'autopilot', 'fakeenv')
-            logger.debug(temp_dir)
+            temp_dir = os.path.join(os.environ.get('HOME'), 'autopilot',
+                                    'fakeenv')
+            temp_dir_cache = os.path.join(temp_dir, '.cache')
+            temp_dir_config = os.path.join(temp_dir, '.config')
+            temp_dir_local = os.path.join(temp_dir, '.local', 'share')
+            temp_dir_confined = os.path.join(temp_dir, 'confined')
+
+            if not os.path.exists(temp_dir):
+                os.makedirs(temp_dir)
+
+            #apparmor doesn't allow the app to create needed directories,
+            #so we create them now
+            if not os.path.exists(temp_dir_cache):
+                os.makedirs(temp_dir_cache)
+            if not os.path.exists(temp_dir_config):
+                os.makedirs(temp_dir_config)
+            if not os.path.exists(temp_dir_local):
+                os.makedirs(temp_dir_local)
+            if not os.path.exists(temp_dir_confined):
+                os.makedirs(temp_dir_confined)
+
             temp_dir_fixture = fixtures.TempDir(temp_dir)
         else:
             temp_dir_fixture = fixtures.TempDir()
+
         self.useFixture(temp_dir_fixture)
         temp_dir = temp_dir_fixture.path
-        logger.debug(temp_dir)
 
         #If running under xvfb, as jenkins does,
         #xsession will fail to start without xauthority file
@@ -145,7 +164,6 @@ class CalendarTestCase(AutopilotTestCase):
                                                          newvalue=temp_dir))
 
         logger.debug("Patched home to fake home directory " + temp_dir)
-
         return temp_dir
 
     @property
