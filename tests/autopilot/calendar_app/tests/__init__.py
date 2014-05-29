@@ -120,18 +120,23 @@ class CalendarTestCase(AutopilotTestCase):
         #click requires apparmor profile, and writing to special dir
         #but the desktop can write to a traditional /tmp directory
         if self.test_type == 'click':
-            temp_dir = os.path.join(os.environ.get('HOME'), 'autopilot',
-                                    'fakeenv')
+            env_dir = os.path.join(os.environ.get('HOME'), 'autopilot',
+                                   'fakeenv')
+
+            if not os.path.exists(env_dir):
+                os.makedirs(env_dir)
+
+            temp_dir_fixture = fixtures.TempDir(env_dir)
+            self.useFixture(temp_dir_fixture)
+
+            #apparmor doesn't allow the app to create needed directories,
+            #so we create them now
+            temp_dir = temp_dir_fixture.path
             temp_dir_cache = os.path.join(temp_dir, '.cache')
             temp_dir_config = os.path.join(temp_dir, '.config')
             temp_dir_local = os.path.join(temp_dir, '.local', 'share')
             temp_dir_confined = os.path.join(temp_dir, 'confined')
 
-            if not os.path.exists(temp_dir):
-                os.makedirs(temp_dir)
-
-            #apparmor doesn't allow the app to create needed directories,
-            #so we create them now
             if not os.path.exists(temp_dir_cache):
                 os.makedirs(temp_dir_cache)
             if not os.path.exists(temp_dir_config):
@@ -141,29 +146,21 @@ class CalendarTestCase(AutopilotTestCase):
             if not os.path.exists(temp_dir_confined):
                 os.makedirs(temp_dir_confined)
 
-            temp_dir_fixture = fixtures.TempDir(temp_dir)
+            self.useFixture(toolkit_fixtures.InitctlEnvironmentVariable(
+                            HOME=temp_dir))
         else:
             temp_dir_fixture = fixtures.TempDir()
-
-        self.useFixture(temp_dir_fixture)
-        temp_dir = temp_dir_fixture.path
+            self.useFixture(fixtures.EnvironmentVariable('HOME',
+                                                         newvalue=temp_dir))
 
         #If running under xvfb, as jenkins does,
         #xsession will fail to start without xauthority file
         #Thus if the Xauthority file is in the home directory
         #make sure we copy it to our temp home directory
-        self._copy_xauthority_file(temp_dir)
+        self._copy_xauthority_file(temp_dir_fixture.path)
 
-        #click requires using initctl env (upstart), but the desktop can set
-        #an environment variable instead
-        if self.test_type == 'click':
-            self.useFixture(toolkit_fixtures.InitctlEnvironmentVariable(
-                            HOME=temp_dir))
-        else:
-            self.useFixture(fixtures.EnvironmentVariable('HOME',
-                                                         newvalue=temp_dir))
-
-        logger.debug("Patched home to fake home directory " + temp_dir)
+        logger.debug("Patched home to fake home directory %s" %
+                     temp_dir_fixture.path)
         return temp_dir
 
     @property
