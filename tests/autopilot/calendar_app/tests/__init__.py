@@ -167,6 +167,7 @@ class CalendarTestCase(AutopilotTestCase):
                             HOME=temp_dir))
         else:
             temp_dir_fixture = fixtures.TempDir()
+            temp_dir = temp_dir_fixture.path
             self.useFixture(fixtures.EnvironmentVariable('HOME',
                                                          newvalue=temp_dir))
 
@@ -174,10 +175,9 @@ class CalendarTestCase(AutopilotTestCase):
         #xsession will fail to start without xauthority file
         #Thus if the Xauthority file is in the home directory
         #make sure we copy it to our temp home directory
-        self._copy_xauthority_file(temp_dir_fixture.path)
+        self._copy_xauthority_file(temp_dir)
 
-        logger.debug("Patched home to fake home directory %s" %
-                     temp_dir_fixture.path)
+        logger.debug("Patched home to fake home directory %s" % temp_dir)
         return temp_dir
 
     @property
