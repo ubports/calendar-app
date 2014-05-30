@@ -167,6 +167,7 @@ class CalendarTestCase(AutopilotTestCase):
                             HOME=temp_dir))
         else:
             temp_dir_fixture = fixtures.TempDir()
+            self.useFixture(temp_dir_fixture)
             temp_dir = temp_dir_fixture.path
             self.useFixture(fixtures.EnvironmentVariable('HOME',
                                                          newvalue=temp_dir))
