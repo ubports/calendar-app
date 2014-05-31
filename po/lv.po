@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-22 21:21+0530\n"
-"PO-Revision-Date: 2014-05-29 15:17+0000\n"
+"PO-Revision-Date: 2014-05-30 09:39+0000\n"
 "Last-Translator: Jānis-Marks Gailis <jeanmarc.gailis@gmail.com>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-30 05:56+0000\n"
-"X-Generator: Launchpad (build 17023)\n"
+"X-Launchpad-Export-Date: 2014-05-31 05:58+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -25,7 +25,7 @@ msgstr "Nav gaidāmo notikumu"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
 #: ../AgendaView.qml:100 ../EventBubble.qml:40 ../EventDetails.qml:97
 msgid "hh:mm"
-msgstr ""
+msgstr "hh:mm"
 
 #: ../AgendaView.qml:101
 msgid "dddd , d MMMM"
@@ -56,15 +56,15 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
-msgstr ""
+msgstr "Dzēst notikumu"
 
 #: ../DeleteConfirmationDialog.qml:21
 msgid "Delete series"
-msgstr ""
+msgstr "Dzēst sēriju"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete this"
-msgstr ""
+msgstr "Dzēst šo"
 
 #: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:156
 msgid "Delete"
@@ -81,19 +81,19 @@ msgstr "Rediģēt notikumu"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "Rediģēt sēriju"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr ""
+msgstr "Rediģēt šo"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "Izdarīts"
 
 #: ../EventDetails.qml:89
 msgid "Not specified"
-msgstr ""
+msgstr "Nav norādīts"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
@@ -135,7 +135,7 @@ msgstr "Šis notiek"
 
 #: ../EventDetails.qml:345 ../NewEvent.qml:441
 msgid "Remind me"
-msgstr ""
+msgstr "Atgādināt man"
 
 #: ../NewEvent.qml:111
 msgid "End time can't be before start time"
@@ -151,7 +151,7 @@ msgstr "Kļūda"
 
 #: ../NewEvent.qml:199
 msgid "Ok"
-msgstr ""
+msgstr "Labi"
 
 #: ../NewEvent.qml:370
 msgid "Event Name"
