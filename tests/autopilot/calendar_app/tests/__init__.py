@@ -14,20 +14,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""Calendar app autopilot tests."""
 
-"""calendar-app autopilot tests."""
-
-import os.path
 import os
 import shutil
 import logging
 
+import fixtures
+from calendar_app import emulators
+
 from autopilot.input import Mouse, Touch, Pointer
 from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
+from autopilot import logging as autopilot_logging
 
-from ubuntuuitoolkit import emulators as toolkit_emulators
-from calendar_app import emulators
+from ubuntuuitoolkit import (
+    base,
+    emulators as toolkit_emulators,
+    fixture_setup as toolkit_fixtures
+)
 
 logger = logging.getLogger(__name__)
 
@@ -43,85 +48,144 @@ class CalendarTestCase(AutopilotTestCase):
     else:
         scenarios = [('with touch', dict(input_device_class=Touch))]
 
-    local_location = "../../calendar.qml"
-    installed_location = "/usr/share/calendar-app/calendar.qml"
-    sqlite_dir = os.path.expanduser(
-        "~/.local/share/com.ubuntu.calendar/Databases")
-    backup_dir = sqlite_dir + ".backup"
+    local_location = os.path.dirname(os.path.dirname(os.getcwd()))
+    local_location_qml = local_location + "/calendar.qml"
+    installed_location_qml = "/usr/share/calendar-app/calendar.qml"
+
+    def get_launcher_and_type(self):
+        if os.path.exists(self.local_location_qml):
+            launcher = self.launch_test_local
+            test_type = 'local'
+        elif os.path.exists(self.installed_location_qml):
+            launcher = self.launch_test_installed
+            test_type = 'deb'
+        else:
+            launcher = self.launch_test_click
+            test_type = 'click'
+        return launcher, test_type
 
     def setUp(self):
+        launcher, self.test_type = self.get_launcher_and_type()
+        self.home_dir = self._patch_home()
         self.pointing_device = Pointer(self.input_device_class.create())
         super(CalendarTestCase, self).setUp()
-        self.temp_move_sqlite_db()
-        self.addCleanup(self.restore_sqlite_db)
 
         #turn off the OSK so it doesn't block screen elements
         if model() != 'Desktop':
-            os.system("stop maliit-server")
-            self.addCleanup(os.system, "start maliit-server")
+            os.system('stop maliit-server')
+            self.addCleanup(os.system, 'start maliit-server')
 
         # Unset the current locale to ensure locale-specific data
         # (day and month names, first day of the week, …) doesn’t get
         # in the way of test expectations.
-        self.patch_environment('LC_ALL', 'C')
+        self.useFixture(fixtures.EnvironmentVariable('LC_ALL', newvalue='C'))
 
-        if os.path.exists(self.local_location):
-            self.launch_test_local()
-        elif os.path.exists(self.installed_location):
-            self.launch_test_installed()
-        else:
-            self.launch_test_click()
+        self.app = launcher()
 
+    @autopilot_logging.log_action(logger.info)
     def launch_test_local(self):
-        logger.debug("Running via local installation")
-        self.app = self.launch_test_application(
-            "qmlscene",
-            self.local_location,
+        return self.launch_test_application(
+            base.get_qmlscene_launch_command(),
+            self.local_location_qml,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
+    @autopilot_logging.log_action(logger.info)
     def launch_test_installed(self):
-        logger.debug("Running via installed debian package")
-        self.app = self.launch_test_application(
-            "qmlscene",
-            self.installed_location,
+        return self.launch_test_application(
+            base.get_qmlscene_launch_command(),
+            self.installed_location_qml,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
+    @autopilot_logging.log_action(logger.info)
     def launch_test_click(self):
-        logger.debug("Running via click package")
-        self.app = self.launch_click_package(
+        return self.launch_click_package(
             "com.ubuntu.calendar",
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
-    def temp_move_sqlite_db(self):
-        try:
-            shutil.rmtree(self.backup_dir)
-        except:
-            pass
-        else:
-            logger.warning("Prexisting backup database found and removed")
+    def _copy_xauthority_file(self, directory):
+        """ Copy .Xauthority file to directory, if it exists in /home
+        """
+        #If running under xvfb, as jenkins does,
+        #xsession will fail to start without xauthority file
+        #Thus if the Xauthority file is in the home directory
+        #make sure we copy it to our temp home directory
 
-        try:
-            shutil.move(self.sqlite_dir, self.backup_dir)
-        except:
-            logger.warning("No current database found")
-        else:
-            logger.debug("Backed up database")
+        xauth = os.path.expanduser(os.path.join(os.environ.get('HOME'),
+                                   '.Xauthority'))
+        if os.path.isfile(xauth):
+            logger.debug("Copying .Xauthority to %s" % directory)
+            shutil.copyfile(
+                os.path.expanduser(os.path.join(os.environ.get('HOME'),
+                                   '.Xauthority')),
+                os.path.join(directory, '.Xauthority'))
 
-    def restore_sqlite_db(self):
-        if os.path.exists(self.backup_dir):
-            if os.path.exists(self.sqlite_dir):
-                try:
-                    shutil.rmtree(self.sqlite_dir)
-                except:
-                    logger.error("Failed to remove test database and restore" /
-                                 "database")
-                    return
-            try:
-                shutil.move(self.backup_dir, self.sqlite_dir)
-            except:
-                logger.error("Failed to restore database")
+    def _patch_home(self):
+        """ mock /home for testing purposes to preserve user data
+        """
+        #click requires apparmor profile, and writing to special dir
+        #but the desktop can write to a traditional /tmp directory
+        if self.test_type == 'click':
+            env_dir = os.path.join(os.environ.get('HOME'), 'autopilot',
+                                   'fakeenv')
+
+            if not os.path.exists(env_dir):
+                os.makedirs(env_dir)
+
+            temp_dir_fixture = fixtures.TempDir(env_dir)
+            self.useFixture(temp_dir_fixture)
+
+            #apparmor doesn't allow the app to create needed directories,
+            #so we create them now
+            temp_dir = temp_dir_fixture.path
+            temp_dir_cache = os.path.join(temp_dir, '.cache')
+            temp_dir_cache_font = os.path.join(temp_dir_cache, 'fontconfig')
+            temp_dir_cache_media = os.path.join(temp_dir_cache, 'media-art')
+            temp_dir_cache_write = os.path.join(temp_dir_cache,
+                                                'tncache-write-text.null')
+            temp_dir_config = os.path.join(temp_dir, '.config')
+            temp_dir_toolkit = os.path.join(temp_dir_config,
+                                            'ubuntu-ui-toolkit')
+            temp_dir_font = os.path.join(temp_dir_cache, '.fontconfig')
+            temp_dir_local = os.path.join(temp_dir, '.local', 'share')
+            temp_dir_confined = os.path.join(temp_dir, 'confined')
+
+            if not os.path.exists(temp_dir_cache):
+                os.makedirs(temp_dir_cache)
+            if not os.path.exists(temp_dir_cache_font):
+                os.makedirs(temp_dir_cache_font)
+            if not os.path.exists(temp_dir_cache_media):
+                os.makedirs(temp_dir_cache_media)
+            if not os.path.exists(temp_dir_cache_write):
+                os.makedirs(temp_dir_cache_write)
+            if not os.path.exists(temp_dir_config):
+                os.makedirs(temp_dir_config)
+            if not os.path.exists(temp_dir_toolkit):
+                os.makedirs(temp_dir_toolkit)
+            if not os.path.exists(temp_dir_font):
+                os.makedirs(temp_dir_font)
+            if not os.path.exists(temp_dir_local):
+                os.makedirs(temp_dir_local)
+            if not os.path.exists(temp_dir_confined):
+                os.makedirs(temp_dir_confined)
+
+            #before we set fixture, copy xauthority if needed
+            self._copy_xauthority_file(temp_dir)
+            self.useFixture(toolkit_fixtures.InitctlEnvironmentVariable(
+                            HOME=temp_dir))
+        else:
+            temp_dir_fixture = fixtures.TempDir()
+            self.useFixture(temp_dir_fixture)
+            temp_dir = temp_dir_fixture.path
+
+            #before we set fixture, copy xauthority if needed
+            self._copy_xauthority_file(temp_dir)
+            self.useFixture(fixtures.EnvironmentVariable('HOME',
+                                                         newvalue=temp_dir))
+
+        logger.debug("Patched home to fake home directory %s" % temp_dir)
+        return temp_dir
 
     @property
     def main_view(self):
