@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-22 21:21+0530\n"
-"PO-Revision-Date: 2014-05-24 11:40+0000\n"
+"PO-Revision-Date: 2014-06-04 16:39+0000\n"
 "Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-26 06:31+0000\n"
-"X-Generator: Launchpad (build 17017)\n"
+"X-Launchpad-Export-Date: 2014-06-05 06:03+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
-msgstr ""
+msgstr "لا أحداث قادمة"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -29,7 +29,7 @@ msgstr "hh:mm"
 
 #: ../AgendaView.qml:101
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "dddd , d MMMM"
 
 #. TRANSLATORS: the first argument (%1) refer to a start time for an event,
 #. while the third one (%2) refers to the end time
@@ -52,19 +52,19 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "حذف حدث متكرر"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
-msgstr ""
+msgstr "حذف الحدث"
 
 #: ../DeleteConfirmationDialog.qml:21
 msgid "Delete series"
-msgstr ""
+msgstr "حذف سلسلة"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete this"
-msgstr ""
+msgstr "حذف ذلك"
 
 #: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:156
 msgid "Delete"
@@ -81,25 +81,25 @@ msgstr "تعديل الحدث"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "تعديل سلسلة"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr ""
+msgstr "تعديل ذلك"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "تم"
 
 #: ../EventDetails.qml:89
 msgid "Not specified"
-msgstr ""
+msgstr "غير محدد"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:100
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "dd-MMM-yyyy"
 
 #: ../EventDetails.qml:170
 msgid "Edit"
@@ -215,7 +215,7 @@ msgstr "اليوم"
 
 #: ../calendar.qml:375
 msgid "Agenda"
-msgstr ""
+msgstr "جدول أعمال"
 
 #: ../.build/com.ubuntu.calendar_calendar.desktop.in:1
 msgid "Calendar"
