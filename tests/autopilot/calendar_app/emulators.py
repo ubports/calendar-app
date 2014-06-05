@@ -6,9 +6,12 @@
 # by the Free Software Foundation.
 
 """Calendar app autopilot emulators."""
+from time import sleep
 
 from autopilot.introspection import dbus
+
 from ubuntuuitoolkit import emulators as toolkit_emulators
+from dateutil import tz
 
 
 class MainView(toolkit_emulators.MainView):
@@ -78,6 +81,25 @@ class MainView(toolkit_emulators.MainView):
         except dbus.StateNotFoundError:
             return None
 
+    def safe_swipe_view(self, direction, view, date):
+        """
+        direction: direction to swip
+        view: the view you are swiping against
+        date: a function object of the view
+        """
+        timeout = 0
+        before = date
+        #try up to 3 times to swipe
+        while timeout < 3 and date == before:
+            self._swipe(direction, view)
+            #check for up to 3 seconds after swipe for view
+            #to have changed before trying again
+            for x in range(0, 3):
+                if date != before:
+                    break
+                sleep(1)
+            timeout += 1
+
     def swipe_view(self, direction, view, x_pad=0.15):
         """Swipe the given view to left or right.
 
@@ -106,3 +128,58 @@ class MainView(toolkit_emulators.MainView):
 
     def get_num_events(self):
         return len(self.select_many("EventBubble"))
+
+    def get_new_event_save_button(self):
+        new_event = self.get_new_event()
+        return new_event.wait_select_single("Button",
+                                            objectName="accept")
+
+    def get_new_event_cancel_button(self):
+        new_event = self.get_new_event()
+        return new_event.wait_select_single("Button",
+                                            objectName="cancel")
+
+    def to_local_date(self, date):
+        utc = date.replace(tzinfo=tz.tzutc())
+        local = utc.astimezone(tz.tzlocal())
+        return local
+
+
+class Page(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+    """Autopilot helper for Pages."""
+
+    def __init__(self, *args):
+        super(Page, self).__init__(*args)
+        # XXX we need a better way to keep reference to the main view.
+        # --elopio - 2014-01-31
+        self.main_view = self.get_root_instance().select_single(MainView)
+
+    def drag_page_up(self):
+        """Drag the given page up."""
+        self._drag_page(direction='up')
+
+    def drag_page_down(self):
+        """Drag the given page down."""
+        self._drag_page(direction='down')
+
+    def _drag_page(self, direction):
+        """Function to drag the page up/down."""
+        self._wait_to_stop_moving()
+
+        x, y, w, h = self.globalRect
+        start_x = stop_x = x + (w / 2)
+        start_y = y + (h / 2)
+
+        if direction == "down":
+            stop_y = start_y + h / 3
+            self.pointing_device.drag(start_x, start_y, stop_x, stop_y)
+        else:
+            stop_y = start_y - h / 3
+            self.pointing_device.drag(start_x, start_y, stop_x, stop_y)
+
+        self._wait_to_stop_moving()
+
+    def _wait_to_stop_moving(self):
+        self.select_single(
+            'QQuickFlickable',
+            objectName='animationContainer').moving.wait_for(False)

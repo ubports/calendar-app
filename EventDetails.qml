@@ -15,37 +15,123 @@ Page {
     property string detailColor :"grey"
     property var model;
 
-    anchors.fill: parent
+    anchors{
+        left: parent.left
+        right: parent.right
+        bottom: parent.bottom
+    }
+
+    flickable: null
+
+    title: "Event Details"
+
     Component.onCompleted: {
-        if( pageStack.header )
-            pageStack.header.visible = false;
         showEvent(event);
     }
 
-    Component.onDestruction: {
-        if( pageStack.header )
-            pageStack.header.visible = true;
-    }
     Connections{
         target: pageStack
         onCurrentPageChanged:{
             if( pageStack.currentPage === root) {
-                pageStack.header.visible = false;
                 showEvent(event);
             }
         }
     }
+
+    function updateRecurrence( event ) {
+        var index = 0;
+        if(event.recurrence ) {
+            var recurrenceRule = event.recurrence.recurrenceRules;
+            if(recurrenceRule.length > 0){
+                if(recurrenceRule[0].limit === undefined)
+                    limitHeader.value = i18n.tr("Never");
+                else{
+                    // TRANSLATORS: this is a time & Date formatting string,
+                    //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+                    var dateFormat = i18n.tr("dd-MMM-yyyy")
+                    limitHeader.value = parseInt(recurrenceRule[0].limit) ?
+                                i18n.tr("After %1 Occurrences").arg(recurrenceRule[0].limit):
+                                i18n.tr("After Date %1").arg(recurrenceRule[0].limit.toLocaleString(Qt.locale(),dateFormat));
+                }
+
+                index =  recurrenceRule[0].frequency ;
+            }
+            else{
+                limitHeader.visible = false
+                index = 0
+            }
+        }
+        recurrentHeader.value = Defines.recurrenceLabel[index];
+    }
+
+    function updateContacts(event) {
+        var attendees = event.attendees;
+        contactModel.clear();
+        if( attendees !== undefined ) {
+            for( var j = 0 ; j < attendees.length ; ++j ) {
+                contactModel.append( {"name": attendees[j].name,"participationStatus": attendees[j].participationStatus }  );
+            }
+        }
+    }
+
+    function updateReminder(event) {
+        var index = 0;
+        var reminder = event.detail( Detail.VisualReminder);
+        if( reminder ) {
+            var reminderTime = reminder.secondsBeforeStart;
+            var foundIndex = Defines.reminderValue.indexOf(reminderTime);
+            index = foundIndex != -1 ? foundIndex : 0;
+        }
+        reminderHeader.value = Defines.reminderLabel[index];
+    }
+
+    function updateLocation(event) {
+        if( event.location ) {
+            locationLabel.text = event.location;
+
+            // FIXME: need to cache map image to avoid duplicate download every time
+            var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+event.location+
+                    "&markers=color:red|"+event.location+"&zoom=15&size="+mapContainer.width+
+                    "x"+mapContainer.height+"&sensor=false";
+            mapImage.source = imageSrc;
+        }
+        else {
+            // TODO: use different color for empty text
+            locationLabel.text = i18n.tr("Not specified")
+            mapImage.source = "";
+        }
+    }
+
     function showEvent(e) {
         // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
+        // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
         var timeFormat = i18n.tr("hh:mm");
+        // TRANSLATORS: this is a time & Date formatting string,
+        //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+        var dateFormat = i18n.tr("dd-MMM-yyyy")
+        eventDate.value = e.startDateTime.toLocaleString(Qt.locale(),dateFormat);
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
 
-        startHeader.value = startTime;
-        endHeader.value = endTime;
+        if( e.itemType === Type.EventOccurrence ){
+            var requestId = -1;
+            model.onItemsFetched.connect( function(id,fetchedItems){
+                if(requestId === id && fetchedItems.length > 0) {
+                    internal.parentEvent = fetchedItems[0];
+                    updateRecurrence(internal.parentEvent);
+                    updateContacts(internal.parentEvent);
+                }
+            });
+            requestId = model.fetchItems([e.parentId]);
+        }
 
         allDayEventCheckbox.checked = e.allDay;
+
+        startHeader.visible = !e.allDay;
+        endHeader.visible = !e.allDay;
+
+        startHeader.value = startTime;
+        endHeader.value = endTime;
 
         // This is the event title
         if( e.displayLabel) {
@@ -55,44 +141,14 @@ Page {
         if( e.description ) {
             descLabel.text = e.description;
         }
-        var attendees = e.attendees;
-        contactModel.clear();
-        if( attendees !== undefined ) {
-            for( var j = 0 ; j < attendees.length ; ++j ) {
-                contactModel.append( {"name": attendees[j].name,"participationStatus": attendees[j].participationStatus }  );
-            }
-        }
 
-        var index = 0;
-        if(e.recurrence ) {
-            var recurrenceRule = e.recurrence.recurrenceRules;
-            index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
-        }
-        recurrentHeader.value = Defines.recurrenceLabel[index];
+        updateContacts(e);
 
-        index = 0;
-        var reminder = e.detail( Detail.VisualReminder);
-        if( reminder ) {
-            var reminderTime = reminder.secondsBeforeStart;
-            var foundIndex = Defines.reminderValue.indexOf(reminderTime);
-            index = foundIndex != -1 ? foundIndex : 0;
-        }
-        reminderHeader.value = Defines.reminderLabel[index];
+        updateRecurrence(e);
 
-        if( e.location ) {
-            locationLabel.text = e.location;
+        updateReminder(e);
 
-            // FIXME: need to cache map image to avoid duplicate download every time
-            var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+e.location+
-                    "&markers=color:red|"+e.location+"&zoom=15&size="+mapContainer.width+
-                    "x"+mapContainer.height+"&sensor=false";
-            mapImage.source = imageSrc;
-        }
-        else {
-            // TODO: use different color for empty text
-            locationLabel.text = i18n.tr("Not specified")
-            mapImage.source = "";
-        }
+        updateLocation(e);
     }
 
     Keys.onEscapePressed: {
@@ -125,20 +181,52 @@ Page {
                 text: i18n.tr("Edit");
                 iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
-                   pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                    if( event.itemType === Type.EventOccurrence ) {
+                        var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
+                        dialog.editEvent.connect( function(eventId){
+                            if( eventId === event.parentId ) {
+                                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":internal.parentEvent,"model":model});
+                            } else {
+                                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                            }
+                        });
+                    } else {
+                        pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                    }
                 }
             }
         }
     }
 
+    QtObject{
+        id: internal
+        property var parentEvent;
+    }
+
     Rectangle {
-        id:eventDetilsView
-        anchors.fill: parent
+        id: bg
         color: "white"
+        anchors.fill: parent
+    }
+
+    Scrollbar {
+        flickableItem: flicable
+        align: Qt.AlignTrailing
+    }
+
+    Flickable{
+        id: flicable
+        width: parent.width
+        height: parent.height
+        clip: true
+
+        contentHeight: column.height + units.gu(3) /*top margin + spacing */
+        contentWidth: parent.width
+
+        interactive: contentHeight > height
+
         Column{
             id: column
-            anchors.fill: parent
-            width: parent.width
             spacing: units.gu(1)
             anchors{
                 top:parent.top
@@ -148,7 +236,12 @@ Page {
                 left:parent.left
                 leftMargin: units.gu(2)
             }
-            property int timeLabelMaxLen: Math.max( startHeader.headerWidth, endHeader.headerWidth)// Dynamic Width
+            property int timeLabelMaxLen: Math.max( startHeader.headerWidth, endHeader.headerWidth,eventDate.headerWidth)// Dynamic Width
+            EventDetailsInfo{
+                id: eventDate
+                xMargin:column.timeLabelMaxLen
+                header: i18n.tr("Date")
+            }
             EventDetailsInfo{
                 id: startHeader
                 xMargin:column.timeLabelMaxLen
@@ -163,6 +256,7 @@ Page {
                 width: parent.width
                 spacing: units.gu(1)
                 anchors.margins: units.gu(0.5)
+                visible: allDayEventCheckbox.checked
 
                 Label {
                     text: i18n.tr("All Day event:")
@@ -253,17 +347,21 @@ Page {
 
             //Guest Entries ends
             ThinDivider{}
-            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth) //Dynamic Height
+            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth,limitHeader.headerWidth) //Dynamic Height
             EventDetailsInfo{
                 id: recurrentHeader
                 xMargin: column.recurranceAreaMaxWidth
                 header: i18n.tr("This happens")
-                value :"Only once" //Neds to change
             }
             EventDetailsInfo{
                 id: reminderHeader
                 xMargin: column.recurranceAreaMaxWidth
                 header: i18n.tr("Remind me")
+            }
+            EventDetailsInfo{
+                id: limitHeader
+                xMargin: column.recurranceAreaMaxWidth
+                header: i18n.tr("Repetition Ends")
             }
         }
     }

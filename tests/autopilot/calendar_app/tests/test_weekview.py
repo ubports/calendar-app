@@ -16,7 +16,6 @@ if sys.version_info < (3,):
     range = xrange
 
 import datetime
-
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
@@ -42,12 +41,16 @@ class TestWeekView(CalendarTestCase):
         first_dow = self._get_first_day_of_week()
 
         #prevent timing issues with swiping
-        old_day = self.week_view.dayStart.datetime
+        old_day = self.main_view.to_local_date(
+            self.week_view.dayStart.datetime)
         self.main_view.swipe_view(direction, self.week_view)
-        self.assertThat(lambda: self.week_view.dayStart.datetime,
+        self.assertThat(lambda:
+                        self.main_view.to_local_date(
+                            self.week_view.dayStart.datetime),
                         Eventually(NotEquals(old_day)))
 
-        new_day_start = self.week_view.dayStart.datetime
+        new_day_start = self.main_view.to_local_date(
+            self.week_view.dayStart.datetime)
 
         expected_day_start = first_dow + datetime.timedelta(
             days=(7 * direction))
@@ -82,8 +85,10 @@ class TestWeekView(CalendarTestCase):
         return dateLabels
 
     def _get_first_day_of_week(self):
-        date = self.week_view.dayStart.datetime
-        firstDay = self.week_view.firstDay.datetime
+        date = self.main_view.to_local_date(self.week_view.dayStart.datetime)
+        firstDay = self.main_view.to_local_date(
+            self.week_view.firstDay.datetime)
+
         #sunday
         if firstDay.weekday() == 6:
             logger.debug("Locale has Sunday as first day of week")

@@ -12,8 +12,14 @@ TextField{
         color: root.highlighted ? "#2C001E" : Theme.palette.normal.baseText
     }
 
-    color: focus ? "#2C001E" : "#EAD3A8"
+    color: focus ? "#2C001E" : "#5D5D5D"
     font {
         pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
+    }
+
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            flickable.makeMeVisible(root)
+        }
     }
 }
