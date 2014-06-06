@@ -65,6 +65,9 @@ Page {
         if(e.displayLabel) {
             titleEdit.text = e.displayLabel;
         }
+        if(e.allDay){
+            allDayEventCheckbox.checked =true;
+        }
 
         if(e.location) {
             locationEdit.text = e.location;

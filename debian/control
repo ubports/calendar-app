@@ -24,6 +24,7 @@ Depends: ${misc:Depends},
          libqtorganizer1,
          qtdeclarative5-qtorganizer-plugin,
          qtorganizer5-eds,
+         qtdeclarative5-ubuntu-syncmonitor0.1,
 Description: Calendar application for Ubuntu devices
  The Calendar application for Ubuntu devices lets you organise your life your
  way by month, week or daily diary.
