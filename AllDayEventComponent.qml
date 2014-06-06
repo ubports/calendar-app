@@ -91,7 +91,7 @@ Rectangle{
                         }
 
                         if(type == ViewType.ViewTypeWeek) {
-                            text =  i18n.tr("%1E").arg(events.length)
+                            text =  i18n.tr("%1 Ev.").arg(events.length)
                         } else {
                             if( events.length > 1) {
                                 text = i18n.tr("%1 All day events").arg(events.length)
