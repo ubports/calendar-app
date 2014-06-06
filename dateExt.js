@@ -90,6 +90,12 @@ Date.prototype.isSameDay = function ( otherDay ) {
     && this.getFullYear() === otherDay.getFullYear() );
 }
 
+Date.prototype.mergeDate = function (d) {
+    this.setFullYear(d.getFullYear());
+    this.setMonth(d.getMonth());
+    this.setDate(d.getDate());
+}
+
 function weekCount(year, month_number) {
     var firstOfMonth = new Date(year, month_number, 1);
     var lastOfMonth = new Date(year, month_number+1, 0);
