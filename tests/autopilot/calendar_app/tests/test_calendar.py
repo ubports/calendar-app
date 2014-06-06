@@ -8,19 +8,12 @@
 """Calendar app autopilot tests."""
 
 from __future__ import absolute_import
-
 from autopilot.matchers import Eventually
-
-from testtools.matchers import Equals, Not, Is, NotEquals
+from testtools.matchers import Not, Is, NotEquals
+from calendar_app.tests import CalendarTestCase
 
 import time
 import datetime
-
-from calendar_app.tests import CalendarTestCase
-
-from ubuntuuitoolkit import (
-    pickers
-)
 
 
 class TestMainView(CalendarTestCase):
@@ -47,74 +40,49 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_new_event,
                         Eventually(Not(Is(None))))
 
-        # Set the start date
-        start_date_field = self.main_view.get_event_start_date_field()
-        self.pointing_device.click_object(start_date_field)
         #due to https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1326963
-        #need to tap twice, but only on the first field
-        time.sleep(3)
-        self.pointing_device.click_object(start_date_field)
-        date_picker = self.main_view.wait_select_single(
-            pickers.DatePicker, mode="Years|Months|Days", visible=True)
-        date_picker.pick_date(yesterday)
-        self.pointing_device.click_object(start_date_field)
+        #the first event triggered is ignored, so we trigger an event
+        #and a small sleep to clear before continuing input
+        event_name_field = self.main_view.get_new_event_name_input_box()
+        self.pointing_device.click_object(event_name_field)
+        time.sleep(1)
+
+        # Set the start date
+        self.main_view.set_picker(self.main_view.get_event_start_date_field(),
+                                  'date',
+                                  yesterday)
 
         # Set the end date
-        end_date_field = self.main_view.get_event_end_date_field()
-        self.pointing_device.click_object(end_date_field)
-        date_picker = self.main_view.wait_select_single(
-            pickers.DatePicker, mode="Years|Months|Days", visible=True)
-        date_picker.pick_date(tomorrow)
-        self.pointing_device.click_object(end_date_field)
+        self.main_view.set_picker(self.main_view.get_event_end_date_field(),
+                                  'date',
+                                  tomorrow)
 
         # Set the start time
-        start_time_field = self.main_view.get_event_start_time_field()
-        self.pointing_device.click_object(start_time_field)
-        time_picker = self.main_view.wait_select_single(
-            pickers.DatePicker, mode='Hours|Minutes', visible=True)
-        time_picker.pick_time(start_time)
-        self.pointing_device.click_object(start_time_field)
+        self.main_view.set_picker(self.main_view.get_event_start_time_field(),
+                                  'time',
+                                  start_time)
 
         # Set the end time
-        end_time_field = self.main_view.get_event_end_time_field()
-        self.pointing_device.click_object(end_time_field)
-        time_picker = self.main_view.wait_select_single(
-            pickers.DatePicker, mode='Hours|Minutes', visible=True)
-        time_picker.pick_time(end_time)
-        self.pointing_device.click_object(end_time_field)
+        self.main_view.set_picker(self.main_view.get_event_end_time_field(),
+                                  'time',
+                                  end_time)
 
         #input a new event name
         eventTitle = "Test event " + str(int(time.time()))
-        event_name_field = self.main_view.get_new_event_name_input_box()
-        self.pointing_device.click_object(event_name_field)
-        self.pointing_device.click_object(event_name_field)
-        self.assertThat(event_name_field.activeFocus, Eventually(Equals(True)))
-        self.keyboard.type(eventTitle)
-        self.assertThat(event_name_field.text, Eventually(Equals(eventTitle)))
-
-        #input guests
-        people_field = self.main_view.get_event_people_field()
-        self.pointing_device.click_object(people_field)
-        self.assertThat(people_field.activeFocus, Eventually(Equals(True)))
-        self.keyboard.type("me, myself, and I")
-        self.assertThat(people_field.text,
-                        Eventually(Equals("me, myself, and I")))
+        self.main_view.get_new_event_name_input_box().write(eventTitle)
 
         #input description
-        description_field = self.main_view.get_event_description_field()
-        self.pointing_device.click_object(description_field)
-        self.assertThat(description_field.activeFocus,
-                        Eventually(Equals(True)))
-        self.keyboard.type("My favorite test event")
-        self.assertThat(description_field.text,
-                        Eventually(Equals("My favorite test event")))
+        self.main_view.get_event_description_field(). \
+            write("My favorite test event")
 
         #input location
-        location_field = self.main_view.get_event_location_field()
-        self.pointing_device.click_object(location_field)
-        self.assertThat(location_field.activeFocus, Eventually(Equals(True)))
-        self.keyboard.type("My location")
-        self.assertThat(location_field.text, Eventually(Equals("My location")))
+        self.main_view.get_event_location_field().write("England")
+
+        #input guests
+        self.main_view.get_event_people_field().write("me, myself, and I")
+
+        #todo: iterate over all combinations
+        #and include recurrence and reminders
 
         #click save button
         save_button = self.main_view.get_new_event_save_button()
@@ -127,4 +95,4 @@ class TestMainView(CalendarTestCase):
         self.assertThat(self.main_view.get_num_events,
                         Eventually(NotEquals(num_events)))
 
-        #todo, verify event data
+        #todo: verify entered event data
