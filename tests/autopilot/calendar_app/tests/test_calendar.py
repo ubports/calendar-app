@@ -39,7 +39,7 @@ class TestMainView(CalendarTestCase):
         tomorrow = today + datetime.timedelta(days=1)
 
         start_time = datetime.time(6, 5)
-        end_time = datetime.time(11, 4)
+        end_time = datetime.time(11, 38)
 
         #click on new event button
         header = self.main_view.get_header()
@@ -49,6 +49,10 @@ class TestMainView(CalendarTestCase):
 
         # Set the start date
         start_date_field = self.main_view.get_event_start_date_field()
+        self.pointing_device.click_object(start_date_field)
+        #due to https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1326963
+        #need to tap twice, but only on the first field
+        time.sleep(3)
         self.pointing_device.click_object(start_date_field)
         date_picker = self.main_view.wait_select_single(
             pickers.DatePicker, mode="Years|Months|Days", visible=True)
@@ -83,12 +87,27 @@ class TestMainView(CalendarTestCase):
         eventTitle = "Test event " + str(int(time.time()))
         event_name_field = self.main_view.get_new_event_name_input_box()
         self.pointing_device.click_object(event_name_field)
-        #due to https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1326963
-        #need to tap twice
         self.pointing_device.click_object(event_name_field)
         self.assertThat(event_name_field.activeFocus, Eventually(Equals(True)))
         self.keyboard.type(eventTitle)
         self.assertThat(event_name_field.text, Eventually(Equals(eventTitle)))
+
+        #input guests
+        people_field = self.main_view.get_event_people_field()
+        self.pointing_device.click_object(people_field)
+        self.assertThat(people_field.activeFocus, Eventually(Equals(True)))
+        self.keyboard.type("me, myself, and I")
+        self.assertThat(people_field.text,
+                        Eventually(Equals("me, myself, and I")))
+
+        #input description
+        description_field = self.main_view.get_event_description_field()
+        self.pointing_device.click_object(description_field)
+        self.assertThat(description_field.activeFocus,
+                        Eventually(Equals(True)))
+        self.keyboard.type("My favorite test event")
+        self.assertThat(description_field.text,
+                        Eventually(Equals("My favorite test event")))
 
         #input location
         location_field = self.main_view.get_event_location_field()
@@ -107,3 +126,5 @@ class TestMainView(CalendarTestCase):
         header.click_action_button('todaybutton')
         self.assertThat(self.main_view.get_num_events,
                         Eventually(NotEquals(num_events)))
+
+        #todo, verify event data

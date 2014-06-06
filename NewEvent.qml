@@ -420,6 +420,7 @@ Page {
 
                 TextArea{
                     id: messageEdit
+                    objectName: "eventDescriptionInput"
                     width: parent.width
                     color: focus ? "#2C001E" : "#5D5D5D"
                     // default style

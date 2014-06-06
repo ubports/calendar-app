@@ -85,6 +85,11 @@ class MainView(toolkit_emulators.MainView):
         return new_event.wait_select_single("NewEventEntryField",
                                             objectName="eventPeopleInput")
 
+    def get_event_description_field(self):
+        new_event = self.get_new_event()
+        return new_event.wait_select_single("TextArea",
+                                            objectName="eventDescriptionInput")
+
     def safe_swipe_view(self, direction, view, date):
         """
         direction: direction to swip
