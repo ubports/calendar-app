@@ -6,3 +6,5 @@ debian/app-template/
 debian/*.debhelper.log
 debian/*.substvars
 .build
+.excludes
+CMakeLists.txt.user
