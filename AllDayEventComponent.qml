@@ -91,6 +91,10 @@ Rectangle{
                         }
 
                         if(type == ViewType.ViewTypeWeek) {
+                            // TRANSLATORS: the first parameter refers to the number of all-day events
+                            // on a given day. "Ev." is short form for "Events".
+                            // Please keep the translation of "Ev." to 3 characters only, as the week view
+                            // where it's shown has limited space
                             text =  i18n.tr("%1 Ev.").arg(events.length)
                         } else {
                             if( events.length > 1) {
