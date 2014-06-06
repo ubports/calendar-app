@@ -14,7 +14,6 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals, Not, Is, NotEquals
 
 import time
-import unittest
 import datetime
 
 from calendar_app.tests import CalendarTestCase
@@ -51,28 +50,32 @@ class TestMainView(CalendarTestCase):
         # Set the start date
         start_date_field = self.main_view.get_event_start_date_field()
         self.pointing_device.click_object(start_date_field)
-        date_picker = self.main_view.wait_select_single(pickers.DatePicker, mode="Years|Months|Days", visible=True)
+        date_picker = self.main_view.wait_select_single(
+            pickers.DatePicker, mode="Years|Months|Days", visible=True)
         date_picker.pick_date(yesterday)
         self.pointing_device.click_object(start_date_field)
 
         # Set the end date
         end_date_field = self.main_view.get_event_end_date_field()
         self.pointing_device.click_object(end_date_field)
-        date_picker = self.main_view.wait_select_single(pickers.DatePicker, mode="Years|Months|Days", visible=True)
+        date_picker = self.main_view.wait_select_single(
+            pickers.DatePicker, mode="Years|Months|Days", visible=True)
         date_picker.pick_date(tomorrow)
         self.pointing_device.click_object(end_date_field)
 
         # Set the start time
         start_time_field = self.main_view.get_event_start_time_field()
         self.pointing_device.click_object(start_time_field)
-        time_picker = self.main_view.wait_select_single(pickers.DatePicker, mode='Hours|Minutes', visible=True)
+        time_picker = self.main_view.wait_select_single(
+            pickers.DatePicker, mode='Hours|Minutes', visible=True)
         time_picker.pick_time(start_time)
         self.pointing_device.click_object(start_time_field)
 
         # Set the end time
         end_time_field = self.main_view.get_event_end_time_field()
         self.pointing_device.click_object(end_time_field)
-        time_picker = self.main_view.wait_select_single(pickers.DatePicker, mode='Hours|Minutes', visible=True)
+        time_picker = self.main_view.wait_select_single(
+            pickers.DatePicker, mode='Hours|Minutes', visible=True)
         time_picker.pick_time(end_time)
         self.pointing_device.click_object(end_time_field)
 
