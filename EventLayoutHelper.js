@@ -78,7 +78,7 @@ function sortFunc(sch1,sch2) {
     return 0;
 }
 
-//assign depth(position) of schedule with respest to other
+//assign depth(position) of schedule with respect to other
 function assignDepth(schs, array) {
     var maxDepth = 0;
     while( schs.length > 0 ) {
