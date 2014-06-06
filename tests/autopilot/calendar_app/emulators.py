@@ -60,6 +60,16 @@ class MainView(toolkit_emulators.MainView):
         return new_event.wait_select_single("NewEventEntryField",
                                             objectName="startTimeInput")
 
+    def get_event_start_date_field(self):
+        new_event = self.get_new_event()
+        return new_event.wait_select_single("NewEventEntryField",
+                                            objectName="startDateInput")
+
+    def get_event_end_date_field(self):
+        new_event = self.get_new_event()
+        return new_event.wait_select_single("NewEventEntryField",
+                                            objectName="endDateInput")
+
     def get_event_end_time_field(self):
         new_event = self.get_new_event()
         return new_event.wait_select_single("NewEventEntryField",
@@ -74,12 +84,6 @@ class MainView(toolkit_emulators.MainView):
         new_event = self.get_new_event()
         return new_event.wait_select_single("NewEventEntryField",
                                             objectName="eventPeopleInput")
-
-    def get_time_picker(self):
-        try:
-            return self.wait_select_single("TimePicker")
-        except dbus.StateNotFoundError:
-            return None
 
     def safe_swipe_view(self, direction, view, date):
         """

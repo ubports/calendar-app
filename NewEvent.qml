@@ -312,7 +312,7 @@ Page {
                         NewEventEntryField{
                             id: startDateInput
                             title: i18n.tr("Start")
-                            objectName: "startTimeInput"
+                            objectName: "startDateInput"
 
                             text: ""
 
