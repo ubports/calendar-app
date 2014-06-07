@@ -1,7 +1,8 @@
-WorkerScript.onMessage = function(allSchs) {
+WorkerScript.onMessage = function(events) {
 
-    //sort schedules by duration, longest to shortest
-    allSchs.sort(sortFunc);
+    //returns sorted array of schedules
+    //schedule is start time and duration
+    var allSchs = processEvents(events);
 
     while( allSchs.length > 0) {
         var sch = allSchs.shift();
@@ -17,6 +18,43 @@ WorkerScript.onMessage = function(allSchs) {
         var maxDepth = assignDepth(schs, array);
         WorkerScript.sendMessage({ 'schedules': array,"maxDepth":maxDepth});
     }
+}
+
+
+function getMinutes(time) {
+    return time.getHours() * 60 + time.getMinutes();
+}
+
+function getDuration(event) {
+    var start = getMinutes(event.startDateTime);
+    var end = getMinutes(event.endDateTime);
+    return end - start;
+}
+
+function processEvents(events) {
+    var array = [];
+    for( var i = 0; i < events.length ; ++i) {
+        var event = events[i]
+        var sch = {};
+        sch["start"] = getMinutes(event.startDateTime);
+        sch["duration"] = getDuration(event);
+        sch["id"] = event.id;
+        sch["depth"] = 0;
+        sortedInsert(array,sch);
+    }
+    return array;
+}
+
+//insert in to array using insertion sort
+function sortedInsert(array, sch) {
+    for(var i = array.length-1; i >=0 ; --i) {
+        var temp = array[i];
+        if( sch.duration < array[i].duration) {
+            array.splice(i+1,0,sch);
+            return;
+        }
+    }
+    array.push(sch);
 }
 
 //find all overlapping schedules respect to provided schedule
@@ -60,19 +98,6 @@ function doesOverlap( sch1, sch2) {
     }
 
     return false;
-}
-
-//descending sort function for schedule
-function sortFunc(sch1,sch2) {
-    if(sch1.duration > sch2.duration) {
-        return -1;
-    }
-
-    if(sch1.duration < sch2.duration) {
-        return 1;
-    }
-
-    return 0;
 }
 
 //assign depth(position) of schedule with respect to other

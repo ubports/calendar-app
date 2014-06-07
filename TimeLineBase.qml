@@ -61,16 +61,6 @@ Item {
         }
     }
 
-    function getMinutes(time) {
-        return time.getHours() * 60 + time.getMinutes();
-    }
-
-    function getDuration(event) {
-        var start = getMinutes(event.startDateTime);
-        var end = getMinutes(event.endDateTime);
-        return end - start;
-    }
-
     function createEvents() {
         if(!bubbleOverLay || bubbleOverLay == undefined) {
             return;
@@ -90,9 +80,7 @@ Item {
                 continue;
             }
 
-            var start = getMinutes(event.startDateTime);
-            var duration = getDuration(event);
-            var schedule = {"start": start, "duration": duration,"id":event.itemId, "depth":0};
+            var schedule = {"startDateTime": event.startDateTime, "endDateTime": event.endDateTime,"id":event.itemId };
             allSchs.push(schedule);
             eventMap[event.itemId] = event;
         }
