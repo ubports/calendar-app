@@ -51,6 +51,11 @@ MainView {
          *
          * It takes a id of an event and open that event on full page
          */
+        Argument {
+            name: "eventid"
+            required: false
+            valueNames: ["EVENT_ID"]
+        }
     }
 
     objectName: "calendar"
@@ -85,6 +90,19 @@ MainView {
             //This model is just for newevent
             //so we dont need any update
             autoUpdate: false
+
+            Component.onCompleted: {
+                if (args.values.eventid) {
+                    var requestId = "";
+                    eventModel.onItemsFetched.connect( function(id,fetchedItems) {
+                        if( requestId === id && fetchedItems.length > 0 ) {
+                            var event = fetchedItems[0];
+                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model": eventModel});
+                        }
+                    });
+                    requestId = eventModel.fetchItems([args.values.eventid]);
+                }
+            }
         }
 
         Tabs{
@@ -150,7 +168,6 @@ MainView {
                 var newevenpattern= new RegExp ("newevent");
                 var starttimepattern = new RegExp ("starttime=\\d+");
                 var endtimepattern = new RegExp ("endtime=\\d+");
-                var eventidpattern = new RegExp ("eventid=\\w+");
 
                 newevent = newevenpattern.test(url);
 
@@ -159,9 +176,6 @@ MainView {
 
                 if (endtimepattern.test(url))
                     endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
-
-                if (eventidpattern.test(url))
-                    eventid = url.match(/eventid=(\w+)/)[0].replace("eventid=", '');
             }
 
             Component.onCompleted: {
@@ -187,15 +201,6 @@ MainView {
                             tabs.selectedTabIndex = 3;
                         }
                     } // End of else if (starttime)
-                    else if (eventid) {
-                        eventModel.onItemsFetched.connect( function(id,fetchedItems){
-                            if(requestId === id && fetchedItems.length > 0) {
-                                var event = fetchedItems[0];
-                                pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model": eventModel});
-                            }
-                        });
-                        var requestId = eventModel.fetchItems([eventId]);
-                    } // End of else if (eventid)
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
