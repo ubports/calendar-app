@@ -8,11 +8,9 @@ WorkerScript.onMessage = function(allSchs) {
 
         //finds all schedules overlapping with current schedule and remove from original array
         var schs = findOverlappingSchedules(sch, allSchs);
-        schs.push(sch);
 
-        //schs contains all schedules overlapping with current schedules
-        //now short those schedules from longest to shortest
-        schs.sort(sortFunc);
+        //insert original schedule first, so array remain sorted
+        schs.unshift(sch);
 
         //assign position to schedules with respest to their duration and  start time
         var array = [];
