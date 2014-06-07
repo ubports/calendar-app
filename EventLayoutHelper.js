@@ -81,9 +81,8 @@ function sortFunc(sch1,sch2) {
 function assignDepth(schs, array) {
     var maxDepth = 0;
     while( schs.length > 0 ) {
-        var sch = schs[0];
+        var sch = schs.shift()
         array.push(sch);
-        schs.splice(0,1);
         var depth = findDepth(sch, schs);
         maxDepth = Math.max(maxDepth,depth);
     }
