@@ -4,8 +4,7 @@ WorkerScript.onMessage = function(allSchs) {
     allSchs.sort(sortFunc);
 
     while( allSchs.length > 0) {
-        var sch = allSchs[0];
-        allSchs.splice(0, 1);
+        var sch = allSchs.shift();
 
         //finds all schedules overlapping with current schedule and remove from original array
         var schs = findOverlappingSchedules(sch, allSchs);
