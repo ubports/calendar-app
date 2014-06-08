@@ -1,8 +1,10 @@
 *.qmlproject.user
-
+*.desktop.in
+*.desktop.in.in.h
 debian/files
 debian/app-template/
 debian/*.debhelper.log
 debian/*.substvars
 .build
-po/Makefile
+.excludes
+CMakeLists.txt.user
