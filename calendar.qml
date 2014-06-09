@@ -18,7 +18,7 @@ MainView {
         // Due to bug #1231558 you have to pass arguments BEFORE app:
         // qmlscene calendar:///new-event calendar.qml
 
-        defaultArgument.help: i18n.tr("Calendar app accept three arguments: --starttime, --endtime and --newevet. They will be managed by system. See the source for a full comment about them");
+        defaultArgument.help: i18n.tr("Calendar app accept four arguments: --starttime, --endtime, --newevent and --eventid. They will be managed by system. See the source for a full comment about them");
         //defaultArgument.required: false;
         defaultArgument.valueNames: ["URL"]
 
@@ -45,7 +45,18 @@ MainView {
          * If newevent isn't set and startime is set, its value is used to choose the right view.
          * If neither of precendet flags are set, endtime is ignored.
          * It accepts an integer value of the number of seconds since UNIX epoch in the UTC timezone.
+         *
+         *
+         * Open an existing event
+         * Keyword: eventid (provisional)
+         *
+         * It takes a id of an event and open that event on full page
          */
+        Argument {
+            name: "eventid"
+            required: false
+            valueNames: ["EVENT_ID"]
+        }
     }
 
     objectName: "calendar"
@@ -84,6 +95,19 @@ MainView {
             //This model is just for newevent
             //so we dont need any update
             autoUpdate: false
+
+            Component.onCompleted: {
+                if (args.values.eventid) {
+                    var requestId = "";
+                    eventModel.onItemsFetched.connect( function(id,fetchedItems) {
+                        if( requestId === id && fetchedItems.length > 0 ) {
+                            var event = fetchedItems[0];
+                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model": eventModel});
+                        }
+                    });
+                    requestId = eventModel.fetchItems([args.values.eventid]);
+                }
+            }
         }
 
         Tabs{
