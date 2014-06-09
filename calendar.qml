@@ -115,7 +115,6 @@ MainView {
             property bool newevent: false;
             property int starttime: -1;
             property int endtime: -1;
-            property var eventid: null;
 
             selectedTabIndex: monthTab.index
 
