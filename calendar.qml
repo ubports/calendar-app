@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
-//import Ubuntu.SyncMonitor 0.1
+import Ubuntu.SyncMonitor 0.1
 import "dateExt.js" as DateExt
 
 MainView {
@@ -72,9 +72,9 @@ MainView {
     footerColor: "#ECECEC"
     anchorToKeyboard: true
 
-//    SyncMonitor {
-//        id: syncMonitor
-//    }
+    SyncMonitor {
+        id: syncMonitor
+    }
 
     PageStack {
         id: pageStack
@@ -240,7 +240,7 @@ MainView {
                 ToolbarButton {
                     action: Action {
                         objectName: "neweventbutton"
-                        iconSource: Qt.resolvedUrl("new-event.svg");
+                        iconName: "new-event"
                         text: i18n.tr("New Event");
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabs.currentDay,"model":eventModel});

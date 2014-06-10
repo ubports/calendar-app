@@ -57,7 +57,6 @@ Page{
     Label{
         text: i18n.tr("No upcoming events")
         visible: eventModel.itemCount == 0
-        anchors.fill: parent
         anchors.centerIn: parent
     }
 
