@@ -64,33 +64,21 @@ Page {
                     }
                     weekDaysHeader.value = val.slice(0,-1) // Trim last comma from the string
                     weekDaysHeader.visible = true;
-                    //Change the index for getting correct Reccurence Label
-                    if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,2,3,4,5].sort()))
-                        index = 2
-                    else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,3,5].sort()))
-                        index = 3
-                    else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[2,4].sort()))
-                        index = 4
-                    else
-                        index = 5
                 }
-
             }
             else{
                 limitHeader.visible = false
                 index = 0
             }
         }
-        recurrentHeader.value = Defines.recurrenceLabel[index];
+        // This happens will be weekly in following cases:
+        // 1. Weekdays Monday to Friday
+        // 2. Monday,Wednesday,Friday
+        // 3. Tuesday & Thursday
+        // 4. Manual weekdays
+        recurrentHeader.value = Defines.recurrenceLabel[index === 2 ? 5 : index];
     }
 
-    function compareArrays(daysOfWeek, actualArray){
-        if (daysOfWeek.length !== actualArray.length) return false;
-        for (var i = 0; i < actualArray.length; i++) {
-            if (daysOfWeek[i] !== actualArray[i]) return false;
-        }
-        return true;
-    }
     function updateContacts(event) {
         var attendees = event.attendees;
         contactModel.clear();
