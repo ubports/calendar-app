@@ -37,14 +37,14 @@ Page{
             ]
         }
 
-        sortOrders: SortOrder{
+        sortOrders: [SortOrder{
             id: sort
             blankPolicy: SortOrder.BlanksFirst
-            detail: Type.EventTime
+            detail: Detail.EventTime
             field: EventTime.FieldStartDateTime
             direction: Qt.AscendingOrder
             sensitivity: Qt.CaseInsensitive
-        }
+        }]
     }
 
     ActivityIndicator {
