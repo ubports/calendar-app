@@ -66,9 +66,6 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-
-        startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
-        endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
     }
     //Editing Event
     function editEvent(e) {
