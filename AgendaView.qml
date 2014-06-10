@@ -38,7 +38,6 @@ Page{
         }
 
         sortOrders: [SortOrder{
-            id: sort
             blankPolicy: SortOrder.BlanksFirst
             detail: Detail.EventTime
             field: EventTime.FieldStartDateTime
