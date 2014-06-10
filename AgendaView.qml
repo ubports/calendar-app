@@ -36,6 +36,15 @@ Page{
                 }
             ]
         }
+
+        sortOrders: SortOrder{
+            id: sort
+            blankPolicy: SortOrder.BlanksFirst
+            detail: Type.EventTime
+            field: EventTime.FieldStartDateTime
+            direction: Qt.AscendingOrder
+            sensitivity: Qt.CaseInsensitive
+        }
     }
 
     ActivityIndicator {
