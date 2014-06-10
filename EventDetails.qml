@@ -56,13 +56,25 @@ Page {
 
                 index =  recurrenceRule[0].frequency ;
                 if(index === 2 ){
+                    var sorted = recurrenceRule[0].daysOfWeek.sort();
+                    console.log("Array is " + sorted)
                     var val = i18n.tr("Every ")
-                    for(var j=0;j<recurrenceRule[0].daysOfWeek.length>0;++j){
-                        val += Qt.locale().dayName(recurrenceRule[0].daysOfWeek[j],Locale.LongFormat) + " ,"
+                    for(var j=0;j<sorted.length>0;++j){
+                        val += Qt.locale().dayName(sorted[j],Locale.LongFormat) + " ,"
                     }
                     weekDaysHeader.value = val.slice(0,-1) // Trim last comma from the string
-                    weekDaysHeader.visible = true;                    
+                    weekDaysHeader.visible = true;
+                    //Change the index for getting correct Reccurence Label
+                    if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,2,3,4,5].sort()))
+                        index = 2
+                    else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,3,5].sort()))
+                        index = 3
+                    else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[2,4].sort()))
+                        index = 4
+                    else
+                        index = 5
                 }
+
             }
             else{
                 limitHeader.visible = false
@@ -72,6 +84,13 @@ Page {
         recurrentHeader.value = Defines.recurrenceLabel[index];
     }
 
+    function compareArrays(daysOfWeek, actualArray){
+        if (daysOfWeek.length !== actualArray.length) return false;
+        for (var i = 0; i < actualArray.length; i++) {
+            if (daysOfWeek[i] !== actualArray[i]) return false;
+        }
+        return true;
+    }
     function updateContacts(event) {
         var attendees = event.attendees;
         contactModel.clear();

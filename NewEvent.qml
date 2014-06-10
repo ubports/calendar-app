@@ -105,7 +105,15 @@ Page {
                         // If limit is infinite
                         limitOptions.selectedIndex = 0;
                     }
-                    if(recurrenceRule[0].daysOfWeek.length>0 && index === 2){
+                    if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,2,3,4,5]))
+                        index = 2
+                    else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,3,5]))
+                        index = 3
+                    else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[2,4]))
+                        index = 4
+                    else
+                        index = 5
+                    if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
                         for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
                             //Start childern after first element.
                             weeksRow.children[recurrenceRule[0].daysOfWeek[j]+1].checked = true;
@@ -125,7 +133,13 @@ Page {
         }
         reminderOption.selectedIndex = index;
     }
-
+    function compareArrays(daysOfWeek, actualArray){
+        if (daysOfWeek.length !== actualArray.length) return false;
+        for (var i = 0; i < actualArray.length; i++) {
+            if (daysOfWeek[i] !== actualArray[i]) return false;
+        }
+        return true;
+    }
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
@@ -149,12 +163,23 @@ Page {
                     event.setDetail(attendee);
                 }
 
-                var recurrenceRule = Defines.recurrenceValue[recurrenceOption.selectedIndex];
+                var recurrenceRule = Defines.recurrenceValue[(recurrenceOption.selectedIndex >=2 && recurrenceOption.selectedIndex <=5) ? 2 : recurrenceOption.selectedIndex];
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 if( recurrenceRule !== RecurrenceRule.Invalid ) {
                     rule.frequency = recurrenceRule;
-                    if(recurrenceOption.selectedIndex == 2){
+                    switch(recurrenceOption.selectedIndex){
+                    case 2:
+                        rule.daysOfWeek = [Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday].sort();
+                        break;
+                    case 3:
+                        rule.daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday].sort();
+                        break;
+                    case 4:
+                        rule.daysOfWeek = [Qt.Tuesday,Qt.Thursday].sort();
+                        break;
+                    case 5:
                         rule.daysOfWeek = weekDays.sort();
+                        break;
                     }
                     if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
                         rule.limit =  parseInt(limitCount.text);
@@ -165,6 +190,7 @@ Page {
                     else{
                         rule.limit = undefined;
                     }
+                    rule.daysOfWeek = rule.daysOfWeek.sort();
                 }
             }
             event.recurrence.recurrenceRules = [rule];
@@ -464,7 +490,7 @@ Page {
                 width: parent.width
                 spacing: units.gu(4)
                 anchors.margins: units.gu(1)
-                visible: recurrenceOption.selectedIndex == 2
+                visible: recurrenceOption.selectedIndex == 5
                 Label {
                     text: i18n.tr("Repeats On:")
                     anchors.verticalCenter: parent.verticalCenter
