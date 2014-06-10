@@ -240,7 +240,7 @@ MainView {
                 ToolbarButton {
                     action: Action {
                         objectName: "neweventbutton"
-                        iconSource: Qt.resolvedUrl("new-event.svg");
+                        iconName: "new-event"
                         text: i18n.tr("New Event");
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabs.currentDay,"model":eventModel});
