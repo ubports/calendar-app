@@ -74,6 +74,8 @@ Page{
                 width: parent.width
                 height: parent.height
 
+                isActive: timeLineView.PathView.isCurrentItem
+
                 startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
 
                 Connections{
