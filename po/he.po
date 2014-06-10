@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-07 00:07+0200\n"
-"PO-Revision-Date: 2014-05-26 16:06+0000\n"
+"PO-Revision-Date: 2014-06-09 07:47+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-09 06:29+0000\n"
+"X-Launchpad-Export-Date: 2014-06-10 06:46+0000\n"
 "X-Generator: Launchpad (build 17031)\n"
 
 #: ../AgendaView.qml:49
@@ -93,7 +93,7 @@ msgstr "סיימתי"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr ""
+msgstr "לעולם לא"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
@@ -104,12 +104,12 @@ msgstr "dd-MMM-yyyy"
 #: ../EventDetails.qml:53
 #, qt-format
 msgid "After %1 Occurrences"
-msgstr ""
+msgstr "אחרי %1 מופעים"
 
 #: ../EventDetails.qml:54
 #, qt-format
 msgid "After Date %1"
-msgstr ""
+msgstr "אחרי התאריך %1"
 
 #: ../EventDetails.qml:100
 msgid "Not specified"
@@ -153,7 +153,7 @@ msgstr "להזכיר לי"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr ""
+msgstr "סיום החזרה"
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
@@ -173,7 +173,7 @@ msgstr "בסדר"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
-msgstr ""
+msgstr "ב־"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
@@ -185,11 +185,11 @@ msgstr "תיאור"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
-msgstr ""
+msgstr "סיום האירוע החוזר"
 
 #: ../NewEvent.qml:493
 msgid "Count"
-msgstr ""
+msgstr "ספירה"
 
 #: ../NewEvent.qml:539
 msgid "Save"
@@ -220,11 +220,11 @@ msgstr "היום"
 
 #: ../calendar.qml:237
 msgid "Sync"
-msgstr ""
+msgstr "סנכרון"
 
 #: ../calendar.qml:237
 msgid "Syncing"
-msgstr ""
+msgstr "בסנכרון"
 
 #: ../calendar.qml:270
 msgid "Year"
@@ -248,8 +248,8 @@ msgstr "סדר יום"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "יומן לאובונטו שמסתנכרן עם חשבונות מקוונים."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "יומן;לוח שנה;אירוע;יום;שבוע;חודש;שנה;פגישה;מפגש;"

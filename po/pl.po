@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-07 00:07+0200\n"
-"PO-Revision-Date: 2014-05-27 14:15+0000\n"
+"PO-Revision-Date: 2014-06-09 13:11+0000\n"
 "Last-Translator: GTriderXC <gtriderxc@yahoo.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-09 06:29+0000\n"
+"X-Launchpad-Export-Date: 2014-06-10 06:46+0000\n"
 "X-Generator: Launchpad (build 17031)\n"
 
 #: ../AgendaView.qml:49
@@ -52,7 +52,7 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "Usuń powtarzające się zdarzenie"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
@@ -93,7 +93,7 @@ msgstr "Gotowe"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr ""
+msgstr "Nigdy"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
@@ -173,7 +173,7 @@ msgstr "OK"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
-msgstr ""
+msgstr "-"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
@@ -217,11 +217,11 @@ msgstr "Dzisiaj"
 
 #: ../calendar.qml:237
 msgid "Sync"
-msgstr ""
+msgstr "Synchronizacja"
 
 #: ../calendar.qml:237
 msgid "Syncing"
-msgstr ""
+msgstr "Synchronizowanie"
 
 #: ../calendar.qml:270
 msgid "Year"
@@ -245,7 +245,7 @@ msgstr "Agenda"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "Kalendarz Ubuntu z synchronizacją kont online"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
