@@ -42,7 +42,6 @@ Page{
             detail: Detail.EventTime
             field: EventTime.FieldStartDateTime
             direction: Qt.AscendingOrder
-            sensitivity: Qt.CaseInsensitive
         }]
     }
 
