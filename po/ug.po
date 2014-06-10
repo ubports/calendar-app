@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-05-22 21:21+0530\n"
+"POT-Creation-Date: 2014-06-07 00:07+0200\n"
 "PO-Revision-Date: 2013-11-12 23:54+0000\n"
 "Last-Translator: Gheyret T.Kenji <Unknown>\n"
 "Language-Team: Uyghur <ug@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-26 06:32+0000\n"
-"X-Generator: Launchpad (build 17017)\n"
+"X-Launchpad-Export-Date: 2014-06-09 06:29+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -23,7 +23,7 @@ msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:100 ../EventBubble.qml:40 ../EventDetails.qml:97
+#: ../AgendaView.qml:100 ../EventBubble.qml:40 ../EventDetails.qml:108
 msgid "hh:mm"
 msgstr "hh:mm"
 
@@ -66,16 +66,16 @@ msgstr ""
 msgid "Delete this"
 msgstr ""
 
-#: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:156
+#: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:167
 msgid "Delete"
 msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:40 ../EditEventConfirmationDialog.qml:35
-#: ../EditToolbar.qml:37 ../NewEvent.qml:469 ../TimePicker.qml:74
+#: ../EditToolbar.qml:37 ../NewEvent.qml:543
 msgid "Cancel"
 msgstr "ئەمەلدىن قالدۇر"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:181
+#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:224
 msgid "Edit Event"
 msgstr ""
 
@@ -91,77 +91,107 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: ../EventDetails.qml:89
-msgid "Not specified"
+#: ../EventDetails.qml:47
+msgid "Never"
 msgstr ""
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:100
+#: ../EventDetails.qml:51 ../EventDetails.qml:111
 msgid "dd-MMM-yyyy"
 msgstr ""
 
-#: ../EventDetails.qml:170
+#: ../EventDetails.qml:53
+#, qt-format
+msgid "After %1 Occurrences"
+msgstr ""
+
+#: ../EventDetails.qml:54
+#, qt-format
+msgid "After Date %1"
+msgstr ""
+
+#: ../EventDetails.qml:100
+msgid "Not specified"
+msgstr ""
+
+#: ../EventDetails.qml:181
 msgid "Edit"
 msgstr "تەھرىر"
 
-#: ../EventDetails.qml:230 ../NewEvent.qml:283
+#: ../EventDetails.qml:243
 msgid "Date"
 msgstr ""
 
-#: ../EventDetails.qml:235 ../NewEvent.qml:298
+#: ../EventDetails.qml:248 ../NewEvent.qml:314
 msgid "Start"
 msgstr ""
 
-#: ../EventDetails.qml:240 ../NewEvent.qml:323
+#: ../EventDetails.qml:253 ../NewEvent.qml:352
 msgid "End"
 msgstr ""
 
-#: ../EventDetails.qml:248 ../NewEvent.qml:352
+#: ../EventDetails.qml:262 ../NewEvent.qml:391
 msgid "All Day event:"
 msgstr ""
 
-#: ../EventDetails.qml:278 ../NewEvent.qml:406
+#: ../EventDetails.qml:292 ../NewEvent.qml:436
 msgid "Location"
 msgstr ""
 
-#: ../EventDetails.qml:303 ../NewEvent.qml:413
+#: ../EventDetails.qml:317 ../NewEvent.qml:443
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:340 ../NewEvent.qml:424
+#: ../EventDetails.qml:354 ../NewEvent.qml:454
 msgid "This happens"
 msgstr ""
 
-#: ../EventDetails.qml:345 ../NewEvent.qml:441
+#: ../EventDetails.qml:359 ../NewEvent.qml:515
 msgid "Remind me"
 msgstr ""
 
-#: ../NewEvent.qml:111
+#: ../EventDetails.qml:364
+msgid "Repetition Ends"
+msgstr ""
+
+#: ../NewEvent.qml:135
 msgid "End time can't be before start time"
 msgstr "ئاخىرلىشىش ۋاقتى باشلىنىش ۋاقتىدىن بۇرۇن بولسا بولمايدۇ"
 
-#: ../NewEvent.qml:181 ../calendar.qml:215
+#: ../NewEvent.qml:224 ../calendar.qml:227
 msgid "New Event"
 msgstr "يېڭى ھادىسە"
 
-#: ../NewEvent.qml:197
+#: ../NewEvent.qml:240
 msgid "Error"
 msgstr "خاتالىق"
 
-#: ../NewEvent.qml:199
+#: ../NewEvent.qml:242
 msgid "Ok"
 msgstr ""
 
-#: ../NewEvent.qml:370
+#: ../NewEvent.qml:329 ../NewEvent.qml:367
+msgid "at"
+msgstr ""
+
+#: ../NewEvent.qml:406
 msgid "Event Name"
 msgstr ""
 
-#: ../NewEvent.qml:386
+#: ../NewEvent.qml:416
 msgid "Description"
 msgstr ""
 
-#: ../NewEvent.qml:465
+#: ../NewEvent.qml:472
+msgid "Recurring event ends"
+msgstr ""
+
+#: ../NewEvent.qml:493
+msgid "Count"
+msgstr ""
+
+#: ../NewEvent.qml:539
 msgid "Save"
 msgstr "ساقلا"
 
@@ -171,52 +201,52 @@ msgstr "ساقلا"
 msgid "hh ap"
 msgstr "hh ap"
 
-#: ../TimePicker.qml:23
-msgid "Time"
-msgstr "ۋاقىت"
+#: ../calendar.qml:16 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "يىلنامە"
 
-#: ../TimePicker.qml:49
-msgid "Hour"
-msgstr "سائەت"
-
-#: ../TimePicker.qml:63
-msgid "Minute"
-msgstr "مىنۇت"
-
-#: ../TimePicker.qml:83
-msgid "OK"
-msgstr "تامام"
-
-#: ../calendar.qml:20
+#: ../calendar.qml:28
 msgid ""
 "Calendar app accept three arguments: --starttime, --endtime and --newevet. "
 "They will be managed by system. See the source for a full comment about them"
 msgstr ""
 
-#: ../calendar.qml:197
+#: ../calendar.qml:208
 msgid "Today"
 msgstr "بۈگۈن"
 
-#: ../calendar.qml:248
+#: ../calendar.qml:237
+msgid "Sync"
+msgstr ""
+
+#: ../calendar.qml:237
+msgid "Syncing"
+msgstr ""
+
+#: ../calendar.qml:270
 msgid "Year"
 msgstr "يىل"
 
-#: ../calendar.qml:283
+#: ../calendar.qml:305
 msgid "Month"
 msgstr "ئاي"
 
-#: ../calendar.qml:312
+#: ../calendar.qml:334
 msgid "Week"
 msgstr "ھەپتە"
 
-#: ../calendar.qml:346
+#: ../calendar.qml:368
 msgid "Day"
 msgstr "كۈن"
 
-#: ../calendar.qml:375
+#: ../calendar.qml:397
 msgid "Agenda"
 msgstr ""
 
-#: ../.build/com.ubuntu.calendar_calendar.desktop.in:1
-msgid "Calendar"
-msgstr "يىلنامە"
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:2
+msgid "A calendar for Ubuntu which syncs with online accounts."
+msgstr ""
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:3
+msgid "calendar;event;day;week;year;appointment;meeting;"
+msgstr ""

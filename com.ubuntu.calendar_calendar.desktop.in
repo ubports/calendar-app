@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=false
-Exec=@EXEC@
-Icon=@ICON@
-Name=Calendar
-X-Ubuntu-Touch=true
-X-Ubuntu-Gettext-Domain=@PROJECT_NAME@
