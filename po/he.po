@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-05-22 21:21+0530\n"
-"PO-Revision-Date: 2014-05-26 16:06+0000\n"
+"POT-Creation-Date: 2014-06-07 00:07+0200\n"
+"PO-Revision-Date: 2014-06-09 07:47+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-27 06:05+0000\n"
-"X-Generator: Launchpad (build 17017)\n"
+"X-Launchpad-Export-Date: 2014-06-10 06:46+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -23,7 +23,7 @@ msgstr "אין אירועים בזמן הקרוב"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:100 ../EventBubble.qml:40 ../EventDetails.qml:97
+#: ../AgendaView.qml:100 ../EventBubble.qml:40 ../EventDetails.qml:108
 msgid "hh:mm"
 msgstr "hh:mm"
 
@@ -66,16 +66,16 @@ msgstr "מחיקת הסדרה"
 msgid "Delete this"
 msgstr "למחוק את המופע"
 
-#: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:156
+#: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:167
 msgid "Delete"
 msgstr "מחיקה"
 
 #: ../DeleteConfirmationDialog.qml:40 ../EditEventConfirmationDialog.qml:35
-#: ../EditToolbar.qml:37 ../NewEvent.qml:469 ../TimePicker.qml:74
+#: ../EditToolbar.qml:37 ../NewEvent.qml:543
 msgid "Cancel"
 msgstr "ביטול"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:181
+#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:224
 msgid "Edit Event"
 msgstr "עריכת אירוע"
 
@@ -91,77 +91,107 @@ msgstr "לערוך את המופע"
 msgid "Done"
 msgstr "סיימתי"
 
-#: ../EventDetails.qml:89
-msgid "Not specified"
-msgstr "לא צוין"
+#: ../EventDetails.qml:47
+msgid "Never"
+msgstr "לעולם לא"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:100
+#: ../EventDetails.qml:51 ../EventDetails.qml:111
 msgid "dd-MMM-yyyy"
 msgstr "dd-MMM-yyyy"
 
-#: ../EventDetails.qml:170
+#: ../EventDetails.qml:53
+#, qt-format
+msgid "After %1 Occurrences"
+msgstr "אחרי %1 מופעים"
+
+#: ../EventDetails.qml:54
+#, qt-format
+msgid "After Date %1"
+msgstr "אחרי התאריך %1"
+
+#: ../EventDetails.qml:100
+msgid "Not specified"
+msgstr "לא צוין"
+
+#: ../EventDetails.qml:181
 msgid "Edit"
 msgstr "עריכה"
 
-#: ../EventDetails.qml:230 ../NewEvent.qml:283
+#: ../EventDetails.qml:243
 msgid "Date"
 msgstr "תאריך"
 
-#: ../EventDetails.qml:235 ../NewEvent.qml:298
+#: ../EventDetails.qml:248 ../NewEvent.qml:314
 msgid "Start"
 msgstr "התחלה"
 
-#: ../EventDetails.qml:240 ../NewEvent.qml:323
+#: ../EventDetails.qml:253 ../NewEvent.qml:352
 msgid "End"
 msgstr "סיום"
 
-#: ../EventDetails.qml:248 ../NewEvent.qml:352
+#: ../EventDetails.qml:262 ../NewEvent.qml:391
 msgid "All Day event:"
 msgstr "אירוע כל היום:"
 
-#: ../EventDetails.qml:278 ../NewEvent.qml:406
+#: ../EventDetails.qml:292 ../NewEvent.qml:436
 msgid "Location"
 msgstr "מיקום"
 
-#: ../EventDetails.qml:303 ../NewEvent.qml:413
+#: ../EventDetails.qml:317 ../NewEvent.qml:443
 msgid "Guests"
 msgstr "אורחים"
 
-#: ../EventDetails.qml:340 ../NewEvent.qml:424
+#: ../EventDetails.qml:354 ../NewEvent.qml:454
 msgid "This happens"
 msgstr "האירוע מתרחש"
 
-#: ../EventDetails.qml:345 ../NewEvent.qml:441
+#: ../EventDetails.qml:359 ../NewEvent.qml:515
 msgid "Remind me"
 msgstr "להזכיר לי"
 
-#: ../NewEvent.qml:111
+#: ../EventDetails.qml:364
+msgid "Repetition Ends"
+msgstr "סיום החזרה"
+
+#: ../NewEvent.qml:135
 msgid "End time can't be before start time"
 msgstr "מועד הסיום לא יכול להקדים את מועד ההתחלה"
 
-#: ../NewEvent.qml:181 ../calendar.qml:215
+#: ../NewEvent.qml:224 ../calendar.qml:227
 msgid "New Event"
 msgstr "אירוע חדש"
 
-#: ../NewEvent.qml:197
+#: ../NewEvent.qml:240
 msgid "Error"
 msgstr "שגיאה"
 
-#: ../NewEvent.qml:199
+#: ../NewEvent.qml:242
 msgid "Ok"
 msgstr "בסדר"
 
-#: ../NewEvent.qml:370
+#: ../NewEvent.qml:329 ../NewEvent.qml:367
+msgid "at"
+msgstr "ב־"
+
+#: ../NewEvent.qml:406
 msgid "Event Name"
 msgstr "שם האירוע"
 
-#: ../NewEvent.qml:386
+#: ../NewEvent.qml:416
 msgid "Description"
 msgstr "תיאור"
 
-#: ../NewEvent.qml:465
+#: ../NewEvent.qml:472
+msgid "Recurring event ends"
+msgstr "סיום האירוע החוזר"
+
+#: ../NewEvent.qml:493
+msgid "Count"
+msgstr "ספירה"
+
+#: ../NewEvent.qml:539
 msgid "Save"
 msgstr "שמירה"
 
@@ -171,23 +201,11 @@ msgstr "שמירה"
 msgid "hh ap"
 msgstr "hh"
 
-#: ../TimePicker.qml:23
-msgid "Time"
-msgstr "זמן"
+#: ../calendar.qml:16 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "לוח שנה"
 
-#: ../TimePicker.qml:49
-msgid "Hour"
-msgstr "שעה"
-
-#: ../TimePicker.qml:63
-msgid "Minute"
-msgstr "דקה"
-
-#: ../TimePicker.qml:83
-msgid "OK"
-msgstr "אישור"
-
-#: ../calendar.qml:20
+#: ../calendar.qml:28
 msgid ""
 "Calendar app accept three arguments: --starttime, --endtime and --newevet. "
 "They will be managed by system. See the source for a full comment about them"
@@ -196,30 +214,42 @@ msgstr ""
 "אלו ינוהלו על ידי המערכת. ניתן לעיין בקוד המקור כדי לצפות בהערות המלאות "
 "לגביהם"
 
-#: ../calendar.qml:197
+#: ../calendar.qml:208
 msgid "Today"
 msgstr "היום"
 
-#: ../calendar.qml:248
+#: ../calendar.qml:237
+msgid "Sync"
+msgstr "סנכרון"
+
+#: ../calendar.qml:237
+msgid "Syncing"
+msgstr "בסנכרון"
+
+#: ../calendar.qml:270
 msgid "Year"
 msgstr "שנה"
 
-#: ../calendar.qml:283
+#: ../calendar.qml:305
 msgid "Month"
 msgstr "חודש"
 
-#: ../calendar.qml:312
+#: ../calendar.qml:334
 msgid "Week"
 msgstr "שבוע"
 
-#: ../calendar.qml:346
+#: ../calendar.qml:368
 msgid "Day"
 msgstr "יום"
 
-#: ../calendar.qml:375
+#: ../calendar.qml:397
 msgid "Agenda"
 msgstr "סדר יום"
 
-#: ../.build/com.ubuntu.calendar_calendar.desktop.in:1
-msgid "Calendar"
-msgstr "לוח שנה"
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:2
+msgid "A calendar for Ubuntu which syncs with online accounts."
+msgstr "יומן לאובונטו שמסתנכרן עם חשבונות מקוונים."
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:3
+msgid "calendar;event;day;week;year;appointment;meeting;"
+msgstr "יומן;לוח שנה;אירוע;יום;שבוע;חודש;שנה;פגישה;מפגש;"

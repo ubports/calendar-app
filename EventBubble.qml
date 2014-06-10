@@ -12,7 +12,7 @@ Item{
 
     property Flickable flickable;
 
-    readonly property int minimumHeight: timeLabel.height
+    readonly property int minimumHeight: timeLabel.height + /*top-bottom margin*/ units.gu(2)
 
     signal clicked(var event);
 
@@ -20,10 +20,25 @@ Item{
         id: bg
         anchors.fill: parent
         color: "white"
+        gradientColor: "#F5F5F5"
     }
 
     onEventChanged: {
         setDetails();
+    }
+
+    //on weekview flickable changes, so we need to setup connection on flickble change
+    onFlickableChanged: {
+        if( flickable && height > flickable.height ) {
+            flickable.onContentYChanged.connect(layoutBubbleDetails);
+        }
+    }
+
+    //on dayview, flickable never changed so when height changes we setup connection
+    onHeightChanged: {
+        if( flickable && height > flickable.height ) {
+            flickable.onContentYChanged.connect(layoutBubbleDetails);
+        }
     }
 
     Component.onCompleted: {
@@ -86,69 +101,70 @@ Item{
 
         if( infoBubble.y < flickable.contentY && infoBubble.height > flickable.height) {
             var y = (flickable.contentY - infoBubble.y) * 1.2;
-            if( (y+ detailsColumn.height) > infoBubble.height) {
-                y = infoBubble.height - detailsColumn.height;
+            if( ( y + detailsItems.height + units.gu(2)) > infoBubble.height) {
+                y = infoBubble.height - detailsItems.height - units.gu(2);
             }
-            detailsColumn.y = y;
+            detailsItems.y = y;
         }
     }
 
     Connections{
-        target: flickable
-        onContentYChanged: {
-            layoutBubbleDetails();
-        }
-    }
-    Connections{
-        target: detailsColumn
+        target: detailsItems
         onHeightChanged: {
             layoutBubbleDetails();
         }
     }
 
-    Column{
-        id: detailsColumn
+    Item {
+        id: detailsItems
 
-        anchors.fill: parent
-        anchors.topMargin: units.gu(1)
-        anchors.leftMargin: units.gu(1)
-        anchors.rightMargin: units.gu(1)
+        visible: flickable
 
-        Row{
-            width: parent.width
+        width: parent.width
+        height: detailsColumn.height
+
+        Column{
+            id: detailsColumn
+
+            anchors {
+                top: parent.top; left: parent.left; right: parent.right; margins: units.gu(1)
+            }
+
+            Row{
+                width: parent.width
+
+                Label{
+                    id: timeLabel
+                    fontSize:"small";
+                    color:"gray"
+                    width: parent.width - rect.width
+                }
+                Rectangle{
+                    id:rect
+                    width: units.gu(1)
+                    radius: width/2
+                    height: width
+                    color: "#715772"
+                }
+            }
+            Label{
+                id: titleLabel
+                fontSize:"small";
+                color:"black"
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: parent.width
+            }
 
             Label{
-                id: timeLabel
+                id: descriptionLabel
                 fontSize:"small";
                 color:"gray"
-                width: parent.width - rect.width
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: parent.width
+                visible: type == wideType
             }
-            Rectangle{
-                id:rect
-                width: units.gu(1)
-                radius: width/2
-                height: width
-                color: "#715772"
-            }
-        }
-        Label{
-            id: titleLabel
-            fontSize:"small";
-            color:"black"
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            width: parent.width
-        }
-
-        Label{
-            id: descriptionLabel
-            fontSize:"small";
-            color:"gray"
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            width: parent.width
-            visible: type == wideType
         }
     }
-
 
     MouseArea{
         anchors.fill: parent

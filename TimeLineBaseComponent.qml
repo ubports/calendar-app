@@ -10,6 +10,7 @@ Item {
     id: root
 
     property var startDay: DateExt.today();
+    property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
 
@@ -141,18 +142,12 @@ Item {
     Component {
         id: comp
         EventBubble {
-            type: {
-                if( root.type == ViewType.ViewTypeWeek ) {
-                    narrowType
-                } else {
-                    wideType
-                }
+            type: root.type == ViewType.ViewTypeWeek ? narrowType : wideType
+
+            anchors{
+                left: parent.left; right: parent.right
             }
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.leftMargin: units.gu(0.1)
-            anchors.rightMargin: units.gu(0.1)
-            flickable: timeLineView
+            flickable: root.isActive ? timeLineView : null
             clip: true
         }
     }
