@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-06-07 00:07+0200\n"
+"POT-Creation-Date: 2014-06-10 12:19+0530\n"
 "PO-Revision-Date: 2013-09-05 07:14+0000\n"
 "Last-Translator: Hannie Dumoleyn <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-09 06:29+0000\n"
+"X-Launchpad-Export-Date: 2014-06-11 06:33+0000\n"
 "X-Generator: Launchpad (build 17031)\n"
 
 #: ../AgendaView.qml:49
@@ -40,12 +40,16 @@ msgstr ""
 msgid "%1 - %2"
 msgstr ""
 
-#: ../AllDayEventComponent.qml:94
-#, c-format, qt-format
-msgid "%1E"
+#. TRANSLATORS: the first parameter refers to the number of all-day events
+#. on a given day. "Ev." is short form for "Events".
+#. Please keep the translation of "Ev." to 3 characters only, as the week view
+#. where it's shown has limited space
+#: ../AllDayEventComponent.qml:98
+#, qt-format
+msgid "%1 Ev."
 msgstr ""
 
-#: ../AllDayEventComponent.qml:97
+#: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
 msgstr ""
@@ -159,7 +163,7 @@ msgstr ""
 msgid "End time can't be before start time"
 msgstr "Eindtijd kan niet voor begintijd zijn"
 
-#: ../NewEvent.qml:224 ../calendar.qml:227
+#: ../NewEvent.qml:224 ../calendar.qml:244
 msgid "New Event"
 msgstr "Nieuwe gebeurtenis"
 
@@ -201,47 +205,48 @@ msgstr "Opslaan"
 msgid "hh ap"
 msgstr ""
 
-#: ../calendar.qml:16 com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "Agenda"
-
-#: ../calendar.qml:28
+#: ../calendar.qml:21
 msgid ""
-"Calendar app accept three arguments: --starttime, --endtime and --newevet. "
-"They will be managed by system. See the source for a full comment about them"
+"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
+"eventid. They will be managed by system. See the source for a full comment "
+"about them"
 msgstr ""
 
-#: ../calendar.qml:208
+#: ../calendar.qml:225
 msgid "Today"
 msgstr "Vandaag"
 
-#: ../calendar.qml:237
+#: ../calendar.qml:254
 msgid "Sync"
 msgstr ""
 
-#: ../calendar.qml:237
+#: ../calendar.qml:254
 msgid "Syncing"
 msgstr ""
 
-#: ../calendar.qml:270
+#: ../calendar.qml:287
 msgid "Year"
 msgstr "Jaar"
 
-#: ../calendar.qml:305
+#: ../calendar.qml:322
 msgid "Month"
 msgstr "Maand"
 
-#: ../calendar.qml:334
+#: ../calendar.qml:351
 msgid "Week"
 msgstr "Week"
 
-#: ../calendar.qml:368
+#: ../calendar.qml:385
 msgid "Day"
 msgstr "Dag"
 
-#: ../calendar.qml:397
+#: ../calendar.qml:414
 msgid "Agenda"
 msgstr ""
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "Agenda"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
