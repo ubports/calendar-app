@@ -102,8 +102,8 @@ Page{
                 var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
                 var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
 
-                // TRANSLATORS: the first argument (%1) refer to a start time for an event,
-                // while the third one (%2) refers to the end time
+                // TRANSLATORS: the first argument (%1) refers to a start time for an event,
+                // while the second one (%2) refers to the end time
                 var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
 
                 header.text = date
