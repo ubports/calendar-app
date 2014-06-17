@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-05-28 18:35+0000\n"
-"Last-Translator: londumas <helion331990@gmail.com>\n"
+"PO-Revision-Date: 2014-06-16 19:37+0000\n"
+"Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-11 06:33+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-06-17 06:36+0000\n"
+"X-Generator: Launchpad (build 17045)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -29,7 +29,7 @@ msgstr "hh:mm"
 
 #: ../AgendaView.qml:101
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "dddd , d MMMM"
 
 #. TRANSLATORS: the first argument (%1) refer to a start time for an event,
 #. while the third one (%2) refers to the end time
@@ -97,13 +97,13 @@ msgstr "Terminé"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr ""
+msgstr "Jamais"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:51 ../EventDetails.qml:111
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "dd-MMM-yyyy"
 
 #: ../EventDetails.qml:53
 #, qt-format
@@ -177,7 +177,7 @@ msgstr "Valider"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
-msgstr ""
+msgstr "à"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
@@ -211,6 +211,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"L'application Calendrier accepte quatre arguments : --starttime, --endtime, -"
+"-newevent et --eventid. Ils sont gérés par le système. Consulter le code "
+"source pour un commentaire complet à ce sujet."
 
 #: ../calendar.qml:225
 msgid "Today"
@@ -218,11 +221,11 @@ msgstr "Aujourd'hui"
 
 #: ../calendar.qml:254
 msgid "Sync"
-msgstr ""
+msgstr "Synchroniser"
 
 #: ../calendar.qml:254
 msgid "Syncing"
-msgstr ""
+msgstr "Synchronisation en cours"
 
 #: ../calendar.qml:287
 msgid "Year"
@@ -251,7 +254,8 @@ msgstr "Agenda"
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
 msgstr ""
+"Un calendrier pour Ubuntu qui se synchronise avec les comptes en ligne."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "calendrier;événement;jour;semaine;année;rendez-vous;réunion;"
