@@ -13,7 +13,7 @@ from testtools.matchers import Not, Is, NotEquals
 from calendar_app.tests import CalendarTestCase
 
 import time
-import datetime
+#import datetime
 
 
 class TestMainView(CalendarTestCase):
@@ -27,12 +27,12 @@ class TestMainView(CalendarTestCase):
         num_events = self.main_view.get_num_events()
 
         # calculate some dates
-        today = self.main_view.get_day_view().currentDay.datetime
-        yesterday = today + datetime.timedelta(days=-1)
-        tomorrow = today + datetime.timedelta(days=1)
+        #today = self.main_view.get_day_view().currentDay.datetime
+        #yesterday = today + datetime.timedelta(days=-1)
+        #tomorrow = today + datetime.timedelta(days=1)
 
-        start_time = datetime.time(6, 5)
-        end_time = datetime.time(11, 38)
+        #start_time = datetime.time(6, 5)
+        #end_time = datetime.time(11, 38)
 
         #click on new event button
         header = self.main_view.get_header()
