@@ -8,91 +8,94 @@
 """Calendar app autopilot tests."""
 
 from __future__ import absolute_import
-
 from autopilot.matchers import Eventually
-
-from testtools.matchers import Equals, Not, Is, NotEquals
+from testtools.matchers import Not, Is, NotEquals
+from calendar_app.tests import CalendarTestCase
 
 import time
-
-from calendar_app.tests import CalendarTestCase
+#import datetime
 
 
 class TestMainView(CalendarTestCase):
-
-    def scroll_time_picker_to_time(self, picker, hours, minutes):
-        # Scroll hours to selected value
-        scroller = picker.select_single("Scroller", objectName="hourScroller")
-        x = int(scroller.globalRect[0] + scroller.globalRect[2] / 2)
-        y = int(scroller.globalRect[1] + 0.9 * scroller.globalRect[3])
-        self.pointing_device.move(x, y)
-        while (scroller.currentIndex != hours):
-            current_index = scroller.currentIndex
-            self.pointing_device.click()
-            self.assertThat(scroller.currentIndex, Eventually(
-                Equals((current_index + 1) % 24)))
-
-        # Scroll minutes to selected value
-        scroller = picker.select_single("Scroller",
-                                        objectName="minuteScroller")
-        x = int(scroller.globalRect[0] + scroller.globalRect[2] / 2)
-        y = int(scroller.globalRect[1] + 0.9 * scroller.globalRect[3])
-        self.pointing_device.move(x, y)
-        while (scroller.currentIndex != minutes):
-            current_index = scroller.currentIndex
-            self.pointing_device.click()
-            self.assertThat(scroller.currentIndex, Eventually(
-                Equals((current_index + 1) % 60)))
 
     def test_new_event(self):
         """test add new event """
         #go to today
         self.main_view.switch_to_tab("dayTab")
-        self.main_view.open_toolbar().click_button("todaybutton")
+        header = self.main_view.get_header()
+        header.click_action_button('todaybutton')
         num_events = self.main_view.get_num_events()
 
+        # calculate some dates
+        #today = self.main_view.get_day_view().currentDay.datetime
+        #yesterday = today + datetime.timedelta(days=-1)
+        #tomorrow = today + datetime.timedelta(days=1)
+
+        #start_time = datetime.time(6, 5)
+        #end_time = datetime.time(11, 38)
+
         #click on new event button
-        self.main_view.open_toolbar().click_button("neweventbutton")
+        header = self.main_view.get_header()
+        header.click_action_button('neweventbutton')
         self.assertThat(self.main_view.get_new_event,
                         Eventually(Not(Is(None))))
 
-        #input a new event name
-        eventTitle = "Test event " + str(int(time.time()))
+        #due to https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1326963
+        #the first event triggered is ignored, so we trigger an event
+        #and a small sleep to clear before continuing input
         event_name_field = self.main_view.get_new_event_name_input_box()
         self.pointing_device.click_object(event_name_field)
-        self.assertThat(event_name_field.activeFocus, Eventually(Equals(True)))
-        self.keyboard.type(eventTitle)
-        self.assertThat(event_name_field.text, Eventually(Equals(eventTitle)))
+        time.sleep(1)
+
+        #due to https://bugs.launchpad.net/ubuntu-calendar-app/+bug/1328600
+        #we cannot interact to set date / time, so disabling this for now
+
+        # Set the start date
+        #self.main_view.set_picker(self.main_view.get_event_start_date_field(),
+        #                          'date',
+        #                          yesterday)
+
+        # Set the end date
+        #self.main_view.set_picker(self.main_view.get_event_end_date_field(),
+        #                          'date',
+        #                          tomorrow)
 
         # Set the start time
-        start_time_field = self.main_view.get_event_start_time_field()
-        self.pointing_device.click_object(start_time_field)
-        picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 12, 28)
-        ok = picker.select_single("Button", objectName="TimePickerOKButton")
-        self.pointing_device.click_object(ok)
+        #self.main_view.set_picker(self.main_view.get_event_start_time_field(),
+        #                          'time',
+        #                          start_time)
 
-        ## Set the end time
-        end_time_field = self.main_view.get_event_end_time_field()
-        self.pointing_device.click_object(end_time_field)
-        picker = self.main_view.get_time_picker()
-        self.scroll_time_picker_to_time(picker, 13, 38)
-        ok = picker.select_single("Button", objectName="TimePickerOKButton")
-        self.pointing_device.click_object(ok)
+        # Set the end time
+        #self.main_view.set_picker(self.main_view.get_event_end_time_field(),
+        #                          'time',
+        #                          end_time)
+
+        #input a new event name
+        eventTitle = "Test event " + str(int(time.time()))
+        self.main_view.get_new_event_name_input_box().write(eventTitle)
+
+        #input description
+        self.main_view.get_event_description_field(). \
+            write("My favorite test event")
 
         #input location
-        location_field = self.main_view.get_event_location_field()
-        self.pointing_device.click_object(location_field)
-        self.assertThat(location_field.activeFocus, Eventually(Equals(True)))
-        self.keyboard.type("My location")
-        self.assertThat(location_field.text, Eventually(Equals("My location")))
+        self.main_view.get_event_location_field().write("England")
+
+        #input guests
+        self.main_view.get_event_people_field().write("me, myself, and I")
+
+        #todo: iterate over all combinations
+        #and include recurrence and reminders
 
         #click save button
         save_button = self.main_view.get_new_event_save_button()
         self.pointing_device.click_object(save_button)
 
         #verify that the event has been created in timeline
-        self.main_view.open_toolbar().click_button("todaybutton")
         self.main_view.switch_to_tab("dayTab")
+        header = self.main_view.get_header()
+        header.click_action_button('todaybutton')
         self.assertThat(self.main_view.get_num_events,
                         Eventually(NotEquals(num_events)))
+
+        #todo: verify entered event data

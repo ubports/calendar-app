@@ -9,7 +9,7 @@ Item {
     property var day;
     property int hourHeight: units.gu(10)
     property var model;
-            
+
     MouseArea {
         anchors.fill: parent
         objectName: "mouseArea"
@@ -32,10 +32,32 @@ Item {
     QtObject {
         id: intern
         property var now : new Date();
+        property var eventMap;
     }
 
     function showEventDetails(event) {
         pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":model});
+    }
+
+    WorkerScript {
+        id: eventLayoutHelper
+        source: "EventLayoutHelper.js"
+
+        onMessage: {
+            layoutEvents(messageObject.schedules,messageObject.maxDepth);
+        }
+    }
+
+    function layoutEvents(array, depth) {
+        var width = bubbleOverLay.width;
+        var offset = width/(depth+1);
+        for(var i=0; i < array.length ; ++i) {
+            var schedule = array[i];
+            var x = (schedule.depth) * offset
+            var w = width - x;
+            var event = intern.eventMap[schedule.id];
+            bubbleOverLay.createEvent(event , x, w);
+        }
     }
 
     function createEvents() {
@@ -44,16 +66,26 @@ Item {
         }
         destroyAllChildren();
 
+        var eventMap = {};
+        var allSchs = [];
+
         var startDate = new Date(day).midnight();
         var endDate = new Date(day).endOfDay();
-
         var items = model.getItems(startDate,endDate);
         for(var i = 0; i < items.length; ++i) {
             var event = items[i];
-            if(event.allDay === false) {
-                bubbleOverLay.createEvent(event, event.startDateTime.getHours());
+
+            if(event.allDay) {
+                continue;
             }
+
+            var schedule = {"startDateTime": event.startDateTime, "endDateTime": event.endDateTime,"id":event.itemId };
+            allSchs.push(schedule);
+            eventMap[event.itemId] = event;
         }
+
+        intern.eventMap = eventMap;
+        eventLayoutHelper.sendMessage(allSchs);
 
         if( intern.now.isSameDay( bubbleOverLay.day ) ) {
             bubbleOverLay.showSeparator(intern.now.getHours());
@@ -62,7 +94,7 @@ Item {
 
     function destroyAllChildren() {
         for( var i = children.length - 1; i >= 0; --i ) {
- 	    if( children[i].objectName === "mouseArea" ) {
+            if( children[i].objectName === "mouseArea" ) {
                 continue;
             }
             children[i].visible = false;
@@ -72,9 +104,9 @@ Item {
         }
     }
 
-    function createEvent( event ,hour) {
-        var eventBubble = delegate.createObject(bubbleOverLay,{"model": bubbleOverLay.model,"event": event});
-        eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
+    function createEvent( event, x, width ) {
+        var hour = event.startDateTime.getHours();
+        var eventBubble = delegate.createObject(bubbleOverLay);
 
         var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
         eventBubble.y = yPos;
@@ -83,6 +115,11 @@ Item {
         durationMin += (event.endDateTime.getMinutes() - event.startDateTime.getMinutes());
         var height = (durationMin * hourHeight )/ 60;
         eventBubble.height = (height > eventBubble.minimumHeight) ? height:eventBubble.minimumHeight ;
+
+        eventBubble.x = x;
+        eventBubble.width = width;
+        eventBubble.event = event
+        eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
     }
 
     function showSeparator(hour) {

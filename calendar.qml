@@ -2,11 +2,13 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import QtOrganizer 5.0
+import Ubuntu.SyncMonitor 0.1
 
 import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
+    useDeprecatedToolbar: false
 
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496 
@@ -23,7 +25,7 @@ MainView {
         // Due to bug #1231558 you have to pass arguments BEFORE app:
         // qmlscene calendar:///new-event calendar.qml
 
-        defaultArgument.help: i18n.tr("Calendar app accept three arguments: --starttime, --endtime and --newevet. They will be managed by system. See the source for a full comment about them");
+        defaultArgument.help: i18n.tr("Calendar app accept four arguments: --starttime, --endtime, --newevent and --eventid. They will be managed by system. See the source for a full comment about them");
         //defaultArgument.required: false;
         defaultArgument.valueNames: ["URL"]
 
@@ -50,7 +52,18 @@ MainView {
          * If newevent isn't set and startime is set, its value is used to choose the right view.
          * If neither of precendet flags are set, endtime is ignored.
          * It accepts an integer value of the number of seconds since UNIX epoch in the UTC timezone.
+         *
+         *
+         * Open an existing event
+         * Keyword: eventid (provisional)
+         *
+         * It takes a id of an event and open that event on full page
          */
+        Argument {
+            name: "eventid"
+            required: false
+            valueNames: ["EVENT_ID"]
+        }
     }
 
     objectName: "calendar"
@@ -65,6 +78,10 @@ MainView {
     backgroundColor: "#f5f5f5"
     footerColor: "#ECECEC"
     anchorToKeyboard: true
+
+    SyncMonitor {
+        id: syncMonitor
+    }
 
     PageStack {
         id: pageStack
@@ -82,11 +99,10 @@ MainView {
 
         EventListModel{
             id: eventModel
+
             autoUpdate: true
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
-
-            property var uninionFilter;
 
             function createDetailFilter(type) {
                 var filter = "import QtOrganizer 5.0;
@@ -123,6 +139,19 @@ MainView {
                 var uninionFilter =  Qt.createQmlObject("import QtOrganizer 5.0; UnionFilter{}", eventModel, "calendar.qml");
                 uninionFilter.filters = uninionFilters;
                 eventModel.filter = uninionFilter;
+            }
+
+            Component.onCompleted: {
+                if (args.values.eventid) {
+                    var requestId = "";
+                    eventModel.onItemsFetched.connect( function(id,fetchedItems) {
+                        if( requestId === id && fetchedItems.length > 0 ) {
+                            var event = fetchedItems[0];
+                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model": eventModel});
+                        }
+                    });
+                    requestId = eventModel.fetchItems([args.values.eventid]);
+                }
             }
         }
 
@@ -236,10 +265,10 @@ MainView {
                 id: commonToolBar
 
                 ToolbarButton {
-                    objectName: "todaybutton"
                     action: Action {
                         iconSource: Qt.resolvedUrl("calendar-today.svg");
                         text: i18n.tr("Today");
+                        objectName: "todaybutton"
                         onTriggered: {
                             tabs.currentDay = (new Date()).midnight();
                             if(yearViewLoader.item ) yearViewLoader.item.currentYear = tabs.currentDay.getFullYear();
@@ -254,9 +283,9 @@ MainView {
                     }
                 }
                 ToolbarButton {
-                    objectName: "neweventbutton"
                     action: Action {
-                        iconSource: Qt.resolvedUrl("new-event.svg");
+                        objectName: "neweventbutton"
+                        iconName: "new-event"
                         text: i18n.tr("New Event");
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabs.currentDay,"model":eventModel});
@@ -270,6 +299,16 @@ MainView {
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
                         }
+                    }
+                }
+                ToolbarButton {
+                    objectName: "syncbutton"
+                    visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
+                    action: Action {
+                        text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
+                        iconName: "reload"
+                        onTriggered: syncMonitor.sync(["calendar"])
+                        enabled: (syncMonitor.state !== "syncing")
                     }
                 }
             }

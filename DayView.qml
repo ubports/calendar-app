@@ -81,6 +81,7 @@ Page{
                 width: parent.width/7 * 5
                 height: parent.height
                 z: index == dayViewPath.currentIndex ? 2 : 1
+                isActive: true
 
                 Connections{
                     target: root

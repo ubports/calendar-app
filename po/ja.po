@@ -7,163 +7,251 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-03-10 19:02-0500\n"
+"POT-Creation-Date: 2014-06-10 12:19+0530\n"
 "PO-Revision-Date: 2014-01-18 14:44+0000\n"
 "Last-Translator: Shushi Kurose <md81bird@hitaki.net>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-01 06:39+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-06-11 06:33+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
-#: ../AllDayEventComponent.qml:101
-#, c-format, qt-format
-msgid "%1E"
-msgstr ""
-
-#: ../AllDayEventComponent.qml:104
-#, qt-format
-msgid "%1 All day events"
+#: ../AgendaView.qml:49
+msgid "No upcoming events"
 msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../EventBubble.qml:36 ../EventDetails.qml:40
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
+#: ../AgendaView.qml:100 ../EventBubble.qml:40 ../EventDetails.qml:108
 msgid "hh:mm"
 msgstr "hh:mm"
 
+#: ../AgendaView.qml:101
+msgid "dddd , d MMMM"
+msgstr ""
+
+#. TRANSLATORS: the first argument (%1) refer to a start time for an event,
+#. while the third one (%2) refers to the end time
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../EventBubble.qml:41
+#: ../AgendaView.qml:108 ../EventBubble.qml:45
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: ../EventDetails.qml:98
+#. TRANSLATORS: the first parameter refers to the number of all-day events
+#. on a given day. "Ev." is short form for "Events".
+#. Please keep the translation of "Ev." to 3 characters only, as the week view
+#. where it's shown has limited space
+#: ../AllDayEventComponent.qml:98
+#, qt-format
+msgid "%1 Ev."
+msgstr ""
+
+#: ../AllDayEventComponent.qml:101
+#, qt-format
+msgid "%1 All day events"
+msgstr ""
+
+#: ../DeleteConfirmationDialog.qml:13
+msgid "Delete Recurring Event"
+msgstr ""
+
+#: ../DeleteConfirmationDialog.qml:14
+msgid "Delete Event"
+msgstr ""
+
+#: ../DeleteConfirmationDialog.qml:21
+msgid "Delete series"
+msgstr ""
+
+#: ../DeleteConfirmationDialog.qml:31
+msgid "Delete this"
+msgstr ""
+
+#: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:167
 msgid "Delete"
 msgstr ""
 
-#: ../EventDetails.qml:110
-msgid "Edit"
-msgstr "編集"
-
-#: ../EventDetails.qml:140 ../NewEvent.qml:262
-msgid "Start"
-msgstr ""
-
-#: ../EventDetails.qml:145 ../NewEvent.qml:287
-msgid "End"
-msgstr ""
-
-#: ../EventDetails.qml:153 ../NewEvent.qml:316
-msgid "All Day event:"
-msgstr ""
-
-#: ../EventDetails.qml:183 ../NewEvent.qml:365
-msgid "Location"
-msgstr ""
-
-#: ../EventDetails.qml:207 ../NewEvent.qml:372
-msgid "Guests"
-msgstr ""
-
-#: ../EventDetails.qml:238 ../NewEvent.qml:381
-msgid "This happens"
-msgstr ""
-
-#: ../EventDetails.qml:244 ../NewEvent.qml:398
-msgid "Remind me"
-msgstr ""
-
-#: ../NewEvent.qml:106
-msgid "End time can't be before start time"
-msgstr ""
-
-#: ../NewEvent.qml:165
-msgid "Edit Event"
-msgstr ""
-
-#: ../NewEvent.qml:165 ../calendar.qml:226
-msgid "New Event"
-msgstr "新しいイベント"
-
-#: ../NewEvent.qml:176 ../TimePicker.qml:74
+#: ../DeleteConfirmationDialog.qml:40 ../EditEventConfirmationDialog.qml:35
+#: ../EditToolbar.qml:37 ../NewEvent.qml:543
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: ../NewEvent.qml:187
-msgid "Save"
-msgstr "保存"
-
-#: ../NewEvent.qml:200
-msgid "Error"
+#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:224
+msgid "Edit Event"
 msgstr ""
 
-#: ../NewEvent.qml:202
-msgid "Ok"
+#: ../EditEventConfirmationDialog.qml:17
+msgid "Edit series"
 msgstr ""
 
-#: ../NewEvent.qml:247
+#: ../EditEventConfirmationDialog.qml:26
+msgid "Edit this"
+msgstr ""
+
+#: ../EditToolbar.qml:52
+msgid "Done"
+msgstr ""
+
+#: ../EventDetails.qml:47
+msgid "Never"
+msgstr ""
+
+#. TRANSLATORS: this is a time & Date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+#: ../EventDetails.qml:51 ../EventDetails.qml:111
+msgid "dd-MMM-yyyy"
+msgstr ""
+
+#: ../EventDetails.qml:53
+#, qt-format
+msgid "After %1 Occurrences"
+msgstr ""
+
+#: ../EventDetails.qml:54
+#, qt-format
+msgid "After Date %1"
+msgstr ""
+
+#: ../EventDetails.qml:100
+msgid "Not specified"
+msgstr ""
+
+#: ../EventDetails.qml:181
+msgid "Edit"
+msgstr "編集"
+
+#: ../EventDetails.qml:243
 msgid "Date"
 msgstr ""
 
-#: ../NewEvent.qml:334
+#: ../EventDetails.qml:248 ../NewEvent.qml:314
+msgid "Start"
+msgstr ""
+
+#: ../EventDetails.qml:253 ../NewEvent.qml:352
+msgid "End"
+msgstr ""
+
+#: ../EventDetails.qml:262 ../NewEvent.qml:391
+msgid "All Day event:"
+msgstr ""
+
+#: ../EventDetails.qml:292 ../NewEvent.qml:436
+msgid "Location"
+msgstr ""
+
+#: ../EventDetails.qml:317 ../NewEvent.qml:443
+msgid "Guests"
+msgstr ""
+
+#: ../EventDetails.qml:354 ../NewEvent.qml:454
+msgid "This happens"
+msgstr ""
+
+#: ../EventDetails.qml:359 ../NewEvent.qml:515
+msgid "Remind me"
+msgstr ""
+
+#: ../EventDetails.qml:364
+msgid "Repetition Ends"
+msgstr ""
+
+#: ../NewEvent.qml:135
+msgid "End time can't be before start time"
+msgstr ""
+
+#: ../NewEvent.qml:224 ../calendar.qml:244
+msgid "New Event"
+msgstr "新しいイベント"
+
+#: ../NewEvent.qml:240
+msgid "Error"
+msgstr ""
+
+#: ../NewEvent.qml:242
+msgid "Ok"
+msgstr ""
+
+#: ../NewEvent.qml:329 ../NewEvent.qml:367
+msgid "at"
+msgstr ""
+
+#: ../NewEvent.qml:406
 msgid "Event Name"
 msgstr ""
 
-#: ../NewEvent.qml:350
+#: ../NewEvent.qml:416
 msgid "Description"
 msgstr ""
 
+#: ../NewEvent.qml:472
+msgid "Recurring event ends"
+msgstr ""
+
+#: ../NewEvent.qml:493
+msgid "Count"
+msgstr ""
+
+#: ../NewEvent.qml:539
+msgid "Save"
+msgstr "保存"
+
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../TimeLineBackground.qml:18
+#: ../TimeLineBackground.qml:19
 msgid "hh ap"
 msgstr ""
 
-#: ../TimePicker.qml:23
-msgid "Time"
-msgstr "時刻"
-
-#: ../TimePicker.qml:49
-msgid "Hour"
-msgstr "時"
-
-#: ../TimePicker.qml:63
-msgid "Minute"
-msgstr "分"
-
-#: ../TimePicker.qml:83
-msgid "OK"
-msgstr "OK"
-
 #: ../calendar.qml:21
 msgid ""
-"Calendar app accept three arguments: --starttime, --endtime and --newevet. "
-"They will be managed by system. See the source for a full comment about them"
+"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
+"eventid. They will be managed by system. See the source for a full comment "
+"about them"
 msgstr ""
 
-#: ../calendar.qml:216
+#: ../calendar.qml:225
 msgid "Today"
 msgstr ""
 
-#: ../calendar.qml:238
+#: ../calendar.qml:254
+msgid "Sync"
+msgstr ""
+
+#: ../calendar.qml:254
+msgid "Syncing"
+msgstr ""
+
+#: ../calendar.qml:287
 msgid "Year"
 msgstr "年"
 
-#: ../calendar.qml:260
+#: ../calendar.qml:322
 msgid "Month"
 msgstr "月"
 
-#: ../calendar.qml:274
+#: ../calendar.qml:351
 msgid "Week"
 msgstr "週"
 
-#: ../calendar.qml:291
+#: ../calendar.qml:385
 msgid "Day"
 msgstr "日"
 
-#: ../.build/com.ubuntu.calendar_calendar.desktop.in:1
+#: ../calendar.qml:414
+msgid "Agenda"
+msgstr ""
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "カレンダー"
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:2
+msgid "A calendar for Ubuntu which syncs with online accounts."
+msgstr ""
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:3
+msgid "calendar;event;day;week;year;appointment;meeting;"
+msgstr ""
