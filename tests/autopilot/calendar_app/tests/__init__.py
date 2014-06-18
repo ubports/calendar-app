@@ -70,11 +70,6 @@ class CalendarTestCase(AutopilotTestCase):
         self.pointing_device = Pointer(self.input_device_class.create())
         super(CalendarTestCase, self).setUp()
 
-        #turn off the OSK so it doesn't block screen elements
-        if model() != 'Desktop':
-            os.system('stop maliit-server')
-            self.addCleanup(os.system, 'start maliit-server')
-
         # Unset the current locale to ensure locale-specific data
         # (day and month names, first day of the week, …) doesn’t get
         # in the way of test expectations.
