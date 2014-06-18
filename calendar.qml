@@ -117,13 +117,11 @@ MainView {
             }
 
             onCollectionsChanged : {
-                print("###### onCollection changed....");
                 var collectionIds = [];
                 var collections = eventModel.getCollections();
                 for(var i=0; i < collections.length ; ++i) {
                     var collection = collections[i]
                     if(collection.extendedMetaData("collection-selected") === true) {
-                        print("###### "+ collection.name);
                         collectionIds.push(collection.collectionId);
                     }
                 }
@@ -294,7 +292,7 @@ MainView {
                 }
                 ToolbarButton{
                     action:Action{
-                        iconSource: Qt.resolvedUrl("new-event.svg");
+                        iconName: "new-event"
                         text: i18n.tr("Calendars");
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});

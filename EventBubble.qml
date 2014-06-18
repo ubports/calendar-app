@@ -143,10 +143,10 @@ Item{
                     id: timeLabel
                     fontSize:"small";
                     color:"gray"
-                    width: parent.width - rect.width
+                    width: parent.width - calendarIndicator.width
                 }
                 Rectangle{
-                    id:rect
+                    id: calendarIndicator
                     width: units.gu(1)
                     radius: width/2
                     height: width

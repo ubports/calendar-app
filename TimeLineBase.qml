@@ -106,7 +106,7 @@ Item {
 
     function createEvent( event, x, width ) {
         var hour = event.startDateTime.getHours();
-        var eventBubble = delegate.createObject(bubbleOverLay);
+        var eventBubble = delegate.createObject(bubbleOverLay,{"model": bubbleOverLay.model,"event": event});
 
         var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
         eventBubble.y = yPos;
@@ -118,7 +118,6 @@ Item {
 
         eventBubble.x = x;
         eventBubble.width = width;
-        eventBubble.event = event
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
     }
 
