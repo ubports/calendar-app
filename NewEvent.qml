@@ -11,7 +11,7 @@ import "Defines.js" as Defines
 
 Page {
     id: root
-    property var date : new Date();
+    property var date;
 
     property var event:null;
     property var model;
@@ -23,11 +23,26 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
+    onStartDateChanged: {
+        startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
+        startTimeInput.text = Qt.formatDateTime(startDate, "hh:mm");
+    }
+
+    onEndDateChanged: {
+        endDateInput.text = Qt.formatDateTime(endDate, "dd MMM yyyy");
+        endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
+    }
+
     Component.onCompleted: {
+        //If current date is setted by an argument we don't have to change it.
+        if(typeof(date) === 'undefined'){
+            date = new Date();
+            var newDate = new Date();
+            date.setHours(newDate.getHours(), newDate.getMinutes());
+        }
+
         // If startDate is setted by argument we have to not change it
         //Set the nearest current time.
-        var newDate = new Date();
-        date.setHours(newDate.getHours(), newDate.getMinutes());
         if (typeof(startDate) === 'undefined')
             startDate = new Date(root.roundDate(date))
 
@@ -35,10 +50,11 @@ Page {
         if (typeof(endDate) === 'undefined') {
             endDate = new Date(root.roundDate(date))
             endDate.setMinutes(endDate.getMinutes() + 30)
+            endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
         }
 
         if(event === null){
-            isEdit =false;
+            isEdit = false;
             addEvent();
         }
         else{
@@ -50,20 +66,17 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-
-        startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
-        endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
     }
-
     //Editing Event
     function editEvent(e) {
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
-        startTime.text = Qt.formatDateTime(e.startDateTime, "dd MMM yyyy hh:mm");
-        endTime.text = Qt.formatDateTime(e.endDateTime, "dd MMM yyyy hh:mm");
 
         if(e.displayLabel) {
             titleEdit.text = e.displayLabel;
+        }
+        if(e.allDay){
+            allDayEventCheckbox.checked =true;
         }
 
         if(e.location) {
@@ -121,7 +134,7 @@ Page {
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
-        if ( startDate >= endDate ) {
+        if ( startDate >= endDate && !allDayEventCheckbox.checked) {
             PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
         } else {
             event.startDateTime = startDate;
@@ -189,6 +202,16 @@ Page {
             pageStack.pop();
         }
     }
+
+    function openDatePicker (element, caller, callerProperty, mode) {
+        element.highlighted = true;
+        var picker = PickerPanel.openDatePicker(caller, callerProperty, mode);
+        if (!picker) return;
+        picker.closed.connect(function () {
+            element.highlighted = false;
+        });
+    }
+
     // Calucate default hour and minute for start and end time on event
     function roundDate(date) {
         var tempDate = new Date(date)
@@ -224,22 +247,6 @@ Page {
             }
         }
     }
-
-    Component {
-        id: timePicker
-        TimePicker {
-        }
-    }
-
-    Rectangle {
-        id: availableArea
-
-        width: parent.width
-        color: "red"
-        opacity: 0.5
-        z: 100
-    }
-
 
     Flickable{
         id: flickable
@@ -285,13 +292,13 @@ Page {
         contentWidth: width
         contentHeight: column.height
 
-        Column{
+        Column {
             id: column
 
             width: parent.width
             spacing: units.gu(1)
 
-            UbuntuShape{
+            UbuntuShape {
                 width:parent.width
                 height: timeColumn.height
 
@@ -301,65 +308,77 @@ Page {
                     anchors.centerIn: parent
                     spacing: units.gu(1)
 
-                    NewEventEntryField{
-                        id: dateField
-                        title: i18n.tr("Date")
+                    Item {
                         width: parent.width
-                        objectName: "dateInput"
+                        height: startDateInput.height
 
-                        text: Qt.formatDateTime(startDate,"dd MMM yyyy");
+                        NewEventEntryField{
+                            id: startDateInput
+                            title: i18n.tr("Start")
+                            objectName: "startDateInput"
 
-                        MouseArea{
-                            anchors.fill: parent
-                            onClicked: {
+                            text: ""
+
+                            width: allDayEventCheckbox.checked ? parent.width : parent.width / 2
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: openDatePicker(startDateInput, root, "startDate", "Years|Months|Days")
+                            }
+                        }
+
+                        NewEventEntryField{
+                            id: startTimeInput
+                            title: i18n.tr("at")
+                            objectName: "startTimeInput"
+
+                            text: ""
+
+                            width: (parent.width / 2) - units.gu(1)
+                            anchors.right: parent.right
+                            visible: !allDayEventCheckbox.checked
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
                             }
                         }
                     }
 
-                    NewEventEntryField{
-                        id: startTime
-                        title: i18n.tr("Start")
+                    Item {
                         width: parent.width
-                        objectName: "startTimeInput"
+                        height: endDateInput.height
+                        visible: !allDayEventCheckbox.checked
 
-                        text: Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
+                        NewEventEntryField{
+                            id: endDateInput
+                            title: i18n.tr("End")
+                            objectName: "endDateInput"
 
-                        MouseArea{
-                            anchors.fill: parent
-                            onClicked: {
-                                internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": startDate.getHours(),"minute":startDate.getMinutes()});
-                                popupObj.accepted.connect(function(startHour, startMinute) {
-                                    var newDate = startDate;
-                                    newDate.setHours(startHour, startMinute);
-                                    startDate = newDate;
-                                    startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
-                                })
+                            text: ""
+
+                            width: parent.width / 2
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: openDatePicker(endDateInput, root, "endDate", "Years|Months|Days")
                             }
                         }
-                    }
 
-                    ThinDivider{}
+                        NewEventEntryField{
+                            id: endTimeInput
+                            title: i18n.tr("at")
+                            objectName: "endTimeInput"
 
-                    NewEventEntryField{
-                        id: endTime
-                        title: i18n.tr("End")
-                        width: parent.width
-                        objectName: "endTimeInput"
+                            text: ""
 
-                        text: Qt.formatDateTime(endDate,"dd MMM yyyy hh:mm");
+                            width: (parent.width / 2) - units.gu(1)
+                            anchors.right: parent.right
 
-                        MouseArea{
-                            anchors.fill: parent
-                            onClicked: {
-                                internal.clearFocus()
-                                var popupObj = PopupUtils.open(timePicker,root,{"hour": endDate.getHours(),"minute":endDate.getMinutes()});
-                                popupObj.accepted.connect(function(startHour, startMinute) {
-                                    var newDate = endDate;
-                                    newDate.setHours(startHour, startMinute);
-                                    endDate = newDate;
-                                    endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
-                                })
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: openDatePicker(endTimeInput, root, "endDate", "Hours|Minutes")
+
                             }
                         }
                     }
@@ -379,13 +398,10 @@ Page {
                 CheckBox {
                     id: allDayEventCheckbox
                     checked: false
-
-                    onCheckedChanged: {
-                        startTime.visible = !checked;
-                        endTime.visible = !checked;
-                    }
                 }
             }
+
+            ThinDivider{}
 
             NewEventEntryField{
                 id: titleEdit
@@ -394,31 +410,25 @@ Page {
                 objectName: "newEventName"
             }
 
-            UbuntuShape{
-                width:parent.width
-                height: descriptionColumn.height
+            Column{
+                id: descriptionColumn
+                width: parent.width
+                spacing: units.gu(1)
 
-                Column{
-                    id: descriptionColumn
+                Label {
+                    text: i18n.tr("Description")
+                    anchors.margins: units.gu(0.5)
+                    anchors.left: parent.left
+                }
+
+                TextArea{
+                    id: messageEdit
+                    objectName: "eventDescriptionInput"
                     width: parent.width
-                    anchors.top: parent.top
-                    anchors.topMargin: units.gu(0.5)
-                    spacing: units.gu(1)
-
-                    Label {
-                        text: i18n.tr("Description")
-                        anchors.margins: units.gu(0.5)
-                        anchors.left: parent.left
-                    }
-
-                    TextArea{
-                        id: messageEdit
-                        width: parent.width
-                        color: focus ? "#2C001E" : "#5D5D5D"
-                        // default style
-                        font {
-                            pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
-                        }
+                    color: focus ? "#2C001E" : "#5D5D5D"
+                    // default style
+                    font {
+                        pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
                     }
                 }
             }
@@ -581,8 +591,10 @@ Page {
             titleEdit.focus = false
             locationEdit.focus = false
             personEdit.focus = false
-            startTime.focus = false
-            endTime.focus = false
+            startDateInput.focus = false
+            startTimeInput.focus = false
+            endDateInput.focus = false
+            endTimeInput.focus = false
             messageEdit.focus = false
         }
 
