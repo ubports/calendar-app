@@ -82,7 +82,7 @@ class TestMainView(CalendarTestCase):
         self.main_view.get_event_location_field().write("England")
 
         #input guests
-        self.main_view.get_event_people_field().write("me, myself, and I")
+        #self.main_view.get_event_people_field().write("me, myself, and I")
 
         #todo: iterate over all combinations
         #and include recurrence and reminders
