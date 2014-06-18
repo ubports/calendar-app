@@ -456,7 +456,7 @@ Page {
                         model: contactModel
                         delegate: Standard {
                             height: units.gu(4)
-                            text:name
+                            text: name
                         }
                     }
                 }
@@ -587,10 +587,6 @@ Page {
         }
 
         function contactToAttendee(contact) {
-            for(var p in contact) {
-                print(p + " --- " + contact[p]);
-            }
-
             var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
             attendee.name = contact.name.firstName + " " + contact.name.lastName;
             attendee.emailAddress = contact.email.emailAddress;

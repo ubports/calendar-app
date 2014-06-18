@@ -45,7 +45,10 @@ Popover {
     }
 
     Column {
-        width: parent.width
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.margins: units.gu(1)
 
         NewEventEntryField{
             id: searchBox
