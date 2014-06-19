@@ -56,10 +56,9 @@ Page {
 
                 index =  recurrenceRule[0].frequency ;
                 if(index === 2 ){
-                    var sorted = recurrenceRule[0].daysOfWeek.sort();
-                    console.log("Array is " + sorted)
+                    var sorted = recurrenceRule[0].daysOfWeek;
                     var val = i18n.tr("Every ")
-                    for(var j=0;j<sorted.length>0;++j){
+                    for(var j=0;j<sorted.length;++j){
                         val += Qt.locale().dayName(sorted[j],Locale.LongFormat) + " ,"
                     }
                     weekDaysHeader.value = val.slice(0,-1) // Trim last comma from the string

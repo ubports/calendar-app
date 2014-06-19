@@ -71,7 +71,7 @@ function getWeekLabels(){
         import QtQuick 2.0;\
         import Ubuntu.Components 0.1;\
         QtObject {\
-            property var weekLabel:[Qt.locale().dayName(0,Locale.NarrowFormat),\
+            property var weekLabel:[Qt.locale().dayName(7,Locale.NarrowFormat),\
                                     Qt.locale().dayName(1,Locale.NarrowFormat),\
                                     Qt.locale().dayName(2,Locale.NarrowFormat),\
                                     Qt.locale().dayName(3,Locale.NarrowFormat),\
