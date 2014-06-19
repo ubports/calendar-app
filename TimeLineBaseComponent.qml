@@ -143,10 +143,6 @@ Item {
         id: comp
         EventBubble {
             type: root.type == ViewType.ViewTypeWeek ? narrowType : wideType
-
-            anchors{
-                left: parent.left; right: parent.right
-            }
             flickable: root.isActive ? timeLineView : null
             clip: true
         }

@@ -11,7 +11,7 @@ import "Defines.js" as Defines
 
 Page {
     id: root
-    property var date : new Date();
+    property var date;
 
     property var event:null;
     property var model;
@@ -35,10 +35,15 @@ Page {
     }
 
     Component.onCompleted: {
+        //If current date is setted by an argument we don't have to change it.
+        if(typeof(date) === 'undefined'){
+            date = new Date();
+            var newDate = new Date();
+            date.setHours(newDate.getHours(), newDate.getMinutes());
+        }
+
         // If startDate is setted by argument we have to not change it
         //Set the nearest current time.
-        var newDate = new Date();
-        date.setHours(newDate.getHours(), newDate.getMinutes());
         if (typeof(startDate) === 'undefined')
             startDate = new Date(root.roundDate(date))
 
@@ -46,6 +51,7 @@ Page {
         if (typeof(endDate) === 'undefined') {
             endDate = new Date(root.roundDate(date))
             endDate.setMinutes(endDate.getMinutes() + 30)
+            endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
         }
 
         if(event === null){
@@ -62,9 +68,6 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-
-        //startTime.text = Qt.formatDateTime(startDate, "dd MMM yyyy hh:mm");
-        //endTime.text = Qt.formatDateTime(endDate, "dd MMM yyyy hh:mm");
     }
     //Editing Event
     function editEvent(e) {

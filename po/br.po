@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-06-07 00:07+0200\n"
-"PO-Revision-Date: 2014-05-28 07:19+0000\n"
+"POT-Creation-Date: 2014-06-10 12:19+0530\n"
+"PO-Revision-Date: 2014-06-16 07:03+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-09 06:29+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-06-17 06:36+0000\n"
+"X-Generator: Launchpad (build 17045)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -40,12 +40,16 @@ msgstr "dddd , d MMMM"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: ../AllDayEventComponent.qml:94
-#, c-format, qt-format
-msgid "%1E"
-msgstr "%1E"
+#. TRANSLATORS: the first parameter refers to the number of all-day events
+#. on a given day. "Ev." is short form for "Events".
+#. Please keep the translation of "Ev." to 3 characters only, as the week view
+#. where it's shown has limited space
+#: ../AllDayEventComponent.qml:98
+#, qt-format
+msgid "%1 Ev."
+msgstr "%1 Dar."
 
-#: ../AllDayEventComponent.qml:97
+#: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
 msgstr "%1 a zarvoudoù hag a bad a-hed an deiz"
@@ -93,7 +97,7 @@ msgstr "Graet eo"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr ""
+msgstr "Morse"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
@@ -104,12 +108,12 @@ msgstr "dd-MMM-yyyy"
 #: ../EventDetails.qml:53
 #, qt-format
 msgid "After %1 Occurrences"
-msgstr ""
+msgstr "Goude %1 a reveziadennoù"
 
 #: ../EventDetails.qml:54
 #, qt-format
 msgid "After Date %1"
-msgstr ""
+msgstr "Goude an deiziad %1"
 
 #: ../EventDetails.qml:100
 msgid "Not specified"
@@ -153,13 +157,13 @@ msgstr "Degas da soñj din"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr ""
+msgstr "Fin an adober"
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
 msgstr "Ne c'hall ket ar fin bezañ a-raok an deroù"
 
-#: ../NewEvent.qml:224 ../calendar.qml:227
+#: ../NewEvent.qml:224 ../calendar.qml:244
 msgid "New Event"
 msgstr "Darvoud nevez"
 
@@ -173,7 +177,7 @@ msgstr "Mat eo"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
-msgstr ""
+msgstr "arobaz"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
@@ -185,11 +189,11 @@ msgstr "Deskrivadur"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
-msgstr ""
+msgstr "fin an darvoud a c'hoarvez ingal"
 
 #: ../NewEvent.qml:493
 msgid "Count"
-msgstr ""
+msgstr "Kontañ"
 
 #: ../NewEvent.qml:539
 msgid "Save"
@@ -201,55 +205,57 @@ msgstr "Enrollañ"
 msgid "hh ap"
 msgstr "hh ap"
 
-#: ../calendar.qml:16 com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "Deiziadur"
-
-#: ../calendar.qml:28
+#: ../calendar.qml:21
 msgid ""
-"Calendar app accept three arguments: --starttime, --endtime and --newevet. "
-"They will be managed by system. See the source for a full comment about them"
+"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
+"eventid. They will be managed by system. See the source for a full comment "
+"about them"
 msgstr ""
-"An arload Deiziadur a zegemer teir arguzenn : --eur deroù, --eur dibenn ha --"
-"darvoud nevez. Meret e vint gant ar reizhiad. Sellet ouzh an tarzh evit "
-"displegadennoù klok diwar o fenn"
+"An arload Calendar a zegemer peder arguzenn : --deiziadderoù, --deiziadfin, -"
+"-darvoudnevez hag --iddarvoud. Meret e vint gant ar reizhiad. Sellet ouzh an "
+"tarzh evit gouzout hiroc'h diwar o fenn"
 
-#: ../calendar.qml:208
+#: ../calendar.qml:225
 msgid "Today"
 msgstr "Hiziv"
 
-#: ../calendar.qml:237
+#: ../calendar.qml:254
 msgid "Sync"
-msgstr ""
+msgstr "Sink"
 
-#: ../calendar.qml:237
+#: ../calendar.qml:254
 msgid "Syncing"
-msgstr ""
+msgstr "O sinkronelaat"
 
-#: ../calendar.qml:270
+#: ../calendar.qml:287
 msgid "Year"
 msgstr "Bloaz"
 
-#: ../calendar.qml:305
+#: ../calendar.qml:322
 msgid "Month"
 msgstr "Miz"
 
-#: ../calendar.qml:334
+#: ../calendar.qml:351
 msgid "Week"
 msgstr "Sizhun"
 
-#: ../calendar.qml:368
+#: ../calendar.qml:385
 msgid "Day"
 msgstr "Deiz"
 
-#: ../calendar.qml:397
+#: ../calendar.qml:414
 msgid "Agenda"
 msgstr "Deiziataer"
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "Deiziadur"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
 msgstr ""
+"Un deiziadur evit Ubuntu hag a vez sinkronelaet gant kontoù enlinenn."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "deiziadur;darvoud;deiz;sizhun;bloaz;emgav;emvod;"
