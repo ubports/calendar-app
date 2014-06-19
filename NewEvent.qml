@@ -56,6 +56,7 @@ Page {
         if(event === null){
             isEdit = false;
             addEvent();
+            titleEdit.forceActiveFocus();
         }
         else{
             isEdit = true;
