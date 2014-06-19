@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-06-07 00:07+0200\n"
-"PO-Revision-Date: 2013-12-12 15:37+0000\n"
-"Last-Translator: Mesut Yaver <Unknown>\n"
+"POT-Creation-Date: 2014-06-10 12:19+0530\n"
+"PO-Revision-Date: 2014-06-12 13:20+0000\n"
+"Last-Translator: İbrahim Çelik <ibrahimcelik89@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-09 06:29+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-06-14 06:43+0000\n"
+"X-Generator: Launchpad (build 17045)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
-msgstr ""
+msgstr "Yaklaşan bir etkinlik yok"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -40,23 +40,27 @@ msgstr ""
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: ../AllDayEventComponent.qml:94
-#, c-format, qt-format
-msgid "%1E"
-msgstr ""
+#. TRANSLATORS: the first parameter refers to the number of all-day events
+#. on a given day. "Ev." is short form for "Events".
+#. Please keep the translation of "Ev." to 3 characters only, as the week view
+#. where it's shown has limited space
+#: ../AllDayEventComponent.qml:98
+#, qt-format
+msgid "%1 Ev."
+msgstr "%1 Etk."
 
-#: ../AllDayEventComponent.qml:97
+#: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "%1 Tüm gün etkinliği"
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "Yinelenen Etkinliği Sil"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
-msgstr ""
+msgstr "Etkinliği Sil"
 
 #: ../DeleteConfirmationDialog.qml:21
 msgid "Delete series"
@@ -64,11 +68,11 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete this"
-msgstr ""
+msgstr "Bunu sil"
 
 #: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:167
 msgid "Delete"
-msgstr ""
+msgstr "Sil"
 
 #: ../DeleteConfirmationDialog.qml:40 ../EditEventConfirmationDialog.qml:35
 #: ../EditToolbar.qml:37 ../NewEvent.qml:543
@@ -77,7 +81,7 @@ msgstr "İptal"
 
 #: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:224
 msgid "Edit Event"
-msgstr ""
+msgstr "Etkinliği Düzenle"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
@@ -85,15 +89,15 @@ msgstr ""
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr ""
+msgstr "Bunu düzenle"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "Tamamlandı"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr ""
+msgstr "Hiçbir zaman"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
@@ -113,7 +117,7 @@ msgstr ""
 
 #: ../EventDetails.qml:100
 msgid "Not specified"
-msgstr ""
+msgstr "Belirtilmemiş"
 
 #: ../EventDetails.qml:181
 msgid "Edit"
@@ -121,27 +125,27 @@ msgstr "Düzenle"
 
 #: ../EventDetails.qml:243
 msgid "Date"
-msgstr ""
+msgstr "Tarih"
 
 #: ../EventDetails.qml:248 ../NewEvent.qml:314
 msgid "Start"
-msgstr ""
+msgstr "Başlangıç"
 
 #: ../EventDetails.qml:253 ../NewEvent.qml:352
 msgid "End"
-msgstr ""
+msgstr "Bitiş"
 
 #: ../EventDetails.qml:262 ../NewEvent.qml:391
 msgid "All Day event:"
-msgstr ""
+msgstr "Tüm Gün etkinliği:"
 
 #: ../EventDetails.qml:292 ../NewEvent.qml:436
 msgid "Location"
-msgstr ""
+msgstr "Konum"
 
 #: ../EventDetails.qml:317 ../NewEvent.qml:443
 msgid "Guests"
-msgstr ""
+msgstr "Konuklar"
 
 #: ../EventDetails.qml:354 ../NewEvent.qml:454
 msgid "This happens"
@@ -149,17 +153,17 @@ msgstr ""
 
 #: ../EventDetails.qml:359 ../NewEvent.qml:515
 msgid "Remind me"
-msgstr ""
+msgstr "Bana hatırlat"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr ""
+msgstr "Tekrarlama Bitişi"
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
 msgstr "Bitiş zamanı başlama zamanından önce olamaz"
 
-#: ../NewEvent.qml:224 ../calendar.qml:227
+#: ../NewEvent.qml:224 ../calendar.qml:244
 msgid "New Event"
 msgstr "Yeni Etkinlik"
 
@@ -169,7 +173,7 @@ msgstr "Hata"
 
 #: ../NewEvent.qml:242
 msgid "Ok"
-msgstr ""
+msgstr "Tamam"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
@@ -177,11 +181,11 @@ msgstr ""
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
-msgstr ""
+msgstr "Etkinlik Adı"
 
 #: ../NewEvent.qml:416
 msgid "Description"
-msgstr ""
+msgstr "Açıklama"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
@@ -201,52 +205,53 @@ msgstr "Kaydet"
 msgid "hh ap"
 msgstr "hh ap"
 
-#: ../calendar.qml:16 com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "Takvim"
-
-#: ../calendar.qml:28
+#: ../calendar.qml:21
 msgid ""
-"Calendar app accept three arguments: --starttime, --endtime and --newevet. "
-"They will be managed by system. See the source for a full comment about them"
+"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
+"eventid. They will be managed by system. See the source for a full comment "
+"about them"
 msgstr ""
 
-#: ../calendar.qml:208
+#: ../calendar.qml:225
 msgid "Today"
 msgstr "Bugün"
 
-#: ../calendar.qml:237
+#: ../calendar.qml:254
 msgid "Sync"
-msgstr ""
+msgstr "Eşle"
 
-#: ../calendar.qml:237
+#: ../calendar.qml:254
 msgid "Syncing"
-msgstr ""
+msgstr "Eşleniyor"
 
-#: ../calendar.qml:270
+#: ../calendar.qml:287
 msgid "Year"
 msgstr "Yıl"
 
-#: ../calendar.qml:305
+#: ../calendar.qml:322
 msgid "Month"
 msgstr "Ay"
 
-#: ../calendar.qml:334
+#: ../calendar.qml:351
 msgid "Week"
 msgstr "Hafta"
 
-#: ../calendar.qml:368
+#: ../calendar.qml:385
 msgid "Day"
 msgstr "Gün"
 
-#: ../calendar.qml:397
+#: ../calendar.qml:414
 msgid "Agenda"
-msgstr ""
+msgstr "Gündem"
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "Takvim"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "Ubuntu için çevrimiçi hesaplarla eşleme yapan bir takvim."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "takvim;etkinlik;gün;hafta;yıl;randevu;toplantı;"

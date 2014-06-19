@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-06-07 00:07+0200\n"
-"PO-Revision-Date: 2014-05-28 05:06+0000\n"
-"Last-Translator: Shuduo Sang <Unknown>\n"
+"POT-Creation-Date: 2014-06-10 12:19+0530\n"
+"PO-Revision-Date: 2014-06-12 08:40+0000\n"
+"Last-Translator: Anthony Wong <anthony.wong@ubuntu.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-09 06:30+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-06-14 06:43+0000\n"
+"X-Generator: Launchpad (build 17045)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -40,12 +40,16 @@ msgstr "dddd，MMMM d 日"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: ../AllDayEventComponent.qml:94
-#, c-format, qt-format
-msgid "%1E"
-msgstr ""
+#. TRANSLATORS: the first parameter refers to the number of all-day events
+#. on a given day. "Ev." is short form for "Events".
+#. Please keep the translation of "Ev." to 3 characters only, as the week view
+#. where it's shown has limited space
+#: ../AllDayEventComponent.qml:98
+#, qt-format
+msgid "%1 Ev."
+msgstr "%1个事件"
 
-#: ../AllDayEventComponent.qml:97
+#: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
 msgstr "%1 全天事件"
@@ -93,7 +97,7 @@ msgstr "完成"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr ""
+msgstr "永不"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
@@ -159,7 +163,7 @@ msgstr ""
 msgid "End time can't be before start time"
 msgstr "结束时间不能早于开始时间"
 
-#: ../NewEvent.qml:224 ../calendar.qml:227
+#: ../NewEvent.qml:224 ../calendar.qml:244
 msgid "New Event"
 msgstr "新建事件"
 
@@ -173,7 +177,7 @@ msgstr "确认"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
-msgstr ""
+msgstr "于"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
@@ -201,47 +205,48 @@ msgstr "保存"
 msgid "hh ap"
 msgstr "ap hh 点"
 
-#: ../calendar.qml:16 com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "日历"
-
-#: ../calendar.qml:28
+#: ../calendar.qml:21
 msgid ""
-"Calendar app accept three arguments: --starttime, --endtime and --newevet. "
-"They will be managed by system. See the source for a full comment about them"
-msgstr "日历应用接受三个参数：--starttime, --endtime 和 --newevent。他们被系统管理。详细请见源码。"
+"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
+"eventid. They will be managed by system. See the source for a full comment "
+"about them"
+msgstr ""
 
-#: ../calendar.qml:208
+#: ../calendar.qml:225
 msgid "Today"
 msgstr "今天"
 
-#: ../calendar.qml:237
+#: ../calendar.qml:254
 msgid "Sync"
-msgstr ""
+msgstr "同步"
 
-#: ../calendar.qml:237
+#: ../calendar.qml:254
 msgid "Syncing"
 msgstr ""
 
-#: ../calendar.qml:270
+#: ../calendar.qml:287
 msgid "Year"
 msgstr "年"
 
-#: ../calendar.qml:305
+#: ../calendar.qml:322
 msgid "Month"
 msgstr "月"
 
-#: ../calendar.qml:334
+#: ../calendar.qml:351
 msgid "Week"
 msgstr "周"
 
-#: ../calendar.qml:368
+#: ../calendar.qml:385
 msgid "Day"
 msgstr "日"
 
-#: ../calendar.qml:397
+#: ../calendar.qml:414
 msgid "Agenda"
 msgstr "应办事项"
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "日历"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
