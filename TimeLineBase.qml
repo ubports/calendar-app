@@ -66,7 +66,6 @@ Item {
         if(!bubbleOverLay || bubbleOverLay == undefined) {
             return;
         }
-        //destroyAllChildren();
 
         var eventMap = {};
         var allSchs = [];
@@ -101,7 +100,6 @@ Item {
             }
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
-                //children[i].destroy();
                 intern.unUsedEvents.push(children[i])
             }
         }
