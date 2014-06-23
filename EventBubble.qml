@@ -95,7 +95,7 @@ Item{
     }
 
     function layoutBubbleDetails() {
-        if(!flickable || flickable === undefined ) {
+        if( !flickable || flickable === undefined ) {
             return;
         }
 
@@ -117,8 +117,6 @@ Item{
 
     Item {
         id: detailsItems
-
-        visible: flickable
 
         width: parent.width
         height: detailsColumn.height
