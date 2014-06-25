@@ -118,11 +118,11 @@ Page {
                         // If limit is infinite
                         limitOptions.selectedIndex = 0;
                     }
-                    if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,2,3,4,5]))
+                    if(compareArrays(recurrenceRule[0].daysOfWeek,[1,2,3,4,5]))
                         index = 2
-                    else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,3,5]))
+                    else if(compareArrays(recurrenceRule[0].daysOfWeek,[1,3,5]))
                         index = 3
-                    else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[2,4]))
+                    else if(compareArrays(recurrenceRule[0].daysOfWeek,[2,4]))
                         index = 4
                     else
                         index = 5
@@ -182,13 +182,13 @@ Page {
                     rule.frequency = recurrenceRule;
                     switch(recurrenceOption.selectedIndex){
                     case 2:
-                        rule.daysOfWeek = [Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday].sort();
+                        rule.daysOfWeek = [Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday];
                         break;
                     case 3:
-                        rule.daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday].sort();
+                        rule.daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday];
                         break;
                     case 4:
-                        rule.daysOfWeek = [Qt.Tuesday,Qt.Thursday].sort();
+                        rule.daysOfWeek = [Qt.Tuesday,Qt.Thursday];
                         break;
                     case 5:
                         rule.daysOfWeek = weekDays.length === 0 ? [date.getDay()] : weekDays.sort();
@@ -203,7 +203,6 @@ Page {
                     else{
                         rule.limit = undefined;
                     }
-                    rule.daysOfWeek = rule.daysOfWeek.sort();
                 }
             }
             event.recurrence.recurrenceRules = [rule];
