@@ -15,20 +15,27 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """Calendar app autopilot emulators."""
+
+import logging
 from time import sleep
 
+import autopilot.logging
 from autopilot.introspection import dbus
+from dateutil import tz
 
-
+import ubuntuuitoolkit
 from ubuntuuitoolkit import (
     emulators as toolkit_emulators,
     pickers
 )
-from dateutil import tz
 
 
-class NewEventEntryField(toolkit_emulators.TextField):
-    """Autopilot helper for the NewEventEntryField component."""
+logger = logging.getLogger(__name__)
+
+
+class CalendarException(ubuntuuitoolkit.ToolkitException):
+
+    """Exception raised when there are problems with the Calendar."""
 
 
 # for now we are borrowing the textfield helper for the textarea
@@ -40,9 +47,32 @@ class TextArea(toolkit_emulators.TextField):
 
 class MainView(toolkit_emulators.MainView):
 
-    """
-    An emulator class that makes it easy to interact with the calendar-app.
-    """
+    """An emulator that makes it easy to interact with the calendar-app."""
+
+    @autopilot.logging.log_action(logger.info)
+    def go_to_day_view(self):
+        """Open the day view.
+
+        :return: The Day View page.
+
+        """
+        day_tab = self.select_single('Tab', objectName='dayTab')
+        if not day_tab.visible:
+            self.switch_to_tab('dayTab')
+        else:
+            logger.debug('The Day View page is already opened.')
+        return day_tab.select_single(DayView, objectName='DayView')
+
+    @autopilot.logging.log_action(logger.info)
+    def go_to_new_event(self):
+        """Open the page to add a new event.
+
+        :return: The New Event page.
+
+        """
+        header = self.get_header()
+        header.click_action_button('neweventbutton')
+        return self.select_single(NewEvent, objectName='newEventPage')
 
     def set_picker(self, field, mode, value):
         # open picker
@@ -193,11 +223,6 @@ class MainView(toolkit_emulators.MainView):
 
         return 0
 
-    def get_new_event_save_button(self):
-        new_event = self.get_new_event()
-        return new_event.wait_select_single("Button",
-                                            objectName="accept")
-
     def get_new_event_cancel_button(self):
         new_event = self.get_new_event()
         return new_event.wait_select_single("Button",
@@ -247,3 +272,175 @@ class Page(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self.select_single(
             'QQuickFlickable',
             objectName='animationContainer').moving.wait_for(False)
+
+
+class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+
+    """Autopilot helper for the Day View page."""
+
+    def get_events(self, filter_duplicates=False):
+        """Return the events for this day.
+
+        :return: A list with the events. Each event is a tuple with start time
+           and end time.
+
+        """
+        event_bubbles = self._get_selected_day_event_bubbles(filter_duplicates)
+
+        # sort by y, x
+        event_bubbles = sorted(
+            event_bubbles,
+            key=lambda bubble: (bubble.globalRect.y, bubble.globalRect.x))
+
+        events = []
+        for event in event_bubbles:
+            events.append(event.get_start_and_end_time())
+
+        return events
+
+    def _get_current_day_component(self):
+        components = self.select_many('TimeLineBaseComponent')
+        for component in components:
+            if (self.currentDay.datetime.date() ==
+                    component.startDay.datetime.date()):
+                return component
+        else:
+            raise CalendarException(
+                'Could not find the current day component.')
+
+    def _get_selected_day_event_bubbles(self, filter_duplicates):
+        selected_day = self._get_current_day_component()
+        return self._get_event_bubbles(selected_day, filter_duplicates)
+
+    def _get_event_bubbles(self, selected_day, filter_duplicates):
+        event_bubbles = selected_day.select_many(EventBubble)
+        if filter_duplicates:
+            # TODO remove this once bug http://pad.lv/1334833 is fixed.
+            # --elopio - 2014-06-26
+            separator_id = selected_day.select_single(
+                'QQuickRectangle', objectName='separator').id
+            event_bubbles = self._remove_duplicate_events(
+                separator_id, event_bubbles)
+        return event_bubbles
+
+    def _remove_duplicate_events(self, separator_id, event_bubbles):
+        events = []
+        for bubble in event_bubbles:
+            if bubble.id > separator_id:
+                events.append(bubble)
+
+        return events
+
+    @autopilot.logging.log_action(logger.info)
+    def delete_event(self, name, filter_duplicates=False):
+        """Delete an event.
+
+        :param name: The name of the event to delete.
+
+        """
+        event_bubbles = self._get_selected_day_event_bubbles(filter_duplicates)
+        for bubble in event_bubbles:
+            if bubble.get_name() == name:
+                event_details_page = bubble.open_event()
+                return event_details_page.delete()
+        else:
+            raise CalendarException(
+                'Could not find event with name {}.'.format(name))
+
+
+class EventBubble(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+
+    """Autopiot helper for the Event Bubble items."""
+
+    def get_start_and_end_time(self):
+        """Return a tuple with the start time and end time."""
+        time_label = self.select_single('Label', objectName='timeLabel')
+        start_time, end_time = time_label.text.split(' - ')
+        return start_time, end_time
+
+    def get_name(self):
+        """Return the event name."""
+        title_label = self.select_single('Label', objectName='titleLabel')
+        return title_label.text
+
+    @autopilot.logging.log_action(logger.info)
+    def open_event(self):
+        """Open the event.
+
+        :return: The Event Details page.
+
+        """
+        # If there are too many events, the center of the bubble
+        # might be hidden by another event. Click the left side of the
+        # bubble.
+        left = self.globalRect.x + 5
+        center_y = self.globalRect.y + self.globalRect.height // 2
+        self.pointing_device.move(left, center_y)
+        self.pointing_device.click()
+        return self.get_root_instance().select_single(
+            EventDetails, objectName='eventDetails')
+
+
+class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+
+    """Autopilot helper for the New Event page."""
+
+    @autopilot.logging.log_action(logger.info)
+    def add_event(self, name):
+        """Add a new event.
+
+        :param name: The name of the event.
+        :return: The Day View page.
+
+        """
+        name_text_field = self.select_single(
+            NewEventEntryField, objectName='newEventName')
+        name_text_field.write(name)
+        self._save()
+        return self.get_root_instance().select_single(
+            DayView, objectName='DayView')
+
+    @autopilot.logging.log_action(logger.info)
+    def _save(self):
+        """Save the new event."""
+        save_button = self.select_single('Button', objectName='accept')
+        self.pointing_device.click_object(save_button)
+
+
+class NewEventEntryField(toolkit_emulators.TextField):
+
+    """Autopilot helper for the NewEventEntryField component."""
+
+
+class EventDetails(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+
+    """Autopilot helper for the Event Details page."""
+
+    @autopilot.logging.log_action(logger.debug)
+    def delete(self):
+        """Click the delete button.
+
+        :return: The Day View page.
+
+        """
+        root = self.get_root_instance()
+        header = root.select_single(MainView).get_header()
+        header.click_action_button('delete')
+
+        delete_confirmation_dialog = root.select_single(
+            DeleteConfirmationDialog, objectName='deleteConfirmationDialog')
+        delete_confirmation_dialog.confirm_deletion()
+
+        return root.select_single(DayView, objectName='DayView')
+
+
+class DeleteConfirmationDialog(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+
+    """Autopilot helper for the Delete Confirmation dialog."""
+
+    @autopilot.logging.log_action(logger.debug)
+    def confirm_deletion(self):
+        """Confirm the deletion of the event."""
+        delete_button = self.select_single(
+            'Button', objectName='deleteEventButton')
+        self.pointing_device.click_object(delete_button)

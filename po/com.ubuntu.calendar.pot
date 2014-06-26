@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-10 12:19+0530\n"
+"POT-Creation-Date: 2014-06-26 12:15-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,25 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../AgendaView.qml:49
+#: ../AgendaView.qml:58
 msgid "No upcoming events"
 msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:100 ../EventBubble.qml:40 ../EventDetails.qml:108
+#: ../AgendaView.qml:108 ../EventBubble.qml:55 ../EventDetails.qml:108
 msgid "hh:mm"
 msgstr ""
 
-#: ../AgendaView.qml:101
+#: ../AgendaView.qml:109
 msgid "dddd , d MMMM"
 msgstr ""
 
-#. TRANSLATORS: the first argument (%1) refer to a start time for an event,
-#. while the third one (%2) refers to the end time
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:108 ../EventBubble.qml:45
+#: ../AgendaView.qml:116 ../EventBubble.qml:60
 #, qt-format
 msgid "%1 - %2"
 msgstr ""
@@ -75,11 +73,11 @@ msgid "Delete"
 msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:40 ../EditEventConfirmationDialog.qml:35
-#: ../EditToolbar.qml:37 ../NewEvent.qml:543
+#: ../EditToolbar.qml:37 ../NewEvent.qml:547
 msgid "Cancel"
 msgstr ""
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:224
+#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:228
 msgid "Edit Event"
 msgstr ""
 
@@ -127,31 +125,31 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: ../EventDetails.qml:248 ../NewEvent.qml:314
+#: ../EventDetails.qml:248 ../NewEvent.qml:318
 msgid "Start"
 msgstr ""
 
-#: ../EventDetails.qml:253 ../NewEvent.qml:352
+#: ../EventDetails.qml:253 ../NewEvent.qml:356
 msgid "End"
 msgstr ""
 
-#: ../EventDetails.qml:262 ../NewEvent.qml:391
+#: ../EventDetails.qml:262 ../NewEvent.qml:395
 msgid "All Day event:"
 msgstr ""
 
-#: ../EventDetails.qml:292 ../NewEvent.qml:436
+#: ../EventDetails.qml:292 ../NewEvent.qml:440
 msgid "Location"
 msgstr ""
 
-#: ../EventDetails.qml:317 ../NewEvent.qml:443
+#: ../EventDetails.qml:317 ../NewEvent.qml:447
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:354 ../NewEvent.qml:454
+#: ../EventDetails.qml:354 ../NewEvent.qml:458
 msgid "This happens"
 msgstr ""
 
-#: ../EventDetails.qml:359 ../NewEvent.qml:515
+#: ../EventDetails.qml:359 ../NewEvent.qml:519
 msgid "Remind me"
 msgstr ""
 
@@ -159,43 +157,43 @@ msgstr ""
 msgid "Repetition Ends"
 msgstr ""
 
-#: ../NewEvent.qml:135
+#: ../NewEvent.qml:139
 msgid "End time can't be before start time"
 msgstr ""
 
-#: ../NewEvent.qml:224 ../calendar.qml:244
+#: ../NewEvent.qml:228 ../calendar.qml:244
 msgid "New Event"
 msgstr ""
 
-#: ../NewEvent.qml:240
+#: ../NewEvent.qml:244
 msgid "Error"
 msgstr ""
 
-#: ../NewEvent.qml:242
+#: ../NewEvent.qml:246
 msgid "Ok"
 msgstr ""
 
-#: ../NewEvent.qml:329 ../NewEvent.qml:367
+#: ../NewEvent.qml:333 ../NewEvent.qml:371
 msgid "at"
 msgstr ""
 
-#: ../NewEvent.qml:406
+#: ../NewEvent.qml:410
 msgid "Event Name"
 msgstr ""
 
-#: ../NewEvent.qml:416
+#: ../NewEvent.qml:420
 msgid "Description"
 msgstr ""
 
-#: ../NewEvent.qml:472
+#: ../NewEvent.qml:476
 msgid "Recurring event ends"
 msgstr ""
 
-#: ../NewEvent.qml:493
+#: ../NewEvent.qml:497
 msgid "Count"
 msgstr ""
 
-#: ../NewEvent.qml:539
+#: ../NewEvent.qml:543
 msgid "Save"
 msgstr ""
 

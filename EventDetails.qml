@@ -9,6 +9,7 @@ import "Defines.js" as Defines
 
 Page {
     id: root
+    objectName: "eventDetails"
 
     property var event;
     property string headerColor :"black"
@@ -165,6 +166,7 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Delete");
+                objectName: 'delete'
                 iconSource: "image://theme/delete,edit-delete-symbolic"
                 onTriggered: {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});

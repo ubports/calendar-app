@@ -17,16 +17,71 @@
 """Calendar app autopilot tests."""
 
 from __future__ import absolute_import
+
+import logging
+import time
+import uuid
+
 from autopilot.matchers import Eventually
-from testtools.matchers import Not, Is, NotEquals
+from testtools.matchers import HasLength, Is, Not, NotEquals
+
 from calendar_app.tests import CalendarTestCase
 
-import time
+
+logger = logging.getLogger(__name__)
 
 
-class TestMainView(CalendarTestCase):
+class NewEventTestCase(CalendarTestCase):
 
-    def test_new_event(self):
+    # TODO add tests for events in the future and in the past, all day event,
+    # event with recurrence and event with reminders. --elopio - 2014-06-26
+
+    def try_delete_event(self, event_name, filter_duplicates):
+        try:
+            day_view = self.main_view.go_to_day_view()
+            day_view.delete_event(event_name, filter_duplicates)
+        except Exception as exception:
+            logger.warn(str(exception))
+
+    def test_add_new_event_with_default_values(self):
+        """Test adding a new event with the default values.
+
+        The event must be created on the currently selected date,
+        with an end time, without recurrence and without reminders.
+
+        """
+        event_name = 'Test event {}'.format(uuid.uuid1())
+
+        day_view = self.main_view.go_to_day_view()
+        original_events = day_view.get_events()
+
+        new_event_page = self.main_view.go_to_new_event()
+        # TODO remove this once bug http://pad.lv/1334833 is fixed.
+        # --elopio - 2014-06-26
+        filter_duplicates = len(original_events) > 0
+        self.addCleanup(self.try_delete_event, event_name, filter_duplicates)
+        day_view = new_event_page.add_event(event_name)
+        new_events = day_view.get_events(filter_duplicates)
+
+        self.assertThat(new_events, HasLength(len(original_events) + 1))
+
+    def test_delete_event_must_remove_it_from_day_view(self):
+        """Test deleting an event must no longer show it on the day view."""
+        # TODO remove the skip once the bug is fixed. --elopio - 2014-06-26
+        self.skipTest('This test fails because of bug http://pad.lv/1334883')
+        event_name = 'Test event {}'.format(uuid.uuid1())
+
+        day_view = self.main_view.go_to_day_view()
+        original_events = day_view.get_events()
+
+        new_event_page = self.main_view.go_to_new_event()
+        day_view = new_event_page.add_event(event_name)
+        day_view = day_view.delete_event(event_name, len(original_events) > 0)
+
+        events_after_delete = day_view.get_events()
+        self.assertEqual(original_events, events_after_delete)
+
+    def _test_new_event(self):
         """test add new event """
         # go to today
         self.main_view.switch_to_tab("dayTab")
