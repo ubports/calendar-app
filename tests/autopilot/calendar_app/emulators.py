@@ -1,9 +1,18 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013 Canonical
 #
-# This program is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License version 3, as published
-# by the Free Software Foundation.
+# Copyright (C) 2013, 2014 Canonical Ltd
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """Calendar app autopilot emulators."""
 from time import sleep
@@ -22,9 +31,9 @@ class NewEventEntryField(toolkit_emulators.TextField):
     """Autopilot helper for the NewEventEntryField component."""
 
 
-#for now we are borrowing the textfield helper for the textarea
-#once the toolkit has a textarea helper this should be removed
-#https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1327354
+# for now we are borrowing the textfield helper for the textarea
+# once the toolkit has a textarea helper this should be removed
+# https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1327354
 class TextArea(toolkit_emulators.TextField):
     """Autopilot helper for the TextArea component."""
 
@@ -36,7 +45,7 @@ class MainView(toolkit_emulators.MainView):
     """
 
     def set_picker(self, field, mode, value):
-        #open picker
+        # open picker
         self.pointing_device.click_object(field)
         # valid options are date or time; assume date if invalid/no option
         if mode == 'time':
@@ -49,7 +58,7 @@ class MainView(toolkit_emulators.MainView):
             picker.pick_time(value)
         else:
             picker.pick_date(value)
-        #close picker
+        # close picker
         self.pointing_device.click_object(field)
 
     def get_event_view(self):
@@ -130,11 +139,11 @@ class MainView(toolkit_emulators.MainView):
         """
         timeout = 0
         before = date
-        #try up to 3 times to swipe
+        # try up to 3 times to swipe
         while timeout < 3 and date == before:
             self._swipe(direction, view)
-            #check for up to 3 seconds after swipe for view
-            #to have changed before trying again
+            # check for up to 3 seconds after swipe for view
+            # to have changed before trying again
             for x in range(0, 3):
                 if date != before:
                     break
