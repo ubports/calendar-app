@@ -29,6 +29,8 @@ from ubuntuuitoolkit import (
     pickers
 )
 
+from calendar_app import data
+
 
 logger = logging.getLogger(__name__)
 
@@ -399,6 +401,62 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self._save()
         return self.get_root_instance().select_single(
             DayView, objectName='DayView')
+
+    @autopilot.logging.log_action(logger.debug)
+    def _fill_form(self, event_information):
+        """Fill the add event form.
+
+        :param event_information: Values of the event to fill the form.
+        :type event_information: data object with the attributes name,
+            description, location and guests.
+
+        """
+        # TODO fill start date and end date, is all day event, recurrence and
+        # reminders. --elopio - 2014-06-26
+        if event_information.name is not None:
+            self._fill_name(event_information.name)
+        if event_information.description is not None:
+            self._fill_description(event_information.description)
+        if event_information.location is not None:
+            self._fill_location(event_information.location)
+        if event_information.guests is not None:
+            self._fill_guests(event_information.guests)
+
+    def _fill_name(self, value):
+        self._ensure_entry_field_visible_and_write('newEventName', value)
+
+    def _ensure_entry_field_visible_and_write(self, object_name, value):
+        name_text_field = self._get_new_event_entry_field(object_name)
+        self._ensure_visible_and_write(name_text_field, value)
+
+    def _get_new_event_entry_field(self, object_name):
+        return self.select_single(NewEventEntryField, objectName=object_name)
+
+    def _ensure_visible_and_write(self, text_field, value):
+        text_field.swipe_into_view()
+        text_field.write(value)
+
+    def _fill_description(self, value):
+        description_text_area = self._get_description_text_area()
+        self._ensure_visible_and_write(description_text_area, value)
+
+    def _get_description_text_area(self):
+        return self.select_single(TextArea, objectName='eventDescriptionInput')
+
+    def _fill_location(self, value):
+        self._ensure_entry_field_visible_and_write('eventLocationInput', value)
+
+    def _fill_guests(self, value):
+        self._ensure_entry_field_visible_and_write('eventPeopleInput', value)
+
+    def _get_form_values(self):
+        # TODO get start date and end date, is all day event, recurrence and
+        # reminders. --elopio - 2014-06-26
+        name = self._get_new_event_entry_field('newEventName').text
+        description = self._get_description_text_area().text
+        location = self._get_new_event_entry_field('eventLocationInput').text
+        guests = self._get_new_event_entry_field('eventPeopleInput').text
+        return data.Event(name, description, location, guests)
 
     @autopilot.logging.log_action(logger.info)
     def _save(self):
