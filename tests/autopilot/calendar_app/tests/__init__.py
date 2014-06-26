@@ -1,6 +1,6 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 #
-# Copyright (C) 2013 Canonical Ltd
+# Copyright (C) 2013, 2014 Canonical Ltd
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 3 as
@@ -102,10 +102,10 @@ class CalendarTestCase(AutopilotTestCase):
     def _copy_xauthority_file(self, directory):
         """ Copy .Xauthority file to directory, if it exists in /home
         """
-        #If running under xvfb, as jenkins does,
-        #xsession will fail to start without xauthority file
-        #Thus if the Xauthority file is in the home directory
-        #make sure we copy it to our temp home directory
+        # If running under xvfb, as jenkins does,
+        # xsession will fail to start without xauthority file
+        # Thus if the Xauthority file is in the home directory
+        # make sure we copy it to our temp home directory
 
         xauth = os.path.expanduser(os.path.join(os.environ.get('HOME'),
                                    '.Xauthority'))
@@ -119,8 +119,8 @@ class CalendarTestCase(AutopilotTestCase):
     def _patch_home(self):
         """ mock /home for testing purposes to preserve user data
         """
-        #click requires apparmor profile, and writing to special dir
-        #but the desktop can write to a traditional /tmp directory
+        # click requires apparmor profile, and writing to special dir
+        # but the desktop can write to a traditional /tmp directory
         if self.test_type == 'click':
             env_dir = os.path.join(os.environ.get('HOME'), 'autopilot',
                                    'fakeenv')
@@ -131,8 +131,8 @@ class CalendarTestCase(AutopilotTestCase):
             temp_dir_fixture = fixtures.TempDir(env_dir)
             self.useFixture(temp_dir_fixture)
 
-            #apparmor doesn't allow the app to create needed directories,
-            #so we create them now
+            # apparmor doesn't allow the app to create needed directories,
+            # so we create them now
             temp_dir = temp_dir_fixture.path
             temp_dir_cache = os.path.join(temp_dir, '.cache')
             temp_dir_cache_font = os.path.join(temp_dir_cache, 'fontconfig')
@@ -165,7 +165,7 @@ class CalendarTestCase(AutopilotTestCase):
             if not os.path.exists(temp_dir_confined):
                 os.makedirs(temp_dir_confined)
 
-            #before we set fixture, copy xauthority if needed
+            # before we set fixture, copy xauthority if needed
             self._copy_xauthority_file(temp_dir)
             self.useFixture(toolkit_fixtures.InitctlEnvironmentVariable(
                             HOME=temp_dir))
@@ -174,7 +174,7 @@ class CalendarTestCase(AutopilotTestCase):
             self.useFixture(temp_dir_fixture)
             temp_dir = temp_dir_fixture.path
 
-            #before we set fixture, copy xauthority if needed
+            # before we set fixture, copy xauthority if needed
             self._copy_xauthority_file(temp_dir)
             self.useFixture(fixtures.EnvironmentVariable('HOME',
                                                          newvalue=temp_dir))
