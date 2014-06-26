@@ -166,7 +166,7 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Delete");
-                objectName: 'delete'
+                objectName: "delete"
                 iconSource: "image://theme/delete,edit-delete-symbolic"
                 onTriggered: {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
