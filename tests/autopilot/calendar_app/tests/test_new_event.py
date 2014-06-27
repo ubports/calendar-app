@@ -25,6 +25,7 @@ import uuid
 from autopilot.matchers import Eventually
 from testtools.matchers import HasLength, Is, Not, NotEquals
 
+from calendar_app import data
 from calendar_app.tests import CalendarTestCase
 
 
@@ -50,7 +51,7 @@ class NewEventTestCase(CalendarTestCase):
         with an end time, without recurrence and without reminders.
 
         """
-        event_name = 'Test event {}'.format(uuid.uuid1())
+        test_event = data.Event.make_unique()
 
         day_view = self.main_view.go_to_day_view()
         original_events = day_view.get_events()
@@ -59,24 +60,28 @@ class NewEventTestCase(CalendarTestCase):
         # TODO remove this once bug http://pad.lv/1334833 is fixed.
         # --elopio - 2014-06-26
         filter_duplicates = len(original_events) > 0
-        self.addCleanup(self.try_delete_event, event_name, filter_duplicates)
-        day_view = new_event_page.add_event(event_name)
+        self.addCleanup(
+            self.try_delete_event, test_event.name, filter_duplicates)
+        day_view = new_event_page.add_event(test_event)
         new_events = day_view.get_events(filter_duplicates)
 
         self.assertThat(new_events, HasLength(len(original_events) + 1))
+        event_details_page = day_view.open_event(test_event.name)
+        self.assertEqual(
+            test_event, event_details_page.get_event_information())
 
     def test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
         # TODO remove the skip once the bug is fixed. --elopio - 2014-06-26
         self.skipTest('This test fails because of bug http://pad.lv/1334883')
-        event_name = 'Test event {}'.format(uuid.uuid1())
+        event = data.Event.make_unique()
 
         day_view = self.main_view.go_to_day_view()
         original_events = day_view.get_events()
 
         new_event_page = self.main_view.go_to_new_event()
-        day_view = new_event_page.add_event(event_name)
-        day_view = day_view.delete_event(event_name, len(original_events) > 0)
+        day_view = new_event_page.add_event(event)
+        day_view = day_view.delete_event(event.name, len(original_events) > 0)
 
         events_after_delete = day_view.get_events()
         self.assertEqual(original_events, events_after_delete)

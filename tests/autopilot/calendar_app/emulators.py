@@ -334,20 +334,32 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         return events
 
     @autopilot.logging.log_action(logger.info)
-    def delete_event(self, name, filter_duplicates=False):
-        """Delete an event.
+    def open_event(self, name, filter_duplicates=False):
+        """Open an event.
 
-        :param name: The name of the event to delete.
+        :param name: The name of the event to open.
+        :return: The Event Details page.
 
         """
         event_bubbles = self._get_selected_day_event_bubbles(filter_duplicates)
         for bubble in event_bubbles:
             if bubble.get_name() == name:
-                event_details_page = bubble.open_event()
-                return event_details_page.delete()
+                return bubble.open_event()
         else:
             raise CalendarException(
                 'Could not find event with name {}.'.format(name))
+
+
+    @autopilot.logging.log_action(logger.info)
+    def delete_event(self, name, filter_duplicates=False):
+        """Delete an event.
+
+        :param name: The name of the event to delete.
+        :return: The Day View page.
+
+        """
+        event_details_page = self.open_event(name, filter_duplicates)
+        return event_details_page.delete()
 
 
 class EventBubble(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
@@ -388,16 +400,16 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     """Autopilot helper for the New Event page."""
 
     @autopilot.logging.log_action(logger.info)
-    def add_event(self, name):
+    def add_event(self, event_information):
         """Add a new event.
 
-        :param name: The name of the event.
+        :param event_information: Values of the event to fill the form.
+        :type event_information: data object with the attributes name,
+            description, location and guests.
         :return: The Day View page.
 
         """
-        name_text_field = self.select_single(
-            NewEventEntryField, objectName='newEventName')
-        name_text_field.write(name)
+        self._fill_form(event_information)
         self._save()
         return self.get_root_instance().select_single(
             DayView, objectName='DayView')
@@ -447,7 +459,12 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self._ensure_entry_field_visible_and_write('eventLocationInput', value)
 
     def _fill_guests(self, value):
-        self._ensure_entry_field_visible_and_write('eventPeopleInput', value)
+        if len(value) > 1:
+            # See bug http://pad.lv/1295941
+            raise CalendarException(
+                'It is not yet possible to add more than one guest.')
+        self._ensure_entry_field_visible_and_write(
+            'eventPeopleInput', value[0])
 
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and
@@ -455,7 +472,9 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         name = self._get_new_event_entry_field('newEventName').text
         description = self._get_description_text_area().text
         location = self._get_new_event_entry_field('eventLocationInput').text
-        guests = self._get_new_event_entry_field('eventPeopleInput').text
+        # TODO once bug http://pad.lv/1295941 is fixed, we will have to build
+        # the list of guests. --elopio - 2014-06-26
+        guests = [self._get_new_event_entry_field('eventPeopleInput').text]
         return data.Event(name, description, location, guests)
 
     @autopilot.logging.log_action(logger.info)
@@ -490,6 +509,36 @@ class EventDetails(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         delete_confirmation_dialog.confirm_deletion()
 
         return root.select_single(DayView, objectName='DayView')
+
+    def get_event_information(self):
+        """Return the information of the event."""
+        name = self._get_name()
+        description = self._get_description()
+        location = self._get_location()
+        guests = self._get_guests()
+        return data.Event(name, description, location, guests)
+
+    def _get_name(self):
+        return self._get_label_text('titleLabel')
+
+    def _get_label_text(self, object_name):
+        return self.select_single('Label', objectName=object_name).text
+
+    def _get_description(self):
+        return self._get_label_text('descriptionLabel')
+
+    def _get_location(self):
+        return self._get_label_text('locationLabel')
+
+    def _get_guests(self):
+        guests = []
+        contacts_list = self.select_single(
+            'QQuickColumn', objectName='contactList')
+        guest_labels = contacts_list.select_many('Label')
+        for label in guest_labels:
+            guests.append(label.text)
+
+        return guests
 
 
 class DeleteConfirmationDialog(toolkit_emulators.UbuntuUIToolkitEmulatorBase):

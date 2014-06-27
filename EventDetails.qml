@@ -276,6 +276,7 @@ Page {
             ThinDivider{}
             Label{
                 id: titleLabel
+                objectName: "titleLabel"
                 fontSize: "large"
                 width: parent.width
                 wrapMode: Text.WordWrap
@@ -283,6 +284,7 @@ Page {
             }
             Label{
                 id: descLabel
+                objectName: "descriptionLabel"
                 wrapMode: Text.WordWrap
                 fontSize: "small"
                 width: parent.width
@@ -295,6 +297,7 @@ Page {
             }
             Label{
                 id: locationLabel
+                objectName: "locationLabel"
                 fontSize: "medium"
                 width: parent.width
                 wrapMode: Text.WordWrap
@@ -324,6 +327,7 @@ Page {
             //Guest Entery Model starts
             Column{
                 id: contactList
+                objectName: 'contactList'
                 spacing: units.gu(1)
                 width: parent.width
                 clip: true
