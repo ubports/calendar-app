@@ -248,7 +248,7 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     def _get_event_bubbles(self, selected_day, filter_duplicates):
         event_bubbles = selected_day.select_many(EventBubble)
         if filter_duplicates:
-            # TODO remove this once bug http://pad.lv/1334833 is fixed.
+            # XXX remove this once bug http://pad.lv/1334833 is fixed.
             # --elopio - 2014-06-26
             separator_id = selected_day.select_single(
                 'QQuickRectangle', objectName='separator').id
