@@ -33,7 +33,10 @@ logger = logging.getLogger(__name__)
 class NewEventTestCase(CalendarTestCase):
 
     # TODO add tests for events in the future and in the past, all day event,
-    # event with recurrence and event with reminders. --elopio - 2014-06-26
+    # event with recurrence and event with reminders.
+    # We currently can't change the date of the new event because of bug
+    # http://pad.lv/1328600 on Autopilot.
+    # --elopio - 2014-06-26
 
     def try_delete_event(self, event_name, filter_duplicates):
         try:
