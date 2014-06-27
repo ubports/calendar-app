@@ -167,46 +167,6 @@ class MainView(toolkit_emulators.MainView):
         return local
 
 
-class Page(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
-    """Autopilot helper for Pages."""
-
-    def __init__(self, *args):
-        super(Page, self).__init__(*args)
-        # XXX we need a better way to keep reference to the main view.
-        # --elopio - 2014-01-31
-        self.main_view = self.get_root_instance().select_single(MainView)
-
-    def drag_page_up(self):
-        """Drag the given page up."""
-        self._drag_page(direction='up')
-
-    def drag_page_down(self):
-        """Drag the given page down."""
-        self._drag_page(direction='down')
-
-    def _drag_page(self, direction):
-        """Function to drag the page up/down."""
-        self._wait_to_stop_moving()
-
-        x, y, w, h = self.globalRect
-        start_x = stop_x = x + (w / 2)
-        start_y = y + (h / 2)
-
-        if direction == "down":
-            stop_y = start_y + h / 3
-            self.pointing_device.drag(start_x, start_y, stop_x, stop_y)
-        else:
-            stop_y = start_y - h / 3
-            self.pointing_device.drag(start_x, start_y, stop_x, stop_y)
-
-        self._wait_to_stop_moving()
-
-    def _wait_to_stop_moving(self):
-        self.select_single(
-            'QQuickFlickable',
-            objectName='animationContainer').moving.wait_for(False)
-
-
 class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     """Autopilot helper for the Day View page."""
