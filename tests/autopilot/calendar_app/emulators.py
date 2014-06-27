@@ -117,52 +117,6 @@ class MainView(toolkit_emulators.MainView):
         else:
             return None
 
-    def get_new_event(self):
-        try:
-            return self.wait_select_single("NewEvent")
-        except dbus.StateNotFoundError:
-            return None
-
-    def get_new_event_name_input_box(self):
-        new_event = self.get_new_event()
-        return new_event.wait_select_single(NewEventEntryField,
-                                            objectName="newEventName")
-
-    def get_event_start_time_field(self):
-        new_event = self.get_new_event()
-        return new_event.wait_select_single(NewEventEntryField,
-                                            objectName="startTimeInput")
-
-    def get_event_start_date_field(self):
-        new_event = self.get_new_event()
-        return new_event.wait_select_single(NewEventEntryField,
-                                            objectName="startDateInput")
-
-    def get_event_end_date_field(self):
-        new_event = self.get_new_event()
-        return new_event.wait_select_single(NewEventEntryField,
-                                            objectName="endDateInput")
-
-    def get_event_end_time_field(self):
-        new_event = self.get_new_event()
-        return new_event.wait_select_single(NewEventEntryField,
-                                            objectName="endTimeInput")
-
-    def get_event_location_field(self):
-        new_event = self.get_new_event()
-        return new_event.wait_select_single(NewEventEntryField,
-                                            objectName="eventLocationInput")
-
-    def get_event_people_field(self):
-        new_event = self.get_new_event()
-        return new_event.wait_select_single(NewEventEntryField,
-                                            objectName="eventPeopleInput")
-
-    def get_event_description_field(self):
-        new_event = self.get_new_event()
-        return new_event.wait_select_single(TextArea,
-                                            objectName="eventDescriptionInput")
-
     def safe_swipe_view(self, direction, view, date):
         """
         direction: direction to swip
@@ -207,28 +161,6 @@ class MainView(toolkit_emulators.MainView):
     def get_month_name(self, component):
         return component.wait_select_single(
             "Label", objectName="monthLabel").text
-
-    def get_num_events(self):
-        return len(self.select_many("EventBubble"))
-
-    def get_event(self, title):
-        """ Return an event by title
-        """
-        events = self.select_many("EventBubble")
-        for event in events:
-            try:
-                event_found = event.select_single("Label", text=title)
-            except:
-                continue
-            if event_found:
-                return event
-
-        return 0
-
-    def get_new_event_cancel_button(self):
-        new_event = self.get_new_event()
-        return new_event.wait_select_single("Button",
-                                            objectName="cancel")
 
     def to_local_date(self, date):
         utc = date.replace(tzinfo=tz.tzutc())
