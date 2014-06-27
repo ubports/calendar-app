@@ -20,7 +20,6 @@ import logging
 from time import sleep
 
 import autopilot.logging
-from autopilot.introspection import dbus
 from dateutil import tz
 
 import ubuntuuitoolkit
@@ -215,8 +214,8 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     def get_events(self, filter_duplicates=False):
         """Return the events for this day.
 
-        :return: A list with the events. Each event is a tuple with start time
-           and end time.
+        :return: A list with the events. Each event is a tuple with name, start
+           time and end time.
 
         """
         event_bubbles = self._get_selected_day_event_bubbles(filter_duplicates)
@@ -228,7 +227,7 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
         events = []
         for event in event_bubbles:
-            events.append(event.get_start_and_end_time())
+            events.append(event.get_information())
 
         return events
 
@@ -281,7 +280,6 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             raise CalendarException(
                 'Could not find event with name {}.'.format(name))
 
-
     @autopilot.logging.log_action(logger.info)
     def delete_event(self, name, filter_duplicates=False):
         """Delete an event.
@@ -298,7 +296,13 @@ class EventBubble(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     """Autopiot helper for the Event Bubble items."""
 
-    def get_start_and_end_time(self):
+    def get_information(self):
+        """Return a tuple with the name, start time and end time."""
+        name = self.get_name()
+        start_time, end_time = self._get_start_and_end_time()
+        return name, start_time, end_time
+
+    def _get_start_and_end_time(self):
         """Return a tuple with the start time and end time."""
         time_label = self.select_single('Label', objectName='timeLabel')
         start_time, end_time = time_label.text.split(' - ')

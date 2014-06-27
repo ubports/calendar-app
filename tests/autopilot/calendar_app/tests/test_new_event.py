@@ -19,11 +19,7 @@
 from __future__ import absolute_import
 
 import logging
-import time
-import uuid
-
-from autopilot.matchers import Eventually
-from testtools.matchers import HasLength, Is, Not, NotEquals
+from testtools.matchers import HasLength
 
 from calendar_app import data
 from calendar_app.tests import CalendarTestCase
