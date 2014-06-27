@@ -19,6 +19,8 @@
 from __future__ import absolute_import
 
 import logging
+
+from autopilot.matchers import Eventually
 from testtools.matchers import HasLength
 
 from calendar_app import data
@@ -59,9 +61,12 @@ class NewEventTestCase(CalendarTestCase):
         self.addCleanup(
             self.try_delete_event, test_event.name, filter_duplicates)
         day_view = new_event_page.add_event(test_event)
-        new_events = day_view.get_events(filter_duplicates)
 
-        self.assertThat(new_events, HasLength(len(original_events) + 1))
+        def get_new_events():
+            return day_view.get_events(filter_duplicates)
+
+        self.assertThat(
+            get_new_events, Eventually(HasLength(len(original_events) + 1)))
         event_details_page = day_view.open_event(test_event.name)
         self.assertEqual(
             test_event, event_details_page.get_event_information())
