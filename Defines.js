@@ -18,8 +18,16 @@ var reminderValue = [ 0,
 var recurrenceLabel = getRecurrenceLabels();
 var limitLabel = getLimitLabels();
 var weekLabel = getWeekLabels();
+// It contains multiple weekly entries to handle following occurence
+//1.Every Weekday (Monday to Friday
+//2.Every Monday, Wednesday and Friday
+//3.Every Tuesday and Thursday
+//4.Weekly
 var recurrenceValue = [ QtPim.RecurrenceRule.Invalid,
     QtPim.RecurrenceRule.Daily,
+    QtPim.RecurrenceRule.Weekly,
+    QtPim.RecurrenceRule.Weekly,
+    QtPim.RecurrenceRule.Weekly,
     QtPim.RecurrenceRule.Weekly,
     QtPim.RecurrenceRule.Monthly,
     QtPim.RecurrenceRule.Yearly];

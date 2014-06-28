@@ -26,6 +26,7 @@ Page {
     title: "Event Details"
 
     Component.onCompleted: {
+
         showEvent(event);
     }
 
@@ -56,7 +57,7 @@ Page {
 
                 index =  recurrenceRule[0].frequency ;
                 if(index === 2 ){
-                    var sorted = recurrenceRule[0].daysOfWeek;
+                    var sorted = recurrenceRule[0].daysOfWeek.sort();
                     var val = i18n.tr("Every ")
                     for(var j=0;j<sorted.length;++j){
                         val += Qt.locale().dayName(sorted[j],Locale.LongFormat) + " ,"

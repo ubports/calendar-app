@@ -22,7 +22,6 @@ Page {
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
-    property var weekDays : [];
 
     onStartDateChanged: {
         startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
@@ -61,7 +60,6 @@ Page {
         else{
             isEdit = true;
             editEvent(event);
-
         }
     }
 
@@ -101,7 +99,8 @@ Page {
             if(e.recurrence ) {
                 var recurrenceRule = e.recurrence.recurrenceRules;
                 index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
-                if(index > 0 ){
+                if(index > 0 )
+                {
                     limit.visible = true;
                     if(recurrenceRule[0].limit !== undefined){
                         var temp = recurrenceRule[0].limit;
@@ -118,14 +117,14 @@ Page {
                         // If limit is infinite
                         limitOptions.selectedIndex = 0;
                     }
-                    if(compareArrays(recurrenceRule[0].daysOfWeek,[1,2,3,4,5]))
-                        index = 2
-                    else if(compareArrays(recurrenceRule[0].daysOfWeek,[1,3,5]))
-                        index = 3
-                    else if(compareArrays(recurrenceRule[0].daysOfWeek,[2,4]))
-                        index = 4
-                    else
-                        index = 5
+                    if(index === 5){
+                        if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,2,3,4,5]))
+                            index = 2
+                        else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,3,5]))
+                            index = 3
+                        else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[2,4]))
+                            index = 4
+                    }
                     if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
                         for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
                             //Start childern after first element.
@@ -176,7 +175,7 @@ Page {
                     event.setDetail(attendee);
                 }
 
-                var recurrenceRule = Defines.recurrenceValue[(recurrenceOption.selectedIndex >=2 && recurrenceOption.selectedIndex <=5) ? 2 : recurrenceOption.selectedIndex];
+                var recurrenceRule = Defines.recurrenceValue[recurrenceOption.selectedIndex];
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 if( recurrenceRule !== RecurrenceRule.Invalid ) {
                     rule.frequency = recurrenceRule;
@@ -191,7 +190,7 @@ Page {
                         rule.daysOfWeek = [Qt.Tuesday,Qt.Thursday];
                         break;
                     case 5:
-                        rule.daysOfWeek = weekDays.length === 0 ? [date.getDay()] : weekDays.sort();
+                        rule.daysOfWeek = intern.weekDays.length === 0 ? [date.getDay()] : intern.weekDays;
                         break;
                     }
                     if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
@@ -232,7 +231,6 @@ Page {
                 audibleReminder.secondsBeforeStart = reminderTime;
                 event.setDetail(audibleReminder);
             }
-
             model.saveItem(event);
             pageStack.pop();
         }
@@ -518,13 +516,14 @@ Page {
                         id: weekCheck
                         anchors.verticalCenter: parent.verticalCenter
                         onCheckedChanged: {
+                            //EDS consider 7 as Sunday index so if the index is 0 then we have to explicitly push Sunday.
                             if(index === 0)
-                                (checked) ? weekDays.push(7) : weekDays.splice(weekDays.indexOf(7),1);
+                                (checked) ? intern.weekDays.push(Qt.Sunday) : intern.weekDays.splice(intern.weekDays.indexOf(Qt.Sunday),1);
                             else
-                                (checked) ? weekDays.push(index) : weekDays.splice(weekDays.indexOf(index),1);
+                                (checked) ? intern.weekDays.push(index) : intern.weekDays.splice(intern.weekDays.indexOf(index),1);
                         }
                         checked: {
-                            (weekDays.length == 0 && index === date.getDay() && isEdit== false) ? true : false;
+                            (intern.weekDays.length == 0 && index === date.getDay() && isEdit== false) ? true : false;
                         }
                         Label{
                             id:lbl
@@ -643,5 +642,9 @@ Page {
             endTimeInput.focus = false
             messageEdit.focus = false
         }
+    }
+    QtObject {
+        id: intern
+        property var weekDays : [];
     }
 }
