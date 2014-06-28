@@ -36,14 +36,14 @@ class Event(DataMixin):
 
     """Event data object for user acceptance tests."""
 
-    def __init__(self, name, description, location, guests):
+    def __init__(self, name, description, location):
         # TODO add start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
         super(Event, self).__init__()
         self.name = name
         self.description = description
         self.location = location
-        self.guests = guests
+        #self.guests = guests
 
     @classmethod
     def make_unique(cls, unique_id=None):
