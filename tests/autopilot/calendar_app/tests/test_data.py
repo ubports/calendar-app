@@ -1,6 +1,6 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 #
-# Copyright (C) 2013, 2014 Canonical Ltd
+# Copyright (C) 2014 Canonical Ltd
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 3 as
@@ -14,4 +14,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""calendar-app tests and emulators - top level package."""
+import testtools
+
+from calendar_app import data
+
+
+class EventTestCase(testtools.TestCase):
+
+    def test_make_unique_event_must_return_event_with_unique_id(self):
+        event = data.Event.make_unique(unique_id='test uuid')
+
+        self.assertEqual(event.name, 'Test event test uuid')
+        self.assertEqual(event.description, 'Test description test uuid.')
+        self.assertEqual(event.location, 'Test location test uuid')
+        self.assertEqual(event.guests, ['Test guest test uuid 1'])

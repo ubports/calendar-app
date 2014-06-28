@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-06-09 04:34+0000\n"
+"PO-Revision-Date: 2014-06-26 03:13+0000\n"
 "Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-11 06:34+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-06-27 07:09+0000\n"
+"X-Generator: Launchpad (build 17077)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -97,7 +97,7 @@ msgstr "Hecho"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
@@ -149,7 +149,7 @@ msgstr "Invitados"
 
 #: ../EventDetails.qml:354 ../NewEvent.qml:454
 msgid "This happens"
-msgstr ""
+msgstr "Esto ocurre"
 
 #: ../EventDetails.qml:359 ../NewEvent.qml:515
 msgid "Remind me"
@@ -157,7 +157,7 @@ msgstr "Recordarme"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr ""
+msgstr "La repetición finaliza"
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
@@ -177,7 +177,7 @@ msgstr "Ok"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
-msgstr ""
+msgstr "a las"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
@@ -189,7 +189,7 @@ msgstr "Descripción"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
-msgstr ""
+msgstr "El evento recurrente termina"
 
 #: ../NewEvent.qml:493
 msgid "Count"
@@ -218,11 +218,11 @@ msgstr "Hoy"
 
 #: ../calendar.qml:254
 msgid "Sync"
-msgstr ""
+msgstr "Sincr."
 
 #: ../calendar.qml:254
 msgid "Syncing"
-msgstr ""
+msgstr "Sincronizando"
 
 #: ../calendar.qml:287
 msgid "Year"
@@ -254,4 +254,4 @@ msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "calendario;evento;día;semana;año;cita;reunión;"
