@@ -119,13 +119,17 @@ Page {
                         // If limit is infinite
                         limitOptions.selectedIndex = 0;
                     }
-                    if(index === 5){
+                    console.log("values are " + recurrenceRule[0].daysOfWeek.sort())
+                    console.log("Index os " + index)
+                    if(index === 2){
                         if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,2,3,4,5]))
                             index = 2
                         else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,3,5]))
                             index = 3
                         else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[2,4]))
                             index = 4
+                        else
+                            index = 5
                     }
                     if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
                         for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
@@ -181,20 +185,7 @@ Page {
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 if( recurrenceRule !== RecurrenceRule.Invalid ) {
                     rule.frequency = recurrenceRule;
-                    switch(recurrenceOption.selectedIndex){
-                    case 2:
-                        rule.daysOfWeek = [Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday];
-                        break;
-                    case 3:
-                        rule.daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday];
-                        break;
-                    case 4:
-                        rule.daysOfWeek = [Qt.Tuesday,Qt.Thursday];
-                        break;
-                    case 5:
-                        rule.daysOfWeek = intern.weekDays.length === 0 ? [date.getDay()] : intern.weekDays;
-                        break;
-                    }
+                    rule.daysOfWeek = getDaysOfWeek();
                     if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
                         rule.limit =  parseInt(limitCount.text);
                     }
@@ -236,6 +227,24 @@ Page {
             model.saveItem(event);
             pageStack.pop();
         }
+    }
+    function getDaysOfWeek(){
+        var daysOfWeek = [];
+        switch(recurrenceOption.selectedIndex){
+        case 2:
+            daysOfWeek = [Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday];
+            break;
+        case 3:
+            daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday];
+            break;
+        case 4:
+            daysOfWeek = [Qt.Tuesday,Qt.Thursday];
+            break;
+        case 5:
+            daysOfWeek = intern.weekDays.length === 0 ? [date.getDay()] : intern.weekDays;
+            break;
+        }
+        return daysOfWeek;
     }
 
     function openDatePicker (element, caller, callerProperty, mode) {
