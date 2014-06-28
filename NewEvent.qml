@@ -179,7 +179,7 @@ Page {
                     event.setDetail(attendee);
                 }
 
-                var recurrenceRule = Defines.recurrenceValue[recurrenceOption.selectedIndex];
+                var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 if( recurrenceRule !== RecurrenceRule.Invalid ) {
                     rule.frequency = recurrenceRule;

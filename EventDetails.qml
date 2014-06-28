@@ -77,7 +77,7 @@ Page {
         // 2. Monday,Wednesday,Friday
         // 3. Tuesday & Thursday
         // 4. Manual weekdays
-        recurrentHeader.value = Defines.recurrenceLabel[index === 2 ? 5 : index];
+        recurrentHeader.value = Defines.recurrenceLabel[index === RecurrenceRule.Weekly ? 5 : index];
     }
 
     function updateContacts(event) {
