@@ -34,6 +34,7 @@ Item {
         id: intern
         property var now : new Date();
         property var eventMap;
+        property var unUsedEvents: new Array;
     }
 
     function showEventDetails(event) {
@@ -65,7 +66,6 @@ Item {
         if(!bubbleOverLay || bubbleOverLay == undefined) {
             return;
         }
-        destroyAllChildren();
 
         var eventMap = {};
         var allSchs = [];
@@ -100,15 +100,21 @@ Item {
             }
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
-                children[i].destroy();
+                intern.unUsedEvents.push(children[i])
             }
         }
     }
 
     function createEvent( event, x, width ) {
-        var hour = event.startDateTime.getHours();
-        var eventBubble = delegate.createObject(bubbleOverLay);
 
+        var eventBubble;
+        if( intern.unUsedEvents.length == 0) {
+            eventBubble = delegate.createObject(bubbleOverLay);
+        } else {
+            eventBubble = intern.unUsedEvents.pop();
+        }
+
+        var hour = event.startDateTime.getHours();
         var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
         eventBubble.y = yPos;
 
@@ -120,6 +126,7 @@ Item {
         eventBubble.x = x;
         eventBubble.width = width;
         eventBubble.event = event
+        eventBubble.visible = true;
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
     }
 

@@ -11,6 +11,7 @@ import "Defines.js" as Defines
 
 Page {
     id: root
+    objectName: 'newEventPage'
     property var date;
 
     property var event:null;
@@ -56,6 +57,7 @@ Page {
         if(event === null){
             isEdit = false;
             addEvent();
+            titleEdit.forceActiveFocus();
         }
         else{
             isEdit = true;

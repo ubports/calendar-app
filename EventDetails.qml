@@ -9,6 +9,7 @@ import "Defines.js" as Defines
 
 Page {
     id: root
+    objectName: "eventDetails"
 
     property var event;
     property string headerColor :"black"
@@ -180,6 +181,7 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Delete");
+                objectName: "delete"
                 iconSource: "image://theme/delete,edit-delete-symbolic"
                 onTriggered: {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
@@ -289,6 +291,7 @@ Page {
             ThinDivider{}
             Label{
                 id: titleLabel
+                objectName: "titleLabel"
                 fontSize: "large"
                 width: parent.width
                 wrapMode: Text.WordWrap
@@ -296,6 +299,7 @@ Page {
             }
             Label{
                 id: descLabel
+                objectName: "descriptionLabel"
                 wrapMode: Text.WordWrap
                 fontSize: "small"
                 width: parent.width
@@ -308,6 +312,7 @@ Page {
             }
             Label{
                 id: locationLabel
+                objectName: "locationLabel"
                 fontSize: "medium"
                 width: parent.width
                 wrapMode: Text.WordWrap
@@ -337,6 +342,7 @@ Page {
             //Guest Entery Model starts
             Column{
                 id: contactList
+                objectName: 'contactList'
                 spacing: units.gu(1)
                 width: parent.width
                 clip: true

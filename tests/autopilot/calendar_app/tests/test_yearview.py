@@ -1,9 +1,18 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013 Canonical
 #
-# This program is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License version 3, as published
-# by the Free Software Foundation.
+# Copyright (C) 2013, 2014 Canonical Ltd
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 Calendar app autopilot tests for the year view.
@@ -46,7 +55,7 @@ class TestYearView(CalendarTestCase):
         self.assertThat(year_grid, NotEquals(None))
         months = year_grid.select_many("MonthComponent")
         months.sort(key=lambda month: month.currentMonth)
-        #check that current year is the default
+        # check that current year is the default
         self.assertThat(self.main_view.get_year(months[0]),
                         Equals(datetime.now().year))
 

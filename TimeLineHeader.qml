@@ -38,20 +38,14 @@ PathViewBase {
             }
         }
 
-        startDay: getStartDate();
+        startDay: {
+            (type == ViewType.ViewTypeWeek) ?
+                date.addDays(7*header.indexType(index)) :
+                date.addDays(1*header.indexType(index));
+        }
 
         onDateSelected: {
             header.dateSelected(date);
-        }
-
-        function getStartDate() {
-            var indexType = header.indexType(index);
-            switch(type) {
-            case ViewType.ViewTypeWeek:
-                return date.addDays(7*indexType);
-            case ViewType.ViewTypeDay:
-                return date.addDays(1*indexType);
-            }
         }
     }
 }
