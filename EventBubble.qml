@@ -95,7 +95,7 @@ Item{
     }
 
     function layoutBubbleDetails() {
-        if(!flickable || flickable === undefined ) {
+        if( !flickable || flickable === undefined ) {
             return;
         }
 
@@ -118,8 +118,6 @@ Item{
     Item {
         id: detailsItems
 
-        visible: flickable
-
         width: parent.width
         height: detailsColumn.height
 
@@ -135,8 +133,9 @@ Item{
 
                 Label{
                     id: timeLabel
-                    fontSize:"small";
-                    color:"gray"
+                    objectName: "timeLabel"
+                    fontSize: "small"
+                    color: "gray"
                     width: parent.width - rect.width
                 }
                 Rectangle{
@@ -149,15 +148,16 @@ Item{
             }
             Label{
                 id: titleLabel
-                fontSize:"small";
-                color:"black"
+                objectName: "titleLabel"
+                fontSize: "small"
+                color: "black"
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width
             }
 
             Label{
                 id: descriptionLabel
-                fontSize:"small";
+                fontSize: "small"
                 color:"gray"
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width

@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-06-16 19:37+0000\n"
-"Last-Translator: Anne <anneonyme017@gmail.com>\n"
+"PO-Revision-Date: 2014-06-23 20:53+0000\n"
+"Last-Translator: Jean Marc <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-17 06:36+0000\n"
-"X-Generator: Launchpad (build 17045)\n"
+"X-Launchpad-Export-Date: 2014-06-24 06:29+0000\n"
+"X-Generator: Launchpad (build 17065)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
-msgstr "Pas d'évènement à venir"
+msgstr "Pas d'événement à venir"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -47,12 +47,12 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 Év."
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr "%1 Évènements sur la journée entière"
+msgstr "%1 Événements sur la journée entière"
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
@@ -60,7 +60,7 @@ msgstr "Supprimer l'événement récurrent"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
-msgstr "Supprimer l'évènement"
+msgstr "Supprimer l'événement"
 
 #: ../DeleteConfirmationDialog.qml:21
 msgid "Delete series"
@@ -81,7 +81,7 @@ msgstr "Annuler"
 
 #: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:224
 msgid "Edit Event"
-msgstr "Modifier l'évènement"
+msgstr "Modifier l'événement"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
@@ -108,12 +108,12 @@ msgstr "dd-MMM-yyyy"
 #: ../EventDetails.qml:53
 #, qt-format
 msgid "After %1 Occurrences"
-msgstr ""
+msgstr "Après %1 occurrences"
 
 #: ../EventDetails.qml:54
 #, qt-format
 msgid "After Date %1"
-msgstr ""
+msgstr "Après le %1"
 
 #: ../EventDetails.qml:100
 msgid "Not specified"
@@ -137,7 +137,7 @@ msgstr "Fin"
 
 #: ../EventDetails.qml:262 ../NewEvent.qml:391
 msgid "All Day event:"
-msgstr "Évènement sur la journée entière :"
+msgstr "Événement sur la journée entière :"
 
 #: ../EventDetails.qml:292 ../NewEvent.qml:436
 msgid "Location"
@@ -157,7 +157,7 @@ msgstr "Me rappeler"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr ""
+msgstr "Fin des répétitions"
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
@@ -165,7 +165,7 @@ msgstr "L'heure de fin ne peut pas précéder l'heure de début"
 
 #: ../NewEvent.qml:224 ../calendar.qml:244
 msgid "New Event"
-msgstr "Nouvel évènement"
+msgstr "Nouvel événement"
 
 #: ../NewEvent.qml:240
 msgid "Error"
@@ -181,7 +181,7 @@ msgstr "à"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
-msgstr "Nom de l’évènement"
+msgstr "Nom de l’événement"
 
 #: ../NewEvent.qml:416
 msgid "Description"
@@ -189,7 +189,7 @@ msgstr "Description"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Fin des événements récurrents"
 
 #: ../NewEvent.qml:493
 msgid "Count"
@@ -249,7 +249,7 @@ msgstr "Agenda"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr "Agenda"
+msgstr "Calendrier"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
