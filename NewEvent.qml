@@ -119,9 +119,7 @@ Page {
                         // If limit is infinite
                         limitOptions.selectedIndex = 0;
                     }
-                    console.log("values are " + recurrenceRule[0].daysOfWeek.sort())
-                    console.log("Index os " + index)
-                    if(index === 2){
+                    if(index === RecurrenceRule.Weekly){
                         if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,2,3,4,5]))
                             index = 2
                         else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,3,5]))
@@ -196,8 +194,9 @@ Page {
                         rule.limit = undefined;
                     }
                 }
+                event.recurrence.recurrenceRules = [rule];
             }
-            event.recurrence.recurrenceRules = [rule];
+
             //remove old reminder value
             var oldVisualReminder = event.detail(Detail.VisualReminder);
             if(oldVisualReminder) {
