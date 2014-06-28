@@ -43,7 +43,7 @@ class Event(DataMixin):
         self.name = name
         self.description = description
         self.location = location
-        #self.guests = guests
+        # self.guests = guests
 
     @classmethod
     def make_unique(cls, unique_id=None):
