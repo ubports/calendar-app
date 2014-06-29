@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-06-23 20:53+0000\n"
-"Last-Translator: Jean Marc <Unknown>\n"
+"PO-Revision-Date: 2014-06-28 10:09+0000\n"
+"Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-24 06:29+0000\n"
-"X-Generator: Launchpad (build 17065)\n"
+"X-Launchpad-Export-Date: 2014-06-29 05:58+0000\n"
+"X-Generator: Launchpad (build 17077)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -193,7 +193,7 @@ msgstr "Fin des événements récurrents"
 
 #: ../NewEvent.qml:493
 msgid "Count"
-msgstr ""
+msgstr "Nombre"
 
 #: ../NewEvent.qml:539
 msgid "Save"
