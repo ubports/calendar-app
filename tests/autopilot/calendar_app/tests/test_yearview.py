@@ -35,20 +35,16 @@ class TestYearView(CalendarTestCase):
 
     def setUp(self):
         super(TestYearView, self).setUp()
-        #self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-        #self.main_view.switch_to_tab("yearTab")
-
         self.year_view = self.main_view.go_to_year_view()
 
     def _get_year_grid(self):
         return self.year_view.wait_select_single("QQuickGridView",
-                                            isCurrentItem=True)
-                                            
+                                                 isCurrentItem=True)
+
     def test_current_year_is_default(self):
         """The current year should be the default shown"""
         self.assertThat(self.year_view.currentYear,
                         Equals(datetime.now().year))
-
 
     def test_selecting_a_month_switch_to_month_view(self):
         """It must be possible to select a month and open the month view."""
