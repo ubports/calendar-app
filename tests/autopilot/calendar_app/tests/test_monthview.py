@@ -34,7 +34,7 @@ class TestMonthView(CalendarTestCase):
     def setUp(self):
         super(TestMonthView, self).setUp()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-        
+
         self.month_view = self.main_view.go_to_month_view()
 
     def _change_month(self, delta):

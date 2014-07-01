@@ -62,7 +62,7 @@ class MainView(toolkit_emulators.MainView):
             self.switch_to_tab('monthTab')
         else:
             logger.debug('The month View page is already opened.')
-        return self.get_month_view()
+        return self.get_month_view(month_tab)
 
     @autopilot.logging.log_action(logger.info)
     def go_to_week_view(self):
@@ -76,7 +76,7 @@ class MainView(toolkit_emulators.MainView):
             self.switch_to_tab('weekTab')
         else:
             logger.debug('The week View page is already opened.')
-        return self.get_week_view()
+        return self.get_week_view(week_tab)
 
     @autopilot.logging.log_action(logger.info)
     def go_to_year_view(self):
@@ -90,7 +90,7 @@ class MainView(toolkit_emulators.MainView):
             self.switch_to_tab('yearTab')
         else:
             logger.debug('The Year View page is already opened.')
-        return self.get_year_view()
+        return self.get_year_view(year_tab)
 
     @autopilot.logging.log_action(logger.info)
     def go_to_day_view(self):
@@ -104,7 +104,7 @@ class MainView(toolkit_emulators.MainView):
             self.switch_to_tab('dayTab')
         else:
             logger.debug('The Day View page is already opened.')
-        return self.get_day_view()
+        return self.get_day_view(day_tab)
 
     @autopilot.logging.log_action(logger.info)
     def go_to_new_event(self):

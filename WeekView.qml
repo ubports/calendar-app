@@ -6,8 +6,8 @@ import "ViewType.js" as ViewType
 
 Page{
     id: weekViewPage
-    objectName: "WeekViewPage"
-            
+    objectName: "weekViewPage"
+
     property var dayStart: new Date();
     property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
