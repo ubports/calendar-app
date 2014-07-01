@@ -376,7 +376,7 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self._fill_form(event_information)
         self._save()
         return self.get_root_instance().select_single(
-            DayView, objectName='DayView')
+            DayView, objectName='dayViewPage')
 
     @autopilot.logging.log_action(logger.debug)
     def _fill_form(self, event_information):
