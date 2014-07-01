@@ -35,6 +35,8 @@ class TestYearView(CalendarTestCase):
 
     def setUp(self):
         super(TestYearView, self).setUp()
+        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
+
         self.year_view = self.main_view.go_to_year_view()
 
     def _get_year_grid(self):

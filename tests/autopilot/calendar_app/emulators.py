@@ -68,7 +68,7 @@ class MainView(toolkit_emulators.MainView):
     def go_to_week_view(self):
         """Open the week view.
 
-        :return: The week View page.
+        :return: The Week View page.
 
         """
         week_tab = self.select_single('Tab', objectName='weekTab')
@@ -91,7 +91,7 @@ class MainView(toolkit_emulators.MainView):
         else:
             logger.debug('The Year View page is already opened.')
         return self.get_year_view()
-        
+
     @autopilot.logging.log_action(logger.info)
     def go_to_day_view(self):
         """Open the day view.
@@ -134,19 +134,29 @@ class MainView(toolkit_emulators.MainView):
         # close picker
         self.pointing_device.click_object(field)
 
-    def get_event_view(self, parent_object=self):
+    def get_event_view(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
         return parent_object.select_single("EventView")
 
-    def get_month_view(self, parent_object=self):
+    def get_month_view(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
         return parent_object.select_single(MonthView, objectName='monthViewPage')
 
-    def get_year_view(self, parent_object=self):
+    def get_year_view(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
         return parent_object.select_single(YearView, objectName='yearViewPage')
 
-    def get_day_view(self, parent_object=self):
+    def get_day_view(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
         return parent_object.select_single(DayView, objectName='dayViewPage')
 
-    def get_week_view(self, parent_object=self):
+    def get_week_view(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
         return parent_object.select_single(WeekView, objectName='weekViewPage')
 
     def get_label_with_text(self, text, root=None):
