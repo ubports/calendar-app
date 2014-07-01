@@ -51,6 +51,34 @@ class MainView(toolkit_emulators.MainView):
     """An emulator that makes it easy to interact with the calendar-app."""
 
     @autopilot.logging.log_action(logger.info)
+    def go_to_month_view(self):
+        """Open the month view.
+
+        :return: The Month View page.
+
+        """
+        month_tab = self.select_single('Tab', objectName='monthTab')
+        if not month_tab.visible:
+            self.switch_to_tab('monthTab')
+        else:
+            logger.debug('The month View page is already opened.')
+        return self.get_month_view()
+
+    @autopilot.logging.log_action(logger.info)
+    def go_to_week_view(self):
+        """Open the week view.
+
+        :return: The week View page.
+
+        """
+        week_tab = self.select_single('Tab', objectName='weekTab')
+        if not week_tab.visible:
+            self.switch_to_tab('weekTab')
+        else:
+            logger.debug('The week View page is already opened.')
+        return self.get_week_view()
+
+    @autopilot.logging.log_action(logger.info)
     def go_to_year_view(self):
         """Open the year view.
 
@@ -62,8 +90,8 @@ class MainView(toolkit_emulators.MainView):
             self.switch_to_tab('yearTab')
         else:
             logger.debug('The Year View page is already opened.')
-        return year_tab.select_single(YearView, objectName='yearViewPage')
-
+        return self.get_year_view()
+        
     @autopilot.logging.log_action(logger.info)
     def go_to_day_view(self):
         """Open the day view.
@@ -76,7 +104,7 @@ class MainView(toolkit_emulators.MainView):
             self.switch_to_tab('dayTab')
         else:
             logger.debug('The Day View page is already opened.')
-        return day_tab.select_single(DayView, objectName='dayViewPage')
+        return self.get_day_view()
 
     @autopilot.logging.log_action(logger.info)
     def go_to_new_event(self):
@@ -106,20 +134,20 @@ class MainView(toolkit_emulators.MainView):
         # close picker
         self.pointing_device.click_object(field)
 
-    def get_event_view(self):
-        return self.wait_select_single("EventView")
+    def get_event_view(self, parent_object=self):
+        return parent_object.select_single("EventView")
 
-    def get_month_view(self):
-        return self.wait_select_single("MonthView")
+    def get_month_view(self, parent_object=self):
+        return parent_object.select_single(MonthView, objectName='monthViewPage')
 
-    def get_year_view(self):
-        return self.wait_select_single("YearView")
+    def get_year_view(self, parent_object=self):
+        return parent_object.select_single(YearView, objectName='yearViewPage')
 
-    def get_day_view(self):
-        return self.wait_select_single("DayView")
+    def get_day_view(self, parent_object=self):
+        return parent_object.select_single(DayView, objectName='dayViewPage')
 
-    def get_week_view(self):
-        return self.wait_select_single("WeekView")
+    def get_week_view(self, parent_object=self):
+        return parent_object.select_single(WeekView, objectName='weekViewPage')
 
     def get_label_with_text(self, text, root=None):
         if root is None:
@@ -185,6 +213,13 @@ class YearView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     """Autopilot helper for the Year View page."""
 
 
+class WeekView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+
+    """Autopilot helper for the Week View page."""
+
+class MonthView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+
+    """Autopilot helper for the Year View page."""
 
 class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 

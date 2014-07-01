@@ -15,6 +15,7 @@ Page {
 
     PathViewBase{
         id: monthViewPath
+        objectName: "monthViewPath"
 
         property var startMonth: currentMonth;
 

@@ -34,12 +34,8 @@ class TestMonthView(CalendarTestCase):
     def setUp(self):
         super(TestMonthView, self).setUp()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-        self.main_view.switch_to_tab("monthTab")
-
-        self.assertThat(
-            self.main_view.get_month_view, Eventually(NotEquals(None)))
-
-        self.month_view = self.main_view.get_month_view()
+        
+        self.month_view = self.main_view.go_to_month_view()
 
     def _change_month(self, delta):
         month_view = self.main_view.get_month_view()
