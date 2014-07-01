@@ -37,12 +37,8 @@ class TestDayView(CalendarTestCase):
     def setUp(self):
         super(TestDayView, self).setUp()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-        self.main_view.switch_to_tab("dayTab")
 
-        self.assertThat(
-            self.main_view.get_day_view, Eventually(NotEquals(None)))
-
-        self.day_view = self.main_view.get_day_view()
+        self.day_view = self.main_view.go_to_day_view()
 
     def test_current_month_and_year_is_selected(self):
         """By default, the day view shows the current month and year."""

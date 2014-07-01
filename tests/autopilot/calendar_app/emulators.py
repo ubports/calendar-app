@@ -62,7 +62,7 @@ class MainView(toolkit_emulators.MainView):
             self.switch_to_tab('yearTab')
         else:
             logger.debug('The Year View page is already opened.')
-        return year_tab.select_single("YearView", objectName='yearViewPage')
+        return year_tab.select_single(YearView, objectName='yearViewPage')
 
     @autopilot.logging.log_action(logger.info)
     def go_to_day_view(self):
@@ -130,6 +130,14 @@ class MainView(toolkit_emulators.MainView):
         else:
             return None
 
+    def get_year(self, component):
+        return int(component.wait_select_single(
+            "Label", objectName="yearLabel").text)
+
+    def get_month_name(self, component):
+        return component.wait_select_single(
+            "Label", objectName="monthLabel").text
+
     def safe_swipe_view(self, direction, view, date):
         """
         direction: direction to swip
@@ -167,18 +175,15 @@ class MainView(toolkit_emulators.MainView):
 
         self.pointing_device.drag(x_start, y_line, x_stop, y_line)
 
-    def get_year(self, component):
-        return int(component.wait_select_single(
-            "Label", objectName="yearLabel").text)
-
-    def get_month_name(self, component):
-        return component.wait_select_single(
-            "Label", objectName="monthLabel").text
-
     def to_local_date(self, date):
         utc = date.replace(tzinfo=tz.tzutc())
         local = utc.astimezone(tz.tzlocal())
         return local
+
+class YearView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+
+    """Autopilot helper for the Year View page."""
+
 
 
 class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
