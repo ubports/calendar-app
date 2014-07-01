@@ -164,7 +164,7 @@ Page {
     }
     //Save the new or Existing event
     function saveToQtPim() {
-        internalal.clearFocus()
+        internal.clearFocus()
         if ( startDate >= endDate && !allDayEventCheckbox.checked) {
             PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
         } else {
@@ -539,7 +539,7 @@ Page {
                                 (checked) ? internal.weekDays.push(index) : internal.weekDays.splice(internal.weekDays.indexOf(index),1);
                         }
                         checked: {
-                            (internal.weekDays.length == 0 && index === date.getDay() && isEdit== false) ? true : false;
+                            (internal.weekDays.length === 0 && index === date.getDay() && isEdit== false) ? true : false;
                         }
                         Label{
                             id:lbl
@@ -645,7 +645,7 @@ Page {
     }
 
     QtObject {
-        id: internalal
+        id: internal
         property var weekDays : [];
         function clearFocus() {
             Qt.inputMethod.hide()
