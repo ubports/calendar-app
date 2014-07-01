@@ -142,7 +142,8 @@ class MainView(toolkit_emulators.MainView):
     def get_month_view(self, parent_object=None):
         if parent_object is None:
             parent_object = self
-        return parent_object.select_single(MonthView, objectName='monthViewPage')
+        return parent_object.select_single(MonthView,
+                                           objectName='monthViewPage')
 
     def get_year_view(self, parent_object=None):
         if parent_object is None:
@@ -218,6 +219,7 @@ class MainView(toolkit_emulators.MainView):
         local = utc.astimezone(tz.tzlocal())
         return local
 
+
 class YearView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     """Autopilot helper for the Year View page."""
@@ -227,9 +229,11 @@ class WeekView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     """Autopilot helper for the Week View page."""
 
+
 class MonthView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     """Autopilot helper for the Year View page."""
+
 
 class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
