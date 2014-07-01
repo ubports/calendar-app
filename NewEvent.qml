@@ -120,14 +120,7 @@ Page {
                         limitOptions.selectedIndex = 0;
                     }
                     if(index === RecurrenceRule.Weekly){
-                        if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,2,3,4,5]))
-                            index = 2
-                        else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[1,3,5]))
-                            index = 3
-                        else if(compareArrays(recurrenceRule[0].daysOfWeek.sort(),[2,4]))
-                            index = 4
-                        else
-                            index = 5
+                            index = getWeekDaysIndex(recurrenceRule[0].daysOfWeek.sort());
                     }
                     if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
                         for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
@@ -149,6 +142,19 @@ Page {
         }
         reminderOption.selectedIndex = index;
     }
+    function getWeekDaysIndex(daysOfWeek){
+        var index = 0;
+        if(compareArrays(daysOfWeek,[Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday]))
+            index = 2
+        else if(compareArrays(daysOfWeek,[Qt.Monday,Qt.Wednesday,Qt.Friday]))
+            index = 3
+        else if(compareArrays(daysOfWeek,[Qt.Tuesday,Qt.Thursday]))
+            index = 4
+        else
+            index = 5
+        return index;
+    }
+
     function compareArrays(daysOfWeek, actualArray){
         if (daysOfWeek.length !== actualArray.length) return false;
         for (var i = 0; i < actualArray.length; i++) {
@@ -158,7 +164,7 @@ Page {
     }
     //Save the new or Existing event
     function saveToQtPim() {
-        internal.clearFocus()
+        internalal.clearFocus()
         if ( startDate >= endDate && !allDayEventCheckbox.checked) {
             PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
         } else {
@@ -240,7 +246,7 @@ Page {
             daysOfWeek = [Qt.Tuesday,Qt.Thursday];
             break;
         case 5:
-            daysOfWeek = intern.weekDays.length === 0 ? [date.getDay()] : intern.weekDays;
+            daysOfWeek = internal.weekDays.length === 0 ? [date.getDay()] : internal.weekDays;
             break;
         }
         return daysOfWeek;
@@ -528,12 +534,12 @@ Page {
                         onCheckedChanged: {
                             //EDS consider 7 as Sunday index so if the index is 0 then we have to explicitly push Sunday.
                             if(index === 0)
-                                (checked) ? intern.weekDays.push(Qt.Sunday) : intern.weekDays.splice(intern.weekDays.indexOf(Qt.Sunday),1);
+                                (checked) ? internal.weekDays.push(Qt.Sunday) : internal.weekDays.splice(internal.weekDays.indexOf(Qt.Sunday),1);
                             else
-                                (checked) ? intern.weekDays.push(index) : intern.weekDays.splice(intern.weekDays.indexOf(index),1);
+                                (checked) ? internal.weekDays.push(index) : internal.weekDays.splice(internal.weekDays.indexOf(index),1);
                         }
                         checked: {
-                            (intern.weekDays.length == 0 && index === date.getDay() && isEdit== false) ? true : false;
+                            (internal.weekDays.length == 0 && index === date.getDay() && isEdit== false) ? true : false;
                         }
                         Label{
                             id:lbl
@@ -639,8 +645,8 @@ Page {
     }
 
     QtObject {
-        id: internal
-
+        id: internalal
+        property var weekDays : [];
         function clearFocus() {
             Qt.inputMethod.hide()
             titleEdit.focus = false
@@ -652,9 +658,5 @@ Page {
             endTimeInput.focus = false
             messageEdit.focus = false
         }
-    }
-    QtObject {
-        id: intern
-        property var weekDays : [];
     }
 }
