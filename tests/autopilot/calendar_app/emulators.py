@@ -51,6 +51,20 @@ class MainView(toolkit_emulators.MainView):
     """An emulator that makes it easy to interact with the calendar-app."""
 
     @autopilot.logging.log_action(logger.info)
+    def go_to_year_view(self):
+        """Open the year view.
+
+        :return: The Year View page.
+
+        """
+        year_tab = self.select_single('Tab', objectName='yearTab')
+        if not year_tab.visible:
+            self.switch_to_tab('yearTab')
+        else:
+            logger.debug('The Year View page is already opened.')
+        return year_tab.select_single("YearView", objectName='yearViewPage')
+
+    @autopilot.logging.log_action(logger.info)
     def go_to_day_view(self):
         """Open the day view.
 
@@ -62,7 +76,7 @@ class MainView(toolkit_emulators.MainView):
             self.switch_to_tab('dayTab')
         else:
             logger.debug('The Day View page is already opened.')
-        return day_tab.select_single(DayView, objectName='DayView')
+        return day_tab.select_single(DayView, objectName='dayViewPage')
 
     @autopilot.logging.log_action(logger.info)
     def go_to_new_event(self):

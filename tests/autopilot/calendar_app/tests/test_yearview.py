@@ -35,29 +35,30 @@ class TestYearView(CalendarTestCase):
 
     def setUp(self):
         super(TestYearView, self).setUp()
-        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-        self.main_view.switch_to_tab("yearTab")
-        self.assertThat(
-            self.main_view.get_year_view, Eventually(NotEquals(None)))
+        #self.assertThat(self.main_view.visible, Eventually(Equals(True)))
+        #self.main_view.switch_to_tab("yearTab")
 
-        self.year_view = self.main_view.get_year_view()
+        self.year_view = self.main_view.go_to_year_view()
 
-    def _get_current_year(self):
-        return self.year_view.select_single("QQuickGridView",
+    def _get_year_grid(self):
+        return self.year_view.wait_select_single("QQuickGridView",
                                             isCurrentItem=True)
+                                            
+    def test_current_year_is_default(self):
+        """The current year should be the default shown"""
+        self.assertThat(self.year_view.currentYear,
+                        Equals(datetime.now().year))
+
 
     def test_selecting_a_month_switch_to_month_view(self):
         """It must be possible to select a month and open the month view."""
 
         # TODO: the component indexed at 1 is the one currently displayed,
         # investigate a way to validate this assumption visually.
-        year_grid = self._get_current_year()
+        year_grid = self._get_year_grid()
         self.assertThat(year_grid, NotEquals(None))
         months = year_grid.select_many("MonthComponent")
         months.sort(key=lambda month: month.currentMonth)
-        # check that current year is the default
-        self.assertThat(self.main_view.get_year(months[0]),
-                        Equals(datetime.now().year))
 
         february = months[1]
         expected_month_name = self.main_view.get_month_name(february)
@@ -111,7 +112,7 @@ class TestYearView(CalendarTestCase):
         self._change_year(-1)
 
     def _change_year(self, direction, how_many=5):
-        current_year = datetime.now().year
+        current_year = self.year_view.currentYear
 
         for i in range(1, how_many):
             self.main_view.swipe_view(direction, self.year_view)
@@ -124,12 +125,7 @@ class TestYearView(CalendarTestCase):
         now = datetime.now()
         _current_month_name = now.strftime("%B")
 
-        # for months after June, we must scroll down the page to have
-        # the month components loaded in the view.
-        if now.month > 6:
-            self.page.drag_page_up()
-
-        year_grid = self._get_current_year()
+        year_grid = self._get_year_grid()
         self.assertThat(year_grid, NotEquals(None))
         months = year_grid.select_many("MonthComponent")
 
