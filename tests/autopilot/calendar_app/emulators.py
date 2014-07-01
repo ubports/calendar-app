@@ -472,7 +472,7 @@ class EventDetails(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             DeleteConfirmationDialog, objectName='deleteConfirmationDialog')
         delete_confirmation_dialog.confirm_deletion()
 
-        return root.select_single(DayView, objectName='DayView')
+        return root.select_single(DayView, objectName='dayViewPage')
 
     def get_event_information(self):
         """Return the information of the event."""
