@@ -31,10 +31,6 @@ from testtools.matchers import Equals, NotEquals
 
 from calendar_app.tests import CalendarTestCase
 
-import logging
-
-logger = logging.getLogger(__name__)
-
 
 class TestDayView(CalendarTestCase):
 
@@ -80,12 +76,11 @@ class TestDayView(CalendarTestCase):
 
     def test_switch_day_by_tapping(self):
         """Selecting a day by touching the screen should also switch the day"""
-        today_header = self.main_view.wait_select_single('TimeLineHeaderComponent',
-                                                    isCurrentItem=True)
+        today_header = self.main_view.wait_select_single(
+            'TimeLineHeaderComponent', isCurrentItem=True)
         today = today_header.startDay.datetime
 
-
-        #click yesterday
+        # click yesterday
         yesterday = (today - datetime.timedelta(days=1))
         headers = self.main_view.select_many('TimeLineHeaderComponent',
                                              isCurrentItem=False)
@@ -99,7 +94,7 @@ class TestDayView(CalendarTestCase):
         self.assertThat(yesterday_header.isCurrentItem,
                         Eventually(Equals(True)))
 
-        #click tomorrow
+        # click tomorrow
         tomorrow = (yesterday + datetime.timedelta(days=1))
         headers = self.main_view.select_many('TimeLineHeaderComponent',
                                              isCurrentItem=False)
