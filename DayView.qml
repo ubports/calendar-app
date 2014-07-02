@@ -38,16 +38,6 @@ Page{
                 startX: -(dayHeader.width/7); startY: dayHeader.height/2
                 PathLine { x: (dayHeader.width/7) * 8  ; relativeY: 0;  }
             }
-            onDateSelected: {
-                if(date < currentDay){
-                    currentDay = currentDay.addDays(-1);
-                    dayHeader.decrementCurrentIndex()
-                }
-                else if( date > currentDay){
-                    currentDay = currentDay.addDays(1);
-                    dayHeader.incrementCurrentIndex();
-                }
-            }
         }
 
         PathViewBase{
