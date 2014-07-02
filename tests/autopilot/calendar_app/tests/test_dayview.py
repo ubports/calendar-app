@@ -76,18 +76,11 @@ class TestDayView(CalendarTestCase):
 
     def test_switch_day_by_tapping(self):
         """Selecting a day by touching the screen should also switch the day"""
-        today_header = self.main_view.wait_select_single(
-            'TimeLineHeaderComponent', isCurrentItem=True)
-        today = today_header.startDay.datetime
+        today = self.day_view.get_day_header().startDay.datetime
 
         # click yesterday
         yesterday = (today - datetime.timedelta(days=1))
-        headers = self.main_view.select_many('TimeLineHeaderComponent',
-                                             isCurrentItem=False)
-        for header in headers:
-            if header.startDay.datetime == yesterday:
-                yesterday_header = header
-                break
+        yesterday_header = self.day_view.get_day_header(yesterday)
 
         self.assertThat(yesterday_header.isCurrentItem, Equals(False))
         self.pointing_device.click_object(yesterday_header)
@@ -96,12 +89,7 @@ class TestDayView(CalendarTestCase):
 
         # click tomorrow
         tomorrow = (yesterday + datetime.timedelta(days=1))
-        headers = self.main_view.select_many('TimeLineHeaderComponent',
-                                             isCurrentItem=False)
-        for header in headers:
-            if header.startDay.datetime == tomorrow:
-                tomorrow_header = header
-                break
+        tomorrow_header = self.day_view.get_day_header(tomorrow)
 
         self.assertThat(tomorrow_header.isCurrentItem, Equals(False))
         self.pointing_device.click_object(tomorrow_header)
