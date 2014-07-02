@@ -5,8 +5,8 @@ import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
 Page{
-    id: root
-    objectName: "DayView"
+    id: dayViewPage
+    objectName: "dayViewPage"
 
     property var currentDay: new Date()
     property bool isCurrentPage: false
@@ -42,7 +42,7 @@ Page{
 
         PathViewBase{
             id: dayViewPath
-            objectName: "DayViewPathBase"
+            objectName: "dayViewPath"
 
             property var startDay: currentDay
             //This is used to scroll all view together when currentItem scrolls
@@ -83,9 +83,9 @@ Page{
                 isActive: true
 
                 Connections{
-                    target: root
+                    target: dayViewPage
                     onIsCurrentPageChanged:{
-                        if(root.isCurrentPage){
+                        if(dayViewPage.isCurrentPage){
                             timeLineView.scrollToCurrentTime();
                         }
                     }

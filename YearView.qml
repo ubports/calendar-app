@@ -4,15 +4,16 @@ import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
 Page {
     id: yearViewPage
+    objectName: "yearViewPage"
 
     property int currentYear: DateExt.today().getFullYear();
     signal monthSelected(var date);
 
-    Keys.forwardTo: [pathView]
+    Keys.forwardTo: [yearPathView]
 
     PathViewBase {
-        id: pathView
-        objectName: "YearView"
+        id: yearPathView
+        objectName: "yearPathView"
 
         anchors.fill: parent
 
@@ -27,11 +28,11 @@ Page {
         delegate: GridView{
             id: yearView
             clip: true
-            focus: index == pathView.currentIndex
+            focus: index == yearPathView.currentIndex
 
             property int scrollMonth: 0;
-            property bool isCurrentItem: index == pathView.currentIndex
-            property int year: (yearViewPage.currentYear + pathView.indexType(index))
+            property bool isCurrentItem: index == yearPathView.currentIndex
+            property int year: (yearViewPage.currentYear + yearPathView.indexType(index))
 
             width: parent.width
             height: parent.height
@@ -57,7 +58,7 @@ Page {
             }
 
             Connections{
-                target: pathView
+                target: yearPathView
                 onScrollUp: {
                     scrollMonth -= 2;
                     if(scrollMonth < 0) {

@@ -39,12 +39,8 @@ class TestWeekView(CalendarTestCase):
     def setUp(self):
         super(TestWeekView, self).setUp()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-        self.main_view.switch_to_tab("weekTab")
 
-        self.assertThat(
-            self.main_view.get_week_view, Eventually(NotEquals(None)))
-
-        self.week_view = self.main_view.get_week_view()
+        self.week_view = self.main_view.go_to_week_view()
 
     def _change_week(self, direction):
         first_dow = self._get_first_day_of_week()
