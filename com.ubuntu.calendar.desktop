@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Terminal=false
-Exec=calendar.qml
+Exec=qmlscene calendar.qml
 Icon=calendar-app@30.png
 _Name=Calendar
 _Comment=A calendar for Ubuntu which syncs with online accounts.
