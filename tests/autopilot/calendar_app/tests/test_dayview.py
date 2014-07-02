@@ -31,6 +31,10 @@ from testtools.matchers import Equals, NotEquals
 
 from calendar_app.tests import CalendarTestCase
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class TestDayView(CalendarTestCase):
 
@@ -61,7 +65,7 @@ class TestDayView(CalendarTestCase):
 
         """
 
-        days = self.day_view.select_many(objectName="dateLabel")
+        days = self.day_view.select_many(objectName='dateLabel')
         days = [int(day.text) for day in days]
 
         now = datetime.datetime.now()
@@ -73,6 +77,41 @@ class TestDayView(CalendarTestCase):
         self.assertIn(today, days)
         self.assertIn(tomorrow, days)
         self.assertIn(yesterday, days)
+
+    def test_switch_day_by_tapping(self):
+        """Selecting a day by touching the screen should also switch the day"""
+        today_header = self.main_view.wait_select_single('TimeLineHeaderComponent',
+                                                    isCurrentItem=True)
+        today = today_header.startDay.datetime
+
+
+        #click yesterday
+        yesterday = (today - datetime.timedelta(days=1))
+        headers = self.main_view.select_many('TimeLineHeaderComponent',
+                                             isCurrentItem=False)
+        for header in headers:
+            if header.startDay.datetime == yesterday:
+                yesterday_header = header
+                break
+
+        self.assertThat(yesterday_header.isCurrentItem, Equals(False))
+        self.pointing_device.click_object(yesterday_header)
+        self.assertThat(yesterday_header.isCurrentItem,
+                        Eventually(Equals(True)))
+
+        #click tomorrow
+        tomorrow = (yesterday + datetime.timedelta(days=1))
+        headers = self.main_view.select_many('TimeLineHeaderComponent',
+                                             isCurrentItem=False)
+        for header in headers:
+            if header.startDay.datetime == tomorrow:
+                tomorrow_header = header
+                break
+
+        self.assertThat(tomorrow_header.isCurrentItem, Equals(False))
+        self.pointing_device.click_object(tomorrow_header)
+        self.assertThat(tomorrow_header.isCurrentItem,
+                        Eventually(Equals(True)))
 
     def test_show_next_days(self):
         """It must be possible to show next days by swiping the view."""
