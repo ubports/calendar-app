@@ -319,6 +319,29 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         event_details_page = self.open_event(name, filter_duplicates)
         return event_details_page.delete()
 
+    @autopilot.logging.log_action(logger.info)
+    def get_day_header(self, day=None):
+        """Return the dayheader for a given day. If no day is given,
+        return the current day.
+
+        :param day: A datetime object matching the header
+        :return: The day header object
+        """
+        if day:
+            headers = self.select_many('TimeLineHeaderComponent')
+            for header in headers:
+                if header.startDay.datetime == day:
+                    day_header = header
+                    break
+        else:
+            # just grab the current day
+            day_header = self.wait_select_single(
+                'TimeLineHeaderComponent', isCurrentItem=True)
+
+        if not(day_header):
+            raise CalendarException('Day Header not found for %s' % day)
+        return day_header
+
 
 class EventBubble(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
