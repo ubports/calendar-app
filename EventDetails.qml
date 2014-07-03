@@ -39,6 +39,12 @@ Page {
         }
     }
 
+    function updateCollection(event) {
+        var collection = model.collection( event.collectionId );
+        calendarIndicator.color = collection.color
+        calendarName.text = collection.name
+    }
+
     function updateRecurrence( event ) {
         var index = 0;
         if(event.recurrence ) {
@@ -142,6 +148,8 @@ Page {
         if( e.description ) {
             descLabel.text = e.description;
         }
+
+        updateCollection(e);
 
         updateContacts(e);
 
@@ -270,6 +278,22 @@ Page {
                     id: allDayEventCheckbox
                     checked: false
                     enabled: false
+                }
+            }
+
+            Row{
+                width: parent.width
+                spacing: units.gu(1)
+                UbuntuShape{
+                    id: calendarIndicator
+                    width: parent.height
+                    height: parent.height
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                Label{
+                    id:calendarName
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: headerColor
                 }
             }
 
