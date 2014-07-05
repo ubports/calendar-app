@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2013-11-20 11:12+0000\n"
-"Last-Translator: Emin Mastizada <emin25@ovi.com>\n"
+"PO-Revision-Date: 2014-07-04 07:08+0000\n"
+"Last-Translator: Nicat Məmmədov <n1c4t97@gmail.com>\n"
 "Language-Team: Azerbaijani <az@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-11 06:33+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-07-05 05:54+0000\n"
+"X-Generator: Launchpad (build 17086)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -68,7 +68,7 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete this"
-msgstr ""
+msgstr "Bunu sil"
 
 #: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:167
 msgid "Delete"
