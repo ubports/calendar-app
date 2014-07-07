@@ -14,10 +14,13 @@
     "title": "Calendar",
     "version": "0.4.@BZR_REVNO@",
     "x-source": {
-        "vcs-bzr": "@BZR_SOURCE@", 
+        "vcs-bzr": "@BZR_SOURCE@",
         "vcs-bzr-revno": "@BZR_REVNO@"
     },
-	"x-test": {
-		"autopilot": "@AUTOPILOT_DIR@"
-	}
+    "x-test": {
+       "autopilot": {
+            "command": "PYTHONPATH=tests/autopilot:$PYTHONPATH python3 -m autopilot.run run -v @AUTOPILOT_DIR@",
+            "depends": ["ubuntu-ui-toolkit-autopilot", "python3-autopilot", "python3-dateutil"]
+        }
+    }
 }
