@@ -76,8 +76,6 @@ class NewEventTestCase(CalendarTestCase):
 
     def test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
-        # TODO remove the skip once the bug is fixed. --elopio - 2014-06-26
-        self.skipTest('This test fails because of bug http://pad.lv/1334883')
         event = data.Event.make_unique()
 
         day_view = self.main_view.go_to_day_view()
