@@ -135,9 +135,11 @@ Item {
 
                         model: mainModel
                         Component.onCompleted: {
+                            model.addModelChangeListener(destroyAllChildren);
                             model.addModelChangeListener(createEvents);
                         }
                         Component.onDestruction: {
+                            model.removeModelChangeListener(destroyAllChildren);
                             model.removeModelChangeListener(createEvents);
                         }
                     }

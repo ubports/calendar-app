@@ -100,6 +100,7 @@ Item {
             }
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
+                children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
                 intern.unUsedEvents.push(children[i])
             }
         }
