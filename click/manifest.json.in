@@ -18,9 +18,9 @@
         "vcs-bzr-revno": "@BZR_REVNO@"
     },
     "x-test": {
-       "autopilot": {
-            "command": "PYTHONPATH=tests/autopilot:$PYTHONPATH python3 -m autopilot.run run -v @AUTOPILOT_DIR@",
-            "depends": ["ubuntu-ui-toolkit-autopilot", "python3-autopilot", "python3-dateutil"]
+        "autopilot": {
+            "autopilot_module": "@AUTOPILOT_DIR@",
+            "depends": ["python3-dateutil"]
         }
     }
 }
