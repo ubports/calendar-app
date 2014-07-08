@@ -14,10 +14,13 @@
     "title": "Calendar",
     "version": "0.4.@BZR_REVNO@",
     "x-source": {
-        "vcs-bzr": "@BZR_SOURCE@", 
+        "vcs-bzr": "@BZR_SOURCE@",
         "vcs-bzr-revno": "@BZR_REVNO@"
     },
-	"x-test": {
-		"autopilot": "@AUTOPILOT_DIR@"
-	}
+    "x-test": {
+        "autopilot": {
+            "autopilot_module": "@AUTOPILOT_DIR@",
+            "depends": ["python3-dateutil"]
+        }
+    }
 }
