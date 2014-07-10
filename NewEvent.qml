@@ -199,13 +199,13 @@ Page {
                 audibleReminder.secondsBeforeStart = reminderTime;
                 event.setDetail(audibleReminder);
             }
-
             model.saveItem(event);
             pageStack.pop();
         }
     }
 
     function openDatePicker (element, caller, callerProperty, mode) {
+        Qt.inputMethod.hide();
         element.highlighted = true;
         var picker = PickerPanel.openDatePicker(caller, callerProperty, mode);
         if (!picker) return;
