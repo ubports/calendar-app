@@ -239,14 +239,14 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     """Autopilot helper for the Day View page."""
 
-    def get_events(self, filter_duplicates=False):
+    def get_events(self):
         """Return the events for this day.
 
         :return: A list with the events. Each event is a tuple with name, start
            time and end time.
 
         """
-        event_bubbles = self._get_selected_day_event_bubbles(filter_duplicates)
+        event_bubbles = self._get_selected_day_event_bubbles()
 
         # sort by y, x
         event_bubbles = sorted(
@@ -269,19 +269,12 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             raise CalendarException(
                 'Could not find the current day component.')
 
-    def _get_selected_day_event_bubbles(self, filter_duplicates):
+    def _get_selected_day_event_bubbles(self):
         selected_day = self._get_current_day_component()
-        return self._get_event_bubbles(selected_day, filter_duplicates)
+        return self._get_event_bubbles(selected_day)
 
-    def _get_event_bubbles(self, selected_day, filter_duplicates):
+    def _get_event_bubbles(self, selected_day):
         event_bubbles = selected_day.select_many(EventBubble)
-        if filter_duplicates:
-            # XXX remove this once bug http://pad.lv/1334833 is fixed.
-            # --elopio - 2014-06-26
-            separator_id = selected_day.select_single(
-                'QQuickRectangle', objectName='separator').id
-            event_bubbles = self._remove_duplicate_events(
-                separator_id, event_bubbles)
         return event_bubbles
 
     def _remove_duplicate_events(self, separator_id, event_bubbles):
@@ -293,14 +286,14 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         return events
 
     @autopilot.logging.log_action(logger.info)
-    def open_event(self, name, filter_duplicates=False):
+    def open_event(self, name):
         """Open an event.
 
         :param name: The name of the event to open.
         :return: The Event Details page.
 
         """
-        event_bubbles = self._get_selected_day_event_bubbles(filter_duplicates)
+        event_bubbles = self._get_selected_day_event_bubbles()
         for bubble in event_bubbles:
             if bubble.get_name() == name:
                 return bubble.open_event()
@@ -309,14 +302,14 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
                 'Could not find event with name {}.'.format(name))
 
     @autopilot.logging.log_action(logger.info)
-    def delete_event(self, name, filter_duplicates=False):
+    def delete_event(self, name):
         """Delete an event.
 
         :param name: The name of the event to delete.
         :return: The Day View page.
 
         """
-        event_details_page = self.open_event(name, filter_duplicates)
+        event_details_page = self.open_event(name)
         return event_details_page.delete()
 
     @autopilot.logging.log_action(logger.info)

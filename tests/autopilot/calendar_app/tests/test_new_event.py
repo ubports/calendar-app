@@ -38,10 +38,10 @@ class NewEventTestCase(CalendarTestCase):
     # http://pad.lv/1328600 on Autopilot.
     # --elopio - 2014-06-26
 
-    def try_delete_event(self, event_name, filter_duplicates):
+    def _try_delete_event(self, event_name):
         try:
             day_view = self.main_view.go_to_day_view()
-            day_view.delete_event(event_name, filter_duplicates)
+            day_view.delete_event(event_name)
         except Exception as exception:
             logger.warn(str(exception))
 
@@ -58,18 +58,12 @@ class NewEventTestCase(CalendarTestCase):
         original_events = day_view.get_events()
 
         new_event_page = self.main_view.go_to_new_event()
-        # XXX remove this once bug http://pad.lv/1334833 is fixed.
-        # --elopio - 2014-06-26
-        filter_duplicates = len(original_events) > 0
-        self.addCleanup(
-            self.try_delete_event, test_event.name, filter_duplicates)
-        day_view = new_event_page.add_event(test_event)
+        new_event_page.add_event(test_event)
 
-        def get_new_events():
-            return day_view.get_events(filter_duplicates)
+        self.addCleanup(self._try_delete_event, test_event.name)
 
         self.assertThat(
-            get_new_events, Eventually(HasLength(len(original_events) + 1)))
+            day_view.get_events, Eventually(HasLength(len(original_events) + 1)))
         event_details_page = day_view.open_event(test_event.name)
         self.assertEqual(
             test_event, event_details_page.get_event_information())
