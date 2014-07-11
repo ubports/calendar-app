@@ -244,7 +244,7 @@ Page {
             id: dialog
             title: i18n.tr("Error")
             Button {
-                text: i18n.tr("Ok")
+                text: i18n.tr("OK")
                 onClicked: PopupUtils.close(dialog)
             }
         }
