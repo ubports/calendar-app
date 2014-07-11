@@ -63,7 +63,8 @@ class NewEventTestCase(CalendarTestCase):
         self.addCleanup(self._try_delete_event, test_event.name)
 
         self.assertThat(
-            day_view.get_events, Eventually(HasLength(len(original_events) + 1)))
+            day_view.get_events,
+            Eventually(HasLength(len(original_events) + 1)))
         event_details_page = day_view.open_event(test_event.name)
         self.assertEqual(
             test_event, event_details_page.get_event_information())
