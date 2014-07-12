@@ -8,17 +8,12 @@ Page {
     id: root
     title: i18n.tr("Calendars")
 
-    property bool isInEditMode: false
     property var model;
 
     signal collectionUpdated();
 
     ToolbarItems {
         id: pickerModeToolbar
-        //keeping toolbar always open
-        opened: true
-        locked: true
-        visible: !isInEditMode
 
         back: ToolbarButton {
             action: Action {
@@ -26,16 +21,6 @@ Page {
                 iconName: "back"
                 onTriggered: {
                     pageStack.pop();
-                }
-            }
-        }
-
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Edit");
-                iconName: "edit"
-                onTriggered: {
-                    root.isInEditMode = true
                 }
             }
         }
@@ -52,25 +37,7 @@ Page {
         }
     }
 
-    ToolbarItems {
-        id: editModeToolbar
-        //keeping toolbar always open
-        opened: true
-        locked: true
-        visible: isInEditMode
-
-        back: ToolbarButton {
-            action: Action {
-                text: i18n.tr("Back");
-                iconName: "back"
-                onTriggered: {
-                    root.isInEditMode = false
-                }
-            }
-        }
-    }
-
-    tools: isInEditMode ? editModeToolbar : pickerModeToolbar
+    tools: pickerModeToolbar
 
     ListView {
         id: calendarsList
@@ -101,6 +68,18 @@ Page {
                         height: parent.height - units.gu(2)
                         color: modelData.color
                         anchors.verticalCenter: parent.verticalCenter
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: {
+                                //popup dialog
+                                var dialog = PopupUtils.open(Qt.resolvedUrl("ColorPickerDialog.qml"),root);
+                                dialog.accepted.connect(function(color) {
+                                    var collection = root.model.collection(modelData.collectionId);
+                                    collection.color = color;
+                                    root.model.saveCollection(collection);
+                                })
+                            }
+                        }
                     }
                     Label{
                         text: modelData.name
@@ -111,20 +90,10 @@ Page {
                         MouseArea{
                             anchors.fill: parent
                             onClicked: {
-                                if(isInEditMode){
-                                    //popup dialog
-                                    var dialog = PopupUtils.open(Qt.resolvedUrl("ColorPickerDialog.qml"),root);
-                                    dialog.accepted.connect(function(color) {
-                                        var collection = root.model.collection(modelData.collectionId);
-                                        collection.color = color;
-                                        root.model.saveCollection(collection);
-                                    })
-                                } else {
-                                    checkBox.checked = !checkBox.checked
-                                    modelData.setExtendedMetaData("collection-selected",checkBox.checked)
-                                    var collection = root.model.collection(modelData.collectionId);
-                                    root.model.saveCollection(collection);
-                                }
+                                checkBox.checked = !checkBox.checked
+                                modelData.setExtendedMetaData("collection-selected",checkBox.checked)
+                                var collection = root.model.collection(modelData.collectionId);
+                                root.model.saveCollection(collection);
                             }
                         }
                     }
