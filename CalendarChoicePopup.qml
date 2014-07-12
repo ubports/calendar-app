@@ -11,9 +11,7 @@ Page {
     property bool isInEditMode: false
     property var model;
 
-    Component.onCompleted: {
-        pageStack.header.visible = true;
-    }
+    signal collectionUpdated();
 
     ToolbarItems {
         id: pickerModeToolbar
@@ -47,11 +45,7 @@ Page {
                 text: i18n.tr("Save");
                 iconSource: Qt.resolvedUrl("save.svg");
                 onTriggered: {
-                    var collections = calendarsList.model;
-                    for(var i=0; i < collections.length ; ++i) {
-                        var collection = collections[i]
-                        root.model.saveCollection(collection);
-                    }
+                    root.collectionUpdated();
                     pageStack.pop();
                 }
             }
@@ -128,8 +122,8 @@ Page {
                                 } else {
                                     checkBox.checked = !checkBox.checked
                                     modelData.setExtendedMetaData("collection-selected",checkBox.checked)
-                                    //var collection = root.model.collection(modelData.collectionId);
-                                    //root.model.saveCollection(collection);
+                                    var collection = root.model.collection(modelData.collectionId);
+                                    root.model.saveCollection(collection);
                                 }
                             }
                         }
@@ -141,8 +135,8 @@ Page {
                         visible:  !root.isInEditMode
                         onCheckedChanged: {
                             modelData.setExtendedMetaData("collection-selected",checkBox.checked)
-                            //var collection = root.model.collection(modelData.collectionId);
-                            //root.model.saveCollection(collection);
+                            var collection = root.model.collection(modelData.collectionId);
+                            root.model.saveCollection(collection);
                         }
                     }
                 }

@@ -97,6 +97,34 @@ MainView {
             }
         }
 
+        Timer {
+            id: applyFilterTimer
+            interval: 200; running: false; repeat: false
+            onTriggered: {
+                eventModel.applyFilterFinal();
+            }
+        }
+
+        DetailFieldFilter{
+            id: eventFilter
+            detail: Detail.ItemType;
+            field: Type.FieldType
+            value: Type.Event
+            matchFlags: Filter.MatchExactly
+        }
+
+        DetailFieldFilter{
+            id: eventOccurenceFilter
+            detail: Detail.ItemType;
+            field: Type.FieldType
+            value: Type.EventOccurrence
+            matchFlags: Filter.MatchExactly
+        }
+
+        CollectionFilter{
+            id: collectionFilter
+        }
+
         EventListModel{
             id: eventModel
 
@@ -104,19 +132,15 @@ MainView {
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
 
-            function createDetailFilter(type) {
-                var filter = "import QtOrganizer 5.0;
-                DetailFieldFilter {
-                    detail: Detail.ItemType;
-                    field: Type.FieldType;
-                    value: "+ type + ";"+
-                    "matchFlags: Filter.MatchExactly;
-                }";
-
-                return Qt.createQmlObject(filter, eventModel, "calendar.qml");
+            filter: UnionFilter {
+                filters: [ collectionFilter/*, eventFilter, eventOccurenceFilter,*/ ]
             }
 
-            onCollectionsChanged : {
+            function delayedApplyFilter() {
+                applyFilterTimer.restart();
+            }
+
+            function applyFilterFinal() {
                 var collectionIds = [];
                 var collections = eventModel.getCollections();
                 for(var i=0; i < collections.length ; ++i) {
@@ -125,21 +149,12 @@ MainView {
                         collectionIds.push(collection.collectionId);
                     }
                 }
-
-                var calFilter =  Qt.createQmlObject("import QtOrganizer 5.0; CollectionFilter{}", eventModel, "calendar.qml");
-                calFilter.ids = collectionIds;
-
-                var uninionFilters = [];
-                uninionFilters.push( createDetailFilter(Type.Event));
-                uninionFilters.push( createDetailFilter(Type.EventOccurrence));
-                uninionFilters.push( calFilter);
-
-                var uninionFilter =  Qt.createQmlObject("import QtOrganizer 5.0; UnionFilter{}", eventModel, "calendar.qml");
-                uninionFilter.filters = uninionFilters;
-                eventModel.filter = uninionFilter;
+                collectionFilter.ids = collectionIds;
             }
 
             Component.onCompleted: {
+                delayedApplyFilter();
+
                 if (args.values.eventid) {
                     var requestId = "";
                     eventModel.onItemsFetched.connect( function(id,fetchedItems) {
@@ -296,6 +311,7 @@ MainView {
                         text: i18n.tr("Calendars");
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
+                            pageStack.currentPage.collectionUpdated.connect(eventModel.delayedApplyFilter);
                         }
                     }
                 }

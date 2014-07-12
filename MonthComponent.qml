@@ -27,6 +27,7 @@ Item{
 
     Loader{
         id: modelLoader
+        //asynchronous: true
         sourceComponent: showEvents ? modelComponent: undefined
     }
 
@@ -37,7 +38,6 @@ Item{
             startPeriod: intern.monthStart.midnight();
             endPeriod: intern.monthStart.addDays((monthGrid.weekCount*7)-1).endOfDay()
             filter: eventModel.filter
-
             onModelChanged: {
                 intern.eventStatus = Qt.binding(function() { return mainModel.containsItems(startPeriod,endPeriod,24*60*60)});
             }
