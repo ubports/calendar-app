@@ -74,7 +74,6 @@ Item {
         var startDate = new Date(day).midnight();
         var endDate = new Date(day).endOfDay();
         var items = model.getItems(startDate,endDate);
-        print("Items count:" + items.length);
         for(var i = 0; i < items.length; ++i) {
             var event = items[i];
 
@@ -102,8 +101,8 @@ Item {
             }
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
+                children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
                 intern.unUsedEvents.push(children[i])
-                eventBubble.clicked.disconnect( bubbleOverLay.showEventDetails );
             }
         }
     }
