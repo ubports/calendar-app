@@ -135,7 +135,7 @@ MainView {
             //FIXME: seems like union filter is not working when we use DetailFieldFilter and CollectionFilter
             //Currently only using collectionFilter
             filter: UnionFilter {
-                filters: [ collectionFilter /*, eventFilter, eventOccurenceFilter*/ ]
+                filters: [ collectionFilter /*,eventFilter ,eventOccurenceFilter*/ ]
             }
 
             function delayedApplyFilter() {

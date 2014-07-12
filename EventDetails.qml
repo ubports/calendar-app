@@ -109,12 +109,6 @@ Page {
         }
     }
 
-    function updateCollection(event) {
-        var collection = model.collection( event.collectionId );
-        calendarIndicator.color = collection.color
-        calendarName.text = collection.name
-    }
-
     function showEvent(e) {
         // TRANSLATORS: this is a time formatting string,
         // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
