@@ -27,7 +27,6 @@ Item{
 
     Loader{
         id: modelLoader
-        //asynchronous: true
         sourceComponent: showEvents ? modelComponent: undefined
     }
 
