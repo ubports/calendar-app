@@ -127,6 +127,13 @@ Item {
                         delegate: comp
                         day: startDay.addDays(index)
 
+                        Connections{
+                            target: mainModel
+                            onStartPeriodChanged:{
+                                destroyAllChildren();
+                            }
+                        }
+
                         model: mainModel
                         Component.onCompleted: {
                             model.addModelChangeListener(createEvents);

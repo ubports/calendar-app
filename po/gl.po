@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-06-11 03:02+0000\n"
+"PO-Revision-Date: 2014-07-05 17:22+0000\n"
 "Last-Translator: Marcos Lans <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-12 06:32+0000\n"
-"X-Generator: Launchpad (build 17041)\n"
+"X-Launchpad-Export-Date: 2014-07-06 06:00+0000\n"
+"X-Generator: Launchpad (build 17086)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -52,7 +52,7 @@ msgstr "%1 activ."
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr "%1 actividades do día"
+msgstr "%1 Actividades do día"
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
@@ -211,9 +211,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
-"O aplicativo do Calendario acepta catro argumentos: --starttime, --endtime, -"
-"-newevent e --eventid. Xestionaranse polo sistema. Mira a fonte para atopar "
-"un comentario completo sobre eles"
+"O aplicativo Calendario acepta catro argumentos: --starttime, --endtime, --"
+"newevent e --eventid. Xestionaranse polo sistema. Mire a fonte para atopar "
+"comentarios completos sobre eles"
 
 #: ../calendar.qml:225
 msgid "Today"

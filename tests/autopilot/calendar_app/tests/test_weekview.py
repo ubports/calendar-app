@@ -1,9 +1,18 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013 Canonical
 #
-# This program is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License version 3, as published
-# by the Free Software Foundation.
+# Copyright (C) 2013, 2014 Canonical Ltd
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 Calendar app autopilot tests for the week view.
@@ -30,17 +39,13 @@ class TestWeekView(CalendarTestCase):
     def setUp(self):
         super(TestWeekView, self).setUp()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-        self.main_view.switch_to_tab("weekTab")
 
-        self.assertThat(
-            self.main_view.get_week_view, Eventually(NotEquals(None)))
-
-        self.week_view = self.main_view.get_week_view()
+        self.week_view = self.main_view.go_to_week_view()
 
     def _change_week(self, direction):
         first_dow = self._get_first_day_of_week()
 
-        #prevent timing issues with swiping
+        # prevent timing issues with swiping
         old_day = self.main_view.to_local_date(
             self.week_view.dayStart.datetime)
         self.main_view.swipe_view(direction, self.week_view)
@@ -58,13 +63,13 @@ class TestWeekView(CalendarTestCase):
         self.assertThat(new_day_start.day, Equals(expected_day_start.day))
 
     def _get_days_of_week(self):
-        #sort based on text value of the day
+        # sort based on text value of the day
         days = sorted(self._get_date_label_headers(),
                       key=lambda label: label.text)
         days = [int(item.text) for item in days]
 
-        #resort so beginning of next month comes after the end
-        #need to support overlapping months 28,30,31 -> 1
+        # resort so beginning of next month comes after the end
+        # need to support overlapping months 28,30,31 -> 1
         sorteddays = []
         for day in days:
             inserted = 0
@@ -89,23 +94,23 @@ class TestWeekView(CalendarTestCase):
         firstDay = self.main_view.to_local_date(
             self.week_view.firstDay.datetime)
 
-        #sunday
+        # sunday
         if firstDay.weekday() == 6:
             logger.debug("Locale has Sunday as first day of week")
             weekday = date.weekday()
             diff = datetime.timedelta(days=weekday + 1)
-        #saturday
+        # saturday
         elif firstDay.weekday() == 5:
             logger.debug("Locale has Saturday as first day of week")
             weekday = date.weekday()
             diff = datetime.timedelta(days=weekday + 2)
-        #monday
+        # monday
         else:
             logger.debug("Locale has Monday as first day of week")
             weekday = date.weekday()
             diff = datetime.timedelta(days=weekday)
 
-        #set the start of week
+        # set the start of week
         if date.day != firstDay.day:
             day_start = date - diff
             logger.debug("Setting day_start to %s" % firstDay.day)
@@ -172,11 +177,11 @@ class TestWeekView(CalendarTestCase):
 
         self.pointing_device.click_object(day_to_select)
 
-        #Check that the view changed from 'Week' to 'Day'
+        # Check that the view changed from 'Week' to 'Day'
         day_view = self.main_view.get_day_view()
         self.assertThat(day_view.visible, Eventually(Equals(True)))
 
-        #Check that the 'Day' view is on the correct/selected day.
+        # Check that the 'Day' view is on the correct/selected day.
         selected_date = day_view.select_single("TimeLineHeader").date
         self.assertThat(expected_day, Equals(selected_date.day))
         self.assertThat(expected_month, Equals(selected_date.month))

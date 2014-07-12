@@ -1,9 +1,18 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013 Canonical
 #
-# This program is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License version 3, as published
-# by the Free Software Foundation.
+# Copyright (C) 2013, 2014 Canonical Ltd
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
 Calendar app autopilot tests for the day view.
@@ -28,12 +37,8 @@ class TestDayView(CalendarTestCase):
     def setUp(self):
         super(TestDayView, self).setUp()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-        self.main_view.switch_to_tab("dayTab")
 
-        self.assertThat(
-            self.main_view.get_day_view, Eventually(NotEquals(None)))
-
-        self.day_view = self.main_view.get_day_view()
+        self.day_view = self.main_view.go_to_day_view()
 
     def test_current_month_and_year_is_selected(self):
         """By default, the day view shows the current month and year."""
@@ -56,7 +61,7 @@ class TestDayView(CalendarTestCase):
 
         """
 
-        days = self.day_view.select_many(objectName="dateLabel")
+        days = self.day_view.select_many(objectName='dateLabel')
         days = [int(day.text) for day in days]
 
         now = datetime.datetime.now()
@@ -68,6 +73,28 @@ class TestDayView(CalendarTestCase):
         self.assertIn(today, days)
         self.assertIn(tomorrow, days)
         self.assertIn(yesterday, days)
+
+    def test_switch_day_by_tapping(self):
+        """Selecting a day by touching the screen should also switch the day"""
+        today = self.day_view.get_day_header().startDay.datetime
+
+        # click yesterday
+        yesterday = (today - datetime.timedelta(days=1))
+        yesterday_header = self.day_view.get_day_header(yesterday)
+
+        self.assertThat(yesterday_header.isCurrentItem, Equals(False))
+        self.pointing_device.click_object(yesterday_header)
+        self.assertThat(yesterday_header.isCurrentItem,
+                        Eventually(Equals(True)))
+
+        # click tomorrow
+        tomorrow = (yesterday + datetime.timedelta(days=1))
+        tomorrow_header = self.day_view.get_day_header(tomorrow)
+
+        self.assertThat(tomorrow_header.isCurrentItem, Equals(False))
+        self.pointing_device.click_object(tomorrow_header)
+        self.assertThat(tomorrow_header.isCurrentItem,
+                        Eventually(Equals(True)))
 
     def test_show_next_days(self):
         """It must be possible to show next days by swiping the view."""
@@ -81,7 +108,7 @@ class TestDayView(CalendarTestCase):
         firstday = self.day_view.currentDay.datetime
 
         for i in range(1, 5):
-            #prevent timing issues with swiping
+            # prevent timing issues with swiping
             old_day = self.day_view.currentDay.datetime
             self.main_view.swipe_view(direction, self.day_view)
             self.assertThat(lambda: self.day_view.currentDay.datetime,

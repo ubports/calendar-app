@@ -23,7 +23,7 @@ Row{
         delegate: HeaderDateComponent{
             date: startDay.addDays(index);
             dayFormat: {
-                if( type == ViewType.ViewTypeWeek || (type == ViewType.ViewTypeDay && !root.isCurrentItem) ) {
+                if( type == ViewType.ViewTypeWeek || (type == ViewType.ViewTypeDay && !header.isCurrentItem) ) {
                     Locale.ShortFormat
                 } else {
                     Locale.LongFormat

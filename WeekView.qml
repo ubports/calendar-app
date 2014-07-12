@@ -5,7 +5,9 @@ import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
 Page{
-    id: root
+    id: weekViewPage
+    objectName: "weekViewPage"
+
     property var dayStart: new Date();
     property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
@@ -17,8 +19,6 @@ Page{
     flickable: null
 
     Column {
-        objectName: "WeekView"
-
         anchors.fill: parent
         anchors.top: parent.top
         anchors.topMargin: units.gu(1.5)
@@ -37,15 +37,16 @@ Page{
             date: firstDay
 
             onDateSelected: {
-                root.dateSelected(date);
+                weekViewPage.dateSelected(date);
             }
         }
 
         PathViewBase{
             id: weekViewPath
+            objectName: "weekViewPath"
 
             width: parent.width
-            height: root.height - weekViewPath.y
+            height: weekViewPage.height - weekViewPath.y
 
             //This is used to scroll all view together when currentItem scrolls
             property var childContentY;
@@ -81,9 +82,9 @@ Page{
                 startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
 
                 Connections{
-                    target: root
+                    target: weekViewPage
                     onIsCurrentPageChanged:{
-                        if(root.isCurrentPage){
+                        if(weekViewPage.isCurrentPage){
                             timeLineView.scrollToCurrentTime();
                         }
                     }

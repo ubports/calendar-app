@@ -4,6 +4,7 @@ import Ubuntu.Components.Popups 0.1
 
 Dialog {
     id: dialogue
+    objectName: "deleteConfirmationDialog"
 
     property var event;
 
@@ -28,6 +29,7 @@ Dialog {
     }
 
     Button {
+        objectName: "deleteEventButton"
         text: event.parentId ? i18n.tr("Delete this") : i18n.tr("Delete")
         color: UbuntuColors.orange
         onClicked: {

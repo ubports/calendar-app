@@ -92,16 +92,16 @@ Item{
                 timeLabel.text = event.displayLabel;
         }
 
-        if(model) {
-            var collection = model.collection( event.collectionId );
-            calendarIndicator.color = collection.color
-        }
+       if(model) {
+           var collection = model.collection( event.collectionId );
+           calendarIndicator.color = collection.color
+       }
 
         layoutBubbleDetails();
     }
 
     function layoutBubbleDetails() {
-        if(!flickable || flickable === undefined ) {
+        if( !flickable || flickable === undefined ) {
             return;
         }
 
@@ -124,8 +124,6 @@ Item{
     Item {
         id: detailsItems
 
-        visible: flickable
-
         width: parent.width
         height: detailsColumn.height
 
@@ -141,6 +139,7 @@ Item{
 
                 Label{
                     id: timeLabel
+                    objectName: "timeLabel"
                     fontSize:"small";
                     color:"gray"
                     width: parent.width - calendarIndicator.width
@@ -155,15 +154,16 @@ Item{
             }
             Label{
                 id: titleLabel
-                fontSize:"small";
-                color:"black"
+                objectName: "titleLabel"
+                fontSize: "small"
+                color: "black"
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width
             }
 
             Label{
                 id: descriptionLabel
-                fontSize:"small";
+                fontSize: "small"
                 color:"gray"
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width
