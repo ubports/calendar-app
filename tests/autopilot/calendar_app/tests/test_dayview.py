@@ -37,12 +37,8 @@ class TestDayView(CalendarTestCase):
     def setUp(self):
         super(TestDayView, self).setUp()
         self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-        self.main_view.switch_to_tab("dayTab")
 
-        self.assertThat(
-            self.main_view.get_day_view, Eventually(NotEquals(None)))
-
-        self.day_view = self.main_view.get_day_view()
+        self.day_view = self.main_view.go_to_day_view()
 
     def test_current_month_and_year_is_selected(self):
         """By default, the day view shows the current month and year."""
@@ -65,7 +61,7 @@ class TestDayView(CalendarTestCase):
 
         """
 
-        days = self.day_view.select_many(objectName="dateLabel")
+        days = self.day_view.select_many(objectName='dateLabel')
         days = [int(day.text) for day in days]
 
         now = datetime.datetime.now()
@@ -77,6 +73,28 @@ class TestDayView(CalendarTestCase):
         self.assertIn(today, days)
         self.assertIn(tomorrow, days)
         self.assertIn(yesterday, days)
+
+    def test_switch_day_by_tapping(self):
+        """Selecting a day by touching the screen should also switch the day"""
+        today = self.day_view.get_day_header().startDay.datetime
+
+        # click yesterday
+        yesterday = (today - datetime.timedelta(days=1))
+        yesterday_header = self.day_view.get_day_header(yesterday)
+
+        self.assertThat(yesterday_header.isCurrentItem, Equals(False))
+        self.pointing_device.click_object(yesterday_header)
+        self.assertThat(yesterday_header.isCurrentItem,
+                        Eventually(Equals(True)))
+
+        # click tomorrow
+        tomorrow = (yesterday + datetime.timedelta(days=1))
+        tomorrow_header = self.day_view.get_day_header(tomorrow)
+
+        self.assertThat(tomorrow_header.isCurrentItem, Equals(False))
+        self.pointing_device.click_object(tomorrow_header)
+        self.assertThat(tomorrow_header.isCurrentItem,
+                        Eventually(Equals(True)))
 
     def test_show_next_days(self):
         """It must be possible to show next days by swiping the view."""

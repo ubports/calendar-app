@@ -1,6 +1,6 @@
 {
     "description": "A calendar for Ubuntu which syncs with online accounts",
-    "framework": "ubuntu-sdk-14.04-qml-dev1",
+    "framework": "ubuntu-sdk-14.10-qml-dev2",
     "hooks": {
         "@APP_NAME@": {
             "apparmor": "apparmor.json",
@@ -14,10 +14,13 @@
     "title": "Calendar",
     "version": "0.4.@BZR_REVNO@",
     "x-source": {
-        "vcs-bzr": "@BZR_SOURCE@", 
+        "vcs-bzr": "@BZR_SOURCE@",
         "vcs-bzr-revno": "@BZR_REVNO@"
     },
-	"x-test": {
-		"autopilot": "@AUTOPILOT_DIR@"
-	}
+    "x-test": {
+        "autopilot": {
+            "autopilot_module": "@AUTOPILOT_DIR@",
+            "depends": ["python3-dateutil"]
+        }
+    }
 }

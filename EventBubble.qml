@@ -5,6 +5,7 @@ Item{
     id: infoBubble
 
     property var event;
+    property var model;
 
     property int type: narrowType
     property int wideType: 1;
@@ -91,6 +92,11 @@ Item{
                 timeLabel.text = event.displayLabel;
         }
 
+       if(model) {
+           var collection = model.collection( event.collectionId );
+           calendarIndicator.color = collection.color
+       }
+
         layoutBubbleDetails();
     }
 
@@ -134,12 +140,12 @@ Item{
                 Label{
                     id: timeLabel
                     objectName: "timeLabel"
-                    fontSize: "small"
-                    color: "gray"
-                    width: parent.width - rect.width
+                    fontSize:"small";
+                    color:"gray"
+                    width: parent.width - calendarIndicator.width
                 }
                 Rectangle{
-                    id:rect
+                    id: calendarIndicator
                     width: units.gu(1)
                     radius: width/2
                     height: width

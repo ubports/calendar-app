@@ -123,9 +123,11 @@ Item {
         var height = (durationMin * hourHeight )/ 60;
         eventBubble.height = (height > eventBubble.minimumHeight) ? height:eventBubble.minimumHeight ;
 
+        eventBubble.model = bubbleOverLay.model
         eventBubble.x = x;
         eventBubble.width = width;
         eventBubble.event = event
+
         eventBubble.visible = true;
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
     }
