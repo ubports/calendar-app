@@ -81,4 +81,4 @@ class NewEventTestCase(CalendarTestCase):
         day_view = day_view.delete_event(event.name)
 
         self.assertThat(day_view.get_events,
-                         Eventually(HasLength(len(original_events))))
+                        Eventually(HasLength(len(original_events))))
