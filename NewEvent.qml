@@ -88,6 +88,10 @@ Page {
         if( e.description ) {
             messageEdit.text = e.description;
         }
+
+        allDayEventCheckbox.checked = e.allDay;
+        var index = 0;
+
         if( e.itemType === Type.Event ) {
             if(e.attendees){
                 for( var j = 0 ; j < e.attendees.length ; ++j ) {
@@ -97,7 +101,7 @@ Page {
                 }
             }
 
-            var index = 0;
+            index = 0;
             if(e.recurrence ) {
                 var recurrenceRule = e.recurrence.recurrenceRules;
                 index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
@@ -141,6 +145,15 @@ Page {
             index = foundIndex != -1 ? foundIndex : 0;
         }
         reminderOption.selectedIndex = index;
+
+        index = 0;
+        for(var i=0; i < calendarsOption.model.length; ++i){
+            if(calendarsOption.model[i].collectionId === e.collectionId){
+                index = i;
+                break;
+            }
+        }
+        calendarsOption.selectedIndex = index
     }
     function getWeekDaysIndex(daysOfWeek){
         var index = 0;
@@ -229,10 +242,15 @@ Page {
                 audibleReminder.secondsBeforeStart = reminderTime;
                 event.setDetail(audibleReminder);
             }
+
+            event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
+
             model.saveItem(event);
+
             pageStack.pop();
         }
     }
+
     function getDaysOfWeek(){
         var daysOfWeek = [];
         switch(recurrenceOption.selectedIndex){
@@ -429,6 +447,37 @@ Page {
                                 onClicked: openDatePicker(endTimeInput, root, "endDate", "Hours|Minutes")
 
                             }
+                        }
+                    }
+                }
+            }
+
+            Item{
+                width: parent.width
+                height: calendarsOption.height
+                Label{
+                    id: calendarLabel
+                    text: i18n.tr("Calendar ");
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                OptionSelector{
+                    id: calendarsOption
+                    anchors.right: parent.right
+                    width: parent.width - calendarLabel.width - units.gu(1)
+                    containerHeight: itemHeight * 4
+                    model: root.model.getCollections();
+                    delegate: OptionSelectorDelegate{
+                        text: modelData.name
+
+                        UbuntuShape{
+                            id: calColor
+                            width: height
+                            height: parent.height - units.gu(2)
+                            color: modelData.color
+                            anchors.right: parent.right
+                            anchors.rightMargin: units.gu(1)
+                            anchors.verticalCenter: parent.verticalCenter
                         }
                     }
                 }
