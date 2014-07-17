@@ -17,8 +17,17 @@ var reminderValue = [ 0,
 
 var recurrenceLabel = getRecurrenceLabels();
 var limitLabel = getLimitLabels();
+var weekLabel = getWeekLabels();
+// It contains multiple weekly entries to handle following occurence
+//1.Every Weekday (Monday to Friday
+//2.Every Monday, Wednesday and Friday
+//3.Every Tuesday and Thursday
+//4.Weekly
 var recurrenceValue = [ QtPim.RecurrenceRule.Invalid,
     QtPim.RecurrenceRule.Daily,
+    QtPim.RecurrenceRule.Weekly,
+    QtPim.RecurrenceRule.Weekly,
+    QtPim.RecurrenceRule.Weekly,
     QtPim.RecurrenceRule.Weekly,
     QtPim.RecurrenceRule.Monthly,
     QtPim.RecurrenceRule.Yearly];
@@ -48,6 +57,9 @@ function getRecurrenceLabels() {
         QtObject {\
             property var recurrenceLabel:[i18n.tr("Once"),\
                 i18n.tr("Daily"),\
+                i18n.tr("Every Weekday (Monday to Friday)"),\
+                i18n.tr("Every Monday, Wednesday and Friday"),\
+                i18n.tr("Every Tuesday and Thursday"),\
                 i18n.tr("Weekly"),\
                 i18n.tr("Monthly"),\
                 i18n.tr("Yearly")];}', Qt.application, 'RecurrenceLabelObj');
@@ -61,4 +73,18 @@ function getLimitLabels(){
             property var limitLabel:[i18n.tr("Never"),i18n.tr("After X Occurrence"),\
                 i18n.tr("After Date")];}', Qt.application, 'LimitLabelObj');
     return object.limitLabel;
+}
+function getWeekLabels(){
+    var object = Qt.createQmlObject('\
+        import QtQuick 2.0;\
+        import Ubuntu.Components 0.1;\
+        QtObject {\
+            property var weekLabel:[Qt.locale().dayName(7,Locale.NarrowFormat),\
+                                    Qt.locale().dayName(1,Locale.NarrowFormat),\
+                                    Qt.locale().dayName(2,Locale.NarrowFormat),\
+                                    Qt.locale().dayName(3,Locale.NarrowFormat),\
+                                    Qt.locale().dayName(4,Locale.NarrowFormat),\
+                                    Qt.locale().dayName(5,Locale.NarrowFormat),\
+                                    Qt.locale().dayName(6,Locale.NarrowFormat)];}', Qt.application, 'weekLabelObj');
+    return object.weekLabel;
 }

@@ -105,7 +105,8 @@ Page {
             if(e.recurrence ) {
                 var recurrenceRule = e.recurrence.recurrenceRules;
                 index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
-                if(index > 0 ){
+                if(index > 0 )
+                {
                     limit.visible = true;
                     if(recurrenceRule[0].limit !== undefined){
                         var temp = recurrenceRule[0].limit;
@@ -121,6 +122,15 @@ Page {
                     else{
                         // If limit is infinite
                         limitOptions.selectedIndex = 0;
+                    }
+                    if(index === RecurrenceRule.Weekly){
+                            index = getWeekDaysIndex(recurrenceRule[0].daysOfWeek.sort());
+                    }
+                    if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
+                        for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
+                            //Start childern after first element.
+                            weeksRow.children[recurrenceRule[0].daysOfWeek[j]+1].checked = true;
+                        }
                     }
                 }
             }
@@ -145,7 +155,26 @@ Page {
         }
         calendarsOption.selectedIndex = index
     }
+    function getWeekDaysIndex(daysOfWeek){
+        var index = 0;
+        if(compareArrays(daysOfWeek,[Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday]))
+            index = 2
+        else if(compareArrays(daysOfWeek,[Qt.Monday,Qt.Wednesday,Qt.Friday]))
+            index = 3
+        else if(compareArrays(daysOfWeek,[Qt.Tuesday,Qt.Thursday]))
+            index = 4
+        else
+            index = 5
+        return index;
+    }
 
+    function compareArrays(daysOfWeek, actualArray){
+        if (daysOfWeek.length !== actualArray.length) return false;
+        for (var i = 0; i < actualArray.length; i++) {
+            if (daysOfWeek[i] !== actualArray[i]) return false;
+        }
+        return true;
+    }
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
@@ -172,8 +201,8 @@ Page {
                 var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
                 if( recurrenceRule !== RecurrenceRule.Invalid ) {
-
                     rule.frequency = recurrenceRule;
+                    rule.daysOfWeek = getDaysOfWeek();
                     if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
                         rule.limit =  parseInt(limitCount.text);
                     }
@@ -184,8 +213,9 @@ Page {
                         rule.limit = undefined;
                     }
                 }
+                event.recurrence.recurrenceRules = [rule];
             }
-            event.recurrence.recurrenceRules = [rule];
+
             //remove old reminder value
             var oldVisualReminder = event.detail(Detail.VisualReminder);
             if(oldVisualReminder) {
@@ -214,10 +244,30 @@ Page {
             }
 
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
+
             model.saveItem(event);
 
             pageStack.pop();
         }
+    }
+
+    function getDaysOfWeek(){
+        var daysOfWeek = [];
+        switch(recurrenceOption.selectedIndex){
+        case 2:
+            daysOfWeek = [Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday];
+            break;
+        case 3:
+            daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday];
+            break;
+        case 4:
+            daysOfWeek = [Qt.Tuesday,Qt.Thursday];
+            break;
+        case 5:
+            daysOfWeek = internal.weekDays.length === 0 ? [date.getDay()] : internal.weekDays;
+            break;
+        }
+        return daysOfWeek;
     }
 
     function openDatePicker (element, caller, callerProperty, mode) {
@@ -513,6 +563,42 @@ Page {
                     containerHeight: itemHeight * 4
                 }
             }
+
+            Row {
+                id:weeksRow
+                width: parent.width
+                spacing: units.gu(4)
+                anchors.margins: units.gu(1)
+                visible: recurrenceOption.selectedIndex == 5
+                Label {
+                    text: i18n.tr("Repeats On:")
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                Repeater{
+                    model: Defines.weekLabel
+                    width: parent.width
+                    CheckBox {
+                        id: weekCheck
+                        anchors.verticalCenter: parent.verticalCenter
+                        onCheckedChanged: {
+                            //EDS consider 7 as Sunday index so if the index is 0 then we have to explicitly push Sunday.
+                            if(index === 0)
+                                (checked) ? internal.weekDays.push(Qt.Sunday) : internal.weekDays.splice(internal.weekDays.indexOf(Qt.Sunday),1);
+                            else
+                                (checked) ? internal.weekDays.push(index) : internal.weekDays.splice(internal.weekDays.indexOf(index),1);
+                        }
+                        checked: {
+                            (internal.weekDays.length === 0 && index === date.getDay() && isEdit== false) ? true : false;
+                        }
+                        Label{
+                            id:lbl
+                            text:modelData
+                            anchors.centerIn: parent
+                            width: parent.width + units.gu(7)
+                        }
+                    }
+                }
+            }
             Item {
                 id: limit
                 visible: recurrenceOption.selectedIndex != 0
@@ -609,7 +695,7 @@ Page {
 
     QtObject {
         id: internal
-
+        property var weekDays : [];
         function clearFocus() {
             Qt.inputMethod.hide()
             titleEdit.focus = false
