@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2013-09-28 10:24+0000\n"
+"PO-Revision-Date: 2014-07-17 19:56+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-11 06:34+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:24+0000\n"
+"X-Generator: Launchpad (build 17114)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
-msgstr ""
+msgstr "接下來沒有事件"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -29,7 +29,7 @@ msgstr "hh:mm"
 
 #: ../AgendaView.qml:101
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "M月d日dddd"
 
 #. TRANSLATORS: the first argument (%1) refer to a start time for an event,
 #. while the third one (%2) refers to the end time
@@ -47,32 +47,32 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 件"
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "%1 件全天事件"
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "刪除循環事件"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
-msgstr ""
+msgstr "刪除事件"
 
 #: ../DeleteConfirmationDialog.qml:21
 msgid "Delete series"
-msgstr ""
+msgstr "刪除系列"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete this"
-msgstr ""
+msgstr "刪除這項"
 
 #: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:167
 msgid "Delete"
-msgstr ""
+msgstr "刪除"
 
 #: ../DeleteConfirmationDialog.qml:40 ../EditEventConfirmationDialog.qml:35
 #: ../EditToolbar.qml:37 ../NewEvent.qml:543
@@ -81,43 +81,43 @@ msgstr "取消"
 
 #: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:224
 msgid "Edit Event"
-msgstr ""
+msgstr "編輯事件"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "編輯系列"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr ""
+msgstr "編輯這項"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "完成"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr ""
+msgstr "永不"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:51 ../EventDetails.qml:111
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "yyyy-MM-dd"
 
 #: ../EventDetails.qml:53
 #, qt-format
 msgid "After %1 Occurrences"
-msgstr ""
+msgstr "在 %1 次之後"
 
 #: ../EventDetails.qml:54
 #, qt-format
 msgid "After Date %1"
-msgstr ""
+msgstr "在日期 %1 之後"
 
 #: ../EventDetails.qml:100
 msgid "Not specified"
-msgstr ""
+msgstr "未指定"
 
 #: ../EventDetails.qml:181
 msgid "Edit"
@@ -125,39 +125,39 @@ msgstr "編輯"
 
 #: ../EventDetails.qml:243
 msgid "Date"
-msgstr ""
+msgstr "日期"
 
 #: ../EventDetails.qml:248 ../NewEvent.qml:314
 msgid "Start"
-msgstr ""
+msgstr "開始"
 
 #: ../EventDetails.qml:253 ../NewEvent.qml:352
 msgid "End"
-msgstr ""
+msgstr "結束"
 
 #: ../EventDetails.qml:262 ../NewEvent.qml:391
 msgid "All Day event:"
-msgstr ""
+msgstr "全天事件："
 
 #: ../EventDetails.qml:292 ../NewEvent.qml:436
 msgid "Location"
-msgstr ""
+msgstr "位置"
 
 #: ../EventDetails.qml:317 ../NewEvent.qml:443
 msgid "Guests"
-msgstr ""
+msgstr "賓客"
 
 #: ../EventDetails.qml:354 ../NewEvent.qml:454
 msgid "This happens"
-msgstr ""
+msgstr "這發生"
 
 #: ../EventDetails.qml:359 ../NewEvent.qml:515
 msgid "Remind me"
-msgstr ""
+msgstr "提醒我"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr ""
+msgstr "重複結束"
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
@@ -173,27 +173,27 @@ msgstr "錯誤"
 
 #: ../NewEvent.qml:242
 msgid "Ok"
-msgstr ""
+msgstr "確定"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
-msgstr ""
+msgstr "在"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
-msgstr ""
+msgstr "世劍名稱"
 
 #: ../NewEvent.qml:416
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
-msgstr ""
+msgstr "循環事件結束"
 
 #: ../NewEvent.qml:493
 msgid "Count"
-msgstr ""
+msgstr "計數"
 
 #: ../NewEvent.qml:539
 msgid "Save"
@@ -211,6 +211,8 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"行事曆程式接受四種引數：--starttime、--endtime、--newevent 與 --"
+"eventid。它們是由系統管裡。請見源碼以瞭解各項引數的完整註解。"
 
 #: ../calendar.qml:225
 msgid "Today"
@@ -218,11 +220,11 @@ msgstr "今日"
 
 #: ../calendar.qml:254
 msgid "Sync"
-msgstr ""
+msgstr "同步"
 
 #: ../calendar.qml:254
 msgid "Syncing"
-msgstr ""
+msgstr "同步中"
 
 #: ../calendar.qml:287
 msgid "Year"
@@ -242,7 +244,7 @@ msgstr "日"
 
 #: ../calendar.qml:414
 msgid "Agenda"
-msgstr ""
+msgstr "議程"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
@@ -250,8 +252,10 @@ msgstr "行事曆"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "Ubuntu 行事曆，可與線上帳號同步。"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
+"calendar;event;day;week;year;appointment;meeting;行事曆;事件;活動;日期;天;日;週;周;年;約會;會面"
+";會議;"

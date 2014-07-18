@@ -27,6 +27,7 @@ Page {
     title: "Event Details"
 
     Component.onCompleted: {
+
         showEvent(event);
     }
 
@@ -62,13 +63,27 @@ Page {
                 }
 
                 index =  recurrenceRule[0].frequency ;
+                if(index === RecurrenceRule.Weekly ){
+                    var sorted = recurrenceRule[0].daysOfWeek.sort();
+                    var val = i18n.tr("Every ")
+                    for(var j=0;j<sorted.length;++j){
+                        val += Qt.locale().dayName(sorted[j],Locale.LongFormat) + " ,"
+                    }
+                    weekDaysHeader.value = val.slice(0,-1) // Trim last comma from the string
+                    weekDaysHeader.visible = true;
+                }
             }
             else{
                 limitHeader.visible = false
                 index = 0
             }
         }
-        recurrentHeader.value = Defines.recurrenceLabel[index];
+        // This happens will be weekly in following cases:
+        // 1. Weekdays Monday to Friday
+        // 2. Monday,Wednesday,Friday
+        // 3. Tuesday & Thursday
+        // 4. Manual weekdays
+        recurrentHeader.value = Defines.recurrenceLabel[index === RecurrenceRule.Weekly ? 5 : index];
     }
 
     function updateContacts(event) {
@@ -377,7 +392,7 @@ Page {
 
             //Guest Entries ends
             ThinDivider{}
-            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth,limitHeader.headerWidth) //Dynamic Height
+            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth,weekDaysHeader.headerWidth,limitHeader.headerWidth) //Dynamic Height
             EventDetailsInfo{
                 id: recurrentHeader
                 xMargin: column.recurranceAreaMaxWidth
@@ -389,10 +404,17 @@ Page {
                 header: i18n.tr("Remind me")
             }
             EventDetailsInfo{
+                id: weekDaysHeader
+                xMargin: column.recurranceAreaMaxWidth
+                header: i18n.tr("Repeats On");
+                visible: false
+            }
+            EventDetailsInfo{
                 id: limitHeader
                 xMargin: column.recurranceAreaMaxWidth
                 header: i18n.tr("Repetition Ends")
             }
+
         }
     }
 }

@@ -1,35 +1,35 @@
-# English (United Kingdom) translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Amharic translation for ubuntu-calendar-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-07-11 14:35+0000\n"
-"Last-Translator: Alan Pope ㋛ <alan@ubuntu.com>\n"
-"Language-Team: English (United Kingdom) <en_GB@li.org>\n"
+"PO-Revision-Date: 2014-07-18 02:35+0000\n"
+"Last-Translator: samson <Unknown>\n"
+"Language-Team: Amharic <am@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-12 06:56+0000\n"
-"X-Generator: Launchpad (build 17111)\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:24+0000\n"
+"X-Generator: Launchpad (build 17114)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
-msgstr "No upcoming events"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
 #: ../AgendaView.qml:100 ../EventBubble.qml:40 ../EventDetails.qml:108
 msgid "hh:mm"
-msgstr "hh:mm"
+msgstr "ሰሰ:ደደ"
 
 #: ../AgendaView.qml:101
 msgid "dddd , d MMMM"
-msgstr "dddd , d MMMM"
+msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refer to a start time for an event,
 #. while the third one (%2) refers to the end time
@@ -47,163 +47,163 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr "%1 Ev."
+msgstr "%1 ሁኔታዎች."
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr "%1 All day events"
+msgstr "%1 የ ሙሉ ቀን ሁኔታዎች"
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
-msgstr "Delete Recurring Event"
+msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
-msgstr "Delete Event"
+msgstr "ሁኔታውን ማጥፊያ"
 
 #: ../DeleteConfirmationDialog.qml:21
 msgid "Delete series"
-msgstr "Delete series"
+msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete this"
-msgstr "Delete this"
+msgstr "ይህን ማጥፊያ"
 
 #: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:167
 msgid "Delete"
-msgstr "Delete"
+msgstr "ማጥፊያ"
 
 #: ../DeleteConfirmationDialog.qml:40 ../EditEventConfirmationDialog.qml:35
 #: ../EditToolbar.qml:37 ../NewEvent.qml:543
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "መሰረዣ"
 
 #: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:224
 msgid "Edit Event"
-msgstr "Edit Event"
+msgstr "ሁኔታዎችን ማረሚያ"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr "Edit series"
+msgstr ""
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr "Edit this"
+msgstr "ይህን ማረሚያ"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr "Done"
+msgstr "ጨርሷል"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr "Never"
+msgstr "በፍጹም"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:51 ../EventDetails.qml:111
 msgid "dd-MMM-yyyy"
-msgstr "DD-MM-YYYY"
+msgstr ""
 
 #: ../EventDetails.qml:53
 #, qt-format
 msgid "After %1 Occurrences"
-msgstr "After %1 Occurrences"
+msgstr ""
 
 #: ../EventDetails.qml:54
 #, qt-format
 msgid "After Date %1"
-msgstr "After Date %1"
+msgstr ""
 
 #: ../EventDetails.qml:100
 msgid "Not specified"
-msgstr "Not Specified"
+msgstr "ያልተወሰነ"
 
 #: ../EventDetails.qml:181
 msgid "Edit"
-msgstr "Edit"
+msgstr "ማረሚያ"
 
 #: ../EventDetails.qml:243
 msgid "Date"
-msgstr "Date"
+msgstr "ቀን"
 
 #: ../EventDetails.qml:248 ../NewEvent.qml:314
 msgid "Start"
-msgstr "Start"
+msgstr "መጀመሪያ"
 
 #: ../EventDetails.qml:253 ../NewEvent.qml:352
 msgid "End"
-msgstr "End"
+msgstr "መጨረሻ"
 
 #: ../EventDetails.qml:262 ../NewEvent.qml:391
 msgid "All Day event:"
-msgstr "All Day Event:"
+msgstr "የ ሙሉ ቀን ሁኔታ:"
 
 #: ../EventDetails.qml:292 ../NewEvent.qml:436
 msgid "Location"
-msgstr "Location"
+msgstr "አካባቢ"
 
 #: ../EventDetails.qml:317 ../NewEvent.qml:443
 msgid "Guests"
-msgstr "Guests"
+msgstr "እንግዶች"
 
 #: ../EventDetails.qml:354 ../NewEvent.qml:454
 msgid "This happens"
-msgstr "This happens"
+msgstr ""
 
 #: ../EventDetails.qml:359 ../NewEvent.qml:515
 msgid "Remind me"
-msgstr "Remind me"
+msgstr "አስታውሰኝ"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr "Repetition Ends"
+msgstr ""
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
-msgstr "End time can't be before start time"
+msgstr ""
 
 #: ../NewEvent.qml:224 ../calendar.qml:244
 msgid "New Event"
-msgstr "New Event"
+msgstr "አዲስ ሁኔታ"
 
 #: ../NewEvent.qml:240
 msgid "Error"
-msgstr "Error"
+msgstr "ስህተት"
 
 #: ../NewEvent.qml:242
 msgid "Ok"
-msgstr "OK"
+msgstr "እሺ"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
-msgstr "at"
+msgstr "በ"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
-msgstr "Event Name"
+msgstr "የ ሁኔታው ስም"
 
 #: ../NewEvent.qml:416
 msgid "Description"
-msgstr "Description"
+msgstr "መግለጫ"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
-msgstr "Recurring event ends"
+msgstr ""
 
 #: ../NewEvent.qml:493
 msgid "Count"
-msgstr "Count"
+msgstr "መቁጠሪያ"
 
 #: ../NewEvent.qml:539
 msgid "Save"
-msgstr "Save"
+msgstr "ማስቀመጫ"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:19
 msgid "hh ap"
-msgstr "hh ap"
+msgstr ""
 
 #: ../calendar.qml:21
 msgid ""
@@ -211,50 +211,47 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
-"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
-"eventid. They will be managed by system. See the source for a full comment "
-"about them"
 
 #: ../calendar.qml:225
 msgid "Today"
-msgstr "Today"
+msgstr "ዛሬ"
 
 #: ../calendar.qml:254
 msgid "Sync"
-msgstr "Sync"
+msgstr "ማስማሚያ"
 
 #: ../calendar.qml:254
 msgid "Syncing"
-msgstr "Syncing"
+msgstr ""
 
 #: ../calendar.qml:287
 msgid "Year"
-msgstr "Year"
+msgstr "አመት"
 
 #: ../calendar.qml:322
 msgid "Month"
-msgstr "Month"
+msgstr "ወር"
 
 #: ../calendar.qml:351
 msgid "Week"
-msgstr "Week"
+msgstr "ሳምንት"
 
 #: ../calendar.qml:385
 msgid "Day"
-msgstr "Day"
+msgstr "ቀን"
 
 #: ../calendar.qml:414
 msgid "Agenda"
-msgstr "Agenda"
+msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr "Calendar"
+msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr "A calendar for Ubuntu which syncs with online accounts."
+msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr "calendar;event;day;week;year;appointment;meeting;"
+msgstr ""
