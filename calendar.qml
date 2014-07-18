@@ -105,20 +105,23 @@ MainView {
             }
         }
 
-        DetailFieldFilter{
-            id: eventFilter
-            detail: Detail.ItemType;
-            field: Type.FieldType
-            value: Type.Event
-            matchFlags: Filter.MatchExactly
-        }
+        UnionFilter {
+            id: itemTypeFilter
+            DetailFieldFilter{
+                id: eventFilter
+                detail: Detail.ItemType;
+                field: Type.FieldType
+                value: Type.Event
+                matchFlags: Filter.MatchExactly
+            }
 
-        DetailFieldFilter{
-            id: eventOccurenceFilter
-            detail: Detail.ItemType;
-            field: Type.FieldType
-            value: Type.EventOccurrence
-            matchFlags: Filter.MatchExactly
+            DetailFieldFilter{
+                id: eventOccurenceFilter
+                detail: Detail.ItemType;
+                field: Type.FieldType
+                value: Type.EventOccurrence
+                matchFlags: Filter.MatchExactly
+            }
         }
 
         CollectionFilter{
@@ -132,10 +135,8 @@ MainView {
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
 
-            //FIXME: seems like union filter is not working when we use DetailFieldFilter and CollectionFilter
-            //Currently only using collectionFilter
-            filter: UnionFilter {
-                filters: [ collectionFilter /*,eventFilter ,eventOccurenceFilter*/ ]
+            filter: IntersectionFilter {
+                filters: [ collectionFilter, itemTypeFilter]
             }
 
             function delayedApplyFilter() {
