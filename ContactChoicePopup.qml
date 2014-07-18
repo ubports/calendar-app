@@ -10,6 +10,7 @@ import "Defines.js" as Defines
 
 Popover {
     id: root
+    objectName: "contactPopover"
 
     signal contactSelected(var contact);
 
@@ -52,6 +53,7 @@ Popover {
 
         NewEventEntryField{
             id: searchBox
+            objectName: "contactPopoverInput"
             focus: true
             width: parent.width
             placeholderText: "Search contact"
