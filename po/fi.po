@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-07-16 06:44+0000\n"
+"PO-Revision-Date: 2014-07-18 18:36+0000\n"
 "Last-Translator: Timo Jyrinki <timo.jyrinki@canonical.com>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:31+0000\n"
+"X-Launchpad-Export-Date: 2014-07-19 06:11+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: ../AgendaView.qml:49
@@ -29,7 +29,7 @@ msgstr "hh:mm"
 
 #: ../AgendaView.qml:101
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "dddd, d. MMMMta"
 
 #. TRANSLATORS: the first argument (%1) refer to a start time for an event,
 #. while the third one (%2) refers to the end time
@@ -103,7 +103,7 @@ msgstr "Ei koskaan"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:51 ../EventDetails.qml:111
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "dd-MMM-yyyy"
 
 #: ../EventDetails.qml:53
 #, qt-format
@@ -211,6 +211,10 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"Kalenteri-sovellus hyväksyy neljä valitsinta: --starttime, --endtime, --"
+"newevent ja --eventid. Järjestelmä hallitsee niiden käyttöä. Lue "
+"lähdekoodia, mikäli olet kiinnostunut pidemmästä selityksestä asian "
+"tiimoilta."
 
 #: ../calendar.qml:225
 msgid "Today"
