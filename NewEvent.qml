@@ -190,7 +190,7 @@ Page {
             if( event.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
                 for(var i=0; i < contactModel.count() ; ++i) {
-                    event.attendees(contactModel.get(j));
+                    event.attendees.push(contactModel.get(j));
                 }
 
                 var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
