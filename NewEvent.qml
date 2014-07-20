@@ -95,9 +95,7 @@ Page {
         if( e.itemType === Type.Event ) {
             if(e.attendees){
                 for( var j = 0 ; j < e.attendees.length ; ++j ) {
-                    personEdit.text += e.attendees[j].name;
-                    if(j!== e.attendees.length-1)
-                        personEdit.text += ",";
+                    contactModel.append(e.attendees[j]);
                 }
             }
 
@@ -189,13 +187,10 @@ Page {
 
             event.allDay = allDayEventCheckbox.checked;
 
-
             if( event.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
-                if( personEdit.text != "") {
-                    var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
-                    attendee.name = personEdit.text;
-                    event.setDetail(attendee);
+                for(var i=0; i < contactModel.count() ; ++i) {
+                    event.attendees(contactModel.get(j));
                 }
 
                 var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
@@ -724,7 +719,6 @@ Page {
             Qt.inputMethod.hide()
             titleEdit.focus = false
             locationEdit.focus = false
-            personEdit.focus = false
             startDateInput.focus = false
             startTimeInput.focus = false
             endDateInput.focus = false
