@@ -1,12 +1,19 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
+import QtOrganizer 5.0
 import Ubuntu.SyncMonitor 0.1
+
 import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
     useDeprecatedToolbar: false
+
+    // Work-around until this branch lands:
+    // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496 
+    //property bool windowActive: typeof window != 'undefined'
+    //onWindowActiveChanged: window.title = i18n.tr("Calendar")
 
     // Argument during startup
     Arguments {
@@ -90,13 +97,67 @@ MainView {
             }
         }
 
+        Timer {
+            id: applyFilterTimer
+            interval: 200; running: false; repeat: false
+            onTriggered: {
+                eventModel.applyFilterFinal();
+            }
+        }
+
+        UnionFilter {
+            id: itemTypeFilter
+            DetailFieldFilter{
+                id: eventFilter
+                detail: Detail.ItemType;
+                field: Type.FieldType
+                value: Type.Event
+                matchFlags: Filter.MatchExactly
+            }
+
+            DetailFieldFilter{
+                id: eventOccurenceFilter
+                detail: Detail.ItemType;
+                field: Type.FieldType
+                value: Type.EventOccurrence
+                matchFlags: Filter.MatchExactly
+            }
+        }
+
+        CollectionFilter{
+            id: collectionFilter
+        }
+
         EventListModel{
             id: eventModel
-            //This model is just for newevent
-            //so we dont need any update
-            autoUpdate: false
+
+            autoUpdate: true
+            startPeriod: tabs.currentDay
+            endPeriod: tabs.currentDay
+
+            filter: IntersectionFilter {
+                filters: [ collectionFilter, itemTypeFilter]
+            }
+
+            function delayedApplyFilter() {
+                applyFilterTimer.restart();
+            }
+
+            function applyFilterFinal() {
+                var collectionIds = [];
+                var collections = eventModel.getCollections();
+                for(var i=0; i < collections.length ; ++i) {
+                    var collection = collections[i]
+                    if(collection.extendedMetaData("collection-selected") === true) {
+                        collectionIds.push(collection.collectionId);
+                    }
+                }
+                collectionFilter.ids = collectionIds;
+            }
 
             Component.onCompleted: {
+                delayedApplyFilter();
+
                 if (args.values.eventid) {
                     var requestId = "";
                     eventModel.onItemsFetched.connect( function(id,fetchedItems) {
@@ -244,6 +305,16 @@ MainView {
                         text: i18n.tr("New Event");
                         onTriggered: {
                             pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabs.currentDay,"model":eventModel});
+                        }
+                    }
+                }
+                ToolbarButton{
+                    action:Action{
+                        iconName: "new-event"
+                        text: i18n.tr("Calendars");
+                        onTriggered: {
+                            pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
+                            pageStack.currentPage.collectionUpdated.connect(eventModel.delayedApplyFilter);
                         }
                     }
                 }

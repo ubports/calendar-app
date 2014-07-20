@@ -8,28 +8,28 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-01-14 20:49+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-07-19 13:42+0000\n"
+"Last-Translator: Filipe André Pinho <Unknown>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-11 06:34+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-07-20 06:14+0000\n"
+"X-Generator: Launchpad (build 17114)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
-msgstr ""
+msgstr "Nenhum evento próximo"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
 #: ../AgendaView.qml:100 ../EventBubble.qml:40 ../EventDetails.qml:108
 msgid "hh:mm"
-msgstr ""
+msgstr "hh:mm"
 
 #: ../AgendaView.qml:101
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "dddd , d MMMM"
 
 #. TRANSLATORS: the first argument (%1) refer to a start time for an event,
 #. while the third one (%2) refers to the end time
@@ -38,7 +38,7 @@ msgstr ""
 #: ../AgendaView.qml:108 ../EventBubble.qml:45
 #, qt-format
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -47,41 +47,41 @@ msgstr ""
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 Ev."
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "Todos os %1 eventos diários"
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "Eliminar evento repetido"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
-msgstr ""
+msgstr "Eliminar evento"
 
 #: ../DeleteConfirmationDialog.qml:21
 msgid "Delete series"
-msgstr ""
+msgstr "Eliminar séries"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete this"
-msgstr ""
+msgstr "Eliminar isto"
 
 #: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:167
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
 #: ../DeleteConfirmationDialog.qml:40 ../EditEventConfirmationDialog.qml:35
 #: ../EditToolbar.qml:37 ../NewEvent.qml:543
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:224
 msgid "Edit Event"
-msgstr ""
+msgstr "Editar evento"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
@@ -93,22 +93,22 @@ msgstr ""
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "Concluído"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:51 ../EventDetails.qml:111
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "dd-MMM-yyyy"
 
 #: ../EventDetails.qml:53
 #, qt-format
 msgid "After %1 Occurrences"
-msgstr ""
+msgstr "Após %1 ocorrências"
 
 #: ../EventDetails.qml:54
 #, qt-format
@@ -117,35 +117,35 @@ msgstr ""
 
 #: ../EventDetails.qml:100
 msgid "Not specified"
-msgstr ""
+msgstr "Não especificado"
 
 #: ../EventDetails.qml:181
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: ../EventDetails.qml:243
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: ../EventDetails.qml:248 ../NewEvent.qml:314
 msgid "Start"
-msgstr ""
+msgstr "Começa"
 
 #: ../EventDetails.qml:253 ../NewEvent.qml:352
 msgid "End"
-msgstr ""
+msgstr "Termina"
 
 #: ../EventDetails.qml:262 ../NewEvent.qml:391
 msgid "All Day event:"
-msgstr ""
+msgstr "Dia inteiro:"
 
 #: ../EventDetails.qml:292 ../NewEvent.qml:436
 msgid "Location"
-msgstr ""
+msgstr "Local"
 
 #: ../EventDetails.qml:317 ../NewEvent.qml:443
 msgid "Guests"
-msgstr ""
+msgstr "Convidados"
 
 #: ../EventDetails.qml:354 ../NewEvent.qml:454
 msgid "This happens"
@@ -153,7 +153,7 @@ msgstr ""
 
 #: ../EventDetails.qml:359 ../NewEvent.qml:515
 msgid "Remind me"
-msgstr ""
+msgstr "Lembrar-me"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
@@ -165,11 +165,11 @@ msgstr ""
 
 #: ../NewEvent.qml:224 ../calendar.qml:244
 msgid "New Event"
-msgstr ""
+msgstr "Novo evento"
 
 #: ../NewEvent.qml:240
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 #: ../NewEvent.qml:242
 msgid "Ok"
@@ -181,7 +181,7 @@ msgstr ""
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
-msgstr ""
+msgstr "Nome do evento"
 
 #: ../NewEvent.qml:416
 msgid "Description"
@@ -197,13 +197,13 @@ msgstr ""
 
 #: ../NewEvent.qml:539
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:19
 msgid "hh ap"
-msgstr ""
+msgstr "hh ap"
 
 #: ../calendar.qml:21
 msgid ""
@@ -214,7 +214,7 @@ msgstr ""
 
 #: ../calendar.qml:225
 msgid "Today"
-msgstr ""
+msgstr "Hoje"
 
 #: ../calendar.qml:254
 msgid "Sync"
@@ -222,23 +222,23 @@ msgstr ""
 
 #: ../calendar.qml:254
 msgid "Syncing"
-msgstr ""
+msgstr "A sincronizar"
 
 #: ../calendar.qml:287
 msgid "Year"
-msgstr ""
+msgstr "Ano"
 
 #: ../calendar.qml:322
 msgid "Month"
-msgstr ""
+msgstr "Mês"
 
 #: ../calendar.qml:351
 msgid "Week"
-msgstr ""
+msgstr "Semana"
 
 #: ../calendar.qml:385
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #: ../calendar.qml:414
 msgid "Agenda"
@@ -246,11 +246,11 @@ msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr ""
+msgstr "Calendário"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "Um calendário para o Ubuntu que se sincroniza com contas online."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"

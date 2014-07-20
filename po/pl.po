@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-06-09 13:11+0000\n"
+"PO-Revision-Date: 2014-07-19 14:07+0000\n"
 "Last-Translator: GTriderXC <gtriderxc@yahoo.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-11 06:34+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-07-20 06:14+0000\n"
+"X-Generator: Launchpad (build 17114)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
@@ -29,7 +29,7 @@ msgstr "hh:mm"
 
 #: ../AgendaView.qml:101
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "dddd , d MMMM"
 
 #. TRANSLATORS: the first argument (%1) refer to a start time for an event,
 #. while the third one (%2) refers to the end time
@@ -47,12 +47,12 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 wyd"
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "Wydarzeń w dniu: %1"
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
@@ -103,17 +103,17 @@ msgstr "Nigdy"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:51 ../EventDetails.qml:111
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "d MMM yyyy"
 
 #: ../EventDetails.qml:53
 #, qt-format
 msgid "After %1 Occurrences"
-msgstr ""
+msgstr "Po %1 wydarzeniach"
 
 #: ../EventDetails.qml:54
 #, qt-format
 msgid "After Date %1"
-msgstr ""
+msgstr "Po dacie %1"
 
 #: ../EventDetails.qml:100
 msgid "Not specified"
@@ -157,7 +157,7 @@ msgstr "Przypomnij"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr ""
+msgstr "Powtarzanie kończy się"
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
@@ -189,7 +189,7 @@ msgstr "Opis"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Powtarzanie wydarzenia kończy się"
 
 #: ../NewEvent.qml:493
 msgid "Count"
@@ -254,4 +254,4 @@ msgstr "Kalendarz Ubuntu z synchronizacją kont online"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "kalendarz;wydarzenie;dzień;tydzień;rok;wizyta;spotkanie;"
