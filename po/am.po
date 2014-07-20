@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-07-18 02:35+0000\n"
+"PO-Revision-Date: 2014-07-20 03:16+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-19 06:11+0000\n"
+"X-Launchpad-Export-Date: 2014-07-20 06:14+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
-msgstr ""
+msgstr "ወደፊት የሚመጣ ሁኔታ የለም"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -56,7 +56,7 @@ msgstr "%1 የ ሙሉ ቀን ሁኔታዎች"
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "የተደጋገሙ ሁኔታዎችን ማጥፊያ"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
@@ -64,7 +64,7 @@ msgstr "ሁኔታውን ማጥፊያ"
 
 #: ../DeleteConfirmationDialog.qml:21
 msgid "Delete series"
-msgstr ""
+msgstr "ተከታታዮችን ማጥፊያ"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete this"
@@ -85,7 +85,7 @@ msgstr "ሁኔታዎችን ማረሚያ"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "ተከታታዮችን ማረሚያ"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
@@ -149,7 +149,7 @@ msgstr "እንግዶች"
 
 #: ../EventDetails.qml:354 ../NewEvent.qml:454
 msgid "This happens"
-msgstr ""
+msgstr "ይህ ሆኗል"
 
 #: ../EventDetails.qml:359 ../NewEvent.qml:515
 msgid "Remind me"
@@ -157,11 +157,11 @@ msgstr "አስታውሰኝ"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr ""
+msgstr "ድግግሞሽ ጨርሷል"
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "መጨረሻው ሰአት ከ መጀመሪያው ሰአት በፊት መሆን የለበትም"
 
 #: ../NewEvent.qml:224 ../calendar.qml:244
 msgid "New Event"
@@ -189,7 +189,7 @@ msgstr "መግለጫ"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
-msgstr ""
+msgstr "ድግግሞሽ ሁኔታ ጨርሷል"
 
 #: ../NewEvent.qml:493
 msgid "Count"
@@ -222,7 +222,7 @@ msgstr "ማስማሚያ"
 
 #: ../calendar.qml:254
 msgid "Syncing"
-msgstr ""
+msgstr "በ ማስማማት ላይ"
 
 #: ../calendar.qml:287
 msgid "Year"
@@ -242,11 +242,11 @@ msgstr "ቀን"
 
 #: ../calendar.qml:414
 msgid "Agenda"
-msgstr ""
+msgstr "አጄንዳ"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr ""
+msgstr "የቀን መቁጠሪያ"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
@@ -254,4 +254,4 @@ msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "ቀን መቁጠሪያ:ሁኔታ:ቀን:ሳምንት:አመት:ቀጠሮ:ስብሰባ:"

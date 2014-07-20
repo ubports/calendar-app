@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-07-18 19:06+0000\n"
+"PO-Revision-Date: 2014-07-19 10:20+0000\n"
 "Last-Translator: Arve Eriksson <Unknown>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-19 06:11+0000\n"
+"X-Launchpad-Export-Date: 2014-07-20 06:14+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: ../AgendaView.qml:49
@@ -125,43 +125,43 @@ msgstr "Redigera"
 
 #: ../EventDetails.qml:243
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: ../EventDetails.qml:248 ../NewEvent.qml:314
 msgid "Start"
-msgstr ""
+msgstr "Börjar"
 
 #: ../EventDetails.qml:253 ../NewEvent.qml:352
 msgid "End"
-msgstr ""
+msgstr "Slutar"
 
 #: ../EventDetails.qml:262 ../NewEvent.qml:391
 msgid "All Day event:"
-msgstr ""
+msgstr "Heldagshändelse"
 
 #: ../EventDetails.qml:292 ../NewEvent.qml:436
 msgid "Location"
-msgstr ""
+msgstr "Plats"
 
 #: ../EventDetails.qml:317 ../NewEvent.qml:443
 msgid "Guests"
-msgstr ""
+msgstr "Gäster"
 
 #: ../EventDetails.qml:354 ../NewEvent.qml:454
 msgid "This happens"
-msgstr ""
+msgstr "Detta händer"
 
 #: ../EventDetails.qml:359 ../NewEvent.qml:515
 msgid "Remind me"
-msgstr ""
+msgstr "Påminn mig"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr ""
+msgstr "Upprepning slutar"
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "Sluttiden kan inte vara före starttiden"
 
 #: ../NewEvent.qml:224 ../calendar.qml:244
 msgid "New Event"
@@ -169,11 +169,11 @@ msgstr "Ny händelse"
 
 #: ../NewEvent.qml:240
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: ../NewEvent.qml:242
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
@@ -181,19 +181,19 @@ msgstr ""
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
-msgstr ""
+msgstr "Händelsenamn"
 
 #: ../NewEvent.qml:416
 msgid "Description"
-msgstr ""
+msgstr "Beskrivning"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Upprepad händelse slutar"
 
 #: ../NewEvent.qml:493
 msgid "Count"
-msgstr ""
+msgstr "Antal"
 
 #: ../NewEvent.qml:539
 msgid "Save"
@@ -203,7 +203,7 @@ msgstr "Spara"
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:19
 msgid "hh ap"
-msgstr ""
+msgstr "hh ap"
 
 #: ../calendar.qml:21
 msgid ""
@@ -214,7 +214,7 @@ msgstr ""
 
 #: ../calendar.qml:225
 msgid "Today"
-msgstr ""
+msgstr "Idag"
 
 #: ../calendar.qml:254
 msgid "Sync"
@@ -226,19 +226,19 @@ msgstr ""
 
 #: ../calendar.qml:287
 msgid "Year"
-msgstr ""
+msgstr "År"
 
 #: ../calendar.qml:322
 msgid "Month"
-msgstr ""
+msgstr "Månad"
 
 #: ../calendar.qml:351
 msgid "Week"
-msgstr ""
+msgstr "Vecka"
 
 #: ../calendar.qml:385
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: ../calendar.qml:414
 msgid "Agenda"
@@ -250,8 +250,8 @@ msgstr "Kalender"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "En kalender för Ubuntu som synkroniserar med onlinekonton."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "kalender;händelse;dag;vecka;år;tidsbestämt möte;möte;"

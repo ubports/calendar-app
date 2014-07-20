@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-07-17 15:24+0000\n"
-"Last-Translator: Tobias Bannert <Unknown>\n"
+"PO-Revision-Date: 2014-07-19 15:01+0000\n"
+"Last-Translator: Phillip Sz <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:24+0000\n"
+"X-Launchpad-Export-Date: 2014-07-20 06:14+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: ../AgendaView.qml:49
@@ -153,7 +153,7 @@ msgstr "Das passiert"
 
 #: ../EventDetails.qml:359 ../NewEvent.qml:515
 msgid "Remind me"
-msgstr "Erinner mich"
+msgstr "Erinnere mich"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
