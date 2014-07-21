@@ -396,6 +396,7 @@ Page {
 
                         NewEventEntryField{
                             id: startTimeInput
+                            // TRANSLATORS: This "at" referes to HH:MM of an event
                             title: i18n.tr("at")
                             objectName: "startTimeInput"
 
@@ -434,6 +435,7 @@ Page {
 
                         NewEventEntryField{
                             id: endTimeInput
+                            // TRANSLATORS: This "at" referes to HH:MM of an event
                             title: i18n.tr("at")
                             objectName: "endTimeInput"
 
