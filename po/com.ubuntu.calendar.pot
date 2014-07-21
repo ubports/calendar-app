@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-21 20:25+0530\n"
+"POT-Creation-Date: 2014-07-21 21:25+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:678
+#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:677
 msgid "Save"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:682
+#: ../NewEvent.qml:681
 msgid "Cancel"
 msgstr ""
 
@@ -154,23 +154,23 @@ msgstr ""
 msgid "End"
 msgstr ""
 
-#: ../EventDetails.qml:287 ../NewEvent.qml:494
+#: ../EventDetails.qml:287 ../NewEvent.qml:492
 msgid "All Day event:"
 msgstr ""
 
-#: ../EventDetails.qml:335 ../NewEvent.qml:539
+#: ../EventDetails.qml:335 ../NewEvent.qml:537
 msgid "Location"
 msgstr ""
 
-#: ../EventDetails.qml:361 ../NewEvent.qml:546
+#: ../EventDetails.qml:361 ../NewEvent.qml:544
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:399 ../NewEvent.qml:557
+#: ../EventDetails.qml:399 ../NewEvent.qml:555
 msgid "This happens"
 msgstr ""
 
-#: ../EventDetails.qml:404 ../NewEvent.qml:654
+#: ../EventDetails.qml:404 ../NewEvent.qml:653
 msgid "Remind me"
 msgstr ""
 
@@ -199,31 +199,33 @@ msgid "OK"
 msgstr ""
 
 #. TRANSLATORS: This "at" referes to HH:MM of an event
+#. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
 #: ../NewEvent.qml:400 ../NewEvent.qml:439
 msgid "at"
 msgstr ""
 
-#: ../NewEvent.qml:462
+#: ../NewEvent.qml:460
 msgid "Calendar "
 msgstr ""
 
-#: ../NewEvent.qml:509
+#: ../NewEvent.qml:507
 msgid "Event Name"
 msgstr ""
 
-#: ../NewEvent.qml:519
+#: ../NewEvent.qml:517
 msgid "Description"
 msgstr ""
 
-#: ../NewEvent.qml:576
+#: ../NewEvent.qml:574
 msgid "Repeats On:"
 msgstr ""
 
-#: ../NewEvent.qml:611
+#: ../NewEvent.qml:609
 msgid "Recurring event ends"
 msgstr ""
 
-#: ../NewEvent.qml:632
+#. TRANSLATORS: This refers to no of occurences of an event.
+#: ../NewEvent.qml:631
 msgid "Recurrence"
 msgstr ""
 
