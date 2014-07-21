@@ -627,7 +627,7 @@ Page {
             NewEventEntryField{
                 id: limitCount
                 width: parent.width
-                title: i18n.tr("Count")
+                title: i18n.tr("Recurrence")
                 objectName: "eventLimitCount"
                 visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
                 validator: IntValidator{bottom: 1;}
