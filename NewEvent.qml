@@ -435,12 +435,10 @@ Page {
 
                         NewEventEntryField{
                             id: endTimeInput
-                            // TRANSLATORS: This "at" referes to HH:MM of an event
+                            // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
                             title: i18n.tr("at")
                             objectName: "endTimeInput"
-
                             text: ""
-
                             width: (parent.width / 2) - units.gu(1)
                             anchors.right: parent.right
 
@@ -629,6 +627,7 @@ Page {
             NewEventEntryField{
                 id: limitCount
                 width: parent.width
+                // TRANSLATORS: This refers to no of occurences of an event.
                 title: i18n.tr("Recurrence")
                 objectName: "eventLimitCount"
                 visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
