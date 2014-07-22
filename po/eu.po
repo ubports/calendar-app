@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-10 12:19+0530\n"
-"PO-Revision-Date: 2014-04-22 21:02+0000\n"
+"PO-Revision-Date: 2014-07-21 23:01+0000\n"
 "Last-Translator: Ibai Oihanguren Sala <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-11 06:33+0000\n"
-"X-Generator: Launchpad (build 17031)\n"
+"X-Launchpad-Export-Date: 2014-07-22 07:13+0000\n"
+"X-Generator: Launchpad (build 17114)\n"
 
 #: ../AgendaView.qml:49
 msgid "No upcoming events"
-msgstr ""
+msgstr "Ez dago gertaerarik hurrean"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -29,7 +29,7 @@ msgstr "hh:mm"
 
 #: ../AgendaView.qml:101
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "MMMM d, dddd"
 
 #. TRANSLATORS: the first argument (%1) refer to a start time for an event,
 #. while the third one (%2) refers to the end time
@@ -47,7 +47,7 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 ge."
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
@@ -56,19 +56,19 @@ msgstr "%1 Egun osoko gertaerak"
 
 #: ../DeleteConfirmationDialog.qml:13
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "Kendu gertaera errepikakorra"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Event"
-msgstr ""
+msgstr "Kendu gertaera"
 
 #: ../DeleteConfirmationDialog.qml:21
 msgid "Delete series"
-msgstr ""
+msgstr "Kendu segida"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete this"
-msgstr ""
+msgstr "Kendu hau"
 
 #: ../DeleteConfirmationDialog.qml:31 ../EventDetails.qml:167
 msgid "Delete"
@@ -85,39 +85,39 @@ msgstr "Editatu gertaera"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "Editatu segida"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr ""
+msgstr "Editatu hau"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "Eginda"
 
 #: ../EventDetails.qml:47
 msgid "Never"
-msgstr ""
+msgstr "Inoiz ez"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:51 ../EventDetails.qml:111
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "yyyy-MM-dd"
 
 #: ../EventDetails.qml:53
 #, qt-format
 msgid "After %1 Occurrences"
-msgstr ""
+msgstr "%1 errepikaldiren ostean"
 
 #: ../EventDetails.qml:54
 #, qt-format
 msgid "After Date %1"
-msgstr ""
+msgstr "Data honen ostean: %1"
 
 #: ../EventDetails.qml:100
 msgid "Not specified"
-msgstr ""
+msgstr "Zehaztu gabe"
 
 #: ../EventDetails.qml:181
 msgid "Edit"
@@ -157,7 +157,7 @@ msgstr "Gogorarazi"
 
 #: ../EventDetails.qml:364
 msgid "Repetition Ends"
-msgstr ""
+msgstr "Errepikapenaren amaiera"
 
 #: ../NewEvent.qml:135
 msgid "End time can't be before start time"
@@ -177,7 +177,7 @@ msgstr "Ados"
 
 #: ../NewEvent.qml:329 ../NewEvent.qml:367
 msgid "at"
-msgstr ""
+msgstr "noiz:"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
@@ -189,11 +189,11 @@ msgstr "Deskribapena"
 
 #: ../NewEvent.qml:472
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Gertaera errepikakorraren amaiera"
 
 #: ../NewEvent.qml:493
 msgid "Count"
-msgstr ""
+msgstr "Zenbatu"
 
 #: ../NewEvent.qml:539
 msgid "Save"
@@ -211,6 +211,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"Egutegi-aplikazioak lau argumentu onartzen ditu: --starttime, --endtime, --"
+"newevent eta --eventid. Sistemak kudeatuko ditu. Ikusi iturburua haiei "
+"buruzko iruzkin osoago baterako"
 
 #: ../calendar.qml:225
 msgid "Today"
@@ -218,11 +221,11 @@ msgstr "Gaur"
 
 #: ../calendar.qml:254
 msgid "Sync"
-msgstr ""
+msgstr "Sinkronizatu"
 
 #: ../calendar.qml:254
 msgid "Syncing"
-msgstr ""
+msgstr "Sinkronizatzen"
 
 #: ../calendar.qml:287
 msgid "Year"
@@ -242,7 +245,7 @@ msgstr "Eguna"
 
 #: ../calendar.qml:414
 msgid "Agenda"
-msgstr ""
+msgstr "Agenda"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
@@ -250,8 +253,8 @@ msgstr "Egutegia"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "Lineako kontuekin sinkronizatzen den Ubunturako egutegia."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "egutegia;gertaera;eguna;astea;hila;urtea;hitzordua;bilera;"
