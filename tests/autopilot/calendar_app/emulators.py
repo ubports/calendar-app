@@ -23,6 +23,7 @@ import autopilot.logging
 from dateutil import tz
 
 import ubuntuuitoolkit
+from ubuntuuitoolkit._custom_proxy_objects import _flickable
 from ubuntuuitoolkit import (
     emulators as toolkit_emulators,
     pickers
@@ -380,6 +381,16 @@ class EventBubble(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self.pointing_device.click()
         return self.get_root_instance().select_single(
             EventDetails, objectName='eventDetails')
+
+
+# override toolkit helper to
+# workaround bug https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1343916
+class QQuickFlickable(_flickable.QQuickFlickable):
+
+    def _slow_drag(self, start_x, stop_x, start_y, stop_y):
+        rate = (self.flickDeceleration + 250) / 350
+        self.pointing_device.drag(start_x, start_y, stop_x, stop_y, rate=rate)
+        self.pointing_device.click()
 
 
 class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
