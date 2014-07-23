@@ -24,6 +24,7 @@ class EventTestCase(testtools.TestCase):
     def test_make_unique_event_must_return_event_with_unique_id(self):
         event = data.Event.make_unique(unique_id='test uuid')
 
+        self.assertEqual(event.calendar, 'Personal')
         self.assertEqual(event.name, 'Test event test uuid')
         self.assertEqual(event.description, 'Test description test uuid.')
         self.assertEqual(event.location, 'Test location test uuid')

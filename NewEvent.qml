@@ -464,6 +464,7 @@ Page {
 
                 OptionSelector{
                     id: calendarsOption
+                    objectName: "calendarsOption"
                     anchors.right: parent.right
                     width: parent.width - calendarLabel.width - units.gu(1)
                     containerHeight: itemHeight * 4

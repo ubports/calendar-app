@@ -307,6 +307,7 @@ Page {
                 }
                 Label{
                     id:calendarName
+                    objectName: "calendarName"
                     anchors.verticalCenter: parent.verticalCenter
                     color: headerColor
                 }
