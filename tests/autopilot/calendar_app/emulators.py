@@ -417,12 +417,14 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         """Fill the add event form.
 
         :param event_information: Values of the event to fill the form.
-        :type event_information: data object with the attributes name,
-            description, location and guests.
+        :type event_information: data object with the attributes
+            calendar, name, description, location and guests.
 
         """
         # TODO fill start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
+        if event_information.calendar is not None:
+            self._select_calendar(event_information.calendar)
         if event_information.name is not None:
             self._fill_name(event_information.name)
         if event_information.description is not None:
@@ -464,16 +466,24 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self._ensure_entry_field_visible_and_write(
             'eventPeopleInput', value[0])
 
+    def _select_calendar(self, calendar):
+        self._get_calendar().select_option('Label', text=calendar)
+
+    def _get_calendar(self):
+        return self.select_single(ubuntuuitoolkit.OptionSelector,
+                                  objectName="calendarsOption")
+
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
+        calendar = self._get_calendar().get_current_label().text
         name = self._get_new_event_entry_field('newEventName').text
         description = self._get_description_text_area().text
         location = self._get_new_event_entry_field('eventLocationInput').text
         # TODO once bug http://pad.lv/1295941 is fixed, we will have to build
         # the list of guests. --elopio - 2014-06-26
         guests = [self._get_new_event_entry_field('eventPeopleInput').text]
-        return data.Event(name, description, location, guests)
+        return data.Event(calendar, name, description, location, guests)
 
     @autopilot.logging.log_action(logger.info)
     def _save(self):
@@ -510,11 +520,15 @@ class EventDetails(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     def get_event_information(self):
         """Return the information of the event."""
+        calendar = self._get_calendar()
         name = self._get_name()
         description = self._get_description()
         location = self._get_location()
         guests = self._get_guests()
-        return data.Event(name, description, location, guests)
+        return data.Event(calendar, name, description, location, guests)
+
+    def _get_calendar(self):
+        return self._get_label_text('calendarName')
 
     def _get_name(self):
         return self._get_label_text('titleLabel')

@@ -34,6 +34,7 @@ class NewEventTestCase(CalendarTestCase):
 
     # TODO add tests for events in the future and in the past, all day event,
     # event with recurrence and event with reminders.
+    # also add tests for saving to different calendars
     # We currently can't change the date of the new event because of bug
     # http://pad.lv/1328600 on Autopilot.
     # --elopio - 2014-06-26
@@ -41,6 +42,7 @@ class NewEventTestCase(CalendarTestCase):
     def try_delete_event(self, event_name, filter_duplicates):
         try:
             day_view = self.main_view.go_to_day_view()
+            logger.debug('deleting event')
             day_view.delete_event(event_name, filter_duplicates)
         except Exception as exception:
             logger.warn(str(exception))
@@ -73,6 +75,7 @@ class NewEventTestCase(CalendarTestCase):
         event_details_page = day_view.open_event(test_event.name)
         self.assertEqual(
             test_event, event_details_page.get_event_information())
+        logger.debug('test over')
 
     def test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
