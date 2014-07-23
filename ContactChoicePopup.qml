@@ -15,7 +15,7 @@ Popover {
 
     Label {
         anchors.centerIn: parent
-        text: "No contact"
+        text: i18n.tr("No contact")
         visible: contactModel.contacts.length === 0
     }
 
@@ -54,7 +54,7 @@ Popover {
             id: searchBox
             focus: true
             width: parent.width
-            placeholderText: "Search contact"
+            placeholderText: i18n.tr("Search contact")
             primaryItem: Image {
                  height: parent.height*0.5
                  width: parent.height*0.5
