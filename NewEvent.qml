@@ -552,14 +552,16 @@ Page {
                         id: contactModel
                     }
                     Button{
-                        text: "Add Guest"
+                        text: i18n.tr("Add Guest")
                         width: parent.width
                         onClicked: {
                             var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
                             popup.contactSelected.connect( function(contact) {
                                 var t = internal.contactToAttendee(contact);
-                                contactModel.append(t);
-                                contactList.array.push(t);
+                                if( !internal.isContactAlreadyAdded(contact) ) {
+                                    contactModel.append(t);
+                                    contactList.array.push(t);
+                                }
                             });
                         }
                     }
@@ -735,11 +737,20 @@ Page {
             messageEdit.focus = false
         }
 
+        function isContactAlreadyAdded(contact) {
+            for(var i=0; i < contactList.array.length ; ++i) {
+                var attendee = contactList.array[i];
+                if( attendee.emailAddress === contact.email.emailAddress) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         function contactToAttendee(contact) {
             var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
             attendee.name = contact.name.firstName + " " + contact.name.lastName;
             attendee.emailAddress = contact.email.emailAddress;
-            event.setDetail(attendee);
             return attendee;
         }
     }
