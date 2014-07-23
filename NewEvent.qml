@@ -555,7 +555,7 @@ Page {
                         text: i18n.tr("Add Guest")
                         width: parent.width
                         onClicked: {
-                            var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
+                            var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);                           
                             popup.contactSelected.connect( function(contact) {
                                 var t = internal.contactToAttendee(contact);
                                 if( !internal.isContactAlreadyAdded(contact) ) {
