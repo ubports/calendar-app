@@ -95,6 +95,7 @@ Page {
         if( e.itemType === Type.Event ) {
             if(e.attendees){
                 for( var j = 0 ; j < e.attendees.length ; ++j ) {
+                    contactList.array.push(e.attendees[j]);
                     contactModel.append(e.attendees[j]);
                 }
             }
@@ -189,9 +190,14 @@ Page {
 
             if( event.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
-                for(var i=0; i < contactModel.count() ; ++i) {
-                    event.attendees.push(contactModel.get(j));
+                var contacts = [];
+                print("Length:"+ contactList.array.length);
+                for(var i=0; i < contactList.array.length ; ++i) {
+                    var contact = contactList.array[i]
+                    print("Adding " + contact);
+                    contacts.push(contact);
                 }
+                event.attendees = contacts;
 
                 var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
@@ -541,7 +547,8 @@ Page {
                     spacing: units.gu(1)
                     width: parent.width
                     clip: true
-                    ListModel {
+                    property var array: []
+                    ListModel{
                         id: contactModel
                     }
                     Button{
@@ -550,7 +557,9 @@ Page {
                         onClicked: {
                             var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
                             popup.contactSelected.connect( function(contact) {
-                                contactModel.append(internal.contactToAttendee(contact));
+                                var t = internal.contactToAttendee(contact);
+                                contactModel.append(t);
+                                contactList.array.push(t);
                             });
                         }
                     }
