@@ -42,7 +42,6 @@ class NewEventTestCase(CalendarTestCase):
     def try_delete_event(self, event_name, filter_duplicates):
         try:
             day_view = self.main_view.go_to_day_view()
-            logger.debug('deleting event')
             day_view.delete_event(event_name, filter_duplicates)
         except Exception as exception:
             logger.warn(str(exception))
@@ -75,7 +74,6 @@ class NewEventTestCase(CalendarTestCase):
         event_details_page = day_view.open_event(test_event.name)
         self.assertEqual(
             test_event, event_details_page.get_event_information())
-        logger.debug('test over')
 
     def test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
