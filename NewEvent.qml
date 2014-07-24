@@ -396,7 +396,7 @@ Page {
 
                         NewEventEntryField{
                             id: startTimeInput
-                            // TRANSLATORS: This "at" referes to HH:MM of an event
+                            // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
                             title: i18n.tr("at")
                             objectName: "startTimeInput"
 

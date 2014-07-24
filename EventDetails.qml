@@ -57,6 +57,7 @@ Page {
                     // TRANSLATORS: this is a time & Date formatting string,
                     //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
                     var dateFormat = i18n.tr("dd-MMM-yyyy")
+                    // TRANSLATORS: This refers to no of occurences of an event.
                     limitHeader.value = parseInt(recurrenceRule[0].limit) ?
                                 i18n.tr("After %1 Occurrences", recurrenceRule[0].limit).arg(recurrenceRule[0].limit):
                                 i18n.tr("After Date %1", recurrenceRule[0].limit.toLocaleString(Qt.locale(),dateFormat)).arg(recurrenceRule[0].limit.toLocaleString(Qt.locale(),dateFormat));

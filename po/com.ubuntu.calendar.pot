@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-21 21:25+0530\n"
+"POT-Creation-Date: 2014-07-24 23:57+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:130
+#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:131
 msgid "hh:mm"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr ""
 msgid "Delete this"
 msgstr ""
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:191
+#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:192
 msgid "Delete"
 msgstr ""
 
@@ -116,69 +116,69 @@ msgstr ""
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59 ../EventDetails.qml:133
+#: ../EventDetails.qml:59 ../EventDetails.qml:134
 msgid "dd-MMM-yyyy"
-msgstr ""
-
-#: ../EventDetails.qml:61
-#, qt-format
-msgid "After %1 Occurrences"
 msgstr ""
 
 #: ../EventDetails.qml:62
 #, qt-format
+msgid "After %1 Occurrences"
+msgstr ""
+
+#: ../EventDetails.qml:63
+#, qt-format
 msgid "After Date %1"
 msgstr ""
 
-#: ../EventDetails.qml:68
+#: ../EventDetails.qml:69
 msgid "Every "
 msgstr ""
 
-#: ../EventDetails.qml:122
+#: ../EventDetails.qml:123
 msgid "Not specified"
 msgstr ""
 
-#: ../EventDetails.qml:206
+#: ../EventDetails.qml:207
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:268
+#: ../EventDetails.qml:269
 msgid "Date"
 msgstr ""
 
-#: ../EventDetails.qml:273 ../NewEvent.qml:384
+#: ../EventDetails.qml:274 ../NewEvent.qml:384
 msgid "Start"
 msgstr ""
 
-#: ../EventDetails.qml:278 ../NewEvent.qml:423
+#: ../EventDetails.qml:279 ../NewEvent.qml:423
 msgid "End"
 msgstr ""
 
-#: ../EventDetails.qml:287 ../NewEvent.qml:492
+#: ../EventDetails.qml:288 ../NewEvent.qml:492
 msgid "All Day event:"
 msgstr ""
 
-#: ../EventDetails.qml:335 ../NewEvent.qml:537
+#: ../EventDetails.qml:336 ../NewEvent.qml:537
 msgid "Location"
 msgstr ""
 
-#: ../EventDetails.qml:361 ../NewEvent.qml:544
+#: ../EventDetails.qml:362 ../NewEvent.qml:544
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:399 ../NewEvent.qml:555
+#: ../EventDetails.qml:400 ../NewEvent.qml:555
 msgid "This happens"
 msgstr ""
 
-#: ../EventDetails.qml:404 ../NewEvent.qml:653
+#: ../EventDetails.qml:405 ../NewEvent.qml:653
 msgid "Remind me"
 msgstr ""
 
-#: ../EventDetails.qml:409
+#: ../EventDetails.qml:410
 msgid "Repeats On"
 msgstr ""
 
-#: ../EventDetails.qml:415
+#: ../EventDetails.qml:416
 msgid "Repetition Ends"
 msgstr ""
 
@@ -198,7 +198,6 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#. TRANSLATORS: This "at" referes to HH:MM of an event
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
 #: ../NewEvent.qml:400 ../NewEvent.qml:439
 msgid "at"
