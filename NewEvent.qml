@@ -554,6 +554,7 @@ Page {
                     }
                     Button{
                         text: i18n.tr("Add Guest")
+                        objectName: "addGuestButton"
                         width: parent.width
                         onClicked: {
                             var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);                           

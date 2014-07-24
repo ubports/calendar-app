@@ -431,8 +431,8 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             self._fill_description(event_information.description)
         if event_information.location is not None:
             self._fill_location(event_information.location)
-        # if event_information.guests is not None:
-        #    self._fill_guests(event_information.guests)
+        if event_information.guests is not None:
+            self._fill_guests(event_information.guests)
 
     def _fill_name(self, value):
         self._ensure_entry_field_visible_and_write('newEventName', value)
