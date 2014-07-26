@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-24 23:57+0530\n"
-"PO-Revision-Date: 2014-06-28 07:21+0000\n"
+"PO-Revision-Date: 2014-07-26 06:24+0000\n"
 "Last-Translator: Paco Molinero <paco@byasl.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-25 07:49+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-07-26 07:13+0000\n"
+"X-Generator: Launchpad (build 17131)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -54,11 +54,11 @@ msgstr "%1 Todos los eventos del día"
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
 msgid "Calendars"
-msgstr ""
+msgstr "Calendarios"
 
 #: ../CalendarChoicePopup.qml:20
 msgid "Back"
-msgstr ""
+msgstr "Atrás"
 
 #: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:677
 msgid "Save"
@@ -66,7 +66,7 @@ msgstr "Guardar"
 
 #: ../ColorPickerDialog.qml:7
 msgid "Select Color"
-msgstr ""
+msgstr "Seleccionar color"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
@@ -132,7 +132,7 @@ msgstr "Después de la fecha %1"
 
 #: ../EventDetails.qml:69
 msgid "Every "
-msgstr ""
+msgstr "Cada "
 
 #: ../EventDetails.qml:123
 msgid "Not specified"
@@ -176,7 +176,7 @@ msgstr "Recordarme"
 
 #: ../EventDetails.qml:410
 msgid "Repeats On"
-msgstr ""
+msgstr "Repeticiones"
 
 #: ../EventDetails.qml:416
 msgid "Repetition Ends"
@@ -196,7 +196,7 @@ msgstr "Error"
 
 #: ../NewEvent.qml:312
 msgid "OK"
-msgstr ""
+msgstr "Aceptar"
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
 #: ../NewEvent.qml:400 ../NewEvent.qml:439
@@ -205,7 +205,7 @@ msgstr "a las"
 
 #: ../NewEvent.qml:460
 msgid "Calendar "
-msgstr ""
+msgstr "Calendario "
 
 #: ../NewEvent.qml:507
 msgid "Event Name"
@@ -217,7 +217,7 @@ msgstr "Descripción"
 
 #: ../NewEvent.qml:574
 msgid "Repeats On:"
-msgstr ""
+msgstr "Repeticiones:"
 
 #: ../NewEvent.qml:609
 msgid "Recurring event ends"
@@ -226,7 +226,7 @@ msgstr "El evento recurrente termina"
 #. TRANSLATORS: This refers to no of occurences of an event.
 #: ../NewEvent.qml:631
 msgid "Recurrence"
-msgstr ""
+msgstr "Repetición"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions

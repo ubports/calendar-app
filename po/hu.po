@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-24 23:57+0530\n"
-"PO-Revision-Date: 2014-07-24 08:20+0000\n"
-"Last-Translator: Gabor Kelemen <kelemeng@openscope.org>\n"
+"PO-Revision-Date: 2014-07-25 09:13+0000\n"
+"Last-Translator: Úr Balázs <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-25 07:48+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-07-26 07:13+0000\n"
+"X-Generator: Launchpad (build 17131)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -54,11 +54,11 @@ msgstr "%1 egész napos esemény"
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
 msgid "Calendars"
-msgstr ""
+msgstr "Naptárak"
 
 #: ../CalendarChoicePopup.qml:20
 msgid "Back"
-msgstr ""
+msgstr "Vissza"
 
 #: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:677
 msgid "Save"
@@ -66,7 +66,7 @@ msgstr "Mentés"
 
 #: ../ColorPickerDialog.qml:7
 msgid "Select Color"
-msgstr ""
+msgstr "Szín kiválasztása"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
@@ -132,7 +132,7 @@ msgstr "%1 után"
 
 #: ../EventDetails.qml:69
 msgid "Every "
-msgstr ""
+msgstr "Minden "
 
 #: ../EventDetails.qml:123
 msgid "Not specified"
@@ -176,7 +176,7 @@ msgstr "Emlékeztessen"
 
 #: ../EventDetails.qml:410
 msgid "Repeats On"
-msgstr ""
+msgstr "Ismétlődik"
 
 #: ../EventDetails.qml:416
 msgid "Repetition Ends"
@@ -196,7 +196,7 @@ msgstr "Hiba"
 
 #: ../NewEvent.qml:312
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
 #: ../NewEvent.qml:400 ../NewEvent.qml:439
@@ -205,7 +205,7 @@ msgstr "ekkor"
 
 #: ../NewEvent.qml:460
 msgid "Calendar "
-msgstr ""
+msgstr "Naptár "
 
 #: ../NewEvent.qml:507
 msgid "Event Name"
@@ -217,7 +217,7 @@ msgstr "Leírás"
 
 #: ../NewEvent.qml:574
 msgid "Repeats On:"
-msgstr ""
+msgstr "Ismétlődik:"
 
 #: ../NewEvent.qml:609
 msgid "Recurring event ends"
@@ -226,7 +226,7 @@ msgstr "Ismétlődő esemény vége"
 #. TRANSLATORS: This refers to no of occurences of an event.
 #: ../NewEvent.qml:631
 msgid "Recurrence"
-msgstr ""
+msgstr "Ismétlődés"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -240,6 +240,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"A naptár alkalmazás négy argumentumot fogad el: --starttime, --endtime, --"
+"newevent és --eventid. Ezeket a rendszer fogja kezelni. A hozzájuk tartozó "
+"összes megjegyzéshez nézze meg a forrást."
 
 #: ../calendar.qml:286
 msgid "Today"
