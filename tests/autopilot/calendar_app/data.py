@@ -55,5 +55,5 @@ class Event(DataMixin):
         name = 'Test event {}'.format(unique_id)
         description = 'Test description {}.'.format(unique_id)
         location = 'Test location {}'.format(unique_id)
-        guests = ['Test guest {} 1'.format(unique_id)]
+        guests = 'Canonical'
         return cls(calendar, name, description, location, guests)

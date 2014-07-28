@@ -68,11 +68,13 @@ Popover {
 
         ListView {
             id: contactList
+            objectName: "contactPopoverList"
             width: parent.width
             model: contactModel
             height: units.gu(30)
             clip: true
             delegate: Standard{
+                objectName: "contactPopoverList%1".arg(index)
                 property var item: contactModel.contacts[index]
                 height: units.gu(4)
                 text: item ? item.name.firstName + ", " + item.name.lastName : ""

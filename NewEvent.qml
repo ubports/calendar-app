@@ -545,6 +545,7 @@ Page {
                 height: contactList.height
                 Column{
                     id: contactList
+                    objectName: "guestList"
                     spacing: units.gu(1)
                     width: parent.width
                     clip: true
@@ -557,7 +558,7 @@ Page {
                         objectName: "addGuestButton"
                         width: parent.width
                         onClicked: {
-                            var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);                           
+                            var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
                             popup.contactSelected.connect( function(contact) {
                                 var t = internal.contactToAttendee(contact);
                                 if( !internal.isContactAlreadyAdded(contact) ) {
@@ -571,6 +572,7 @@ Page {
                     Repeater{
                         model: contactModel
                         delegate: Standard {
+                            objectName: "eventGuest%1".arg(index)
                             height: units.gu(4)
                             text: name
                         }

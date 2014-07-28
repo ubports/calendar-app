@@ -458,13 +458,19 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     def _fill_location(self, value):
         self._ensure_entry_field_visible_and_write('eventLocationInput', value)
 
-    def _fill_guests(self, value):
-        if len(value) > 1:
-            # See bug http://pad.lv/1295941
-            raise CalendarException(
-                'It is not yet possible to add more than one guest.')
-        self._ensure_entry_field_visible_and_write(
-            'eventPeopleInput', value[0])
+    def _fill_guests(self, guests):
+        guests_btn = self.select_single('Button', objectName='addGuestButton')
+
+        for guest in guests:
+            self.pointing_device.click_object(guests_btn)
+            self._ensure_entry_field_visible_and_write('contactPopoverInput', guest)
+
+            popover = self.wait_select_single('Popover', objectName='contactPopover')
+            popover.print_tree()
+            contacts = self.wait_select_single(ubuntuuitoolkit.QQuickListView,
+                                          objectName='contactPopoverList')
+            contacts.click_element('contactPopoverList0')
+
 
     def _select_calendar(self, calendar):
         self._get_calendar().select_option('Label', text=calendar)
@@ -473,6 +479,14 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         return self.select_single(ubuntuuitoolkit.OptionSelector,
                                   objectName="calendarsOption")
 
+    def _get_guests(self):
+        guestlist = self.select_single('QQuickColumn', objectName='guestList')
+        guests = guestlist.select_many('Standard')
+        for guest in guests:
+            guest_names.append(guest.text)
+        return guest_names
+
+
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
@@ -480,9 +494,7 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         name = self._get_new_event_entry_field('newEventName').text
         description = self._get_description_text_area().text
         location = self._get_new_event_entry_field('eventLocationInput').text
-        # TODO once bug http://pad.lv/1295941 is fixed, we will have to build
-        # the list of guests. --elopio - 2014-06-26
-        guests = [self._get_new_event_entry_field('eventPeopleInput').text]
+        guests = self._get_guests()
         return data.Event(calendar, name, description, location, guests)
 
     @autopilot.logging.log_action(logger.info)
