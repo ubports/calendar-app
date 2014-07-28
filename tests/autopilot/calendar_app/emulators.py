@@ -464,9 +464,6 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         for guest in guests:
             self.pointing_device.click_object(guests_btn)
             self._ensure_entry_field_visible_and_write('contactPopoverInput', guest)
-
-            popover = self.wait_select_single('Popover', objectName='contactPopover')
-            popover.print_tree()
             contacts = self.wait_select_single(ubuntuuitoolkit.QQuickListView,
                                           objectName='contactPopoverList')
             contacts.click_element('contactPopoverList0')
