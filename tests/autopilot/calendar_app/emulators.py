@@ -255,7 +255,7 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
         events = []
         for event in event_bubbles:
-            if event.visible == True:
+            if event.visible:
                 events.append(event.get_information())
 
         return events
