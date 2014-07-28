@@ -460,14 +460,17 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     def _fill_guests(self, guests):
         guests_btn = self.select_single('Button', objectName='addGuestButton')
+        main_view = self.get_root_instance().select_single(MainView)
 
         for guest in guests:
             self.pointing_device.click_object(guests_btn)
-            self._ensure_entry_field_visible_and_write('contactPopoverInput', guest)
-            contacts = self.wait_select_single(ubuntuuitoolkit.QQuickListView,
-                                          objectName='contactPopoverList')
-            contacts.click_element('contactPopoverList0')
+            guest_input = main_view.select_single(
+                NewEventEntryField, objectName='contactPopoverInput')
+            guest_input.write(guest)
 
+            contacts = main_view.select_single(ubuntuuitoolkit.QQuickListView,
+                                               objectName='contactPopoverList')
+            contacts.click_element('contactPopoverList0')
 
     def _select_calendar(self, calendar):
         self._get_calendar().select_option('Label', text=calendar)
@@ -479,10 +482,10 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
     def _get_guests(self):
         guestlist = self.select_single('QQuickColumn', objectName='guestList')
         guests = guestlist.select_many('Standard')
+        guest_names = []
         for guest in guests:
             guest_names.append(guest.text)
         return guest_names
-
 
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and
