@@ -255,6 +255,7 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
         events = []
         for event in event_bubbles:
+            # Event-bubbles objects are recycled, only show visible ones.
             if event.visible:
                 events.append(event.get_information())
 
