@@ -8,28 +8,28 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-24 23:57+0530\n"
-"PO-Revision-Date: 2014-05-08 05:16+0000\n"
+"PO-Revision-Date: 2014-07-28 07:35+0000\n"
 "Last-Translator: Gursharnjit_singh <ubuntuser13@gmail.com>\n"
 "Language-Team: Punjabi <pa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-25 07:49+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-07-29 06:45+0000\n"
+"X-Generator: Launchpad (build 17131)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
-msgstr ""
+msgstr "ਕੋਈ ਆਉਣ ਵਾਲਾ ਸਮਾਗਮ ਨਹੀਂ"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
 #: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:131
 msgid "hh:mm"
-msgstr "ਘਘ:ਮਮ"
+msgstr "hh:mm"
 
 #: ../AgendaView.qml:94
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "dddd , d MMMM"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -45,28 +45,28 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 Ev ।"
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr "%1 ਸਾਰੇ ਦਿਨ ਦੀਆਂ ਘਟਨਾਵਾਂ"
+msgstr "%1 ਸਾਰੇ ਦਿਨ ਦੇ ਸਮਾਗਮ"
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
 msgid "Calendars"
-msgstr ""
+msgstr "ਕੈਲੰਡਰ"
 
 #: ../CalendarChoicePopup.qml:20
 msgid "Back"
-msgstr ""
+msgstr "ਪਿੱਛੇ"
 
 #: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:677
 msgid "Save"
-msgstr "ਸੰਭਾਲੋ"
+msgstr "ਸੰਭਾਲ੍ਹੋ"
 
 #: ../ColorPickerDialog.qml:7
 msgid "Select Color"
-msgstr ""
+msgstr "ਰੰਗ ਚੁਣੋ"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
@@ -76,19 +76,19 @@ msgstr "ਰੱਦ"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "ਬਾਰ-ਬਾਰ ਵਾਲਾ ਸਮਾਗਮ ਹਟਾਓ"
 
 #: ../DeleteConfirmationDialog.qml:15
 msgid "Delete Event"
-msgstr ""
+msgstr "ਸਮਾਗਮ ਹਟਾਓ"
 
 #: ../DeleteConfirmationDialog.qml:22
 msgid "Delete series"
-msgstr ""
+msgstr "ਲੜੀ ਹਟਾਓ"
 
 #: ../DeleteConfirmationDialog.qml:33
 msgid "Delete this"
-msgstr ""
+msgstr "ਇਸ ਨੂੰ ਹਟਾਓ"
 
 #: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:192
 msgid "Delete"
@@ -96,34 +96,34 @@ msgstr "ਹਟਾਓ"
 
 #: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:294
 msgid "Edit Event"
-msgstr "ਘਟਨਾ ਸੋਧ"
+msgstr "ਸਮਾਗਮ ਸੋਧ"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "ਲੜੀ ਸੋਧ"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr ""
+msgstr "ਇਸਦਾ ਸੋਧ"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "ਮੁਕੰਮਲ"
 
 #: ../EventDetails.qml:55
 msgid "Never"
-msgstr ""
+msgstr "ਕਦੇ ਵੀ ਨਹੀਂ"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59 ../EventDetails.qml:134
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "dd-MMM-yyyy"
 
 #: ../EventDetails.qml:62
 #, qt-format
 msgid "After %1 Occurrences"
-msgstr ""
+msgstr "%1 ਬਾਅਦ ਸਥਿਤੀ"
 
 #: ../EventDetails.qml:63
 #, qt-format
@@ -132,7 +132,7 @@ msgstr ""
 
 #: ../EventDetails.qml:69
 msgid "Every "
-msgstr ""
+msgstr "ਹਰੇਕ "
 
 #: ../EventDetails.qml:123
 msgid "Not specified"
