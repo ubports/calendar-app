@@ -17,25 +17,10 @@ Page{
     }
 
     EventListModel {
-        id: eventModel
+        id: eventListModel
         startPeriod: currentDay.midnight();
         endPeriod: currentDay.addDays(30).endOfDay()
-        filter: UnionFilter{
-            filters: [
-                DetailFieldFilter{
-                    detail: Detail.ItemType
-                    field: Type.FieldType
-                    value: Type.Event
-                    matchFlags: Filter.MatchExactly
-                },
-                DetailFieldFilter{
-                    detail: Detail.ItemType
-                    field: Type.FieldType
-                    value: Type.EventOccurrence
-                    matchFlags: Filter.MatchExactly
-                }
-            ]
-        }
+        filter: eventModel.filter
 
         sortOrders: [
             SortOrder{
@@ -49,22 +34,22 @@ Page{
 
     ActivityIndicator {
         visible: running
-        running: eventModel.isLoading
+        running: eventListModel.isLoading
         anchors.centerIn: parent
         z:2
     }
 
     Label{
         text: i18n.tr("No upcoming events")
-        visible: eventModel.itemCount == 0
+        visible: eventModel.itemCount === 0
         anchors.centerIn: parent
     }
 
     ListView{
         id: eventList
-        model: eventModel
+        model: eventListModel
         anchors.fill: parent
-        visible: eventModel.itemCount > 0
+        visible: eventListModel.itemCount > 0
 
         delegate: listDelegate
     }
@@ -79,7 +64,7 @@ Page{
 
         Item {
             id: root
-            property var event: eventModel.items[index];
+            property var event: eventListModel.items[index];
 
             width: parent.width
             height: container.height
@@ -97,7 +82,7 @@ Page{
                 if( index == 0 ) {
                     headerContainer.visible = true;
                 } else {
-                    var prevEvent = eventModel.items[index-1];
+                    var prevEvent = eventListModel.items[index-1];
                     if( prevEvent.startDateTime.midnight() < event.startDateTime.midnight()) {
                         headerContainer.visible = true;
                     }
@@ -193,7 +178,7 @@ Page{
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
-                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventModel});
+                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
                         }
                     }
                 }

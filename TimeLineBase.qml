@@ -8,7 +8,6 @@ Item {
     property var delegate;
     property var day;
     property int hourHeight: units.gu(10)
-
     property var model;
 
     MouseArea {
@@ -66,6 +65,8 @@ Item {
         if(!bubbleOverLay || bubbleOverLay == undefined) {
             return;
         }
+
+        destroyAllChildren();
 
         var eventMap = {};
         var allSchs = [];
@@ -128,7 +129,6 @@ Item {
         eventBubble.x = x;
         eventBubble.width = width;
         eventBubble.event = event
-
         eventBubble.visible = true;
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
     }

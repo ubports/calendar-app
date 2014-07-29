@@ -36,10 +36,11 @@ class Event(DataMixin):
 
     """Event data object for user acceptance tests."""
 
-    def __init__(self, name, description, location, guests):
+    def __init__(self, calendar, name, description, location, guests):
         # TODO add start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
         super(Event, self).__init__()
+        self.calendar = calendar
         self.name = name
         self.description = description
         self.location = location
@@ -50,8 +51,9 @@ class Event(DataMixin):
         """Return a unique event."""
         if unique_id is None:
             unique_id = str(uuid.uuid1())
+        calendar = 'Personal'
         name = 'Test event {}'.format(unique_id)
         description = 'Test description {}.'.format(unique_id)
         location = 'Test location {}'.format(unique_id)
         guests = ['Test guest {} 1'.format(unique_id)]
-        return cls(name, description, location, guests)
+        return cls(calendar, name, description, location, guests)

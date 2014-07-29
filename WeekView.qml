@@ -16,6 +16,8 @@ Page{
 
     Keys.forwardTo: [weekViewPath]
 
+    flickable: null
+
     Column {
         anchors.fill: parent
         anchors.top: parent.top

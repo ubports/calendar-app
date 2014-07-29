@@ -60,6 +60,7 @@ Item {
         id: mainModel
         startPeriod: startDay.midnight();
         endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
+        filter: eventModel.filter
     }
 
     ActivityIndicator {

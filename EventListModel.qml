@@ -33,6 +33,18 @@ OrganizerModel {
         }
     }
 
+    function getCollections(){
+        var cals = [];
+        var collections = eventModel.collections;
+        for(var i = 0 ; i < collections.length ; ++i) {
+            var cal = collections[i];
+            if( cal.extendedMetaData("collection-type") === "Calendar" ) {
+                cals.push(cal);
+            }
+        }
+        return cals;
+	}
+
     onStartPeriodChanged: {
         isLoading = true
     }
