@@ -28,4 +28,4 @@ class EventTestCase(testtools.TestCase):
         self.assertEqual(event.name, 'Test event test uuid')
         self.assertEqual(event.description, 'Test description test uuid.')
         self.assertEqual(event.location, 'Test location test uuid')
-        self.assertEqual(event.guests, ['Test guest test uuid 1'])
+        self.assertEqual(event.guests, ['Ubuntu'])
