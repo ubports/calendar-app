@@ -191,10 +191,8 @@ Page {
             if( event.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
                 var contacts = [];
-                print("Length:"+ contactList.array.length);
                 for(var i=0; i < contactList.array.length ; ++i) {
                     var contact = contactList.array[i]
-                    print("Adding " + contact);
                     contacts.push(contact);
                 }
                 event.attendees = contacts;
