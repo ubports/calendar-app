@@ -25,7 +25,7 @@ from testtools.matchers import HasLength
 
 from calendar_app import data
 from calendar_app.tests import CalendarTestCase
-from address_book_service_testability import fixture_setup, helpers
+from address_book_service_testability import fixture_setup
 
 
 logger = logging.getLogger(__name__)
