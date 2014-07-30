@@ -21,7 +21,7 @@ from __future__ import absolute_import
 import logging
 
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals
+from testtools.matchers import Equals, NotEquals
 
 from calendar_app import data
 from calendar_app.tests import CalendarTestCase
@@ -55,6 +55,14 @@ class NewEventTestCase(CalendarTestCase):
 
         return day_view, test_event
 
+    def _event_exists(self, event_name):
+        try:
+            day_view = self.main_view.go_to_day_view()
+            day_view.get_event(event_name, False)
+        except Exception as exception:
+            return False
+        return True
+
     # TODO, add test to check events are displayed properly
     # after multiple operations
 
@@ -68,8 +76,9 @@ class NewEventTestCase(CalendarTestCase):
         day_view, test_event = self._add_event()
 
         self.addCleanup(self._try_delete_event, test_event.name)
-        self.assertThat(lambda: day_view.get_event(test_event.name),
-                        Eventually(Equals(True)))
+        day_view.get_event(test_event.name)
+        event_bubble = lambda: day_view.get_event(test_event.name)
+        self.assertThat(event_bubble, Eventually(NotEquals(None)))
         event_details_page = day_view.open_event(test_event.name)
         self.assertEqual(
             test_event, event_details_page.get_event_information())
@@ -81,5 +90,5 @@ class NewEventTestCase(CalendarTestCase):
 
         day_view = day_view.delete_event(test_event.name)
 
-        self.assertThat(lambda: day_view.get_event(test_event.name),
+        self.assertThat(lambda: self._event_exists(test_event.name),
                         Eventually(Equals(False)))
