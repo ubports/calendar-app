@@ -452,12 +452,12 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             self._select_calendar(event_information.calendar)
         if event_information.name is not None:
             self._fill_name(event_information.name)
-        #if event_information.description is not None:
-        #    self._fill_description(event_information.description)
-        #if event_information.location is not None:
-        #    self._fill_location(event_information.location)
-        #if event_information.guests is not None:
-        #    self._fill_guests(event_information.guests)
+        if event_information.description is not None:
+            self._fill_description(event_information.description)
+        if event_information.location is not None:
+            self._fill_location(event_information.location)
+        if event_information.guests is not None:
+            self._fill_guests(event_information.guests)
 
     def _fill_name(self, value):
         self._ensure_entry_field_visible_and_write('newEventName', value)

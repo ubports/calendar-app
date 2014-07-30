@@ -59,12 +59,13 @@ class NewEventTestCase(CalendarTestCase):
         try:
             day_view = self.main_view.go_to_day_view()
             day_view.get_event(event_name, False)
-        except Exception as exception:
+        except Exception:
             return False
         return True
 
     # TODO, add test to check events are displayed properly
     # after multiple operations
+    # https://bugs.launchpad.net/ubuntu-calendar-app/+bug/1350605
 
     def test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.
@@ -82,7 +83,6 @@ class NewEventTestCase(CalendarTestCase):
         event_details_page = day_view.open_event(test_event.name)
         self.assertEqual(
             test_event, event_details_page.get_event_information())
-
 
     def test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
