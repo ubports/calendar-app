@@ -42,6 +42,7 @@ class NewEventTestCase(CalendarTestCase):
     def _try_delete_event(self, event_name):
         try:
             day_view = self.main_view.go_to_day_view()
+            logger.debug("About to delete event from try_delete_event")
             day_view.delete_event(event_name)
         except Exception as exception:
             logger.warn(str(exception))
@@ -57,12 +58,14 @@ class NewEventTestCase(CalendarTestCase):
 
         day_view = self.main_view.go_to_day_view()
         original_events = day_view.get_events()
+        logger.debug("Original events are: " + str(original_events))
 
         new_event_page = self.main_view.go_to_new_event()
         new_event_page.add_event(test_event)
+        logger.debug("Events after add are: " + str(day_view.get_events()))
 
         self.addCleanup(self._try_delete_event, test_event.name)
-
+        logger.debug("Events before assert are: " + str(day_view.get_events()))
         self.assertThat(
             day_view.get_events,
             Eventually(HasLength(len(original_events) + 1)))
@@ -76,10 +79,13 @@ class NewEventTestCase(CalendarTestCase):
 
         day_view = self.main_view.go_to_day_view()
         original_events = day_view.get_events()
+        logger.debug("Original events are: " + str(original_events))
 
         new_event_page = self.main_view.go_to_new_event()
         day_view = new_event_page.add_event(event)
+        logger.debug("Events after add are: " + str(day_view.get_events()))
         day_view = day_view.delete_event(event.name)
+        logger.debug("Events after delete are " + str(day_view.get_events()))
 
         self.assertThat(day_view.get_events,
                         Eventually(HasLength(len(original_events))))
