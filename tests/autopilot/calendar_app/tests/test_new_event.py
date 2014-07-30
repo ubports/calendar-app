@@ -77,18 +77,20 @@ class NewEventTestCase(CalendarTestCase):
         day_view, test_event = self._add_event()
 
         self.addCleanup(self._try_delete_event, test_event.name)
-        day_view.get_event(test_event.name)
+
         event_bubble = lambda: day_view.get_event(test_event.name)
         self.assertThat(event_bubble, Eventually(NotEquals(None)))
+
         event_details_page = day_view.open_event(test_event.name)
-        self.assertEqual(
-            test_event, event_details_page.get_event_information())
+
+        self.assertEqual(test_event,
+                         event_details_page.get_event_information())
 
     def test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
         day_view, test_event = self._add_event()
 
-        day_view = day_view.delete_event(test_event.name)
+        day_view.delete_event(test_event.name)
 
         self.assertThat(lambda: self._event_exists(test_event.name),
                         Eventually(Equals(False)))
