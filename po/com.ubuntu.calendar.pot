@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-30 22:09+0200\n"
+"POT-Creation-Date: 2014-07-30 22:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,10 +119,10 @@ msgstr ""
 msgid "Never"
 msgstr ""
 
-#. TRANSLATORS: this is a time & Date formatting string,
+#. TRANSLATORS: this is a date shown in the event details view,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59 ../EventDetails.qml:137
-msgid "dd-MMM-yyyy"
+#: ../EventDetails.qml:59
+msgid "ddd MMMM d yyyy"
 msgstr ""
 
 #: ../EventDetails.qml:62
@@ -145,6 +145,12 @@ msgstr ""
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
+msgstr ""
+
+#. TRANSLATORS: this is a time & Date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+#: ../EventDetails.qml:137
+msgid "dd-MMM-yyyy"
 msgstr ""
 
 #: ../EventDetails.qml:210
