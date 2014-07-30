@@ -21,7 +21,7 @@ from __future__ import absolute_import
 import logging
 
 from autopilot.matchers import Eventually
-from testtools.matchers import HasLength
+from testtools.matchers import Equals
 
 from calendar_app import data
 from calendar_app.tests import CalendarTestCase
@@ -42,10 +42,21 @@ class NewEventTestCase(CalendarTestCase):
     def _try_delete_event(self, event_name):
         try:
             day_view = self.main_view.go_to_day_view()
-            logger.debug("About to delete event from try_delete_event")
             day_view.delete_event(event_name)
         except Exception as exception:
             logger.warn(str(exception))
+
+    def _add_event(self):
+        test_event = data.Event.make_unique()
+        day_view = self.main_view.go_to_day_view()
+
+        new_event_page = self.main_view.go_to_new_event()
+        new_event_page.add_event(test_event)
+
+        return day_view, test_event
+
+    # TODO, add test to check events are displayed properly
+    # after multiple operations
 
     def test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.
@@ -54,38 +65,21 @@ class NewEventTestCase(CalendarTestCase):
         with an end time, without recurrence and without reminders.
 
         """
-        test_event = data.Event.make_unique()
-
-        day_view = self.main_view.go_to_day_view()
-        original_events = day_view.get_events()
-        logger.debug("Original events are: " + str(original_events))
-
-        new_event_page = self.main_view.go_to_new_event()
-        new_event_page.add_event(test_event)
-        logger.debug("Events after add are: " + str(day_view.get_events()))
+        day_view, test_event = self._add_event()
 
         self.addCleanup(self._try_delete_event, test_event.name)
-        logger.debug("Events before assert are: " + str(day_view.get_events()))
-        self.assertThat(
-            day_view.get_events,
-            Eventually(HasLength(len(original_events) + 1)))
+        self.assertThat(lambda: day_view.get_event(test_event.name),
+                        Eventually(Equals(True)))
         event_details_page = day_view.open_event(test_event.name)
         self.assertEqual(
             test_event, event_details_page.get_event_information())
 
+
     def test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
-        event = data.Event.make_unique()
+        day_view, test_event = self._add_event()
 
-        day_view = self.main_view.go_to_day_view()
-        original_events = day_view.get_events()
-        logger.debug("Original events are: " + str(original_events))
+        day_view = day_view.delete_event(test_event.name)
 
-        new_event_page = self.main_view.go_to_new_event()
-        day_view = new_event_page.add_event(event)
-        logger.debug("Events after add are: " + str(day_view.get_events()))
-        day_view = day_view.delete_event(event.name)
-        logger.debug("Events after delete are " + str(day_view.get_events()))
-
-        self.assertThat(day_view.get_events,
-                        Eventually(HasLength(len(original_events))))
+        self.assertThat(lambda: day_view.get_event(test_event.name),
+                        Eventually(Equals(False)))

@@ -240,9 +240,10 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     """Autopilot helper for the Day View page."""
 
-    def get_events(self):
+    def get_events(self, visible=True):
         """Return the events for this day.
 
+        :param visible: toggles filtering for only visible events
         :return: A list with the events. Each event is a tuple with name, start
            time and end time.
 
@@ -257,10 +258,39 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         events = []
         for event in event_bubbles:
             # Event-bubbles objects are recycled, only show visible ones.
-            if event.visible:
+            if visible:
+                if event.visible:
+                    events.append(event.get_information())
+            else:
                 events.append(event.get_information())
 
         return events
+
+    def get_event(self, event_name, visible=True):
+        """Return a specific event from current day.
+
+        :param visible: toggles filtering for only visible events
+        :param event_name: the name of the event.
+            If more than one name matches, return the first matching event
+        :return: The event object
+        """
+        event_bubbles = self._get_selected_day_event_bubbles()
+
+        # sort by y, x
+        event_bubbles = sorted(
+            event_bubbles,
+            key=lambda bubble: (bubble.globalRect.y, bubble.globalRect.x))
+
+        for event in event_bubbles:
+            # Event-bubbles objects are recycled, only show visible ones.
+            if event.get_name() == event_name:
+                if (visible and event.visible) or not visible:
+                    matched_event = event
+                    break
+
+        if not matched_event:
+            raise CalendarException('No event found for %s' % event_name)
+        return event
 
     def _get_current_day_component(self):
         components = self.select_many('TimeLineBaseComponent')
