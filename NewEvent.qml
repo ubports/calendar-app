@@ -744,7 +744,7 @@ Page {
         function isContactAlreadyAdded(contact) {
             for(var i=0; i < contactList.array.length ; ++i) {
                 var attendee = contactList.array[i];
-                if( attendee.emailAddress === contact.email.emailAddress) {
+                if( attendee.attendeeId === contact.contactId) {
                     return true;
                 }
             }
@@ -755,6 +755,7 @@ Page {
             var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
             attendee.name = contact.name.firstName + " " + contact.name.lastName;
             attendee.emailAddress = contact.email.emailAddress;
+            attendee.attendeeId = contact.contactId;
             return attendee;
         }
     }
