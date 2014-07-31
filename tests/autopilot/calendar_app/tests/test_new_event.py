@@ -53,6 +53,9 @@ class NewEventTestCase(CalendarTestCase):
         new_event_page = self.main_view.go_to_new_event()
         new_event_page.add_event(test_event)
 
+        # workaround bug 1350605
+        day_view = self._workaround_bug_1350605()
+
         return day_view, test_event
 
     def _event_exists(self, event_name):
@@ -62,6 +65,13 @@ class NewEventTestCase(CalendarTestCase):
         except Exception:
             return False
         return True
+
+    def _workaround_bug_1350605(self):
+        # due to bug 1350605, let's force load another view
+        # before returning to dayview to prevent refresh issues
+        self.main_view.go_to_month_view()
+        day_view = self.main_view.go_to_day_view()
+        return day_view
 
     # TODO, add test to check events are displayed properly
     # after multiple operations
@@ -78,11 +88,6 @@ class NewEventTestCase(CalendarTestCase):
 
         self.addCleanup(self._try_delete_event, test_event.name)
 
-        # due to bug 1350605, let's force load another view
-        # before returning to dayview
-        self.main_view.go_to_month_view()
-        day_view = self.main_view.go_to_day_view()
-
         event_bubble = lambda: day_view.get_event(test_event.name)
         self.assertThat(event_bubble, Eventually(NotEquals(None)))
 
@@ -95,12 +100,9 @@ class NewEventTestCase(CalendarTestCase):
         """Test deleting an event must no longer show it on the day view."""
         day_view, test_event = self._add_event()
 
-        # due to bug 1350605, let's force load another view
-        # before returning to dayview
-        self.main_view.go_to_month_view()
-        day_view = self.main_view.go_to_day_view()
-
         day_view.delete_event(test_event.name)
+
+        self._workaround_bug_1350605()
 
         self.assertThat(lambda: self._event_exists(test_event.name),
                         Eventually(Equals(False)))
