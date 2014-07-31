@@ -560,7 +560,7 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model: Defines.recurrenceLabel
                     containerHeight: itemHeight * 4
-                    onClicked:  Qt.inputMethod.hide();
+                    onExpandedChanged: Qt.inputMethod.hide();
                 }
             }
 
@@ -621,7 +621,7 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(3)
                     model: Defines.limitLabel
                     containerHeight: itemHeight * 4
-                    onClicked:  Qt.inputMethod.hide();
+                    onExpandedChanged:   Qt.inputMethod.hide();
 
                 }
             }
@@ -660,7 +660,7 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     containerHeight: itemHeight * 4
                     model: Defines.reminderLabel
-                    onClicked:  Qt.inputMethod.hide();
+                    onExpandedChanged:   Qt.inputMethod.hide();
                 }
             }
         }
