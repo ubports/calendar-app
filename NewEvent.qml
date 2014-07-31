@@ -269,6 +269,7 @@ Page {
     }
 
     function openDatePicker (element, caller, callerProperty, mode) {
+        Qt.inputMethod.hide();
         element.highlighted = true;
         var picker = PickerPanel.openDatePicker(caller, callerProperty, mode);
         if (!picker) return;
