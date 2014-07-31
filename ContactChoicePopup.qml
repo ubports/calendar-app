@@ -25,13 +25,13 @@ Popover {
         filters: [
             DetailFilter{
                 detail: ContactDetail.Name
-                field: Name.FirstName
+                field: Name.firstName
                 matchFlags: Filter.MatchContains
                 value: searchBox.text
             },
             DetailFilter{
                 detail: ContactDetail.Name
-                field: Name.LastName
+                field: Name.lastName
                 matchFlags: Filter.MatchContains
                 value: searchBox.text
             }

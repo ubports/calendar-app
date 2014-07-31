@@ -466,11 +466,14 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             self.pointing_device.click_object(guests_btn)
             guest_input = main_view.select_single(
                 NewEventEntryField, objectName='contactPopoverInput')
-            guest_input.write(guest)
-
             contacts = main_view.select_single(ubuntuuitoolkit.QQuickListView,
                                                objectName='contactPopoverList')
-            contacts.click_element('contactPopoverList0')
+            guest_input.write(guest)
+
+            try:
+                contacts.click_element('contactPopoverList0')
+            except ubuntuuitoolkit.ToolkitException:
+                raise CalendarException('No guest found with name %s' % guest)
 
     def _select_calendar(self, calendar):
         self._get_calendar().select_option('Label', text=calendar)
