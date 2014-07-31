@@ -78,6 +78,11 @@ class NewEventTestCase(CalendarTestCase):
 
         self.addCleanup(self._try_delete_event, test_event.name)
 
+        # due to bug 1350605, let's force load another view
+        # before returning to dayview
+        self.main_view.go_to_month_view()
+        day_view = self.main_view.go_to_day_view()
+
         event_bubble = lambda: day_view.get_event(test_event.name)
         self.assertThat(event_bubble, Eventually(NotEquals(None)))
 
@@ -89,6 +94,11 @@ class NewEventTestCase(CalendarTestCase):
     def test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
         day_view, test_event = self._add_event()
+
+        # due to bug 1350605, let's force load another view
+        # before returning to dayview
+        self.main_view.go_to_month_view()
+        day_view = self.main_view.go_to_day_view()
 
         day_view.delete_event(test_event.name)
 
