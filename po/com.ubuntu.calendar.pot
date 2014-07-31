@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-30 22:25+0200\n"
+"POT-Creation-Date: 2014-07-31 20:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,7 +115,7 @@ msgstr ""
 msgid "Event Details"
 msgstr ""
 
-#: ../EventDetails.qml:55
+#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
 msgstr ""
 
@@ -197,6 +197,14 @@ msgstr ""
 msgid "Repetition Ends"
 msgstr ""
 
+#: ../LimitLabelDefines.qml:4
+msgid "After X Occurrence"
+msgstr ""
+
+#: ../LimitLabelDefines.qml:5
+msgid "After Date"
+msgstr ""
+
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
 msgstr ""
@@ -241,6 +249,78 @@ msgstr ""
 #. TRANSLATORS: This refers to no of occurences of an event.
 #: ../NewEvent.qml:632
 msgid "Recurrence"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:4
+msgid "Once"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:5
+msgid "Daily"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:6
+msgid "Every Weekday (Monday to Friday)"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:7
+msgid "Every Monday, Wednesday and Friday"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:8
+msgid "Every Tuesday and Thursday"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:9
+msgid "Weekly"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:10
+msgid "Monthly"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:11
+msgid "Yearly"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:4
+msgid "No Reminder"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:5
+msgid "5 minutes"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:6
+msgid "15 minutes"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:7
+msgid "30 minutes"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:8
+msgid "1 hour"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:9
+msgid "2 hours"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:10
+msgid "1 day"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:11
+msgid "2 days"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:12
+msgid "1 week"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:13
+msgid "2 weeks"
 msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
