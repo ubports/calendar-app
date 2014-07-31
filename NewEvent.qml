@@ -751,7 +751,7 @@ Page {
 
         function contactToAttendee(contact) {
             var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
-            attendee.name = contact.name.firstName + " " + contact.name.lastName;
+            attendee.name = contact.displayLabel.label
             attendee.emailAddress = contact.email.emailAddress;
             attendee.attendeeId = contact.contactId;
             return attendee;

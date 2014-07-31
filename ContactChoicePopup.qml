@@ -15,6 +15,7 @@ Popover {
     signal contactSelected(var contact);
 
     Label {
+        id: noContact
         anchors.centerIn: parent
         text: i18n.tr("No contact")
         visible: contactModel.contacts.length === 0
@@ -32,6 +33,12 @@ Popover {
             DetailFilter{
                 detail: ContactDetail.Name
                 field: Name.LastName
+                matchFlags: Filter.MatchContains
+                value: searchBox.text
+            },
+            DetailFilter{
+                detail: ContactDetail.DisplayLabel
+                field: DisplayLabel.Label
                 matchFlags: Filter.MatchContains
                 value: searchBox.text
             }
@@ -77,7 +84,7 @@ Popover {
                 objectName: "contactPopoverList%1".arg(index)
                 property var item: contactModel.contacts[index]
                 height: units.gu(4)
-                text: item ? item.name.firstName + ", " + item.name.lastName : ""
+                text: item ? item.displayLabel.label : ""
 
                 onClicked: {
                     root.contactSelected(item);
