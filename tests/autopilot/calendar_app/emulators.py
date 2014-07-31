@@ -23,6 +23,7 @@ import autopilot.logging
 from dateutil import tz
 
 import ubuntuuitoolkit
+from ubuntuuitoolkit._custom_proxy_objects import _flickable
 from ubuntuuitoolkit import (
     emulators as toolkit_emulators,
     pickers
@@ -239,14 +240,16 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     """Autopilot helper for the Day View page."""
 
-    def get_events(self, filter_duplicates=False):
+    @autopilot.logging.log_action(logger.info)
+    def get_events(self, visible=True):
         """Return the events for this day.
 
+        :param visible: toggles filtering for only visible events
         :return: A list with the events. Each event is a tuple with name, start
            time and end time.
 
         """
-        event_bubbles = self._get_selected_day_event_bubbles(filter_duplicates)
+        event_bubbles = self._get_selected_day_event_bubbles()
 
         # sort by y, x
         event_bubbles = sorted(
@@ -255,9 +258,39 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
         events = []
         for event in event_bubbles:
-            events.append(event.get_information())
+            # Event-bubbles objects are recycled, only show visible ones.
+            if visible:
+                if event.visible:
+                    events.append(event.get_information())
+            else:
+                events.append(event.get_information())
 
         return events
+
+    @autopilot.logging.log_action(logger.info)
+    def get_event(self, event_name, visible=True):
+        """Return a specific event from current day.
+
+        :param visible: toggles filtering for only visible events
+        :param event_name: the name of the event.
+            If more than one name matches, return the first matching event
+        :return: The event object
+        """
+        event_bubbles = self._get_selected_day_event_bubbles()
+
+        # sort by y, x
+        event_bubbles = sorted(
+            event_bubbles,
+            key=lambda bubble: (bubble.globalRect.y, bubble.globalRect.x))
+
+        for event in event_bubbles:
+            # Event-bubbles objects are recycled, only show visible ones.
+            if event.get_name() == event_name:
+                if (visible and event.visible) or not visible:
+                    matched_event = event
+                    return matched_event
+
+        raise CalendarException('No event found for %s' % event_name)
 
     def _get_current_day_component(self):
         components = self.select_many('TimeLineBaseComponent')
@@ -269,19 +302,12 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             raise CalendarException(
                 'Could not find the current day component.')
 
-    def _get_selected_day_event_bubbles(self, filter_duplicates):
+    def _get_selected_day_event_bubbles(self):
         selected_day = self._get_current_day_component()
-        return self._get_event_bubbles(selected_day, filter_duplicates)
+        return self._get_event_bubbles(selected_day)
 
-    def _get_event_bubbles(self, selected_day, filter_duplicates):
+    def _get_event_bubbles(self, selected_day):
         event_bubbles = selected_day.select_many(EventBubble)
-        if filter_duplicates:
-            # XXX remove this once bug http://pad.lv/1334833 is fixed.
-            # --elopio - 2014-06-26
-            separator_id = selected_day.select_single(
-                'QQuickRectangle', objectName='separator').id
-            event_bubbles = self._remove_duplicate_events(
-                separator_id, event_bubbles)
         return event_bubbles
 
     def _remove_duplicate_events(self, separator_id, event_bubbles):
@@ -293,14 +319,14 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         return events
 
     @autopilot.logging.log_action(logger.info)
-    def open_event(self, name, filter_duplicates=False):
+    def open_event(self, name):
         """Open an event.
 
         :param name: The name of the event to open.
         :return: The Event Details page.
 
         """
-        event_bubbles = self._get_selected_day_event_bubbles(filter_duplicates)
+        event_bubbles = self._get_selected_day_event_bubbles()
         for bubble in event_bubbles:
             if bubble.get_name() == name:
                 return bubble.open_event()
@@ -309,14 +335,14 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
                 'Could not find event with name {}.'.format(name))
 
     @autopilot.logging.log_action(logger.info)
-    def delete_event(self, name, filter_duplicates=False):
+    def delete_event(self, name):
         """Delete an event.
 
         :param name: The name of the event to delete.
         :return: The Day View page.
 
         """
-        event_details_page = self.open_event(name, filter_duplicates)
+        event_details_page = self.open_event(name)
         return event_details_page.delete()
 
     @autopilot.logging.log_action(logger.info)
@@ -382,6 +408,16 @@ class EventBubble(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
             EventDetails, objectName='eventDetails')
 
 
+# override toolkit helper to
+# workaround bug https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1343916
+class QQuickFlickable(_flickable.QQuickFlickable):
+
+    def _slow_drag(self, start_x, stop_x, start_y, stop_y):
+        rate = (self.flickDeceleration + 250) / 350
+        self.pointing_device.drag(start_x, start_y, stop_x, stop_y, rate=rate)
+        self.pointing_device.click()
+
+
 class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     """Autopilot helper for the New Event page."""
@@ -406,12 +442,14 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         """Fill the add event form.
 
         :param event_information: Values of the event to fill the form.
-        :type event_information: data object with the attributes name,
-            description, location and guests.
+        :type event_information: data object with the attributes
+            calendar, name, description, location and guests.
 
         """
         # TODO fill start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
+        if event_information.calendar is not None:
+            self._select_calendar(event_information.calendar)
         if event_information.name is not None:
             self._fill_name(event_information.name)
         if event_information.description is not None:
@@ -453,16 +491,24 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self._ensure_entry_field_visible_and_write(
             'eventPeopleInput', value[0])
 
+    def _select_calendar(self, calendar):
+        self._get_calendar().select_option('Label', text=calendar)
+
+    def _get_calendar(self):
+        return self.select_single(ubuntuuitoolkit.OptionSelector,
+                                  objectName="calendarsOption")
+
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
+        calendar = self._get_calendar().get_current_label().text
         name = self._get_new_event_entry_field('newEventName').text
         description = self._get_description_text_area().text
         location = self._get_new_event_entry_field('eventLocationInput').text
         # TODO once bug http://pad.lv/1295941 is fixed, we will have to build
         # the list of guests. --elopio - 2014-06-26
         guests = [self._get_new_event_entry_field('eventPeopleInput').text]
-        return data.Event(name, description, location, guests)
+        return data.Event(calendar, name, description, location, guests)
 
     @autopilot.logging.log_action(logger.info)
     def _save(self):
@@ -499,11 +545,15 @@ class EventDetails(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     def get_event_information(self):
         """Return the information of the event."""
+        calendar = self._get_calendar()
         name = self._get_name()
         description = self._get_description()
         location = self._get_location()
         guests = self._get_guests()
-        return data.Event(name, description, location, guests)
+        return data.Event(calendar, name, description, location, guests)
+
+    def _get_calendar(self):
+        return self._get_label_text('calendarName')
 
     def _get_name(self):
         return self._get_label_text('titleLabel')

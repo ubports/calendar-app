@@ -21,7 +21,7 @@ from __future__ import absolute_import
 import logging
 
 from autopilot.matchers import Eventually
-from testtools.matchers import HasLength
+from testtools.matchers import Equals, NotEquals
 
 from calendar_app import data
 from calendar_app.tests import CalendarTestCase
@@ -34,16 +34,48 @@ class NewEventTestCase(CalendarTestCase):
 
     # TODO add tests for events in the future and in the past, all day event,
     # event with recurrence and event with reminders.
+    # also add tests for saving to different calendars
     # We currently can't change the date of the new event because of bug
     # http://pad.lv/1328600 on Autopilot.
     # --elopio - 2014-06-26
 
-    def try_delete_event(self, event_name, filter_duplicates):
+    def _try_delete_event(self, event_name):
         try:
             day_view = self.main_view.go_to_day_view()
-            day_view.delete_event(event_name, filter_duplicates)
+            day_view.delete_event(event_name)
         except Exception as exception:
             logger.warn(str(exception))
+
+    def _add_event(self):
+        test_event = data.Event.make_unique()
+        day_view = self.main_view.go_to_day_view()
+
+        new_event_page = self.main_view.go_to_new_event()
+        new_event_page.add_event(test_event)
+
+        # workaround bug 1350605
+        day_view = self._workaround_bug_1350605()
+
+        return day_view, test_event
+
+    def _event_exists(self, event_name):
+        try:
+            day_view = self.main_view.go_to_day_view()
+            day_view.get_event(event_name, False)
+        except Exception:
+            return False
+        return True
+
+    def _workaround_bug_1350605(self):
+        # due to bug 1350605, let's force load another view
+        # before returning to dayview to prevent refresh issues
+        self.main_view.go_to_month_view()
+        day_view = self.main_view.go_to_day_view()
+        return day_view
+
+    # TODO, add test to check events are displayed properly
+    # after multiple operations
+    # https://bugs.launchpad.net/ubuntu-calendar-app/+bug/1350605
 
     def test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.
@@ -52,40 +84,25 @@ class NewEventTestCase(CalendarTestCase):
         with an end time, without recurrence and without reminders.
 
         """
-        test_event = data.Event.make_unique()
+        day_view, test_event = self._add_event()
 
-        day_view = self.main_view.go_to_day_view()
-        original_events = day_view.get_events()
+        self.addCleanup(self._try_delete_event, test_event.name)
 
-        new_event_page = self.main_view.go_to_new_event()
-        # XXX remove this once bug http://pad.lv/1334833 is fixed.
-        # --elopio - 2014-06-26
-        filter_duplicates = len(original_events) > 0
-        self.addCleanup(
-            self.try_delete_event, test_event.name, filter_duplicates)
-        day_view = new_event_page.add_event(test_event)
+        event_bubble = lambda: day_view.get_event(test_event.name)
+        self.assertThat(event_bubble, Eventually(NotEquals(None)))
 
-        def get_new_events():
-            return day_view.get_events(filter_duplicates)
-
-        self.assertThat(
-            get_new_events, Eventually(HasLength(len(original_events) + 1)))
         event_details_page = day_view.open_event(test_event.name)
-        self.assertEqual(
-            test_event, event_details_page.get_event_information())
+
+        self.assertEqual(test_event,
+                         event_details_page.get_event_information())
 
     def test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
-        # TODO remove the skip once the bug is fixed. --elopio - 2014-06-26
-        self.skipTest('This test fails because of bug http://pad.lv/1334883')
-        event = data.Event.make_unique()
+        day_view, test_event = self._add_event()
 
-        day_view = self.main_view.go_to_day_view()
-        original_events = day_view.get_events()
+        day_view.delete_event(test_event.name)
 
-        new_event_page = self.main_view.go_to_new_event()
-        day_view = new_event_page.add_event(event)
-        day_view = day_view.delete_event(event.name, len(original_events) > 0)
+        self._workaround_bug_1350605()
 
-        events_after_delete = day_view.get_events()
-        self.assertEqual(original_events, events_after_delete)
+        self.assertThat(lambda: self._event_exists(test_event.name),
+                        Eventually(Equals(False)))

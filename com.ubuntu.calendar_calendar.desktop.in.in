@@ -8,3 +8,4 @@ _Name=Calendar
 _Comment=A calendar for Ubuntu which syncs with online accounts.
 _Keywords=calendar;event;day;week;year;appointment;meeting;
 X-Ubuntu-Touch=true
+X-Ubuntu-Default-Department-ID=accessories
