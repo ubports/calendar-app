@@ -33,45 +33,19 @@ var recurrenceValue = [ QtPim.RecurrenceRule.Invalid,
     QtPim.RecurrenceRule.Yearly];
 
 function getReminderLabels() {
-    var object = Qt.createQmlObject('\
-        import QtQuick 2.0;\
-        import Ubuntu.Components 0.1;\
-        QtObject {\
-            property var reminderLabel:[i18n.tr("No Reminder"),\
-                i18n.tr("5 minutes"),\
-                i18n.tr("15 minutes"),\
-                i18n.tr("30 minutes"),\
-                i18n.tr("1 hour"),\
-                i18n.tr("2 hours"),\
-                i18n.tr("1 day"),\
-                i18n.tr("2 days"),\
-                i18n.tr("1 week"),\
-                i18n.tr("2 weeks")];}', Qt.application, 'ReminderLabelObj');
+    var component = Qt.createComponent(Qt.resolvedUrl("ReminderLabelDefines.qml"));
+    var object = component.createObject(Qt.application);
     return object.reminderLabel;
 }
 
 function getRecurrenceLabels() {
-    var object = Qt.createQmlObject('\
-        import QtQuick 2.0;\
-        import Ubuntu.Components 0.1;\
-        QtObject {\
-            property var recurrenceLabel:[i18n.tr("Once"),\
-                i18n.tr("Daily"),\
-                i18n.tr("Every Weekday (Monday to Friday)"),\
-                i18n.tr("Every Monday, Wednesday and Friday"),\
-                i18n.tr("Every Tuesday and Thursday"),\
-                i18n.tr("Weekly"),\
-                i18n.tr("Monthly"),\
-                i18n.tr("Yearly")];}', Qt.application, 'RecurrenceLabelObj');
+    var component = Qt.createComponent(Qt.resolvedUrl("RecurrenceLabelDefines.qml"));
+    var object = component.createObject(Qt.application);
     return object.recurrenceLabel;
 }
 function getLimitLabels(){
-    var object = Qt.createQmlObject('\
-        import QtQuick 2.0;\
-        import Ubuntu.Components 0.1;\
-        QtObject {\
-            property var limitLabel:[i18n.tr("Never"),i18n.tr("After X Occurrence"),\
-                i18n.tr("After Date")];}', Qt.application, 'LimitLabelObj');
+    var component = Qt.createComponent(Qt.resolvedUrl("LimitLabelDefines.qml"));
+    var object = component.createObject(Qt.application);
     return object.limitLabel;
 }
 function getWeekLabels(){
