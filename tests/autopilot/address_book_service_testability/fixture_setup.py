@@ -82,14 +82,19 @@ class SetupEnvironmentVariables(Fixture):
         local_location = os.path.join(
             local_location,
             'tests/autopilot/address_book_service_testability/data/vcard.vcf')
-        print('local location %s' % local_location)
         bin_location = '/usr/share/address-book-service/data/vcard.vcf'
+        cal_location = os.path.join('/usr/lib/python2.7/dist-packages/',
+                                    'address_book_service_testability/data/',
+                                    'vcard.vcf')
         if os.path.exists(local_location):
             return local_location
         elif os.path.exists(bin_location):
             return bin_location
+        elif os.path.exists(cal_location):
+            return bin_location
         else:
-            raise RuntimeError('No VCARD found.')
+            raise RuntimeError('No VCARD found in %s or %s or %s' %
+                               (local_location, bin_location, cal_location))
 
 
 class RestartService(Fixture):
