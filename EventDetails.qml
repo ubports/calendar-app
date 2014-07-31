@@ -67,10 +67,10 @@ Page {
                 if (index === RecurrenceRule.Weekly) {
                     var sorted = recurrenceRule[0].daysOfWeek.sort();
                     var val = "";
-                    for(var j=0;j<sorted.length;++j){
-                        val += Qt.locale().dayName(sorted[j],Locale.LongFormat) + " ,"
+                    for (var j=0; j<sorted.length; ++j) {
+                        val += Qt.locale().dayName(sorted[j], Locale.ShortFormat) + ", ";
                     }
-                    val = val.slice(0, -1); // Trim last comma from the string
+                    val = val.slice(0, -2); // Trim last comma from the string
                     // TRANSLATORS: the argument is a day of the week or a list of days
                     var recurrence = i18n.tr("Every %1".arg(val));
                     weekDaysHeader.value = recurrence;
