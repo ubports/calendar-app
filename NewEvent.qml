@@ -65,9 +65,21 @@ Page {
         }
     }
 
+    function selectCalendar(collectionId) {
+        var index = 0;
+        for(var i=0; i < calendarsOption.model.length; ++i){
+            if(calendarsOption.model[i].collectionId === collectionId){
+                index = i;
+                break;
+            }
+        }
+        calendarsOption.selectedIndex = index
+    }
+
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+        selectCalendar(model.defaultCollection().collectionId);
     }
     //Editing Event
     function editEvent(e) {
@@ -145,14 +157,7 @@ Page {
         }
         reminderOption.selectedIndex = index;
 
-        index = 0;
-        for(var i=0; i < calendarsOption.model.length; ++i){
-            if(calendarsOption.model[i].collectionId === e.collectionId){
-                index = i;
-                break;
-            }
-        }
-        calendarsOption.selectedIndex = index
+        selectCalendar(e.collectionId);
     }
     function getWeekDaysIndex(daysOfWeek){
         var index = 0;
