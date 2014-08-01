@@ -65,9 +65,21 @@ Page {
         }
     }
 
+    function selectCalendar(collectionId) {
+        var index = 0;
+        for(var i=0; i < calendarsOption.model.length; ++i){
+            if(calendarsOption.model[i].collectionId === collectionId){
+                index = i;
+                break;
+            }
+        }
+        calendarsOption.selectedIndex = index
+    }
+
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+        selectCalendar(model.defaultCollection().collectionId);
     }
     //Editing Event
     function editEvent(e) {
@@ -95,9 +107,8 @@ Page {
         if( e.itemType === Type.Event ) {
             if(e.attendees){
                 for( var j = 0 ; j < e.attendees.length ; ++j ) {
-                    personEdit.text += e.attendees[j].name;
-                    if(j!== e.attendees.length-1)
-                        personEdit.text += ",";
+                    contactList.array.push(e.attendees[j]);
+                    contactModel.append(e.attendees[j]);
                 }
             }
 
@@ -146,14 +157,7 @@ Page {
         }
         reminderOption.selectedIndex = index;
 
-        index = 0;
-        for(var i=0; i < calendarsOption.model.length; ++i){
-            if(calendarsOption.model[i].collectionId === e.collectionId){
-                index = i;
-                break;
-            }
-        }
-        calendarsOption.selectedIndex = index
+        selectCalendar(e.collectionId);
     }
     function getWeekDaysIndex(daysOfWeek){
         var index = 0;
@@ -189,14 +193,14 @@ Page {
 
             event.allDay = allDayEventCheckbox.checked;
 
-
             if( event.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
-                if( personEdit.text != "") {
-                    var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
-                    attendee.name = personEdit.text;
-                    event.setDetail(attendee);
+                var contacts = [];
+                for(var i=0; i < contactList.array.length ; ++i) {
+                    var contact = contactList.array[i]
+                    contacts.push(contact);
                 }
+                event.attendees = contacts;
 
                 var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
                 var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
@@ -539,12 +543,44 @@ Page {
                 objectName: "eventLocationInput"
             }
 
-            NewEventEntryField{
-                id: personEdit
+            UbuntuShape {
                 width: parent.width
-                title: i18n.tr("Guests")
-                objectName: "eventPeopleInput"
-                visible: event.itemType === Type.Event
+                height: contactList.height
+                Column{
+                    id: contactList
+                    objectName: "guestList"
+                    spacing: units.gu(1)
+                    width: parent.width
+                    clip: true
+                    property var array: []
+                    ListModel{
+                        id: contactModel
+                    }
+                    Button{
+                        text: i18n.tr("Add Guest")
+                        objectName: "addGuestButton"
+                        width: parent.width
+                        onClicked: {
+                            var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
+                            popup.contactSelected.connect( function(contact) {
+                                var t = internal.contactToAttendee(contact);
+                                if( !internal.isContactAlreadyAdded(contact) ) {
+                                    contactModel.append(t);
+                                    contactList.array.push(t);
+                                }
+                            });
+                        }
+                    }
+
+                    Repeater{
+                        model: contactModel
+                        delegate: Standard {
+                            objectName: "eventGuest%1".arg(index)
+                            height: units.gu(4)
+                            text: name
+                        }
+                    }
+                }
             }
 
             Item {
@@ -702,12 +738,29 @@ Page {
             Qt.inputMethod.hide()
             titleEdit.focus = false
             locationEdit.focus = false
-            personEdit.focus = false
             startDateInput.focus = false
             startTimeInput.focus = false
             endDateInput.focus = false
             endTimeInput.focus = false
             messageEdit.focus = false
+        }
+
+        function isContactAlreadyAdded(contact) {
+            for(var i=0; i < contactList.array.length ; ++i) {
+                var attendee = contactList.array[i];
+                if( attendee.attendeeId === contact.contactId) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function contactToAttendee(contact) {
+            var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
+            attendee.name = contact.displayLabel.label
+            attendee.emailAddress = contact.email.emailAddress;
+            attendee.attendeeId = contact.contactId;
+            return attendee;
         }
     }
 }
