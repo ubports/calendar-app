@@ -25,12 +25,21 @@ from testtools.matchers import Equals, NotEquals
 
 from calendar_app import data
 from calendar_app.tests import CalendarTestCase
+from address_book_service_testability import fixture_setup
 
 
 logger = logging.getLogger(__name__)
 
 
 class NewEventTestCase(CalendarTestCase):
+
+    # TODO once address_book_service_testability is packaged, remove
+    # packing the modules as part of testcase
+
+    def setUp(self):
+        contacts_backend = fixture_setup.AddressBookServiceDummyBackend()
+        self.useFixture(contacts_backend)
+        super(NewEventTestCase, self).setUp()
 
     # TODO add tests for events in the future and in the past, all day event,
     # event with recurrence and event with reminders.
