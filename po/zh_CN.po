@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-24 23:57+0530\n"
-"PO-Revision-Date: 2014-07-29 01:20+0000\n"
-"Last-Translator: Luo Lei <luolei@ubuntukylin.com>\n"
+"PO-Revision-Date: 2014-07-31 15:25+0000\n"
+"Last-Translator: Anthony Wong <anthony.wong@ubuntu.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-30 06:58+0000\n"
-"X-Generator: Launchpad (build 17131)\n"
+"X-Launchpad-Export-Date: 2014-08-01 07:08+0000\n"
+"X-Generator: Launchpad (build 17141)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -176,7 +176,7 @@ msgstr "提醒我"
 
 #: ../EventDetails.qml:410
 msgid "Repeats On"
-msgstr ""
+msgstr "重复于"
 
 #: ../EventDetails.qml:416
 msgid "Repetition Ends"
@@ -217,11 +217,11 @@ msgstr "描述"
 
 #: ../NewEvent.qml:574
 msgid "Repeats On:"
-msgstr ""
+msgstr "重复于："
 
 #: ../NewEvent.qml:609
 msgid "Recurring event ends"
-msgstr ""
+msgstr "重复事件结束"
 
 #. TRANSLATORS: This refers to no of occurences of an event.
 #: ../NewEvent.qml:631
