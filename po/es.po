@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-24 23:57+0530\n"
-"PO-Revision-Date: 2014-07-26 06:24+0000\n"
-"Last-Translator: Paco Molinero <paco@byasl.com>\n"
+"PO-Revision-Date: 2014-08-01 18:37+0000\n"
+"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-27 06:28+0000\n"
-"X-Generator: Launchpad (build 17131)\n"
+"X-Launchpad-Export-Date: 2014-08-02 06:35+0000\n"
+"X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -45,12 +45,12 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr "%1 Ev."
+msgstr "%1 ev."
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr "%1 Todos los eventos del día"
+msgstr "%1 eventos de todo el día"
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
 msgid "Calendars"
@@ -156,7 +156,7 @@ msgstr "Fin"
 
 #: ../EventDetails.qml:288 ../NewEvent.qml:492
 msgid "All Day event:"
-msgstr "Todos los eventos del día:"
+msgstr "Evento de todo el día:"
 
 #: ../EventDetails.qml:336 ../NewEvent.qml:537
 msgid "Location"
