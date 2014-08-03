@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-07-24 23:57+0530\n"
+"POT-Creation-Date: 2014-07-31 20:27+0200\n"
 "PO-Revision-Date: 2014-07-26 12:02+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-27 06:28+0000\n"
-"X-Generator: Launchpad (build 17131)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2014-08-03 06:10+0000\n"
+"X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -23,7 +24,7 @@ msgstr "Ingen kommende hendelser"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:131
+#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
 msgid "hh:mm"
 msgstr "hh:mm"
 
@@ -60,7 +61,7 @@ msgstr "Kalendere"
 msgid "Back"
 msgstr "Tilbake"
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:677
+#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:678
 msgid "Save"
 msgstr "Lagre"
 
@@ -70,7 +71,7 @@ msgstr "Velg farge"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:681
+#: ../NewEvent.qml:682
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -90,7 +91,7 @@ msgstr "Slett serie"
 msgid "Delete this"
 msgstr "Slett denne"
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:192
+#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
 msgid "Delete"
 msgstr "Slett"
 
@@ -110,77 +111,99 @@ msgstr "Rediger denne"
 msgid "Done"
 msgstr "Ferdig"
 
-#: ../EventDetails.qml:55
+#: ../EventDetails.qml:27
+msgid "Event Details"
+msgstr ""
+
+#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
 msgstr "Aldri"
 
-#. TRANSLATORS: this is a time & Date formatting string,
+#. TRANSLATORS: this is a date shown in the event details view,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59 ../EventDetails.qml:134
-msgid "dd-MMM-yyyy"
-msgstr "dd-MMM-yyyy"
+#: ../EventDetails.qml:59
+msgid "ddd MMMM d yyyy"
+msgstr ""
 
 #: ../EventDetails.qml:62
 #, qt-format
-msgid "After %1 Occurrences"
-msgstr "Etter %1 gjentakelser"
+msgid "After %1 Occurrence"
+msgid_plural "After %1 Occurrences"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../EventDetails.qml:63
 #, qt-format
 msgid "After Date %1"
 msgstr "Etter %1"
 
-#: ../EventDetails.qml:69
-msgid "Every "
-msgstr "Hver "
+#. TRANSLATORS: the argument is a day of the week or a list of days
+#: ../EventDetails.qml:75
+#, qt-format
+msgid "Every %1"
+msgstr ""
 
-#: ../EventDetails.qml:123
+#: ../EventDetails.qml:126
 msgid "Not specified"
 msgstr "Ikke oppgitt"
 
-#: ../EventDetails.qml:207
+#. TRANSLATORS: this is a time & Date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+#: ../EventDetails.qml:137
+msgid "dd-MMM-yyyy"
+msgstr "dd-MMM-yyyy"
+
+#: ../EventDetails.qml:210
 msgid "Edit"
 msgstr "Rediger"
 
-#: ../EventDetails.qml:269
+#: ../EventDetails.qml:272
 msgid "Date"
 msgstr "Dato"
 
-#: ../EventDetails.qml:274 ../NewEvent.qml:384
+#: ../EventDetails.qml:277 ../NewEvent.qml:384
 msgid "Start"
 msgstr "Start"
 
-#: ../EventDetails.qml:279 ../NewEvent.qml:423
+#: ../EventDetails.qml:282 ../NewEvent.qml:423
 msgid "End"
 msgstr "Slutt"
 
-#: ../EventDetails.qml:288 ../NewEvent.qml:492
+#: ../EventDetails.qml:291 ../NewEvent.qml:493
 msgid "All Day event:"
 msgstr "Heldagshendelse:"
 
-#: ../EventDetails.qml:336 ../NewEvent.qml:537
+#: ../EventDetails.qml:340 ../NewEvent.qml:538
 msgid "Location"
 msgstr "Sted"
 
-#: ../EventDetails.qml:362 ../NewEvent.qml:544
+#: ../EventDetails.qml:366 ../NewEvent.qml:545
 msgid "Guests"
 msgstr "Gjester"
 
-#: ../EventDetails.qml:400 ../NewEvent.qml:555
+#: ../EventDetails.qml:404 ../NewEvent.qml:556
 msgid "This happens"
 msgstr "Dette skjer"
 
-#: ../EventDetails.qml:405 ../NewEvent.qml:653
+#: ../EventDetails.qml:409 ../NewEvent.qml:654
 msgid "Remind me"
 msgstr "Minn meg på det"
 
-#: ../EventDetails.qml:410
+#: ../EventDetails.qml:414
 msgid "Repeats On"
 msgstr "Gjenta"
 
-#: ../EventDetails.qml:416
+#: ../EventDetails.qml:420
 msgid "Repetition Ends"
 msgstr "Slutt på regelmessighet"
+
+#: ../LimitLabelDefines.qml:4
+msgid "After X Occurrence"
+msgstr ""
+
+#: ../LimitLabelDefines.qml:5
+msgid "After Date"
+msgstr ""
 
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
@@ -207,26 +230,98 @@ msgstr "på"
 msgid "Calendar "
 msgstr "Kalender "
 
-#: ../NewEvent.qml:507
+#: ../NewEvent.qml:508
 msgid "Event Name"
 msgstr "Hendelsesnavn"
 
-#: ../NewEvent.qml:517
+#: ../NewEvent.qml:518
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: ../NewEvent.qml:574
+#: ../NewEvent.qml:575
 msgid "Repeats On:"
 msgstr "Gjenta:"
 
-#: ../NewEvent.qml:609
+#: ../NewEvent.qml:610
 msgid "Recurring event ends"
 msgstr "Regelmessig hendelse slutter"
 
 #. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:631
+#: ../NewEvent.qml:632
 msgid "Recurrence"
 msgstr "Gjentakelse"
+
+#: ../RecurrenceLabelDefines.qml:4
+msgid "Once"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:5
+msgid "Daily"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:6
+msgid "Every Weekday (Monday to Friday)"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:7
+msgid "Every Monday, Wednesday and Friday"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:8
+msgid "Every Tuesday and Thursday"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:9
+msgid "Weekly"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:10
+msgid "Monthly"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:11
+msgid "Yearly"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:4
+msgid "No Reminder"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:5
+msgid "5 minutes"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:6
+msgid "15 minutes"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:7
+msgid "30 minutes"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:8
+msgid "1 hour"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:9
+msgid "2 hours"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:10
+msgid "1 day"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:11
+msgid "2 days"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:12
+msgid "1 week"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:13
+msgid "2 weeks"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -287,3 +382,10 @@ msgstr "En kalender for Ubuntu som kan synkroniseres med nettkontoer."
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "kalender;hendelse;dag;uke;år;avtale;møte;"
+
+#, qt-format
+#~ msgid "After %1 Occurrences"
+#~ msgstr "Etter %1 gjentakelser"
+
+#~ msgid "Every "
+#~ msgstr "Hver "
