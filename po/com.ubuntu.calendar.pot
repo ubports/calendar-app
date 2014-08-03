@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-02 13:17-0600\n"
+"POT-Creation-Date: 2014-07-24 23:57+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:714
+#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:677
 msgid "Save"
 msgstr ""
 
@@ -70,16 +70,8 @@ msgstr ""
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:718
+#: ../NewEvent.qml:681
 msgid "Cancel"
-msgstr ""
-
-#: ../ContactChoicePopup.qml:20
-msgid "No contact"
-msgstr ""
-
-#: ../ContactChoicePopup.qml:66
-msgid "Search contact"
 msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:14
@@ -102,7 +94,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:298
+#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:294
 msgid "Edit Event"
 msgstr ""
 
@@ -154,89 +146,85 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: ../EventDetails.qml:274 ../NewEvent.qml:388
+#: ../EventDetails.qml:274 ../NewEvent.qml:384
 msgid "Start"
 msgstr ""
 
-#: ../EventDetails.qml:279 ../NewEvent.qml:427
+#: ../EventDetails.qml:279 ../NewEvent.qml:423
 msgid "End"
 msgstr ""
 
-#: ../EventDetails.qml:288 ../NewEvent.qml:497
+#: ../EventDetails.qml:288 ../NewEvent.qml:492
 msgid "All Day event:"
 msgstr ""
 
-#: ../EventDetails.qml:337 ../NewEvent.qml:542
+#: ../EventDetails.qml:336 ../NewEvent.qml:537
 msgid "Location"
 msgstr ""
 
-#: ../EventDetails.qml:363
+#: ../EventDetails.qml:362 ../NewEvent.qml:544
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:401 ../NewEvent.qml:592
+#: ../EventDetails.qml:400 ../NewEvent.qml:555
 msgid "This happens"
 msgstr ""
 
-#: ../EventDetails.qml:406 ../NewEvent.qml:690
+#: ../EventDetails.qml:405 ../NewEvent.qml:653
 msgid "Remind me"
 msgstr ""
 
-#: ../EventDetails.qml:411
+#: ../EventDetails.qml:410
 msgid "Repeats On"
 msgstr ""
 
-#: ../EventDetails.qml:417
+#: ../EventDetails.qml:416
 msgid "Repetition Ends"
 msgstr ""
 
-#: ../NewEvent.qml:186
+#: ../NewEvent.qml:182
 msgid "End time can't be before start time"
 msgstr ""
 
-#: ../NewEvent.qml:298 ../calendar.qml:305
+#: ../NewEvent.qml:294 ../calendar.qml:305
 msgid "New Event"
 msgstr ""
 
-#: ../NewEvent.qml:314
+#: ../NewEvent.qml:310
 msgid "Error"
 msgstr ""
 
-#: ../NewEvent.qml:316
+#: ../NewEvent.qml:312
 msgid "OK"
 msgstr ""
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:404 ../NewEvent.qml:443
+#: ../NewEvent.qml:400 ../NewEvent.qml:439
 msgid "at"
 msgstr ""
 
-#: ../NewEvent.qml:464
+#: ../NewEvent.qml:460
 msgid "Calendar "
 msgstr ""
 
-#: ../NewEvent.qml:512
+#: ../NewEvent.qml:507
 msgid "Event Name"
 msgstr ""
 
-#: ../NewEvent.qml:522
+#: ../NewEvent.qml:517
 msgid "Description"
 msgstr ""
 
-#: ../NewEvent.qml:560
-msgid "Add Guest"
-msgstr ""
-
-#: ../NewEvent.qml:611
+#: ../NewEvent.qml:574
 msgid "Repeats On:"
 msgstr ""
 
-#: ../NewEvent.qml:646
+#: ../NewEvent.qml:609
 msgid "Recurring event ends"
 msgstr ""
 
 #. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:668
+#: ../NewEvent.qml:631
 msgid "Recurrence"
 msgstr ""
 
