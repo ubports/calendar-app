@@ -16,13 +16,14 @@
 
 """Calendar app autopilot emulators."""
 
+import datetime
 import logging
 from time import sleep
 
 import autopilot.logging
-from dateutil import tz
-
 import ubuntuuitoolkit
+from autopilot import exceptions
+from dateutil import tz
 
 from calendar_app import data
 
@@ -212,6 +213,61 @@ class MainView(ubuntuuitoolkit.MainView):
 class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Year View page."""
+
+    def get_selected_day(self):
+        """Return the selected day.
+
+        :returns: A python datetime.date object with the selected day.
+
+        """
+        current_year_grid = self._get_current_year_grid()
+        for index in range(12):
+            month_component = self._find_month_component(
+                current_year_grid, index)
+            try:
+                today = month_component.select_single(
+                    'QQuickItem', isToday=True)
+            except exceptions.StateNotFoundError:
+                continue
+            else:
+                return datetime.date(
+                    current_year_grid.year, index + 1, today.date)
+        else:
+            raise CalendarException(
+                'No day is selected on the currently visible year.')
+
+    def _get_current_year_grid(self):
+        path_view_base = self.select_single(
+            'PathViewBase', objectName='yearPathView')
+        return path_view_base.select_single(
+            ubuntuuitoolkit.QQuickGridView, isCurrentItem=True)
+
+    def _find_month_component(self, grid, index):
+        try:
+            month = self._get_month_component(index)
+        except exceptions.StateNotFoundError:
+            month = self._swipe_to_find_month_component(grid, index)
+        if month is None:
+            raise CalendarException('Month {} not found.'.format(index))
+        else:
+            return month
+
+    def _get_month_component(self, index):
+        return self.select_single(
+            'MonthComponent',
+            objectName='monthComponent{}'.format(index))
+
+    def _swipe_to_find_month_component(self, grid, index):
+        month = None
+        grid.swipe_to_top()
+        while not grid.atYEnd:
+            try:
+                month = self._get_month_component(index)
+            except exceptions.StateNotFoundError:
+                grid.swipe_to_show_more_below()
+            else:
+                break
+        return month
 
 
 class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
