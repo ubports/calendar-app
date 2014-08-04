@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-03 06:10+0000\n"
+"X-Launchpad-Export-Date: 2014-08-04 06:28+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -383,10 +383,3 @@ msgstr ""
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "календарь;событие;день;неделя;год;встреча;собрание;"
-
-#, qt-format
-#~ msgid "After %1 Occurrences"
-#~ msgstr "После %1 повторений"
-
-#~ msgid "Every "
-#~ msgstr "Каждый "

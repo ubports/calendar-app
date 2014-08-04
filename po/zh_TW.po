@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-03 06:10+0000\n"
+"X-Launchpad-Export-Date: 2014-08-04 06:29+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -383,7 +383,3 @@ msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
 "calendar;event;day;week;year;appointment;meeting;行事曆;事件;活動;日期;天;日;週;周;年;約會;會面"
 ";會議;"
-
-#, qt-format
-#~ msgid "After %1 Occurrences"
-#~ msgstr "在 %1 次之後"

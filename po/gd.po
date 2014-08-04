@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-08-03 06:09+0000\n"
+"X-Launchpad-Export-Date: 2014-08-04 06:28+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 "Language: gd\n"
 
@@ -387,10 +387,3 @@ msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
 "calendar;event;day;week;year;appointment;meeting;mìosachan;tachartas;là;latha"
 ";seachdain;mìos;bliadhna;coinneamh;ceann-là;ceann-latha;"
-
-#, qt-format
-#~ msgid "After %1 Occurrences"
-#~ msgstr "Às dèidh %1 tachartasan"
-
-#~ msgid "Every "
-#~ msgstr "Gach "

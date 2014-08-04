@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-03 06:10+0000\n"
+"X-Launchpad-Export-Date: 2014-08-04 06:29+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -379,10 +379,3 @@ msgstr "توردىكى ھېساباتلار بىلەن قەدەمداشلىغى�
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "يىلنامە;ھادىسە;كۈن;ھەپتە;يىل;دېيىشمە;يىغىن;"
-
-#, qt-format
-#~ msgid "After %1 Occurrences"
-#~ msgstr "%1 قېتىم تەكرارلانغاندىن كېيىن"
-
-#~ msgid "Every "
-#~ msgstr "ھەر "

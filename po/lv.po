@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-03 06:10+0000\n"
+"X-Launchpad-Export-Date: 2014-08-04 06:28+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -379,6 +379,3 @@ msgstr "Ubuntu kalendārs kurš sinhronizē ar tiešsaistes kontiem"
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
-
-#~ msgid "Every "
-#~ msgstr "Ik "

@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2014-08-03 06:10+0000\n"
+"X-Launchpad-Export-Date: 2014-08-04 06:29+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -383,7 +383,3 @@ msgstr "Koledar za Ubuntu, ki se usklajuje s spletnimi računi."
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "koledar;dogodek;dan;teden;leto;sestanek;srečanje;"
-
-#, qt-format
-#~ msgid "After %1 Occurrences"
-#~ msgstr "Po %1 pojavitvah"

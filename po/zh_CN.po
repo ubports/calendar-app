@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-03 06:10+0000\n"
+"X-Launchpad-Export-Date: 2014-08-04 06:29+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -381,10 +381,3 @@ msgstr "与在线账户同步的 Ubuntu 日历软件。"
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "calendar;event;day;week;year;appointment;meeting;日历;会;天;月;年;星期;周;"
-
-#, qt-format
-#~ msgid "After %1 Occurrences"
-#~ msgstr "%1 次之后"
-
-#~ msgid "Every "
-#~ msgstr "每 "
