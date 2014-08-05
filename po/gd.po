@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-07-24 22:28+0000\n"
+"PO-Revision-Date: 2014-08-04 08:45+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig http://www.foramnagaidhlig.net\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-08-04 06:28+0000\n"
+"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 "Language: gd\n"
 
@@ -115,7 +115,7 @@ msgstr "Deiseil"
 
 #: ../EventDetails.qml:27
 msgid "Event Details"
-msgstr ""
+msgstr "Fiosrachadh an tachartais"
 
 #: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
@@ -125,14 +125,16 @@ msgstr "Chan ann idir"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59
 msgid "ddd MMMM d yyyy"
-msgstr ""
+msgstr "ddd, d MMMM yyyy"
 
 #: ../EventDetails.qml:62
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Às dèidh %1 turas"
+msgstr[1] "Às dèidh %1 thuras"
+msgstr[2] "Às dèidh %1 tursan"
+msgstr[3] "Às dèidh %1 turas"
 
 #: ../EventDetails.qml:63
 #, qt-format
@@ -143,7 +145,7 @@ msgstr "Às dèidh ceann-là %1"
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "Gach %1"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
@@ -201,11 +203,11 @@ msgstr "Deireadh an ath-nochdaidh"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "Às dèidh X tursan"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "Às dèidh ceann-là"
 
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
@@ -255,75 +257,75 @@ msgstr "Uiread"
 
 #: ../RecurrenceLabelDefines.qml:4
 msgid "Once"
-msgstr ""
+msgstr "Aon turas"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr ""
+msgstr "Gach latha"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
-msgstr ""
+msgstr "Gach latha obrach (DiLuain gu DihAoine)"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Gach DiLuain, DiCiadain 's DihAoine"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
-msgstr ""
+msgstr "Gach DiMàirt 's DiarDaoin"
 
 #: ../RecurrenceLabelDefines.qml:9
 msgid "Weekly"
-msgstr ""
+msgstr "Gach seachdain"
 
 #: ../RecurrenceLabelDefines.qml:10
 msgid "Monthly"
-msgstr ""
+msgstr "Gach mìos"
 
 #: ../RecurrenceLabelDefines.qml:11
 msgid "Yearly"
-msgstr ""
+msgstr "Gach bliadhna"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "Na cuir 'nam chuimhne"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
-msgstr ""
+msgstr "5 mionaidean"
 
 #: ../ReminderLabelDefines.qml:6
 msgid "15 minutes"
-msgstr ""
+msgstr "15 mionaidean"
 
 #: ../ReminderLabelDefines.qml:7
 msgid "30 minutes"
-msgstr ""
+msgstr "Leth-uair a thìde"
 
 #: ../ReminderLabelDefines.qml:8
 msgid "1 hour"
-msgstr ""
+msgstr "Uair a thìde"
 
 #: ../ReminderLabelDefines.qml:9
 msgid "2 hours"
-msgstr ""
+msgstr "2 uair a thìde"
 
 #: ../ReminderLabelDefines.qml:10
 msgid "1 day"
-msgstr ""
+msgstr "Latha"
 
 #: ../ReminderLabelDefines.qml:11
 msgid "2 days"
-msgstr ""
+msgstr "2 latha"
 
 #: ../ReminderLabelDefines.qml:12
 msgid "1 week"
-msgstr ""
+msgstr "Seachdain"
 
 #: ../ReminderLabelDefines.qml:13
 msgid "2 weeks"
-msgstr ""
+msgstr "2 sheachdain"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions

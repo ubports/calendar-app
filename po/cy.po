@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2013-10-13 12:02+0000\n"
+"PO-Revision-Date: 2014-08-04 11:49+0000\n"
 "Last-Translator: Owen Llywelyn <owen.llywelyn@gmail.com>\n"
 "Language-Team: Welsh <cy@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : (n != 8 && n != 11) ? "
 "2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-08-04 06:29+0000\n"
+"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
-msgstr ""
+msgstr "Dim digwyddiadau ar ddod"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -31,7 +31,7 @@ msgstr "hh:mm"
 
 #: ../AgendaView.qml:94
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "dddd , d MMMM"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -47,20 +47,20 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 Di."
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "%1 Digwyddiad drwy'r dydd"
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
 msgid "Calendars"
-msgstr ""
+msgstr "Calendrau"
 
 #: ../CalendarChoicePopup.qml:20
 msgid "Back"
-msgstr ""
+msgstr "Nôl"
 
 #: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:678
 msgid "Save"
@@ -68,7 +68,7 @@ msgstr "Cadw"
 
 #: ../ColorPickerDialog.qml:7
 msgid "Select Color"
-msgstr ""
+msgstr "Dewis Lliw"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37

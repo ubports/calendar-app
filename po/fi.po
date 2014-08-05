@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-07-25 16:06+0000\n"
+"PO-Revision-Date: 2014-08-04 09:46+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-04 06:28+0000\n"
+"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -113,7 +113,7 @@ msgstr "Valmis"
 
 #: ../EventDetails.qml:27
 msgid "Event Details"
-msgstr ""
+msgstr "Tapahtuman tiedot"
 
 #: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
@@ -141,7 +141,7 @@ msgstr "Päivämäärän %1 jälkeen"
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "Joka %1"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
@@ -253,75 +253,75 @@ msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:4
 msgid "Once"
-msgstr ""
+msgstr "Kerran"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr ""
+msgstr "Päivittäin"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
-msgstr ""
+msgstr "Jokainen viikonpäivä (ma-pe)"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Joka maanantai, keskiviikko ja perjantai"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
-msgstr ""
+msgstr "Joka tiistai ja torstai"
 
 #: ../RecurrenceLabelDefines.qml:9
 msgid "Weekly"
-msgstr ""
+msgstr "Viikoittain"
 
 #: ../RecurrenceLabelDefines.qml:10
 msgid "Monthly"
-msgstr ""
+msgstr "Kuukausittain"
 
 #: ../RecurrenceLabelDefines.qml:11
 msgid "Yearly"
-msgstr ""
+msgstr "Vuosittain"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "Ei muistutusta"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minuuttia"
 
 #: ../ReminderLabelDefines.qml:6
 msgid "15 minutes"
-msgstr ""
+msgstr "15 minuuttia"
 
 #: ../ReminderLabelDefines.qml:7
 msgid "30 minutes"
-msgstr ""
+msgstr "30 minuuttia"
 
 #: ../ReminderLabelDefines.qml:8
 msgid "1 hour"
-msgstr ""
+msgstr "1 tunti"
 
 #: ../ReminderLabelDefines.qml:9
 msgid "2 hours"
-msgstr ""
+msgstr "2 tuntia"
 
 #: ../ReminderLabelDefines.qml:10
 msgid "1 day"
-msgstr ""
+msgstr "1 päivä"
 
 #: ../ReminderLabelDefines.qml:11
 msgid "2 days"
-msgstr ""
+msgstr "2 päivää"
 
 #: ../ReminderLabelDefines.qml:12
 msgid "1 week"
-msgstr ""
+msgstr "1 viikko"
 
 #: ../ReminderLabelDefines.qml:13
 msgid "2 weeks"
-msgstr ""
+msgstr "2 viikkoa"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions

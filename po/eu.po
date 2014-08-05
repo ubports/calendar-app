@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-07-25 12:34+0000\n"
+"PO-Revision-Date: 2014-08-05 00:36+0000\n"
 "Last-Translator: Ibai Oihanguren Sala <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-04 06:28+0000\n"
+"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -113,7 +113,7 @@ msgstr "Eginda"
 
 #: ../EventDetails.qml:27
 msgid "Event Details"
-msgstr ""
+msgstr "Gertaeraren xehetasunak"
 
 #: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
@@ -123,14 +123,14 @@ msgstr "Inoiz ez"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59
 msgid "ddd MMMM d yyyy"
-msgstr ""
+msgstr "yyyy(e)ko MMMMren d(a), ddd"
 
 #: ../EventDetails.qml:62
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gertaldi %1en ostean"
+msgstr[1] "%1 gertaldiren ostean"
 
 #: ../EventDetails.qml:63
 #, qt-format
@@ -141,7 +141,7 @@ msgstr "Data honen ostean: %1"
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "%1 guztietan"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
@@ -199,11 +199,11 @@ msgstr "Errepikapenaren amaiera"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "X gertaldiren ostean"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "Data baten ostean"
 
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
@@ -253,75 +253,75 @@ msgstr "Errepikapena"
 
 #: ../RecurrenceLabelDefines.qml:4
 msgid "Once"
-msgstr ""
+msgstr "Behin"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr ""
+msgstr "Egunero"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
-msgstr ""
+msgstr "Astegunero (astelehenetik ostiralera)"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Astelehen, asteazken eta ostiralero"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
-msgstr ""
+msgstr "Astearte eta ostegunero"
 
 #: ../RecurrenceLabelDefines.qml:9
 msgid "Weekly"
-msgstr ""
+msgstr "Astero"
 
 #: ../RecurrenceLabelDefines.qml:10
 msgid "Monthly"
-msgstr ""
+msgstr "Hilero"
 
 #: ../RecurrenceLabelDefines.qml:11
 msgid "Yearly"
-msgstr ""
+msgstr "Urtero"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "Ez gogorarazi"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minutu"
 
 #: ../ReminderLabelDefines.qml:6
 msgid "15 minutes"
-msgstr ""
+msgstr "15 minutu"
 
 #: ../ReminderLabelDefines.qml:7
 msgid "30 minutes"
-msgstr ""
+msgstr "30 minutu"
 
 #: ../ReminderLabelDefines.qml:8
 msgid "1 hour"
-msgstr ""
+msgstr "ordu 1"
 
 #: ../ReminderLabelDefines.qml:9
 msgid "2 hours"
-msgstr ""
+msgstr "2 ordu"
 
 #: ../ReminderLabelDefines.qml:10
 msgid "1 day"
-msgstr ""
+msgstr "Egun 1"
 
 #: ../ReminderLabelDefines.qml:11
 msgid "2 days"
-msgstr ""
+msgstr "2 egun"
 
 #: ../ReminderLabelDefines.qml:12
 msgid "1 week"
-msgstr ""
+msgstr "Astebete"
 
 #: ../ReminderLabelDefines.qml:13
 msgid "2 weeks"
-msgstr ""
+msgstr "2 aste"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-07-25 14:30+0000\n"
+"PO-Revision-Date: 2014-08-04 13:48+0000\n"
 "Last-Translator: Josef Andersson <Unknown>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-04 06:29+0000\n"
+"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 "Language: sv\n"
 
@@ -114,7 +114,7 @@ msgstr "Klar"
 
 #: ../EventDetails.qml:27
 msgid "Event Details"
-msgstr ""
+msgstr "Händelsedetaljer"
 
 #: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
@@ -124,14 +124,14 @@ msgstr "Aldrig"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59
 msgid "ddd MMMM d yyyy"
-msgstr ""
+msgstr "ddd d MMMM yyyy"
 
 #: ../EventDetails.qml:62
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Efter %1 inträffande"
+msgstr[1] "Efter %1 inträffanden"
 
 #: ../EventDetails.qml:63
 #, qt-format
@@ -142,7 +142,7 @@ msgstr "Efter datum %1"
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "Var %1"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
@@ -200,11 +200,11 @@ msgstr "Upprepning slutar"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "Efter x inträffanden"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "Efter datum"
 
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
@@ -254,75 +254,75 @@ msgstr "Återkommande"
 
 #: ../RecurrenceLabelDefines.qml:4
 msgid "Once"
-msgstr ""
+msgstr "En gång"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr ""
+msgstr "Dagligen"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
-msgstr ""
+msgstr "Varje veckodag (måndag till fredag)"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Var måndag, onsdag och fredag"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
-msgstr ""
+msgstr "Var tisdag och torsdag"
 
 #: ../RecurrenceLabelDefines.qml:9
 msgid "Weekly"
-msgstr ""
+msgstr "Veckovis"
 
 #: ../RecurrenceLabelDefines.qml:10
 msgid "Monthly"
-msgstr ""
+msgstr "Månadsvis"
 
 #: ../RecurrenceLabelDefines.qml:11
 msgid "Yearly"
-msgstr ""
+msgstr "Årligen"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "Ingen påminnelse"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
-msgstr ""
+msgstr "Fem minuter"
 
 #: ../ReminderLabelDefines.qml:6
 msgid "15 minutes"
-msgstr ""
+msgstr "15 minuter"
 
 #: ../ReminderLabelDefines.qml:7
 msgid "30 minutes"
-msgstr ""
+msgstr "30 minuter"
 
 #: ../ReminderLabelDefines.qml:8
 msgid "1 hour"
-msgstr ""
+msgstr "En timme"
 
 #: ../ReminderLabelDefines.qml:9
 msgid "2 hours"
-msgstr ""
+msgstr "Två timmar"
 
 #: ../ReminderLabelDefines.qml:10
 msgid "1 day"
-msgstr ""
+msgstr "Ett dygn"
 
 #: ../ReminderLabelDefines.qml:11
 msgid "2 days"
-msgstr ""
+msgstr "Två dygn"
 
 #: ../ReminderLabelDefines.qml:12
 msgid "1 week"
-msgstr ""
+msgstr "En vecka"
 
 #: ../ReminderLabelDefines.qml:13
 msgid "2 weeks"
-msgstr ""
+msgstr "Två veckor"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions

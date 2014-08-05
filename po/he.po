@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-07-25 16:24+0000\n"
+"PO-Revision-Date: 2014-08-04 09:06+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-04 06:28+0000\n"
+"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -51,7 +51,7 @@ msgstr "%1 אי"
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr "%1 אירועי כל היום"
+msgstr "%1 אירועי יום שלם"
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
 msgid "Calendars"
@@ -113,7 +113,7 @@ msgstr "סיימתי"
 
 #: ../EventDetails.qml:27
 msgid "Event Details"
-msgstr ""
+msgstr "פרטי האירוע"
 
 #: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
@@ -123,7 +123,7 @@ msgstr "לעולם לא"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59
 msgid "ddd MMMM d yyyy"
-msgstr ""
+msgstr "ddd ה־d בMMMM yyyy"
 
 #: ../EventDetails.qml:62
 #, qt-format
@@ -141,7 +141,7 @@ msgstr "אחרי התאריך %1"
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "בכל %1"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
@@ -199,11 +199,11 @@ msgstr "סיום החזרה"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "לאחר מופע מסוים"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "לאחר התאריך"
 
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
@@ -253,19 +253,19 @@ msgstr "מופע חוזר"
 
 #: ../RecurrenceLabelDefines.qml:4
 msgid "Once"
-msgstr ""
+msgstr "פעם אחת"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr ""
+msgstr "מדי יום"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
-msgstr ""
+msgstr "בכל יום בשבוע (ראשון עד חמישי)"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "כל ראשון, שלישי וחמישי"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
@@ -273,55 +273,55 @@ msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:9
 msgid "Weekly"
-msgstr ""
+msgstr "מדי שבוע"
 
 #: ../RecurrenceLabelDefines.qml:10
 msgid "Monthly"
-msgstr ""
+msgstr "מדי חודש"
 
 #: ../RecurrenceLabelDefines.qml:11
 msgid "Yearly"
-msgstr ""
+msgstr "מדי שנה"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "ללא תזכורת"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
-msgstr ""
+msgstr "5 דקות"
 
 #: ../ReminderLabelDefines.qml:6
 msgid "15 minutes"
-msgstr ""
+msgstr "רבע שעה"
 
 #: ../ReminderLabelDefines.qml:7
 msgid "30 minutes"
-msgstr ""
+msgstr "חצי שעה"
 
 #: ../ReminderLabelDefines.qml:8
 msgid "1 hour"
-msgstr ""
+msgstr "שעה"
 
 #: ../ReminderLabelDefines.qml:9
 msgid "2 hours"
-msgstr ""
+msgstr "שעתיים"
 
 #: ../ReminderLabelDefines.qml:10
 msgid "1 day"
-msgstr ""
+msgstr "יום"
 
 #: ../ReminderLabelDefines.qml:11
 msgid "2 days"
-msgstr ""
+msgstr "יומיים"
 
 #: ../ReminderLabelDefines.qml:12
 msgid "1 week"
-msgstr ""
+msgstr "שבוע"
 
 #: ../ReminderLabelDefines.qml:13
 msgid "2 weeks"
-msgstr ""
+msgstr "שבועיים"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions

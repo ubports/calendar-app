@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: po_com.ubuntu.calendar-is\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-07-23 05:56+0000\n"
+"PO-Revision-Date: 2014-08-04 10:55+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-04 06:28+0000\n"
+"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 "Language: is\n"
 
@@ -58,11 +58,11 @@ msgstr "%1 heilsdagsatburðir"
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
 msgid "Calendars"
-msgstr ""
+msgstr "Dagatöl"
 
 #: ../CalendarChoicePopup.qml:20
 msgid "Back"
-msgstr ""
+msgstr "Til baka"
 
 #: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:678
 msgid "Save"
@@ -70,7 +70,7 @@ msgstr "Vista"
 
 #: ../ColorPickerDialog.qml:7
 msgid "Select Color"
-msgstr ""
+msgstr "Veldu lit"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
@@ -116,7 +116,7 @@ msgstr "Lokið"
 
 #: ../EventDetails.qml:27
 msgid "Event Details"
-msgstr ""
+msgstr "Nánar um atburð"
 
 #: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
@@ -126,14 +126,14 @@ msgstr "Aldrei"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59
 msgid "ddd MMMM d yyyy"
-msgstr ""
+msgstr "dddd d. MMMM yyyy"
 
 #: ../EventDetails.qml:62
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Eftir %1 tilvik"
+msgstr[1] "Eftir %1tilvik"
 
 #: ../EventDetails.qml:63
 #, qt-format
@@ -144,7 +144,7 @@ msgstr "Eftir dagsetninguna %1"
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "Hvern %1"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
@@ -194,7 +194,7 @@ msgstr "Áminna mig"
 
 #: ../EventDetails.qml:414
 msgid "Repeats On"
-msgstr ""
+msgstr "Endurtekið þann"
 
 #: ../EventDetails.qml:420
 msgid "Repetition Ends"
@@ -202,11 +202,11 @@ msgstr "Endurtekning hættir"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "Eftir X tilvik"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "Eftir dagsetninguna"
 
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
@@ -222,7 +222,7 @@ msgstr "Villa"
 
 #: ../NewEvent.qml:312
 msgid "OK"
-msgstr ""
+msgstr "Í lagi"
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
 #: ../NewEvent.qml:400 ../NewEvent.qml:439
@@ -231,7 +231,7 @@ msgstr "kl."
 
 #: ../NewEvent.qml:460
 msgid "Calendar "
-msgstr ""
+msgstr "Dagatal "
 
 #: ../NewEvent.qml:508
 msgid "Event Name"
@@ -243,7 +243,7 @@ msgstr "Lýsing"
 
 #: ../NewEvent.qml:575
 msgid "Repeats On:"
-msgstr ""
+msgstr "Endurtekið:"
 
 #: ../NewEvent.qml:610
 msgid "Recurring event ends"
@@ -252,79 +252,79 @@ msgstr "Endurtekinn atburður endar"
 #. TRANSLATORS: This refers to no of occurences of an event.
 #: ../NewEvent.qml:632
 msgid "Recurrence"
-msgstr ""
+msgstr "Endurtekning"
 
 #: ../RecurrenceLabelDefines.qml:4
 msgid "Once"
-msgstr ""
+msgstr "Einu sinni"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr ""
+msgstr "Daglega"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
-msgstr ""
+msgstr "Alla virka daga (mán-fös)"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Alla mánudaga, miðvikudaga og föstudaga"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
-msgstr ""
+msgstr "Alla þriðjudaga og fimmtudaga"
 
 #: ../RecurrenceLabelDefines.qml:9
 msgid "Weekly"
-msgstr ""
+msgstr "Í hverri viku"
 
 #: ../RecurrenceLabelDefines.qml:10
 msgid "Monthly"
-msgstr ""
+msgstr "Mánaðarlega"
 
 #: ../RecurrenceLabelDefines.qml:11
 msgid "Yearly"
-msgstr ""
+msgstr "Árlega"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "Engin áminning"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
-msgstr ""
+msgstr "5 mínútur"
 
 #: ../ReminderLabelDefines.qml:6
 msgid "15 minutes"
-msgstr ""
+msgstr "15 mínútur"
 
 #: ../ReminderLabelDefines.qml:7
 msgid "30 minutes"
-msgstr ""
+msgstr "30 mínútur"
 
 #: ../ReminderLabelDefines.qml:8
 msgid "1 hour"
-msgstr ""
+msgstr "1 klukkustund"
 
 #: ../ReminderLabelDefines.qml:9
 msgid "2 hours"
-msgstr ""
+msgstr "2 klukkustundir"
 
 #: ../ReminderLabelDefines.qml:10
 msgid "1 day"
-msgstr ""
+msgstr "1 dagur"
 
 #: ../ReminderLabelDefines.qml:11
 msgid "2 days"
-msgstr ""
+msgstr "2 dagar"
 
 #: ../ReminderLabelDefines.qml:12
 msgid "1 week"
-msgstr ""
+msgstr "1 vika"
 
 #: ../ReminderLabelDefines.qml:13
 msgid "2 weeks"
-msgstr ""
+msgstr "2 vikur"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
