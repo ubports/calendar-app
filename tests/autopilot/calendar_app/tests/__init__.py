@@ -28,9 +28,9 @@ from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 from autopilot import logging as autopilot_logging
 
+import ubuntuuitoolkit
 from ubuntuuitoolkit import (
     base,
-    emulators as toolkit_emulators,
     fixture_setup as toolkit_fixtures
 )
 
@@ -83,7 +83,7 @@ class CalendarTestCase(AutopilotTestCase):
             base.get_qmlscene_launch_command(),
             self.local_location_qml,
             app_type='qt',
-            emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
+            emulator_base=ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase)
 
     @autopilot_logging.log_action(logger.info)
     def launch_test_installed(self):
@@ -91,13 +91,13 @@ class CalendarTestCase(AutopilotTestCase):
             base.get_qmlscene_launch_command(),
             self.installed_location_qml,
             app_type='qt',
-            emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
+            emulator_base=ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase)
 
     @autopilot_logging.log_action(logger.info)
     def launch_test_click(self):
         return self.launch_click_package(
             "com.ubuntu.calendar",
-            emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
+            emulator_base=ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase)
 
     def _copy_xauthority_file(self, directory):
         """ Copy .Xauthority file to directory, if it exists in /home

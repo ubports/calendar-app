@@ -23,11 +23,6 @@ import autopilot.logging
 from dateutil import tz
 
 import ubuntuuitoolkit
-from ubuntuuitoolkit._custom_proxy_objects import _flickable
-from ubuntuuitoolkit import (
-    emulators as toolkit_emulators,
-    pickers
-)
 
 from calendar_app import data
 
@@ -40,14 +35,7 @@ class CalendarException(ubuntuuitoolkit.ToolkitException):
     """Exception raised when there are problems with the Calendar."""
 
 
-# for now we are borrowing the textfield helper for the textarea
-# once the toolkit has a textarea helper this should be removed
-# https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1327354
-class TextArea(toolkit_emulators.TextField):
-    """Autopilot helper for the TextArea component."""
-
-
-class MainView(toolkit_emulators.MainView):
+class MainView(ubuntuuitoolkit.MainView):
 
     """An emulator that makes it easy to interact with the calendar-app."""
 
@@ -127,7 +115,7 @@ class MainView(toolkit_emulators.MainView):
         else:
             mode_value = 'Years|Months|Days'
         picker = self.wait_select_single(
-            pickers.DatePicker, mode=mode_value, visible=True)
+            ubuntuuitoolkit.pickers.DatePicker, mode=mode_value, visible=True)
         if mode_value == 'Hours|Minutes':
             picker.pick_time(value)
         else:
@@ -221,22 +209,22 @@ class MainView(toolkit_emulators.MainView):
         return local
 
 
-class YearView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Year View page."""
 
 
-class WeekView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Week View page."""
 
 
-class MonthView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Year View page."""
 
 
-class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Day View page."""
 
@@ -369,7 +357,7 @@ class DayView(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         return day_header
 
 
-class EventBubble(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class EventBubble(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopiot helper for the Event Bubble items."""
 
@@ -410,7 +398,7 @@ class EventBubble(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
 # override toolkit helper to
 # workaround bug https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1343916
-class QQuickFlickable(_flickable.QQuickFlickable):
+class QQuickFlickable(ubuntuuitoolkit.QQuickFlickable):
 
     def _slow_drag(self, start_x, stop_x, start_y, stop_y):
         rate = (self.flickDeceleration + 250) / 350
@@ -418,7 +406,7 @@ class QQuickFlickable(_flickable.QQuickFlickable):
         self.pointing_device.click()
 
 
-class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the New Event page."""
 
@@ -478,7 +466,8 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self._ensure_visible_and_write(description_text_area, value)
 
     def _get_description_text_area(self):
-        return self.select_single(TextArea, objectName='eventDescriptionInput')
+        return self.select_single(
+            ubuntuuitoolkit.TextArea, objectName='eventDescriptionInput')
 
     def _fill_location(self, value):
         self._ensure_entry_field_visible_and_write('eventLocationInput', value)
@@ -532,12 +521,12 @@ class NewEvent(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         self.pointing_device.click_object(save_button)
 
 
-class NewEventEntryField(toolkit_emulators.TextField):
+class NewEventEntryField(ubuntuuitoolkit.TextField):
 
     """Autopilot helper for the NewEventEntryField component."""
 
 
-class EventDetails(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Event Details page."""
 
@@ -593,7 +582,8 @@ class EventDetails(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
         return guests
 
 
-class DeleteConfirmationDialog(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class DeleteConfirmationDialog(
+        ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Delete Confirmation dialog."""
 
