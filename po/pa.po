@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-08-02 11:57+0000\n"
+"PO-Revision-Date: 2014-08-07 05:19+0000\n"
 "Last-Translator: Gursharnjit_singh <ubuntuser13@gmail.com>\n"
 "Language-Team: Punjabi <pa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-04 06:28+0000\n"
+"X-Launchpad-Export-Date: 2014-08-07 06:24+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -113,7 +113,7 @@ msgstr "ਮੁਕੰਮਲ"
 
 #: ../EventDetails.qml:27
 msgid "Event Details"
-msgstr ""
+msgstr "ਸਮਾਗਮ ਵੇਰਵੇ"
 
 #: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
@@ -123,14 +123,14 @@ msgstr "ਕਦੇ ਵੀ ਨਹੀਂ"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59
 msgid "ddd MMMM d yyyy"
-msgstr ""
+msgstr "ddd MMMM d yyyy"
 
 #: ../EventDetails.qml:62
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 ਬਾਅਦ ਸਥਿਤੀ"
+msgstr[1] "%1 ਬਾਅਦ ਸਥਿਤੀ"
 
 #: ../EventDetails.qml:63
 #, qt-format
@@ -141,7 +141,7 @@ msgstr "ਬਾਅਦ ਤਾਰੀਖ %1"
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "ਹਰੇਕ %1"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
@@ -199,11 +199,11 @@ msgstr "ਦੁਹਰਾਉਂਣਾ ਖਤਮ"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "X ਬਾਅਦ ਸਥਿਤੀ"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "ਤਾਰੀਖ ਬਾਅਦ"
 
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
@@ -253,75 +253,75 @@ msgstr "ਦੁਹਰਾਈ"
 
 #: ../RecurrenceLabelDefines.qml:4
 msgid "Once"
-msgstr ""
+msgstr "ਇੱਕ ਵਾਰ"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr ""
+msgstr "ਰੋਜ਼"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
-msgstr ""
+msgstr "ਹਰ ਹਫ਼ਤਾਵਾਰ (ਸੋਮਵਾਰ ਤੋਂ ਸ਼ੁੱਕਰਵਾਰ)"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "ਹਰੇਕ ਸੋਮਵਾਰ, ਬੁੱਧਵਾਰ ਅਤੇ ਸ਼ੁੱਕਰਵਾਰ"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
-msgstr ""
+msgstr "ਹਰੇਕ ਮੰਗਲਵਾਰ ਅਤੇ ਵੀਰਵਾਰ"
 
 #: ../RecurrenceLabelDefines.qml:9
 msgid "Weekly"
-msgstr ""
+msgstr "ਹਫ਼ਤੇਵਾਰ"
 
 #: ../RecurrenceLabelDefines.qml:10
 msgid "Monthly"
-msgstr ""
+msgstr "ਮਹੀਨੇਵਾਰ"
 
 #: ../RecurrenceLabelDefines.qml:11
 msgid "Yearly"
-msgstr ""
+msgstr "ਸਲਾਨਾ"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "ਰੀਮਾਈਂਡਰ ਨਹੀਂ"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
-msgstr ""
+msgstr "੫ ਮਿੰਟ"
 
 #: ../ReminderLabelDefines.qml:6
 msgid "15 minutes"
-msgstr ""
+msgstr "੧੫ ਮਿੰਟ"
 
 #: ../ReminderLabelDefines.qml:7
 msgid "30 minutes"
-msgstr ""
+msgstr "੩੦ ਮਿੰਟ"
 
 #: ../ReminderLabelDefines.qml:8
 msgid "1 hour"
-msgstr ""
+msgstr "੧ ਘੰਟਾ"
 
 #: ../ReminderLabelDefines.qml:9
 msgid "2 hours"
-msgstr ""
+msgstr "੨ ਘੰਟੇ"
 
 #: ../ReminderLabelDefines.qml:10
 msgid "1 day"
-msgstr ""
+msgstr "੧ ਦਿਨ"
 
 #: ../ReminderLabelDefines.qml:11
 msgid "2 days"
-msgstr ""
+msgstr "੨ ਦਿਨ"
 
 #: ../ReminderLabelDefines.qml:12
 msgid "1 week"
-msgstr ""
+msgstr "੧ ਹਫ਼ਤਾ"
 
 #: ../ReminderLabelDefines.qml:13
 msgid "2 weeks"
-msgstr ""
+msgstr "੨ ਹਫ਼ਤੇ"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions

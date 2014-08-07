@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-08-04 11:10+0000\n"
+"PO-Revision-Date: 2014-08-06 10:55+0000\n"
 "Last-Translator: Jay ZDLin <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
+"X-Launchpad-Export-Date: 2014-08-07 06:24+0000\n"
 "X-Generator: Launchpad (build 17147)\n"
 
 #: ../AgendaView.qml:43
@@ -130,8 +130,9 @@ msgstr "ddd MMMM d yyyy"
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "После %1 повторения"
+msgstr[1] "После %1 повторений"
+msgstr[2] "После %1 повторений"
 
 #: ../EventDetails.qml:63
 #, qt-format
@@ -142,7 +143,7 @@ msgstr "После даты %1"
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "Кажд. %1"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
@@ -200,7 +201,7 @@ msgstr "Повторяется до"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "После X повторений"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
@@ -266,7 +267,7 @@ msgstr "По будням (с понедельника по пятницу)"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Кажд. понедельник, среду и пятницу"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
