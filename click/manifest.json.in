@@ -1,6 +1,6 @@
 {
     "description": "A calendar for Ubuntu which syncs with online accounts",
-    "framework": "ubuntu-sdk-14.10-qml-dev2",
+    "framework": "ubuntu-sdk-14.10-qml-dev3",
     "hooks": {
         "@APP_NAME@": {
             "apparmor": "apparmor.json",
