@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-08-04 19:25+0000\n"
+"PO-Revision-Date: 2014-08-07 13:16+0000\n"
 "Last-Translator: Rafael Neri <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
-"X-Generator: Launchpad (build 17147)\n"
+"X-Launchpad-Export-Date: 2014-08-08 06:58+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -46,7 +46,7 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 Ev."
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
@@ -85,7 +85,7 @@ msgstr "Excluir evento"
 
 #: ../DeleteConfirmationDialog.qml:22
 msgid "Delete series"
-msgstr ""
+msgstr "Excluir série"
 
 #: ../DeleteConfirmationDialog.qml:33
 msgid "Delete this"
@@ -101,7 +101,7 @@ msgstr "Editar evento"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "Editar séries"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
@@ -135,7 +135,7 @@ msgstr[1] "Depois de %1 ocorrências"
 #: ../EventDetails.qml:63
 #, qt-format
 msgid "After Date %1"
-msgstr ""
+msgstr "Após a data %1"
 
 #. TRANSLATORS: the argument is a day of the week or a list of days
 #: ../EventDetails.qml:75
@@ -171,7 +171,7 @@ msgstr "Encerrar"
 
 #: ../EventDetails.qml:291 ../NewEvent.qml:493
 msgid "All Day event:"
-msgstr ""
+msgstr "Todos os eventos do dia:"
 
 #: ../EventDetails.qml:340 ../NewEvent.qml:538
 msgid "Location"
@@ -187,7 +187,7 @@ msgstr ""
 
 #: ../EventDetails.qml:409 ../NewEvent.qml:654
 msgid "Remind me"
-msgstr ""
+msgstr "Lembre-me"
 
 #: ../EventDetails.qml:414
 msgid "Repeats On"
@@ -199,11 +199,11 @@ msgstr ""
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "Após X Ocorrências"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "Após a data"
 
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
@@ -244,7 +244,7 @@ msgstr ""
 
 #: ../NewEvent.qml:610
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Evento recorrente termina"
 
 #. TRANSLATORS: This refers to no of occurences of an event.
 #: ../NewEvent.qml:632
@@ -285,7 +285,7 @@ msgstr "Anualmente"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "Não lembrar"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
@@ -305,23 +305,23 @@ msgstr "1 hora"
 
 #: ../ReminderLabelDefines.qml:9
 msgid "2 hours"
-msgstr ""
+msgstr "2 horas"
 
 #: ../ReminderLabelDefines.qml:10
 msgid "1 day"
-msgstr ""
+msgstr "1 dia"
 
 #: ../ReminderLabelDefines.qml:11
 msgid "2 days"
-msgstr ""
+msgstr "2 dias"
 
 #: ../ReminderLabelDefines.qml:12
 msgid "1 week"
-msgstr ""
+msgstr "1 semana"
 
 #: ../ReminderLabelDefines.qml:13
 msgid "2 weeks"
-msgstr ""
+msgstr "2 semanas"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -335,6 +335,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"O aplicativo do Calendário aceita quatro argumentos: --starttime, --endtime, "
+"--newevent e --eventid. Eles serão geridos pelo sistema. Veja a fonte de um "
+"comentário completo sobre eles"
 
 #: ../calendar.qml:286
 msgid "Today"
@@ -374,8 +377,8 @@ msgstr "Calendário"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "Um calendário para Ubuntu que sincroniza com as contas online."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "calendário;evento;dia;semana;ano;encontro;reunião;"
