@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-08-05 00:17+0000\n"
-"Last-Translator: Gheyret T.Kenji <Unknown>\n"
+"PO-Revision-Date: 2014-08-09 18:00+0000\n"
+"Last-Translator: omarjan <bahadiromar@outlook.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
-"X-Generator: Launchpad (build 17147)\n"
+"X-Launchpad-Export-Date: 2014-08-10 06:01+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -85,7 +85,7 @@ msgstr "%1 ھادىسىنى ئۆچۈرۈش"
 
 #: ../DeleteConfirmationDialog.qml:22
 msgid "Delete series"
-msgstr ""
+msgstr "تەرتىپىنى ئۆچۈر"
 
 #: ../DeleteConfirmationDialog.qml:33
 msgid "Delete this"
@@ -101,7 +101,7 @@ msgstr "ھادىسە تەھرىرلەش"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "تەرتىپىنى تەھرىرلە"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
@@ -141,7 +141,7 @@ msgstr "چېسلا %1 دىن كېيىن"
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "ھەر %1"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
