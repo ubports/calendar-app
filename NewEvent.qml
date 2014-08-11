@@ -248,9 +248,7 @@ Page {
             }
 
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
-
             model.saveItem(event);
-
             pageStack.pop();
         }
     }
@@ -275,6 +273,7 @@ Page {
     }
 
     function openDatePicker (element, caller, callerProperty, mode) {
+        Qt.inputMethod.hide();
         element.highlighted = true;
         var picker = PickerPanel.openDatePicker(caller, callerProperty, mode);
         if (!picker) return;
@@ -485,6 +484,7 @@ Page {
                             anchors.verticalCenter: parent.verticalCenter
                         }
                     }
+                    onExpandedChanged: Qt.inputMethod.hide();
                 }
             }
 
@@ -598,6 +598,7 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model: Defines.recurrenceLabel
                     containerHeight: itemHeight * 4
+                    onExpandedChanged: Qt.inputMethod.hide();
                 }
             }
 
@@ -658,6 +659,7 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(3)
                     model: Defines.limitLabel
                     containerHeight: itemHeight * 4
+                    onExpandedChanged:   Qt.inputMethod.hide();
 
                 }
             }
@@ -697,6 +699,7 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     containerHeight: itemHeight * 4
                     model: Defines.reminderLabel
+                    onExpandedChanged:   Qt.inputMethod.hide();
                 }
             }
         }
