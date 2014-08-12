@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-08-04 12:58+0000\n"
-"Last-Translator: Fumihito YOSHIDA <hito@kugutsu.org>\n"
+"PO-Revision-Date: 2014-08-12 04:12+0000\n"
+"Last-Translator: Kentaro Kazuhama <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
-"X-Generator: Launchpad (build 17147)\n"
+"X-Launchpad-Export-Date: 2014-08-12 06:33+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -77,7 +77,7 @@ msgstr "キャンセル"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "繰り返し指定した予定の削除"
 
 #: ../DeleteConfirmationDialog.qml:15
 msgid "Delete Event"
@@ -85,7 +85,7 @@ msgstr "イベントを削除"
 
 #: ../DeleteConfirmationDialog.qml:22
 msgid "Delete series"
-msgstr ""
+msgstr "一連の予定を削除"
 
 #: ../DeleteConfirmationDialog.qml:33
 msgid "Delete this"
@@ -93,7 +93,7 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
 msgid "Delete"
-msgstr ""
+msgstr "削除"
 
 #: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:294
 msgid "Edit Event"
