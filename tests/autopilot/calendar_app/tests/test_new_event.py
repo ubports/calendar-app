@@ -66,7 +66,12 @@ class NewEventTestCase(CalendarTestCase):
         day_view = self._workaround_bug_1350605()
 
         return day_view, test_event
-
+    def _edit_event(self):
+        test_event = data.Event.make_unique()
+        day_view = self.main_view.go_to_day_view()
+        new_event_page = self.main_view.go_to_edit_event()
+        new_event_page.add_event(test_event)
+        return day_view, test_event
     def _event_exists(self, event_name):
         try:
             day_view = self.main_view.go_to_day_view()
@@ -120,7 +125,5 @@ class NewEventTestCase(CalendarTestCase):
         day_view, test_event = self._add_event()
         day_view.edit_event(test_event.name)
         day_view, test_event = self._edit_event()
-        event_bubble = lambda: day_view.get_event(test_event.name)
-        self.assertThat(event_bubble, Eventually(NotEquals(None)))
         event_details_page = day_view.open_event(test_event.name)
         self.assertEqual(test_event,event_details_page.get_event_information())
