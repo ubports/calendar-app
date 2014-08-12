@@ -208,6 +208,7 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
+		objectName: "edit"
                 iconSource: Qt.resolvedUrl("edit.svg");
                 onTriggered: {
                     if( event.itemType === Type.EventOccurrence ) {

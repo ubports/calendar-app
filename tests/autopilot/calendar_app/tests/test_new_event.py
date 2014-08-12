@@ -115,3 +115,12 @@ class NewEventTestCase(CalendarTestCase):
 
         self.assertThat(lambda: self._event_exists(test_event.name),
                         Eventually(Equals(False)))
+    def test_edit_event_must_change_it_from_day_view(self):
+        """Test editing an event change unique values of an event."""
+        day_view, test_event = self._add_event()
+        day_view.edit_event(test_event.name)
+        day_view, test_event = self._edit_event()
+        event_bubble = lambda: day_view.get_event(test_event.name)
+        self.assertThat(event_bubble, Eventually(NotEquals(None)))
+        event_details_page = day_view.open_event(test_event.name)
+        self.assertEqual(test_event,event_details_page.get_event_information())
