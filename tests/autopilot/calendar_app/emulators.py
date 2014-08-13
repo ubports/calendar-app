@@ -106,10 +106,6 @@ class MainView(ubuntuuitoolkit.MainView):
         header.click_action_button('neweventbutton')
         return self.select_single(NewEvent, objectName='newEventPage')
 
-    @autopilot.logging.log_action(logger.info)
-    def go_to_edit_event(self):
-        return self.select_single(NewEvent, objectName='newEventPage')
-
     def set_picker(self, field, mode, value):
         # open picker
         self.pointing_device.click_object(field)
@@ -131,6 +127,12 @@ class MainView(ubuntuuitoolkit.MainView):
         if parent_object is None:
             parent_object = self
         return parent_object.select_single("EventView")
+
+    def get_event_details(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
+        return parent_object.select_single(EventDetails,
+                                           objectName='eventDetails')
 
     def get_month_view(self, parent_object=None):
         if parent_object is None:
@@ -318,13 +320,7 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         :return: The Event Details page.
 
         """
-        event_bubbles = self._get_selected_day_event_bubbles()
-        for bubble in event_bubbles:
-            if bubble.get_name() == name:
-                return bubble.open_event()
-        else:
-            raise CalendarException(
-                'Could not find event with name {}.'.format(name))
+        return self.get_event(name).open_event()
 
     @autopilot.logging.log_action(logger.info)
     def delete_event(self, name):
@@ -341,7 +337,7 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     def edit_event(self, name):
         """Edit an event.
         :param name:The name of event to edit
-        :return : event details pagg. """
+        :return : event details page. """
         event_details_page = self.open_event(name)
         return event_details_page.edit()
 
