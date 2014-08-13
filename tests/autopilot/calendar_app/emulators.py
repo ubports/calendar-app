@@ -106,6 +106,7 @@ class MainView(ubuntuuitoolkit.MainView):
         header.click_action_button('neweventbutton')
         return self.select_single(NewEvent, objectName='newEventPage')
 
+    @autopilot.logging.log_action(logger.info)
     def go_to_edit_event(self):
         return self.select_single(NewEvent, objectName='newEventPage')
 
@@ -558,6 +559,7 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
         return root.select_single(DayView, objectName='dayViewPage')
 
+    @autopilot.logging.log_action(logger.debug)
     def edit(self):
         """Click the Edit button.
 
