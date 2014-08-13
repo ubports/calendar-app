@@ -134,14 +134,19 @@ class NewEventTestCase(CalendarTestCase):
         day_view, edited_event = self._edit_event(original_event.name)
         self.addCleanup(self._try_delete_event, edited_event.name)
 
-        self.assertEqual(edited_event,
-                         event_details_page.get_event_information())
+        day_view = self.main_view.go_to_day_view()
 
         self.assertThat(
             lambda: self._event_exists(
-                test_event.name), Eventually(
+                original_event.name), Eventually(
                 Equals(False)))
         self.assertThat(
             lambda: self._event_exists(
-                test_event.name), Eventually(
+                edited_event.name), Eventually(
                 Equals(True)))
+
+        event_details_page = day_view.open_event(edited_event.name)
+
+        self.assertEqual(edited_event,
+                         event_details_page.get_event_information())
+
