@@ -128,6 +128,12 @@ class MainView(ubuntuuitoolkit.MainView):
             parent_object = self
         return parent_object.select_single("EventView")
 
+    def get_event_details(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
+        return parent_object.select_single(EventDetails,
+                                           objectName='eventDetails')
+
     def get_month_view(self, parent_object=None):
         if parent_object is None:
             parent_object = self

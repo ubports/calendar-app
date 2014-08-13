@@ -126,27 +126,14 @@ class NewEventTestCase(CalendarTestCase):
                 test_event.name), Eventually(
                 Equals(False)))
 
-    def test_edit_event_must_change_it_from_day_view(self):
+    def test_edit_event_with_default_values(self):
         """Test editing an event change unique values of an event."""
 
         day_view, original_event = self._add_event()
         day_view, edited_event = self._edit_event(original_event.name)
         self.addCleanup(self._try_delete_event, edited_event.name)
 
-        #this needs to go back to the dayview, but doesn't atm
-        day_view = self.main_view.go_to_day_view()
-
-        self.assertThat(
-            lambda: self._event_exists(
-                original_event.name), Eventually(
-                Equals(False)))
-        self.assertThat(
-            lambda: self._event_exists(
-                edited_event.name), Eventually(
-                Equals(True)))
-
-        event_details_page = day_view.open_event(edited_event.name)
+        event_details_page = self.main_view.get_event_details()
 
         self.assertEqual(edited_event,
                          event_details_page.get_event_information())
-
