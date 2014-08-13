@@ -67,11 +67,12 @@ class NewEventTestCase(CalendarTestCase):
 
         return day_view, test_event
 
-    def _edit_event(self):
+    def _edit_event(self, event_name):
         test_event = data.Event.make_unique()
+        logger.debug('Edit event from %s to %s' % (event_name, test_event.name))
         day_view = self.main_view.go_to_day_view()
 
-        new_event_page = day_view.edit_event(test_event.name)
+        new_event_page = day_view.edit_event(event_name)
 
         new_event_page.add_event(test_event)
         return day_view, test_event
@@ -129,11 +130,18 @@ class NewEventTestCase(CalendarTestCase):
     def test_edit_event_must_change_it_from_day_view(self):
         """Test editing an event change unique values of an event."""
 
-        day_view, test_event = self._add_event()
-        self.addCleanup(self._try_delete_event, test_event.name)
+        day_view, original_event = self._add_event()
+        day_view, edited_event = self._edit_event(original_event.name)
+        self.addCleanup(self._try_delete_event, edited_event.name)
 
-        day_view, test_event = self._edit_event()
-
-        event_details_page = day_view.open_event(test_event.name)
-        self.assertEqual(test_event,
+        self.assertEqual(edited_event,
                          event_details_page.get_event_information())
+
+        self.assertThat(
+            lambda: self._event_exists(
+                test_event.name), Eventually(
+                Equals(False)))
+        self.assertThat(
+            lambda: self._event_exists(
+                test_event.name), Eventually(
+                Equals(True)))
