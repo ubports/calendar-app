@@ -73,8 +73,8 @@ class NewEventTestCase(CalendarTestCase):
 
         day_view.edit_event(test_event.name)
 
-        new_event_page = self.main_view.go_to_edit_event()
-        day_view = self._add_event(test_event)
+        new_event_page = self.main_view.get_new_event_page()
+        day_view = self.add_event(test_event)
         return day_view, test_event
 
     def _event_exists(self, event_name):

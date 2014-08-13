@@ -107,10 +107,9 @@ class MainView(ubuntuuitoolkit.MainView):
         return self.select_single(NewEvent, objectName='newEventPage')
 
     @autopilot.logging.log_action(logger.info)
-    def go_to_edit_event(self, event):
-        """Open the page to edit an existing event.
+    def get_new_event_page(self):
+        """Return the new event page
 
-        :param event_name: the name of the event to edit
         :return: The New Event page.
 
         """
