@@ -105,8 +105,10 @@ class MainView(ubuntuuitoolkit.MainView):
         header = self.get_header()
         header.click_action_button('neweventbutton')
         return self.select_single(NewEvent, objectName='newEventPage')
+
     def go_to_edit_event(self):
-        return self.select_single(NewEvent, objectName='newEventPage')  
+        return self.select_single(NewEvent, objectName='newEventPage')
+
     def set_picker(self, field, mode, value):
         # open picker
         self.pointing_device.click_object(field)
@@ -333,13 +335,15 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         """
         event_details_page = self.open_event(name)
         return event_details_page.delete()
+
     @autopilot.logging.log_action(logger.info)
-    def edit_event(self,name):
+    def edit_event(self, name):
         """Edit an event.
         :param name:The name of event to edit
         :return : event details pagg. """
         event_details_page = self.open_event(name)
         return event_details_page.edit()
+
     @autopilot.logging.log_action(logger.info)
     def get_day_header(self, day=None):
         """Return the dayheader for a given day. If no day is given,
@@ -553,6 +557,7 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         delete_confirmation_dialog.confirm_deletion()
 
         return root.select_single(DayView, objectName='dayViewPage')
+
     def edit(self):
         """Click the Edit button.
 
@@ -563,6 +568,7 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         header = root.select_single(MainView).get_header()
         header.click_action_button('edit')
         return root.select_single(NewEvent, objectName='newEventPage')
+
     def get_event_information(self):
         """Return the information of the event."""
         calendar = self._get_calendar()
