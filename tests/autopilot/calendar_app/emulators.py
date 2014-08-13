@@ -106,7 +106,15 @@ class MainView(ubuntuuitoolkit.MainView):
         header.click_action_button('neweventbutton')
         return self.select_single(NewEvent, objectName='newEventPage')
 
-    def go_to_edit_event(self):
+    @autopilot.logging.log_action(logger.info)
+    def go_to_edit_event(self, event):
+        """Open the page to edit an existing event.
+
+        :param event_name: the name of the event to edit
+        :return: The New Event page.
+
+        """
+
         return self.select_single(NewEvent, objectName='newEventPage')
 
     def set_picker(self, field, mode, value):
