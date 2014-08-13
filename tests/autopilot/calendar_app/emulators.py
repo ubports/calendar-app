@@ -106,16 +106,6 @@ class MainView(ubuntuuitoolkit.MainView):
         header.click_action_button('neweventbutton')
         return self.select_single(NewEvent, objectName='newEventPage')
 
-    @autopilot.logging.log_action(logger.info)
-    def get_new_event_page(self):
-        """Return the new event page
-
-        :return: The New Event page.
-
-        """
-
-        return self.select_single(NewEvent, objectName='newEventPage')
-
     def set_picker(self, field, mode, value):
         # open picker
         self.pointing_device.click_object(field)
@@ -347,7 +337,7 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     def edit_event(self, name):
         """Edit an event.
         :param name:The name of event to edit
-        :return : event details pagg. """
+        :return : event details page. """
         event_details_page = self.open_event(name)
         return event_details_page.edit()
 
