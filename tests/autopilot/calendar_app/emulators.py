@@ -272,7 +272,6 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
             key=lambda bubble: (bubble.globalRect.y, bubble.globalRect.x))
 
         for event in event_bubbles:
-            logger.debug('Checking event %s' % event.get_name())
             # Event-bubbles objects are recycled, only show visible ones.
             if event.get_name() == event_name:
                 if (visible and event.visible) or not visible:
@@ -439,16 +438,16 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         """
         # TODO fill start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
-        #if event_information.calendar is not None:
-        #    self._select_calendar(event_information.calendar)
+        if event_information.calendar is not None:
+            self._select_calendar(event_information.calendar)
         if event_information.name is not None:
             self._fill_name(event_information.name)
-        #if event_information.description is not None:
-        #    self._fill_description(event_information.description)
-        #if event_information.location is not None:
-        #    self._fill_location(event_information.location)
-        #if event_information.guests is not None:
-        #    self._fill_guests(event_information.guests)
+        if event_information.description is not None:
+            self._fill_description(event_information.description)
+        if event_information.location is not None:
+            self._fill_location(event_information.location)
+        if event_information.guests is not None:
+            self._fill_guests(event_information.guests)
 
     def _fill_name(self, value):
         self._ensure_entry_field_visible_and_write('newEventName', value)
