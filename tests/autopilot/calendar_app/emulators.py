@@ -314,13 +314,7 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         :return: The Event Details page.
 
         """
-        event_bubbles = self._get_selected_day_event_bubbles()
-        for bubble in event_bubbles:
-            if bubble.get_name() == name:
-                return bubble.open_event()
-        else:
-            raise CalendarException(
-                'Could not find event with name {}.'.format(name))
+        return self.get_event(name).open_event()
 
     @autopilot.logging.log_action(logger.info)
     def delete_event(self, name):
