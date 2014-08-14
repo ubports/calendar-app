@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-08-12 04:12+0000\n"
-"Last-Translator: Kentaro Kazuhama <Unknown>\n"
+"PO-Revision-Date: 2014-08-14 06:23+0000\n"
+"Last-Translator: Mitsuya Shibata <mty.shibata@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-13 06:50+0000\n"
+"X-Launchpad-Export-Date: 2014-08-14 07:30+0000\n"
 "X-Generator: Launchpad (build 17156)\n"
 
 #: ../AgendaView.qml:43
@@ -30,7 +30,7 @@ msgstr "hh:mm"
 
 #: ../AgendaView.qml:94
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "M月d日（ddd）"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -46,12 +46,12 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1件"
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "%1件の終日イベント"
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
 msgid "Calendars"
@@ -89,7 +89,7 @@ msgstr "一連の予定を削除"
 
 #: ../DeleteConfirmationDialog.qml:33
 msgid "Delete this"
-msgstr ""
+msgstr "このイベントを削除"
 
 #: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
 msgid "Delete"
@@ -97,61 +97,60 @@ msgstr "削除"
 
 #: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:294
 msgid "Edit Event"
-msgstr ""
+msgstr "イベントを編集"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "一連の予定を編集"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr ""
+msgstr "このイベントを編集"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "完了"
 
 #: ../EventDetails.qml:27
 msgid "Event Details"
-msgstr ""
+msgstr "イベントの詳細"
 
 #: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
-msgstr ""
+msgstr "しない"
 
 #. TRANSLATORS: this is a date shown in the event details view,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59
 msgid "ddd MMMM d yyyy"
-msgstr ""
+msgstr "yyyy年M月d日（ddd）"
 
 #: ../EventDetails.qml:62
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "残り%1回繰り返す"
 
 #: ../EventDetails.qml:63
 #, qt-format
 msgid "After Date %1"
-msgstr ""
+msgstr "残り%1日繰り返す"
 
 #. TRANSLATORS: the argument is a day of the week or a list of days
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "%1ごと"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
-msgstr ""
+msgstr "指定されていません"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:137
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "yyyy年MMMdd日"
 
 #: ../EventDetails.qml:210
 msgid "Edit"
@@ -159,55 +158,55 @@ msgstr "編集"
 
 #: ../EventDetails.qml:272
 msgid "Date"
-msgstr ""
+msgstr "日付"
 
 #: ../EventDetails.qml:277 ../NewEvent.qml:384
 msgid "Start"
-msgstr ""
+msgstr "開始"
 
 #: ../EventDetails.qml:282 ../NewEvent.qml:423
 msgid "End"
-msgstr ""
+msgstr "終了"
 
 #: ../EventDetails.qml:291 ../NewEvent.qml:493
 msgid "All Day event:"
-msgstr ""
+msgstr "終日イベント："
 
 #: ../EventDetails.qml:340 ../NewEvent.qml:538
 msgid "Location"
-msgstr ""
+msgstr "場所"
 
 #: ../EventDetails.qml:366 ../NewEvent.qml:545
 msgid "Guests"
-msgstr ""
+msgstr "ゲスト"
 
 #: ../EventDetails.qml:404 ../NewEvent.qml:556
 msgid "This happens"
-msgstr ""
+msgstr "繰り返し"
 
 #: ../EventDetails.qml:409 ../NewEvent.qml:654
 msgid "Remind me"
-msgstr ""
+msgstr "通知"
 
 #: ../EventDetails.qml:414
 msgid "Repeats On"
-msgstr ""
+msgstr "繰り返しの曜日"
 
 #: ../EventDetails.qml:420
 msgid "Repetition Ends"
-msgstr ""
+msgstr "繰り返しの終了"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "X回後"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "指定した日数経過後"
 
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "終了時刻を開始時刻より前にできません"
 
 #: ../NewEvent.qml:294 ../calendar.qml:305
 msgid "New Event"
@@ -215,119 +214,119 @@ msgstr "新しいイベント"
 
 #: ../NewEvent.qml:310
 msgid "Error"
-msgstr ""
+msgstr "エラー"
 
 #: ../NewEvent.qml:312
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
 #: ../NewEvent.qml:400 ../NewEvent.qml:439
 msgid "at"
-msgstr ""
+msgstr "の"
 
 #: ../NewEvent.qml:460
 msgid "Calendar "
-msgstr ""
+msgstr "カレンダー "
 
 #: ../NewEvent.qml:508
 msgid "Event Name"
-msgstr ""
+msgstr "イベント名"
 
 #: ../NewEvent.qml:518
 msgid "Description"
-msgstr ""
+msgstr "概要"
 
 #: ../NewEvent.qml:575
 msgid "Repeats On:"
-msgstr ""
+msgstr "繰り返し："
 
 #: ../NewEvent.qml:610
 msgid "Recurring event ends"
-msgstr ""
+msgstr "繰り返しの終了"
 
 #. TRANSLATORS: This refers to no of occurences of an event.
 #: ../NewEvent.qml:632
 msgid "Recurrence"
-msgstr ""
+msgstr "繰り返し"
 
 #: ../RecurrenceLabelDefines.qml:4
 msgid "Once"
-msgstr ""
+msgstr "一度だけ"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr ""
+msgstr "毎日"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
-msgstr ""
+msgstr "平日（月曜から金曜）"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "毎週月水金"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
-msgstr ""
+msgstr "毎週火木"
 
 #: ../RecurrenceLabelDefines.qml:9
 msgid "Weekly"
-msgstr ""
+msgstr "毎週"
 
 #: ../RecurrenceLabelDefines.qml:10
 msgid "Monthly"
-msgstr ""
+msgstr "毎月"
 
 #: ../RecurrenceLabelDefines.qml:11
 msgid "Yearly"
-msgstr ""
+msgstr "毎年"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "通知なし"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
-msgstr ""
+msgstr "5分"
 
 #: ../ReminderLabelDefines.qml:6
 msgid "15 minutes"
-msgstr ""
+msgstr "15分"
 
 #: ../ReminderLabelDefines.qml:7
 msgid "30 minutes"
-msgstr ""
+msgstr "30分"
 
 #: ../ReminderLabelDefines.qml:8
 msgid "1 hour"
-msgstr ""
+msgstr "1時間"
 
 #: ../ReminderLabelDefines.qml:9
 msgid "2 hours"
-msgstr ""
+msgstr "2時間"
 
 #: ../ReminderLabelDefines.qml:10
 msgid "1 day"
-msgstr ""
+msgstr "1日"
 
 #: ../ReminderLabelDefines.qml:11
 msgid "2 days"
-msgstr ""
+msgstr "2日"
 
 #: ../ReminderLabelDefines.qml:12
 msgid "1 week"
-msgstr ""
+msgstr "1週間"
 
 #: ../ReminderLabelDefines.qml:13
 msgid "2 weeks"
-msgstr ""
+msgstr "2週間"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:19
 msgid "hh ap"
-msgstr ""
+msgstr "AP h時"
 
 #: ../calendar.qml:28
 msgid ""
@@ -335,18 +334,20 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"カレンダーアプリは--starttime、--endtime、--newevent、--"
+"eventidの4つの引数を指定できます。これはシステムによって管理されています。詳しいことはソースコードのコメントを参照してください。"
 
 #: ../calendar.qml:286
 msgid "Today"
-msgstr ""
+msgstr "今日"
 
 #: ../calendar.qml:325
 msgid "Sync"
-msgstr ""
+msgstr "同期"
 
 #: ../calendar.qml:325
 msgid "Syncing"
-msgstr ""
+msgstr "同期中"
 
 #: ../calendar.qml:358
 msgid "Year"
@@ -366,7 +367,7 @@ msgstr "日"
 
 #: ../calendar.qml:485
 msgid "Agenda"
-msgstr ""
+msgstr "予定表"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
@@ -374,8 +375,10 @@ msgstr "カレンダー"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "オンラインアカウントと同期するUbuntu用のカレンダー。"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
+"calendar;event;day;week;year;appointment;meeting;カレンダー;イベント;予定表;日;週;年;約束;ミーティ"
+"ング;"
