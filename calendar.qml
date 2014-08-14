@@ -282,7 +282,8 @@ MainView {
 
                 ToolbarButton {
                     action: Action {
-                        iconSource: Qt.resolvedUrl("calendar-today.svg");
+                        iconName: "calendar-today"
+
                         text: i18n.tr("Today");
                         objectName: "todaybutton"
                         onTriggered: {

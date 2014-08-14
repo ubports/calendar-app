@@ -28,7 +28,7 @@ Page {
         ToolbarButton {
             action: Action {
                 text: i18n.tr("Save");
-                iconSource: Qt.resolvedUrl("save.svg");
+                iconName: "save"
                 onTriggered: {
                     root.collectionUpdated();
                     pageStack.pop();
