@@ -194,7 +194,7 @@ Page {
             action:Action {
                 text: i18n.tr("Delete");
                 objectName: "delete"
-                iconSource: "image://theme/delete,edit-delete-symbolic"
+                iconName: "delete"
                 onTriggered: {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
                     dialog.deleteEvent.connect( function(eventId){
@@ -208,7 +208,7 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
-                iconSource: Qt.resolvedUrl("edit.svg");
+                iconName: "edit";
                 onTriggered: {
                     if( event.itemType === Type.EventOccurrence ) {
                         var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
