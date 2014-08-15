@@ -682,6 +682,8 @@ Page {
                 DatePicker{
                     id:datePick;
                     width: parent.width
+                    anchors.right: parent.right
+                    anchors.left: parent.left
                 }
             }
             Item{
