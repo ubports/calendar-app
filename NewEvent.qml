@@ -349,18 +349,11 @@ Page {
             flickable.returnToBounds()
         }
 
-        anchors {
-            top: parent.top
-            topMargin: units.gu(2)
-            bottom: toolbar.top
-            left: parent.left
-            right: parent.right
-            leftMargin: units.gu(2)
-            rightMargin: units.gu(2)
-        }
+        anchors.fill: parent
+        anchors.margins: units.gu(2)
 
         contentWidth: width
-        contentHeight: column.height
+        contentHeight: column.height + toolbar.height
 
         Column {
             id: column
