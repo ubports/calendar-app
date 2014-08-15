@@ -64,12 +64,12 @@ Popover {
             focus: true
             width: parent.width
             placeholderText: i18n.tr("Search contact")
-            primaryItem: Image {
+            primaryItem: Icon {
                  height: parent.height*0.5
                  width: parent.height*0.5
                  anchors.verticalCenter: parent.verticalCenter
                  anchors.verticalCenterOffset: -units.gu(0.2)
-                 source: Qt.resolvedUrl("search.svg")
+                 name:"find"
              }
         }
 
