@@ -681,7 +681,8 @@ Page {
                 visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2;
                 DatePicker{
                     id:datePick;
-                    width: parent.width
+                    anchors.right: parent.right
+                    anchors.left: parent.left
                 }
             }
             Item{
