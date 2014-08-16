@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-08-04 18:33+0000\n"
-"Last-Translator: Anne <anneonyme017@gmail.com>\n"
+"PO-Revision-Date: 2014-08-15 11:41+0000\n"
+"Last-Translator: Pauline <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-08-05 06:40+0000\n"
-"X-Generator: Launchpad (build 17147)\n"
+"X-Launchpad-Export-Date: 2014-08-16 06:48+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -113,7 +113,7 @@ msgstr "Terminé"
 
 #: ../EventDetails.qml:27
 msgid "Event Details"
-msgstr ""
+msgstr "Détails de l'événement"
 
 #: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
@@ -123,14 +123,14 @@ msgstr "Jamais"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59
 msgid "ddd MMMM d yyyy"
-msgstr ""
+msgstr "ddd MMMM d yyyy"
 
 #: ../EventDetails.qml:62
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Après %1 occurrence"
+msgstr[1] "Après %1 occurrences"
 
 #: ../EventDetails.qml:63
 #, qt-format
@@ -141,7 +141,7 @@ msgstr "Après le %1"
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "Chaque %1"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
@@ -191,7 +191,7 @@ msgstr "Me rappeler"
 
 #: ../EventDetails.qml:414
 msgid "Repeats On"
-msgstr ""
+msgstr "se répète tous les"
 
 #: ../EventDetails.qml:420
 msgid "Repetition Ends"
@@ -199,11 +199,11 @@ msgstr "Fin des répétitions"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "Après X occurrence"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "Après le"
 
 #: ../NewEvent.qml:182
 msgid "End time can't be before start time"
@@ -240,7 +240,7 @@ msgstr "Description"
 
 #: ../NewEvent.qml:575
 msgid "Repeats On:"
-msgstr ""
+msgstr "se répète tous les  :"
 
 #: ../NewEvent.qml:610
 msgid "Recurring event ends"
@@ -253,11 +253,11 @@ msgstr "Périodicité"
 
 #: ../RecurrenceLabelDefines.qml:4
 msgid "Once"
-msgstr ""
+msgstr "Une seule fois"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr ""
+msgstr "Tous les jours"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
@@ -265,27 +265,27 @@ msgstr "Chaque jour de la semaine (du Lundi au Vendredi)"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Chaque lundi, mercredi et vendredi"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
-msgstr ""
+msgstr "Chaque mardi et jeudi"
 
 #: ../RecurrenceLabelDefines.qml:9
 msgid "Weekly"
-msgstr ""
+msgstr "Toutes les semaines"
 
 #: ../RecurrenceLabelDefines.qml:10
 msgid "Monthly"
-msgstr ""
+msgstr "Tous les mois"
 
 #: ../RecurrenceLabelDefines.qml:11
 msgid "Yearly"
-msgstr ""
+msgstr "Tous les ans"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "Pas de rappel"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
