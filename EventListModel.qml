@@ -23,18 +23,6 @@ OrganizerModel {
         return itemsByTimePeriod(startDate,endDate);
     }
 
-    function startLoadingTimer() {
-        var newObject = Qt.createQmlObject("import QtQuick 2.0; Timer {interval: 1000; running: true; repeat: false;}",
-            eventModel, "EventListMode.qml");
-        newObject.onTriggered.connect( function(){
-            var items = getItems(eventModel.startPeriod, eventModel.endPeriod);
-            if( isLoading == true && items.length === 0) {
-                isLoading = false;
-            }
-            newObject.destroy();
-        });
-    }
-
     onModelChanged: {
         isLoading = false
         if(listeners === undefined){
@@ -59,11 +47,5 @@ OrganizerModel {
 
     onStartPeriodChanged: {
         isLoading = true
-    }
-
-    onIsLoadingChanged: {
-        if(isLoading) {
-            startLoadingTimer();
-        }
     }
 }
