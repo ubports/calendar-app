@@ -42,6 +42,10 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
+    property var selectedReccurence
+    property var limitCountValue
+    property var limitDateValue
+
     onStartDateChanged: {
         startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
         startTimeInput.text = Qt.formatDateTime(startDate, "hh:mm");
@@ -346,6 +350,8 @@ Page {
         }
     }
 
+
+
     Flickable{
         id: flickable
 
@@ -584,91 +590,46 @@ Page {
                 text: i18n.tr("This Happens")
                 visible: event.itemType === Type.Event
             }
-
-            OptionSelector{
-                id: recurrenceOption
-                visible: event.itemType === Type.Event
+            NewEventEntryField{
+                id: thisHappens
+                // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
+                objectName: "thisHappens"
+                text: "Only at once"
                 width: parent.width
-                model: Defines.recurrenceLabel
-                containerHeight: itemHeight * 4
-                onExpandedChanged: Qt.inputMethod.hide();
-            }
+                anchors.right: parent.right
 
-            Column {
-                visible: recurrenceOption.selectedIndex == 5
-                Label {
-                    text: i18n.tr("Repeats On:")
-                }
-                Row {
-                    id: weeksRow
-                    width: column.width
-                    spacing: (weeksRow.width - units.gu(28))/6 //Units.gu(28) = weeksRowColumn.width * 7 [weeks]
-                    Repeater {
-                        model: Defines.weekLabel
-                        Column {
-                            id: weeksRowColumn
-                            width: units.gu(4) //This is help calculate weeksRow.spacing
-                            Label {
-                                id:lbl
-                                text:modelData
-                                anchors.horizontalCenter: parent.horizontalCenter
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        var dialog = PopupUtils.open(Qt.resolvedUrl("EventRepetationDialog.qml"),root,
+                                                     {"event": event,
+                                                      "selectedReccurence":selectedReccurence,
+                                                       "weekDays":internal.weekDays,
+                                                     "limitCountValue":limitCountValue,
+                                                     "limitDateValue":limitDateValue});
+                        dialog.testing.connect( function(text,weekDays,selectedReccurence,limitCountValue,limitDateValue){
+                            thisHappens.text = ""
+                            console.log(limitDateValue)
+                            root.selectedReccurence = selectedReccurence
+                            root.limitCountValue = limitCountValue
+                            root.limitDateValue = limitDateValue
+                            internal.weekDays = weekDays
+                            var sorted = weekDays.sort();
+                            var val = "";
+                            for (var j=0; j<sorted.length; ++j) {
+                                val += Qt.locale().dayName(sorted[j], Locale.ShortFormat) + ", ";
                             }
-                            CheckBox {
-                                id: weekCheck
-                                onCheckedChanged: {
-                                    //EDS consider 7 as Sunday index so if the index is 0 then we have to explicitly push Sunday.
-                                    if(index === 0)
-                                        (checked) ? internal.weekDays.push(Qt.Sunday) : internal.weekDays.splice(internal.weekDays.indexOf(Qt.Sunday),1);
-                                    else
-                                        (checked) ? internal.weekDays.push(index) : internal.weekDays.splice(internal.weekDays.indexOf(index),1);
-                                }
-                                checked: {
-                                    (internal.weekDays.length === 0 && index === date.getDay() && isEdit== false) ? true : false;
-                                }
-                            }
-                        }
+                            val = val.slice(0, -2); // Trim last comma from the string
+                            // TRANSLATORS: the argument is a day of the week or a list of days
+                            var recurrence = i18n.tr("Every %1".arg(val));
+                            thisHappens.text = text + " " + recurrence
+                        });
                     }
+
                 }
             }
 
-            ListItem.Header {
-                text: i18n.tr("Recurring event ends")
-                visible: recurrenceOption.selectedIndex != 0
-            }
 
-            OptionSelector{
-                id: limitOptions
-                visible: recurrenceOption.selectedIndex != 0
-                width: parent.width
-                model: Defines.limitLabel
-                containerHeight: itemHeight * 4
-                onExpandedChanged:   Qt.inputMethod.hide();
-
-            }
-
-            TextField {
-                id: limitCount
-                width: parent.width
-                // TRANSLATORS: This refers to no of occurences of an event.
-                placeholderText: i18n.tr("Recurrence")
-                objectName: "eventLimitCount"
-                visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
-                validator: IntValidator{ bottom: 1; }
-                inputMethodHints: Qt.ImhDialableCharactersOnly
-                focus: true
-            }
-
-            Item {
-                id: limitDate
-                width: parent.width
-                height: datePick.height
-                visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2;
-                DatePicker{
-                    id:datePick;
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                }
-            }
 
             ListItem.Header {
                 text: i18n.tr("Remind me")
