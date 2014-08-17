@@ -86,16 +86,6 @@ Page {
                         fontSize: "medium"
                         width: parent.width - (parent.height*2)
                         anchors.verticalCenter: parent.verticalCenter
-
-                        MouseArea{
-                            anchors.fill: parent
-                            onClicked: {
-                                checkBox.checked = !checkBox.checked
-                                modelData.setExtendedMetaData("collection-selected",checkBox.checked)
-                                var collection = root.model.collection(modelData.collectionId);
-                                root.model.saveCollection(collection);
-                            }
-                        }
                     }
                     CheckBox {
                         id: checkBox
@@ -108,6 +98,12 @@ Page {
                             root.model.saveCollection(collection);
                         }
                     }
+                }
+                onClicked: {
+                    checkBox.checked = !checkBox.checked
+                    modelData.setExtendedMetaData("collection-selected",checkBox.checked)
+                    var collection = root.model.collection(modelData.collectionId);
+                    root.model.saveCollection(collection);
                 }
             }
         }
