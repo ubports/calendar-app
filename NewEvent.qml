@@ -174,7 +174,7 @@ Page {
                     if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
                         for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
                             //Start childern after first element.
-                            weeksRow.children[recurrenceRule[0].daysOfWeek[j]+1].checked = true;
+                            weeksRow.children[recurrenceRule[0].daysOfWeek[j] === 7 ? 0 :recurrenceRule[0].daysOfWeek[j]].children[1].checked = true;
                         }
                     }
                 }
