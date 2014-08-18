@@ -11,56 +11,50 @@ Page {
     id: repetation
     title: i18n.tr("Repeat")
     property var weekDays : [];
-    property var event
+    property var rule
+    property var date
+    property var isEdit
     EventUtils{
         id:eventUtils
     }
 
     Component.onCompleted: {
         //Fill Date & limitcount if any
-        if( event.itemType === Type.Event ) {
-            var index;
-            index = 0;
-            if(event.recurrence ) {
-                var recurrenceRule = event.recurrence.recurrenceRules;
-                index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
-                if(index > 0 )
-                {
-                    if(recurrenceRule[0].limit !== undefined){
-                        var temp = recurrenceRule[0].limit;
-                        if(parseInt(temp)){
-                            limitOptions.selectedIndex = 1;
-                            limitCount.text = temp;
-                        }
-                        else{
-                            console.log("Here")
-                            limitOptions.selectedIndex = 2;
-                            datePick.date= temp;
-                        }
-                    }
-                    else{
-                        // If limit is infinite
-                        limitOptions.selectedIndex = 0;
-                    }
-                    switch(index){
-                    case RecurrenceRule.Weekly:
-                        index = eventUtils.getWeekDaysIndex(recurrenceRule[0].daysOfWeek.sort());
-                        if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
-                            for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
-                                //Start childern after first element.
-                                weeksRow.children[recurrenceRule[0].daysOfWeek[j] === 7 ? 0 :recurrenceRule[0].daysOfWeek[j]].children[1].checked = true;
-                            }
-                        }
-                        break;
-                    case RecurrenceRule.Monthly:
-                        index = 6
-                        break;
-                    case RecurrenceRule.Yearly:
-                        index = 7
-                        break;
-                    }
-
+        var index = 0;
+        index =  rule.frequency ;
+        if(index > 0 )
+        {
+            if(rule.limit !== undefined){
+                var temp = rule.limit;
+                if(parseInt(temp)){
+                    limitOptions.selectedIndex = 1;
+                    limitCount.value = temp;
                 }
+                else{
+                    limitOptions.selectedIndex = 2;
+                    datePick.date= temp;
+                }
+            }
+            else{
+                // If limit is infinite
+                limitOptions.selectedIndex = 0;
+            }
+            switch(index){
+            case RecurrenceRule.Weekly:
+                index = eventUtils.getWeekDaysIndex(rule.daysOfWeek.sort());
+                if(rule.daysOfWeek.length>0 && index === 5){
+                    for(var j = 0;j<rule.daysOfWeek.length;++j){
+                        //Start childern after first element.
+                        weeksRow.children[rule.daysOfWeek[j] === 7 ? 0 :rule.daysOfWeek[j]].children[1].checked = true;
+                    }
+                }
+                break;
+            case RecurrenceRule.Monthly:
+                index = 6
+                break;
+            case RecurrenceRule.Yearly:
+                index = 7
+                break;
             }
             recurrenceOption.selectedIndex = index;
         }
@@ -72,16 +66,15 @@ Page {
         id:backAction
         iconName: "back"
         onTriggered: {
-            if( event.itemType === Type.Event ) {
-                console.log("Index is " + recurrenceOption.selectedIndex );
-                var rule
-                var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
-                rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetation.qml");
-                if( recurrenceRule !== RecurrenceRule.Invalid ) {
-                    rule.frequency = recurrenceRule;
+            var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
+            console.log(recurrenceRule);
+            console.log("Invalid "  + RecurrenceRule.Daily)
+            if( recurrenceRule !== RecurrenceRule.Invalid ) {
+                rule.frequency = recurrenceRule;
+                if(limitOptions.selectedIndex > 0) {
                     rule.daysOfWeek = eventUtils.getDaysOfWeek(recurrenceOption.selectedIndex,weekDays );
                     if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
-                        rule.limit =  parseInt(limitCount.text);
+                        rule.limit =  parseInt(limitCount.value);
                     }
                     else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
                         rule.limit =  datePick.date;
@@ -90,8 +83,11 @@ Page {
                         rule.limit = undefined;
                     }
                 }
-                event.recurrence.recurrenceRules = [rule];
             }
+            else{
+                rule.frequency = 0
+            }
+            console.log("Frq  " + rule.frequency )
             pop()
         }
     }
@@ -102,14 +98,13 @@ Page {
             margins: units.gu(2)
         }
 
-
         spacing: units.gu(1)
         ListItem.Header{
             text: i18n.tr("Repeat")
         }
         OptionSelector{
             id: recurrenceOption
-            visible: event.itemType === Type.Event
+            visible: true
             width: parent.width
             model: Defines.recurrenceLabel
             containerHeight: itemHeight * 4
@@ -141,9 +136,9 @@ Page {
                         onCheckedChanged: {
                             //EDS consider 7 as Sunday index so if the index is 0 then we have to explicitly push Sunday.
                             if(index === 0)
-                              (checked) ? weekDays.push(Qt.Sunday) : weekDays.splice(weekDays.indexOf(Qt.Sunday),1);
+                                (checked) ? weekDays.push(Qt.Sunday) : weekDays.splice(weekDays.indexOf(Qt.Sunday),1);
                             else
-                              (checked) ? weekDays.push(index) : weekDays.splice(weekDays.indexOf(index),1);
+                                (checked) ? weekDays.push(index) : weekDays.splice(weekDays.indexOf(index),1);
                         }
                         checked:{
                             (weekDays.length === 0 && index === date.getDay() && isEdit== false) ? true : false;
@@ -171,15 +166,20 @@ Page {
             text:i18n.tr("Recurrences")
             visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
         }
-        TextField {
-            id: limitCount
+        Slider{
+            id:limitCount
+            live:true
             width: parent.width
-            objectName: "eventLimitCount"
+            objectName:"limitCount"
             visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
-            validator: IntValidator{ bottom: 1; }
-            inputMethodHints: Qt.ImhDialableCharactersOnly
-            focus: true
+            minimumValue: 1
+            maximumValue: 50
+            onValueChanged: {
+                backAction.enabled = value !== 1 ? true :false
+            }
+
         }
+
         ListItem.Header{
             text:i18n.tr("Date")
             visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 2;

@@ -33,6 +33,7 @@ Page {
     property var date;
 
     property var event:null;
+    property var rule :null;
     property var model;
 
     property var startDate;
@@ -116,10 +117,13 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+        rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetation.qml");
         selectCalendar(model.defaultCollection().collectionId);
     }
+
     //Editing Event
     function editEvent(e) {
+        rule = e.recurrence.recurrenceRules[0];
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
 
@@ -184,7 +188,8 @@ Page {
                 }
                 event.attendees = contacts;
             }
-
+            if(rule !== null && rule !== undefined)
+                event.recurrence.recurrenceRules= [rule]
             //remove old reminder value
             var oldVisualReminder = event.detail(Detail.VisualReminder);
             if(oldVisualReminder) {
@@ -341,12 +346,38 @@ Page {
                 width: parent.width
                 placeholderText: i18n.tr("Description")
             }
-
             TextField {
                 id: locationEdit
                 objectName: "eventLocationInput"
                 width: parent.width
                 placeholderText: i18n.tr("Location")
+            }
+            ListItem.Header {
+                text: i18n.tr("Calendar")
+            }
+
+            OptionSelector{
+                id: calendarsOption
+                objectName: "calendarsOption"
+
+                width: parent.width
+                containerHeight: itemHeight * 4
+                model: root.model.getCollections();
+
+                delegate: OptionSelectorDelegate{
+                    text: modelData.name
+
+                    UbuntuShape{
+                        id: calColor
+                        width: height
+                        height: parent.height - units.gu(2)
+                        color: modelData.color
+                        anchors.right: parent.right
+                        anchors.rightMargin: units.gu(2)
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                }
+                onExpandedChanged: Qt.inputMethod.hide();
             }
 
             ListItem.Header {
@@ -487,56 +518,18 @@ Page {
                 }
             }
 
-            ListItem.Header {
-                text: i18n.tr("Calendar")
-            }
 
-            OptionSelector{
-                id: calendarsOption
-                objectName: "calendarsOption"
-
-                width: parent.width
-                containerHeight: itemHeight * 4
-                model: root.model.getCollections();
-
-                delegate: OptionSelectorDelegate{
-                    text: modelData.name
-
-                    UbuntuShape{
-                        id: calColor
-                        width: height
-                        height: parent.height - units.gu(2)
-                        color: modelData.color
-                        anchors.right: parent.right
-                        anchors.rightMargin: units.gu(2)
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
-                onExpandedChanged: Qt.inputMethod.hide();
-            }
-
-            ListItem.Header {
-                text: i18n.tr("This Happens")
+            ListItem.Subtitled{
+                id:thisHappens
+                objectName :"thisHappens"
                 visible: event.itemType === Type.Event
-            }
-            NewEventEntryField{
-                id: thisHappens
-                // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-                objectName: "thisHappens"
-                text: eventUtils.getRecurrenceString(event.recurrence.recurrenceRules)
+                text: i18n.tr("This Happens")
+                subText: eventUtils.getRecurrenceString(rule)
                 width: parent.width
                 anchors.right: parent.right
-                MouseArea{
-                    anchors.fill: parent
-                    onClicked: {
-                        pageStack.push(Qt.resolvedUrl("EventRepetation.qml"),{"event": event,});
-                    }
+                onClicked:    pageStack.push(Qt.resolvedUrl("EventRepetation.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
 
-                }
             }
-
-
-
             ListItem.Header {
                 text: i18n.tr("Remind me")
             }

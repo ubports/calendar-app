@@ -44,36 +44,42 @@ QtObject{
         }
         return daysOfWeek;
     }
-    function getRecurrenceString(recurrenceRule){
-        var index;
-        var str = "";
-        index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
-        if(index === RecurrenceRule.Weekly){
-            index = getWeekDaysIndex(recurrenceRule[0].daysOfWeek )
-            if (index === 5)
-                str += "Every "
+    //Function to get Weeknames in narrow Format
+    function getDays(daysOfWeek) {
+        var days = []
+        for(var j = 0;j<daysOfWeek.length;++j){
+            //push all days
+            days.push(Qt.locale().dayName(j,Locale.NarrowFormat))
         }
-        if(index === RecurrenceRule.Monthly)
-            index = 6
-        if(index === RecurrenceRule.Yearly)
-            index = 7
-        str = Defines.recurrenceLabel[index]
-        if(index > 0){
-            if(recurrenceRule[0].limit !== undefined){
-                var temp = recurrenceRule[0].limit;
-                console.log("Value is " + temp);
-                if(parseInt(temp)){
-                    str += ";  " + temp + "times "
-                }
-                else{
-                    // TRANSLATORS: this is a date shown in the event details view,
-                    // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-                    var dateFormat = i18n.tr("ddd MMMM d yyyy");
-                    str += "; until " + temp.toLocaleString(Qt.locale(), dateFormat)
-                }
+        days = days.join(', ');
+        return days;
+    }
+
+    function getRecurrenceString(rule){
+
+        var index;
+        var reccurence = "";
+        var limit,str = "";
+        var dateFormat = i18n.tr("ddd MMMM d yyyy");
+        index = rule.frequency;
+        if(index === RecurrenceRule.Weekly){
+            index = getWeekDaysIndex(rule.daysOfWeek.sort() )
+            reccurence = "Weekly "
+            if(index === 5){
+                reccurence +=  "on " + getDays(rule.daysOfWeek.sort())
             }
         }
-        return str;
+        else if(index === RecurrenceRule.Monthly)
+            index = 6
+        else if(index === RecurrenceRule.Yearly)
+            index = 7
+        if(index !==5)
+            reccurence += Defines.recurrenceLabel[index]
 
+        str = (rule.limit === undefined) ? i18n.tr(reccurence) :
+                                           (rule.limit !== undefined && parseInt(rule.limit)) ?
+                                               i18n.tr("%1 ; %2 times ").arg(reccurence).arg(rule.limit) :
+                                               i18n.tr("%1 ;  until %2").arg(reccurence).arg(rule.limit.toLocaleString(Qt.locale(), dateFormat))
+        return str;
     }
 }
