@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Canonical Ltd
+ * Copyright (C) 2013-2014 Canonical Ltd
  *
  * This file is part of Ubuntu Calendar App
  *
