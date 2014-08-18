@@ -301,6 +301,11 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return self._get_event_bubbles(selected_day)
 
     def _get_event_bubbles(self, selected_day):
+        try:
+            loading_spinner = selected_day.select_single("ActivityIndicator")
+            loading_spinner.running.wait_for(False)
+        except:
+            pass
         event_bubbles = selected_day.select_many(EventBubble)
         return event_bubbles
 
