@@ -117,12 +117,14 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+        //Create fresh Recurrence Object.
         rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetation.qml");
         selectCalendar(model.defaultCollection().collectionId);
     }
 
     //Editing Event
     function editEvent(e) {
+        //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
         rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
                     Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetation.qml")
                   : e.recurrence.recurrenceRules[0];
@@ -190,6 +192,7 @@ Page {
                 }
                 event.attendees = contacts;
             }
+            //Set the Rule object to an event
             if(rule !== null && rule !== undefined)
                 event.recurrence.recurrenceRules= [rule]
             //remove old reminder value
@@ -223,25 +226,6 @@ Page {
             model.saveItem(event);
             pageStack.pop();
         }
-    }
-
-    function getDaysOfWeek(){
-        var daysOfWeek = [];
-        switch(recurrenceOption.selectedIndex){
-        case 2:
-            daysOfWeek = [Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday];
-            break;
-        case 3:
-            daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday];
-            break;
-        case 4:
-            daysOfWeek = [Qt.Tuesday,Qt.Thursday];
-            break;
-        case 5:
-            daysOfWeek = internal.weekDays.length === 0 ? [date.getDay()] : internal.weekDays;
-            break;
-        }
-        return daysOfWeek;
     }
 
     function openDatePicker (element, caller, callerProperty, mode) {
@@ -658,7 +642,6 @@ Page {
 
     QtObject {
         id: internal
-        property var weekDays : [];
         function clearFocus() {
             Qt.inputMethod.hide()
             titleEdit.focus = false

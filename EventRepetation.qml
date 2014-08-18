@@ -174,7 +174,7 @@ Page {
                                 (checked) ? weekDays.push(index) : weekDays.splice(weekDays.indexOf(index),1);
                         }
                         checked:{
-                            (weekDays.length === 0 && index === date.getDay() && isEdit== false) ? true : false;
+                            (weekDays.length === 0 && index === date.getDay() && isEdit === false) ? true : false;
                         }
 
                     }
