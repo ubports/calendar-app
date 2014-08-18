@@ -95,14 +95,24 @@ Item {
     }
 
     function destroyAllChildren() {
+        /* Create a list of unique unused events so that duplicates aren't
+         * added to  intern.unUsedEvents
+         */
+        var unUsedUniqueHash = {};
+        for (var unUsedEvent in intern.unUsedEvents) {
+                unUsedUniqueHash[unUsedEvent.event] = unUsedEvent;
+        }
+
         for( var i = children.length - 1; i >= 0; --i ) {
             if( children[i].objectName === "mouseArea" ) {
                 continue;
             }
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
-                children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
-                intern.unUsedEvents.push(children[i])
+                if (unUsedUniqueHash[children[i].event] == "undefined") {
+                    children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
+                    intern.unUsedEvents.push(children[i])
+                }
             }
         }
     }
