@@ -37,7 +37,7 @@ Page {
             text: i18n.tr("Back")
             iconName: "back"
             onTriggered: {
-                pageStack.pop();
+                pop();
             }
         }
 
@@ -46,7 +46,7 @@ Page {
             iconName: "save"
             onTriggered: {
                 root.collectionUpdated();
-                pageStack.pop();
+                pop();
             }
         }
     }
