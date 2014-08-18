@@ -208,6 +208,7 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
+		objectName: "edit"
                 iconName: "edit";
                 onTriggered: {
                     if( event.itemType === Type.EventOccurrence ) {

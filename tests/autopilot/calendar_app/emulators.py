@@ -128,6 +128,12 @@ class MainView(ubuntuuitoolkit.MainView):
             parent_object = self
         return parent_object.select_single("EventView")
 
+    def get_event_details(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
+        return parent_object.select_single(EventDetails,
+                                           objectName='eventDetails')
+
     def get_month_view(self, parent_object=None):
         if parent_object is None:
             parent_object = self
@@ -295,6 +301,11 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return self._get_event_bubbles(selected_day)
 
     def _get_event_bubbles(self, selected_day):
+        try:
+            loading_spinner = selected_day.select_single("ActivityIndicator")
+            loading_spinner.running.wait_for(False)
+        except:
+            pass
         event_bubbles = selected_day.select_many(EventBubble)
         return event_bubbles
 
@@ -314,13 +325,7 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         :return: The Event Details page.
 
         """
-        event_bubbles = self._get_selected_day_event_bubbles()
-        for bubble in event_bubbles:
-            if bubble.get_name() == name:
-                return bubble.open_event()
-        else:
-            raise CalendarException(
-                'Could not find event with name {}.'.format(name))
+        return self.get_event(name).open_event()
 
     @autopilot.logging.log_action(logger.info)
     def delete_event(self, name):
@@ -332,6 +337,14 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         """
         event_details_page = self.open_event(name)
         return event_details_page.delete()
+
+    @autopilot.logging.log_action(logger.info)
+    def edit_event(self, name):
+        """Edit an event.
+        :param name:The name of event to edit
+        :return : event details page. """
+        event_details_page = self.open_event(name)
+        return event_details_page.edit()
 
     @autopilot.logging.log_action(logger.info)
     def get_day_header(self, day=None):
@@ -546,6 +559,18 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         delete_confirmation_dialog.confirm_deletion()
 
         return root.select_single(DayView, objectName='dayViewPage')
+
+    @autopilot.logging.log_action(logger.debug)
+    def edit(self):
+        """Click the Edit button.
+
+        :return: The Edit page.
+
+        """
+        root = self.get_root_instance()
+        header = root.select_single(MainView).get_header()
+        header.click_action_button('edit')
+        return root.select_single(NewEvent, objectName='newEventPage')
 
     def get_event_information(self):
         """Return the information of the event."""
