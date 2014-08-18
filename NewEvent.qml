@@ -24,7 +24,6 @@ import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
-
 import "Defines.js" as Defines
 
 Page {
@@ -149,44 +148,8 @@ Page {
                     contactModel.append(e.attendees[j]);
                 }
             }
-
-            index = 0;
-            if(e.recurrence ) {
-                var recurrenceRule = e.recurrence.recurrenceRules;
-                index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
-                if(index > 0 )
-                {
-                    limit.visible = true;
-                    if(recurrenceRule[0].limit !== undefined){
-                        var temp = recurrenceRule[0].limit;
-                        if(parseInt(temp)){
-                            limitOptions.selectedIndex = 1;
-                            limitCount.text = temp;
-                        }
-                        else{
-                            limitOptions.selectedIndex = 2;
-                            datePick.date= temp;
-                        }
-                    }
-                    else{
-                        // If limit is infinite
-                        limitOptions.selectedIndex = 0;
-                    }
-                    if(index === RecurrenceRule.Weekly){
-                        index = getWeekDaysIndex(recurrenceRule[0].daysOfWeek.sort());
-                    }
-                    if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
-                        for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
-                            //Start childern after first element.
-                            weeksRow.children[recurrenceRule[0].daysOfWeek[j]+1].checked = true;
-                        }
-                    }
-                }
-            }
-            recurrenceOption.selectedIndex = index;
         }
 
-        index = 0;
         var reminder = e.detail( Detail.VisualReminder);
         if( reminder ) {
             var reminderTime = reminder.secondsBeforeStart;
@@ -197,26 +160,7 @@ Page {
 
         selectCalendar(e.collectionId);
     }
-    function getWeekDaysIndex(daysOfWeek){
-        var index = 0;
-        if(compareArrays(daysOfWeek,[Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday]))
-            index = 2
-        else if(compareArrays(daysOfWeek,[Qt.Monday,Qt.Wednesday,Qt.Friday]))
-            index = 3
-        else if(compareArrays(daysOfWeek,[Qt.Tuesday,Qt.Thursday]))
-            index = 4
-        else
-            index = 5
-        return index;
-    }
 
-    function compareArrays(daysOfWeek, actualArray){
-        if (daysOfWeek.length !== actualArray.length) return false;
-        for (var i = 0; i < actualArray.length; i++) {
-            if (daysOfWeek[i] !== actualArray[i]) return false;
-        }
-        return true;
-    }
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
@@ -239,23 +183,6 @@ Page {
                     contacts.push(contact);
                 }
                 event.attendees = contacts;
-
-                var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
-                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
-                if( recurrenceRule !== RecurrenceRule.Invalid ) {
-                    rule.frequency = recurrenceRule;
-                    rule.daysOfWeek = getDaysOfWeek();
-                    if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
-                        rule.limit =  parseInt(limitCount.text);
-                    }
-                    else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
-                        rule.limit =  datePick.date;
-                    }
-                    else{
-                        rule.limit = undefined;
-                    }
-                }
-                event.recurrence.recurrenceRules = [rule];
             }
 
             //remove old reminder value
@@ -350,7 +277,9 @@ Page {
         }
     }
 
-
+    EventUtils{
+        id:eventUtils
+    }
 
     Flickable{
         id: flickable
@@ -594,36 +523,13 @@ Page {
                 id: thisHappens
                 // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
                 objectName: "thisHappens"
-                text: "Only at once"
+                text: eventUtils.getRecurrenceString(event.recurrence.recurrenceRules)
                 width: parent.width
                 anchors.right: parent.right
-
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        var dialog = PopupUtils.open(Qt.resolvedUrl("EventRepetationDialog.qml"),root,
-                                                     {"event": event,
-                                                      "selectedReccurence":selectedReccurence,
-                                                       "weekDays":internal.weekDays,
-                                                     "limitCountValue":limitCountValue,
-                                                     "limitDateValue":limitDateValue});
-                        dialog.testing.connect( function(text,weekDays,selectedReccurence,limitCountValue,limitDateValue){
-                            thisHappens.text = ""
-                            console.log(limitDateValue)
-                            root.selectedReccurence = selectedReccurence
-                            root.limitCountValue = limitCountValue
-                            root.limitDateValue = limitDateValue
-                            internal.weekDays = weekDays
-                            var sorted = weekDays.sort();
-                            var val = "";
-                            for (var j=0; j<sorted.length; ++j) {
-                                val += Qt.locale().dayName(sorted[j], Locale.ShortFormat) + ", ";
-                            }
-                            val = val.slice(0, -2); // Trim last comma from the string
-                            // TRANSLATORS: the argument is a day of the week or a list of days
-                            var recurrence = i18n.tr("Every %1".arg(val));
-                            thisHappens.text = text + " " + recurrence
-                        });
+                        pageStack.push(Qt.resolvedUrl("EventRepetation.qml"),{"event": event,});
                     }
 
                 }
