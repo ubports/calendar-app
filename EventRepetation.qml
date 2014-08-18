@@ -67,8 +67,6 @@ Page {
         iconName: "back"
         onTriggered: {
             var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
-            console.log(recurrenceRule);
-            console.log("Invalid "  + RecurrenceRule.Daily)
             if( recurrenceRule !== RecurrenceRule.Invalid ) {
                 rule.frequency = recurrenceRule;
                 if(limitOptions.selectedIndex > 0) {
@@ -87,7 +85,6 @@ Page {
             else{
                 rule.frequency = 0
             }
-            console.log("Frq  " + rule.frequency )
             pop()
         }
     }
