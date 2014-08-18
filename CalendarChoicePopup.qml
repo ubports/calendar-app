@@ -1,7 +1,7 @@
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.Popups 0.1
-import Ubuntu.Components.ListItems 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components.ListItems 1.0
 import QtOrganizer 5.0
 
 Page {
@@ -12,32 +12,24 @@ Page {
 
     signal collectionUpdated();
 
-    ToolbarItems {
-        id: pickerModeToolbar
-
-        back: ToolbarButton {
-            action: Action {
-                text: i18n.tr("Back");
-                iconName: "back"
-                onTriggered: {
-                    pageStack.pop();
-                }
+    head {
+        backAction: Action {
+            text: i18n.tr("Back")
+            iconName: "back"
+            onTriggered: {
+                pageStack.pop();
             }
         }
 
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Save");
-                iconName: "save"
-                onTriggered: {
-                    root.collectionUpdated();
-                    pageStack.pop();
-                }
+        actions: Action {
+            text: i18n.tr("Save");
+            iconName: "save"
+            onTriggered: {
+                root.collectionUpdated();
+                pageStack.pop();
             }
         }
     }
-
-    tools: pickerModeToolbar
 
     ListView {
         id: calendarsList
