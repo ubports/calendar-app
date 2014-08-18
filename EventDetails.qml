@@ -209,7 +209,6 @@ Page {
             action:Action {
                 text: i18n.tr("Edit");
 		objectName: "edit"
-                iconSource: Qt.resolvedUrl("edit.svg");
                 iconName: "edit";
                 onTriggered: {
                     if( event.itemType === Type.EventOccurrence ) {
