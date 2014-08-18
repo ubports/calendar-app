@@ -39,43 +39,46 @@ Page {
     Component.onCompleted: {
         //Fill Date & limitcount if any
         var index = 0;
-        index =  rule.frequency ;
-        if(index > 0 )
-        {
-            if(rule.limit !== undefined){
-                var temp = rule.limit;
-                if(parseInt(temp)){
-                    limitOptions.selectedIndex = 1;
-                    limitCount.value = temp;
-                }
-                else{
-                    limitOptions.selectedIndex = 2;
-                    datePick.date= temp;
-                }
-            }
-            else{
-                // If limit is infinite
-                limitOptions.selectedIndex = 0;
-            }
-            switch(index){
-            case RecurrenceRule.Weekly:
-                index = eventUtils.getWeekDaysIndex(rule.daysOfWeek.sort());
-                if(rule.daysOfWeek.length>0 && index === 5){
-                    for(var j = 0;j<rule.daysOfWeek.length;++j){
-                        //Start childern after first element.
-                        weeksRow.children[rule.daysOfWeek[j] === 7 ? 0 :rule.daysOfWeek[j]].children[1].checked = true;
+        if(rule !== null && rule !== undefined){
+            index =  rule.frequency ;
+            if(index > 0 )
+            {
+                if(rule.limit !== undefined){
+                    var temp = rule.limit;
+                    if(parseInt(temp)){
+                        limitOptions.selectedIndex = 1;
+                        limitCount.value = temp;
+                    }
+                    else{
+                        limitOptions.selectedIndex = 2;
+                        datePick.date= temp;
                     }
                 }
-                break;
-            case RecurrenceRule.Monthly:
-                index = 6
-                break;
-            case RecurrenceRule.Yearly:
-                index = 7
-                break;
+                else{
+                    // If limit is infinite
+                    limitOptions.selectedIndex = 0;
+                }
+                switch(index){
+                case RecurrenceRule.Weekly:
+                    index = eventUtils.getWeekDaysIndex(rule.daysOfWeek.sort());
+                    if(rule.daysOfWeek.length>0 && index === 5){
+                        for(var j = 0;j<rule.daysOfWeek.length;++j){
+                            //Start childern after first element.
+                            weeksRow.children[rule.daysOfWeek[j] === 7 ? 0 :rule.daysOfWeek[j]].children[1].checked = true;
+                        }
+                    }
+                    break;
+                case RecurrenceRule.Monthly:
+                    index = 6
+                    break;
+                case RecurrenceRule.Yearly:
+                    index = 7
+                    break;
+                }
+
             }
-            recurrenceOption.selectedIndex = index;
         }
+           recurrenceOption.selectedIndex = index;
 
     }
     visible: false

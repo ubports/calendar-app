@@ -123,7 +123,9 @@ Page {
 
     //Editing Event
     function editEvent(e) {
-        rule = e.recurrence.recurrenceRules[0];
+        rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
+                    Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetation.qml")
+                  : e.recurrence.recurrenceRules[0];
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
 
