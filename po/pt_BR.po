@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-07 13:16+0000\n"
+"PO-Revision-Date: 2014-08-18 14:11+0000\n"
 "Last-Translator: Rafael Neri <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-08-17 06:33+0000\n"
+"X-Launchpad-Export-Date: 2014-08-19 06:53+0000\n"
 "X-Generator: Launchpad (build 17156)\n"
 
 #: ../AgendaView.qml:43
@@ -30,7 +30,7 @@ msgstr "hh:mm"
 
 #: ../AgendaView.qml:94
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "dddd, d de MMMM"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -51,7 +51,7 @@ msgstr "%1 Ev."
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "%1 Todos os eventos do dia"
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
 msgid "Calendars"
@@ -77,11 +77,11 @@ msgstr "Cancelar"
 
 #: ../ContactChoicePopup.qml:20
 msgid "No contact"
-msgstr ""
+msgstr "Nenhum contato"
 
 #: ../ContactChoicePopup.qml:66
 msgid "Search contact"
-msgstr ""
+msgstr "Pesquisar contato"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
@@ -131,7 +131,7 @@ msgstr "Nunca"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59
 msgid "ddd MMMM d yyyy"
-msgstr ""
+msgstr "ddd, d de MMMM de yyyy"
 
 #: ../EventDetails.qml:62
 #, qt-format
@@ -159,7 +159,7 @@ msgstr "Não especificado"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:137
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "dd-MMM-yyyy"
 
 #: ../EventDetails.qml:210
 msgid "Edit"
@@ -191,7 +191,7 @@ msgstr "Convidados"
 
 #: ../EventDetails.qml:404 ../NewEvent.qml:592
 msgid "This happens"
-msgstr ""
+msgstr "Isto acontece"
 
 #: ../EventDetails.qml:409 ../NewEvent.qml:693
 msgid "Remind me"
@@ -199,11 +199,11 @@ msgstr "Lembre-me"
 
 #: ../EventDetails.qml:414
 msgid "Repeats On"
-msgstr ""
+msgstr "Repetir ligado"
 
 #: ../EventDetails.qml:420
 msgid "Repetition Ends"
-msgstr ""
+msgstr "A repetição termina"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
@@ -248,11 +248,11 @@ msgstr "Descrição"
 
 #: ../NewEvent.qml:560
 msgid "Add Guest"
-msgstr ""
+msgstr "Adicionar convidado"
 
 #: ../NewEvent.qml:612
 msgid "Repeats On:"
-msgstr ""
+msgstr "Repetição ligada:"
 
 #: ../NewEvent.qml:647
 msgid "Recurring event ends"
