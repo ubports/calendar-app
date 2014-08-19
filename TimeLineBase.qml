@@ -95,7 +95,7 @@ Item {
     }
 
     function destroyAllChildren() {
-        /* Create a list of unique unused events so that duplicates aren't
+        /* Create a hash of unique unused events so that duplicates aren't
          * added to  intern.unUsedEvents
          */
         var unUsedUniqueHash = {};
