@@ -102,8 +102,10 @@ Item {
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
                 children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
-                if (intern.unUsedEvents[children[i].event] == "undefined") {
-                    intern.unUsedEvents[children[i].event] = children[i];
+                var key = children[i].objectName;
+                if (intern.unUsedEvents[key] == "undefined") {
+
+                    intern.unUsedEvents[key] = children[i];
                 }
             }
         }
@@ -125,15 +127,15 @@ Item {
     }
 
     function createEvent( event, x, width ) {
-
         var eventBubble;
         if( isHashEmpty(intern.unUsedEvents) ) {
             eventBubble = delegate.createObject(bubbleOverLay);
+            eventBubble.objectName = children.length;
         } else {
             /* Recycle an item from unUsedEvents, and remove from hash */
             var key = getAKeyFromHash(intern.unUsedEvents);
             eventBubble = intern.unUsedEvents[key];
-            intern.unUsedEvents[key] = "undefined";
+            delete intern.unUsedEvents[key]
         }
 
         var hour = event.startDateTime.getHours();
