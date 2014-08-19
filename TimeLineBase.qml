@@ -33,7 +33,7 @@ Item {
         id: intern
         property var now : new Date();
         property var eventMap;
-        property var unUsedEvents: new Array;
+        property var unUsedEvents: new Object();
     }
 
     function showEventDetails(event) {
@@ -95,35 +95,45 @@ Item {
     }
 
     function destroyAllChildren() {
-        /* Create a hash of unique unused events so that duplicates aren't
-         * added to  intern.unUsedEvents
-         */
-        var unUsedUniqueHash = {};
-        for (var unUsedEvent in intern.unUsedEvents) {
-                unUsedUniqueHash[unUsedEvent.event] = unUsedEvent;
-        }
-
         for( var i = children.length - 1; i >= 0; --i ) {
             if( children[i].objectName === "mouseArea" ) {
                 continue;
             }
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
-                if (unUsedUniqueHash[children[i].event] == "undefined") {
-                    children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
-                    intern.unUsedEvents.push(children[i])
+                children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
+                if (intern.unUsedEvents[children[i].event] == "undefined") {
+                    intern.unUsedEvents[children[i].event] = children[i];
                 }
             }
         }
     }
 
+    function isHashEmpty(hash) {
+        for (var prop in hash) {
+            if (prop)
+                return false;
+        }
+        return true;
+    }
+
+    function getAKeyFromHash(hash) {
+        for (var prop in hash) {
+            return prop;
+        }
+        return "undefined";
+    }
+
     function createEvent( event, x, width ) {
 
         var eventBubble;
-        if( intern.unUsedEvents.length == 0) {
+        if( isHashEmpty(intern.unUsedEvents) ) {
             eventBubble = delegate.createObject(bubbleOverLay);
         } else {
-            eventBubble = intern.unUsedEvents.pop();
+            /* Recycle an item from unUsedEvents, and remove from hash */
+            var key = getAKeyFromHash(intern.unUsedEvents);
+            eventBubble = intern.unUsedEvents[key];
+            intern.unUsedEvents[key] = "undefined";
         }
 
         var hour = event.startDateTime.getHours();
