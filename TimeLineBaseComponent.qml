@@ -82,6 +82,7 @@ Item {
 
     ActivityIndicator {
         visible: running
+        objectName : "activityIndicator"
         running: mainModel.isLoading
         anchors.centerIn: parent
         z:2

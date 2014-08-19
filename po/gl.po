@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-17 08:22+0000\n"
+"PO-Revision-Date: 2014-08-18 18:44+0000\n"
 "Last-Translator: Marcos Lans <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-18 07:16+0000\n"
+"X-Launchpad-Export-Date: 2014-08-19 06:53+0000\n"
 "X-Generator: Launchpad (build 17156)\n"
 
 #: ../AgendaView.qml:43
@@ -269,7 +269,7 @@ msgstr "Unha vez"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr "Diaria"
+msgstr "Diariamente"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
