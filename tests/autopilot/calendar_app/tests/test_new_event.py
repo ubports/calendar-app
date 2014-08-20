@@ -22,6 +22,8 @@ import logging
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
+from unittest import skipUnless
+from autopilot.platform import model
 
 from calendar_app import data
 from calendar_app.tests import CalendarTestCase
@@ -126,6 +128,7 @@ class NewEventTestCase(CalendarTestCase):
                 test_event.name), Eventually(
                 Equals(False)))
 
+    @skipUnless(model() == 'Desktop', 'skipping, bug 1359167')
     def test_edit_event_with_default_values(self):
         """Test editing an event change unique values of an event."""
 
