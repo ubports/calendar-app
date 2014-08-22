@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
+
+import QtQuick 2.2
 import QtOrganizer 5.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.Popups 0.1
-import Ubuntu.Components.ListItems 0.1
-import Ubuntu.Components.Themes.Ambiance 0.1
-import Ubuntu.Components.Pickers 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Components.Themes.Ambiance 1.0
+import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
 
 import "Defines.js" as Defines
@@ -49,6 +50,22 @@ Page {
     onEndDateChanged: {
         endDateInput.text = Qt.formatDateTime(endDate, "dd MMM yyyy");
         endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
+    }
+
+    head {
+        backAction: Action {
+            iconName: "close"
+            onTriggered: pageStack.pop();
+        }
+
+        actions: [
+            Action {
+                iconName: "ok"
+                objectName: "save"
+                text: i18n.tr("Save")
+                onTriggered: saveToQtPim();
+            }
+        ]
     }
 
     Component.onCompleted: {
@@ -370,7 +387,7 @@ Page {
         anchors.margins: units.gu(2)
 
         contentWidth: width
-        contentHeight: column.height + toolbar.height
+        contentHeight: column.height
 
         Column {
             id: column
@@ -714,24 +731,6 @@ Page {
                     onExpandedChanged:   Qt.inputMethod.hide();
                 }
             }
-        }
-    }
-
-    EditToolbar {
-        id: toolbar
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-        height: units.gu(6)
-        acceptAction: Action {
-            text: i18n.tr("Save")
-            onTriggered: saveToQtPim();
-        }
-        rejectAction: Action {
-            text: i18n.tr("Cancel")
-            onTriggered: pageStack.pop();
         }
     }
 
