@@ -126,16 +126,22 @@ Item {
         return "undefined";
     }
 
+    function getUnusedEventBubble() {
+        /* Recycle an item from unUsedEvents, and remove from hash */
+        var key = getAKeyFromHash(intern.unUsedEvents);
+        var eventBubble = intern.unUsedEvents[key];
+        delete intern.unUsedEvents[key];
+
+        return eventBubble;
+    }
+
     function createEvent( event, x, width ) {
         var eventBubble;
         if( isHashEmpty(intern.unUsedEvents) ) {
             eventBubble = delegate.createObject(bubbleOverLay);
             eventBubble.objectName = children.length;
         } else {
-            /* Recycle an item from unUsedEvents, and remove from hash */
-            var key = getAKeyFromHash(intern.unUsedEvents);
-            eventBubble = intern.unUsedEvents[key];
-            delete intern.unUsedEvents[key]
+            eventBubble = getUnusedEventBubble();
         }
 
         var hour = event.startDateTime.getHours();
