@@ -61,6 +61,7 @@ Page {
         actions: [
             Action {
                 iconName: "ok"
+                objectName: "save"
                 text: i18n.tr("Save")
                 onTriggered: saveToQtPim();
             }

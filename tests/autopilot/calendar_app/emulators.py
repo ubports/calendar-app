@@ -530,8 +530,9 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     @autopilot.logging.log_action(logger.info)
     def _save(self):
         """Save the new event."""
-        save_button = self.select_single('Button', objectName='accept')
-        self.pointing_device.click_object(save_button)
+        root = self.get_root_instance()
+        header = root.select_single(MainView).get_header()
+        header.click_action_button('save')
 
 
 class NewEventEntryField(ubuntuuitoolkit.TextField):
