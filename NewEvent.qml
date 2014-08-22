@@ -20,7 +20,7 @@ import QtQuick 2.2
 import QtOrganizer 5.0
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
-import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
@@ -335,12 +335,6 @@ Page {
         pageStack.pop();
     }
 
-    // we use a custom toolbar in this view
-    tools: ToolbarItems {
-        locked: true
-        opened: false
-    }
-
     Component{
         id: errorDlgComponent
         Dialog {
@@ -396,179 +390,155 @@ Page {
             width: parent.width
             spacing: units.gu(1)
 
-            UbuntuShape {
-                width:parent.width
-                height: timeColumn.height
-
-                Column{
-                    id: timeColumn
-                    width: parent.width
-                    anchors.centerIn: parent
-                    spacing: units.gu(1)
-
-                    Item {
-                        width: parent.width
-                        height: startDateInput.height
-
-                        NewEventEntryField{
-                            id: startDateInput
-                            title: i18n.tr("Start")
-                            objectName: "startDateInput"
-
-                            text: ""
-
-                            width: allDayEventCheckbox.checked ? parent.width : parent.width / 2
-
-                            MouseArea{
-                                anchors.fill: parent
-                                onClicked: openDatePicker(startDateInput, root, "startDate", "Years|Months|Days")
-                            }
-                        }
-
-                        NewEventEntryField{
-                            id: startTimeInput
-                            // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-                            title: i18n.tr("at")
-                            objectName: "startTimeInput"
-
-                            text: ""
-
-                            width: (parent.width / 2) - units.gu(1)
-                            anchors.right: parent.right
-                            visible: !allDayEventCheckbox.checked
-
-                            MouseArea{
-                                anchors.fill: parent
-                                onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
-                            }
-                        }
-                    }
-
-                    Item {
-                        width: parent.width
-                        height: endDateInput.height
-                        visible: !allDayEventCheckbox.checked
-
-                        NewEventEntryField{
-                            id: endDateInput
-                            title: i18n.tr("End")
-                            objectName: "endDateInput"
-
-                            text: ""
-
-                            width: parent.width / 2
-
-                            MouseArea{
-                                anchors.fill: parent
-                                onClicked: openDatePicker(endDateInput, root, "endDate", "Years|Months|Days")
-                            }
-                        }
-
-                        NewEventEntryField{
-                            id: endTimeInput
-                            // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-                            title: i18n.tr("at")
-                            objectName: "endTimeInput"
-                            text: ""
-                            width: (parent.width / 2) - units.gu(1)
-                            anchors.right: parent.right
-
-                            MouseArea{
-                                anchors.fill: parent
-                                onClicked: openDatePicker(endTimeInput, root, "endDate", "Hours|Minutes")
-
-                            }
-                        }
-                    }
-                }
+            ListItem.Header{
+                text: i18n.tr("Event Details")
             }
 
-            Item{
+            TextField {
+                id: titleEdit
+                objectName: "newEventName"
                 width: parent.width
-                height: calendarsOption.height
-                Label{
-                    id: calendarLabel
-                    text: i18n.tr("Calendar ");
-                    anchors.verticalCenter: parent.verticalCenter
+                placeholderText: "Event Name"
+            }
+
+            TextArea{
+                id: messageEdit
+                objectName: "eventDescriptionInput"
+                width: parent.width
+                placeholderText: i18n.tr("Description")
+            }
+
+            TextField {
+                id: locationEdit
+                objectName: "eventLocationInput"
+                width: parent.width
+                placeholderText: i18n.tr("Location")
+            }
+
+            ListItem.Header {
+                text: i18n.tr("From")
+            }
+
+            Item {
+                width: parent.width
+                height: startDateInput.height
+
+                NewEventEntryField{
+                    id: startDateInput
+                    title: i18n.tr("Date")
+                    objectName: "startDateInput"
+
+                    text: ""
+
+                    width: allDayEventCheckbox.checked ? parent.width : parent.width / 2
+
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: openDatePicker(startDateInput, root, "startDate", "Years|Months|Days")
+                    }
                 }
 
-                OptionSelector{
-                    id: calendarsOption
-                    objectName: "calendarsOption"
+                NewEventEntryField{
+                    id: startTimeInput
+                    // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
+                    title: i18n.tr("Time")
+                    objectName: "startTimeInput"
+
+                    text: ""
+
+                    width: (parent.width / 2) - units.gu(1)
                     anchors.right: parent.right
-                    width: parent.width - calendarLabel.width - units.gu(1)
-                    containerHeight: itemHeight * 4
-                    model: root.model.getCollections();
-                    delegate: OptionSelectorDelegate{
-                        text: modelData.name
+                    visible: !allDayEventCheckbox.checked
 
-                        UbuntuShape{
-                            id: calColor
-                            width: height
-                            height: parent.height - units.gu(2)
-                            color: modelData.color
-                            anchors.right: parent.right
-                            anchors.rightMargin: units.gu(1)
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
                     }
-                    onExpandedChanged: Qt.inputMethod.hide();
                 }
             }
 
-            Row {
-                width: parent.width
-                spacing: units.gu(1)
-                anchors.margins: units.gu(0.5)
+            ListItem.Header {
+                text: i18n.tr("To")
+                visible: !allDayEventCheckbox.checked
+            }
 
-                Label {
-                    text: i18n.tr("All Day event:")
-                    anchors.verticalCenter: allDayEventCheckbox.verticalCenter
+            Item {
+                width: parent.width
+                height: endDateInput.height
+                visible: !allDayEventCheckbox.checked
+
+                NewEventEntryField{
+                    id: endDateInput
+                    title: i18n.tr("Date")
+                    objectName: "endDateInput"
+
+                    text: ""
+
+                    width: parent.width / 2
+
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: openDatePicker(endDateInput, root, "endDate", "Years|Months|Days")
+                    }
                 }
 
-                CheckBox {
+                NewEventEntryField{
+                    id: endTimeInput
+                    // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
+                    title: i18n.tr("Time")
+                    objectName: "endTimeInput"
+                    text: ""
+                    width: (parent.width / 2) - units.gu(1)
+                    anchors.right: parent.right
+
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: openDatePicker(endTimeInput, root, "endDate", "Hours|Minutes")
+                    }
+                }
+            }
+
+            ListItem.Standard {
+                text: "All Day Event"
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(-1)
+                }
+
+                showDivider: false
+                control: CheckBox {
                     id: allDayEventCheckbox
                     checked: false
                 }
             }
 
-            ThinDivider{}
-
-            NewEventEntryField{
-                id: titleEdit
-                width: parent.width
-                title: i18n.tr("Event Name")
-                objectName: "newEventName"
+            ListItem.Header {
+                text: i18n.tr("Calendar")
             }
 
-            Column{
-                id: descriptionColumn
+            OptionSelector{
+                id: calendarsOption
+                objectName: "calendarsOption"
+
                 width: parent.width
-                spacing: units.gu(1)
+                containerHeight: itemHeight * 4
+                model: root.model.getCollections();
 
-                Label {
-                    text: i18n.tr("Description")
-                    anchors.margins: units.gu(0.5)
-                    anchors.left: parent.left
-                }
+                delegate: OptionSelectorDelegate{
+                    text: modelData.name
 
-                TextArea{
-                    id: messageEdit
-                    objectName: "eventDescriptionInput"
-                    width: parent.width
-                    color: focus ? "#2C001E" : "#5D5D5D"
-                    // default style
-                    font {
-                        pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
+                    UbuntuShape{
+                        id: calColor
+                        width: height
+                        height: parent.height - units.gu(2)
+                        color: modelData.color
+                        anchors.right: parent.right
+                        anchors.rightMargin: units.gu(2)
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                 }
-            }
-
-            NewEventEntryField{
-                id: locationEdit
-                width: parent.width
-                title: i18n.tr("Location")
-                objectName: "eventLocationInput"
+                onExpandedChanged: Qt.inputMethod.hide();
             }
 
             UbuntuShape {
@@ -602,7 +572,7 @@ Page {
 
                     Repeater{
                         model: contactModel
-                        delegate: Standard {
+                        delegate: ListItem.Standard {
                             objectName: "eventGuest%1".arg(index)
                             height: units.gu(4)
                             text: name
