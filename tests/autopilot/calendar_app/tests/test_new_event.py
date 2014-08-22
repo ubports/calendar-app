@@ -22,6 +22,8 @@ import logging
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
+from unittest import skipUnless
+from autopilot.platform import model
 
 from calendar_app import data
 from calendar_app.tests import CalendarTestCase
@@ -62,8 +64,17 @@ class NewEventTestCase(CalendarTestCase):
         new_event_page = self.main_view.go_to_new_event()
         new_event_page.add_event(test_event)
 
-        #day_view = self.main_view.get_day_view()
+        day_view = self.main_view.get_day_view()
 
+        return day_view, test_event
+
+    def _edit_event(self, event_name):
+        test_event = data.Event.make_unique()
+        day_view = self.main_view.go_to_day_view()
+
+        new_event_page = day_view.edit_event(event_name)
+
+        new_event_page.add_event(test_event)
         return day_view, test_event
 
     def _event_exists(self, event_name):
@@ -78,9 +89,8 @@ class NewEventTestCase(CalendarTestCase):
         """Test adding a new event with the default values.
 
         The event must be created on the currently selected date,
-        with an end time, without recurrence and without reminders.
+        with an end time, without recurrence and without reminders."""
 
-        """
         day_view, test_event = self._add_event()
 
         self.addCleanup(self._try_delete_event, test_event.name)
@@ -101,3 +111,16 @@ class NewEventTestCase(CalendarTestCase):
 
         self.assertThat(lambda: self._event_exists(test_event.name),
                         Eventually(Equals(False)))
+
+    @skipUnless(model() == 'Desktop', 'skipping, bug 1359167')
+    def test_edit_event_with_default_values(self):
+        """Test editing an event change unique values of an event."""
+
+        day_view, original_event = self._add_event()
+        day_view, edited_event = self._edit_event(original_event.name)
+        self.addCleanup(self._try_delete_event, edited_event.name)
+
+        event_details_page = self.main_view.get_event_details()
+
+        self.assertEqual(edited_event,
+                         event_details_page.get_event_information())

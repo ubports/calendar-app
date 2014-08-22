@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-13 02:47+0000\n"
+"PO-Revision-Date: 2014-08-20 04:44+0000\n"
 "Last-Translator: Sok Sophea <sksophea@gmail.com>\n"
 "Language-Team: Khmer <km@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-17 06:33+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-08-21 06:41+0000\n"
+"X-Generator: Launchpad (build 17163)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -77,11 +77,11 @@ msgstr "បោះ​បង់"
 
 #: ../ContactChoicePopup.qml:20
 msgid "No contact"
-msgstr ""
+msgstr "មិន​មាន​ទំនាក់ទំនង"
 
 #: ../ContactChoicePopup.qml:66
 msgid "Search contact"
-msgstr ""
+msgstr "ស្វែងរក​ទំនាក់ទំនង"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
@@ -247,7 +247,7 @@ msgstr "ការពិពណ៌នា"
 
 #: ../NewEvent.qml:560
 msgid "Add Guest"
-msgstr ""
+msgstr "បន្ថែម​ភ្ញៀវ"
 
 #: ../NewEvent.qml:612
 msgid "Repeats On:"
