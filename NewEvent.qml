@@ -612,37 +612,38 @@ Page {
                 }
             }
 
-            Row {
-                id:weeksRow
-                width: parent.width
-                spacing: units.gu(4)
-                anchors.margins: units.gu(1)
+            Column {
                 visible: recurrenceOption.selectedIndex == 5
                 Label {
                     text: i18n.tr("Repeats On:")
-                    anchors.verticalCenter: parent.verticalCenter
                 }
-                Repeater{
-                    model: Defines.weekLabel
-                    width: parent.width
-                    CheckBox {
-                        id: weekCheck
-                        anchors.verticalCenter: parent.verticalCenter
-                        onCheckedChanged: {
-                            //EDS consider 7 as Sunday index so if the index is 0 then we have to explicitly push Sunday.
-                            if(index === 0)
-                                (checked) ? internal.weekDays.push(Qt.Sunday) : internal.weekDays.splice(internal.weekDays.indexOf(Qt.Sunday),1);
-                            else
-                                (checked) ? internal.weekDays.push(index) : internal.weekDays.splice(internal.weekDays.indexOf(index),1);
-                        }
-                        checked: {
-                            (internal.weekDays.length === 0 && index === date.getDay() && isEdit== false) ? true : false;
-                        }
-                        Label{
-                            id:lbl
-                            text:modelData
-                            anchors.centerIn: parent
-                            width: parent.width + units.gu(7)
+                Row {
+                    id: weeksRow
+                    width: column.width
+                    spacing: (weeksRow.width - units.gu(28))/6 //Units.gu(28) = weeksRowColumn.width * 7 [weeks]
+                    Repeater {
+                        model: Defines.weekLabel
+                        Column {
+                            id: weeksRowColumn
+                            width: units.gu(4) //This is help calculate weeksRow.spacing
+                            Label {
+                                id:lbl
+                                text:modelData
+                                anchors.horizontalCenter: parent.horizontalCenter
+                            }
+                            CheckBox {
+                                id: weekCheck
+                                onCheckedChanged: {
+                                    //EDS consider 7 as Sunday index so if the index is 0 then we have to explicitly push Sunday.
+                                    if(index === 0)
+                                        (checked) ? internal.weekDays.push(Qt.Sunday) : internal.weekDays.splice(internal.weekDays.indexOf(Qt.Sunday),1);
+                                    else
+                                        (checked) ? internal.weekDays.push(index) : internal.weekDays.splice(internal.weekDays.indexOf(index),1);
+                                }
+                                checked: {
+                                    (internal.weekDays.length === 0 && index === date.getDay() && isEdit== false) ? true : false;
+                                }
+                            }
                         }
                     }
                 }
