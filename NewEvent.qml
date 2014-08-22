@@ -30,6 +30,7 @@ import "Defines.js" as Defines
 Page {
     id: root
     objectName: 'newEventPage'
+
     property var date;
 
     property var event:null;
