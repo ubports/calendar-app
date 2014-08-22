@@ -62,8 +62,7 @@ class NewEventTestCase(CalendarTestCase):
         new_event_page = self.main_view.go_to_new_event()
         new_event_page.add_event(test_event)
 
-        # workaround bug 1350605
-        day_view = self._workaround_bug_1350605()
+        #day_view = self.main_view.get_day_view()
 
         return day_view, test_event
 
@@ -74,17 +73,6 @@ class NewEventTestCase(CalendarTestCase):
         except Exception:
             return False
         return True
-
-    def _workaround_bug_1350605(self):
-        # due to bug 1350605, let's force load another view
-        # before returning to dayview to prevent refresh issues
-        self.main_view.go_to_month_view()
-        day_view = self.main_view.go_to_day_view()
-        return day_view
-
-    # TODO, add test to check events are displayed properly
-    # after multiple operations
-    # https://bugs.launchpad.net/ubuntu-calendar-app/+bug/1350605
 
     def test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.
@@ -110,8 +98,6 @@ class NewEventTestCase(CalendarTestCase):
         day_view, test_event = self._add_event()
 
         day_view.delete_event(test_event.name)
-
-        self._workaround_bug_1350605()
 
         self.assertThat(lambda: self._event_exists(test_event.name),
                         Eventually(Equals(False)))
