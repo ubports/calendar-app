@@ -52,6 +52,21 @@ Page {
         endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
     }
 
+    head {
+        backAction: Action {
+            iconName: "close"
+            onTriggered: pageStack.pop();
+        }
+
+        actions: [
+            Action {
+                iconName: "ok"
+                text: i18n.tr("Save")
+                onTriggered: saveToQtPim();
+            }
+        ]
+    }
+
     Component.onCompleted: {
         //If current date is setted by an argument we don't have to change it.
         if(typeof(date) === 'undefined'){
@@ -371,7 +386,7 @@ Page {
         anchors.margins: units.gu(2)
 
         contentWidth: width
-        contentHeight: column.height + toolbar.height
+        contentHeight: column.height
 
         Column {
             id: column
@@ -715,24 +730,6 @@ Page {
                     onExpandedChanged:   Qt.inputMethod.hide();
                 }
             }
-        }
-    }
-
-    EditToolbar {
-        id: toolbar
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-        height: units.gu(6)
-        acceptAction: Action {
-            text: i18n.tr("Save")
-            onTriggered: saveToQtPim();
-        }
-        rejectAction: Action {
-            text: i18n.tr("Cancel")
-            onTriggered: pageStack.pop();
         }
     }
 
