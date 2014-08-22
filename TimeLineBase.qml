@@ -129,10 +129,10 @@ Item {
     function getUnusedEventBubble() {
         /* Recycle an item from unUsedEvents, and remove from hash */
         var key = getAKeyFromHash(intern.unUsedEvents);
-        var eventBubble = intern.unUsedEvents[key];
+        var unusedBubble = intern.unUsedEvents[key];
         delete intern.unUsedEvents[key];
 
-        return eventBubble;
+        return unusedBubble;
     }
 
     function createEvent( event, x, width ) {
