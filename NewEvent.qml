@@ -38,7 +38,6 @@ Page {
 
     property var startDate;
     property var endDate;
-    property int optionSelectorWidth: frequencyLabel.width > remindLabel.width ? frequencyLabel.width : remindLabel.width
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
@@ -170,7 +169,7 @@ Page {
                         limitOptions.selectedIndex = 0;
                     }
                     if(index === RecurrenceRule.Weekly){
-                            index = getWeekDaysIndex(recurrenceRule[0].daysOfWeek.sort());
+                        index = getWeekDaysIndex(recurrenceRule[0].daysOfWeek.sort());
                     }
                     if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
                         for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
@@ -513,34 +512,6 @@ Page {
                 }
             }
 
-            ListItem.Header {
-                text: i18n.tr("Calendar")
-            }
-
-            OptionSelector{
-                id: calendarsOption
-                objectName: "calendarsOption"
-
-                width: parent.width
-                containerHeight: itemHeight * 4
-                model: root.model.getCollections();
-
-                delegate: OptionSelectorDelegate{
-                    text: modelData.name
-
-                    UbuntuShape{
-                        id: calColor
-                        width: height
-                        height: parent.height - units.gu(2)
-                        color: modelData.color
-                        anchors.right: parent.right
-                        anchors.rightMargin: units.gu(2)
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
-                onExpandedChanged: Qt.inputMethod.hide();
-            }
-
             UbuntuShape {
                 width: parent.width
                 height: contactList.height
@@ -581,23 +552,46 @@ Page {
                 }
             }
 
-            Item {
+            ListItem.Header {
+                text: i18n.tr("Calendar")
+            }
+
+            OptionSelector{
+                id: calendarsOption
+                objectName: "calendarsOption"
+
                 width: parent.width
-                height: recurrenceOption.height
+                containerHeight: itemHeight * 4
+                model: root.model.getCollections();
+
+                delegate: OptionSelectorDelegate{
+                    text: modelData.name
+
+                    UbuntuShape{
+                        id: calColor
+                        width: height
+                        height: parent.height - units.gu(2)
+                        color: modelData.color
+                        anchors.right: parent.right
+                        anchors.rightMargin: units.gu(2)
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                }
+                onExpandedChanged: Qt.inputMethod.hide();
+            }
+
+            ListItem.Header {
+                text: i18n.tr("This Happens")
                 visible: event.itemType === Type.Event
-                Label{
-                    id: frequencyLabel
-                    text: i18n.tr("This happens");
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                OptionSelector{
-                    id: recurrenceOption
-                    anchors.right: parent.right
-                    width: parent.width - optionSelectorWidth - units.gu(1)
-                    model: Defines.recurrenceLabel
-                    containerHeight: itemHeight * 4
-                    onExpandedChanged: Qt.inputMethod.hide();
-                }
+            }
+
+            OptionSelector{
+                id: recurrenceOption
+                visible: event.itemType === Type.Event
+                width: parent.width
+                model: Defines.recurrenceLabel
+                containerHeight: itemHeight * 4
+                onExpandedChanged: Qt.inputMethod.hide();
             }
 
             Column {
@@ -636,43 +630,34 @@ Page {
                     }
                 }
             }
-            Item {
-                id: limit
+
+            ListItem.Header {
+                text: i18n.tr("Recurring event ends")
+                visible: recurrenceOption.selectedIndex != 0
+            }
+
+            OptionSelector{
+                id: limitOptions
                 visible: recurrenceOption.selectedIndex != 0
                 width: parent.width
-                height: limitOptions.height
-                Label{
-                    id: limitLabel
-                    text: i18n.tr("Recurring event ends");
-                    anchors{
-                        left: parent.left
-                        right: limitOptions.left
-                    }
-                    wrapMode: Text.WordWrap
-                    maximumLineCount: 2
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                OptionSelector{
-                    id: limitOptions
-                    anchors.right: parent.right
-                    width: parent.width - optionSelectorWidth - units.gu(3)
-                    model: Defines.limitLabel
-                    containerHeight: itemHeight * 4
-                    onExpandedChanged:   Qt.inputMethod.hide();
+                model: Defines.limitLabel
+                containerHeight: itemHeight * 4
+                onExpandedChanged:   Qt.inputMethod.hide();
 
-                }
             }
-            NewEventEntryField{
+
+            TextField {
                 id: limitCount
                 width: parent.width
                 // TRANSLATORS: This refers to no of occurences of an event.
-                title: i18n.tr("Recurrence")
+                placeholderText: i18n.tr("Recurrence")
                 objectName: "eventLimitCount"
                 visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
-                validator: IntValidator{bottom: 1;}
+                validator: IntValidator{ bottom: 1; }
                 inputMethodHints: Qt.ImhDialableCharactersOnly
                 focus: true
             }
+
             Item {
                 id: limitDate
                 width: parent.width
@@ -684,24 +669,19 @@ Page {
                     anchors.left: parent.left
                 }
             }
-            Item{
-                width: parent.width
-                height: reminderOption.height
-                Label{
-                    id: remindLabel
-                    text: i18n.tr("Remind me");
-                    anchors.verticalCenter: parent.verticalCenter
-                }
 
-                OptionSelector{
-                    id: reminderOption
-                    anchors.right: parent.right
-                    width: parent.width - optionSelectorWidth - units.gu(1)
-                    containerHeight: itemHeight * 4
-                    model: Defines.reminderLabel
-                    onExpandedChanged:   Qt.inputMethod.hide();
-                }
+            ListItem.Header {
+                text: i18n.tr("Remind me")
             }
+
+            OptionSelector{
+                id: reminderOption
+                width: parent.width
+                containerHeight: itemHeight * 4
+                model: Defines.reminderLabel
+                onExpandedChanged: Qt.inputMethod.hide();
+            }
+
         }
     }
 
