@@ -60,11 +60,16 @@ class NewEventTestCase(CalendarTestCase):
     def _add_event(self):
         test_event = data.Event.make_unique()
         day_view = self.main_view.go_to_day_view()
+        start_num_events = len(day_view.get_events())
 
         new_event_page = self.main_view.go_to_new_event()
         new_event_page.add_event(test_event)
 
         day_view = self.main_view.get_day_view()
+
+        #Wait a bit for the event to be added.
+        self.assertThat(lambda: len(day_view.get_events()),
+                        Eventually(Equals(start_num_events + 1)))
 
         return day_view, test_event
 
