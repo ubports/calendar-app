@@ -67,7 +67,7 @@ class NewEventTestCase(CalendarTestCase):
 
         day_view = self.main_view.get_day_view()
 
-        #Wait a bit for the event to be added.
+        # Wait a bit for the event to be added.
         self.assertThat(lambda: len(day_view.get_events()),
                         Eventually(Equals(start_num_events + 1)))
 
