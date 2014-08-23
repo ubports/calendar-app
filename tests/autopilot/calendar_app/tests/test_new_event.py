@@ -85,7 +85,7 @@ class NewEventTestCase(CalendarTestCase):
     def _event_exists(self, event_name):
         try:
             day_view = self.main_view.go_to_day_view()
-            day_view.get_event(event_name, False)
+            day_view.get_event(event_name, True)
         except Exception:
             return False
         return True
