@@ -48,7 +48,6 @@ Page{
         iconName:"back"
         onTriggered:{
             var reminderTime = Defines.reminderValue[reminderOption.selectedIndex]
-            isEdit = true;
             if(reminderTime!== 0){
                 visualReminder.repetitionCount = 3;
                 visualReminder.repetitionDelay = 120;
