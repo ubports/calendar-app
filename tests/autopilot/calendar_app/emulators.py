@@ -464,11 +464,15 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         self._ensure_entry_field_visible_and_write('newEventName', value)
 
     def _ensure_entry_field_visible_and_write(self, object_name, value):
-        name_text_field = self._get_new_event_entry_field(object_name)
+        name_text_field = self._get_text_box(object_name)
         self._ensure_visible_and_write(name_text_field, value)
 
     def _get_new_event_entry_field(self, object_name):
         return self.select_single(NewEventEntryField, objectName=object_name)
+        
+    def _get_text_box(self,object_name):
+        return self.select_single(
+            ubuntuuitoolkit.TextField,objectName=object_name)
 
     def _ensure_visible_and_write(self, text_field, value):
         text_field.swipe_into_view()
@@ -521,9 +525,9 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         # TODO get start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
         calendar = self._get_calendar().get_current_label().text
-        name = self._get_new_event_entry_field('newEventName').text
+        name = self._get_text_box('newEventName').text
         description = self._get_description_text_area().text
-        location = self._get_new_event_entry_field('eventLocationInput').text
+        location = self._get_text_box('eventLocationInput').text
         guests = self._get_guests()
         return data.Event(calendar, name, description, location, guests)
 

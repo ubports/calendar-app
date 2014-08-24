@@ -223,7 +223,7 @@ MainView {
                             endDate = new Date(endTime);
                     }
                 }
-                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"startDate": startDate, "endDate": endDate, "model":eventModel});
+                //pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"startDate": startDate, "endDate": endDate, //"model":eventModel});
             }
 
             // This function calculate the difference between --endtime and --starttime and choose the better view
