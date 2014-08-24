@@ -233,6 +233,23 @@ Page {
         return tempDate.setHours(tempDate.getHours() + 1)
     }
 
+    ScrollAnimation{id:scrollAnimation}
+    function scrollOnExpand(Self,Container,Target,Margin,Visible)
+    {
+        // Self is needed for "onXxxxxChange" triggers. OnExpansionCompleted however can just write "true".
+        // Container is the item which encapsulates everything, such as a column.
+        // Target is the Flickable id you wish to scroll
+        // Margin is the space between the bottom of the screen and the bottom of the item you are scrolling to.
+        // Visible is needed if there is anything that appears under the item you are scrolling to.
+        if (Self === false){return}
+        var v = units.gu(Margin)
+        for (var i in Visible){if(Visible[i].visible === true){v+=Visible[i].height};}
+
+        scrollAnimation.target = Target
+        scrollAnimation.to = Container.height-height - v
+        scrollAnimation.start()
+    }
+
     width: parent.width
     height: parent.height
 
@@ -605,7 +622,6 @@ Page {
                                           {"visualReminder": visualReminder,
                                               "audibleReminder":audibleReminder,
                                               "eventTitle":titleEdit.text});
-
 
             }
         }

@@ -28,33 +28,31 @@ import datetime
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
-from calendar_app.tests import CalendarTestCase
+from calendar_app.tests import CalendarAppTestCase
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-class TestWeekView(CalendarTestCase):
+class TestWeekView(CalendarAppTestCase):
 
     def setUp(self):
         super(TestWeekView, self).setUp()
-        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-
-        self.week_view = self.main_view.go_to_week_view()
+        self.week_view = self.app.main_view.go_to_week_view()
 
     def _change_week(self, direction):
         first_dow = self._get_first_day_of_week()
 
         # prevent timing issues with swiping
-        old_day = self.main_view.to_local_date(
+        old_day = self.app.main_view.to_local_date(
             self.week_view.dayStart.datetime)
-        self.main_view.swipe_view(direction, self.week_view)
+        self.app.main_view.swipe_view(direction, self.week_view)
         self.assertThat(lambda:
-                        self.main_view.to_local_date(
+                        self.app.main_view.to_local_date(
                             self.week_view.dayStart.datetime),
                         Eventually(NotEquals(old_day)))
 
-        new_day_start = self.main_view.to_local_date(
+        new_day_start = self.app.main_view.to_local_date(
             self.week_view.dayStart.datetime)
 
         expected_day_start = first_dow + datetime.timedelta(
@@ -83,15 +81,16 @@ class TestWeekView(CalendarTestCase):
         return sorteddays
 
     def _get_date_label_headers(self):
-        header = self.main_view.select_single(objectName="weekHeader")
+        header = self.app.main_view.select_single(objectName="weekHeader")
         timeline = header.select_single("TimeLineHeaderComponent",
                                         isCurrentItem=True)
         dateLabels = timeline.select_many("Label", objectName="dateLabel")
         return dateLabels
 
     def _get_first_day_of_week(self):
-        date = self.main_view.to_local_date(self.week_view.dayStart.datetime)
-        firstDay = self.main_view.to_local_date(
+        date = self.app.main_view.to_local_date(
+            self.week_view.dayStart.datetime)
+        firstDay = self.app.main_view.to_local_date(
             self.week_view.firstDay.datetime)
 
         # sunday
@@ -127,10 +126,10 @@ class TestWeekView(CalendarTestCase):
         expected_year = now.year
         expected_month_name = now.strftime("%B")
 
-        self.assertThat(self.main_view.get_year(self.week_view),
+        self.assertThat(self.app.main_view.get_year(self.week_view),
                         Equals(expected_year))
 
-        self.assertThat(self.main_view.get_month_name(self.week_view),
+        self.assertThat(self.app.main_view.get_month_name(self.week_view),
                         Equals(expected_month_name))
 
     def test_current_week_is_selected(self):
@@ -173,12 +172,12 @@ class TestWeekView(CalendarTestCase):
         expected_year = first_day_date.year
 
         days = self._get_days_of_week()
-        day_to_select = self.main_view.get_label_with_text(days[0])
+        day_to_select = self.app.main_view.get_label_with_text(days[0])
 
-        self.pointing_device.click_object(day_to_select)
+        self.app.pointing_device.click_object(day_to_select)
 
         # Check that the view changed from 'Week' to 'Day'
-        day_view = self.main_view.get_day_view()
+        day_view = self.app.main_view.get_day_view()
         self.assertThat(day_view.visible, Eventually(Equals(True)))
 
         # Check that the 'Day' view is on the correct/selected day.
