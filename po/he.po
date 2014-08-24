@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-21 21:46+0000\n"
+"PO-Revision-Date: 2014-08-22 15:32+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-22 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-08-23 07:12+0000\n"
 "X-Generator: Launchpad (build 17163)\n"
 
 #: ../AgendaView.qml:43
@@ -137,8 +137,8 @@ msgstr "ddd ה־d בMMMM yyyy"
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "לאחר מופע %1"
+msgstr[1] "לאחר %1 מופעים"
 
 #: ../EventDetails.qml:63
 #, qt-format

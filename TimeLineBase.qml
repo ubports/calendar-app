@@ -50,7 +50,7 @@ Item {
         id: intern
         property var now : new Date();
         property var eventMap;
-        property var unUsedEvents: new Array;
+        property var unUsedEvents: new Object();
     }
 
     function showEventDetails(event) {
@@ -119,18 +119,46 @@ Item {
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
                 children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
-                intern.unUsedEvents.push(children[i])
+                var key = children[i].objectName;
+                if (intern.unUsedEvents[key] == "undefined") {
+
+                    intern.unUsedEvents[key] = children[i];
+                }
             }
         }
     }
 
-    function createEvent( event, x, width ) {
+    function isHashEmpty(hash) {
+        for (var prop in hash) {
+            if (prop)
+                return false;
+        }
+        return true;
+    }
 
+    function getAKeyFromHash(hash) {
+        for (var prop in hash) {
+            return prop;
+        }
+        return "undefined";
+    }
+
+    function getUnusedEventBubble() {
+        /* Recycle an item from unUsedEvents, and remove from hash */
+        var key = getAKeyFromHash(intern.unUsedEvents);
+        var unUsedBubble = intern.unUsedEvents[key];
+        delete intern.unUsedEvents[key];
+
+        return unUsedBubble;
+    }
+
+    function createEvent( event, x, width ) {
         var eventBubble;
-        if( intern.unUsedEvents.length == 0) {
+        if( isHashEmpty(intern.unUsedEvents) ) {
             eventBubble = delegate.createObject(bubbleOverLay);
+            eventBubble.objectName = children.length;
         } else {
-            eventBubble = intern.unUsedEvents.pop();
+            eventBubble = getUnusedEventBubble();
         }
 
         var hour = event.startDateTime.getHours();
