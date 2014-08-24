@@ -43,8 +43,6 @@ Page {
     property bool isEdit: false
 
     property var selectedReccurence
-    property var limitCountValue
-    property var limitDateValue
 
     onStartDateChanged: {
         startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
@@ -128,6 +126,7 @@ Page {
         rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
                     Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetation.qml")
                   : e.recurrence.recurrenceRules[0];
+
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
 
@@ -157,18 +156,13 @@ Page {
                 }
             }
         }
-
         var reminder = e.detail( Detail.VisualReminder);
         if( reminder ) {
-            var reminderTime = reminder.secondsBeforeStart;
-            var foundIndex = Defines.reminderValue.indexOf(reminderTime);
-            index = foundIndex != -1 ? foundIndex : 0;
-        }
-        reminderOption.selectedIndex = index;
+            visualReminder.secondsBeforeStart = reminder.secondsBeforeStart;
 
+        }
         selectCalendar(e.collectionId);
     }
-
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
@@ -205,27 +199,19 @@ Page {
             if(oldAudibleReminder) {
                 event.removeDetail(oldAudibleReminder);
             }
-
-            var reminderTime = Defines.reminderValue[ reminderOption.selectedIndex ];
-            if( reminderTime !== 0 ) {
-                var visualReminder =  Qt.createQmlObject("import QtOrganizer 5.0; VisualReminder{}", event, "NewEvent.qml");
-                visualReminder.repetitionCount = 3;
-                visualReminder.repetitionDelay = 120;
-                visualReminder.message = titleEdit.text
-                visualReminder.secondsBeforeStart = reminderTime;
-                event.setDetail(visualReminder);
-
-                var audibleReminder =  Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder{}", event, "NewEvent.qml");
-                audibleReminder.repetitionCount = 3;
-                audibleReminder.repetitionDelay = 120;
-                audibleReminder.secondsBeforeStart = reminderTime;
-                event.setDetail(audibleReminder);
-            }
+            event.setDetail(visualReminder);
+            event.setDetail(audibleReminder);
 
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
             model.saveItem(event);
             pageStack.pop();
         }
+    }
+    VisualReminder{
+        id:visualReminder
+    }
+    AudibleReminder{
+        id:audibleReminder
     }
 
     function openDatePicker (element, caller, callerProperty, mode) {
@@ -602,33 +588,28 @@ Page {
             }
 
             ListItem.ThinDivider {}
-
-            Column {
-                width: parent.width
-                spacing: units.gu(1)
-
-                ListItem.Header {
-                    text: i18n.tr("Remind me")
+            ListItem.Subtitled{
+                id:eventReminder
+                objectName  : "eventReminder"
+                anchors{
+                    left:parent.left
+                    leftMargin: units.gu(-1)
                 }
-
-                OptionSelector{
-                    id: reminderOption
-
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: units.gu(2)
-                    }
-
-                    containerHeight: itemHeight * 4
-                    model: Defines.reminderLabel
-                    onExpandedChanged: Qt.inputMethod.hide();
+                showDivider: false
+                text: i18n.tr("Reminder")
+                subText:{
+                    var foundIndex = Defines.reminderValue.indexOf(visualReminder.secondsBeforeStart);
+                    Defines.reminderLabel[foundIndex != -1 ? foundIndex : 0]
                 }
+                onClicked: pageStack.push(Qt.resolvedUrl("EventReminder.qml"),
+                                          {"visualReminder": visualReminder,
+                                              "audibleReminder":audibleReminder,
+                                              "eventTitle":titleEdit.text});
+
+
             }
-
         }
     }
-
     // used to keep the field visible when the keyboard appear or dismiss
     KeyboardRectangle {
         id: keyboard
