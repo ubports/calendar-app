@@ -57,9 +57,24 @@ Page{
     }
 
     Label{
-        text: i18n.tr("No upcoming events")
+        id: noCalendarsLabel
+        text: i18n.tr("You have no calendars enabled")
         visible: eventListModel.itemCount === 0
         anchors.centerIn: parent
+    }
+
+    Button {
+        text: i18n.tr( "Go to Calendars page" )
+        visible: !eventListModel.itemCount
+        anchors.top: noCalendarsLabel.bottom
+        anchors.horizontalCenter: noCalendarsLabel.horizontalCenter
+        anchors.topMargin: 10
+        color: UbuntuColors.orange
+
+        onClicked: {
+            pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
+            pageStack.currentPage.collectionUpdated.connect(eventModel.delayedApplyFilter);
+        }
     }
 
     ListView{
