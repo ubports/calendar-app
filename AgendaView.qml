@@ -33,6 +33,14 @@ Page{
         eventList.positionViewAtBeginning();
     }
 
+    function hasEnabledCalendars() {
+        var enabled_calendars = eventListModel.getCollections().filter( function( item ) {
+            return item.extendedMetaData( "collection-selected" );
+        } );
+
+        return !!enabled_calendars.length;
+    }
+
     EventListModel {
         id: eventListModel
         startPeriod: currentDay.midnight();
@@ -56,16 +64,22 @@ Page{
         z:2
     }
 
-    Label{
+    Label {
+        text: i18n.tr("No upcoming events")
+        visible: root.hasEnabledCalendars() && eventListModel.itemCount === 0
+        anchors.centerIn: parent
+    }
+
+    Label {
         id: noCalendarsLabel
         text: i18n.tr("You have no calendars enabled")
-        visible: eventListModel.itemCount === 0
+        visible: !root.hasEnabledCalendars()
         anchors.centerIn: parent
     }
 
     Button {
         text: i18n.tr( "Go to Calendars page" )
-        visible: !eventListModel.itemCount
+        visible: !root.hasEnabledCalendars()
         anchors.top: noCalendarsLabel.bottom
         anchors.horizontalCenter: noCalendarsLabel.horizontalCenter
         anchors.topMargin: 10
