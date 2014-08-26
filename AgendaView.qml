@@ -65,23 +65,25 @@ Page{
     }
 
     Label {
-        text: i18n.tr("No upcoming events")
-        visible: root.hasEnabledCalendars() && eventListModel.itemCount === 0
-        anchors.centerIn: parent
-    }
+        id: noEventsOrCalendarsLabel
+        text: {
+            var default_title = i18n.tr( "No upcoming events" );
 
-    Label {
-        id: noCalendarsLabel
-        text: i18n.tr("You have no calendars enabled")
-        visible: !root.hasEnabledCalendars()
+            if ( !root.hasEnabledCalendars() ) {
+                default_title = i18n.tr("You have no calendars enabled")
+            }
+
+            return default_title;
+        }
+        visible: !root.hasEnabledCalendars() || !eventListModel.itemCount
         anchors.centerIn: parent
     }
 
     Button {
-        text: i18n.tr( "Go to Calendars page" )
+        text: i18n.tr( "Enbale calendars" )
         visible: !root.hasEnabledCalendars()
-        anchors.top: noCalendarsLabel.bottom
-        anchors.horizontalCenter: noCalendarsLabel.horizontalCenter
+        anchors.top: noEventsOrCalendarsLabel.bottom
+        anchors.horizontalCenter: noEventsOrCalendarsLabel.horizontalCenter
         anchors.topMargin: 10
         color: UbuntuColors.orange
 
