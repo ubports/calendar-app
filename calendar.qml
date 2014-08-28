@@ -516,6 +516,14 @@ MainView {
                         right: parent.right
                         bottom: parent.bottom
                     }
+
+                    Connections{
+                        target: agendaViewLoader.item
+                        onDateSelected: {
+                            tabs.currentDay = date;
+                            tabs.selectedTabIndex = dayTab.index;
+                        }
+                    }
                 }
             }
         }
