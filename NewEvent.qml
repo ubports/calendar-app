@@ -320,8 +320,6 @@ Page {
         }
 
         anchors.fill: parent
-        anchors.margins: units.gu(2)
-
         contentWidth: width
         contentHeight: column.height
 
@@ -338,22 +336,42 @@ Page {
             TextField {
                 id: titleEdit
                 objectName: "newEventName"
-                width: parent.width
-                placeholderText: "Event Name"
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
+                placeholderText: i18n.tr("Event Name")
             }
 
             TextArea{
                 id: messageEdit
                 objectName: "eventDescriptionInput"
-                width: parent.width
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
                 placeholderText: i18n.tr("Description")
             }
+
             TextField {
                 id: locationEdit
                 objectName: "eventLocationInput"
-                width: parent.width
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
                 placeholderText: i18n.tr("Location")
             }
+
             ListItem.Header {
                 text: i18n.tr("Calendar")
             }
@@ -362,7 +380,12 @@ Page {
                 id: calendarsOption
                 objectName: "calendarsOption"
 
-                width: parent.width
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
                 containerHeight: itemHeight * 4
                 model: root.model.getCollections();
 
@@ -387,7 +410,12 @@ Page {
             }
 
             Item {
-                width: parent.width
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
                 height: startDateInput.height
 
                 NewEventEntryField{
@@ -430,7 +458,12 @@ Page {
             }
 
             Item {
-                width: parent.width
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
                 height: endDateInput.height
                 visible: !allDayEventCheckbox.checked
 
@@ -467,13 +500,6 @@ Page {
 
             ListItem.Standard {
                 text: "All Day Event"
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(-1)
-                }
-
-                showDivider: false
                 control: CheckBox {
                     id: allDayEventCheckbox
                     checked: false
@@ -481,11 +507,18 @@ Page {
             }
 
             UbuntuShape {
-                width: parent.width
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
                 height: contactList.height
+
                 Column{
                     id: contactList
                     objectName: "guestList"
+
                     spacing: units.gu(1)
                     width: parent.width
                     clip: true
@@ -527,18 +560,23 @@ Page {
                 visible: event.itemType === Type.Event
                 text: i18n.tr("This Happens")
                 subText: eventUtils.getRecurrenceString(rule)
-                width: parent.width
-                anchors.right: parent.right
-                onClicked:    pageStack.push(Qt.resolvedUrl("EventRepetation.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
+                onClicked: pageStack.push(Qt.resolvedUrl("EventRepetation.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
 
             }
+
             ListItem.Header {
                 text: i18n.tr("Remind me")
             }
 
             OptionSelector{
                 id: reminderOption
-                width: parent.width
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
                 containerHeight: itemHeight * 4
                 model: Defines.reminderLabel
                 onExpandedChanged: Qt.inputMethod.hide();
