@@ -95,8 +95,8 @@ Page {
         if(event === null){
             isEdit = false;
             addEvent();
-            titleEdit.forceActiveFocus();
         }
+
         else{
             isEdit = true;
             editEvent(event);
@@ -329,82 +329,6 @@ Page {
             width: parent.width
             spacing: units.gu(1)
 
-            ListItem.Header{
-                text: i18n.tr("Event Details")
-            }
-
-            TextField {
-                id: titleEdit
-                objectName: "newEventName"
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
-                }
-
-                placeholderText: i18n.tr("Event Name")
-            }
-
-            TextArea{
-                id: messageEdit
-                objectName: "eventDescriptionInput"
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
-                }
-
-                placeholderText: i18n.tr("Description")
-            }
-
-            TextField {
-                id: locationEdit
-                objectName: "eventLocationInput"
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
-                }
-
-                placeholderText: i18n.tr("Location")
-            }
-
-            ListItem.Header {
-                text: i18n.tr("Calendar")
-            }
-
-            OptionSelector{
-                id: calendarsOption
-                objectName: "calendarsOption"
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
-                }
-
-                containerHeight: itemHeight * 4
-                model: root.model.getCollections();
-
-                delegate: OptionSelectorDelegate{
-                    text: modelData.name
-
-                    UbuntuShape{
-                        id: calColor
-                        width: height
-                        height: parent.height - units.gu(2)
-                        color: modelData.color
-                        anchors.right: parent.right
-                        anchors.rightMargin: units.gu(2)
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
-                onExpandedChanged: Qt.inputMethod.hide();
-            }
-
             ListItem.Header {
                 text: i18n.tr("From")
             }
@@ -506,6 +430,82 @@ Page {
                 }
             }
 
+            ListItem.Header{
+                text: i18n.tr("Event Details")
+            }
+
+            TextField {
+                id: titleEdit
+                objectName: "newEventName"
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
+                placeholderText: i18n.tr("Event Name")
+            }
+
+            TextArea{
+                id: messageEdit
+                objectName: "eventDescriptionInput"
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
+                placeholderText: i18n.tr("Description")
+            }
+
+            TextField {
+                id: locationEdit
+                objectName: "eventLocationInput"
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
+                placeholderText: i18n.tr("Location")
+            }
+
+            ListItem.Header {
+                text: i18n.tr("Calendar")
+            }
+
+            OptionSelector{
+                id: calendarsOption
+                objectName: "calendarsOption"
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
+                containerHeight: itemHeight * 4
+                model: root.model.getCollections();
+
+                delegate: OptionSelectorDelegate{
+                    text: modelData.name
+
+                    UbuntuShape{
+                        id: calColor
+                        width: height
+                        height: parent.height - units.gu(2)
+                        color: modelData.color
+                        anchors.right: parent.right
+                        anchors.rightMargin: units.gu(2)
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                }
+                onExpandedChanged: Qt.inputMethod.hide();
+            }
+
             UbuntuShape {
                 anchors {
                     left: parent.left
@@ -552,6 +552,8 @@ Page {
                     }
                 }
             }
+
+            ListItem.ThinDivider {}
 
 
             ListItem.Subtitled{
