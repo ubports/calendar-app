@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-07-31 20:27+0200\n"
-"PO-Revision-Date: 2014-08-12 19:11+0000\n"
+"POT-Creation-Date: 2014-08-15 23:27-0500\n"
+"PO-Revision-Date: 2014-08-21 09:44+0000\n"
 "Last-Translator: Jānis-Marks Gailis <jm-gailis@fai-vianet.fr>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-13 06:50+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-08-22 07:15+0000\n"
+"X-Generator: Launchpad (build 17163)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -53,7 +53,7 @@ msgstr "%1 Not"
 msgid "%1 All day events"
 msgstr "%1 Visu dienu notikumi"
 
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
+#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
 msgid "Calendars"
 msgstr "Kalendāri"
 
@@ -61,7 +61,7 @@ msgstr "Kalendāri"
 msgid "Back"
 msgstr "Atpakaļ"
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:678
+#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
 msgid "Save"
 msgstr "Saglabāt"
 
@@ -71,9 +71,17 @@ msgstr "Izvēlieties krāsu"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:682
+#: ../NewEvent.qml:722
 msgid "Cancel"
 msgstr "Atcelt"
+
+#: ../ContactChoicePopup.qml:20
+msgid "No contact"
+msgstr "Nav kontaktu"
+
+#: ../ContactChoicePopup.qml:66
+msgid "Search contact"
+msgstr "Meklēt kontaktu"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
@@ -95,7 +103,7 @@ msgstr "Dzēst šo"
 msgid "Delete"
 msgstr "Dzēst"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:294
+#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
 msgid "Edit Event"
 msgstr "Rediģēt notikumu"
 
@@ -161,31 +169,31 @@ msgstr "Rediģēt"
 msgid "Date"
 msgstr "Datums"
 
-#: ../EventDetails.qml:277 ../NewEvent.qml:384
+#: ../EventDetails.qml:277 ../NewEvent.qml:387
 msgid "Start"
 msgstr "Sākums"
 
-#: ../EventDetails.qml:282 ../NewEvent.qml:423
+#: ../EventDetails.qml:282 ../NewEvent.qml:426
 msgid "End"
 msgstr "Beigas"
 
-#: ../EventDetails.qml:291 ../NewEvent.qml:493
+#: ../EventDetails.qml:291 ../NewEvent.qml:497
 msgid "All Day event:"
 msgstr ""
 
-#: ../EventDetails.qml:340 ../NewEvent.qml:538
+#: ../EventDetails.qml:340 ../NewEvent.qml:542
 msgid "Location"
 msgstr "Vieta"
 
-#: ../EventDetails.qml:366 ../NewEvent.qml:545
+#: ../EventDetails.qml:366
 msgid "Guests"
 msgstr "Viesi"
 
-#: ../EventDetails.qml:404 ../NewEvent.qml:556
+#: ../EventDetails.qml:404 ../NewEvent.qml:592
 msgid "This happens"
 msgstr "Šis notiek"
 
-#: ../EventDetails.qml:409 ../NewEvent.qml:654
+#: ../EventDetails.qml:409 ../NewEvent.qml:693
 msgid "Remind me"
 msgstr "Atgādināt man"
 
@@ -203,51 +211,55 @@ msgstr ""
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "Pēc datuma"
 
-#: ../NewEvent.qml:182
+#: ../NewEvent.qml:186
 msgid "End time can't be before start time"
 msgstr "Beigas laiks nevar būt pirms sakuma laika"
 
-#: ../NewEvent.qml:294 ../calendar.qml:305
+#: ../NewEvent.qml:297 ../calendar.qml:306
 msgid "New Event"
 msgstr "Jauns notikums"
 
-#: ../NewEvent.qml:310
+#: ../NewEvent.qml:313
 msgid "Error"
 msgstr "Kļūda"
 
-#: ../NewEvent.qml:312
+#: ../NewEvent.qml:315
 msgid "OK"
 msgstr "LABI"
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:400 ../NewEvent.qml:439
+#: ../NewEvent.qml:403 ../NewEvent.qml:442
 msgid "at"
 msgstr "pie"
 
-#: ../NewEvent.qml:460
+#: ../NewEvent.qml:463
 msgid "Calendar "
 msgstr "Kalendārs "
 
-#: ../NewEvent.qml:508
+#: ../NewEvent.qml:512
 msgid "Event Name"
 msgstr "Notikuma nosaukums"
 
-#: ../NewEvent.qml:518
+#: ../NewEvent.qml:522
 msgid "Description"
 msgstr "Apraksts"
 
-#: ../NewEvent.qml:575
+#: ../NewEvent.qml:560
+msgid "Add Guest"
+msgstr "Pievienot ciemiņu"
+
+#: ../NewEvent.qml:612
 msgid "Repeats On:"
 msgstr "Atkārtojas:"
 
-#: ../NewEvent.qml:610
+#: ../NewEvent.qml:647
 msgid "Recurring event ends"
 msgstr "Atkārtotais notikums beidzas"
 
 #. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:632
+#: ../NewEvent.qml:670
 msgid "Recurrence"
 msgstr "Atkārtošanās"
 
@@ -336,35 +348,35 @@ msgid ""
 "about them"
 msgstr ""
 
-#: ../calendar.qml:286
+#: ../calendar.qml:287
 msgid "Today"
 msgstr "Šodien"
 
-#: ../calendar.qml:325
+#: ../calendar.qml:326
 msgid "Sync"
 msgstr "Sinhronizācija"
 
-#: ../calendar.qml:325
+#: ../calendar.qml:326
 msgid "Syncing"
 msgstr "Sinhronizē"
 
-#: ../calendar.qml:358
+#: ../calendar.qml:359
 msgid "Year"
 msgstr "Gads"
 
-#: ../calendar.qml:393
+#: ../calendar.qml:394
 msgid "Month"
 msgstr "Mēnesis"
 
-#: ../calendar.qml:422
+#: ../calendar.qml:423
 msgid "Week"
 msgstr "Nedēļa"
 
-#: ../calendar.qml:456
+#: ../calendar.qml:457
 msgid "Day"
 msgstr "Diena"
 
-#: ../calendar.qml:485
+#: ../calendar.qml:486
 msgid "Agenda"
 msgstr ""
 

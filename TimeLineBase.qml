@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013-2014 Canonical Ltd
+ *
+ * This file is part of Ubuntu Calendar App
+ *
+ * Ubuntu Calendar App is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 3 as
+ * published by the Free Software Foundation.
+ *
+ * Ubuntu Calendar App is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import "dateExt.js" as DateExt
@@ -33,7 +50,7 @@ Item {
         id: intern
         property var now : new Date();
         property var eventMap;
-        property var unUsedEvents: new Array;
+        property var unUsedEvents: new Object();
     }
 
     function showEventDetails(event) {
@@ -102,18 +119,46 @@ Item {
             children[i].visible = false;
             if( children[i].objectName !== "separator") {
                 children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
-                intern.unUsedEvents.push(children[i])
+                var key = children[i].objectName;
+                if (intern.unUsedEvents[key] == "undefined") {
+
+                    intern.unUsedEvents[key] = children[i];
+                }
             }
         }
     }
 
-    function createEvent( event, x, width ) {
+    function isHashEmpty(hash) {
+        for (var prop in hash) {
+            if (prop)
+                return false;
+        }
+        return true;
+    }
 
+    function getAKeyFromHash(hash) {
+        for (var prop in hash) {
+            return prop;
+        }
+        return "undefined";
+    }
+
+    function getUnusedEventBubble() {
+        /* Recycle an item from unUsedEvents, and remove from hash */
+        var key = getAKeyFromHash(intern.unUsedEvents);
+        var unUsedBubble = intern.unUsedEvents[key];
+        delete intern.unUsedEvents[key];
+
+        return unUsedBubble;
+    }
+
+    function createEvent( event, x, width ) {
         var eventBubble;
-        if( intern.unUsedEvents.length == 0) {
+        if( isHashEmpty(intern.unUsedEvents) ) {
             eventBubble = delegate.createObject(bubbleOverLay);
+            eventBubble.objectName = children.length;
         } else {
-            eventBubble = intern.unUsedEvents.pop();
+            eventBubble = getUnusedEventBubble();
         }
 
         var hour = event.startDateTime.getHours();

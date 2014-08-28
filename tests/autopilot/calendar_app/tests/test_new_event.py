@@ -22,6 +22,8 @@ import logging
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
+from unittest import skipUnless
+from autopilot.platform import model
 
 from calendar_app import data
 from calendar_app.tests import CalendarTestCase
@@ -58,41 +60,42 @@ class NewEventTestCase(CalendarTestCase):
     def _add_event(self):
         test_event = data.Event.make_unique()
         day_view = self.main_view.go_to_day_view()
+        start_num_events = len(day_view.get_events())
 
         new_event_page = self.main_view.go_to_new_event()
         new_event_page.add_event(test_event)
 
-        # workaround bug 1350605
-        day_view = self._workaround_bug_1350605()
+        day_view = self.main_view.get_day_view()
 
+        # Wait a bit for the event to be added.
+        self.assertThat(lambda: len(day_view.get_events()),
+                        Eventually(Equals(start_num_events + 1)))
+
+        return day_view, test_event
+
+    def _edit_event(self, event_name):
+        test_event = data.Event.make_unique()
+        day_view = self.main_view.go_to_day_view()
+
+        new_event_page = day_view.edit_event(event_name)
+
+        new_event_page.add_event(test_event)
         return day_view, test_event
 
     def _event_exists(self, event_name):
         try:
             day_view = self.main_view.go_to_day_view()
-            day_view.get_event(event_name, False)
+            day_view.get_event(event_name, True)
         except Exception:
             return False
         return True
-
-    def _workaround_bug_1350605(self):
-        # due to bug 1350605, let's force load another view
-        # before returning to dayview to prevent refresh issues
-        self.main_view.go_to_month_view()
-        day_view = self.main_view.go_to_day_view()
-        return day_view
-
-    # TODO, add test to check events are displayed properly
-    # after multiple operations
-    # https://bugs.launchpad.net/ubuntu-calendar-app/+bug/1350605
 
     def test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.
 
         The event must be created on the currently selected date,
-        with an end time, without recurrence and without reminders.
+        with an end time, without recurrence and without reminders."""
 
-        """
         day_view, test_event = self._add_event()
 
         self.addCleanup(self._try_delete_event, test_event.name)
@@ -111,7 +114,18 @@ class NewEventTestCase(CalendarTestCase):
 
         day_view.delete_event(test_event.name)
 
-        self._workaround_bug_1350605()
-
         self.assertThat(lambda: self._event_exists(test_event.name),
                         Eventually(Equals(False)))
+
+    @skipUnless(model() == 'Desktop', 'skipping, bug 1359167')
+    def test_edit_event_with_default_values(self):
+        """Test editing an event change unique values of an event."""
+
+        day_view, original_event = self._add_event()
+        day_view, edited_event = self._edit_event(original_event.name)
+        self.addCleanup(self._try_delete_event, edited_event.name)
+
+        event_details_page = self.main_view.get_event_details()
+
+        self.assertEqual(edited_event,
+                         event_details_page.get_event_information())
