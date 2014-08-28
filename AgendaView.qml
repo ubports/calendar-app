@@ -27,6 +27,8 @@ Page{
 
     property var currentDay: new Date()
 
+    signal dateSelected(var date);
+
     Keys.forwardTo: [eventList]
 
     function goToBeginning() {
@@ -148,6 +150,13 @@ Page{
                         anchors.left: parent.left
                         anchors.leftMargin: units.gu(1)
                         color: "white"
+                    }
+
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            dateSelected(event.startDateTime);
+                        }
                     }
                 }
 
