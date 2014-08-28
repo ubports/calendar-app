@@ -325,6 +325,32 @@ Page {
         return tempDate.setHours(tempDate.getHours() + 1)
     }
 
+    PropertyAnimation{
+        id: scrollOnExpandAnimation
+        property real heightInput: 0
+        duration: 500
+        easing.type: Easing.OutQuad
+        target: flickable
+        property: "contentY"
+    }
+    function scrollOnExpand(Self,Container,Margin,Visible1,Visible2,Visible3,Visible4,Visible5)
+    {
+        // Self is needed for "onXxxxxChange" triggers. OnExpansionCompleted however can just write "true"
+        // Container is the item which encapsulates everything, such as a column or flickable.
+        // VisibleX are needed if there is anything that appears under the base.
+        // Margin is the space between the bottom of the screen and the bottom of the item.
+        if (Self === false){return}
+        var v = units.gu(Margin)
+        if(typeof Visible1 !== 'undefined'){if(Visible1.visible === true){v+=Visible1.height}}
+        if(typeof Visible2 !== 'undefined'){if(Visible2.visible === true){v+=Visible2.height}}
+        if(typeof Visible3 !== 'undefined'){if(Visible3.visible === true){v+=Visible3.height}}
+        if(typeof Visible4 !== 'undefined'){if(Visible4.visible === true){v+=Visible4.height}}
+        if(typeof Visible5 !== 'undefined'){if(Visible5.visible === true){v+=Visible5.height}}
+
+        scrollOnExpandAnimation.to = Container.height-height - v
+        scrollOnExpandAnimation.start()
+    }
+
     width: parent.width
     height: parent.height
 
@@ -626,10 +652,12 @@ Page {
                     model: Defines.recurrenceLabel
                     containerHeight: itemHeight * 4
                     onExpandedChanged: Qt.inputMethod.hide();
+                    onExpansionCompleted: scrollOnExpand(true,column,-8,weeksColumn,limit,limitCount,limitDate,remind)
                 }
             }
 
             Column {
+                id: weeksColumn
                 visible: recurrenceOption.selectedIndex == 5
                 Label {
                     text: i18n.tr("Repeats On:")
@@ -688,7 +716,7 @@ Page {
                     model: Defines.limitLabel
                     containerHeight: itemHeight * 4
                     onExpandedChanged:   Qt.inputMethod.hide();
-
+                    onExpansionCompleted: scrollOnExpand(true,column,-5,limitCount,limitDate,remind)
                 }
             }
             NewEventEntryField{
@@ -707,6 +735,7 @@ Page {
                 width: parent.width
                 height: datePick.height
                 visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2;
+                onVisibleChanged: scrollOnExpand(this.visible,column,-12,remind)
                 DatePicker{
                     id:datePick;
                     anchors.right: parent.right
@@ -714,6 +743,7 @@ Page {
                 }
             }
             Item{
+                id: remind
                 width: parent.width
                 height: reminderOption.height
                 Label{
@@ -729,6 +759,7 @@ Page {
                     containerHeight: itemHeight * 4
                     model: Defines.reminderLabel
                     onExpandedChanged:   Qt.inputMethod.hide();
+                    onExpansionCompleted: scrollOnExpand(true,column,-1)
                 }
             }
         }
