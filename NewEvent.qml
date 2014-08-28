@@ -321,13 +321,12 @@ Page {
 
         anchors.fill: parent
         contentWidth: width
-        contentHeight: column.height
+        contentHeight: column.height + units.gu(10)
 
         Column {
             id: column
 
             width: parent.width
-            spacing: units.gu(1)
 
             ListItem.Header {
                 text: i18n.tr("From")
@@ -344,11 +343,12 @@ Page {
 
                 NewEventEntryField{
                     id: startDateInput
-                    title: i18n.tr("Date")
                     objectName: "startDateInput"
 
+                    title: i18n.tr("Date")
                     text: ""
 
+                    anchors.left: parent.left
                     width: allDayEventCheckbox.checked ? parent.width : parent.width / 2
 
                     MouseArea{
@@ -365,8 +365,8 @@ Page {
 
                     text: ""
 
-                    width: (parent.width / 2) - units.gu(1)
                     anchors.right: parent.right
+                    width: (parent.width / 2) - units.gu(1)
                     visible: !allDayEventCheckbox.checked
 
                     MouseArea{
@@ -374,6 +374,10 @@ Page {
                         onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
                     }
                 }
+            }
+
+            ListItem.ThinDivider {
+                visible: !allDayEventCheckbox.checked
             }
 
             ListItem.Header {
@@ -393,11 +397,12 @@ Page {
 
                 NewEventEntryField{
                     id: endDateInput
-                    title: i18n.tr("Date")
                     objectName: "endDateInput"
 
+                    title: i18n.tr("Date")
                     text: ""
 
+                    anchors.left: parent.left
                     width: parent.width / 2
 
                     MouseArea{
@@ -408,10 +413,12 @@ Page {
 
                 NewEventEntryField{
                     id: endTimeInput
+                    objectName: "endTimeInput"
+
                     // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
                     title: i18n.tr("Time")
-                    objectName: "endTimeInput"
                     text: ""
+
                     width: (parent.width / 2) - units.gu(1)
                     anchors.right: parent.right
 
@@ -422,166 +429,217 @@ Page {
                 }
             }
 
+            ListItem.ThinDivider {}
+
             ListItem.Standard {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: units.gu(-1)
+                }
+
                 text: "All Day Event"
+                showDivider: false
                 control: CheckBox {
                     id: allDayEventCheckbox
                     checked: false
                 }
             }
 
-            ListItem.Header{
-                text: i18n.tr("Event Details")
-            }
-
-            TextField {
-                id: titleEdit
-                objectName: "newEventName"
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
-                }
-
-                placeholderText: i18n.tr("Event Name")
-            }
-
-            TextArea{
-                id: messageEdit
-                objectName: "eventDescriptionInput"
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
-                }
-
-                placeholderText: i18n.tr("Description")
-            }
-
-            TextField {
-                id: locationEdit
-                objectName: "eventLocationInput"
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
-                }
-
-                placeholderText: i18n.tr("Location")
-            }
-
-            ListItem.Header {
-                text: i18n.tr("Calendar")
-            }
-
-            OptionSelector{
-                id: calendarsOption
-                objectName: "calendarsOption"
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
-                }
-
-                containerHeight: itemHeight * 4
-                model: root.model.getCollections();
-
-                delegate: OptionSelectorDelegate{
-                    text: modelData.name
-
-                    UbuntuShape{
-                        id: calColor
-                        width: height
-                        height: parent.height - units.gu(2)
-                        color: modelData.color
-                        anchors.right: parent.right
-                        anchors.rightMargin: units.gu(2)
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
-                onExpandedChanged: Qt.inputMethod.hide();
-            }
-
-            UbuntuShape {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
-                }
-
-                height: contactList.height
-
-                Column{
-                    id: contactList
-                    objectName: "guestList"
-
-                    spacing: units.gu(1)
-                    width: parent.width
-                    clip: true
-                    property var array: []
-                    ListModel{
-                        id: contactModel
-                    }
-                    Button{
-                        text: i18n.tr("Add Guest")
-                        objectName: "addGuestButton"
-                        width: parent.width
-                        onClicked: {
-                            var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
-                            popup.contactSelected.connect( function(contact) {
-                                var t = internal.contactToAttendee(contact);
-                                if( !internal.isContactAlreadyAdded(contact) ) {
-                                    contactModel.append(t);
-                                    contactList.array.push(t);
-                                }
-                            });
-                        }
-                    }
-
-                    Repeater{
-                        model: contactModel
-                        delegate: ListItem.Standard {
-                            objectName: "eventGuest%1".arg(index)
-                            height: units.gu(4)
-                            text: name
-                        }
-                    }
-                }
-            }
-
             ListItem.ThinDivider {}
 
+            Column {
+                width: parent.width
+                spacing: units.gu(1)
+
+                ListItem.Header{
+                    text: i18n.tr("Event Details")
+                }
+
+                TextField {
+                    id: titleEdit
+                    objectName: "newEventName"
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    placeholderText: i18n.tr("Event Name")
+                }
+
+                TextArea{
+                    id: messageEdit
+                    objectName: "eventDescriptionInput"
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    placeholderText: i18n.tr("Description")
+                }
+
+                TextField {
+                    id: locationEdit
+                    objectName: "eventLocationInput"
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    placeholderText: i18n.tr("Location")
+                }
+            }
+
+            Column {
+                width: parent.width
+                spacing: units.gu(1)
+
+                ListItem.Header {
+                    text: i18n.tr("Calendar")
+                }
+
+                OptionSelector{
+                    id: calendarsOption
+                    objectName: "calendarsOption"
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    containerHeight: itemHeight * 4
+                    model: root.model.getCollections();
+
+                    delegate: OptionSelectorDelegate{
+                        text: modelData.name
+
+                        UbuntuShape{
+                            id: calColor
+                            width: height
+                            height: parent.height - units.gu(2)
+                            color: modelData.color
+                            anchors.right: parent.right
+                            anchors.rightMargin: units.gu(2)
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+                    onExpandedChanged: Qt.inputMethod.hide();
+                }
+            }
+
+            Column {
+                width: parent.width
+                spacing: units.gu(1)
+
+                ListItem.Header {
+                    text: i18n.tr("Guests")
+                }
+
+                Button{
+                    text: i18n.tr("Add Guest")
+                    objectName: "addGuestButton"
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    onClicked: {
+                        var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
+                        popup.contactSelected.connect( function(contact) {
+                            var t = internal.contactToAttendee(contact);
+                            if( !internal.isContactAlreadyAdded(contact) ) {
+                                contactModel.append(t);
+                                contactList.array.push(t);
+                            }
+                        });
+                    }
+                }
+
+                UbuntuShape {
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    height: contactList.height
+
+                    Column{
+                        id: contactList
+                        objectName: "guestList"
+
+                        spacing: units.gu(1)
+                        width: parent.width
+                        clip: true
+
+                        property var array: []
+
+                        ListModel{
+                            id: contactModel
+                        }
+
+                        Repeater{
+                            model: contactModel
+                            delegate: ListItem.Standard {
+                                objectName: "eventGuest%1".arg(index)
+                                height: units.gu(4)
+                                text: name
+                            }
+                        }
+                    }
+                }
+
+                ListItem.ThinDivider {}
+            }
 
             ListItem.Subtitled{
                 id:thisHappens
                 objectName :"thisHappens"
+
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(-1)
+                }
+
+                showDivider: false
                 visible: event.itemType === Type.Event
                 text: i18n.tr("This Happens")
                 subText: eventUtils.getRecurrenceString(rule)
                 onClicked: pageStack.push(Qt.resolvedUrl("EventRepetation.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
-
             }
 
-            ListItem.Header {
-                text: i18n.tr("Remind me")
-            }
+            ListItem.ThinDivider {}
 
-            OptionSelector{
-                id: reminderOption
+            Column {
+                width: parent.width
+                spacing: units.gu(1)
 
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(2)
+                ListItem.Header {
+                    text: i18n.tr("Remind me")
                 }
 
-                containerHeight: itemHeight * 4
-                model: Defines.reminderLabel
-                onExpandedChanged: Qt.inputMethod.hide();
+                OptionSelector{
+                    id: reminderOption
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    containerHeight: itemHeight * 4
+                    model: Defines.reminderLabel
+                    onExpandedChanged: Qt.inputMethod.hide();
+                }
             }
 
         }
