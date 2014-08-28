@@ -337,8 +337,8 @@ Page {
     {
         // Self is needed for "onXxxxxChange" triggers. OnExpansionCompleted however can just write "true"
         // Container is the item which encapsulates everything, such as a column or flickable.
-        // VisibleX are needed if there is anything that appears under the base.
-        // Margin is the space between the bottom of the screen and the bottom of the item.
+        // VisibleX are needed if there is anything that appears under the item you are scrolling to.
+        // Margin is the space between the bottom of the screen and the bottom of the item you are scrolling to.
         if (Self === false){return}
         var v = units.gu(Margin)
         if(typeof Visible1 !== 'undefined'){if(Visible1.visible === true){v+=Visible1.height}}
