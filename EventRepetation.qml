@@ -47,7 +47,7 @@ Page {
                     var temp = rule.limit;
                     if(parseInt(temp)){
                         limitOptions.selectedIndex = 1;
-                        limitCount.value = temp;
+                        limitCount.text = temp;
                     }
                     else{
                         limitOptions.selectedIndex = 2;
@@ -93,7 +93,7 @@ Page {
                 if(limitOptions.selectedIndex > 0) {
                     rule.daysOfWeek = eventUtils.getDaysOfWeek(recurrenceOption.selectedIndex,weekDays );
                     if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
-                        rule.limit =  parseInt(limitCount.value);
+                        rule.limit =  parseInt(limitCount.text);
                     }
                     else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
                         rule.limit =  datePick.date;
@@ -184,18 +184,17 @@ Page {
             text:i18n.tr("Recurrences")
             visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
         }
-        Slider{
-            id:limitCount
-            live:true
+        TextField {
+            id: limitCount
             width: parent.width
-            objectName:"limitCount"
+            objectName: "eventLimitCount"
             visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
-            minimumValue: 1
-            maximumValue: 50
-            onValueChanged: {
-                backAction.enabled = value !== 1 ? true :false
+            validator: IntValidator{ bottom: 1; }
+            inputMethodHints: Qt.ImhDialableCharactersOnly
+            focus: true
+            onTextChanged: {
+                backAction.enabled = !!text.trim()
             }
-
         }
 
         ListItem.Header{
