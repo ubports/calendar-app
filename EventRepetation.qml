@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2014 Canonical Ltd
+ * Copyright (C) 2014 Canonical Ltd
  *
  * This file is part of Ubuntu Calendar App
  *
@@ -19,19 +19,22 @@
 import QtQuick 2.3
 import QtOrganizer 5.0
 import Ubuntu.Components 1.1
-import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
 import "Defines.js" as Defines
+
 Page {
     id: repetation
-    title: i18n.tr("Repeat")
+
     property var weekDays : [];
     property var rule
     property var date
     property var isEdit
+
+    visible: false
+    title: i18n.tr("Repeat")
+
     EventUtils{
         id:eventUtils
     }
@@ -79,9 +82,7 @@ Page {
             }
         }
            recurrenceOption.selectedIndex = index;
-
     }
-    visible: false
 
     head.backAction: Action{
         id:backAction
@@ -109,21 +110,27 @@ Page {
             pop()
         }
     }
+
     Column{
         id:repeatColumn
-        anchors {
-            fill: parent
-            margins: units.gu(2)
-        }
 
+        anchors.fill: parent
         spacing: units.gu(1)
+
         ListItem.Header{
             text: i18n.tr("Repeat")
         }
+
         OptionSelector{
             id: recurrenceOption
             visible: true
-            width: parent.width
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(2)
+            }
+
             model: Defines.recurrenceLabel
             containerHeight: itemHeight * 4
             onExpandedChanged: Qt.inputMethod.hide();
@@ -134,11 +141,19 @@ Page {
             text: i18n.tr("Repeats On:")
             visible: recurrenceOption.selectedIndex == 5
         }
+
         Row {
             id: weeksRow
-            width: parent.width
-            spacing: units.gu(2)
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(2)
+            }
+
+            spacing: units.gu(1)
             visible: recurrenceOption.selectedIndex == 5
+
             Repeater {
                 model: Defines.weekLabel
                 Column {
@@ -166,6 +181,7 @@ Page {
                 }
             }
         }
+
         ListItem.Header {
             text: i18n.tr("Recurring event ends")
             visible: recurrenceOption.selectedIndex != 0
@@ -174,24 +190,38 @@ Page {
         OptionSelector{
             id: limitOptions
             visible: recurrenceOption.selectedIndex != 0
-            width: parent.width
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(2)
+            }
+
             model: Defines.limitLabel
             containerHeight: itemHeight * 4
-            onExpandedChanged:   Qt.inputMethod.hide();
-
+            onExpandedChanged:   Qt.inputMethod.hide()
         }
+
         ListItem.Header{
             text:i18n.tr("Recurrences")
-            visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
+            visible: recurrenceOption.selectedIndex != 0
+                     && limitOptions.selectedIndex == 1
         }
+
         TextField {
             id: limitCount
-            width: parent.width
             objectName: "eventLimitCount"
-            visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(2)
+            }
+
+            visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1
             validator: IntValidator{ bottom: 1; }
             inputMethodHints: Qt.ImhDialableCharactersOnly
-            focus: true
+
             onTextChanged: {
                 backAction.enabled = !!text.trim()
             }
@@ -199,19 +229,19 @@ Page {
 
         ListItem.Header{
             text:i18n.tr("Date")
-            visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 2;
-        }
-        Item {
-            id: limitDate
-            width: parent.width
-            height: datePick.height
-            visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2;
-            DatePicker{
-                id:datePick;
-                anchors.left: parent.left
-                anchors.right: parent.right
-            }
+            visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 2
         }
 
+        DatePicker{
+            id:datePick;
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(2)
+            }
+
+            visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2
+        }
     }
 }
