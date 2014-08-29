@@ -42,11 +42,7 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
-
     property var selectedReccurence
-
-
-
 
     onStartDateChanged: {
         startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
