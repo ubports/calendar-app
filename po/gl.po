@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-18 18:44+0000\n"
+"PO-Revision-Date: 2014-08-30 20:39+0000\n"
 "Last-Translator: Marcos Lans <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-19 06:53+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-08-31 07:22+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -77,7 +77,7 @@ msgstr "Cancelar"
 
 #: ../ContactChoicePopup.qml:20
 msgid "No contact"
-msgstr "Non hai contacto"
+msgstr "Non hai contactos"
 
 #: ../ContactChoicePopup.qml:66
 msgid "Search contact"
@@ -113,7 +113,7 @@ msgstr "Modificar series"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr "Modificar isto"
+msgstr "Modificar esta"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
