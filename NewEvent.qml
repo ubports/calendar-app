@@ -45,6 +45,7 @@ Page {
     onStartDateChanged: {
         startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
         startTimeInput.text = Qt.formatDateTime(startDate, "hh:mm");
+        adjustEndDateToStartDate()
     }
 
     onEndDateChanged: {
@@ -323,6 +324,13 @@ Page {
             return tempDate.setMinutes(30)
         tempDate.setMinutes(0)
         return tempDate.setHours(tempDate.getHours() + 1)
+    }
+
+    function adjustEndDateToStartDate() {
+        // set time forward to one hour
+        var time_forward = 3600000;
+
+        endDate = new Date( startDate.getTime() + time_forward );
     }
 
     width: parent.width
