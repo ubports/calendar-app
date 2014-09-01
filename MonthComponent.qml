@@ -216,12 +216,13 @@ Item{
                 color: {
                     if( isCurrentMonth ) {
                         if(isToday) {
-                            "#2C001E"
+                            "white"
                         } else {
                             "#5D5D5D"
                         }
                     } else {
-                        "#AEA79F"
+                        "#AEA79F
+"
                     }
                 }
             }
@@ -290,7 +291,7 @@ Item{
     Component{
         id: highLightComp
         UbuntuShape{
-            color: "white"
+            color: "#DD4814"
         }
     }
 }
