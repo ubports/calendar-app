@@ -162,11 +162,40 @@ Page{
 
                 UbuntuShape{
                     id: detailsContainer
-                    color: "white"
+                    color: backgroundColor
+
+                    property color backgroundColor: "white"
 
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: parent.width - units.gu(4)
                     height: detailsColumn.height + units.gu(1)
+
+                    function openEvent() {
+                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
+                    }
+
+                    SequentialAnimation {
+                        id: removalAnimation
+                        running: false
+
+                        ColorAnimation {
+                            target: detailsContainer
+                            property: "color"
+                            to: UbuntuColors.orange
+                            duration: 50
+                        }
+
+                        ScriptAction {
+                            script: detailsContainer.openEvent()
+                        }
+
+                        ColorAnimation {
+                            target: detailsContainer
+                            property: "color"
+                            to: backgroundColor
+                            duration: 50
+                        }
+                    }
 
                     Column{
                         id: detailsColumn
@@ -204,7 +233,7 @@ Page{
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
-                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
+                            removalAnimation.running = true
                         }
                     }
                 }
