@@ -221,8 +221,7 @@ Item{
                             "#5D5D5D"
                         }
                     } else {
-                        "#AEA79F
-"
+                        "#AEA79F"
                     }
                 }
             }
