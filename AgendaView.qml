@@ -84,7 +84,7 @@ Page{
         visible: !root.hasEnabledCalendars()
         anchors.top: noEventsOrCalendarsLabel.bottom
         anchors.horizontalCenter: noEventsOrCalendarsLabel.horizontalCenter
-        anchors.topMargin: 10
+        anchors.topMargin: units.gu( 1.5 )
         color: UbuntuColors.orange
 
         onClicked: {
