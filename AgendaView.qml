@@ -185,6 +185,12 @@ Page{
 
                     ]
 
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 50
+                        }
+                    }
+
                     Column{
                         id: detailsColumn
 
@@ -215,6 +221,12 @@ Page{
                             color:"black"
                             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                             width: parent.width
+
+                            Behavior on color {
+                                ColorAnimation {
+                                    duration: 50
+                                }
+                            }
                         }
                     }
 
