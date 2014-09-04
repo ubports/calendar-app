@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-07-24 23:57+0530\n"
-"PO-Revision-Date: 2014-07-25 09:13+0000\n"
-"Last-Translator: Úr Balázs <urbalazs@gmail.com>\n"
+"POT-Creation-Date: 2014-08-15 23:27-0500\n"
+"PO-Revision-Date: 2014-09-03 07:47+0000\n"
+"Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-26 07:13+0000\n"
-"X-Generator: Launchpad (build 17131)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2014-09-04 08:28+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -23,7 +24,7 @@ msgstr "Nincsenek közelgő események"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:131
+#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
 msgid "hh:mm"
 msgstr "hh:mm"
 
@@ -52,7 +53,7 @@ msgstr "%1 es."
 msgid "%1 All day events"
 msgstr "%1 egész napos esemény"
 
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
+#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
 msgid "Calendars"
 msgstr "Naptárak"
 
@@ -60,7 +61,7 @@ msgstr "Naptárak"
 msgid "Back"
 msgstr "Vissza"
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:677
+#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
 msgid "Save"
 msgstr "Mentés"
 
@@ -70,9 +71,17 @@ msgstr "Szín kiválasztása"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:681
+#: ../NewEvent.qml:722
 msgid "Cancel"
 msgstr "Mégse"
+
+#: ../ContactChoicePopup.qml:20
+msgid "No contact"
+msgstr "Nincsenek névjegyek"
+
+#: ../ContactChoicePopup.qml:66
+msgid "Search contact"
+msgstr "Névjegy keresése"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
@@ -90,11 +99,11 @@ msgstr "Sorozat törlése"
 msgid "Delete this"
 msgstr "Törlés"
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:192
+#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
 msgid "Delete"
 msgstr "Törlés"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:294
+#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
 msgid "Edit Event"
 msgstr "Esemény szerkesztése"
 
@@ -110,123 +119,221 @@ msgstr "Szerkesztés"
 msgid "Done"
 msgstr "Kész"
 
-#: ../EventDetails.qml:55
+#: ../EventDetails.qml:27
+msgid "Event Details"
+msgstr "Esemény részletei"
+
+#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
 msgstr "Soha"
 
-#. TRANSLATORS: this is a time & Date formatting string,
+#. TRANSLATORS: this is a date shown in the event details view,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59 ../EventDetails.qml:134
-msgid "dd-MMM-yyyy"
-msgstr "yyyy-MMM-dd"
+#: ../EventDetails.qml:59
+msgid "ddd MMMM d yyyy"
+msgstr "yyyy MMMM d., ddd"
 
 #: ../EventDetails.qml:62
 #, qt-format
-msgid "After %1 Occurrences"
-msgstr "%1 előfordulás után"
+msgid "After %1 Occurrence"
+msgid_plural "After %1 Occurrences"
+msgstr[0] "%1 előfordulás után"
+msgstr[1] "%1 előfordulás után"
 
 #: ../EventDetails.qml:63
 #, qt-format
 msgid "After Date %1"
 msgstr "%1 után"
 
-#: ../EventDetails.qml:69
-msgid "Every "
-msgstr "Minden "
+#. TRANSLATORS: the argument is a day of the week or a list of days
+#: ../EventDetails.qml:75
+#, qt-format
+msgid "Every %1"
+msgstr "Minden %1"
 
-#: ../EventDetails.qml:123
+#: ../EventDetails.qml:126
 msgid "Not specified"
 msgstr "Nincs megadva"
 
-#: ../EventDetails.qml:207
+#. TRANSLATORS: this is a time & Date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+#: ../EventDetails.qml:137
+msgid "dd-MMM-yyyy"
+msgstr "yyyy MMM dd"
+
+#: ../EventDetails.qml:210
 msgid "Edit"
 msgstr "Szerkesztés"
 
-#: ../EventDetails.qml:269
+#: ../EventDetails.qml:272
 msgid "Date"
 msgstr "Dátum"
 
-#: ../EventDetails.qml:274 ../NewEvent.qml:384
+#: ../EventDetails.qml:277 ../NewEvent.qml:387
 msgid "Start"
 msgstr "Kezdés"
 
-#: ../EventDetails.qml:279 ../NewEvent.qml:423
+#: ../EventDetails.qml:282 ../NewEvent.qml:426
 msgid "End"
 msgstr "Befejezés"
 
-#: ../EventDetails.qml:288 ../NewEvent.qml:492
+#: ../EventDetails.qml:291 ../NewEvent.qml:497
 msgid "All Day event:"
 msgstr "Egész napos esemény:"
 
-#: ../EventDetails.qml:336 ../NewEvent.qml:537
+#: ../EventDetails.qml:340 ../NewEvent.qml:542
 msgid "Location"
 msgstr "Hely"
 
-#: ../EventDetails.qml:362 ../NewEvent.qml:544
+#: ../EventDetails.qml:366
 msgid "Guests"
 msgstr "Vendégek"
 
-#: ../EventDetails.qml:400 ../NewEvent.qml:555
+#: ../EventDetails.qml:404 ../NewEvent.qml:592
 msgid "This happens"
-msgstr "Kezdés"
+msgstr "Gyakoriság"
 
-#: ../EventDetails.qml:405 ../NewEvent.qml:653
+#: ../EventDetails.qml:409 ../NewEvent.qml:693
 msgid "Remind me"
 msgstr "Emlékeztessen"
 
-#: ../EventDetails.qml:410
+#: ../EventDetails.qml:414
 msgid "Repeats On"
 msgstr "Ismétlődik"
 
-#: ../EventDetails.qml:416
+#: ../EventDetails.qml:420
 msgid "Repetition Ends"
 msgstr "Ismétlődés vége"
 
-#: ../NewEvent.qml:182
+#: ../LimitLabelDefines.qml:4
+msgid "After X Occurrence"
+msgstr "X elfordulás után"
+
+#: ../LimitLabelDefines.qml:5
+msgid "After Date"
+msgstr "Dátum után"
+
+#: ../NewEvent.qml:186
 msgid "End time can't be before start time"
 msgstr "A végződés időpontjának a kezdés után kell lennie."
 
-#: ../NewEvent.qml:294 ../calendar.qml:305
+#: ../NewEvent.qml:297 ../calendar.qml:306
 msgid "New Event"
 msgstr "Új esemény"
 
-#: ../NewEvent.qml:310
+#: ../NewEvent.qml:313
 msgid "Error"
 msgstr "Hiba"
 
-#: ../NewEvent.qml:312
+#: ../NewEvent.qml:315
 msgid "OK"
-msgstr "OK"
+msgstr "Ok"
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:400 ../NewEvent.qml:439
+#: ../NewEvent.qml:403 ../NewEvent.qml:442
 msgid "at"
-msgstr "ekkor"
+msgstr "ekkor:"
 
-#: ../NewEvent.qml:460
+#: ../NewEvent.qml:463
 msgid "Calendar "
 msgstr "Naptár "
 
-#: ../NewEvent.qml:507
+#: ../NewEvent.qml:512
 msgid "Event Name"
 msgstr "Esemény neve"
 
-#: ../NewEvent.qml:517
+#: ../NewEvent.qml:522
 msgid "Description"
 msgstr "Leírás"
 
-#: ../NewEvent.qml:574
+#: ../NewEvent.qml:560
+msgid "Add Guest"
+msgstr "Vendég hozzáadása"
+
+#: ../NewEvent.qml:612
 msgid "Repeats On:"
 msgstr "Ismétlődik:"
 
-#: ../NewEvent.qml:609
+#: ../NewEvent.qml:647
 msgid "Recurring event ends"
 msgstr "Ismétlődő esemény vége"
 
 #. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:631
+#: ../NewEvent.qml:670
 msgid "Recurrence"
 msgstr "Ismétlődés"
+
+#: ../RecurrenceLabelDefines.qml:4
+msgid "Once"
+msgstr "Egyszeri"
+
+#: ../RecurrenceLabelDefines.qml:5
+msgid "Daily"
+msgstr "Naponta"
+
+#: ../RecurrenceLabelDefines.qml:6
+msgid "Every Weekday (Monday to Friday)"
+msgstr "Minden hétköznap (hétfőtől péntekig)"
+
+#: ../RecurrenceLabelDefines.qml:7
+msgid "Every Monday, Wednesday and Friday"
+msgstr "Minden hétfő, szerda és péntek"
+
+#: ../RecurrenceLabelDefines.qml:8
+msgid "Every Tuesday and Thursday"
+msgstr "Minden kedd és csütörtök"
+
+#: ../RecurrenceLabelDefines.qml:9
+msgid "Weekly"
+msgstr "Hetente"
+
+#: ../RecurrenceLabelDefines.qml:10
+msgid "Monthly"
+msgstr "Havonta"
+
+#: ../RecurrenceLabelDefines.qml:11
+msgid "Yearly"
+msgstr "Évente"
+
+#: ../ReminderLabelDefines.qml:4
+msgid "No Reminder"
+msgstr "Nincs emlékeztető"
+
+#: ../ReminderLabelDefines.qml:5
+msgid "5 minutes"
+msgstr "5 perc"
+
+#: ../ReminderLabelDefines.qml:6
+msgid "15 minutes"
+msgstr "15 perc"
+
+#: ../ReminderLabelDefines.qml:7
+msgid "30 minutes"
+msgstr "30 perc"
+
+#: ../ReminderLabelDefines.qml:8
+msgid "1 hour"
+msgstr "1 óra"
+
+#: ../ReminderLabelDefines.qml:9
+msgid "2 hours"
+msgstr "2 óra"
+
+#: ../ReminderLabelDefines.qml:10
+msgid "1 day"
+msgstr "1 nap"
+
+#: ../ReminderLabelDefines.qml:11
+msgid "2 days"
+msgstr "2 nap"
+
+#: ../ReminderLabelDefines.qml:12
+msgid "1 week"
+msgstr "1 hét"
+
+#: ../ReminderLabelDefines.qml:13
+msgid "2 weeks"
+msgstr "2 hét"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -244,35 +351,35 @@ msgstr ""
 "newevent és --eventid. Ezeket a rendszer fogja kezelni. A hozzájuk tartozó "
 "összes megjegyzéshez nézze meg a forrást."
 
-#: ../calendar.qml:286
+#: ../calendar.qml:287
 msgid "Today"
 msgstr "Ma"
 
-#: ../calendar.qml:325
+#: ../calendar.qml:326
 msgid "Sync"
 msgstr "Szinkronizálás"
 
-#: ../calendar.qml:325
+#: ../calendar.qml:326
 msgid "Syncing"
 msgstr "Szinkronizálás"
 
-#: ../calendar.qml:358
+#: ../calendar.qml:359
 msgid "Year"
 msgstr "Év"
 
-#: ../calendar.qml:393
+#: ../calendar.qml:394
 msgid "Month"
 msgstr "Hónap"
 
-#: ../calendar.qml:422
+#: ../calendar.qml:423
 msgid "Week"
 msgstr "Hét"
 
-#: ../calendar.qml:456
+#: ../calendar.qml:457
 msgid "Day"
 msgstr "Nap"
 
-#: ../calendar.qml:485
+#: ../calendar.qml:486
 msgid "Agenda"
 msgstr "Napirend"
 

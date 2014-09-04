@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-07-24 23:57+0530\n"
-"PO-Revision-Date: 2014-07-25 12:34+0000\n"
+"POT-Creation-Date: 2014-08-15 23:27-0500\n"
+"PO-Revision-Date: 2014-09-01 22:18+0000\n"
 "Last-Translator: Ibai Oihanguren Sala <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-26 07:12+0000\n"
-"X-Generator: Launchpad (build 17131)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2014-09-02 07:12+0000\n"
+"X-Generator: Launchpad (build 17192)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -23,7 +24,7 @@ msgstr "Ez dago gertaerarik hurrean"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:131
+#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
 msgid "hh:mm"
 msgstr "hh:mm"
 
@@ -52,7 +53,7 @@ msgstr "%1 ge."
 msgid "%1 All day events"
 msgstr "%1 Egun osoko gertaerak"
 
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
+#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
 msgid "Calendars"
 msgstr "Egutegiak"
 
@@ -60,7 +61,7 @@ msgstr "Egutegiak"
 msgid "Back"
 msgstr "Atzera"
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:677
+#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
 msgid "Save"
 msgstr "Gorde"
 
@@ -70,9 +71,17 @@ msgstr "Hautatu kolorea"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:681
+#: ../NewEvent.qml:722
 msgid "Cancel"
 msgstr "Utzi"
+
+#: ../ContactChoicePopup.qml:20
+msgid "No contact"
+msgstr "Ez dago kontakturik"
+
+#: ../ContactChoicePopup.qml:66
+msgid "Search contact"
+msgstr "Bilatu kontaktuak"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
@@ -90,11 +99,11 @@ msgstr "Kendu segida"
 msgid "Delete this"
 msgstr "Kendu hau"
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:192
+#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
 msgid "Delete"
 msgstr "Ezabatu"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:294
+#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
 msgid "Edit Event"
 msgstr "Editatu gertaera"
 
@@ -110,123 +119,221 @@ msgstr "Editatu hau"
 msgid "Done"
 msgstr "Eginda"
 
-#: ../EventDetails.qml:55
+#: ../EventDetails.qml:27
+msgid "Event Details"
+msgstr "Gertaeraren xehetasunak"
+
+#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
 msgstr "Inoiz ez"
 
-#. TRANSLATORS: this is a time & Date formatting string,
+#. TRANSLATORS: this is a date shown in the event details view,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59 ../EventDetails.qml:134
-msgid "dd-MMM-yyyy"
-msgstr "yyyy-MM-dd"
+#: ../EventDetails.qml:59
+msgid "ddd MMMM d yyyy"
+msgstr "yyyy(e)ko MMMMren d(a), ddd"
 
 #: ../EventDetails.qml:62
 #, qt-format
-msgid "After %1 Occurrences"
-msgstr "%1 errepikaldiren ostean"
+msgid "After %1 Occurrence"
+msgid_plural "After %1 Occurrences"
+msgstr[0] "Gertaldi %1en ostean"
+msgstr[1] "%1 gertaldiren ostean"
 
 #: ../EventDetails.qml:63
 #, qt-format
 msgid "After Date %1"
 msgstr "Data honen ostean: %1"
 
-#: ../EventDetails.qml:69
-msgid "Every "
-msgstr "Maiztasuna: "
+#. TRANSLATORS: the argument is a day of the week or a list of days
+#: ../EventDetails.qml:75
+#, qt-format
+msgid "Every %1"
+msgstr "%1 guztietan"
 
-#: ../EventDetails.qml:123
+#: ../EventDetails.qml:126
 msgid "Not specified"
 msgstr "Zehaztu gabe"
 
-#: ../EventDetails.qml:207
+#. TRANSLATORS: this is a time & Date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+#: ../EventDetails.qml:137
+msgid "dd-MMM-yyyy"
+msgstr "yyyy-MM-dd"
+
+#: ../EventDetails.qml:210
 msgid "Edit"
 msgstr "Editatu"
 
-#: ../EventDetails.qml:269
+#: ../EventDetails.qml:272
 msgid "Date"
 msgstr "Data"
 
-#: ../EventDetails.qml:274 ../NewEvent.qml:384
+#: ../EventDetails.qml:277 ../NewEvent.qml:387
 msgid "Start"
 msgstr "Hasiera"
 
-#: ../EventDetails.qml:279 ../NewEvent.qml:423
+#: ../EventDetails.qml:282 ../NewEvent.qml:426
 msgid "End"
 msgstr "Amaiera"
 
-#: ../EventDetails.qml:288 ../NewEvent.qml:492
+#: ../EventDetails.qml:291 ../NewEvent.qml:497
 msgid "All Day event:"
 msgstr "Egun osoko gertaera:"
 
-#: ../EventDetails.qml:336 ../NewEvent.qml:537
+#: ../EventDetails.qml:340 ../NewEvent.qml:542
 msgid "Location"
 msgstr "Kokalekua"
 
-#: ../EventDetails.qml:362 ../NewEvent.qml:544
+#: ../EventDetails.qml:366
 msgid "Guests"
 msgstr "Gonbidatuak"
 
-#: ../EventDetails.qml:400 ../NewEvent.qml:555
+#: ../EventDetails.qml:404 ../NewEvent.qml:592
 msgid "This happens"
 msgstr "Hau gertatzen da"
 
-#: ../EventDetails.qml:405 ../NewEvent.qml:653
+#: ../EventDetails.qml:409 ../NewEvent.qml:693
 msgid "Remind me"
 msgstr "Gogorarazi"
 
-#: ../EventDetails.qml:410
+#: ../EventDetails.qml:414
 msgid "Repeats On"
 msgstr "Errepikapena:"
 
-#: ../EventDetails.qml:416
+#: ../EventDetails.qml:420
 msgid "Repetition Ends"
 msgstr "Errepikapenaren amaiera"
 
-#: ../NewEvent.qml:182
+#: ../LimitLabelDefines.qml:4
+msgid "After X Occurrence"
+msgstr "X gertaldiren ostean"
+
+#: ../LimitLabelDefines.qml:5
+msgid "After Date"
+msgstr "Data baten ostean"
+
+#: ../NewEvent.qml:186
 msgid "End time can't be before start time"
 msgstr "Amaierako ordua ezin da hasierakoa baino lehenago izan"
 
-#: ../NewEvent.qml:294 ../calendar.qml:305
+#: ../NewEvent.qml:297 ../calendar.qml:306
 msgid "New Event"
 msgstr "Gertaera berria"
 
-#: ../NewEvent.qml:310
+#: ../NewEvent.qml:313
 msgid "Error"
 msgstr "Errorea"
 
-#: ../NewEvent.qml:312
+#: ../NewEvent.qml:315
 msgid "OK"
 msgstr "Ados"
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:400 ../NewEvent.qml:439
+#: ../NewEvent.qml:403 ../NewEvent.qml:442
 msgid "at"
 msgstr "noiz:"
 
-#: ../NewEvent.qml:460
+#: ../NewEvent.qml:463
 msgid "Calendar "
 msgstr "Egutegia: "
 
-#: ../NewEvent.qml:507
+#: ../NewEvent.qml:512
 msgid "Event Name"
 msgstr "Gertaeraren izena"
 
-#: ../NewEvent.qml:517
+#: ../NewEvent.qml:522
 msgid "Description"
 msgstr "Deskribapena"
 
-#: ../NewEvent.qml:574
+#: ../NewEvent.qml:560
+msgid "Add Guest"
+msgstr "Gehitu gonbidatua"
+
+#: ../NewEvent.qml:612
 msgid "Repeats On:"
 msgstr "Errepikapena:"
 
-#: ../NewEvent.qml:609
+#: ../NewEvent.qml:647
 msgid "Recurring event ends"
 msgstr "Gertaera errepikakorraren amaiera"
 
 #. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:631
+#: ../NewEvent.qml:670
 msgid "Recurrence"
 msgstr "Errepikapena"
+
+#: ../RecurrenceLabelDefines.qml:4
+msgid "Once"
+msgstr "Behin"
+
+#: ../RecurrenceLabelDefines.qml:5
+msgid "Daily"
+msgstr "Egunero"
+
+#: ../RecurrenceLabelDefines.qml:6
+msgid "Every Weekday (Monday to Friday)"
+msgstr "Astegunero (astelehenetik ostiralera)"
+
+#: ../RecurrenceLabelDefines.qml:7
+msgid "Every Monday, Wednesday and Friday"
+msgstr "Astelehen, asteazken eta ostiralero"
+
+#: ../RecurrenceLabelDefines.qml:8
+msgid "Every Tuesday and Thursday"
+msgstr "Astearte eta ostegunero"
+
+#: ../RecurrenceLabelDefines.qml:9
+msgid "Weekly"
+msgstr "Astero"
+
+#: ../RecurrenceLabelDefines.qml:10
+msgid "Monthly"
+msgstr "Hilero"
+
+#: ../RecurrenceLabelDefines.qml:11
+msgid "Yearly"
+msgstr "Urtero"
+
+#: ../ReminderLabelDefines.qml:4
+msgid "No Reminder"
+msgstr "Ez gogorarazi"
+
+#: ../ReminderLabelDefines.qml:5
+msgid "5 minutes"
+msgstr "5 minutu"
+
+#: ../ReminderLabelDefines.qml:6
+msgid "15 minutes"
+msgstr "15 minutu"
+
+#: ../ReminderLabelDefines.qml:7
+msgid "30 minutes"
+msgstr "30 minutu"
+
+#: ../ReminderLabelDefines.qml:8
+msgid "1 hour"
+msgstr "ordu 1"
+
+#: ../ReminderLabelDefines.qml:9
+msgid "2 hours"
+msgstr "2 ordu"
+
+#: ../ReminderLabelDefines.qml:10
+msgid "1 day"
+msgstr "Egun 1"
+
+#: ../ReminderLabelDefines.qml:11
+msgid "2 days"
+msgstr "2 egun"
+
+#: ../ReminderLabelDefines.qml:12
+msgid "1 week"
+msgstr "Astebete"
+
+#: ../ReminderLabelDefines.qml:13
+msgid "2 weeks"
+msgstr "2 aste"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
@@ -244,35 +351,35 @@ msgstr ""
 "newevent eta --eventid. Sistemak kudeatuko ditu. Ikusi iturburua haiei "
 "buruzko iruzkin osoago baterako"
 
-#: ../calendar.qml:286
+#: ../calendar.qml:287
 msgid "Today"
 msgstr "Gaur"
 
-#: ../calendar.qml:325
+#: ../calendar.qml:326
 msgid "Sync"
 msgstr "Sinkronizatu"
 
-#: ../calendar.qml:325
+#: ../calendar.qml:326
 msgid "Syncing"
 msgstr "Sinkronizatzen"
 
-#: ../calendar.qml:358
+#: ../calendar.qml:359
 msgid "Year"
 msgstr "Urtea"
 
-#: ../calendar.qml:393
+#: ../calendar.qml:394
 msgid "Month"
 msgstr "Hila"
 
-#: ../calendar.qml:422
+#: ../calendar.qml:423
 msgid "Week"
 msgstr "Astea"
 
-#: ../calendar.qml:456
+#: ../calendar.qml:457
 msgid "Day"
 msgstr "Eguna"
 
-#: ../calendar.qml:485
+#: ../calendar.qml:486
 msgid "Agenda"
 msgstr "Agenda"
 

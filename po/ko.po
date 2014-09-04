@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-07-24 23:57+0530\n"
+"POT-Creation-Date: 2014-08-15 23:27-0500\n"
 "PO-Revision-Date: 2014-07-16 05:42+0000\n"
 "Last-Translator: Bundo <bundo@bundo.biz>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-25 07:48+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Launchpad-Export-Date: 2014-08-17 06:33+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -23,7 +24,7 @@ msgstr "일정 없음"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:131
+#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
 msgid "hh:mm"
 msgstr "hh:mm"
 
@@ -52,7 +53,7 @@ msgstr "%1개"
 msgid "%1 All day events"
 msgstr "%1개의 하루 종일 하는 행사"
 
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
+#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
 msgid "Calendars"
 msgstr ""
 
@@ -60,7 +61,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:677
+#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
 msgid "Save"
 msgstr "저장"
 
@@ -70,9 +71,17 @@ msgstr ""
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:681
+#: ../NewEvent.qml:722
 msgid "Cancel"
 msgstr "취소"
+
+#: ../ContactChoicePopup.qml:20
+msgid "No contact"
+msgstr ""
+
+#: ../ContactChoicePopup.qml:66
+msgid "Search contact"
+msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
@@ -90,11 +99,11 @@ msgstr "시리즈 삭제"
 msgid "Delete this"
 msgstr "삭제"
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:192
+#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
 msgid "Delete"
 msgstr "삭제"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:294
+#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
 msgid "Edit Event"
 msgstr "이벤트 편집"
 
@@ -110,122 +119,220 @@ msgstr "편집"
 msgid "Done"
 msgstr "완료"
 
-#: ../EventDetails.qml:55
+#: ../EventDetails.qml:27
+msgid "Event Details"
+msgstr ""
+
+#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
 msgstr "사용 안 함"
 
-#. TRANSLATORS: this is a time & Date formatting string,
+#. TRANSLATORS: this is a date shown in the event details view,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59 ../EventDetails.qml:134
-msgid "dd-MMM-yyyy"
-msgstr "dd-MMM-yyyy"
+#: ../EventDetails.qml:59
+msgid "ddd MMMM d yyyy"
+msgstr ""
 
 #: ../EventDetails.qml:62
 #, qt-format
-msgid "After %1 Occurrences"
-msgstr "%1 후"
+msgid "After %1 Occurrence"
+msgid_plural "After %1 Occurrences"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../EventDetails.qml:63
 #, qt-format
 msgid "After Date %1"
 msgstr "%1일 후"
 
-#: ../EventDetails.qml:69
-msgid "Every "
+#. TRANSLATORS: the argument is a day of the week or a list of days
+#: ../EventDetails.qml:75
+#, qt-format
+msgid "Every %1"
 msgstr ""
 
-#: ../EventDetails.qml:123
+#: ../EventDetails.qml:126
 msgid "Not specified"
 msgstr "지정되지 않음"
 
-#: ../EventDetails.qml:207
+#. TRANSLATORS: this is a time & Date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+#: ../EventDetails.qml:137
+msgid "dd-MMM-yyyy"
+msgstr "dd-MMM-yyyy"
+
+#: ../EventDetails.qml:210
 msgid "Edit"
 msgstr "고치기"
 
-#: ../EventDetails.qml:269
+#: ../EventDetails.qml:272
 msgid "Date"
 msgstr "날짜"
 
-#: ../EventDetails.qml:274 ../NewEvent.qml:384
+#: ../EventDetails.qml:277 ../NewEvent.qml:387
 msgid "Start"
 msgstr "시작"
 
-#: ../EventDetails.qml:279 ../NewEvent.qml:423
+#: ../EventDetails.qml:282 ../NewEvent.qml:426
 msgid "End"
 msgstr "끝"
 
-#: ../EventDetails.qml:288 ../NewEvent.qml:492
+#: ../EventDetails.qml:291 ../NewEvent.qml:497
 msgid "All Day event:"
 msgstr "하루종일 일정"
 
-#: ../EventDetails.qml:336 ../NewEvent.qml:537
+#: ../EventDetails.qml:340 ../NewEvent.qml:542
 msgid "Location"
 msgstr "위치"
 
-#: ../EventDetails.qml:362 ../NewEvent.qml:544
+#: ../EventDetails.qml:366
 msgid "Guests"
 msgstr "손님"
 
-#: ../EventDetails.qml:400 ../NewEvent.qml:555
+#: ../EventDetails.qml:404 ../NewEvent.qml:592
 msgid "This happens"
 msgstr "발생"
 
-#: ../EventDetails.qml:405 ../NewEvent.qml:653
+#: ../EventDetails.qml:409 ../NewEvent.qml:693
 msgid "Remind me"
 msgstr "미리 알림"
 
-#: ../EventDetails.qml:410
+#: ../EventDetails.qml:414
 msgid "Repeats On"
 msgstr ""
 
-#: ../EventDetails.qml:416
+#: ../EventDetails.qml:420
 msgid "Repetition Ends"
 msgstr "반복의 끝"
 
-#: ../NewEvent.qml:182
+#: ../LimitLabelDefines.qml:4
+msgid "After X Occurrence"
+msgstr ""
+
+#: ../LimitLabelDefines.qml:5
+msgid "After Date"
+msgstr ""
+
+#: ../NewEvent.qml:186
 msgid "End time can't be before start time"
 msgstr "종료 시간은 시작 시간보다 이전으로 설정할 수 없습니다."
 
-#: ../NewEvent.qml:294 ../calendar.qml:305
+#: ../NewEvent.qml:297 ../calendar.qml:306
 msgid "New Event"
 msgstr "새 이벤트"
 
-#: ../NewEvent.qml:310
+#: ../NewEvent.qml:313
 msgid "Error"
 msgstr "오류"
 
-#: ../NewEvent.qml:312
+#: ../NewEvent.qml:315
 msgid "OK"
 msgstr ""
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:400 ../NewEvent.qml:439
+#: ../NewEvent.qml:403 ../NewEvent.qml:442
 msgid "at"
 msgstr "장소"
 
-#: ../NewEvent.qml:460
+#: ../NewEvent.qml:463
 msgid "Calendar "
 msgstr ""
 
-#: ../NewEvent.qml:507
+#: ../NewEvent.qml:512
 msgid "Event Name"
 msgstr "행사 제목"
 
-#: ../NewEvent.qml:517
+#: ../NewEvent.qml:522
 msgid "Description"
 msgstr "요약"
 
-#: ../NewEvent.qml:574
+#: ../NewEvent.qml:560
+msgid "Add Guest"
+msgstr ""
+
+#: ../NewEvent.qml:612
 msgid "Repeats On:"
 msgstr ""
 
-#: ../NewEvent.qml:609
+#: ../NewEvent.qml:647
 msgid "Recurring event ends"
 msgstr "반복되는 행사 종료"
 
 #. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:631
+#: ../NewEvent.qml:670
 msgid "Recurrence"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:4
+msgid "Once"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:5
+msgid "Daily"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:6
+msgid "Every Weekday (Monday to Friday)"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:7
+msgid "Every Monday, Wednesday and Friday"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:8
+msgid "Every Tuesday and Thursday"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:9
+msgid "Weekly"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:10
+msgid "Monthly"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:11
+msgid "Yearly"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:4
+msgid "No Reminder"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:5
+msgid "5 minutes"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:6
+msgid "15 minutes"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:7
+msgid "30 minutes"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:8
+msgid "1 hour"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:9
+msgid "2 hours"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:10
+msgid "1 day"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:11
+msgid "2 days"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:12
+msgid "1 week"
+msgstr ""
+
+#: ../ReminderLabelDefines.qml:13
+msgid "2 weeks"
 msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
@@ -243,35 +350,35 @@ msgstr ""
 "달력 앱은 네개의 요소를 받아 들인다;: --시작시간, --끝시간, --새행사 그리고 --행사이이디. 시스템에 의해 관리됩니다. 이들에 "
 "대한 전체 의견의 소스를 참조하십시오"
 
-#: ../calendar.qml:286
+#: ../calendar.qml:287
 msgid "Today"
 msgstr "오늘"
 
-#: ../calendar.qml:325
+#: ../calendar.qml:326
 msgid "Sync"
 msgstr "동기화"
 
-#: ../calendar.qml:325
+#: ../calendar.qml:326
 msgid "Syncing"
 msgstr "동기화 중"
 
-#: ../calendar.qml:358
+#: ../calendar.qml:359
 msgid "Year"
 msgstr "년"
 
-#: ../calendar.qml:393
+#: ../calendar.qml:394
 msgid "Month"
 msgstr "월"
 
-#: ../calendar.qml:422
+#: ../calendar.qml:423
 msgid "Week"
 msgstr "주"
 
-#: ../calendar.qml:456
+#: ../calendar.qml:457
 msgid "Day"
 msgstr "하루"
 
-#: ../calendar.qml:485
+#: ../calendar.qml:486
 msgid "Agenda"
 msgstr "의제"
 

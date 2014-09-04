@@ -7,36 +7,38 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-07-24 23:57+0530\n"
-"PO-Revision-Date: 2013-05-17 21:55+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-08-15 23:27-0500\n"
+"PO-Revision-Date: 2014-08-16 11:45+0000\n"
+"Last-Translator: Marian Vasile <marianvasile1972@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-25 07:49+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
+"== 0) && (n != 0))) ? 2: 1));\n"
+"X-Launchpad-Export-Date: 2014-08-17 06:33+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
-msgstr ""
+msgstr "Niciun eveniment apropiat"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:131
+#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
 msgid "hh:mm"
-msgstr ""
+msgstr "hh:mm"
 
 #: ../AgendaView.qml:94
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "dddd , d MMMM"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../AgendaView.qml:101 ../EventBubble.qml:61
 #, qt-format
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -45,194 +47,301 @@ msgstr ""
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 Ev."
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "%1 evenimente care se desfășoară pe toată ziua"
 
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:314
+#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
 msgid "Calendars"
-msgstr ""
+msgstr "Calendare"
 
 #: ../CalendarChoicePopup.qml:20
 msgid "Back"
-msgstr ""
+msgstr "Înapoi"
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:677
+#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
 msgid "Save"
-msgstr ""
+msgstr "Salvează"
 
 #: ../ColorPickerDialog.qml:7
 msgid "Select Color"
-msgstr ""
+msgstr "Alegeți o culoare"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:681
+#: ../NewEvent.qml:722
 msgid "Cancel"
-msgstr ""
+msgstr "Anulează"
+
+#: ../ContactChoicePopup.qml:20
+msgid "No contact"
+msgstr "Niciun contact"
+
+#: ../ContactChoicePopup.qml:66
+msgid "Search contact"
+msgstr "Caută contacte"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "Șterge evenimentul repetitiv"
 
 #: ../DeleteConfirmationDialog.qml:15
 msgid "Delete Event"
-msgstr ""
+msgstr "Șterge evenimentul"
 
 #: ../DeleteConfirmationDialog.qml:22
 msgid "Delete series"
-msgstr ""
+msgstr "Șterge seria"
 
 #: ../DeleteConfirmationDialog.qml:33
 msgid "Delete this"
-msgstr ""
+msgstr "Șterge"
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:192
+#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
 msgid "Delete"
-msgstr ""
+msgstr "Șterge"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:294
+#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
 msgid "Edit Event"
-msgstr ""
+msgstr "Editare eveniment"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "Editare serie"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr ""
+msgstr "Editare"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "Finalizat"
 
-#: ../EventDetails.qml:55
+#: ../EventDetails.qml:27
+msgid "Event Details"
+msgstr "Detalii eveniment"
+
+#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
-msgstr ""
+msgstr "Niciodată"
 
-#. TRANSLATORS: this is a time & Date formatting string,
+#. TRANSLATORS: this is a date shown in the event details view,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59 ../EventDetails.qml:134
-msgid "dd-MMM-yyyy"
-msgstr ""
+#: ../EventDetails.qml:59
+msgid "ddd MMMM d yyyy"
+msgstr "ddd d MMMM yyyy"
 
 #: ../EventDetails.qml:62
 #, qt-format
-msgid "After %1 Occurrences"
-msgstr ""
+msgid "After %1 Occurrence"
+msgid_plural "After %1 Occurrences"
+msgstr[0] "După %1 repetare"
+msgstr[1] "După %1 repetări"
+msgstr[2] "După %1 de repetări"
 
 #: ../EventDetails.qml:63
 #, qt-format
 msgid "After Date %1"
-msgstr ""
+msgstr "După data de %1"
 
-#: ../EventDetails.qml:69
-msgid "Every "
-msgstr ""
+#. TRANSLATORS: the argument is a day of the week or a list of days
+#: ../EventDetails.qml:75
+#, qt-format
+msgid "Every %1"
+msgstr "În fiecare %1"
 
-#: ../EventDetails.qml:123
+#: ../EventDetails.qml:126
 msgid "Not specified"
-msgstr ""
+msgstr "Nespecificat"
 
-#: ../EventDetails.qml:207
+#. TRANSLATORS: this is a time & Date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+#: ../EventDetails.qml:137
+msgid "dd-MMM-yyyy"
+msgstr "dd-MMM-yyyy"
+
+#: ../EventDetails.qml:210
 msgid "Edit"
-msgstr ""
+msgstr "Editare"
 
-#: ../EventDetails.qml:269
+#: ../EventDetails.qml:272
 msgid "Date"
-msgstr ""
+msgstr "Dată"
 
-#: ../EventDetails.qml:274 ../NewEvent.qml:384
+#: ../EventDetails.qml:277 ../NewEvent.qml:387
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
-#: ../EventDetails.qml:279 ../NewEvent.qml:423
+#: ../EventDetails.qml:282 ../NewEvent.qml:426
 msgid "End"
-msgstr ""
+msgstr "Terminare"
 
-#: ../EventDetails.qml:288 ../NewEvent.qml:492
+#: ../EventDetails.qml:291 ../NewEvent.qml:497
 msgid "All Day event:"
-msgstr ""
+msgstr "Eveniment desfășurat pe parcursul întregii zile:"
 
-#: ../EventDetails.qml:336 ../NewEvent.qml:537
+#: ../EventDetails.qml:340 ../NewEvent.qml:542
 msgid "Location"
-msgstr ""
+msgstr "Loc"
 
-#: ../EventDetails.qml:362 ../NewEvent.qml:544
+#: ../EventDetails.qml:366
 msgid "Guests"
-msgstr ""
+msgstr "Invitați"
 
-#: ../EventDetails.qml:400 ../NewEvent.qml:555
+#: ../EventDetails.qml:404 ../NewEvent.qml:592
 msgid "This happens"
-msgstr ""
+msgstr "Se întâmplă"
 
-#: ../EventDetails.qml:405 ../NewEvent.qml:653
+#: ../EventDetails.qml:409 ../NewEvent.qml:693
 msgid "Remind me"
-msgstr ""
+msgstr "Reamintește-mi"
 
-#: ../EventDetails.qml:410
+#: ../EventDetails.qml:414
 msgid "Repeats On"
-msgstr ""
+msgstr "Repetă pe"
 
-#: ../EventDetails.qml:416
+#: ../EventDetails.qml:420
 msgid "Repetition Ends"
-msgstr ""
+msgstr "Repetarea se încheie"
 
-#: ../NewEvent.qml:182
+#: ../LimitLabelDefines.qml:4
+msgid "After X Occurrence"
+msgstr "După X repetări"
+
+#: ../LimitLabelDefines.qml:5
+msgid "After Date"
+msgstr "După data"
+
+#: ../NewEvent.qml:186
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "Timpul de încheiere nu poate fi înaintea celui de început"
 
-#: ../NewEvent.qml:294 ../calendar.qml:305
+#: ../NewEvent.qml:297 ../calendar.qml:306
 msgid "New Event"
-msgstr ""
+msgstr "Eveniment nou"
 
-#: ../NewEvent.qml:310
+#: ../NewEvent.qml:313
 msgid "Error"
-msgstr ""
+msgstr "Eroare"
 
-#: ../NewEvent.qml:312
+#: ../NewEvent.qml:315
 msgid "OK"
-msgstr ""
+msgstr "În regulă"
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:400 ../NewEvent.qml:439
+#: ../NewEvent.qml:403 ../NewEvent.qml:442
 msgid "at"
-msgstr ""
+msgstr "la"
 
-#: ../NewEvent.qml:460
+#: ../NewEvent.qml:463
 msgid "Calendar "
-msgstr ""
+msgstr "Calendar "
 
-#: ../NewEvent.qml:507
+#: ../NewEvent.qml:512
 msgid "Event Name"
-msgstr ""
+msgstr "Numele evenimentului"
 
-#: ../NewEvent.qml:517
+#: ../NewEvent.qml:522
 msgid "Description"
-msgstr ""
+msgstr "Descriere"
 
-#: ../NewEvent.qml:574
+#: ../NewEvent.qml:560
+msgid "Add Guest"
+msgstr "Adaugă oaspete"
+
+#: ../NewEvent.qml:612
 msgid "Repeats On:"
-msgstr ""
+msgstr "Repetă pe:"
 
-#: ../NewEvent.qml:609
+#: ../NewEvent.qml:647
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Evenimentul repetitiv se încheie"
 
 #. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:631
+#: ../NewEvent.qml:670
 msgid "Recurrence"
-msgstr ""
+msgstr "Repetare"
+
+#: ../RecurrenceLabelDefines.qml:4
+msgid "Once"
+msgstr "O dată"
+
+#: ../RecurrenceLabelDefines.qml:5
+msgid "Daily"
+msgstr "Zilnic"
+
+#: ../RecurrenceLabelDefines.qml:6
+msgid "Every Weekday (Monday to Friday)"
+msgstr "În fiecare zi lucrătoare (de luni până vineri)"
+
+#: ../RecurrenceLabelDefines.qml:7
+msgid "Every Monday, Wednesday and Friday"
+msgstr "În fiecare luni, miercuri și vineri"
+
+#: ../RecurrenceLabelDefines.qml:8
+msgid "Every Tuesday and Thursday"
+msgstr "În fiecare marți și joi"
+
+#: ../RecurrenceLabelDefines.qml:9
+msgid "Weekly"
+msgstr "Săptămânal"
+
+#: ../RecurrenceLabelDefines.qml:10
+msgid "Monthly"
+msgstr "Lunar"
+
+#: ../RecurrenceLabelDefines.qml:11
+msgid "Yearly"
+msgstr "Anual"
+
+#: ../ReminderLabelDefines.qml:4
+msgid "No Reminder"
+msgstr "Fără memento"
+
+#: ../ReminderLabelDefines.qml:5
+msgid "5 minutes"
+msgstr "5 minute"
+
+#: ../ReminderLabelDefines.qml:6
+msgid "15 minutes"
+msgstr "15 minute"
+
+#: ../ReminderLabelDefines.qml:7
+msgid "30 minutes"
+msgstr "30 de minute"
+
+#: ../ReminderLabelDefines.qml:8
+msgid "1 hour"
+msgstr "o oră"
+
+#: ../ReminderLabelDefines.qml:9
+msgid "2 hours"
+msgstr "două ore"
+
+#: ../ReminderLabelDefines.qml:10
+msgid "1 day"
+msgstr "o zi"
+
+#: ../ReminderLabelDefines.qml:11
+msgid "2 days"
+msgstr "două zile"
+
+#: ../ReminderLabelDefines.qml:12
+msgid "1 week"
+msgstr "o săptămână"
+
+#: ../ReminderLabelDefines.qml:13
+msgid "2 weeks"
+msgstr "două săptămâni"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:19
 msgid "hh ap"
-msgstr ""
+msgstr "hh ap"
 
 #: ../calendar.qml:28
 msgid ""
@@ -240,47 +349,51 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"Aplicația Calendar acceptă patru argumente: --starttime, --endtime, --"
+"newevent și --eventid. Acestea vor fi administrate de sistem. Consultați "
+"sursa pentru comentarii complete asupra acestora."
 
-#: ../calendar.qml:286
+#: ../calendar.qml:287
 msgid "Today"
-msgstr ""
+msgstr "Astăzi"
 
-#: ../calendar.qml:325
+#: ../calendar.qml:326
 msgid "Sync"
-msgstr ""
+msgstr "Sincronizare"
 
-#: ../calendar.qml:325
+#: ../calendar.qml:326
 msgid "Syncing"
-msgstr ""
+msgstr "Se sincronizează"
 
-#: ../calendar.qml:358
+#: ../calendar.qml:359
 msgid "Year"
-msgstr ""
+msgstr "An"
 
-#: ../calendar.qml:393
+#: ../calendar.qml:394
 msgid "Month"
-msgstr ""
+msgstr "Lună"
 
-#: ../calendar.qml:422
+#: ../calendar.qml:423
 msgid "Week"
-msgstr ""
+msgstr "Săptămână"
 
-#: ../calendar.qml:456
+#: ../calendar.qml:457
 msgid "Day"
-msgstr ""
+msgstr "Zi"
 
-#: ../calendar.qml:485
+#: ../calendar.qml:486
 msgid "Agenda"
-msgstr ""
+msgstr "Agendă"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr ""
+msgstr "Calendar"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
 msgstr ""
+"Un calendar pentru Ubuntu care se poate sincroniza cu conturile online."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "calendar;eveniment;zi;săptămână;an;întâlnire;ședință;"

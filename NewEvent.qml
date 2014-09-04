@@ -1,10 +1,28 @@
-import QtQuick 2.0
+/*
+ * Copyright (C) 2013-2014 Canonical Ltd
+ *
+ * This file is part of Ubuntu Calendar App
+ *
+ * Ubuntu Calendar App is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 3 as
+ * published by the Free Software Foundation.
+ *
+ * Ubuntu Calendar App is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import QtQuick 2.2
 import QtOrganizer 5.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.Popups 0.1
-import Ubuntu.Components.ListItems 0.1
-import Ubuntu.Components.Themes.Ambiance 0.1
-import Ubuntu.Components.Pickers 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Components.Themes.Ambiance 1.0
+import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
 
 import "Defines.js" as Defines
@@ -32,6 +50,22 @@ Page {
     onEndDateChanged: {
         endDateInput.text = Qt.formatDateTime(endDate, "dd MMM yyyy");
         endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
+    }
+
+    head {
+        backAction: Action {
+            iconName: "close"
+            onTriggered: pageStack.pop();
+        }
+
+        actions: [
+            Action {
+                iconName: "ok"
+                objectName: "save"
+                text: i18n.tr("Save")
+                onTriggered: saveToQtPim();
+            }
+        ]
     }
 
     Component.onCompleted: {
@@ -140,7 +174,7 @@ Page {
                     if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
                         for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
                             //Start childern after first element.
-                            weeksRow.children[recurrenceRule[0].daysOfWeek[j]+1].checked = true;
+                            weeksRow.children[recurrenceRule[0].daysOfWeek[j] === 7 ? 0 :recurrenceRule[0].daysOfWeek[j]].children[1].checked = true;
                         }
                     }
                 }
@@ -248,9 +282,7 @@ Page {
             }
 
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
-
             model.saveItem(event);
-
             pageStack.pop();
         }
     }
@@ -275,6 +307,7 @@ Page {
     }
 
     function openDatePicker (element, caller, callerProperty, mode) {
+        Qt.inputMethod.hide();
         element.highlighted = true;
         var picker = PickerPanel.openDatePicker(caller, callerProperty, mode);
         if (!picker) return;
@@ -350,15 +383,8 @@ Page {
             flickable.returnToBounds()
         }
 
-        anchors {
-            top: parent.top
-            topMargin: units.gu(2)
-            bottom: toolbar.top
-            left: parent.left
-            right: parent.right
-            leftMargin: units.gu(2)
-            rightMargin: units.gu(2)
-        }
+        anchors.fill: parent
+        anchors.margins: units.gu(2)
 
         contentWidth: width
         contentHeight: column.height
@@ -485,6 +511,7 @@ Page {
                             anchors.verticalCenter: parent.verticalCenter
                         }
                     }
+                    onExpandedChanged: Qt.inputMethod.hide();
                 }
             }
 
@@ -598,40 +625,42 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     model: Defines.recurrenceLabel
                     containerHeight: itemHeight * 4
+                    onExpandedChanged: Qt.inputMethod.hide();
                 }
             }
 
-            Row {
-                id:weeksRow
-                width: parent.width
-                spacing: units.gu(4)
-                anchors.margins: units.gu(1)
+            Column {
                 visible: recurrenceOption.selectedIndex == 5
                 Label {
                     text: i18n.tr("Repeats On:")
-                    anchors.verticalCenter: parent.verticalCenter
                 }
-                Repeater{
-                    model: Defines.weekLabel
-                    width: parent.width
-                    CheckBox {
-                        id: weekCheck
-                        anchors.verticalCenter: parent.verticalCenter
-                        onCheckedChanged: {
-                            //EDS consider 7 as Sunday index so if the index is 0 then we have to explicitly push Sunday.
-                            if(index === 0)
-                                (checked) ? internal.weekDays.push(Qt.Sunday) : internal.weekDays.splice(internal.weekDays.indexOf(Qt.Sunday),1);
-                            else
-                                (checked) ? internal.weekDays.push(index) : internal.weekDays.splice(internal.weekDays.indexOf(index),1);
-                        }
-                        checked: {
-                            (internal.weekDays.length === 0 && index === date.getDay() && isEdit== false) ? true : false;
-                        }
-                        Label{
-                            id:lbl
-                            text:modelData
-                            anchors.centerIn: parent
-                            width: parent.width + units.gu(7)
+                Row {
+                    id: weeksRow
+                    width: column.width
+                    spacing: (weeksRow.width - units.gu(28))/6 //Units.gu(28) = weeksRowColumn.width * 7 [weeks]
+                    Repeater {
+                        model: Defines.weekLabel
+                        Column {
+                            id: weeksRowColumn
+                            width: units.gu(4) //This is help calculate weeksRow.spacing
+                            Label {
+                                id:lbl
+                                text:modelData
+                                anchors.horizontalCenter: parent.horizontalCenter
+                            }
+                            CheckBox {
+                                id: weekCheck
+                                onCheckedChanged: {
+                                    //EDS consider 7 as Sunday index so if the index is 0 then we have to explicitly push Sunday.
+                                    if(index === 0)
+                                        (checked) ? internal.weekDays.push(Qt.Sunday) : internal.weekDays.splice(internal.weekDays.indexOf(Qt.Sunday),1);
+                                    else
+                                        (checked) ? internal.weekDays.push(index) : internal.weekDays.splice(internal.weekDays.indexOf(index),1);
+                                }
+                                checked: {
+                                    (internal.weekDays.length === 0 && index === date.getDay() && isEdit== false) ? true : false;
+                                }
+                            }
                         }
                     }
                 }
@@ -658,6 +687,7 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(3)
                     model: Defines.limitLabel
                     containerHeight: itemHeight * 4
+                    onExpandedChanged:   Qt.inputMethod.hide();
 
                 }
             }
@@ -679,7 +709,8 @@ Page {
                 visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2;
                 DatePicker{
                     id:datePick;
-                    width: parent.width
+                    anchors.right: parent.right
+                    anchors.left: parent.left
                 }
             }
             Item{
@@ -697,26 +728,9 @@ Page {
                     width: parent.width - optionSelectorWidth - units.gu(1)
                     containerHeight: itemHeight * 4
                     model: Defines.reminderLabel
+                    onExpandedChanged:   Qt.inputMethod.hide();
                 }
             }
-        }
-    }
-
-    EditToolbar {
-        id: toolbar
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-        height: units.gu(6)
-        acceptAction: Action {
-            text: i18n.tr("Save")
-            onTriggered: saveToQtPim();
-        }
-        rejectAction: Action {
-            text: i18n.tr("Cancel")
-            onTriggered: pageStack.pop();
         }
     }
 

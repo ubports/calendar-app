@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013-2014 Canonical Ltd
+ *
+ * This file is part of Ubuntu Calendar App
+ *
+ * Ubuntu Calendar App is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 3 as
+ * published by the Free Software Foundation.
+ *
+ * Ubuntu Calendar App is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
@@ -24,7 +41,7 @@ Page {
 
     flickable: null
 
-    title: "Event Details"
+    title: i18n.tr("Event Details")
 
     Component.onCompleted: {
 
@@ -54,23 +71,26 @@ Page {
                 if(recurrenceRule[0].limit === undefined)
                     limitHeader.value = i18n.tr("Never");
                 else{
-                    // TRANSLATORS: this is a time & Date formatting string,
-                    //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-                    var dateFormat = i18n.tr("dd-MMM-yyyy")
-                    // TRANSLATORS: This refers to no of occurences of an event.
+                    // TRANSLATORS: this is a date shown in the event details view,
+                    // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
+                    var dateFormat = i18n.tr("ddd MMMM d yyyy");
+                    // TRANSLATORS: This refers to the number of occurences of an event.
                     limitHeader.value = parseInt(recurrenceRule[0].limit) ?
-                                i18n.tr("After %1 Occurrences", recurrenceRule[0].limit).arg(recurrenceRule[0].limit):
-                                i18n.tr("After Date %1", recurrenceRule[0].limit.toLocaleString(Qt.locale(),dateFormat)).arg(recurrenceRule[0].limit.toLocaleString(Qt.locale(),dateFormat));
+                                i18n.tr("After %1 Occurrence", "After %1 Occurrences", recurrenceRule[0].limit).arg(recurrenceRule[0].limit):
+                                i18n.tr("After Date %1".arg(recurrenceRule[0].limit.toLocaleString(Qt.locale(), dateFormat)));
                 }
 
                 index =  recurrenceRule[0].frequency ;
-                if(index === RecurrenceRule.Weekly ){
+                if (index === RecurrenceRule.Weekly) {
                     var sorted = recurrenceRule[0].daysOfWeek.sort();
-                    var val = i18n.tr("Every ")
-                    for(var j=0;j<sorted.length;++j){
-                        val += Qt.locale().dayName(sorted[j],Locale.LongFormat) + " ,"
+                    var val = "";
+                    for (var j=0; j<sorted.length; ++j) {
+                        val += Qt.locale().dayName(sorted[j], Locale.ShortFormat) + ", ";
                     }
-                    weekDaysHeader.value = val.slice(0,-1) // Trim last comma from the string
+                    val = val.slice(0, -2); // Trim last comma from the string
+                    // TRANSLATORS: the argument is a day of the week or a list of days
+                    var recurrence = i18n.tr("Every %1".arg(val));
+                    weekDaysHeader.value = recurrence;
                     weekDaysHeader.visible = true;
                 }
             }
@@ -191,7 +211,7 @@ Page {
             action:Action {
                 text: i18n.tr("Delete");
                 objectName: "delete"
-                iconSource: "image://theme/delete,edit-delete-symbolic"
+                iconName: "delete"
                 onTriggered: {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
                     dialog.deleteEvent.connect( function(eventId){
@@ -205,7 +225,8 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
-                iconSource: Qt.resolvedUrl("edit.svg");
+		objectName: "edit"
+                iconName: "edit";
                 onTriggered: {
                     if( event.itemType === Type.EventOccurrence ) {
                         var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
