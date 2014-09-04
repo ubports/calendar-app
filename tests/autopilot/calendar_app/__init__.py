@@ -458,7 +458,7 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         """
         self._fill_form(event_information)
         self._save()
-        return self.get_root_instance().select_single(
+        return self.get_root_instance().wait_select_single(
             DayView, objectName='dayViewPage')
 
     @autopilot.logging.log_action(logger.debug)
