@@ -21,7 +21,7 @@ from __future__ import absolute_import
 import logging
 
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals, NotEquals
+from testtools.matchers import Equals
 
 from calendar_app import data
 from calendar_app.tests import CalendarAppTestCaseWithVcard
@@ -53,7 +53,7 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         self.assertThat(lambda: self._event_exists(test_event.name),
                         Eventually(Equals(True)))
 
-        return day_view, test_event
+        return test_event
 
     def _edit_event(self, event_name):
         test_event = data.Event.make_unique()
@@ -62,7 +62,7 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         new_event_page = day_view.edit_event(event_name)
 
         new_event_page.add_event(test_event)
-        return day_view, test_event
+        return test_event
 
     def _event_exists(self, event_name):
         try:
@@ -101,10 +101,11 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         The event must be created on the currently selected date,
         with an end time, without recurrence and without reminders."""
 
-        day_view, test_event = self._add_event()
+        test_event = self._add_event()
 
         self.addCleanup(self._try_delete_event, test_event.name)
 
+        day_view = self.app.main_view.go_to_day_view()
         event_details_page = day_view.open_event(test_event.name)
 
         self.assertEqual(test_event,
@@ -112,8 +113,9 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
 
     def test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
-        day_view, test_event = self._add_event()
+        test_event = self._add_event()
 
+        day_view = self.app.main_view.go_to_day_view()
         day_view.delete_event(test_event.name)
 
         self.assertThat(lambda: self._event_exists(test_event.name),
@@ -122,8 +124,8 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
     def test_edit_event_with_default_values(self):
         """Test editing an event change unique values of an event."""
 
-        day_view, original_event = self._add_event()
-        day_view, edited_event = self._edit_event(original_event.name)
+        original_event = self._add_event()
+        edited_event = self._edit_event(original_event.name)
         self.addCleanup(self._try_delete_event, edited_event.name)
 
         event_details_page = self.app.main_view.get_event_details()
