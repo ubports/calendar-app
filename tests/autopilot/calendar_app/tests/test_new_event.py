@@ -31,11 +31,6 @@ logger = logging.getLogger(__name__)
 
 class NewEventTestCase(CalendarAppTestCaseWithVcard):
 
-    def setUp(self):
-        super(NewEventTestCase, self).setUp()
-        self.assertThat(
-            self.app.main_view.visible, Eventually(Equals(True)))
-
     # TODO add tests for events in the future and in the past, all day event,
     # event with recurrence and event with reminders.
     # also add tests for saving to different calendars
@@ -52,17 +47,11 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
 
     def _add_event(self):
         test_event = data.Event.make_unique()
-        day_view = self.app.main_view.go_to_day_view()
-        start_num_events = len(day_view.get_events())
-
         new_event_page = self.app.main_view.go_to_new_event()
         new_event_page.add_event(test_event)
 
-        day_view = self.app.main_view.get_day_view()
-
-        # Wait a bit for the event to be added.
-        self.assertThat(lambda: len(day_view.get_events()),
-                        Eventually(Equals(start_num_events + 1)))
+        self.assertThat(lambda: self._event_exists(test_event.name),
+                        Eventually(Equals(True)))
 
         return day_view, test_event
 
@@ -115,9 +104,6 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         day_view, test_event = self._add_event()
 
         self.addCleanup(self._try_delete_event, test_event.name)
-
-        event_bubble = lambda: day_view.get_event(test_event.name)
-        self.assertThat(event_bubble, Eventually(NotEquals(None)))
 
         event_details_page = day_view.open_event(test_event.name)
 

@@ -550,7 +550,7 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return self._get_description_text_area().text
 
     def get_location_name(self):
-        self._get_new_event_entry_field('eventLocationInput').text
+        return self._get_new_event_entry_field('eventLocationInput').text
 
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and
