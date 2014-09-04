@@ -177,8 +177,8 @@ class BaseTestCaseWithPatchedHome(AutopilotTestCase):
 
 class CalendarAppTestCase(BaseTestCaseWithPatchedHome):
 
-    """Base test case that launches the music-app."""
+    """Base test case that launches the calendar-app."""
 
     def setUp(self):
         super(CalendarAppTestCase, self).setUp()
-        self.app = CalendarApp(self.launcher())
+        self.app = calendar_app.CalendarApp(self.launcher())
