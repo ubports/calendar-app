@@ -45,7 +45,8 @@ Depends: libautopilot-qt (>= 1.4),
          calendar-app (= ${source:Version}),
          python-dateutil,
          ubuntu-ui-toolkit-autopilot,
-         address-book-service-dummy
+         address-book-service-dummy,
+         address_book_service_testability
 Description: Autopilot tests for Ubuntu Calendar Application
  This package contains autopilot tests for the Ubuntu Calendar application.
 

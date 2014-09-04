@@ -20,9 +20,6 @@ from address_book_service_testability import fixture_setup
 
 class NewEventFormTestCase(tests.CalendarAppTestCase):
 
-    # TODO once address_book_service_testability is packaged, remove
-    # packing the modules as part of testcase
-
     def setUp(self):
         contacts_backend = fixture_setup.AddressBookServiceDummyBackend()
         self.useFixture(contacts_backend)
