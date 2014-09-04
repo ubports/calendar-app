@@ -52,20 +52,20 @@ class NewEventTestCase(CalendarTestCase):
 
     def _try_delete_event(self, event_name):
         try:
-            day_view = self.main_view.go_to_day_view()
+            day_view = self.app.main_view.go_to_day_view()
             day_view.delete_event(event_name)
         except Exception as exception:
             logger.warn(str(exception))
 
     def _add_event(self):
         test_event = data.Event.make_unique()
-        day_view = self.main_view.go_to_day_view()
+        day_view = self.app.main_view.go_to_day_view()
         start_num_events = len(day_view.get_events())
 
-        new_event_page = self.main_view.go_to_new_event()
+        new_event_page = self.app.main_view.go_to_new_event()
         new_event_page.add_event(test_event)
 
-        day_view = self.main_view.get_day_view()
+        day_view = self.app.main_view.get_day_view()
 
         # Wait a bit for the event to be added.
         self.assertThat(lambda: len(day_view.get_events()),
@@ -75,7 +75,7 @@ class NewEventTestCase(CalendarTestCase):
 
     def _edit_event(self, event_name):
         test_event = data.Event.make_unique()
-        day_view = self.main_view.go_to_day_view()
+        day_view = self.app.main_view.go_to_day_view()
 
         new_event_page = day_view.edit_event(event_name)
 
@@ -84,7 +84,7 @@ class NewEventTestCase(CalendarTestCase):
 
     def _event_exists(self, event_name):
         try:
-            day_view = self.main_view.go_to_day_view()
+            day_view = self.app.main_view.go_to_day_view()
             day_view.get_event(event_name, True)
         except Exception:
             return False
@@ -125,7 +125,7 @@ class NewEventTestCase(CalendarTestCase):
         day_view, edited_event = self._edit_event(original_event.name)
         self.addCleanup(self._try_delete_event, edited_event.name)
 
-        event_details_page = self.main_view.get_event_details()
+        event_details_page = self.app.main_view.get_event_details()
 
         self.assertEqual(edited_event,
                          event_details_page.get_event_information())

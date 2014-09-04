@@ -32,7 +32,7 @@ class NewEventFormTestCase(tests.CalendarTestCase):
         """Test that the form can be filled with event information."""
         test_event = data.Event.make_unique(unique_id='test uuid')
 
-        new_event_page = new_event_page = self.main_view.go_to_new_event()
+        new_event_page = new_event_page = self.app.main_view.go_to_new_event()
         new_event_page._fill_form(test_event)
 
         form_values = new_event_page._get_form_values()

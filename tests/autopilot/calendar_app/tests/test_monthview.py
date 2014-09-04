@@ -33,25 +33,23 @@ class TestMonthView(CalendarTestCase):
 
     def setUp(self):
         super(TestMonthView, self).setUp()
-        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-
-        self.month_view = self.main_view.go_to_month_view()
+        self.month_view = self.app.main_view.go_to_month_view()
 
     def _change_month(self, delta):
-        month_view = self.main_view.get_month_view()
+        month_view = self.app.main_view.get_month_view()
         direction = int(math.copysign(1, delta))
 
         for _ in range(abs(delta)):
-            before = self.main_view.to_local_date(
+            before = self.app.main_view.to_local_date(
                 month_view.currentMonth.datetime)
 
             # prevent timing issues with swiping
-            old_month = self.main_view.to_local_date(
+            old_month = self.app.main_view.to_local_date(
                 month_view.currentMonth.datetime)
 
-            self.main_view.swipe_view(direction, month_view)
+            self.app.main_view.swipe_view(direction, month_view)
 
-            month_after = self.main_view.to_local_date(
+            month_after = self.app.main_view.to_local_date(
                 month_view.currentMonth.datetime)
 
             self.assertThat(lambda: month_after,
@@ -67,7 +65,7 @@ class TestMonthView(CalendarTestCase):
                             Eventually(Equals(after.year)))
 
     def _assert_today(self):
-        local = self.main_view.to_local_date(
+        local = self.app.main_view.to_local_date(
             self.month_view.currentMonth.datetime)
         today = datetime.now()
 
@@ -82,7 +80,7 @@ class TestMonthView(CalendarTestCase):
         self._assert_today()
 
         self._change_month(delta)
-        header = self.main_view.get_header()
+        header = self.app.main_view.get_header()
         header.click_action_button('todaybutton')
 
         self._assert_today()

@@ -21,7 +21,7 @@ import shutil
 import logging
 
 import fixtures
-from calendar_app import emulators
+import calendar_app
 
 from autopilot.input import Mouse, Touch, Pointer
 from autopilot.platform import model
@@ -43,10 +43,6 @@ class CalendarTestCase(AutopilotTestCase):
     calendar-app tests.
 
     """
-    if model() == 'Desktop':
-        scenarios = [('with mouse', dict(input_device_class=Mouse))]
-    else:
-        scenarios = [('with touch', dict(input_device_class=Touch))]
 
     local_location = os.path.dirname(os.path.dirname(os.getcwd()))
     local_location_qml = local_location + "/calendar.qml"
@@ -67,7 +63,6 @@ class CalendarTestCase(AutopilotTestCase):
     def setUp(self):
         launcher, self.test_type = self.get_launcher_and_type()
         self.home_dir = self._patch_home()
-        self.pointing_device = Pointer(self.input_device_class.create())
         super(CalendarTestCase, self).setUp()
 
         # Unset the current locale to ensure locale-specific data
@@ -75,7 +70,7 @@ class CalendarTestCase(AutopilotTestCase):
         # in the way of test expectations.
         self.useFixture(fixtures.EnvironmentVariable('LC_ALL', newvalue='C'))
 
-        self.app = launcher()
+        self.app = calendar_app.CalendarApp(launcher())
 
     @autopilot_logging.log_action(logger.info)
     def launch_test_local(self):
@@ -181,7 +176,3 @@ class CalendarTestCase(AutopilotTestCase):
 
         logger.debug("Patched home to fake home directory %s" % temp_dir)
         return temp_dir
-
-    @property
-    def main_view(self):
-        return self.app.wait_select_single(emulators.MainView)
