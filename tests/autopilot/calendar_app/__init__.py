@@ -34,6 +34,7 @@ class CalendarException(ubuntuuitoolkit.ToolkitException):
 
     """Exception raised when there are problems with the Calendar."""
 
+
 class CalendarApp(object):
 
     """Autopilot helper object for the terminal application."""

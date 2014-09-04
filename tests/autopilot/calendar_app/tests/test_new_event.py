@@ -22,7 +22,6 @@ import logging
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
-from autopilot.platform import model
 
 from calendar_app import data
 from calendar_app.tests import CalendarAppTestCase

@@ -88,7 +88,8 @@ class TestWeekView(CalendarAppTestCase):
         return dateLabels
 
     def _get_first_day_of_week(self):
-        date = self.app.main_view.to_local_date(self.week_view.dayStart.datetime)
+        date = self.app.main_view.to_local_date(
+            self.week_view.dayStart.datetime)
         firstDay = self.app.main_view.to_local_date(
             self.week_view.firstDay.datetime)
 

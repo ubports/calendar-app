@@ -23,8 +23,6 @@ import logging
 import fixtures
 import calendar_app
 
-from autopilot.input import Mouse, Touch, Pointer
-from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 from autopilot import logging as autopilot_logging
 
@@ -174,6 +172,7 @@ class BaseTestCaseWithPatchedHome(AutopilotTestCase):
 
         logger.debug("Patched home to fake home directory %s" % temp_dir)
         return temp_dir
+
 
 class CalendarAppTestCase(BaseTestCaseWithPatchedHome):
 
