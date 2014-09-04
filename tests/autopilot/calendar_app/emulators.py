@@ -232,7 +232,7 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
                 current_year_grid, index)
             try:
                 today = month_component.select_single(
-                    'QQuickItem', isToday=True)
+                    'QQuickItem', isCurrentMonth=True, isToday=True)
             except exceptions.StateNotFoundError:
                 continue
             else:
@@ -250,7 +250,7 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     def _find_month_component(self, grid, index):
         try:
-            month = self._get_month_component(index)
+            month = self._get_month_component(grid, index)
         except exceptions.StateNotFoundError:
             month = self._swipe_to_find_month_component(grid, index)
         if month is None:
@@ -258,8 +258,8 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         else:
             return month
 
-    def _get_month_component(self, index):
-        return self.select_single(
+    def _get_month_component(self, grid, index):
+        return grid.select_single(
             'MonthComponent',
             objectName='monthComponent{}'.format(index))
 
@@ -268,7 +268,7 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         grid.swipe_to_top()
         while not grid.atYEnd:
             try:
-                month = self._get_month_component(index)
+                month = self._get_month_component(grid, index)
             except exceptions.StateNotFoundError:
                 grid.swipe_to_show_more_below()
             else:

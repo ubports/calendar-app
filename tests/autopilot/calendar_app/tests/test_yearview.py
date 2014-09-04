@@ -24,7 +24,7 @@ import sys
 if sys.version_info < (3,):
     range = xrange
 
-from datetime import datetime
+import datetime
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
@@ -56,7 +56,7 @@ class TestYearView(CalendarTestCase):
     def test_current_year_is_default(self):
         """The current year should be the default shown"""
         self.assertThat(self.year_view.currentYear,
-                        Equals(datetime.now().year))
+                        Equals(datetime.datetime.now().year))
 
     def test_selecting_a_month_switch_to_month_view(self):
         """It must be possible to select a month and open the month view."""
