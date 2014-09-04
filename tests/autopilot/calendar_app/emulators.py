@@ -270,7 +270,10 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
             try:
                 month = self._get_month_component(grid, index)
             except exceptions.StateNotFoundError:
-                grid.swipe_to_show_more_below()
+                # FIXME do not call the private _get_containers.
+                # Reported as bug http://pad.lv/1365674
+                # --elopio - 2014-09-04
+                grid.swipe_to_show_more_below(grid._get_containers())
             else:
                 break
         return month
