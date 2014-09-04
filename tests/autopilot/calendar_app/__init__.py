@@ -543,13 +543,22 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     def get_calendar_name(self):
         return self._get_calendar().get_current_label().text
 
+    def get_event_name(self):
+        return self._get_new_event_entry_field('newEventName').text
+
+    def get_description_text(self):
+        return self._get_description_text_area().text
+
+    def get_location_name(self):
+        self._get_new_event_entry_field('eventLocationInput').text
+
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
-        calendar = self._get_calendar().get_current_label().text
-        name = self._get_new_event_entry_field('newEventName').text
-        description = self._get_description_text_area().text
-        location = self._get_new_event_entry_field('eventLocationInput').text
+        calendar = self.get_calendar_name()
+        name = self.get_event_name()
+        description = self.get_description_text()
+        location = self.get_location_name()
         guests = self._get_guests()
         return data.Event(calendar, name, description, location, guests)
 

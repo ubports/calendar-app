@@ -87,9 +87,9 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
            End Date: today End Time: 30 mins after start time
            Calendar: Personal
            All Day Event: unchecked
-           Event Name: selected
+           Event Name: blank, selected
            Description: blank
-           Location: blank
+           Location: none
            Guests: none
            This happens: Once
            Remind me: No Reminder
@@ -97,6 +97,9 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
 
         new_event_page = self.app.main_view.go_to_new_event()
         self.assertThat(new_event_page.get_calendar_name(), Equals('Personal'))
+        self.assertThat(new_event_page.get_event_name(), Equals(''))
+        self.assertThat(new_event_page.get_description_text(), Equals(''))
+        self.assertThat(new_event_page.get_location_name(), Equals(None))
 
     def test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.
