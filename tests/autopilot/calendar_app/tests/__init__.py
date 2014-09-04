@@ -37,7 +37,7 @@ from ubuntuuitoolkit import (
 logger = logging.getLogger(__name__)
 
 
-class CalendarTestCase(AutopilotTestCase):
+class BaseTestCaseWithPatchedHome(AutopilotTestCase):
 
     """A common test case class that provides several useful methods for
     calendar-app tests.
@@ -61,16 +61,14 @@ class CalendarTestCase(AutopilotTestCase):
         return launcher, test_type
 
     def setUp(self):
-        launcher, self.test_type = self.get_launcher_and_type()
-        self.home_dir = self._patch_home()
-        super(CalendarTestCase, self).setUp()
+        super(BaseTestCaseWithPatchedHome, self).setUp()
+        self.launcher, self.test_type = self.get_launcher_and_type()
+        self.home_dir = self._patch_home(self.test_type)
 
         # Unset the current locale to ensure locale-specific data
         # (day and month names, first day of the week, …) doesn’t get
         # in the way of test expectations.
         self.useFixture(fixtures.EnvironmentVariable('LC_ALL', newvalue='C'))
-
-        self.app = calendar_app.CalendarApp(launcher())
 
     @autopilot_logging.log_action(logger.info)
     def launch_test_local(self):
@@ -111,12 +109,12 @@ class CalendarTestCase(AutopilotTestCase):
                                    '.Xauthority')),
                 os.path.join(directory, '.Xauthority'))
 
-    def _patch_home(self):
+    def _patch_home(self, test_type):
         """ mock /home for testing purposes to preserve user data
         """
         # click requires apparmor profile, and writing to special dir
         # but the desktop can write to a traditional /tmp directory
-        if self.test_type == 'click':
+        if test_type == 'click':
             env_dir = os.path.join(os.environ.get('HOME'), 'autopilot',
                                    'fakeenv')
 
@@ -176,3 +174,11 @@ class CalendarTestCase(AutopilotTestCase):
 
         logger.debug("Patched home to fake home directory %s" % temp_dir)
         return temp_dir
+
+class CalendarAppTestCase(BaseTestCaseWithPatchedHome):
+
+    """Base test case that launches the music-app."""
+
+    def setUp(self):
+        super(CalendarAppTestCase, self).setUp()
+        self.app = CalendarApp(self.launcher())

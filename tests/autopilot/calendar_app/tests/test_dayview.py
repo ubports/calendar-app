@@ -29,10 +29,10 @@ if sys.version_info < (3,):
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
-from calendar_app.tests import CalendarTestCase
+from calendar_app.tests import CalendarAppTestCase
 
 
-class TestDayView(CalendarTestCase):
+class TestDayView(CalendarAppTestCase):
 
     def setUp(self):
         super(TestDayView, self).setUp()
@@ -81,7 +81,7 @@ class TestDayView(CalendarTestCase):
         yesterday_header = self.day_view.get_day_header(yesterday)
 
         self.assertThat(yesterday_header.isCurrentItem, Equals(False))
-        self.pointing_device.click_object(yesterday_header)
+        self.app.pointing_device.click_object(yesterday_header)
         self.assertThat(yesterday_header.isCurrentItem,
                         Eventually(Equals(True)))
 
@@ -90,7 +90,7 @@ class TestDayView(CalendarTestCase):
         tomorrow_header = self.day_view.get_day_header(tomorrow)
 
         self.assertThat(tomorrow_header.isCurrentItem, Equals(False))
-        self.pointing_device.click_object(tomorrow_header)
+        self.app.pointing_device.click_object(tomorrow_header)
         self.assertThat(tomorrow_header.isCurrentItem,
                         Eventually(Equals(True)))
 

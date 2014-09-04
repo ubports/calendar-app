@@ -22,18 +22,17 @@ import logging
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
-from unittest import skipUnless
 from autopilot.platform import model
 
 from calendar_app import data
-from calendar_app.tests import CalendarTestCase
+from calendar_app.tests import CalendarAppTestCase
 from address_book_service_testability import fixture_setup
 
 
 logger = logging.getLogger(__name__)
 
 
-class NewEventTestCase(CalendarTestCase):
+class NewEventTestCase(CalendarAppTestCase):
 
     # TODO once address_book_service_testability is packaged, remove
     # packing the modules as part of testcase
@@ -117,7 +116,6 @@ class NewEventTestCase(CalendarTestCase):
         self.assertThat(lambda: self._event_exists(test_event.name),
                         Eventually(Equals(False)))
 
-    @skipUnless(model() == 'Desktop', 'skipping, bug 1359167')
     def test_edit_event_with_default_values(self):
         """Test editing an event change unique values of an event."""
 

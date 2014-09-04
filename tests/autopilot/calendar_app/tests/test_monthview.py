@@ -23,13 +23,13 @@ from testtools.matchers import Equals, NotEquals
 
 import math
 
-from calendar_app.tests import CalendarTestCase
+from calendar_app.tests import CalendarAppTestCase
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 
-class TestMonthView(CalendarTestCase):
+class TestMonthView(CalendarAppTestCase):
 
     def setUp(self):
         super(TestMonthView, self).setUp()

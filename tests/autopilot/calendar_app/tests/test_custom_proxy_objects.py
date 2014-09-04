@@ -18,7 +18,7 @@ from calendar_app import data, tests
 from address_book_service_testability import fixture_setup
 
 
-class NewEventFormTestCase(tests.CalendarTestCase):
+class NewEventFormTestCase(tests.CalendarAppTestCase):
 
     # TODO once address_book_service_testability is packaged, remove
     # packing the modules as part of testcase

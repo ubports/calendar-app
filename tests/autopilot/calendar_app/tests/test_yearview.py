@@ -28,10 +28,10 @@ from datetime import datetime
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
-from calendar_app.tests import CalendarTestCase
+from calendar_app.tests import CalendarAppTestCase
 
 
-class TestYearView(CalendarTestCase):
+class TestYearView(CalendarAppTestCase):
 
     def setUp(self):
         super(TestYearView, self).setUp()
@@ -88,7 +88,7 @@ class TestYearView(CalendarTestCase):
         expected_month_name = self.app.main_view.get_month_name(february)
         expected_year = self.app.main_view.get_year(february)
 
-        self.pointing_device.click_object(february)
+        self.app.pointing_device.click_object(february)
 
         self.assertThat(
             self.app.main_view.get_month_view, Eventually(NotEquals(None)))

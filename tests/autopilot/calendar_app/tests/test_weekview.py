@@ -28,13 +28,13 @@ import datetime
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
-from calendar_app.tests import CalendarTestCase
+from calendar_app.tests import CalendarAppTestCase
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-class TestWeekView(CalendarTestCase):
+class TestWeekView(CalendarAppTestCase):
 
     def setUp(self):
         super(TestWeekView, self).setUp()
@@ -173,7 +173,7 @@ class TestWeekView(CalendarTestCase):
         days = self._get_days_of_week()
         day_to_select = self.app.main_view.get_label_with_text(days[0])
 
-        self.pointing_device.click_object(day_to_select)
+        self.app.pointing_device.click_object(day_to_select)
 
         # Check that the view changed from 'Week' to 'Day'
         day_view = self.app.main_view.get_day_view()
