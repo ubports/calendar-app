@@ -39,8 +39,9 @@ class CalendarApp(object):
 
     """Autopilot helper object for the terminal application."""
 
-    def __init__(self, app_proxy):
+    def __init__(self, app_proxy, test_type):
         self.app = app_proxy
+        self.test_type = test_type
         self.main_view = self.app.select_single(MainView)
 
     @property

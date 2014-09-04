@@ -19,24 +19,18 @@
 from __future__ import absolute_import
 
 import logging
+import os
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
 from calendar_app import data
-from calendar_app.tests import CalendarAppTestCase
-from address_book_service_testability import fixture_setup
-
+from calendar_app.tests import CalendarAppTestCaseWithVcard
 
 logger = logging.getLogger(__name__)
 
 
-class NewEventTestCase(CalendarAppTestCase):
-
-    def setUp(self):
-        contacts_backend = fixture_setup.AddressBookServiceDummyBackend()
-        self.useFixture(contacts_backend)
-        super(NewEventTestCase, self).setUp()
+class NewEventTestCase(CalendarAppTestCaseWithVcard):
 
     # TODO add tests for events in the future and in the past, all day event,
     # event with recurrence and event with reminders.

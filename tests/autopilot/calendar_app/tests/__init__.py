@@ -22,6 +22,7 @@ import logging
 
 import fixtures
 import calendar_app
+from address_book_service_testability import fixture_setup
 
 from autopilot.testcase import AutopilotTestCase
 from autopilot import logging as autopilot_logging
@@ -43,7 +44,7 @@ class BaseTestCaseWithPatchedHome(AutopilotTestCase):
     """
 
     local_location = os.path.dirname(os.path.dirname(os.getcwd()))
-    local_location_qml = local_location + "/calendar.qml"
+    local_location_qml = os.path.join(local_location, 'calendar.qml')
     installed_location_qml = "/usr/share/calendar-app/calendar.qml"
 
     def get_launcher_and_type(self):
@@ -180,4 +181,25 @@ class CalendarAppTestCase(BaseTestCaseWithPatchedHome):
 
     def setUp(self):
         super(CalendarAppTestCase, self).setUp()
-        self.app = calendar_app.CalendarApp(self.launcher())
+        self.app = calendar_app.CalendarApp(self.launcher(), self.test_type)
+
+class CalendarAppTestCaseWithVcard(BaseTestCaseWithPatchedHome):
+
+    def setup_vcard(self):
+        if self.test_type is 'deb':
+            location = '/usr/share/calendar-app/'
+        elif self.test_type is 'click':
+            location = os.path.dirname(os.path.dirname(os.getcwd()))
+        else:
+            location = os.path.join(
+                os.path.dirname(os.path.dirname(os.getcwd())),
+                'tests/autopilot/calendar_app')
+        vcard = os.path.join(location, 'vcard.vcf')
+        logger.debug('Using vcard from %s',vcard)
+        contacts_backend = fixture_setup.AddressBookServiceDummyBackend(vcard=vcard)
+        self.useFixture(contacts_backend)
+
+    def setUp(self):
+        super(CalendarAppTestCaseWithVcard, self).setUp()
+        self.setup_vcard()
+        self.app = calendar_app.CalendarApp(self.launcher(), self.test_type)
