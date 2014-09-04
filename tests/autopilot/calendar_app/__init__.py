@@ -304,18 +304,23 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
         raise CalendarException('No event found for %s' % event_name)
 
-    def _get_current_day_component(self):
-        components = self.select_many('TimeLineBaseComponent')
-        for component in components:
-            if (self.currentDay.datetime.date() ==
-                    component.startDay.datetime.date()):
-                return component
+    def _get_day_component(self, day='selected'):
+        """Get the selected day component.
+           This method considers 'yesterday' to be the selected day - 1
+           and 'tomorrow' to be the selected day + 1
+        """
+        if day == 'yesterday':
+            return self.select_single('TimeLineBaseComponent',
+                objectName='DayComponent-2')
+        elif day == 'tomorrow':
+            return self.select_single('TimeLineBaseComponent',
+                objectName='DayComponent-1')
         else:
-            raise CalendarException(
-                'Could not find the current day component.')
+            return self.select_single('TimeLineBaseComponent',
+                objectName='DayComponent-0')
 
     def _get_selected_day_event_bubbles(self):
-        selected_day = self._get_current_day_component()
+        selected_day = self._get_day_component()
         return self._get_event_bubbles(selected_day)
 
     def _get_event_bubbles(self, selected_day):
