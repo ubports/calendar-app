@@ -108,12 +108,12 @@ class BaseTestCaseWithPatchedHome(AutopilotTestCase):
                                    '.Xauthority')),
                 os.path.join(directory, '.Xauthority'))
 
-    def _patch_home(self, test_type):
+    def _patch_home(self):
         """ mock /home for testing purposes to preserve user data
         """
         # click requires apparmor profile, and writing to special dir
         # but the desktop can write to a traditional /tmp directory
-        if test_type == 'click':
+        if self.test_type == 'click':
             env_dir = os.path.join(os.environ.get('HOME'), 'autopilot',
                                    'fakeenv')
 
