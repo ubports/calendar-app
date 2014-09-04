@@ -5,9 +5,3 @@ execute_process(COMMAND python -c "from distutils.sysconfig import get_python_li
 install(DIRECTORY ${AUTOPILOT_DIR}
     DESTINATION ${PYTHON_PACKAGE_DIR}
     )
-
-#add depends
-install(DIRECTORY address_book_service_testability
-    DESTINATION ${PYTHON_PACKAGE_DIR}
-    )
-endif(INSTALL_TESTS)
