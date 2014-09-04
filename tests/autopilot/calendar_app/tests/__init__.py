@@ -188,7 +188,7 @@ class CalendarAppTestCaseWithVcard(BaseTestCaseWithPatchedHome):
 
     def setup_vcard(self):
         if self.test_type is 'deb':
-            location = '/usr/share/calendar-app/'
+            location = '/usr/lib/python3/dist-packages/calendar_app'
         elif self.test_type is 'click':
             location = os.path.dirname(os.path.dirname(os.getcwd()))
         else:

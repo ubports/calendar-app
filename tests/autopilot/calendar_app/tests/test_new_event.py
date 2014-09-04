@@ -34,7 +34,7 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
     def setUp(self):
         super(NewEventTestCase, self).setUp()
         self.assertThat(
-            self.main_view.visible, Eventually(Equals(True)))
+            self.app.main_view.visible, Eventually(Equals(True)))
 
     # TODO add tests for events in the future and in the past, all day event,
     # event with recurrence and event with reminders.
