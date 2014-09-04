@@ -15,15 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from calendar_app import data, tests
-from address_book_service_testability import fixture_setup
 
 
-class NewEventFormTestCase(tests.CalendarAppTestCase):
-
-    def setUp(self):
-        contacts_backend = fixture_setup.AddressBookServiceDummyBackend()
-        self.useFixture(contacts_backend)
-        super(NewEventFormTestCase, self).setUp()
+class NewEventFormTestCase(tests.CalendarAppTestCaseWithVcard):
 
     def test_fill_form(self):
         """Test that the form can be filled with event information."""
