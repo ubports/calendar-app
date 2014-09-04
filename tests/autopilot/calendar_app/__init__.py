@@ -311,13 +311,13 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         """
         if day == 'yesterday':
             return self.select_single('TimeLineBaseComponent',
-                objectName='DayComponent-2')
+                                      objectName='DayComponent-2')
         elif day == 'tomorrow':
             return self.select_single('TimeLineBaseComponent',
-                objectName='DayComponent-1')
+                                      objectName='DayComponent-1')
         else:
             return self.select_single('TimeLineBaseComponent',
-                objectName='DayComponent-0')
+                                      objectName='DayComponent-0')
 
     def _get_selected_day_event_bubbles(self):
         selected_day = self._get_day_component()
