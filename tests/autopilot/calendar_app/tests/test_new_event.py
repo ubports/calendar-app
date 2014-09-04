@@ -96,7 +96,7 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         """
 
         new_event_page = self.app.main_view.go_to_new_event()
-        self.assertThat(new_event_page.get_calendar(), Equals('Personal'))
+        self.assertThat(new_event_page.get_calendar_name(), Equals('Personal'))
 
     def test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.

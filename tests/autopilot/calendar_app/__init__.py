@@ -526,9 +526,9 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
                 raise CalendarException('No guest found with name %s' % guest)
 
     def _select_calendar(self, calendar):
-        self.get_calendar().select_option('Label', text=calendar)
+        self._get_calendar().select_option('Label', text=calendar)
 
-    def get_calendar(self):
+    def _get_calendar(self):
         return self.select_single(ubuntuuitoolkit.OptionSelector,
                                   objectName="calendarsOption")
 
@@ -540,10 +540,13 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
             guest_names.append(guest.text)
         return guest_names
 
+    def get_calendar_name(self):
+        return self._get_calendar().get_current_label().text
+
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and
         # reminders. --elopio - 2014-06-26
-        calendar = self.get_calendar().get_current_label().text
+        calendar = self._get_calendar().get_current_label().text
         name = self._get_new_event_entry_field('newEventName').text
         description = self._get_description_text_area().text
         location = self._get_new_event_entry_field('eventLocationInput').text
