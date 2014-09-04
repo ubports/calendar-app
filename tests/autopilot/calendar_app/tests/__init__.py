@@ -183,6 +183,7 @@ class CalendarAppTestCase(BaseTestCaseWithPatchedHome):
         super(CalendarAppTestCase, self).setUp()
         self.app = calendar_app.CalendarApp(self.launcher(), self.test_type)
 
+
 class CalendarAppTestCaseWithVcard(BaseTestCaseWithPatchedHome):
 
     def setup_vcard(self):
@@ -195,8 +196,9 @@ class CalendarAppTestCaseWithVcard(BaseTestCaseWithPatchedHome):
                 os.path.dirname(os.path.dirname(os.getcwd())),
                 'tests/autopilot/calendar_app')
         vcard = os.path.join(location, 'vcard.vcf')
-        logger.debug('Using vcard from %s',vcard)
-        contacts_backend = fixture_setup.AddressBookServiceDummyBackend(vcard=vcard)
+        logger.debug('Using vcard from %s', vcard)
+        contacts_backend = fixture_setup.AddressBookServiceDummyBackend(
+            vcard=vcard)
         self.useFixture(contacts_backend)
 
     def setUp(self):

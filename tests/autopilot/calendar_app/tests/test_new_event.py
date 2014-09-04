@@ -19,7 +19,6 @@
 from __future__ import absolute_import
 
 import logging
-import os
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
