@@ -62,7 +62,7 @@ class BaseTestCaseWithPatchedHome(AutopilotTestCase):
     def setUp(self):
         super(BaseTestCaseWithPatchedHome, self).setUp()
         self.launcher, self.test_type = self.get_launcher_and_type()
-        self.home_dir = self._patch_home(self.test_type)
+        self.home_dir = self._patch_home()
 
         # Unset the current locale to ensure locale-specific data
         # (day and month names, first day of the week, …) doesn’t get
