@@ -78,6 +78,27 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
             return False
         return True
 
+    # TODO write helpers to check all of the default values
+    # then expand the asserts to ensure defaults are correct
+    def test_new_event_must_start_with_default_values(self):
+        """Test adding a new event default values
+
+           Start Date: today Start Time: next half hour increment
+           End Date: today End Time: 30 mins after start time
+           Calendar: Personal
+           All Day Event: unchecked
+           Event Name: selected
+           Description: blank
+           Location: blank
+           Guests: none
+           This happens: Once
+           Remind me: No Reminder
+        """
+
+        new_event_page = self.app.main_view.go_to_new_event()
+        self.assertThat(new_event_page.get_calendar(), Equals('Personal'))
+
+
     def test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.
 
