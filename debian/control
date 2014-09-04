@@ -43,7 +43,7 @@ Architecture: all
 Depends: libautopilot-qt (>= 1.4),
          libqt5test5,
          calendar-app (= ${source:Version}),
-         python-dateutil,
+         python3-dateutil,
          ubuntu-ui-toolkit-autopilot,
          address-book-service-dummy,
          address-book-service-testability
