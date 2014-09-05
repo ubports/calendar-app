@@ -29,16 +29,14 @@ if sys.version_info < (3,):
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
-from calendar_app.tests import CalendarTestCase
+from calendar_app.tests import CalendarAppTestCase
 
 
-class TestDayView(CalendarTestCase):
+class TestDayView(CalendarAppTestCase):
 
     def setUp(self):
         super(TestDayView, self).setUp()
-        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-
-        self.day_view = self.main_view.go_to_day_view()
+        self.day_view = self.app.main_view.go_to_day_view()
 
     def test_current_month_and_year_is_selected(self):
         """By default, the day view shows the current month and year."""
@@ -48,10 +46,10 @@ class TestDayView(CalendarTestCase):
         expected_year = now.year
         expected_month_name = now.strftime("%B")
 
-        self.assertThat(self.main_view.get_year(self.day_view),
+        self.assertThat(self.app.main_view.get_year(self.day_view),
                         Equals(expected_year))
 
-        self.assertThat(self.main_view.get_month_name(self.day_view),
+        self.assertThat(self.app.main_view.get_month_name(self.day_view),
                         Equals(expected_month_name))
 
     def test_show_current_days(self):
@@ -83,7 +81,7 @@ class TestDayView(CalendarTestCase):
         yesterday_header = self.day_view.get_day_header(yesterday)
 
         self.assertThat(yesterday_header.isCurrentItem, Equals(False))
-        self.pointing_device.click_object(yesterday_header)
+        self.app.pointing_device.click_object(yesterday_header)
         self.assertThat(yesterday_header.isCurrentItem,
                         Eventually(Equals(True)))
 
@@ -92,7 +90,7 @@ class TestDayView(CalendarTestCase):
         tomorrow_header = self.day_view.get_day_header(tomorrow)
 
         self.assertThat(tomorrow_header.isCurrentItem, Equals(False))
-        self.pointing_device.click_object(tomorrow_header)
+        self.app.pointing_device.click_object(tomorrow_header)
         self.assertThat(tomorrow_header.isCurrentItem,
                         Eventually(Equals(True)))
 
@@ -110,7 +108,7 @@ class TestDayView(CalendarTestCase):
         for i in range(1, 5):
             # prevent timing issues with swiping
             old_day = self.day_view.currentDay.datetime
-            self.main_view.swipe_view(direction, self.day_view)
+            self.app.main_view.swipe_view(direction, self.day_view)
             self.assertThat(lambda: self.day_view.currentDay.datetime,
                             Eventually(NotEquals(old_day)))
 

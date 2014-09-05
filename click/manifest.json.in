@@ -20,7 +20,7 @@
     "x-test": {
         "autopilot": {
             "autopilot_module": "@AUTOPILOT_DIR@",
-            "depends": ["python3-dateutil", "address-book-service-dummy"]
+            "depends": ["python3-dateutil", "address-book-service-dummy", "address-book-service-testability"]
         }
     }
 }
