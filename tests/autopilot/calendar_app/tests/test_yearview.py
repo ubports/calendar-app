@@ -28,16 +28,14 @@ from datetime import datetime
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
-from calendar_app.tests import CalendarTestCase
+from calendar_app.tests import CalendarAppTestCase
 
 
-class TestYearView(CalendarTestCase):
+class TestYearView(CalendarAppTestCase):
 
     def setUp(self):
         super(TestYearView, self).setUp()
-        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-
-        self.year_view = self.main_view.go_to_year_view()
+        self.year_view = self.app.main_view.go_to_year_view()
 
     def _get_year_grid(self):
         return self.year_view.wait_select_single("QQuickGridView",
@@ -51,7 +49,7 @@ class TestYearView(CalendarTestCase):
         current_year = self.year_view.currentYear
 
         for i in range(1, how_many):
-            self.main_view.swipe_view(direction, self.year_view)
+            self.app.main_view.swipe_view(direction, self.year_view)
 
             self.assertThat(
                 lambda: self.year_view.currentYear,
@@ -87,15 +85,15 @@ class TestYearView(CalendarTestCase):
         months.sort(key=lambda month: month.currentMonth)
 
         february = months[1]
-        expected_month_name = self.main_view.get_month_name(february)
-        expected_year = self.main_view.get_year(february)
+        expected_month_name = self.app.main_view.get_month_name(february)
+        expected_year = self.app.main_view.get_year(february)
 
-        self.pointing_device.click_object(february)
+        self.app.pointing_device.click_object(february)
 
         self.assertThat(
-            self.main_view.get_month_view, Eventually(NotEquals(None)))
+            self.app.main_view.get_month_view, Eventually(NotEquals(None)))
 
-        month_view = self.main_view.get_month_view()
+        month_view = self.app.main_view.get_month_view()
         self.assertThat(month_view.visible, Eventually(Equals(True)))
 
         selected_month = month_view.select_single("MonthComponent",
@@ -103,10 +101,10 @@ class TestYearView(CalendarTestCase):
 
         self.assertThat(selected_month, NotEquals(None))
 
-        self.assertThat(self.main_view.get_year(selected_month),
+        self.assertThat(self.app.main_view.get_year(selected_month),
                         Equals(expected_year))
 
-        self.assertThat(self.main_view.get_month_name(selected_month),
+        self.assertThat(self.app.main_view.get_month_name(selected_month),
                         Equals(expected_month_name))
 
     def test_current_day_is_selected(self):
