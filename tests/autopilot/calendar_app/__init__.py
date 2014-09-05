@@ -453,13 +453,10 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         :param event_information: Values of the event to fill the form.
         :type event_information: data object with the attributes name,
             description, location and guests.
-        :return: The Day View page.
 
         """
         self._fill_form(event_information)
         self._save()
-        return self.get_root_instance().wait_select_single(
-            DayView, objectName='dayViewPage')
 
     @autopilot.logging.log_action(logger.debug)
     def _fill_form(self, event_information):
