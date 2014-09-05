@@ -25,7 +25,7 @@ import QtOrganizer 5.0
 import "Defines.js" as Defines
 
 Page {
-    id: repetation
+    id: repetition
 
     property var weekDays : [];
     property var rule
@@ -134,7 +134,6 @@ Page {
             model: Defines.recurrenceLabel
             containerHeight: itemHeight * 4
             onExpandedChanged: Qt.inputMethod.hide();
-            //selectedIndex: selectedReccurence === undefined ? 0 : selectedReccurence
         }
 
         ListItem.Header{

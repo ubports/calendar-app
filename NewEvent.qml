@@ -22,7 +22,6 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Themes.Ambiance 1.0
-import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
 import "Defines.js" as Defines
 
@@ -41,8 +40,6 @@ Page {
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
-
-    property var selectedReccurence
 
     onStartDateChanged: {
         startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
@@ -116,7 +113,7 @@ Page {
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
         //Create fresh Recurrence Object.
-        rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetation.qml");
+        rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml");
         selectCalendar(model.defaultCollection().collectionId);
     }
 
@@ -124,7 +121,7 @@ Page {
     function editEvent(e) {
         //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
         rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
-                    Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetation.qml")
+                    Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml")
                   : e.recurrence.recurrenceRules[0];
 
         startDate =new Date(e.startDateTime);
@@ -601,7 +598,7 @@ Page {
                 visible: event.itemType === Type.Event
                 text: i18n.tr("This Happens")
                 subText: eventUtils.getRecurrenceString(rule)
-                onClicked: pageStack.push(Qt.resolvedUrl("EventRepetation.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
+                onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
             }
 
             ListItem.ThinDivider {}

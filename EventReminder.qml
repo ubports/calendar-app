@@ -80,7 +80,6 @@ Page{
             }
             containerHeight: itemHeight * 4
             model: Defines.reminderLabel
-            onExpandedChanged: Qt.inputMethod.hide();
         }
     }
 }
