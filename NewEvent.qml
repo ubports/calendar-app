@@ -292,7 +292,7 @@ Page {
         var daysOfWeek = [];
         switch(recurrenceOption.selectedIndex){
         case 2:
-            daysOfWeek = [Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday];
+            daysOfWeek = Qt.locale().weekDays;
             break;
         case 3:
             daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday];
