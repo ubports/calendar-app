@@ -193,11 +193,34 @@ Page{
 
                 UbuntuShape{
                     id: detailsContainer
-                    color: "white"
+                    color: backgroundColor
 
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: parent.width - units.gu(4)
                     height: detailsColumn.height + units.gu(1)
+
+                    states: [
+                        State {
+                            name: "selected"
+
+                            PropertyChanges {
+                                target: detailsContainer
+                                color: UbuntuColors.orange
+                            }
+
+                            PropertyChanges {
+                                target: timeLabel
+                                color: "white"
+                            }
+                        }
+
+                    ]
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 50
+                        }
+                    }
 
                     Column{
                         id: detailsColumn
@@ -229,6 +252,12 @@ Page{
                             color:"black"
                             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                             width: parent.width
+
+                            Behavior on color {
+                                ColorAnimation {
+                                    duration: 50
+                                }
+                            }
                         }
                     }
 
@@ -236,6 +265,14 @@ Page{
                         anchors.fill: parent
                         onClicked: {
                             pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
+                        }
+
+                        onPressed: {
+                            parent.state = "selected"
+                        }
+
+                        onReleased: {
+                            parent.state = ""
                         }
                     }
                 }
