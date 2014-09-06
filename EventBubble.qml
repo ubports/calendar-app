@@ -28,6 +28,9 @@ Item{
     property int wideType: 1;
     property int narrowType: 2;
 
+    property int depthInRow: 0;
+    property int sizeOfRow:0
+
     property Flickable flickable;
 
     readonly property int minimumHeight: timeLabel.height + /*top-bottom margin*/ units.gu(2)
@@ -41,7 +44,21 @@ Item{
         gradientColor: "#F5F5F5"
     }
 
+    function resize() {
+        var offset = parent.width/sizeOfRow;
+        x = (depthInRow) * offset;
+        width = parent.width - x;
+    }
+
+    Connections{
+        target: parent
+        onWidthChanged:{
+            resize();
+        }
+    }
+
     onEventChanged: {
+        resize();
         setDetails();
     }
 

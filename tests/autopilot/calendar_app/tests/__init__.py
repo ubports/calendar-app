@@ -21,10 +21,9 @@ import shutil
 import logging
 
 import fixtures
-from calendar_app import emulators
+import calendar_app
+from address_book_service_testability import fixture_setup
 
-from autopilot.input import Mouse, Touch, Pointer
-from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 from autopilot import logging as autopilot_logging
 
@@ -37,19 +36,15 @@ from ubuntuuitoolkit import (
 logger = logging.getLogger(__name__)
 
 
-class CalendarTestCase(AutopilotTestCase):
+class BaseTestCaseWithPatchedHome(AutopilotTestCase):
 
     """A common test case class that provides several useful methods for
     calendar-app tests.
 
     """
-    if model() == 'Desktop':
-        scenarios = [('with mouse', dict(input_device_class=Mouse))]
-    else:
-        scenarios = [('with touch', dict(input_device_class=Touch))]
 
     local_location = os.path.dirname(os.path.dirname(os.getcwd()))
-    local_location_qml = local_location + "/calendar.qml"
+    local_location_qml = os.path.join(local_location, 'calendar.qml')
     installed_location_qml = "/usr/share/calendar-app/calendar.qml"
 
     def get_launcher_and_type(self):
@@ -65,17 +60,14 @@ class CalendarTestCase(AutopilotTestCase):
         return launcher, test_type
 
     def setUp(self):
-        launcher, self.test_type = self.get_launcher_and_type()
+        super(BaseTestCaseWithPatchedHome, self).setUp()
+        self.launcher, self.test_type = self.get_launcher_and_type()
         self.home_dir = self._patch_home()
-        self.pointing_device = Pointer(self.input_device_class.create())
-        super(CalendarTestCase, self).setUp()
 
         # Unset the current locale to ensure locale-specific data
         # (day and month names, first day of the week, …) doesn’t get
         # in the way of test expectations.
         self.useFixture(fixtures.EnvironmentVariable('LC_ALL', newvalue='C'))
-
-        self.app = launcher()
 
     @autopilot_logging.log_action(logger.info)
     def launch_test_local(self):
@@ -182,6 +174,34 @@ class CalendarTestCase(AutopilotTestCase):
         logger.debug("Patched home to fake home directory %s" % temp_dir)
         return temp_dir
 
-    @property
-    def main_view(self):
-        return self.app.wait_select_single(emulators.MainView)
+
+class CalendarAppTestCase(BaseTestCaseWithPatchedHome):
+
+    """Base test case that launches the calendar-app."""
+
+    def setUp(self):
+        super(CalendarAppTestCase, self).setUp()
+        self.app = calendar_app.CalendarApp(self.launcher(), self.test_type)
+
+
+class CalendarAppTestCaseWithVcard(BaseTestCaseWithPatchedHome):
+
+    def setup_vcard(self):
+        if self.test_type is 'deb':
+            location = '/usr/lib/python3/dist-packages/calendar_app'
+        elif self.test_type is 'click':
+            location = os.path.dirname(os.path.dirname(os.getcwd()))
+        else:
+            location = os.path.join(
+                os.path.dirname(os.path.dirname(os.getcwd())),
+                'tests/autopilot/calendar_app')
+        vcard = os.path.join(location, 'vcard.vcf')
+        logger.debug('Using vcard from %s', vcard)
+        contacts_backend = fixture_setup.AddressBookServiceDummyBackend(
+            vcard=vcard)
+        self.useFixture(contacts_backend)
+
+    def setUp(self):
+        super(CalendarAppTestCaseWithVcard, self).setUp()
+        self.setup_vcard()
+        self.app = calendar_app.CalendarApp(self.launcher(), self.test_type)
