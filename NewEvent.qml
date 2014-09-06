@@ -344,6 +344,7 @@ Page {
         if (Self === false){return}
         var v = units.gu(Margin)
         for (var i in Visible){if(Visible[i].visible === true){v+=Visible[i].height};}
+
         scrollAnimation.target = Target
         scrollAnimation.to = Container.height-height - v
         scrollAnimation.start()
