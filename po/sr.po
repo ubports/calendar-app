@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2013-06-24 10:56+0000\n"
+"PO-Revision-Date: 2014-08-30 11:49+0000\n"
 "Last-Translator: Данило Шеган <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,29 +16,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-17 06:33+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-08-31 07:22+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
-msgstr ""
+msgstr "Нема предстојећих догађаја"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
 #: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
 msgid "hh:mm"
-msgstr ""
+msgstr "hh:mm"
 
 #: ../AgendaView.qml:94
 msgid "dddd , d MMMM"
-msgstr ""
+msgstr "dddd, d. MMMM"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../AgendaView.qml:101 ../EventBubble.qml:61
 #, qt-format
 msgid "%1 - %2"
-msgstr ""
+msgstr "од %1 до %2"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -47,20 +47,20 @@ msgstr ""
 #: ../AllDayEventComponent.qml:98
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 дог."
 
 #: ../AllDayEventComponent.qml:101
 #, qt-format
 msgid "%1 All day events"
-msgstr ""
+msgstr "%1 целодневних догађаја"
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
 msgid "Calendars"
-msgstr ""
+msgstr "Календари"
 
 #: ../CalendarChoicePopup.qml:20
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
 msgid "Save"
@@ -68,99 +68,100 @@ msgstr "Сачувај"
 
 #: ../ColorPickerDialog.qml:7
 msgid "Select Color"
-msgstr ""
+msgstr "Изаберите боју"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
 #: ../NewEvent.qml:722
 msgid "Cancel"
-msgstr ""
+msgstr "Откажи"
 
 #: ../ContactChoicePopup.qml:20
 msgid "No contact"
-msgstr ""
+msgstr "Нема потсетнице"
 
 #: ../ContactChoicePopup.qml:66
 msgid "Search contact"
-msgstr ""
+msgstr "Тражи потсетницу"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "Обриши догађај који се понавља"
 
 #: ../DeleteConfirmationDialog.qml:15
 msgid "Delete Event"
-msgstr ""
+msgstr "Обриши догађај"
 
 #: ../DeleteConfirmationDialog.qml:22
 msgid "Delete series"
-msgstr ""
+msgstr "Обриши низ"
 
 #: ../DeleteConfirmationDialog.qml:33
 msgid "Delete this"
-msgstr ""
+msgstr "Обриши ово"
 
 #: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
 msgid "Delete"
-msgstr ""
+msgstr "Обриши"
 
 #: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
 msgid "Edit Event"
-msgstr ""
+msgstr "Уреди догађај"
 
 #: ../EditEventConfirmationDialog.qml:17
 msgid "Edit series"
-msgstr ""
+msgstr "Уреди низ"
 
 #: ../EditEventConfirmationDialog.qml:26
 msgid "Edit this"
-msgstr ""
+msgstr "Уреди ово"
 
 #: ../EditToolbar.qml:52
 msgid "Done"
-msgstr ""
+msgstr "Готово"
 
 #: ../EventDetails.qml:27
 msgid "Event Details"
-msgstr ""
+msgstr "Појединости догађаја"
 
 #: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
 msgid "Never"
-msgstr ""
+msgstr "Никада"
 
 #. TRANSLATORS: this is a date shown in the event details view,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:59
 msgid "ddd MMMM d yyyy"
-msgstr ""
+msgstr "ddd d. MMMM, yyyy."
 
 #: ../EventDetails.qml:62
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Након %1 пута"
+msgstr[1] "Након %1 пута"
+msgstr[2] "Након %1 пута"
 
 #: ../EventDetails.qml:63
 #, qt-format
 msgid "After Date %1"
-msgstr ""
+msgstr "После датума %1"
 
 #. TRANSLATORS: the argument is a day of the week or a list of days
 #: ../EventDetails.qml:75
 #, qt-format
 msgid "Every %1"
-msgstr ""
+msgstr "Сваког %1"
 
 #: ../EventDetails.qml:126
 msgid "Not specified"
-msgstr ""
+msgstr "Није наведено"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
 #: ../EventDetails.qml:137
 msgid "dd-MMM-yyyy"
-msgstr ""
+msgstr "dd. MMMM yyyy."
 
 #: ../EventDetails.qml:210
 msgid "Edit"
@@ -168,55 +169,55 @@ msgstr "Уреди"
 
 #: ../EventDetails.qml:272
 msgid "Date"
-msgstr ""
+msgstr "Датум"
 
 #: ../EventDetails.qml:277 ../NewEvent.qml:387
 msgid "Start"
-msgstr ""
+msgstr "Почетак"
 
 #: ../EventDetails.qml:282 ../NewEvent.qml:426
 msgid "End"
-msgstr ""
+msgstr "Крај"
 
 #: ../EventDetails.qml:291 ../NewEvent.qml:497
 msgid "All Day event:"
-msgstr ""
+msgstr "Целодневни догађај:"
 
 #: ../EventDetails.qml:340 ../NewEvent.qml:542
 msgid "Location"
-msgstr ""
+msgstr "Место"
 
 #: ../EventDetails.qml:366
 msgid "Guests"
-msgstr ""
+msgstr "Гости"
 
 #: ../EventDetails.qml:404 ../NewEvent.qml:592
 msgid "This happens"
-msgstr ""
+msgstr "Догађа се"
 
 #: ../EventDetails.qml:409 ../NewEvent.qml:693
 msgid "Remind me"
-msgstr ""
+msgstr "Подсети ме"
 
 #: ../EventDetails.qml:414
 msgid "Repeats On"
-msgstr ""
+msgstr "Понавља се"
 
 #: ../EventDetails.qml:420
 msgid "Repetition Ends"
-msgstr ""
+msgstr "Понављање престаје"
 
 #: ../LimitLabelDefines.qml:4
 msgid "After X Occurrence"
-msgstr ""
+msgstr "Након Х пута"
 
 #: ../LimitLabelDefines.qml:5
 msgid "After Date"
-msgstr ""
+msgstr "Након датума"
 
 #: ../NewEvent.qml:186
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "Време завршетка не може да буде пре почетка"
 
 #: ../NewEvent.qml:297 ../calendar.qml:306
 msgid "New Event"
@@ -224,123 +225,123 @@ msgstr "Нови догађај"
 
 #: ../NewEvent.qml:313
 msgid "Error"
-msgstr ""
+msgstr "Грешка"
 
 #: ../NewEvent.qml:315
 msgid "OK"
-msgstr ""
+msgstr "У реду"
 
 #. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
 #: ../NewEvent.qml:403 ../NewEvent.qml:442
 msgid "at"
-msgstr ""
+msgstr "у"
 
 #: ../NewEvent.qml:463
 msgid "Calendar "
-msgstr ""
+msgstr "Календар "
 
 #: ../NewEvent.qml:512
 msgid "Event Name"
-msgstr ""
+msgstr "Назив догађаја"
 
 #: ../NewEvent.qml:522
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
 #: ../NewEvent.qml:560
 msgid "Add Guest"
-msgstr ""
+msgstr "Додај госта"
 
 #: ../NewEvent.qml:612
 msgid "Repeats On:"
-msgstr ""
+msgstr "Понавља се:"
 
 #: ../NewEvent.qml:647
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Понављање догађаја престаје"
 
 #. TRANSLATORS: This refers to no of occurences of an event.
 #: ../NewEvent.qml:670
 msgid "Recurrence"
-msgstr ""
+msgstr "Понављање"
 
 #: ../RecurrenceLabelDefines.qml:4
 msgid "Once"
-msgstr ""
+msgstr "Једном"
 
 #: ../RecurrenceLabelDefines.qml:5
 msgid "Daily"
-msgstr ""
+msgstr "Дневно"
 
 #: ../RecurrenceLabelDefines.qml:6
 msgid "Every Weekday (Monday to Friday)"
-msgstr ""
+msgstr "Сваког радног дана (понедељак до петка)"
 
 #: ../RecurrenceLabelDefines.qml:7
 msgid "Every Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Сваког понедељка, среде и петка"
 
 #: ../RecurrenceLabelDefines.qml:8
 msgid "Every Tuesday and Thursday"
-msgstr ""
+msgstr "Сваког уторка и четвртка"
 
 #: ../RecurrenceLabelDefines.qml:9
 msgid "Weekly"
-msgstr ""
+msgstr "Недељно"
 
 #: ../RecurrenceLabelDefines.qml:10
 msgid "Monthly"
-msgstr ""
+msgstr "Месечно"
 
 #: ../RecurrenceLabelDefines.qml:11
 msgid "Yearly"
-msgstr ""
+msgstr "Годишње"
 
 #: ../ReminderLabelDefines.qml:4
 msgid "No Reminder"
-msgstr ""
+msgstr "Без подсетника"
 
 #: ../ReminderLabelDefines.qml:5
 msgid "5 minutes"
-msgstr ""
+msgstr "5 минута"
 
 #: ../ReminderLabelDefines.qml:6
 msgid "15 minutes"
-msgstr ""
+msgstr "15 минута"
 
 #: ../ReminderLabelDefines.qml:7
 msgid "30 minutes"
-msgstr ""
+msgstr "30 минута"
 
 #: ../ReminderLabelDefines.qml:8
 msgid "1 hour"
-msgstr ""
+msgstr "1 сат"
 
 #: ../ReminderLabelDefines.qml:9
 msgid "2 hours"
-msgstr ""
+msgstr "2 сата"
 
 #: ../ReminderLabelDefines.qml:10
 msgid "1 day"
-msgstr ""
+msgstr "1 дан"
 
 #: ../ReminderLabelDefines.qml:11
 msgid "2 days"
-msgstr ""
+msgstr "2 дана"
 
 #: ../ReminderLabelDefines.qml:12
 msgid "1 week"
-msgstr ""
+msgstr "1 недеља"
 
 #: ../ReminderLabelDefines.qml:13
 msgid "2 weeks"
-msgstr ""
+msgstr "2 недеље"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
 #: ../TimeLineBackground.qml:19
 msgid "hh ap"
-msgstr ""
+msgstr "hh"
 
 #: ../calendar.qml:28
 msgid ""
@@ -348,38 +349,41 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"Програм за календар прима следећа четири аргумента: --starttime, --endtime, -"
+"-newevent and --eventid. Њима ће управљати систем. Погледајте изворни код за "
+"њихов пун опис."
 
 #: ../calendar.qml:287
 msgid "Today"
-msgstr ""
+msgstr "Данас"
 
 #: ../calendar.qml:326
 msgid "Sync"
-msgstr ""
+msgstr "Усклади"
 
 #: ../calendar.qml:326
 msgid "Syncing"
-msgstr ""
+msgstr "Усклађује"
 
 #: ../calendar.qml:359
 msgid "Year"
-msgstr ""
+msgstr "Година"
 
 #: ../calendar.qml:394
 msgid "Month"
-msgstr ""
+msgstr "Месец"
 
 #: ../calendar.qml:423
 msgid "Week"
-msgstr ""
+msgstr "Недеља"
 
 #: ../calendar.qml:457
 msgid "Day"
-msgstr ""
+msgstr "Дан"
 
 #: ../calendar.qml:486
 msgid "Agenda"
-msgstr ""
+msgstr "Дневни ред"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
@@ -387,8 +391,8 @@ msgstr "Календар"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "Календар за Убунту који се усклађује са налозима на мрежи."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "календар;догађај;дан;недеља;месец;састанак;"
