@@ -543,11 +543,15 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         self._ensure_entry_field_visible_and_write('newEventName', value)
 
     def _ensure_entry_field_visible_and_write(self, object_name, value):
-        name_text_field = self._get_new_event_entry_field(object_name)
+        name_text_field = self._get_text_box(object_name)
         self._ensure_visible_and_write(name_text_field, value)
 
     def _get_new_event_entry_field(self, object_name):
         return self.select_single(NewEventEntryField, objectName=object_name)
+
+    def _get_text_box(self, object_name):
+        return self.select_single(
+            ubuntuuitoolkit.TextField, objectName=object_name)
 
     def _ensure_visible_and_write(self, text_field, value):
         text_field.swipe_into_view()
@@ -600,13 +604,13 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return self._get_calendar().get_current_label().text
 
     def get_event_name(self):
-        return self._get_new_event_entry_field('newEventName').text
+        return self._get_text_box('newEventName').text
 
     def get_description_text(self):
         return self._get_description_text_area().text
 
     def get_location_name(self):
-        return self._get_new_event_entry_field('eventLocationInput').text
+        return self._get_text_box('eventLocationInput').text
 
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and
