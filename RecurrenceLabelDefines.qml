@@ -26,25 +26,4 @@ QtObject {
         i18n.tr("Weekly"),
         i18n.tr("Monthly"),
         i18n.tr("Yearly")];
-
-    /*
-     Returns a string representing label for
-     weekdays.
-     */
-    function getWeekDaysLabel() {
-        var system_locale = Qt.locale();
-
-        var current_weekdays = system_locale.weekDays;
-        var weekdays_label = i18n.tr( "Every Weekday(%1 to %2)" );
-
-        if ( current_weekdays.length ) {
-            var first_day = current_weekdays[ 0 ];
-            var last_day = current_weekdays[ current_weekdays.length - 1 ];
-
-            weekdays_label = weekdays_label.arg( system_locale.dayName( first_day ) )
-                .arg( system_locale.dayName( last_day ) );
-        }
-
-        return weekdays_label;
-    }
 }
