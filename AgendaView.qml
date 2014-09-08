@@ -35,6 +35,14 @@ Page{
         eventList.positionViewAtBeginning();
     }
 
+    function hasEnabledCalendars() {
+        var enabled_calendars = eventListModel.getCollections().filter( function( item ) {
+            return item.extendedMetaData( "collection-selected" );
+        } );
+
+        return !!enabled_calendars.length;
+    }
+
     EventListModel {
         id: eventListModel
         startPeriod: currentDay.midnight();
@@ -58,10 +66,33 @@ Page{
         z:2
     }
 
-    Label{
-        text: i18n.tr("No upcoming events")
-        visible: eventListModel.itemCount === 0
+    Label {
+        id: noEventsOrCalendarsLabel
+        text: {
+            var default_title = i18n.tr( "No upcoming events" );
+
+            if ( !root.hasEnabledCalendars() ) {
+                default_title = i18n.tr("You have no calendars enabled")
+            }
+
+            return default_title;
+        }
+        visible: !root.hasEnabledCalendars() || !eventListModel.itemCount
         anchors.centerIn: parent
+    }
+
+    Button {
+        text: i18n.tr( "Enbale calendars" )
+        visible: !root.hasEnabledCalendars()
+        anchors.top: noEventsOrCalendarsLabel.bottom
+        anchors.horizontalCenter: noEventsOrCalendarsLabel.horizontalCenter
+        anchors.topMargin: units.gu( 1.5 )
+        color: UbuntuColors.orange
+
+        onClicked: {
+            pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
+            pageStack.currentPage.collectionUpdated.connect(eventModel.delayedApplyFilter);
+        }
     }
 
     ListView{
@@ -162,11 +193,34 @@ Page{
 
                 UbuntuShape{
                     id: detailsContainer
-                    color: "white"
+                    color: backgroundColor
 
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: parent.width - units.gu(4)
                     height: detailsColumn.height + units.gu(1)
+
+                    states: [
+                        State {
+                            name: "selected"
+
+                            PropertyChanges {
+                                target: detailsContainer
+                                color: UbuntuColors.orange
+                            }
+
+                            PropertyChanges {
+                                target: timeLabel
+                                color: "white"
+                            }
+                        }
+
+                    ]
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 50
+                        }
+                    }
 
                     Column{
                         id: detailsColumn
@@ -198,6 +252,12 @@ Page{
                             color:"black"
                             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                             width: parent.width
+
+                            Behavior on color {
+                                ColorAnimation {
+                                    duration: 50
+                                }
+                            }
                         }
                     }
 
@@ -205,6 +265,14 @@ Page{
                         anchors.fill: parent
                         onClicked: {
                             pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
+                        }
+
+                        onPressed: {
+                            parent.state = "selected"
+                        }
+
+                        onReleased: {
+                            parent.state = ""
                         }
                     }
                 }

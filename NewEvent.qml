@@ -45,6 +45,7 @@ Page {
     onStartDateChanged: {
         startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
         startTimeInput.text = Qt.formatDateTime(startDate, "hh:mm");
+        adjustEndDateToStartDate()
     }
 
     onEndDateChanged: {
@@ -291,7 +292,7 @@ Page {
         var daysOfWeek = [];
         switch(recurrenceOption.selectedIndex){
         case 2:
-            daysOfWeek = [Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday];
+            daysOfWeek = Qt.locale().weekDays;
             break;
         case 3:
             daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday];
@@ -323,6 +324,30 @@ Page {
             return tempDate.setMinutes(30)
         tempDate.setMinutes(0)
         return tempDate.setHours(tempDate.getHours() + 1)
+    }
+
+    function adjustEndDateToStartDate() {
+        // set time forward to one hour
+        var time_forward = 3600000;
+        endDate = new Date( startDate.getTime() + time_forward );
+    }
+
+    ScrollAnimation{id:scrollAnimation}
+
+    function scrollOnExpand(Self,Container,Target,Margin,Visible)
+    {
+        // Self is needed for "onXxxxxChange" triggers. OnExpansionCompleted however can just write "true".
+        // Container is the item which encapsulates everything, such as a column.
+        // Target is the Flickable id you wish to scroll
+        // Margin is the space between the bottom of the screen and the bottom of the item you are scrolling to.
+        // Visible is needed if there is anything that appears under the item you are scrolling to.
+        if (Self === false){return}
+        var v = units.gu(Margin)
+        for (var i in Visible){if(Visible[i].visible === true){v+=Visible[i].height};}
+
+        scrollAnimation.target = Target
+        scrollAnimation.to = Container.height-height - v
+        scrollAnimation.start()
     }
 
     width: parent.width
@@ -626,10 +651,12 @@ Page {
                     model: Defines.recurrenceLabel
                     containerHeight: itemHeight * 4
                     onExpandedChanged: Qt.inputMethod.hide();
+                    onExpansionCompleted: scrollOnExpand(true,column,flickable,-8,[weeksColumn,limit,limitCount,limitDate,remind])
                 }
             }
 
             Column {
+                id: weeksColumn
                 visible: recurrenceOption.selectedIndex == 5
                 Label {
                     text: i18n.tr("Repeats On:")
@@ -688,7 +715,7 @@ Page {
                     model: Defines.limitLabel
                     containerHeight: itemHeight * 4
                     onExpandedChanged:   Qt.inputMethod.hide();
-
+                    onExpansionCompleted: scrollOnExpand(true,column,flickable,-5,[limitCount,limitDate,remind])
                 }
             }
             NewEventEntryField{
@@ -707,6 +734,7 @@ Page {
                 width: parent.width
                 height: datePick.height
                 visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2;
+                onVisibleChanged: scrollOnExpand(this.visible,column,flickable,-16,[remind])
                 DatePicker{
                     id:datePick;
                     anchors.right: parent.right
@@ -714,6 +742,7 @@ Page {
                 }
             }
             Item{
+                id: remind
                 width: parent.width
                 height: reminderOption.height
                 Label{
@@ -729,6 +758,7 @@ Page {
                     containerHeight: itemHeight * 4
                     model: Defines.reminderLabel
                     onExpandedChanged:   Qt.inputMethod.hide();
+                    onExpansionCompleted: scrollOnExpand(true,column,flickable,-1)
                 }
             }
         }

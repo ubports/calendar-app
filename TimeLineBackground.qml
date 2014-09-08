@@ -33,7 +33,12 @@ Column {
 
                 // TRANSLATORS: this is a time formatting string,
                 // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-                text: new Date(0, 0, 0, index).toLocaleTimeString(Qt.locale(), i18n.tr("hh ap"))
+                text: {
+                    var locale = Qt.locale();
+
+                    return new Date( 0, 0, 0, index )
+                        .toLocaleTimeString( locale, locale.timeFormat( Locale.NarrowFormat ) );
+                }
                 color: "#5D5D5D"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter

@@ -100,9 +100,10 @@ Page {
 
                 MonthComponent {
                     id: monthComponent
+                    objectName: "monthComponent" + index
                     showEvents: false
                     currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
-                    
+
                     isYearView: true
                     anchors.fill: parent
                     anchors.margins: units.gu(0.5)

@@ -66,20 +66,16 @@ Item {
         }
     }
 
-    function layoutEvents(array, depth) {
-        var width = bubbleOverLay.width;
-        var offset = width/(depth+1);
+    function layoutEvents(array, depth) {              
         for(var i=0; i < array.length ; ++i) {
             var schedule = array[i];
-            var x = (schedule.depth) * offset
-            var w = width - x;
             var event = intern.eventMap[schedule.id];
-            bubbleOverLay.createEvent(event , x, w);
+            bubbleOverLay.createEvent(event , schedule.depth, depth +1);
         }
     }
 
     function createEvents() {
-        if(!bubbleOverLay || bubbleOverLay == undefined) {
+        if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined) {
             return;
         }
 
@@ -152,7 +148,7 @@ Item {
         return unUsedBubble;
     }
 
-    function createEvent( event, x, width ) {
+    function createEvent( event, depth, sizeOfRow ) {
         var eventBubble;
         if( isHashEmpty(intern.unUsedEvents) ) {
             eventBubble = delegate.createObject(bubbleOverLay);
@@ -171,8 +167,8 @@ Item {
         eventBubble.height = (height > eventBubble.minimumHeight) ? height:eventBubble.minimumHeight ;
 
         eventBubble.model = bubbleOverLay.model
-        eventBubble.x = x;
-        eventBubble.width = width;
+        eventBubble.depthInRow = depth;
+        eventBubble.sizeOfRow = sizeOfRow;
         eventBubble.event = event
         eventBubble.visible = true;
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
