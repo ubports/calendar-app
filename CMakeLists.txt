@@ -51,8 +51,13 @@ message("Found ${I18N_SRC_FILES}")
 
 file(GLOB SRC_FILES
      RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-     *.qml *.js *.png *.js *.svg)
-install(FILES ${SRC_FILES} ${ICON_FILE} DESTINATION ${DATA_DIR})
+     *.qml *.js)
+add_custom_target(ubuntu-calendar-app_QMlFiles ALL SOURCES ${SRC_FILES})
+
+file(GLOB RESOURCE_FILES
+     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+     *.png *.svg)
+install(FILES ${SRC_FILES} ${RESOURCE_FILES} ${ICON_FILE} DESTINATION ${DATA_DIR})
 
 configure_file(${DESKTOP_FILE}.in.in ${DESKTOP_FILE}.in)
 
