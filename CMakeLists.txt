@@ -7,7 +7,7 @@ find_program(INTLTOOL_EXTRACT intltool-extract)
 include(GNUInstallDirs)
 
 option(INSTALL_TESTS "Install the tests on make install" on)
-option(CLICK_MODE "Installs to a contained location" off)
+option(CLICK_MODE "Installs to a contained location" on)
 
 set(APP_NAME calendar)
 set(DESKTOP_FILE "${PROJECT_NAME}_${APP_NAME}.desktop")
@@ -16,6 +16,7 @@ set(MAIN_QML calendar.qml)
 set(ICON_FILE calendar-app@30.png)
 set(AUTOPILOT_DIR calendar_app)
 set(APP_HARDCODE calendar-app)
+set(UBUNTU_MANIFEST_PATH "click/manifest.json.in" CACHE INTERNAL "Relative path to the manifest file")
 
 if(CLICK_MODE)
     if(NOT DEFINED BZR_SOURCE)
