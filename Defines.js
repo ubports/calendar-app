@@ -68,7 +68,7 @@ function getLimitLabels(){
 function getWeekLabels(){
     var object = Qt.createQmlObject('\
         import QtQuick 2.0;\
-        import Ubuntu.Components 0.1;\
+        import Ubuntu.Components 1.1;\
         QtObject {\
             property var weekLabel:[Qt.locale().dayName(7,Locale.NarrowFormat),\
                                     Qt.locale().dayName(1,Locale.NarrowFormat),\
