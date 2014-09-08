@@ -1,9 +1,10 @@
 {
+    "architecture": "all",
     "description": "A calendar for Ubuntu which syncs with online accounts",
     "framework": "ubuntu-sdk-14.10-qml-dev3",
     "hooks": {
-        "@APP_NAME@": {
-            "apparmor": "apparmor.json",
+        "calendar": {
+            "apparmor": "calendar.apparmor",
             "desktop": "@DESKTOP_FILE@",
             "urls": "@URLS_FILE@"
         }
@@ -20,7 +21,11 @@
     "x-test": {
         "autopilot": {
             "autopilot_module": "@AUTOPILOT_DIR@",
-            "depends": ["python3-dateutil", "address-book-service-dummy", "address-book-service-testability"]
+            "depends": [
+                "python3-dateutil",
+                "address-book-service-dummy",
+                "address-book-service-testability"
+            ]
         }
     }
 }
