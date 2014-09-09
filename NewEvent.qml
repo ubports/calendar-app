@@ -44,6 +44,7 @@ Page {
     onStartDateChanged: {
         startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
         startTimeInput.text = Qt.formatDateTime(startDate, "hh:mm");
+        adjustEndDateToStartDate()
     }
 
     onEndDateChanged: {
@@ -204,11 +205,31 @@ Page {
             pageStack.pop();
         }
     }
+
     VisualReminder{
         id:visualReminder
     }
     AudibleReminder{
         id:audibleReminder
+    }
+
+    function getDaysOfWeek(){
+        var daysOfWeek = [];
+        switch(recurrenceOption.selectedIndex){
+        case 2:
+            daysOfWeek = Qt.locale().weekDays;
+            break;
+        case 3:
+            daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday];
+            break;
+        case 4:
+            daysOfWeek = [Qt.Tuesday,Qt.Thursday];
+            break;
+        case 5:
+            daysOfWeek = internal.weekDays.length === 0 ? [date.getDay()] : internal.weekDays;
+            break;
+        }
+        return daysOfWeek;
     }
 
     function openDatePicker (element, caller, callerProperty, mode) {
@@ -230,7 +251,14 @@ Page {
         return tempDate.setHours(tempDate.getHours() + 1)
     }
 
+    function adjustEndDateToStartDate() {
+        // set time forward to one hour
+        var time_forward = 3600000;
+        endDate = new Date( startDate.getTime() + time_forward );
+    }
+
     ScrollAnimation{id:scrollAnimation}
+
     function scrollOnExpand(Self,Container,Target,Margin,Visible)
     {
         // Self is needed for "onXxxxxChange" triggers. OnExpansionCompleted however can just write "true".

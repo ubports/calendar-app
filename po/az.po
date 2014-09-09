@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-07-04 07:08+0000\n"
+"PO-Revision-Date: 2014-09-08 10:01+0000\n"
 "Last-Translator: Nicat Məmmədov <n1c4t97@gmail.com>\n"
 "Language-Team: Azerbaijani <az@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-17 06:32+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-09-09 07:49+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -55,11 +55,11 @@ msgstr ""
 
 #: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
 msgid "Calendars"
-msgstr ""
+msgstr "Təqvimlər"
 
 #: ../CalendarChoicePopup.qml:20
 msgid "Back"
-msgstr ""
+msgstr "Geri"
 
 #: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
 msgid "Save"
@@ -67,7 +67,7 @@ msgstr "Qeyd et"
 
 #: ../ColorPickerDialog.qml:7
 msgid "Select Color"
-msgstr ""
+msgstr "Rәng Seçin"
 
 #: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
 #: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
