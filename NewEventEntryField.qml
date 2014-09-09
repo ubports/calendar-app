@@ -15,12 +15,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
+
+import QtQuick 2.2
 import Ubuntu.Components 1.1
+import Ubuntu.Components.Themes.Ambiance 1.0
+import Ubuntu.Components.ListItems 1.0 as ListItem
 
 TextField{
     id: root
+
     property alias title: label.text
+
+    style: TextFieldStyle {
+        background: Item {}
+    }
 
     primaryItem: Label{
         id: label
@@ -30,8 +38,14 @@ TextField{
     }
 
     color: focus ? "#2C001E" : "#5D5D5D"
-    font {
-        pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
+    font.pixelSize: focus ? FontUtils.sizeToPixels("large")
+                          : FontUtils.sizeToPixels("medium")
+
+    Rectangle {
+        z: -1
+        anchors.fill: parent
+        color: root.highlighted ? Theme.palette.selected.background
+                                : "Transparent"
     }
 
     onActiveFocusChanged: {

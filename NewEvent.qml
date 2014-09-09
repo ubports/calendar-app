@@ -20,24 +20,23 @@ import QtQuick 2.2
 import QtOrganizer 5.0
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
-import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Themes.Ambiance 1.0
-import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
-
 import "Defines.js" as Defines
 
 Page {
     id: root
     objectName: 'newEventPage'
+
     property var date;
 
     property var event:null;
+    property var rule :null;
     property var model;
 
     property var startDate;
     property var endDate;
-    property int optionSelectorWidth: frequencyLabel.width > remindLabel.width ? frequencyLabel.width : remindLabel.width
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
@@ -92,8 +91,8 @@ Page {
         if(event === null){
             isEdit = false;
             addEvent();
-            titleEdit.forceActiveFocus();
         }
+
         else{
             isEdit = true;
             editEvent(event);
@@ -114,10 +113,18 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+        //Create fresh Recurrence Object.
+        rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml");
         selectCalendar(model.defaultCollection().collectionId);
     }
+
     //Editing Event
     function editEvent(e) {
+        //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
+        rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
+                    Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml")
+                  : e.recurrence.recurrenceRules[0];
+
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
 
@@ -146,73 +153,13 @@ Page {
                     contactModel.append(e.attendees[j]);
                 }
             }
-
-            index = 0;
-            if(e.recurrence ) {
-                var recurrenceRule = e.recurrence.recurrenceRules;
-                index = ( recurrenceRule.length > 0 ) ? recurrenceRule[0].frequency : 0;
-                if(index > 0 )
-                {
-                    limit.visible = true;
-                    if(recurrenceRule[0].limit !== undefined){
-                        var temp = recurrenceRule[0].limit;
-                        if(parseInt(temp)){
-                            limitOptions.selectedIndex = 1;
-                            limitCount.text = temp;
-                        }
-                        else{
-                            limitOptions.selectedIndex = 2;
-                            datePick.date= temp;
-                        }
-                    }
-                    else{
-                        // If limit is infinite
-                        limitOptions.selectedIndex = 0;
-                    }
-                    if(index === RecurrenceRule.Weekly){
-                            index = getWeekDaysIndex(recurrenceRule[0].daysOfWeek.sort());
-                    }
-                    if(recurrenceRule[0].daysOfWeek.length>0 && index === 5){
-                        for(var j = 0;j<recurrenceRule[0].daysOfWeek.length;++j){
-                            //Start childern after first element.
-                            weeksRow.children[recurrenceRule[0].daysOfWeek[j] === 7 ? 0 :recurrenceRule[0].daysOfWeek[j]].children[1].checked = true;
-                        }
-                    }
-                }
-            }
-            recurrenceOption.selectedIndex = index;
         }
-
-        index = 0;
         var reminder = e.detail( Detail.VisualReminder);
         if( reminder ) {
-            var reminderTime = reminder.secondsBeforeStart;
-            var foundIndex = Defines.reminderValue.indexOf(reminderTime);
-            index = foundIndex != -1 ? foundIndex : 0;
-        }
-        reminderOption.selectedIndex = index;
+            visualReminder.secondsBeforeStart = reminder.secondsBeforeStart;
 
+        }
         selectCalendar(e.collectionId);
-    }
-    function getWeekDaysIndex(daysOfWeek){
-        var index = 0;
-        if(compareArrays(daysOfWeek,[Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday]))
-            index = 2
-        else if(compareArrays(daysOfWeek,[Qt.Monday,Qt.Wednesday,Qt.Friday]))
-            index = 3
-        else if(compareArrays(daysOfWeek,[Qt.Tuesday,Qt.Thursday]))
-            index = 4
-        else
-            index = 5
-        return index;
-    }
-
-    function compareArrays(daysOfWeek, actualArray){
-        if (daysOfWeek.length !== actualArray.length) return false;
-        for (var i = 0; i < actualArray.length; i++) {
-            if (daysOfWeek[i] !== actualArray[i]) return false;
-        }
-        return true;
     }
     //Save the new or Existing event
     function saveToQtPim() {
@@ -236,25 +183,10 @@ Page {
                     contacts.push(contact);
                 }
                 event.attendees = contacts;
-
-                var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
-                var rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"NewEvent.qml");
-                if( recurrenceRule !== RecurrenceRule.Invalid ) {
-                    rule.frequency = recurrenceRule;
-                    rule.daysOfWeek = getDaysOfWeek();
-                    if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
-                        rule.limit =  parseInt(limitCount.text);
-                    }
-                    else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
-                        rule.limit =  datePick.date;
-                    }
-                    else{
-                        rule.limit = undefined;
-                    }
-                }
-                event.recurrence.recurrenceRules = [rule];
             }
-
+            //Set the Rule object to an event
+            if(rule !== null && rule !== undefined)
+                event.recurrence.recurrenceRules= [rule]
             //remove old reminder value
             var oldVisualReminder = event.detail(Detail.VisualReminder);
             if(oldVisualReminder) {
@@ -265,27 +197,20 @@ Page {
             if(oldAudibleReminder) {
                 event.removeDetail(oldAudibleReminder);
             }
-
-            var reminderTime = Defines.reminderValue[ reminderOption.selectedIndex ];
-            if( reminderTime !== 0 ) {
-                var visualReminder =  Qt.createQmlObject("import QtOrganizer 5.0; VisualReminder{}", event, "NewEvent.qml");
-                visualReminder.repetitionCount = 3;
-                visualReminder.repetitionDelay = 120;
-                visualReminder.message = titleEdit.text
-                visualReminder.secondsBeforeStart = reminderTime;
-                event.setDetail(visualReminder);
-
-                var audibleReminder =  Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder{}", event, "NewEvent.qml");
-                audibleReminder.repetitionCount = 3;
-                audibleReminder.repetitionDelay = 120;
-                audibleReminder.secondsBeforeStart = reminderTime;
-                event.setDetail(audibleReminder);
-            }
+            event.setDetail(visualReminder);
+            event.setDetail(audibleReminder);
 
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
             model.saveItem(event);
             pageStack.pop();
         }
+    }
+
+    VisualReminder{
+        id:visualReminder
+    }
+    AudibleReminder{
+        id:audibleReminder
     }
 
     function getDaysOfWeek(){
@@ -359,12 +284,6 @@ Page {
         pageStack.pop();
     }
 
-    // we use a custom toolbar in this view
-    tools: ToolbarItems {
-        locked: true
-        opened: false
-    }
-
     Component{
         id: errorDlgComponent
         Dialog {
@@ -375,6 +294,10 @@ Page {
                 onClicked: PopupUtils.close(dialog)
             }
         }
+    }
+
+    EventUtils{
+        id:eventUtils
     }
 
     Flickable{
@@ -409,120 +332,203 @@ Page {
         }
 
         anchors.fill: parent
-        anchors.margins: units.gu(2)
-
         contentWidth: width
-        contentHeight: column.height
+        contentHeight: column.height + units.gu(10)
 
         Column {
             id: column
 
             width: parent.width
-            spacing: units.gu(1)
 
-            UbuntuShape {
-                width:parent.width
-                height: timeColumn.height
+            ListItem.Header {
+                text: i18n.tr("From")
+            }
 
-                Column{
-                    id: timeColumn
-                    width: parent.width
-                    anchors.centerIn: parent
-                    spacing: units.gu(1)
+            Item {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
 
-                    Item {
-                        width: parent.width
-                        height: startDateInput.height
+                height: startDateInput.height
 
-                        NewEventEntryField{
-                            id: startDateInput
-                            title: i18n.tr("Start")
-                            objectName: "startDateInput"
+                NewEventEntryField{
+                    id: startDateInput
+                    objectName: "startDateInput"
 
-                            text: ""
+                    title: i18n.tr("Date")
+                    text: ""
 
-                            width: allDayEventCheckbox.checked ? parent.width : parent.width / 2
+                    anchors.left: parent.left
+                    width: allDayEventCheckbox.checked ? parent.width : parent.width / 2
 
-                            MouseArea{
-                                anchors.fill: parent
-                                onClicked: openDatePicker(startDateInput, root, "startDate", "Years|Months|Days")
-                            }
-                        }
-
-                        NewEventEntryField{
-                            id: startTimeInput
-                            // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-                            title: i18n.tr("at")
-                            objectName: "startTimeInput"
-
-                            text: ""
-
-                            width: (parent.width / 2) - units.gu(1)
-                            anchors.right: parent.right
-                            visible: !allDayEventCheckbox.checked
-
-                            MouseArea{
-                                anchors.fill: parent
-                                onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
-                            }
-                        }
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: openDatePicker(startDateInput, root, "startDate", "Years|Months|Days")
                     }
+                }
 
-                    Item {
-                        width: parent.width
-                        height: endDateInput.height
-                        visible: !allDayEventCheckbox.checked
+                NewEventEntryField{
+                    id: startTimeInput
+                    // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
+                    title: i18n.tr("Time")
+                    objectName: "startTimeInput"
 
-                        NewEventEntryField{
-                            id: endDateInput
-                            title: i18n.tr("End")
-                            objectName: "endDateInput"
+                    text: ""
 
-                            text: ""
+                    anchors.right: parent.right
+                    width: (parent.width / 2) - units.gu(1)
+                    visible: !allDayEventCheckbox.checked
 
-                            width: parent.width / 2
-
-                            MouseArea{
-                                anchors.fill: parent
-                                onClicked: openDatePicker(endDateInput, root, "endDate", "Years|Months|Days")
-                            }
-                        }
-
-                        NewEventEntryField{
-                            id: endTimeInput
-                            // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-                            title: i18n.tr("at")
-                            objectName: "endTimeInput"
-                            text: ""
-                            width: (parent.width / 2) - units.gu(1)
-                            anchors.right: parent.right
-
-                            MouseArea{
-                                anchors.fill: parent
-                                onClicked: openDatePicker(endTimeInput, root, "endDate", "Hours|Minutes")
-
-                            }
-                        }
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
                     }
                 }
             }
 
-            Item{
+            ListItem.ThinDivider {
+                visible: !allDayEventCheckbox.checked
+            }
+
+            ListItem.Header {
+                text: i18n.tr("To")
+                visible: !allDayEventCheckbox.checked
+            }
+
+            Item {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+
+                height: endDateInput.height
+                visible: !allDayEventCheckbox.checked
+
+                NewEventEntryField{
+                    id: endDateInput
+                    objectName: "endDateInput"
+
+                    title: i18n.tr("Date")
+                    text: ""
+
+                    anchors.left: parent.left
+                    width: parent.width / 2
+
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: openDatePicker(endDateInput, root, "endDate", "Years|Months|Days")
+                    }
+                }
+
+                NewEventEntryField{
+                    id: endTimeInput
+                    objectName: "endTimeInput"
+
+                    // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
+                    title: i18n.tr("Time")
+                    text: ""
+
+                    width: (parent.width / 2) - units.gu(1)
+                    anchors.right: parent.right
+
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: openDatePicker(endTimeInput, root, "endDate", "Hours|Minutes")
+                    }
+                }
+            }
+
+            ListItem.ThinDivider {}
+
+            ListItem.Standard {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: units.gu(-1)
+                }
+
+                text: "All Day Event"
+                showDivider: false
+                control: CheckBox {
+                    id: allDayEventCheckbox
+                    checked: false
+                }
+            }
+
+            ListItem.ThinDivider {}
+
+            Column {
                 width: parent.width
-                height: calendarsOption.height
-                Label{
-                    id: calendarLabel
-                    text: i18n.tr("Calendar ");
-                    anchors.verticalCenter: parent.verticalCenter
+                spacing: units.gu(1)
+
+                ListItem.Header{
+                    text: i18n.tr("Event Details")
+                }
+
+                TextField {
+                    id: titleEdit
+                    objectName: "newEventName"
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    placeholderText: i18n.tr("Event Name")
+                }
+
+                TextArea{
+                    id: messageEdit
+                    objectName: "eventDescriptionInput"
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    placeholderText: i18n.tr("Description")
+                }
+
+                TextField {
+                    id: locationEdit
+                    objectName: "eventLocationInput"
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    placeholderText: i18n.tr("Location")
+                }
+            }
+
+            Column {
+                width: parent.width
+                spacing: units.gu(1)
+
+                ListItem.Header {
+                    text: i18n.tr("Calendar")
                 }
 
                 OptionSelector{
                     id: calendarsOption
                     objectName: "calendarsOption"
-                    anchors.right: parent.right
-                    width: parent.width - calendarLabel.width - units.gu(1)
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
                     containerHeight: itemHeight * 4
                     model: root.model.getCollections();
+
                     delegate: OptionSelectorDelegate{
                         text: modelData.name
 
@@ -532,7 +538,7 @@ Page {
                             height: parent.height - units.gu(2)
                             color: modelData.color
                             anchors.right: parent.right
-                            anchors.rightMargin: units.gu(1)
+                            anchors.rightMargin: units.gu(2)
                             anchors.verticalCenter: parent.verticalCenter
                         }
                     }
@@ -540,230 +546,111 @@ Page {
                 }
             }
 
-            Row {
-                width: parent.width
-                spacing: units.gu(1)
-                anchors.margins: units.gu(0.5)
-
-                Label {
-                    text: i18n.tr("All Day event:")
-                    anchors.verticalCenter: allDayEventCheckbox.verticalCenter
-                }
-
-                CheckBox {
-                    id: allDayEventCheckbox
-                    checked: false
-                }
-            }
-
-            ThinDivider{}
-
-            NewEventEntryField{
-                id: titleEdit
-                width: parent.width
-                title: i18n.tr("Event Name")
-                objectName: "newEventName"
-            }
-
-            Column{
-                id: descriptionColumn
-                width: parent.width
-                spacing: units.gu(1)
-
-                Label {
-                    text: i18n.tr("Description")
-                    anchors.margins: units.gu(0.5)
-                    anchors.left: parent.left
-                }
-
-                TextArea{
-                    id: messageEdit
-                    objectName: "eventDescriptionInput"
-                    width: parent.width
-                    color: focus ? "#2C001E" : "#5D5D5D"
-                    // default style
-                    font {
-                        pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
-                    }
-                }
-            }
-
-            NewEventEntryField{
-                id: locationEdit
-                width: parent.width
-                title: i18n.tr("Location")
-                objectName: "eventLocationInput"
-            }
-
-            UbuntuShape {
-                width: parent.width
-                height: contactList.height
-                Column{
-                    id: contactList
-                    objectName: "guestList"
-                    spacing: units.gu(1)
-                    width: parent.width
-                    clip: true
-                    property var array: []
-                    ListModel{
-                        id: contactModel
-                    }
-                    Button{
-                        text: i18n.tr("Add Guest")
-                        objectName: "addGuestButton"
-                        width: parent.width
-                        onClicked: {
-                            var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
-                            popup.contactSelected.connect( function(contact) {
-                                var t = internal.contactToAttendee(contact);
-                                if( !internal.isContactAlreadyAdded(contact) ) {
-                                    contactModel.append(t);
-                                    contactList.array.push(t);
-                                }
-                            });
-                        }
-                    }
-
-                    Repeater{
-                        model: contactModel
-                        delegate: Standard {
-                            objectName: "eventGuest%1".arg(index)
-                            height: units.gu(4)
-                            text: name
-                        }
-                    }
-                }
-            }
-
-            Item {
-                width: parent.width
-                height: recurrenceOption.height
-                visible: event.itemType === Type.Event
-                Label{
-                    id: frequencyLabel
-                    text: i18n.tr("This happens");
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                OptionSelector{
-                    id: recurrenceOption
-                    anchors.right: parent.right
-                    width: parent.width - optionSelectorWidth - units.gu(1)
-                    model: Defines.recurrenceLabel
-                    containerHeight: itemHeight * 4
-                    onExpandedChanged: Qt.inputMethod.hide();
-                    onExpansionCompleted: scrollOnExpand(true,column,flickable,-8,[weeksColumn,limit,limitCount,limitDate,remind])
-                }
-            }
-
             Column {
-                id: weeksColumn
-                visible: recurrenceOption.selectedIndex == 5
-                Label {
-                    text: i18n.tr("Repeats On:")
+                width: parent.width
+                spacing: units.gu(1)
+
+                ListItem.Header {
+                    text: i18n.tr("Guests")
                 }
-                Row {
-                    id: weeksRow
-                    width: column.width
-                    spacing: (weeksRow.width - units.gu(28))/6 //Units.gu(28) = weeksRowColumn.width * 7 [weeks]
-                    Repeater {
-                        model: Defines.weekLabel
-                        Column {
-                            id: weeksRowColumn
-                            width: units.gu(4) //This is help calculate weeksRow.spacing
-                            Label {
-                                id:lbl
-                                text:modelData
-                                anchors.horizontalCenter: parent.horizontalCenter
+
+                Button{
+                    text: i18n.tr("Add Guest")
+                    objectName: "addGuestButton"
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    onClicked: {
+                        var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
+                        popup.contactSelected.connect( function(contact) {
+                            var t = internal.contactToAttendee(contact);
+                            if( !internal.isContactAlreadyAdded(contact) ) {
+                                contactModel.append(t);
+                                contactList.array.push(t);
                             }
-                            CheckBox {
-                                id: weekCheck
-                                onCheckedChanged: {
-                                    //EDS consider 7 as Sunday index so if the index is 0 then we have to explicitly push Sunday.
-                                    if(index === 0)
-                                        (checked) ? internal.weekDays.push(Qt.Sunday) : internal.weekDays.splice(internal.weekDays.indexOf(Qt.Sunday),1);
-                                    else
-                                        (checked) ? internal.weekDays.push(index) : internal.weekDays.splice(internal.weekDays.indexOf(index),1);
-                                }
-                                checked: {
-                                    (internal.weekDays.length === 0 && index === date.getDay() && isEdit== false) ? true : false;
-                                }
+                        });
+                    }
+                }
+
+                UbuntuShape {
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
+                    height: contactList.height
+
+                    Column{
+                        id: contactList
+                        objectName: "guestList"
+
+                        spacing: units.gu(1)
+                        width: parent.width
+                        clip: true
+
+                        property var array: []
+
+                        ListModel{
+                            id: contactModel
+                        }
+
+                        Repeater{
+                            model: contactModel
+                            delegate: ListItem.Standard {
+                                objectName: "eventGuest%1".arg(index)
+                                height: units.gu(4)
+                                text: name
                             }
                         }
                     }
                 }
+
+                ListItem.ThinDivider {}
             }
-            Item {
-                id: limit
-                visible: recurrenceOption.selectedIndex != 0
-                width: parent.width
-                height: limitOptions.height
-                Label{
-                    id: limitLabel
-                    text: i18n.tr("Recurring event ends");
-                    anchors{
-                        left: parent.left
-                        right: limitOptions.left
-                    }
-                    wrapMode: Text.WordWrap
-                    maximumLineCount: 2
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                OptionSelector{
-                    id: limitOptions
-                    anchors.right: parent.right
-                    width: parent.width - optionSelectorWidth - units.gu(3)
-                    model: Defines.limitLabel
-                    containerHeight: itemHeight * 4
-                    onExpandedChanged:   Qt.inputMethod.hide();
-                    onExpansionCompleted: scrollOnExpand(true,column,flickable,-5,[limitCount,limitDate,remind])
-                }
-            }
-            NewEventEntryField{
-                id: limitCount
-                width: parent.width
-                // TRANSLATORS: This refers to no of occurences of an event.
-                title: i18n.tr("Recurrence")
-                objectName: "eventLimitCount"
-                visible:  recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 1;
-                validator: IntValidator{bottom: 1;}
-                inputMethodHints: Qt.ImhDialableCharactersOnly
-                focus: true
-            }
-            Item {
-                id: limitDate
-                width: parent.width
-                height: datePick.height
-                visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex===2;
-                onVisibleChanged: scrollOnExpand(this.visible,column,flickable,-16,[remind])
-                DatePicker{
-                    id:datePick;
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                }
-            }
-            Item{
-                id: remind
-                width: parent.width
-                height: reminderOption.height
-                Label{
-                    id: remindLabel
-                    text: i18n.tr("Remind me");
-                    anchors.verticalCenter: parent.verticalCenter
+
+            ListItem.Subtitled{
+                id:thisHappens
+                objectName :"thisHappens"
+
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(-1)
                 }
 
-                OptionSelector{
-                    id: reminderOption
-                    anchors.right: parent.right
-                    width: parent.width - optionSelectorWidth - units.gu(1)
-                    containerHeight: itemHeight * 4
-                    model: Defines.reminderLabel
-                    onExpandedChanged:   Qt.inputMethod.hide();
-                    onExpansionCompleted: scrollOnExpand(true,column,flickable,-1)
+                showDivider: false
+                visible: event.itemType === Type.Event
+                text: i18n.tr("This Happens")
+                subText: eventUtils.getRecurrenceString(rule)
+                onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
+            }
+
+            ListItem.ThinDivider {}
+            ListItem.Subtitled{
+                id:eventReminder
+                objectName  : "eventReminder"
+                anchors{
+                    left:parent.left
+                    leftMargin: units.gu(-1)
                 }
+                showDivider: false
+                text: i18n.tr("Reminder")
+                subText:{
+                    var foundIndex = Defines.reminderValue.indexOf(visualReminder.secondsBeforeStart);
+                    Defines.reminderLabel[foundIndex != -1 ? foundIndex : 0]
+                }
+                onClicked: pageStack.push(Qt.resolvedUrl("EventReminder.qml"),
+                                          {"visualReminder": visualReminder,
+                                              "audibleReminder":audibleReminder,
+                                              "eventTitle":titleEdit.text});
+
             }
         }
     }
-
     // used to keep the field visible when the keyboard appear or dismiss
     KeyboardRectangle {
         id: keyboard
@@ -777,7 +664,6 @@ Page {
 
     QtObject {
         id: internal
-        property var weekDays : [];
         function clearFocus() {
             Qt.inputMethod.hide()
             titleEdit.focus = false
