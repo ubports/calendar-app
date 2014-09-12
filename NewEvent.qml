@@ -22,6 +22,7 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Themes.Ambiance 1.0
+import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
 import "Defines.js" as Defines
 
