@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-04 08:45+0000\n"
+"PO-Revision-Date: 2014-09-12 19:40+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
-"Language-Team: Fòram na Gàidhlig http://www.foramnagaidhlig.net\n"
+"Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-08-17 06:32+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-09-13 08:15+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: gd\n"
 
 #: ../AgendaView.qml:43
@@ -79,11 +79,11 @@ msgstr "Sguir dheth"
 
 #: ../ContactChoicePopup.qml:20
 msgid "No contact"
-msgstr ""
+msgstr "Chan eil neach-aithne ann"
 
 #: ../ContactChoicePopup.qml:66
 msgid "Search contact"
-msgstr ""
+msgstr "Lorg neach-aithne"
 
 #: ../DeleteConfirmationDialog.qml:14
 msgid "Delete Recurring Event"
@@ -252,7 +252,7 @@ msgstr "Tuairisgeul"
 
 #: ../NewEvent.qml:560
 msgid "Add Guest"
-msgstr ""
+msgstr "Cuir aoigh ris"
 
 #: ../NewEvent.qml:612
 msgid "Repeats On:"
