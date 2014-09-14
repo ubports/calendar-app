@@ -64,6 +64,7 @@ Page {
                 iconName: "ok"
                 objectName: "save"
                 text: i18n.tr("Save")
+                enabled: !!titleEdit.text.trim()
                 onTriggered: saveToQtPim();
             }
         ]
