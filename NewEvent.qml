@@ -360,7 +360,7 @@ Page {
 
                     text: ""
                     anchors.left: parent.left
-                    width: allDayEventCheckbox.checked ? parent.width : 2 * parent.width / 3
+                    width: allDayEventCheckbox.checked ? parent.width : 4 * parent.width / 5
 
                     MouseArea{
                         anchors.fill: parent
@@ -374,7 +374,7 @@ Page {
 
                     text: ""
                     anchors.right: parent.right
-                    width: (parent.width / 3) - units.gu(1)
+                    width: parent.width / 5
                     visible: !allDayEventCheckbox.checked
 
                     MouseArea{
@@ -405,7 +405,7 @@ Page {
 
                     text: ""
                     anchors.left: parent.left
-                    width: 2 * parent.width / 3
+                    width: 4 * parent.width / 5
 
                     MouseArea{
                         anchors.fill: parent
@@ -418,7 +418,7 @@ Page {
                     objectName: "endTimeInput"
 
                     text: ""
-                    width: (parent.width / 3) - units.gu(1)
+                    width: parent.width / 5
                     anchors.right: parent.right
 
                     MouseArea{
