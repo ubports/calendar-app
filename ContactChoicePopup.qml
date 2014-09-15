@@ -75,7 +75,7 @@ Popover {
         anchors.right: parent.right
         anchors.margins: units.gu(1)
 
-        NewEventEntryField{
+        TextField {
             id: searchBox
             objectName: "contactPopoverInput"
             focus: true
@@ -85,7 +85,6 @@ Popover {
                  height: parent.height*0.5
                  width: parent.height*0.5
                  anchors.verticalCenter: parent.verticalCenter
-                 anchors.verticalCenterOffset: -units.gu(0.2)
                  name:"find"
              }
         }

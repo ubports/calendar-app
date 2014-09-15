@@ -575,7 +575,7 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         for guest in guests:
             self.pointing_device.click_object(guests_btn)
             guest_input = main_view.select_single(
-                NewEventEntryField, objectName='contactPopoverInput')
+                ubuntuuitoolkit.TextField, objectName='contactPopoverInput')
             contacts = main_view.select_single(ubuntuuitoolkit.QQuickListView,
                                                objectName='contactPopoverList')
             guest_input.write(guest)
