@@ -56,7 +56,7 @@ class MainView(ubuntuuitoolkit.MainView):
 
     def __init__(self, *args):
         super(MainView, self).__init__(*args)
-        self.visible.wait_for(True)
+        self.visible.wait_for(True, 30)
 
     @autopilot.logging.log_action(logger.info)
     def go_to_month_view(self):
