@@ -68,7 +68,7 @@ class TestYearView(CalendarAppTestCase):
         """Swipe the given view to bottom to up"""
         counter = 0
         # try up to 3 times to swipe
-        while counter < 3 :
+        while counter < 3:
             self._flick_view_up(view)
             sleep(1)
             counter += 1
