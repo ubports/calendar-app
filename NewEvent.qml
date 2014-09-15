@@ -43,14 +43,14 @@ Page {
     property bool isEdit: false
 
     onStartDateChanged: {
-        startDateInput.text = Qt.formatDateTime(startDate, "ddd, dd MMM, yyyy");
-        startTimeInput.text = Qt.formatDateTime(startDate, "hh:mm");
+        startDateInput.text = startDate.toLocaleDateString();
+        startTimeInput.text = Qt.formatTime(startDate);
         adjustEndDateToStartDate()
     }
 
     onEndDateChanged: {
-        endDateInput.text = Qt.formatDateTime(endDate, "ddd, dd MMM, yyyy");
-        endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
+        endDateInput.text = endDate.toLocaleDateString();
+        endTimeInput.text = Qt.formatTime(endDate);
     }
 
     head {
