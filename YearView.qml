@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 
 import "dateExt.js" as DateExt
 Page {
@@ -107,9 +107,10 @@ Page {
 
                 MonthComponent {
                     id: monthComponent
+                    objectName: "monthComponent" + index
                     showEvents: false
                     currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
-                    
+
                     isYearView: true
                     anchors.fill: parent
                     anchors.margins: units.gu(0.5)

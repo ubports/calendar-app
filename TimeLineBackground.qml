@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 
 Column {
     width: parent.width
@@ -33,7 +33,12 @@ Column {
 
                 // TRANSLATORS: this is a time formatting string,
                 // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-                text: new Date(0, 0, 0, index).toLocaleTimeString(Qt.locale(), i18n.tr("hh ap"))
+                text: {
+                    var locale = Qt.locale();
+
+                    return new Date( 0, 0, 0, index )
+                        .toLocaleTimeString( locale, locale.timeFormat( Locale.NarrowFormat ) );
+                }
                 color: "#5D5D5D"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter

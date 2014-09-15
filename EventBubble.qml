@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 
 Item{
     id: infoBubble
@@ -27,6 +27,9 @@ Item{
     property int type: narrowType
     property int wideType: 1;
     property int narrowType: 2;
+
+    property int depthInRow: 0;
+    property int sizeOfRow:0
 
     property Flickable flickable;
 
@@ -41,7 +44,21 @@ Item{
         gradientColor: "#F5F5F5"
     }
 
+    function resize() {
+        var offset = parent.width/sizeOfRow;
+        x = (depthInRow) * offset;
+        width = parent.width - x;
+    }
+
+    Connections{
+        target: parent
+        onWidthChanged:{
+            resize();
+        }
+    }
+
     onEventChanged: {
+        resize();
         setDetails();
     }
 
