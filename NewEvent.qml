@@ -43,13 +43,13 @@ Page {
     property bool isEdit: false
 
     onStartDateChanged: {
-        startDateInput.text = Qt.formatDateTime(startDate, "dd MMM yyyy");
+        startDateInput.text = Qt.formatDateTime(startDate, "ddd, dd MMM, yyyy");
         startTimeInput.text = Qt.formatDateTime(startDate, "hh:mm");
         adjustEndDateToStartDate()
     }
 
     onEndDateChanged: {
-        endDateInput.text = Qt.formatDateTime(endDate, "dd MMM yyyy");
+        endDateInput.text = Qt.formatDateTime(endDate, "ddd, dd MMM, yyyy");
         endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
     }
 
@@ -235,7 +235,6 @@ Page {
     }
 
     function openDatePicker (element, caller, callerProperty, mode) {
-        Qt.inputMethod.hide();
         element.highlighted = true;
         var picker = PickerPanel.openDatePicker(caller, callerProperty, mode);
         if (!picker) return;
@@ -359,11 +358,9 @@ Page {
                     id: startDateInput
                     objectName: "startDateInput"
 
-                    title: i18n.tr("Date")
                     text: ""
-
                     anchors.left: parent.left
-                    width: allDayEventCheckbox.checked ? parent.width : parent.width / 2
+                    width: allDayEventCheckbox.checked ? parent.width : 2 * parent.width / 3
 
                     MouseArea{
                         anchors.fill: parent
@@ -373,14 +370,11 @@ Page {
 
                 NewEventEntryField{
                     id: startTimeInput
-                    // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-                    title: i18n.tr("Time")
                     objectName: "startTimeInput"
 
                     text: ""
-
                     anchors.right: parent.right
-                    width: (parent.width / 2) - units.gu(1)
+                    width: (parent.width / 3) - units.gu(1)
                     visible: !allDayEventCheckbox.checked
 
                     MouseArea{
@@ -388,10 +382,6 @@ Page {
                         onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
                     }
                 }
-            }
-
-            ListItem.ThinDivider {
-                visible: !allDayEventCheckbox.checked
             }
 
             ListItem.Header {
@@ -413,11 +403,9 @@ Page {
                     id: endDateInput
                     objectName: "endDateInput"
 
-                    title: i18n.tr("Date")
                     text: ""
-
                     anchors.left: parent.left
-                    width: parent.width / 2
+                    width: 2 * parent.width / 3
 
                     MouseArea{
                         anchors.fill: parent
@@ -429,11 +417,8 @@ Page {
                     id: endTimeInput
                     objectName: "endTimeInput"
 
-                    // TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-                    title: i18n.tr("Time")
                     text: ""
-
-                    width: (parent.width / 2) - units.gu(1)
+                    width: (parent.width / 3) - units.gu(1)
                     anchors.right: parent.right
 
                     MouseArea{
@@ -442,8 +427,6 @@ Page {
                     }
                 }
             }
-
-            ListItem.ThinDivider {}
 
             ListItem.Standard {
                 anchors {
