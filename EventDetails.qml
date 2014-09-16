@@ -57,6 +57,10 @@ Page {
         }
     }
 
+    RemindersModel {
+        id: reminderModel
+    }
+
     function updateCollection(event) {
         var collection = model.collection( event.collectionId );
         calendarIndicator.color = collection.color
@@ -118,14 +122,15 @@ Page {
     }
 
     function updateReminder(event) {
-        var index = 0;
-        var reminder = event.detail( Detail.VisualReminder);
+        var reminder = event.detail( Detail.VisualReminder)
         if( reminder ) {
-            var reminderTime = reminder.secondsBeforeStart;
-            var foundIndex = Defines.reminderValue.indexOf(reminderTime);
-            index = foundIndex != -1 ? foundIndex : 0;
+            for(var i=0; i<reminderModel.count; i++) {
+                if(reminder.secondsBeforeStart === reminderModel.get(i).value)
+                    reminderHeader.value = reminderModel.get(i).label
+            }
+        } else {
+            reminderHeader.value = reminderModel.get(0).label
         }
-        reminderHeader.value = Defines.reminderLabel[index];
     }
 
     function updateLocation(event) {
@@ -225,7 +230,7 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
-		objectName: "edit"
+                objectName: "edit"
                 iconName: "edit";
                 onTriggered: {
                     if( event.itemType === Type.EventOccurrence ) {
