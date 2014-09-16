@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-27 14:28+0000\n"
-"Last-Translator: David Planella <david.planella@ubuntu.com>\n"
+"PO-Revision-Date: 2014-09-15 08:02+0000\n"
+"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-28 06:25+0000\n"
-"X-Generator: Launchpad (build 17174)\n"
+"X-Launchpad-Export-Date: 2014-09-16 08:25+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:43
 msgid "No upcoming events"
@@ -175,7 +175,7 @@ msgstr "Inici"
 
 #: ../EventDetails.qml:282 ../NewEvent.qml:426
 msgid "End"
-msgstr "Finalització"
+msgstr "Fi"
 
 #: ../EventDetails.qml:291 ../NewEvent.qml:497
 msgid "All Day event:"
