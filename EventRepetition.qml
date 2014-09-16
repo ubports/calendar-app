@@ -91,7 +91,7 @@ Page {
             var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
             if( recurrenceRule !== RecurrenceRule.Invalid ) {
                 rule.frequency = recurrenceRule;
-                if(limitOptions.selectedIndex > 0) {
+                if(recurrenceOption.selectedIndex > 0) {
                     rule.daysOfWeek = eventUtils.getDaysOfWeek(recurrenceOption.selectedIndex,weekDays );
                     if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
                         rule.limit =  parseInt(limitCount.text);
