@@ -66,45 +66,9 @@ Page {
     function updateRecurrence( event ) {
         var index = 0;
         if(event.recurrence ) {
-            var recurrenceRule = event.recurrence.recurrenceRules;
-            if(recurrenceRule.length > 0){
-                if(recurrenceRule[0].limit === undefined)
-                    limitHeader.value = i18n.tr("Never");
-                else{
-                    // TRANSLATORS: this is a date shown in the event details view,
-                    // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-                    var dateFormat = i18n.tr("ddd MMMM d yyyy");
-                    // TRANSLATORS: This refers to the number of occurences of an event.
-                    limitHeader.value = parseInt(recurrenceRule[0].limit) ?
-                                i18n.tr("After %1 Occurrence", "After %1 Occurrences", recurrenceRule[0].limit).arg(recurrenceRule[0].limit):
-                                i18n.tr("After Date %1".arg(recurrenceRule[0].limit.toLocaleString(Qt.locale(), dateFormat)));
-                }
-
-                index =  recurrenceRule[0].frequency ;
-                if (index === RecurrenceRule.Weekly) {
-                    var sorted = recurrenceRule[0].daysOfWeek.sort();
-                    var val = "";
-                    for (var j=0; j<sorted.length; ++j) {
-                        val += Qt.locale().dayName(sorted[j], Locale.ShortFormat) + ", ";
-                    }
-                    val = val.slice(0, -2); // Trim last comma from the string
-                    // TRANSLATORS: the argument is a day of the week or a list of days
-                    var recurrence = i18n.tr("Every %1".arg(val));
-                    weekDaysHeader.value = recurrence;
-                    weekDaysHeader.visible = true;
-                }
-            }
-            else{
-                limitHeader.visible = false
-                index = 0
-            }
-        }
-        // This happens will be weekly in following cases:
-        // 1. Weekdays Monday to Friday
-        // 2. Monday,Wednesday,Friday
-        // 3. Tuesday & Thursday
-        // 4. Manual weekdays
-        recurrentHeader.value = Defines.recurrenceLabel[index === RecurrenceRule.Weekly ? 5 : index];
+            var rule =  event.recurrence.recurrenceRules[0];
+            recurrentHeader.value = eventUtils.getRecurrenceString(rule)
+    }
     }
 
     function updateContacts(event) {
@@ -196,6 +160,7 @@ Page {
         updateLocation(e);
     }
 
+
     Keys.onEscapePressed: {
         pageStack.pop();
     }
@@ -243,6 +208,9 @@ Page {
                 }
             }
         }
+    }
+    EventUtils{
+        id:eventUtils
     }
 
     QtObject{
@@ -415,7 +383,7 @@ Page {
 
             //Guest Entries ends
             ThinDivider{}
-            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth,weekDaysHeader.headerWidth,limitHeader.headerWidth) //Dynamic Height
+            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth) //Dynamic Height
             EventDetailsInfo{
                 id: recurrentHeader
                 xMargin: column.recurranceAreaMaxWidth
@@ -425,17 +393,6 @@ Page {
                 id: reminderHeader
                 xMargin: column.recurranceAreaMaxWidth
                 header: i18n.tr("Remind me")
-            }
-            EventDetailsInfo{
-                id: weekDaysHeader
-                xMargin: column.recurranceAreaMaxWidth
-                header: i18n.tr("Repeats On");
-                visible: false
-            }
-            EventDetailsInfo{
-                id: limitHeader
-                xMargin: column.recurranceAreaMaxWidth
-                header: i18n.tr("Repetition Ends")
             }
 
         }
