@@ -608,6 +608,7 @@ Page {
                 }
 
                 showDivider: false
+                progression: true
                 visible: event.itemType === Type.Event
                 text: i18n.tr("This Happens")
                 subText: eventUtils.getRecurrenceString(rule)
@@ -615,24 +616,35 @@ Page {
             }
 
             ListItem.ThinDivider {}
+
             ListItem.Subtitled{
                 id:eventReminder
                 objectName  : "eventReminder"
+
                 anchors{
                     left:parent.left
                     leftMargin: units.gu(-1)
                 }
                 showDivider: false
+                progression: true
                 text: i18n.tr("Reminder")
-                subText:{
-                    var foundIndex = Defines.reminderValue.indexOf(visualReminder.secondsBeforeStart);
-                    Defines.reminderLabel[foundIndex != -1 ? foundIndex : 0]
+
+                RemindersModel {
+                    id: reminderModel
                 }
+
+                subText:{
+                    for(var i=0; i<reminderModel.count; i++) {
+                        if(visualReminder.secondsBeforeStart === reminderModel.get(i).value)
+                            return reminderModel.get(i).label
+                    }
+                }
+
                 onClicked: pageStack.push(Qt.resolvedUrl("EventReminder.qml"),
                                           {"visualReminder": visualReminder,
-                                              "audibleReminder":audibleReminder,
-                                              "eventTitle":titleEdit.text});
-
+                                              "audibleReminder": audibleReminder,
+                                              "reminderModel": reminderModel,
+                                              "eventTitle": titleEdit.text})
             }
         }
     }
