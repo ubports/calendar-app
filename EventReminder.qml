@@ -17,38 +17,27 @@
  */
 
 import QtQuick 2.3
-import QtOrganizer 5.0
 import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Components.Pickers 1.0
-import QtOrganizer 5.0
-import "Defines.js" as Defines
 
 Page{
     id:root
     objectName: "eventReminder"
 
-    property var visualReminder :null
-    property var audibleReminder :null
+    property var visualReminder: null
+    property var audibleReminder: null
+    property var reminderModel: null
     property var eventTitle: null
-
+    property var reminderTime: visualReminder.secondsBeforeStart
 
     visible: false
+    flickable: null
     title: i18n.tr("Reminder")
 
-    Component.onCompleted: {
-        var reminderTime = visualReminder.secondsBeforeStart;
-        var foundIndex = Defines.reminderValue.indexOf(reminderTime);
-        reminderOption.selectedIndex = foundIndex != -1 ? foundIndex : 0;
-
-    }
-
     head.backAction: Action{
-        id:backAction
         iconName:"back"
         onTriggered:{
-            var reminderTime = Defines.reminderValue[reminderOption.selectedIndex]
-            if(reminderTime!== 0){
+            if(reminderTime !== 0){
                 visualReminder.repetitionCount = 3;
                 visualReminder.repetitionDelay = 120;
                 visualReminder.message = eventTitle
@@ -62,24 +51,57 @@ Page{
         }
     }
 
-    Column{
-        id:reminder
-        anchors.fill: parent
-        spacing: units.gu(1)
+    Flickable {
+        id: _pageFlickable
 
-        ListItem.Header{
-            text: i18n.tr("Reminder")
-        }
-        OptionSelector{
-            id: reminderOption
-            objectName: "reminderOptions"
+        clip: true
+        anchors.fill: parent
+        contentHeight: reminderModel.count * units.gu(7)
+
+        Column {
+            id: _reminderColumn
+
             anchors {
+                top: parent.top
                 left: parent.left
                 right: parent.right
-                margins: units.gu(2)
             }
-            containerHeight: itemHeight * 4
-            model: Defines.reminderLabel
+
+            Repeater {
+                id: _reminders
+
+                model: reminderModel
+
+                ListItem.Standard {
+                    id: _reminderDelegate
+
+                    property alias isChecked: reminderCheckbox.checked
+
+                    text: label
+                    control: CheckBox {
+                        id: reminderCheckbox
+
+                        checked: root.reminderTime === value
+
+                        onClicked: {
+                            root.reminderTime = value
+                            if (checked) {
+                                // Ensures only one reminder option is selected
+                                for(var i=0; i<reminderModel.count; i++) {
+                                    if(_reminders.itemAt(i).isChecked &&
+                                            i !== index) {
+                                        _reminders.itemAt(i).isChecked = false
+                                    }
+                                }
+                            }
+
+                            else {
+                                checked = !checked
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
