@@ -53,21 +53,12 @@ Page {
         endTimeInput.text = Qt.formatTime(endDate);
     }
 
-    head {
-        backAction: Action {
-            iconName: "close"
-            onTriggered: pageStack.pop();
-        }
-
-        actions: [
-            Action {
-                iconName: "ok"
-                objectName: "save"
-                text: i18n.tr("Save")
-                enabled: !!titleEdit.text.trim()
-                onTriggered: saveToQtPim();
-            }
-        ]
+    head.actions: Action {
+        iconName: "ok"
+        objectName: "save"
+        text: i18n.tr("Save")
+        enabled: !!titleEdit.text.trim()
+        onTriggered: saveToQtPim();
     }
 
     Component.onCompleted: {
