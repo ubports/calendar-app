@@ -82,7 +82,7 @@ Page{
     }
 
     Button {
-        text: i18n.tr( "Enbale calendars" )
+        text: i18n.tr( "Enable calendars" )
         visible: !root.hasEnabledCalendars()
         anchors.top: noEventsOrCalendarsLabel.bottom
         anchors.horizontalCenter: noEventsOrCalendarsLabel.horizontalCenter

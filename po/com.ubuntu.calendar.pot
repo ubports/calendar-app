@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-16 09:36+0200\n"
+"POT-Creation-Date: 2014-09-16 09:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgid "You have no calendars enabled"
 msgstr ""
 
 #: ../AgendaView.qml:85
-msgid "Enbale calendars"
+msgid "Enable calendars"
 msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
