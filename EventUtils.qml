@@ -67,7 +67,7 @@ QtObject{
         var days = []
         for(var j = 0;j<daysOfWeek.length;++j){
             //push all days
-            days.push(Qt.locale().dayName(j,Locale.NarrowFormat))
+            days.push(Qt.locale().dayName(daysOfWeek[j],Locale.NarrowFormat))
         }
         days = days.join(', ');
         return days;
