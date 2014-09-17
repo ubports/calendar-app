@@ -15,9 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
+import QtQuick 2.3
 import Ubuntu.Components 1.1
-import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Themes.Ambiance 1.0
 import QtOrganizer 5.0
@@ -65,9 +64,11 @@ Page {
 
     function updateRecurrence( event ) {
         var index = 0;
-        if(event.recurrence ) {
-            var rule =  event.recurrence.recurrenceRules[0];
-            recurrentHeader.value = eventUtils.getRecurrenceString(rule)
+        if(event.recurrence) {
+            if(event.recurrence.recurrenceRules[0] !== undefined){
+                var rule =  event.recurrence.recurrenceRules[0];
+                recurrentHeader.value = eventUtils.getRecurrenceString(rule)
+            }
     }
     }
 
