@@ -69,7 +69,7 @@ Page {
                 var rule =  event.recurrence.recurrenceRules[0];
                 recurrentHeader.value = eventUtils.getRecurrenceString(rule)
             }
-    }
+        }
     }
 
     function updateContacts(event) {
@@ -191,7 +191,7 @@ Page {
         ToolbarButton {
             action:Action {
                 text: i18n.tr("Edit");
-		objectName: "edit"
+                objectName: "edit"
                 iconName: "edit";
                 onTriggered: {
                     if( event.itemType === Type.EventOccurrence ) {
