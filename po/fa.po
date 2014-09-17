@@ -7,34 +7,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-16 11:13+0000\n"
+"POT-Creation-Date: 2014-09-16 09:39+0200\n"
+"PO-Revision-Date: 2014-09-17 03:51+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-17 06:33+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-09-17 07:15+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
-#: ../AgendaView.qml:43
+#: ../AgendaView.qml:72
 msgid "No upcoming events"
 msgstr "هیچ رویداد نزدیکی وجود ندارد"
 
+#: ../AgendaView.qml:75
+msgid "You have no calendars enabled"
+msgstr "شما هیچ تقویم فعّالی ندارید"
+
+#: ../AgendaView.qml:85
+msgid "Enable calendars"
+msgstr "تقویم‌های فعّال"
+
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
+#: ../AgendaView.qml:143 ../EventBubble.qml:90 ../EventDetails.qml:151
 msgid "hh:mm"
 msgstr "hh:mm"
 
-#: ../AgendaView.qml:94
+#: ../AgendaView.qml:144
 msgid "dddd , d MMMM"
 msgstr "‫dddd، d MMMM"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:101 ../EventBubble.qml:61
+#: ../AgendaView.qml:151 ../EventBubble.qml:95
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 تا %2"
@@ -43,304 +51,317 @@ msgstr "%1 تا %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:98
+#: ../AllDayEventComponent.qml:115
 #, qt-format
 msgid "%1 Ev."
 msgstr "%1 رویداد"
 
-#: ../AllDayEventComponent.qml:101
+#: ../AllDayEventComponent.qml:118
 #, qt-format
 msgid "%1 All day events"
 msgstr "%1 رویداد تمام‌روز"
 
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
+#: ../CalendarChoicePopup.qml:32 ../calendar.qml:332
 msgid "Calendars"
 msgstr "تقویم‌ها"
 
-#: ../CalendarChoicePopup.qml:20
+#: ../CalendarChoicePopup.qml:36
 msgid "Back"
 msgstr "بازگشت"
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
+#: ../CalendarChoicePopup.qml:44 ../NewEvent.qml:66
 msgid "Save"
 msgstr "ذخیره‌کردن"
 
-#: ../ColorPickerDialog.qml:7
+#: ../ColorPickerDialog.qml:24
 msgid "Select Color"
 msgstr "برگزیدن رنگ"
 
-#: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
-#: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:722
+#: ../ColorPickerDialog.qml:54 ../DeleteConfirmationDialog.qml:59
+#: ../EditEventConfirmationDialog.qml:52
 msgid "Cancel"
 msgstr "انصراف"
 
-#: ../ContactChoicePopup.qml:20
+#: ../ContactChoicePopup.qml:37
 msgid "No contact"
 msgstr "هیچ مخاطبی نیست"
 
-#: ../ContactChoicePopup.qml:66
+#: ../ContactChoicePopup.qml:83
 msgid "Search contact"
 msgstr "جست‌وجوی ماطب"
 
-#: ../DeleteConfirmationDialog.qml:14
+#: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
 msgstr "حذف رویداد‌های تکراری"
 
-#: ../DeleteConfirmationDialog.qml:15
+#: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
 msgstr "حذف رویداد"
 
-#: ../DeleteConfirmationDialog.qml:22
+#: ../DeleteConfirmationDialog.qml:39
 msgid "Delete series"
 msgstr "حذف سری‌ها"
 
-#: ../DeleteConfirmationDialog.qml:33
+#: ../DeleteConfirmationDialog.qml:50
 msgid "Delete this"
 msgstr "حذف این مورد"
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
+#: ../DeleteConfirmationDialog.qml:50 ../EventDetails.qml:212
 msgid "Delete"
 msgstr "حذف"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:282
 msgid "Edit Event"
 msgstr "ویرایش رویداد"
 
-#: ../EditEventConfirmationDialog.qml:17
+#: ../EditEventConfirmationDialog.qml:34
 msgid "Edit series"
 msgstr "ویرایش سری‌ها"
 
-#: ../EditEventConfirmationDialog.qml:26
+#: ../EditEventConfirmationDialog.qml:43
 msgid "Edit this"
 msgstr "ویرایش این مورد"
 
-#: ../EditToolbar.qml:52
-msgid "Done"
-msgstr "انجام شد"
-
-#: ../EventDetails.qml:27
+#: ../EventDetails.qml:44 ../NewEvent.qml:453
 msgid "Event Details"
 msgstr "جزئیات رویداد"
 
-#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
+#: ../EventDetails.qml:72 ../LimitLabelDefines.qml:21
 msgid "Never"
 msgstr "هرگز"
 
 #. TRANSLATORS: this is a date shown in the event details view,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59
+#: ../EventDetails.qml:76 ../EventUtils.qml:81
 msgid "ddd MMMM d yyyy"
 msgstr "dddd d MMMM yyyy"
 
-#: ../EventDetails.qml:62
+#: ../EventDetails.qml:79
 #, qt-format
 msgid "After %1 Occurrence"
 msgid_plural "After %1 Occurrences"
 msgstr[0] "پس از %1 بار اتّفاق"
 
-#: ../EventDetails.qml:63
+#: ../EventDetails.qml:80
 #, qt-format
 msgid "After Date %1"
 msgstr "پس از تاریخ %1"
 
 #. TRANSLATORS: the argument is a day of the week or a list of days
-#: ../EventDetails.qml:75
+#: ../EventDetails.qml:92
 #, qt-format
 msgid "Every %1"
 msgstr "هر %1"
 
-#: ../EventDetails.qml:126
+#: ../EventDetails.qml:143
 msgid "Not specified"
 msgstr "مشخّص نشده"
 
 #. TRANSLATORS: this is a time & Date formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:137
+#: ../EventDetails.qml:154
 msgid "dd-MMM-yyyy"
 msgstr "dd MMMM yyyy"
 
-#: ../EventDetails.qml:210
+#: ../EventDetails.qml:227
 msgid "Edit"
 msgstr "ویرایش"
 
-#: ../EventDetails.qml:272
+#: ../EventDetails.qml:290 ../EventRepetition.qml:230
 msgid "Date"
 msgstr "تاریخ"
 
-#: ../EventDetails.qml:277 ../NewEvent.qml:387
+#: ../EventDetails.qml:295
 msgid "Start"
 msgstr "آغاز"
 
-#: ../EventDetails.qml:282 ../NewEvent.qml:426
+#: ../EventDetails.qml:300
 msgid "End"
 msgstr "پایان"
 
-#: ../EventDetails.qml:291 ../NewEvent.qml:497
+#: ../EventDetails.qml:309
 msgid "All Day event:"
 msgstr "رویداد تمام‌روز:"
 
-#: ../EventDetails.qml:340 ../NewEvent.qml:542
+#: ../EventDetails.qml:358 ../NewEvent.qml:492
 msgid "Location"
 msgstr "مکان"
 
-#: ../EventDetails.qml:366
+#: ../EventDetails.qml:384 ../NewEvent.qml:539
 msgid "Guests"
 msgstr "مهمان‌ها"
 
-#: ../EventDetails.qml:404 ../NewEvent.qml:592
+#: ../EventDetails.qml:422
 msgid "This happens"
 msgstr "رخ می‌دهد"
 
-#: ../EventDetails.qml:409 ../NewEvent.qml:693
+#: ../EventDetails.qml:427
 msgid "Remind me"
 msgstr "یادآوری کن"
 
-#: ../EventDetails.qml:414
+#: ../EventDetails.qml:432
 msgid "Repeats On"
 msgstr "تکرارها روشن"
 
-#: ../EventDetails.qml:420
+#: ../EventDetails.qml:438
 msgid "Repetition Ends"
 msgstr "تکرار خاتمه می‌یابد"
 
-#: ../LimitLabelDefines.qml:4
+#: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
+msgid "Reminder"
+msgstr "یادآور"
+
+#: ../EventRepetition.qml:36 ../EventRepetition.qml:121
+msgid "Repeat"
+msgstr "تکرار"
+
+#: ../EventRepetition.qml:140
+msgid "Repeats On:"
+msgstr "تکرار در:"
+
+#: ../EventRepetition.qml:185
+msgid "Recurring event ends"
+msgstr "تکرار رویداد خاتمه می‌یابد"
+
+#: ../EventRepetition.qml:205
+msgid "Recurrences"
+msgstr "تکرار رویداد"
+
+#: ../EventUtils.qml:99
+#, qt-format
+msgid "%1 ; %2 times "
+msgstr "%1 ; %2 بار "
+
+#: ../EventUtils.qml:100
+#, qt-format
+msgid "%1 ;  until %2"
+msgstr "%1 ;  تا %2"
+
+#: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
 msgstr "بعد از X بار اتّفاق"
 
-#: ../LimitLabelDefines.qml:5
+#: ../LimitLabelDefines.qml:22
 msgid "After Date"
 msgstr "بعد از تاریخ"
 
-#: ../NewEvent.qml:186
+#: ../NewEvent.qml:170
 msgid "End time can't be before start time"
 msgstr "زمان پایان نمیتواند قبل از زمان آغاز باشد"
 
-#: ../NewEvent.qml:297 ../calendar.qml:306
+#: ../NewEvent.qml:282 ../calendar.qml:323
 msgid "New Event"
 msgstr "رویداد تازه"
 
-#: ../NewEvent.qml:313
+#: ../NewEvent.qml:292
 msgid "Error"
 msgstr "خطا"
 
-#: ../NewEvent.qml:315
+#: ../NewEvent.qml:294
 msgid "OK"
 msgstr "قبول"
 
-#. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:403 ../NewEvent.qml:442
-msgid "at"
-msgstr "در"
+#: ../NewEvent.qml:345
+msgid "From"
+msgstr "از"
 
-#: ../NewEvent.qml:463
-msgid "Calendar "
-msgstr "تقویم "
+#: ../NewEvent.qml:388
+msgid "To"
+msgstr "تا"
 
-#: ../NewEvent.qml:512
+#: ../NewEvent.qml:466
 msgid "Event Name"
 msgstr "نام رویداد"
 
-#: ../NewEvent.qml:522
+#: ../NewEvent.qml:479
 msgid "Description"
 msgstr "توضیحات"
 
-#: ../NewEvent.qml:560
+#: ../NewEvent.qml:501 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "تقویم"
+
+#: ../NewEvent.qml:543
 msgid "Add Guest"
 msgstr "افزودن مهمان"
 
 #: ../NewEvent.qml:612
-msgid "Repeats On:"
-msgstr "تکرار در:"
+msgid "This Happens"
+msgstr "روی می‌دهد"
 
-#: ../NewEvent.qml:647
-msgid "Recurring event ends"
-msgstr "تکرار رویداد خاتمه می‌یابد"
-
-#. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:670
-msgid "Recurrence"
-msgstr "تکرار"
-
-#: ../RecurrenceLabelDefines.qml:4
+#: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr "یک‌‌بار"
 
-#: ../RecurrenceLabelDefines.qml:5
+#: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
 msgstr "روزانه"
 
-#: ../RecurrenceLabelDefines.qml:6
-msgid "Every Weekday (Monday to Friday)"
-msgstr "هر روز کاری (دوشنبه تا جمعه)"
+#: ../RecurrenceLabelDefines.qml:25
+msgid "On Weekdays"
+msgstr "در روزهای هفته"
 
-#: ../RecurrenceLabelDefines.qml:7
-msgid "Every Monday, Wednesday and Friday"
-msgstr "هر دوشنبه، چهارشنبه و جمعه"
+#: ../RecurrenceLabelDefines.qml:26
+msgid "On Monday, Wednesday and Friday"
+msgstr "در دوشنبه، چهارشنبه و جمعه"
 
-#: ../RecurrenceLabelDefines.qml:8
-msgid "Every Tuesday and Thursday"
-msgstr "هر سه شنبه و پنجشنبه"
+#: ../RecurrenceLabelDefines.qml:27
+msgid "On Tuesday and Thursday"
+msgstr "در سه‌شنبه و پنج‌شنبه"
 
-#: ../RecurrenceLabelDefines.qml:9
+#: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
 msgstr "هفتگی"
 
-#: ../RecurrenceLabelDefines.qml:10
+#: ../RecurrenceLabelDefines.qml:29
 msgid "Monthly"
 msgstr "ماهانه"
 
-#: ../RecurrenceLabelDefines.qml:11
+#: ../RecurrenceLabelDefines.qml:30
 msgid "Yearly"
 msgstr "سالانه"
 
-#: ../ReminderLabelDefines.qml:4
+#: ../ReminderLabelDefines.qml:21
 msgid "No Reminder"
 msgstr "بدون یادآور"
 
-#: ../ReminderLabelDefines.qml:5
+#: ../ReminderLabelDefines.qml:22
 msgid "5 minutes"
 msgstr "۵ دقیقه"
 
-#: ../ReminderLabelDefines.qml:6
+#: ../ReminderLabelDefines.qml:23
 msgid "15 minutes"
 msgstr "۱۵ دقیقه"
 
-#: ../ReminderLabelDefines.qml:7
+#: ../ReminderLabelDefines.qml:24
 msgid "30 minutes"
 msgstr "۳۰ دقیقه"
 
-#: ../ReminderLabelDefines.qml:8
+#: ../ReminderLabelDefines.qml:25
 msgid "1 hour"
 msgstr "۱ ساعت"
 
-#: ../ReminderLabelDefines.qml:9
+#: ../ReminderLabelDefines.qml:26
 msgid "2 hours"
 msgstr "۲ ساعت"
 
-#: ../ReminderLabelDefines.qml:10
+#: ../ReminderLabelDefines.qml:27
 msgid "1 day"
 msgstr "۱ روز"
 
-#: ../ReminderLabelDefines.qml:11
+#: ../ReminderLabelDefines.qml:28
 msgid "2 days"
 msgstr "۲ روز"
 
-#: ../ReminderLabelDefines.qml:12
+#: ../ReminderLabelDefines.qml:29
 msgid "1 week"
 msgstr "۱ هفته"
 
-#: ../ReminderLabelDefines.qml:13
+#: ../ReminderLabelDefines.qml:30
 msgid "2 weeks"
 msgstr "۲ هفته"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../TimeLineBackground.qml:19
-msgid "hh ap"
-msgstr "hh ap"
-
-#: ../calendar.qml:28
+#: ../calendar.qml:45
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -350,41 +371,37 @@ msgstr ""
 "eventid. این‌ها توسّط سامانه مدیریت می‌شوند. برای توضیحات کامل در باره‌ی "
 "آن‌ها کد مبدأ را ببینید"
 
-#: ../calendar.qml:287
+#: ../calendar.qml:304
 msgid "Today"
 msgstr "امروز"
 
-#: ../calendar.qml:326
+#: ../calendar.qml:343
 msgid "Sync"
 msgstr "هم‌گام سازی"
 
-#: ../calendar.qml:326
+#: ../calendar.qml:343
 msgid "Syncing"
 msgstr "در حال هم‌گام سازی"
 
-#: ../calendar.qml:359
+#: ../calendar.qml:376
 msgid "Year"
 msgstr "سال"
 
-#: ../calendar.qml:394
+#: ../calendar.qml:411
 msgid "Month"
 msgstr "ماه"
 
-#: ../calendar.qml:423
+#: ../calendar.qml:440
 msgid "Week"
 msgstr "هفته"
 
-#: ../calendar.qml:457
+#: ../calendar.qml:474
 msgid "Day"
 msgstr "روز"
 
-#: ../calendar.qml:486
+#: ../calendar.qml:503
 msgid "Agenda"
 msgstr "دستور کار"
-
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "تقویم"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
@@ -393,3 +410,27 @@ msgstr "تقویمی برای اوبونتو که با حساب‌های برخ�
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "تقویم؛رویداد؛روز؛هفته؛سال؛قرار ملاقات؛جلسه؛"
+
+#~ msgid "hh ap"
+#~ msgstr "hh ap"
+
+#~ msgid "Calendar "
+#~ msgstr "تقویم "
+
+#~ msgid "Done"
+#~ msgstr "انجام شد"
+
+#~ msgid "at"
+#~ msgstr "در"
+
+#~ msgid "Recurrence"
+#~ msgstr "تکرار"
+
+#~ msgid "Every Monday, Wednesday and Friday"
+#~ msgstr "هر دوشنبه، چهارشنبه و جمعه"
+
+#~ msgid "Every Weekday (Monday to Friday)"
+#~ msgstr "هر روز کاری (دوشنبه تا جمعه)"
+
+#~ msgid "Every Tuesday and Thursday"
+#~ msgstr "هر سه شنبه و پنجشنبه"
