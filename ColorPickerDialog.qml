@@ -22,23 +22,23 @@ import Ubuntu.Components.Popups 1.0
 Dialog {
     id: root
     title: i18n.tr("Select Color")
-
     signal accepted(var color)
     signal rejected()
 
     contents: [
         Grid{
-            height: units.gu(20)
-            rows: 3
+            height: units.gu(15)
+            rows: 2
             columns: 4
-            spacing: units.gu(2)
+            spacing: units.gu(1)
+            anchors.centerIn: parent.Center
             Repeater{
                 model: ["#2C001E","#333333","#DD4814","#DF382C","#EFB73E","#19B6EE","#38B44A","#001F5C"];
-                delegate:UbuntuShape{
+                delegate:Rectangle{
                     width: (parent.width/5)
                     height: width
                     color: modelData
-                    radius : "medium"
+                    radius : 50
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
