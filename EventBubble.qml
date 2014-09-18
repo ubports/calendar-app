@@ -130,7 +130,7 @@ Item{
 
         if(model) {
             var collection = model.collection( event.collectionId );
-            bg.color = isPastEvent ? Qt.lighter(collection.color) : collection.color
+            bg.color = isPastEvent ? Qt.lighter(collection.color, 1.3) : collection.color
         }
 
         layoutBubbleDetails();
@@ -176,32 +176,26 @@ Item{
             Label {
                 id: timeLabel
                 objectName: "timeLabel"
-                color: "White"
                 font.bold: true
+                color: isPastEvent ? UbuntuColors.lightGrey : "Black"
                 fontSize:"small"
                 width: parent.width
-                font.italic: isPastEvent
-                font.strikeout: isPastEvent
             }
 
             Label {
                 id: titleLabel
                 objectName: "titleLabel"
-                color: "White"
                 fontSize: "small"
+                color: isPastEvent ? UbuntuColors.lightGrey : "Black"
                 width: parent.width
-                font.italic: isPastEvent
-                font.strikeout: isPastEvent
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
             Label {
                 id: descriptionLabel
-                color: "White"
                 fontSize: "x-small"
+                color: isPastEvent ? UbuntuColors.lightGrey : "Black"
                 width: parent.width
-                font.italic: isPastEvent
-                font.strikeout: isPastEvent
                 visible: type == wideType
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
