@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-08-16 17:27+0000\n"
-"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
+"PO-Revision-Date: 2014-09-17 10:25+0000\n"
+"Last-Translator: Víctor R. Ruiz <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:11+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:72
@@ -210,11 +210,11 @@ msgstr "La repetición finaliza"
 
 #: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
 msgid "Reminder"
-msgstr ""
+msgstr "Recordatorio"
 
 #: ../EventRepetition.qml:36 ../EventRepetition.qml:121
 msgid "Repeat"
-msgstr ""
+msgstr "Repetir"
 
 #: ../EventRepetition.qml:140
 msgid "Repeats On:"
@@ -226,17 +226,17 @@ msgstr "El evento recurrente termina"
 
 #: ../EventRepetition.qml:205
 msgid "Recurrences"
-msgstr ""
+msgstr "Repeticiones"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1; %2 veces "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1 ;  hasta %2"
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
@@ -264,11 +264,11 @@ msgstr "Aceptar"
 
 #: ../NewEvent.qml:345
 msgid "From"
-msgstr ""
+msgstr "Desde"
 
 #: ../NewEvent.qml:388
 msgid "To"
-msgstr ""
+msgstr "Hasta"
 
 #: ../NewEvent.qml:466
 msgid "Event Name"
@@ -411,27 +411,3 @@ msgstr "Un calendario para Ubuntu que sincroniza con cuentas en línea."
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "calendario;evento;día;semana;año;cita;reunión;"
-
-#~ msgid "hh ap"
-#~ msgstr "hh ap"
-
-#~ msgid "Done"
-#~ msgstr "Hecho"
-
-#~ msgid "at"
-#~ msgstr "a las"
-
-#~ msgid "Recurrence"
-#~ msgstr "Repetición"
-
-#~ msgid "Calendar "
-#~ msgstr "Calendario "
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "Cada lunes, miércoles y viernes"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "Cada martes y jueves"
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "De lunes a viernes"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-08-16 11:45+0000\n"
+"PO-Revision-Date: 2014-09-17 17:03+0000\n"
 "Last-Translator: Marian Vasile <marianvasile1972@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:11+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:72
@@ -25,11 +25,11 @@ msgstr "Niciun eveniment apropiat"
 
 #: ../AgendaView.qml:75
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Nu aveți calendarele activate"
 
 #: ../AgendaView.qml:85
 msgid "Enable calendars"
-msgstr ""
+msgstr "Activeazăcalendarele"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -212,11 +212,11 @@ msgstr "Repetarea se încheie"
 
 #: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
 msgid "Reminder"
-msgstr ""
+msgstr "Eveniment"
 
 #: ../EventRepetition.qml:36 ../EventRepetition.qml:121
 msgid "Repeat"
-msgstr ""
+msgstr "Repetare"
 
 #: ../EventRepetition.qml:140
 msgid "Repeats On:"
@@ -228,17 +228,17 @@ msgstr "Evenimentul repetitiv se încheie"
 
 #: ../EventRepetition.qml:205
 msgid "Recurrences"
-msgstr ""
+msgstr "Recurențe"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1 ; %2 ori "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1 ;  %2 pâna la"
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
@@ -266,11 +266,11 @@ msgstr "În regulă"
 
 #: ../NewEvent.qml:345
 msgid "From"
-msgstr ""
+msgstr "De la"
 
 #: ../NewEvent.qml:388
 msgid "To"
-msgstr ""
+msgstr "Către"
 
 #: ../NewEvent.qml:466
 msgid "Event Name"
@@ -290,7 +290,7 @@ msgstr "Adaugă oaspete"
 
 #: ../NewEvent.qml:612
 msgid "This Happens"
-msgstr ""
+msgstr "Se întâmplă"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -302,15 +302,15 @@ msgstr "Zilnic"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "În zilele lucrătoare"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Luni, miercuri și vineri"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "Marți și joi"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
@@ -414,27 +414,3 @@ msgstr ""
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "calendar;eveniment;zi;săptămână;an;întâlnire;ședință;"
-
-#~ msgid "Done"
-#~ msgstr "Finalizat"
-
-#~ msgid "at"
-#~ msgstr "la"
-
-#~ msgid "Calendar "
-#~ msgstr "Calendar "
-
-#~ msgid "Recurrence"
-#~ msgstr "Repetare"
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "În fiecare luni, miercuri și vineri"
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "În fiecare zi lucrătoare (de luni până vineri)"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "În fiecare marți și joi"
-
-#~ msgid "hh ap"
-#~ msgstr "hh ap"

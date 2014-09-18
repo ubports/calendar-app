@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-08-16 14:21+0000\n"
+"PO-Revision-Date: 2014-09-17 23:27+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:14+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:10+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:72
@@ -24,11 +24,11 @@ msgstr "ወደፊት የሚመጣ ሁኔታ የለም"
 
 #: ../AgendaView.qml:75
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "ቀን መቁጠሪያ ተሰናክሏል"
 
 #: ../AgendaView.qml:85
 msgid "Enable calendars"
-msgstr ""
+msgstr "ቀን መቁጠሪያ ያስችሉ"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -210,11 +210,11 @@ msgstr "ድግግሞሽ ጨርሷል"
 
 #: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
 msgid "Reminder"
-msgstr ""
+msgstr "አስታዋሽ"
 
 #: ../EventRepetition.qml:36 ../EventRepetition.qml:121
 msgid "Repeat"
-msgstr ""
+msgstr "መድገሚያ"
 
 #: ../EventRepetition.qml:140
 msgid "Repeats On:"
@@ -226,17 +226,17 @@ msgstr "ድግግሞሽ ሁኔታ ጨርሷል"
 
 #: ../EventRepetition.qml:205
 msgid "Recurrences"
-msgstr ""
+msgstr "መደጋገሚያ"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1 ; %2 ጊዜ "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1 ;  እስከ %2"
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
@@ -264,11 +264,11 @@ msgstr "እሺ"
 
 #: ../NewEvent.qml:345
 msgid "From"
-msgstr ""
+msgstr "ከ"
 
 #: ../NewEvent.qml:388
 msgid "To"
-msgstr ""
+msgstr "ለ"
 
 #: ../NewEvent.qml:466
 msgid "Event Name"
@@ -288,7 +288,7 @@ msgstr "እንግዳ መጨመሪያ"
 
 #: ../NewEvent.qml:612
 msgid "This Happens"
-msgstr ""
+msgstr "ይህ ሆነ"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -300,15 +300,15 @@ msgstr "በየቀኑ"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "በ ስራ ቀን"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "ሰኞ ረቡዕ እና አርብ"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "ማክሰኞ እና ሐሙስ"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
@@ -410,27 +410,3 @@ msgstr "ለ ኡቡንቱ ቀን መቁጠሪያ ከ መስመር ላይ መግ�
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "ቀን መቁጠሪያ:ሁኔታ:ቀን:ሳምንት:አመት:ቀጠሮ:ስብሰባ:"
-
-#~ msgid "Done"
-#~ msgstr "ጨርሷል"
-
-#~ msgid "at"
-#~ msgstr "በ"
-
-#~ msgid "hh ap"
-#~ msgstr "hh ap"
-
-#~ msgid "Calendar "
-#~ msgstr "ቀን መቁጠሪያ "
-
-#~ msgid "Recurrence"
-#~ msgstr "መደጋገሚያ"
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "በ ስራ ቀን (ከ ሰኞ እስከ አርብ)"
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "ሁልጊዜ ሰኞ: ረቡዕ እና አርብ"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "ሁልጊዜ ማክሰኞ እና ሐሙስ"

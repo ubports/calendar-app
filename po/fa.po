@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:11+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:72
@@ -410,27 +410,3 @@ msgstr "تقویمی برای اوبونتو که با حساب‌های برخ�
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "تقویم؛رویداد؛روز؛هفته؛سال؛قرار ملاقات؛جلسه؛"
-
-#~ msgid "hh ap"
-#~ msgstr "hh ap"
-
-#~ msgid "Calendar "
-#~ msgstr "تقویم "
-
-#~ msgid "Done"
-#~ msgstr "انجام شد"
-
-#~ msgid "at"
-#~ msgstr "در"
-
-#~ msgid "Recurrence"
-#~ msgstr "تکرار"
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "هر دوشنبه، چهارشنبه و جمعه"
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "هر روز کاری (دوشنبه تا جمعه)"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "هر سه شنبه و پنجشنبه"

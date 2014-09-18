@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-09-12 19:40+0000\n"
+"PO-Revision-Date: 2014-09-17 10:18+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:11+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: gd\n"
 
@@ -26,11 +26,11 @@ msgstr "Cha bhi tachartas ann a dh'aithghearr"
 
 #: ../AgendaView.qml:75
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Chan eil mìosachan an comas agad"
 
 #: ../AgendaView.qml:85
 msgid "Enable calendars"
-msgstr ""
+msgstr "Cuir mìosachain an comas"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -214,11 +214,11 @@ msgstr "Deireadh an ath-nochdaidh"
 
 #: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
 msgid "Reminder"
-msgstr ""
+msgstr "Cuimhneachan"
 
 #: ../EventRepetition.qml:36 ../EventRepetition.qml:121
 msgid "Repeat"
-msgstr ""
+msgstr "Tachair a-rithist"
 
 #: ../EventRepetition.qml:140
 msgid "Repeats On:"
@@ -230,17 +230,17 @@ msgstr "Deireadh an thachartais ath-chùrsaich"
 
 #: ../EventRepetition.qml:205
 msgid "Recurrences"
-msgstr ""
+msgstr "Uiread"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1 ; %2 tursan "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1 ;  gu %2"
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
@@ -268,11 +268,11 @@ msgstr "Ceart ma-thà"
 
 #: ../NewEvent.qml:345
 msgid "From"
-msgstr ""
+msgstr "O"
 
 #: ../NewEvent.qml:388
 msgid "To"
-msgstr ""
+msgstr "Gu"
 
 #: ../NewEvent.qml:466
 msgid "Event Name"
@@ -292,7 +292,7 @@ msgstr "Cuir aoigh ris"
 
 #: ../NewEvent.qml:612
 msgid "This Happens"
-msgstr ""
+msgstr "Tachraidh seo"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -304,15 +304,15 @@ msgstr "Gach latha"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "Gach latha obrach"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Gach DiLuain, DiCiadain 's DihAoine"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "Gach DiMàirt 's DiarDaoin"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
@@ -418,27 +418,3 @@ msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
 "calendar;event;day;week;year;appointment;meeting;mìosachan;tachartas;là;latha"
 ";seachdain;mìos;bliadhna;coinneamh;ceann-là;ceann-latha;"
-
-#~ msgid "hh ap"
-#~ msgstr "hh ap"
-
-#~ msgid "Done"
-#~ msgstr "Deiseil"
-
-#~ msgid "at"
-#~ msgstr "àm"
-
-#~ msgid "Recurrence"
-#~ msgstr "Uiread"
-
-#~ msgid "Calendar "
-#~ msgstr "Mìosachan "
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "Gach DiLuain, DiCiadain 's DihAoine"
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "Gach latha obrach (DiLuain gu DihAoine)"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "Gach DiMàirt 's DiarDaoin"

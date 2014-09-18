@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-09-15 08:02+0000\n"
-"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
+"PO-Revision-Date: 2014-09-18 06:52+0000\n"
+"Last-Translator: David Planella <david.planella@ubuntu.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:14+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:10+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:72
@@ -24,11 +24,11 @@ msgstr "No hi ha cap esdeveniment proper"
 
 #: ../AgendaView.qml:75
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "No teniu cap calendari habilitat"
 
 #: ../AgendaView.qml:85
 msgid "Enable calendars"
-msgstr ""
+msgstr "Habilita calendaris"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -210,7 +210,7 @@ msgstr "La repetició finalitza"
 
 #: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
 msgid "Reminder"
-msgstr ""
+msgstr "Recordatori"
 
 #: ../EventRepetition.qml:36 ../EventRepetition.qml:121
 msgid "Repeat"
@@ -410,27 +410,3 @@ msgstr "Un calendari per a l'Ubuntu que sincronitza amb comptes en línia."
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "calendari;esdeveniment;dia;setmana;any;cita;reunió;"
-
-#~ msgid "hh ap"
-#~ msgstr "hh ap"
-
-#~ msgid "Done"
-#~ msgstr "Fet"
-
-#~ msgid "Recurrence"
-#~ msgstr "Periodicitat"
-
-#~ msgid "Calendar "
-#~ msgstr "Calendari "
-
-#~ msgid "at"
-#~ msgstr "a les"
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "Cada dilluns, dimecres i divendres"
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "De dilluns a divendres"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "Cada dimarts i dijous"
