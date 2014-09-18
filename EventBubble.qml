@@ -34,12 +34,15 @@ Item{
 
     property Flickable flickable;
 
+    property bool isPastEvent: false
+
     readonly property int minimumHeight: timeLabel.height + /*top-bottom margin*/ units.gu(2)
 
     signal clicked(var event);
 
     UbuntuShape{
         id: bg
+        opacity: isPastEvent ? 0.4 : 1.0
         anchors.fill: parent
     }
 
@@ -96,6 +99,7 @@ Item{
         timeLabel.text = ""
         titleLabel.text = ""
         descriptionLabel.text = ""
+        isPastEvent = event.endDateTime < new Date()
 
         //height is less then set only event title
         if( height > minimumHeight ) {
