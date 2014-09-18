@@ -33,7 +33,7 @@ Dialog {
             rows: 3
             columns: 5
             Repeater{
-                model: ["#2C001E","#333333","#DD4814","#DF382C","#EFB73E","#19B6EE","#38B44A","#001F5C"];
+                model: ["#2C001E","#333333","#DD4814","#DF382C","#19B6EE","#38B44A","#001F5C", "#FF9912"];
                 delegate:UbuntuShape{
                     width: (parent.width/5)
                     height: width
