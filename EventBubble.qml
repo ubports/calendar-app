@@ -178,17 +178,19 @@ Item{
                 id: timeLabel
                 objectName: "timeLabel"
                 color: "White"
+                font.bold: true
                 fontSize:"small"
                 width: parent.width
+                font.italic: isPastEvent
             }
 
             Label {
                 id: titleLabel
                 objectName: "titleLabel"
                 color: "White"
-                font.bold: true
                 fontSize: "small"
                 width: parent.width
+                font.italic: isPastEvent
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
@@ -197,6 +199,7 @@ Item{
                 color: "White"
                 fontSize: "x-small"
                 width: parent.width
+                font.italic: isPastEvent
                 visible: type == wideType
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
