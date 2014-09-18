@@ -11,7 +11,7 @@
     },
     "icon": "@ICON@",
     "maintainer": "Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>",
-    "name": "@PROJECT_NAME@",
+    "name": "@PROJECT_NAME@.devel",
     "title": "Calendar",
     "version": "0.4.@BZR_REVNO@",
     "x-source": {

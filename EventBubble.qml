@@ -42,7 +42,6 @@ Item{
 
     UbuntuShape{
         id: bg
-        opacity: isPastEvent ? 0.4 : 1.0
         anchors.fill: parent
     }
 
@@ -131,7 +130,7 @@ Item{
 
         if(model) {
             var collection = model.collection( event.collectionId );
-            bg.color = collection.color
+            bg.color = isPastEvent ? Qt.lighter(collection.color) : collection.color
         }
 
         layoutBubbleDetails();
@@ -182,6 +181,7 @@ Item{
                 fontSize:"small"
                 width: parent.width
                 font.italic: isPastEvent
+                font.strikeout: isPastEvent
             }
 
             Label {
@@ -191,6 +191,7 @@ Item{
                 fontSize: "small"
                 width: parent.width
                 font.italic: isPastEvent
+                font.strikeout: isPastEvent
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
@@ -200,6 +201,7 @@ Item{
                 fontSize: "x-small"
                 width: parent.width
                 font.italic: isPastEvent
+                font.strikeout: isPastEvent
                 visible: type == wideType
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
