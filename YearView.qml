@@ -15,10 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 1.1
 
+import QtQuick 2.3
+import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
+
 Page {
     id: yearViewPage
     objectName: "yearViewPage"
@@ -33,8 +34,7 @@ Page {
            iconName: "calendar-today"
            text: i18n.tr("Today")
            onTriggered: {
-               currentDay = new Date()
-               goToBeginning()
+               currentYear = new Date().getFullYear()
            }
        }
 
