@@ -185,7 +185,7 @@ class MainView(ubuntuuitoolkit.MainView):
 
     def get_month_year(self, component):
         return self.wait_select_single(
-            "Label", objectName="monthLabel").text
+            "Label", objectName="monthYearLabel").text
 
     def get_year(self, component):
         return int(component.wait_select_single(

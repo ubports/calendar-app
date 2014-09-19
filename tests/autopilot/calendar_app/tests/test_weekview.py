@@ -177,7 +177,7 @@ class TestWeekView(CalendarAppTestCase):
         self.assertThat(day_view.visible, Eventually(Equals(True)))
 
         # Check that the 'Day' view is on the correct/selected day.
-        selected_date = datetime.datetime.sstrptime(
+        selected_date = datetime.datetime.strptime(
             self.app.main_view.get_month_year(day_view),
             '%B %d, %Y')
         self.assertThat(expected_day, Equals(selected_date.day))
