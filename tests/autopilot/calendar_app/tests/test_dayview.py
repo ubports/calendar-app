@@ -46,7 +46,7 @@ class TestDayView(CalendarAppTestCase):
         expected_month_name_year = now.strftime("%B %d, %Y")
 
         self.assertThat(self.app.main_view.get_month_year(self.day_view),
-						Equals(expected_month_name_year))
+                        Equals(expected_month_name_year))
 
     def test_show_next_days(self):
         """It must be possible to show next days by swiping the view."""
