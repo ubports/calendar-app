@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-08-17 14:51+0000\n"
+"PO-Revision-Date: 2014-09-18 11:10+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-19 08:03+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:72
@@ -25,11 +25,11 @@ msgstr "Записів майбутніх подій не виявлено"
 
 #: ../AgendaView.qml:75
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Вами не увімкнено жодного календаря"
 
 #: ../AgendaView.qml:85
 msgid "Enable calendars"
-msgstr ""
+msgstr "Увімкнути календарі"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -212,11 +212,11 @@ msgstr "Завершення повторень"
 
 #: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
 msgid "Reminder"
-msgstr ""
+msgstr "Нагадування"
 
 #: ../EventRepetition.qml:36 ../EventRepetition.qml:121
 msgid "Repeat"
-msgstr ""
+msgstr "Повторити"
 
 #: ../EventRepetition.qml:140
 msgid "Repeats On:"
@@ -228,17 +228,17 @@ msgstr "Повторення події завершиться"
 
 #: ../EventRepetition.qml:205
 msgid "Recurrences"
-msgstr ""
+msgstr "Повторення"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1; %2 разів "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1; до %2"
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
@@ -266,11 +266,11 @@ msgstr "Гаразд"
 
 #: ../NewEvent.qml:345
 msgid "From"
-msgstr ""
+msgstr "З"
 
 #: ../NewEvent.qml:388
 msgid "To"
-msgstr ""
+msgstr "До"
 
 #: ../NewEvent.qml:466
 msgid "Event Name"
@@ -290,7 +290,7 @@ msgstr "Додати гостя"
 
 #: ../NewEvent.qml:612
 msgid "This Happens"
-msgstr ""
+msgstr "Це відбувається"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -302,15 +302,15 @@ msgstr "Щодня"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "у дні тижня"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "по понеділках, середах і п’ятницях"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "по вівторках і червергах"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
@@ -416,27 +416,3 @@ msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
 "calendar;event;day;week;year;appointment;meeting;календар;подія;день;тиждень;"
 "рік;зустріч;нарада;"
-
-#~ msgid "hh ap"
-#~ msgstr "hh"
-
-#~ msgid "Done"
-#~ msgstr "Виконано"
-
-#~ msgid "at"
-#~ msgstr "о"
-
-#~ msgid "Recurrence"
-#~ msgstr "Повторення"
-
-#~ msgid "Calendar "
-#~ msgstr "Календар "
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "Кожного понеділка, середи та п’ятниці"
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "Щодня (з понеділка до п’ятниці)"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "Кожного вівторка та четверга"
