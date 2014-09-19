@@ -15,11 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
+
+import QtQuick 2.3
+import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
-
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
@@ -88,11 +89,8 @@ Item {
         z:2
     }
 
-    Column {
-        anchors.top: parent.top
-
-        width: parent.width
-        height: parent.height
+    ColumnLayout {
+        anchors.fill: parent
 
         AllDayEventComponent {
             id: allDayContainer
@@ -111,21 +109,18 @@ Item {
             id: timeLineView
 
             width: parent.width
-            height: parent.height - allDayContainer.height
+            Layout.fillHeight: true
 
             contentHeight: units.gu(10) * 24
             contentWidth: width
 
             clip: true
 
-            TimeLineBackground {
-            }
+            TimeLineBackground {}
 
             Row {
                 id: week
-                width: parent.width
-                height: parent.height
-                anchors.top: parent.top
+                anchors.fill: parent
 
                 Repeater {
                     model: type == ViewType.ViewTypeWeek ? 7 : 1
