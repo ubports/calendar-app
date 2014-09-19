@@ -678,7 +678,7 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return data.Event(calendar, name, description, location, guests)
 
     def _get_calendar(self):
-        return self._get_label_text('calendarName')
+        return self._get_label_text('calendarName').split(" ")[0]
 
     def _get_name(self):
         return self._get_label_text('titleLabel')
