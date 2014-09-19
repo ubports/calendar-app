@@ -15,30 +15,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
+import QtQuick 2.3
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 
 Dialog {
     id: root
     title: i18n.tr("Select Color")
-    height: units.gu(100)
-
     signal accepted(var color)
     signal rejected()
 
     contents: [
         Grid{
-            height: units.gu(25)
-            rows: 3
-            columns: 5
+            height: units.gu(15)
+            rows: 2
+            columns: 4
+            spacing: units.gu(1)
             Repeater{
                 model: ["#2C001E","#333333","#DD4814","#DF382C","#EFB73E","#19B6EE","#38B44A","#001F5C"];
-                delegate:UbuntuShape{
-                    width: (parent.width/5)
+                delegate:Rectangle{
+                    width: parent.width/5
                     height: width
                     color: modelData
-
+                    radius : units.gu(10)
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
