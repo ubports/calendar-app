@@ -15,10 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 1.1
 
+import QtQuick 2.3
+import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
+
 Page {
     id: yearViewPage
     objectName: "yearViewPage"
@@ -27,6 +28,23 @@ Page {
     signal monthSelected(var date);
 
     Keys.forwardTo: [yearPathView]
+
+    Action {
+        id: calendarTodayAction
+        objectName:"todaybutton"
+        iconName: "calendar-today"
+        text: i18n.tr("Today")
+        onTriggered: {
+            currentYear = new Date().getFullYear()
+        }
+    }
+
+    head.actions: [
+        calendarTodayAction,
+        commonHeaderActions.newEventAction,
+        commonHeaderActions.showCalendarAction,
+        commonHeaderActions.reloadAction
+    ]
 
     PathViewBase {
         id: yearPathView
@@ -114,7 +132,7 @@ Page {
                     yearLabelFontSize: "small"
 
                     onMonthSelected: {
-                       yearViewPage.monthSelected(date);
+                        yearViewPage.monthSelected(date);
                     }
                 }
             }

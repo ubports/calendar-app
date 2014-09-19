@@ -15,7 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
+
+import QtQuick 2.3
 import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
@@ -29,6 +30,23 @@ Page {
     signal dateSelected(var date);
 
     Keys.forwardTo: [monthViewPath]
+
+    Action {
+        id: calendarTodayAction
+        objectName:"todaybutton"
+        iconName: "calendar-today"
+        text: i18n.tr("Today")
+        onTriggered: {
+            currentMonth = new Date().midnight()
+        }
+    }
+
+    head.actions: [
+        calendarTodayAction,
+        commonHeaderActions.newEventAction,
+        commonHeaderActions.showCalendarAction,
+        commonHeaderActions.reloadAction
+    ]
 
     PathViewBase{
         id: monthViewPath

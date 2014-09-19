@@ -15,9 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 1.1
 
+import QtQuick 2.3
+import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
@@ -34,6 +34,22 @@ Page{
     Keys.forwardTo: [weekViewPath]
 
     flickable: null
+    Action {
+           id: calendarTodayAction
+           objectName:"todaybutton"
+           iconName: "calendar-today"
+           text: i18n.tr("Today")
+           onTriggered: {
+               dayStart = new Date()
+           }
+       }
+
+       head.actions: [
+           calendarTodayAction,
+           commonHeaderActions.newEventAction,
+           commonHeaderActions.showCalendarAction,
+           commonHeaderActions.reloadAction
+       ]
 
     Column {
         anchors.fill: parent

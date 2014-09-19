@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 0.1
-import QtOrganizer 5.0
 
+import QtQuick 2.3
+import QtOrganizer 5.0
+import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
 
 Page{
@@ -42,6 +42,24 @@ Page{
 
         return !!enabled_calendars.length;
     }
+
+    Action {
+        id: calendarTodayAction
+        objectName:"todaybutton"
+        iconName: "calendar-today"
+        text: i18n.tr("Today")
+        onTriggered: {
+            currentDay = new Date()
+            goToBeginning()
+        }
+    }
+
+    head.actions: [
+        calendarTodayAction,
+        commonHeaderActions.newEventAction,
+        commonHeaderActions.showCalendarAction,
+        commonHeaderActions.reloadAction
+    ]
 
     EventListModel {
         id: eventListModel
