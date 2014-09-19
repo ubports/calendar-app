@@ -17,7 +17,7 @@
  */
 import QtQuick 2.3
 import Ubuntu.Components 1.1
-import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
@@ -64,7 +64,8 @@ Page {
     function updateCollection(event) {
         var collection = model.collection( event.collectionId );
         calendarIndicator.color = collection.color
-        calendarName.text = collection.name
+        eventInfo.color=collection.color
+        calendarName.text = i18n.tr("%1 Calendar").arg( collection.name)
     }
 
     function updateRecurrence( event ) {
@@ -72,7 +73,7 @@ Page {
         if(event.recurrence) {
             if(event.recurrence.recurrenceRules[0] !== undefined){
                 var rule =  event.recurrence.recurrenceRules[0];
-                recurrentHeader.value = eventUtils.getRecurrenceString(rule)
+                repeatLabel.text = eventUtils.getRecurrenceString(rule)
             }
         }
     }
@@ -92,27 +93,16 @@ Page {
         if( reminder ) {
             for(var i=0; i<reminderModel.count; i++) {
                 if(reminder.secondsBeforeStart === reminderModel.get(i).value)
-                    reminderHeader.value = reminderModel.get(i).label
+                    reminderHeader.text = reminderModel.get(i).label
             }
         } else {
-            reminderHeader.value = reminderModel.get(0).label
+            reminderHeader.text = reminderModel.get(0).label
         }
     }
 
     function updateLocation(event) {
         if( event.location ) {
-            locationLabel.text = event.location;
-
-            // FIXME: need to cache map image to avoid duplicate download every time
-            var imageSrc = "http://maps.googleapis.com/maps/api/staticmap?center="+event.location+
-                    "&markers=color:red|"+event.location+"&zoom=15&size="+mapContainer.width+
-                    "x"+mapContainer.height+"&sensor=false";
-            mapImage.source = imageSrc;
-        }
-        else {
-            // TODO: use different color for empty text
-            locationLabel.text = i18n.tr("Not specified")
-            mapImage.source = "";
+            locationLabel.text = i18n.tr("%1").arg(event.location)
         }
     }
 
@@ -122,10 +112,11 @@ Page {
         var timeFormat = i18n.tr("hh:mm");
         // TRANSLATORS: this is a time & Date formatting string,
         //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-        var dateFormat = i18n.tr("dd-MMM-yyyy")
-        eventDate.value = e.startDateTime.toLocaleString(Qt.locale(),dateFormat);
+        var dateFormat = i18n.tr("dddd, MMMM dd")
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
+        dateLabel.text = e.allDay === true ? i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleString(Qt.locale(),dateFormat))
+                                           :e.startDateTime.toLocaleString(Qt.locale(),dateFormat) + ", " +startTime + "-"  + endTime;
 
         if( e.itemType === Type.EventOccurrence ){
             var requestId = -1;
@@ -138,15 +129,6 @@ Page {
             });
             requestId = model.fetchItems([e.parentId]);
         }
-
-        allDayEventCheckbox.checked = e.allDay;
-
-        startHeader.visible = !e.allDay;
-        endHeader.visible = !e.allDay;
-
-        startHeader.value = startTime;
-        endHeader.value = endTime;
-
         // This is the event title
         if( e.displayLabel) {
             titleLabel.text = e.displayLabel;
@@ -166,7 +148,6 @@ Page {
 
         updateLocation(e);
     }
-
 
     Keys.onEscapePressed: {
         pageStack.pop();
@@ -247,52 +228,66 @@ Page {
 
         interactive: contentHeight > height
 
+        Rectangle{
+            id: eventInfo
+            width:parent.width
+            height: eventInfoList.height + units.gu(5)
+
+            Column{
+                id:eventInfoList
+                width: parent.width
+                spacing: units.gu(0.5)
+                anchors.left: parent.left
+                anchors.leftMargin: units.gu(2)
+                anchors.top: parent.top
+                anchors.topMargin: units.gu(2)
+                Label{
+                    id: titleLabel
+                    objectName: "titleLabel"
+                    fontSize: "x-large"
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    color: "white"
+                }
+                Label{
+                    id: dateLabel
+                    objectName: "titleLabel"
+                    fontSize: "medium"
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    color: "white"
+                    text:"Monday, September 22, 4:00 - 5:00 PM"
+                }
+                Label{
+                    id: repeatLabel
+                    objectName: "titleLabel"
+                    fontSize: "small"
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    color: "white"
+                }
+                Label{
+                    id: locationLabel
+                    objectName: "titleLabel"
+                    fontSize: "small"
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    color: "white"
+                }
+            }
+
+        }
         Column{
             id: column
             spacing: units.gu(1)
             anchors{
                 top:parent.top
-                topMargin: units.gu(2)
+                topMargin: units.gu(2) + eventInfo.height
                 right: parent.right
                 rightMargin: units.gu(2)
                 left:parent.left
                 leftMargin: units.gu(2)
             }
-            property int timeLabelMaxLen: Math.max( startHeader.headerWidth, endHeader.headerWidth,eventDate.headerWidth)// Dynamic Width
-            EventDetailsInfo{
-                id: eventDate
-                xMargin:column.timeLabelMaxLen
-                header: i18n.tr("Date")
-            }
-            EventDetailsInfo{
-                id: startHeader
-                xMargin:column.timeLabelMaxLen
-                header: i18n.tr("Start")
-            }
-            EventDetailsInfo{
-                id: endHeader
-                xMargin: column.timeLabelMaxLen
-                header: i18n.tr("End")
-            }
-            Row {
-                width: parent.width
-                spacing: units.gu(1)
-                anchors.margins: units.gu(0.5)
-                visible: allDayEventCheckbox.checked
-
-                Label {
-                    text: i18n.tr("All Day event:")
-                    anchors.verticalCenter: allDayEventCheckbox.verticalCenter
-                    color: headerColor
-                }
-
-                CheckBox {
-                    id: allDayEventCheckbox
-                    checked: false
-                    enabled: false
-                }
-            }
-
             Row{
                 width: parent.width
                 spacing: units.gu(1)
@@ -309,57 +304,26 @@ Page {
                     color: headerColor
                 }
             }
-
-            ThinDivider{}
-            Label{
-                id: titleLabel
-                objectName: "titleLabel"
-                fontSize: "large"
-                width: parent.width
-                wrapMode: Text.WordWrap
-                color: headerColor
-            }
             Label{
                 id: descLabel
                 objectName: "descriptionLabel"
                 wrapMode: Text.WordWrap
-                fontSize: "small"
-                width: parent.width
-                color: detailColor
-            }
-            ThinDivider{}
-            EventDetailsInfo{
-                id: mapHeader
-                header: i18n.tr("Location")
-            }
-            Label{
-                id: locationLabel
-                objectName: "locationLabel"
                 fontSize: "medium"
                 width: parent.width
-                wrapMode: Text.WordWrap
                 color: detailColor
             }
-
-            //map control with location
-            Rectangle{
-                id: mapContainer
-                width:parent.width
-                height: units.gu(10)
-                visible: mapImage.status == Image.Ready
-
-                Image {
-                    id: mapImage
-                    anchors.fill: parent
-                    opacity: 0.5
-                }
-            }
-            ThinDivider{}
+            ListItem.ThinDivider{}
             Label{
                 text: i18n.tr("Guests");
                 fontSize: "medium"
                 color: headerColor
-                font.bold: true
+            }
+            Label {
+                id:noGuests
+                color: detailColor
+                text: i18n.tr("No Guests added")
+                visible:contactModel.count == 0
+
             }
             //Guest Entery Model starts
             Column{
@@ -386,22 +350,20 @@ Page {
                         }
                     }
                 }
-            }
 
+
+            }
             //Guest Entries ends
-            ThinDivider{}
-            property int recurranceAreaMaxWidth: Math.max( recurrentHeader.headerWidth, reminderHeader.headerWidth) //Dynamic Height
-            EventDetailsInfo{
-                id: recurrentHeader
-                xMargin: column.recurranceAreaMaxWidth
-                header: i18n.tr("This happens")
+            ListItem.ThinDivider{}
+            Label{
+                text: i18n.tr("Reminder");
+                fontSize: "medium"
+                color: headerColor
             }
-            EventDetailsInfo{
-                id: reminderHeader
-                xMargin: column.recurranceAreaMaxWidth
-                header: i18n.tr("Remind me")
+            Label {
+                id:reminderHeader
+                color: detailColor
             }
-
         }
     }
 }
