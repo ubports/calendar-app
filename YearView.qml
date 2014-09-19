@@ -28,22 +28,23 @@ Page {
     signal monthSelected(var date);
 
     Keys.forwardTo: [yearPathView]
-    Action {
-           id: calendarTodayAction
-           objectName:"todaybutton"
-           iconName: "calendar-today"
-           text: i18n.tr("Today")
-           onTriggered: {
-               currentYear = new Date().getFullYear()
-           }
-       }
 
-       head.actions: [
-           calendarTodayAction,
-           commonHeaderActions.newEventAction,
-           commonHeaderActions.showCalendarAction,
-           commonHeaderActions.reloadAction
-       ]
+    Action {
+        id: calendarTodayAction
+        objectName:"todaybutton"
+        iconName: "calendar-today"
+        text: i18n.tr("Today")
+        onTriggered: {
+            currentYear = new Date().getFullYear()
+        }
+    }
+
+    head.actions: [
+        calendarTodayAction,
+        commonHeaderActions.newEventAction,
+        commonHeaderActions.showCalendarAction,
+        commonHeaderActions.reloadAction
+    ]
 
     PathViewBase {
         id: yearPathView
@@ -131,7 +132,7 @@ Page {
                     yearLabelFontSize: "small"
 
                     onMonthSelected: {
-                       yearViewPage.monthSelected(date);
+                        yearViewPage.monthSelected(date);
                     }
                 }
             }
