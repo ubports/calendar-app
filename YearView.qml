@@ -27,6 +27,23 @@ Page {
     signal monthSelected(var date);
 
     Keys.forwardTo: [yearPathView]
+    Action {
+           id: calendarTodayAction
+           objectName:"todaybutton"
+           iconName: "calendar-today"
+           text: i18n.tr("Today")
+           onTriggered: {
+               currentDay = new Date()
+               goToBeginning()
+           }
+       }
+
+       head.actions: [
+           calendarTodayAction,
+           commonHeaderActions.newEventAction,
+           commonHeaderActions.showCalendarAction,
+           commonHeaderActions.reloadAction
+       ]
 
     PathViewBase {
         id: yearPathView

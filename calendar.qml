@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
+import QtQuick 2.3
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
@@ -28,7 +28,7 @@ MainView {
     useDeprecatedToolbar: false
 
     // Work-around until this branch lands:
-    // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496 
+    // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
     //property bool windowActive: typeof window != 'undefined'
     //onWindowActiveChanged: window.title = i18n.tr("Calendar")
 
@@ -294,58 +294,8 @@ MainView {
                 }
             } // End of Component.onCompleted:
 
-            ToolbarItems {
-                id: commonToolBar
-
-                ToolbarButton {
-                    action: Action {
-                        iconName: "calendar-today"
-
-                        text: i18n.tr("Today");
-                        objectName: "todaybutton"
-                        onTriggered: {
-                            tabs.currentDay = (new Date()).midnight();
-                            if(yearViewLoader.item ) yearViewLoader.item.currentYear = tabs.currentDay.getFullYear();
-                            if(monthViewLoader.item ) monthViewLoader.item.currentMonth = tabs.currentDay.midnight();
-                            if(weekViewLoader.item ) weekViewLoader.item.dayStart = tabs.currentDay;
-                            if(dayViewLoader.item ) dayViewLoader.item.currentDay = tabs.currentDay;
-                            if(agendaViewLoader.item ) {
-                                agendaViewLoader.item.currentDay = tabs.currentDay;
-                                agendaViewLoader.item.goToBeginning();
-                            }
-                        }
-                    }
-                }
-                ToolbarButton {
-                    action: Action {
-                        objectName: "neweventbutton"
-                        iconName: "new-event"
-                        text: i18n.tr("New Event");
-                        onTriggered: {
-                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabs.currentDay,"model":eventModel});
-                        }
-                    }
-                }
-                ToolbarButton{
-                    action:Action{
-                        iconName: "new-event"
-                        text: i18n.tr("Calendars");
-                        onTriggered: {
-                            pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
-                            pageStack.currentPage.collectionUpdated.connect(eventModel.delayedApplyFilter);
-                        }
-                    }
-                }
-                ToolbarButton {
-                    objectName: "syncbutton"
-                    visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
-                    action: Action {
-                        text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
-                        iconName: "reload"
-                        onTriggered: syncMonitor.sync(["calendar"])
-                        enabled: (syncMonitor.state !== "syncing")
-                    }
-                }
+            EventActions {
+                id: commonHeaderActions
             }
 
             Keys.onTabPressed: {
@@ -379,7 +329,6 @@ MainView {
                     objectName: "yearViewLoader"
                     source: tabs.selectedTab == yearTab ? Qt.resolvedUrl("YearView.qml"):""
                     onLoaded: {
-                        item.tools = Qt.binding(function() { return commonToolBar })
                         item.currentYear = tabs.currentDay.getFullYear();
                     }
 
@@ -414,7 +363,6 @@ MainView {
                     objectName: "monthViewLoader"
                     source: tabs.selectedTab == monthTab ? Qt.resolvedUrl("MonthView.qml"):""
                     onLoaded: {
-                        item.tools = Qt.binding(function() { return commonToolBar })
                         item.currentMonth = tabs.currentDay.midnight();
                     }
 
@@ -443,7 +391,6 @@ MainView {
                     objectName: "weekViewLoader"
                     source: tabs.selectedTab == weekTab ? Qt.resolvedUrl("WeekView.qml"):""
                     onLoaded: {
-                        item.tools = Qt.binding(function() { return commonToolBar })
                         item.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == weekTab })
                         item.dayStart = tabs.currentDay;
                     }
@@ -477,7 +424,6 @@ MainView {
                     objectName: "dayViewLoader"
                     source: tabs.selectedTab == dayTab ? Qt.resolvedUrl("DayView.qml"):""
                     onLoaded: {
-                        item.tools = Qt.binding(function() { return commonToolBar })
                         item.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == dayTab })
                         item.currentDay = tabs.currentDay;
                     }
@@ -507,7 +453,6 @@ MainView {
                     source: tabs.selectedTab == agendaTab ? Qt.resolvedUrl("AgendaView.qml"):""
 
                     onLoaded: {
-                        item.tools = Qt.binding(function() { return commonToolBar })
                         item.currentDay = tabs.currentDay;
                     }
 

@@ -34,6 +34,23 @@ Page{
     Keys.forwardTo: [weekViewPath]
 
     flickable: null
+    Action {
+           id: calendarTodayAction
+           objectName:"todaybutton"
+           iconName: "calendar-today"
+           text: i18n.tr("Today")
+           onTriggered: {
+               currentDay = new Date()
+               goToBeginning()
+           }
+       }
+
+       head.actions: [
+           calendarTodayAction,
+           commonHeaderActions.newEventAction,
+           commonHeaderActions.showCalendarAction,
+           commonHeaderActions.reloadAction
+       ]
 
     Column {
         anchors.fill: parent
