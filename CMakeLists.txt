@@ -74,5 +74,5 @@ install(FILES ${URLS_FILE} DESTINATION ${URLS_DIR})
 enable_testing()
 
 add_subdirectory(click)
-#add_subdirectory(po)
+add_subdirectory(po)
 add_subdirectory(tests)
