@@ -38,9 +38,15 @@ Column {
                     return new Date(0, 0, 0, index).toLocaleTimeString
                             (locale, locale.timeFormat(Locale.NarrowFormat))
                 }
+
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+
                 color: UbuntuColors.lightGrey
-                anchors.centerIn: parent
-                fontSize: "x-large"
+                fontSize: "small"
             }
         }
     }

@@ -120,7 +120,15 @@ Item {
 
             Row {
                 id: week
-                anchors.fill: parent
+
+                anchors {
+                    fill: parent
+                    leftMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
+                                                              : units.gu(10)
+
+                    rightMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
+                                                              : units.gu(4)
+                }
 
                 Repeater {
                     model: type == ViewType.ViewTypeWeek ? 7 : 1
