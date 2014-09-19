@@ -123,14 +123,10 @@ class TestWeekView(CalendarAppTestCase):
 
         now = datetime.datetime.now()
 
-        expected_year = now.year
-        expected_month_name = now.strftime("%B")
+        expected_month_name_year = now.strftime("%B %Y")
 
-        self.assertThat(self.app.main_view.get_year(self.week_view),
-                        Equals(expected_year))
-
-        self.assertThat(self.app.main_view.get_month_name(self.week_view),
-                        Equals(expected_month_name))
+        self.assertThat(self.app.main_view.get_month_year(self.week_view),
+                        Equals(expected_month_name_year))
 
     def test_current_week_is_selected(self):
         """By default, the week view shows the current week."""
@@ -181,7 +177,9 @@ class TestWeekView(CalendarAppTestCase):
         self.assertThat(day_view.visible, Eventually(Equals(True)))
 
         # Check that the 'Day' view is on the correct/selected day.
-        selected_date = day_view.select_single("TimeLineHeader").date
+        selected_date = datetime.datetime.sstrptime(
+            self.app.main_view.get_month_year(day_view),
+            '%B %d, %Y')
         self.assertThat(expected_day, Equals(selected_date.day))
         self.assertThat(expected_month, Equals(selected_date.month))
         self.assertThat(expected_year, Equals(selected_date.year))

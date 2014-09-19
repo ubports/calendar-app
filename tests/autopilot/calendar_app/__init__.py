@@ -183,6 +183,10 @@ class MainView(ubuntuuitoolkit.MainView):
         else:
             return None
 
+    def get_month_year(self, component):
+        return self.wait_select_single(
+            "Label", objectName="monthLabel").text
+
     def get_year(self, component):
         return int(component.wait_select_single(
             "Label", objectName="yearLabel").text)
