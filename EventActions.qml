@@ -46,7 +46,6 @@ Item {
         }
     }
 
-    // #FIXME: This  action doesn't seem to be visible!
     Action {
         id: _reloadAction
         objectName: "syncbutton"
