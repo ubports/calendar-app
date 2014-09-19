@@ -123,14 +123,10 @@ class TestWeekView(CalendarAppTestCase):
 
         now = datetime.datetime.now()
 
-        expected_year = now.year
-        expected_month_name = now.strftime("%B")
+        expected_month_name_year = now.strftime("%B %Y")
 
-        self.assertThat(self.app.main_view.get_year(self.week_view),
-                        Equals(expected_year))
-
-        self.assertThat(self.app.main_view.get_month_name(self.week_view),
-                        Equals(expected_month_name))
+        self.assertThat(self.app.main_view.get_month_year(self.week_view),
+                        Equals(expected_month_name_year))
 
     def test_current_week_is_selected(self):
         """By default, the week view shows the current week."""
