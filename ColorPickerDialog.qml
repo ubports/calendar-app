@@ -30,15 +30,10 @@ Dialog {
     contents: [
         Grid{
             height: units.gu(25)
-            rows: 4
-            columns: 4
+            rows: 3
+            columns: 5
             Repeater{
-                model: [
-                    "#ff7537", "#ffad46","#42d692", "#7bd148",
-                    "#b3dc6c", "#fbe983", "#fad165", "#92e1c0",
-                    "#9fc6e7", "#9a9cff", "#b99aff", "#c2c2c2"
-                ];
-
+                model: ["#2C001E","#333333","#DD4814","#DF382C","#EFB73E","#19B6EE","#38B44A","#001F5C"];
                 delegate:UbuntuShape{
                     width: (parent.width/5)
                     height: width

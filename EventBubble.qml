@@ -34,8 +34,6 @@ Item{
 
     property Flickable flickable;
 
-    property bool isPastEvent: false
-
     readonly property int minimumHeight: timeLabel.height + /*top-bottom margin*/ units.gu(2)
 
     signal clicked(var event);
@@ -98,7 +96,6 @@ Item{
         timeLabel.text = ""
         titleLabel.text = ""
         descriptionLabel.text = ""
-        isPastEvent = event.endDateTime < new Date()
 
         //height is less then set only event title
         if( height > minimumHeight ) {
@@ -130,7 +127,7 @@ Item{
 
         if(model) {
             var collection = model.collection( event.collectionId );
-            bg.color = isPastEvent ? Qt.lighter(collection.color, 1.3) : collection.color
+            bg.color = collection.color
         }
 
         layoutBubbleDetails();
@@ -176,25 +173,25 @@ Item{
             Label {
                 id: timeLabel
                 objectName: "timeLabel"
-                font.bold: true
-                color: isPastEvent ? UbuntuColors.lightGrey : "Black"
+                color: "White"
                 fontSize:"small"
+                font.bold: true
                 width: parent.width
             }
 
             Label {
                 id: titleLabel
                 objectName: "titleLabel"
+                color: "White"
                 fontSize: "small"
-                color: isPastEvent ? UbuntuColors.lightGrey : "Black"
                 width: parent.width
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
             Label {
                 id: descriptionLabel
+                color: "White"
                 fontSize: "x-small"
-                color: isPastEvent ? UbuntuColors.lightGrey : "Black"
                 width: parent.width
                 visible: type == wideType
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
