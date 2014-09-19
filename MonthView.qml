@@ -30,22 +30,23 @@ Page {
     signal dateSelected(var date);
 
     Keys.forwardTo: [monthViewPath]
-    Action {
-           id: calendarTodayAction
-           objectName:"todaybutton"
-           iconName: "calendar-today"
-           text: i18n.tr("Today")
-           onTriggered: {
-               currentMonth = new Date().midnight()
-           }
-       }
 
-       head.actions: [
-           calendarTodayAction,
-           commonHeaderActions.newEventAction,
-           commonHeaderActions.showCalendarAction,
-           commonHeaderActions.reloadAction
-       ]
+    Action {
+        id: calendarTodayAction
+        objectName:"todaybutton"
+        iconName: "calendar-today"
+        text: i18n.tr("Today")
+        onTriggered: {
+            currentMonth = new Date().midnight()
+        }
+    }
+
+    head.actions: [
+        calendarTodayAction,
+        commonHeaderActions.newEventAction,
+        commonHeaderActions.showCalendarAction,
+        commonHeaderActions.reloadAction
+    ]
 
     PathViewBase{
         id: monthViewPath

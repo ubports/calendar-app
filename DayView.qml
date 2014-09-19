@@ -30,22 +30,23 @@ Page{
 
     Keys.forwardTo: [dayViewPath]
     flickable: null
-    Action {
-           id: calendarTodayAction
-           objectName:"todaybutton"
-           iconName: "calendar-today"
-           text: i18n.tr("Today")
-           onTriggered: {
-               currentDay = new Date()
-           }
-       }
 
-       head.actions: [
-           calendarTodayAction,
-           commonHeaderActions.newEventAction,
-           commonHeaderActions.showCalendarAction,
-           commonHeaderActions.reloadAction
-       ]
+    Action {
+        id: calendarTodayAction
+        objectName:"todaybutton"
+        iconName: "calendar-today"
+        text: i18n.tr("Today")
+        onTriggered: {
+            currentDay = new Date()
+        }
+    }
+
+    head.actions: [
+        calendarTodayAction,
+        commonHeaderActions.newEventAction,
+        commonHeaderActions.showCalendarAction,
+        commonHeaderActions.reloadAction
+    ]
 
     Column {
         id: column
@@ -78,10 +79,10 @@ Page{
                     dayHeader.decrementCurrentIndex()
                 }
                 else if( date > currentDay){
-                     currentDay = currentDay.addDays(1);
-                     dayHeader.incrementCurrentIndex();
-                 }
-             }
+                    currentDay = currentDay.addDays(1);
+                    dayHeader.incrementCurrentIndex();
+                }
+            }
         }
 
         PathViewBase{
