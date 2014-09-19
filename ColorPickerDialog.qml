@@ -30,7 +30,7 @@ Dialog {
             height: units.gu(15)
             rows: 2
             columns: 4
-            spacing: units.gu(1)
+            spacing: units.gu(10)
             Repeater{
                 model: ["#2C001E","#333333","#DD4814","#DF382C","#EFB73E","#19B6EE","#38B44A","#001F5C"];
                 delegate:Rectangle{
