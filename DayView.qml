@@ -37,7 +37,6 @@ Page{
            text: i18n.tr("Today")
            onTriggered: {
                currentDay = new Date()
-               goToBeginning()
            }
        }
 

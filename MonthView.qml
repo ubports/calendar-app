@@ -35,8 +35,7 @@ Page {
            iconName: "calendar-today"
            text: i18n.tr("Today")
            onTriggered: {
-               currentDay = new Date()
-               goToBeginning()
+               currentMonth = new Date().midnight()
            }
        }
 
