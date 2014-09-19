@@ -43,56 +43,10 @@ class TestDayView(CalendarAppTestCase):
 
         now = datetime.datetime.now()
 
-        expected_year = now.year
-        expected_month_name = now.strftime("%B")
+        expected_month_name_year = now.strftime("%B %d, %Y")
 
-        self.assertThat(self.app.main_view.get_year(self.day_view),
-                        Equals(expected_year))
-
-        self.assertThat(self.app.main_view.get_month_name(self.day_view),
-                        Equals(expected_month_name))
-
-    def test_show_current_days(self):
-        """By default, the day view show the last day, the current
-
-        and the next day.
-
-        """
-
-        days = self.day_view.select_many(objectName='dateLabel')
-        days = [int(day.text) for day in days]
-
-        now = datetime.datetime.now()
-
-        today = now.day
-        tomorrow = (now + datetime.timedelta(days=1)).day
-        yesterday = (now - datetime.timedelta(days=1)).day
-
-        self.assertIn(today, days)
-        self.assertIn(tomorrow, days)
-        self.assertIn(yesterday, days)
-
-    def test_switch_day_by_tapping(self):
-        """Selecting a day by touching the screen should also switch the day"""
-        today = self.day_view.get_day_header().startDay.datetime
-
-        # click yesterday
-        yesterday = (today - datetime.timedelta(days=1))
-        yesterday_header = self.day_view.get_day_header(yesterday)
-
-        self.assertThat(yesterday_header.isCurrentItem, Equals(False))
-        self.app.pointing_device.click_object(yesterday_header)
-        self.assertThat(yesterday_header.isCurrentItem,
-                        Eventually(Equals(True)))
-
-        # click tomorrow
-        tomorrow = (yesterday + datetime.timedelta(days=1))
-        tomorrow_header = self.day_view.get_day_header(tomorrow)
-
-        self.assertThat(tomorrow_header.isCurrentItem, Equals(False))
-        self.app.pointing_device.click_object(tomorrow_header)
-        self.assertThat(tomorrow_header.isCurrentItem,
-                        Eventually(Equals(True)))
+        self.assertThat(self.app.main_view.get_month_year(self.day_view),
+                        Equals(expected_month_name_year))
 
     def test_show_next_days(self):
         """It must be possible to show next days by swiping the view."""
