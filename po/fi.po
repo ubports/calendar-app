@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-08-17 16:52+0000\n"
-"Last-Translator: Jiri Grönroos <Unknown>\n"
+"PO-Revision-Date: 2014-09-18 11:08+0000\n"
+"Last-Translator: Timo Jyrinki <timo.jyrinki@canonical.com>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-19 08:03+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:72
@@ -24,11 +24,11 @@ msgstr "Ei tulevia tapahtumia"
 
 #: ../AgendaView.qml:75
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Käytössäsi ei ole yhtäkään kalenteria"
 
 #: ../AgendaView.qml:85
 msgid "Enable calendars"
-msgstr ""
+msgstr "Ota kalentereita käyttöön"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -210,11 +210,11 @@ msgstr "Toisto loppuu"
 
 #: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
 msgid "Reminder"
-msgstr ""
+msgstr "Muistutus"
 
 #: ../EventRepetition.qml:36 ../EventRepetition.qml:121
 msgid "Repeat"
-msgstr ""
+msgstr "Toistuvuus"
 
 #: ../EventRepetition.qml:140
 msgid "Repeats On:"
@@ -226,17 +226,17 @@ msgstr "Toistuva tapahtuma päättyy"
 
 #: ../EventRepetition.qml:205
 msgid "Recurrences"
-msgstr ""
+msgstr "Toistokertoja"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1 ; %2 kertaa "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1 ;  päättyen %2"
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
@@ -264,11 +264,11 @@ msgstr "OK"
 
 #: ../NewEvent.qml:345
 msgid "From"
-msgstr ""
+msgstr "Alkaa"
 
 #: ../NewEvent.qml:388
 msgid "To"
-msgstr ""
+msgstr "Päättyy"
 
 #: ../NewEvent.qml:466
 msgid "Event Name"
@@ -288,7 +288,7 @@ msgstr "Lisää vieras"
 
 #: ../NewEvent.qml:612
 msgid "This Happens"
-msgstr ""
+msgstr "Tapahtuu"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -300,15 +300,15 @@ msgstr "Päivittäin"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "Arkisin"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Maanantaina, tiistaina ja perjantaina"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "Tiistaina ja torstaina"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
@@ -414,27 +414,3 @@ msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
 "calendar;event;day;week;year;appointment;meeting;kalenteri;tapahtuma;päivä;vi"
 "ikko;tapaaminen;kokous;"
-
-#~ msgid "Done"
-#~ msgstr "Valmis"
-
-#~ msgid "hh ap"
-#~ msgstr "HH"
-
-#~ msgid "at"
-#~ msgstr "–"
-
-#~ msgid "Calendar "
-#~ msgstr "Kalenteri "
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "Jokainen viikonpäivä (ma-pe)"
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "Joka maanantai, keskiviikko ja perjantai"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "Joka tiistai ja torstai"
-
-#~ msgid "Recurrence"
-#~ msgstr "Toistokerrat"
