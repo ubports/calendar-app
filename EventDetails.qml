@@ -251,7 +251,7 @@ Page {
                 }
                 Label{
                     id: dateLabel
-                    objectName: "titleLabel"
+                    objectName: "dateLabel"
                     fontSize: "medium"
                     width: parent.width
                     wrapMode: Text.WordWrap
@@ -260,7 +260,7 @@ Page {
                 }
                 Label{
                     id: repeatLabel
-                    objectName: "titleLabel"
+                    objectName: "repeatLabel"
                     fontSize: "small"
                     width: parent.width
                     wrapMode: Text.WordWrap
@@ -268,7 +268,7 @@ Page {
                 }
                 Label{
                     id: locationLabel
-                    objectName: "titleLabel"
+                    objectName: "locationLabel"
                     fontSize: "small"
                     width: parent.width
                     wrapMode: Text.WordWrap
