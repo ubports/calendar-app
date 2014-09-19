@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 import QtQuick 2.3
 import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
@@ -41,12 +40,19 @@ Page {
         }
     }
 
-    head.actions: [
-        calendarTodayAction,
-        commonHeaderActions.newEventAction,
-        commonHeaderActions.showCalendarAction,
-        commonHeaderActions.reloadAction
-    ]
+    head {
+        actions: [
+            calendarTodayAction,
+            commonHeaderActions.newEventAction,
+            commonHeaderActions.showCalendarAction,
+            commonHeaderActions.reloadAction
+        ]
+
+        contents: Label {
+            fontSize: "x-large"
+            text: i18n.tr(currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
+        }
+    }
 
     PathViewBase{
         id: monthViewPath
@@ -84,8 +90,8 @@ Page {
 
             showEvents: true
 
-            width: parent.width - units.gu(5)
-            height: parent.height - units.gu(5)
+            width: parent.width - units.gu(4)
+            height: parent.height
 
             currentMonth: monthViewPath.addMonth(monthViewPath.startMonth,
                                                  monthViewPath.indexType(index));
