@@ -84,11 +84,9 @@ Item{
             return;
         }
 
-        // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-        var timeFormat = i18n.tr("hh:mm");
-        var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
-        var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
+        var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+        var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+
         // TRANSLATORS: the first argument (%1) refers to a start time for an event,
         // while the second one (%2) refers to the end time
         var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
