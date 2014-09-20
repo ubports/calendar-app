@@ -151,44 +151,40 @@ Page {
         }
     }
 
-    tools: ToolbarItems {
-        ToolbarButton {
-            action:Action {
-                text: i18n.tr("Delete");
-                objectName: "delete"
-                iconName: "delete"
-                onTriggered: {
-                    var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
-                    dialog.deleteEvent.connect( function(eventId){
-                        model.removeItem(eventId);
-                        pageStack.pop();
-                    });
-                }
+    head.actions: [
+        Action {
+            text: i18n.tr("Delete");
+            objectName: "delete"
+            iconName: "delete"
+            onTriggered: {
+                var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
+                dialog.deleteEvent.connect( function(eventId){
+                    model.removeItem(eventId);
+                    pageStack.pop();
+                });
             }
-        }
+        },
 
-        ToolbarButton {
-            action:Action {
-                text: i18n.tr("Edit");
-                objectName: "edit"
-                iconName: "edit";
-                onTriggered: {
-                    if( event.itemType === Type.EventOccurrence ) {
-                        var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
-                        dialog.editEvent.connect( function(eventId){
-                            if( eventId === event.parentId ) {
-                                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":internal.parentEvent,"model":model});
-                            } else {
-                                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
-                            }
-                        });
-                    } else {
-                        pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
-                    }
+        Action {
+            text: i18n.tr("Edit");
+            objectName: "edit"
+            iconName: "edit";
+            onTriggered: {
+                if( event.itemType === Type.EventOccurrence ) {
+                    var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
+                    dialog.editEvent.connect( function(eventId){
+                        if( eventId === event.parentId ) {
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":internal.parentEvent,"model":model});
+                        } else {
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                        }
+                    });
+                } else {
+                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
                 }
             }
         }
-    }
+    ]
 
     EventUtils{
         id:eventUtils
