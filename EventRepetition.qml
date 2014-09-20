@@ -33,7 +33,7 @@ Page {
     property var isEdit
 
     visible: false
-    title: i18n.tr("This Happens")
+    title: i18n.tr("Repeats")
 
     EventUtils{
         id:eventUtils
@@ -120,7 +120,7 @@ Page {
         spacing: units.gu(1)
 
         ListItem.Header{
-            text: i18n.tr("Repeat")
+            text: i18n.tr("Recurring")
         }
 
         OptionSelector{

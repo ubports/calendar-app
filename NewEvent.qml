@@ -602,7 +602,7 @@ Page {
                 showDivider: false
                 progression: true
                 visible: event.itemType === Type.Event
-                text: i18n.tr("This Happens")
+                text: i18n.tr("Repeats")
                 subText: eventUtils.getRecurrenceString(rule)
                 onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
             }
