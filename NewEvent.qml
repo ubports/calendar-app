@@ -584,6 +584,7 @@ Page {
                                 removable: true
                                 onItemRemoved: {
                                     contactModel.remove(index)
+                                    contactList.array.splice(index,1)
                                 }
                             }
                         }
