@@ -33,7 +33,7 @@ Page {
     property var isEdit
 
     visible: false
-    title: i18n.tr("Repeat")
+    title: i18n.tr("This Happens")
 
     EventUtils{
         id:eventUtils
