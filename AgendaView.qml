@@ -166,6 +166,7 @@ Page{
 
                 header.text = date
                 timeLabel.text = timeString
+                header.color = event.startDateTime.toLocaleDateString() === new Date().toLocaleDateString() ? UbuntuColors.orange : UbuntuColors.darkGrey
                 detailsContainer.color = eventListModel.collection(event.collectionId).color
 
                 if( event.displayLabel) {
@@ -197,7 +198,6 @@ Page{
                         fontSize: "small"
                         width: parent.width
                         elide: Text.ElideRight
-                        color: UbuntuColors.darkGrey
 
                         anchors {
                             left: parent.left
