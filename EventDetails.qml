@@ -28,10 +28,8 @@ Page {
     id: root
     objectName: "eventDetails"
 
-    property var event;
-    property string headerColor :"black"
-    property string detailColor :"grey"
-    property var model;
+    property var event
+    property var model
 
     anchors{
         left: parent.left
@@ -44,15 +42,14 @@ Page {
     title: i18n.tr("Event Details")
 
     Component.onCompleted: {
-
-        showEvent(event);
+        showEvent(event)
     }
 
     Connections{
         target: pageStack
         onCurrentPageChanged:{
             if( pageStack.currentPage === root) {
-                showEvent(event);
+                showEvent(event)
             }
         }
     }
@@ -93,10 +90,10 @@ Page {
         if( reminder ) {
             for(var i=0; i<reminderModel.count; i++) {
                 if(reminder.secondsBeforeStart === reminderModel.get(i).value)
-                    reminderHeader.text = reminderModel.get(i).label
+                    reminderHeader.subText = reminderModel.get(i).label
             }
         } else {
-            reminderHeader.text = reminderModel.get(0).label
+            reminderHeader.subText = reminderModel.get(0).label
         }
     }
 
@@ -107,16 +104,11 @@ Page {
     }
 
     function showEvent(e) {
-        // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-        var timeFormat = i18n.tr("hh:mm");
-        // TRANSLATORS: this is a time & Date formatting string,
-        //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-        var dateFormat = i18n.tr("dddd, MMMM dd")
-        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
-        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
-        dateLabel.text = e.allDay === true ? i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleString(Qt.locale(),dateFormat))
-                                           :e.startDateTime.toLocaleString(Qt.locale(),dateFormat) + ", " +startTime + "-"  + endTime;
+        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+
+        dateLabel.text = e.allDay === true ? i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                                           : e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
 
         if( e.itemType === Type.EventOccurrence ){
             var requestId = -1;
@@ -159,44 +151,41 @@ Page {
         }
     }
 
-    tools: ToolbarItems {
-        ToolbarButton {
-            action:Action {
-                text: i18n.tr("Delete");
-                objectName: "delete"
-                iconName: "delete"
-                onTriggered: {
-                    var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
-                    dialog.deleteEvent.connect( function(eventId){
-                        model.removeItem(eventId);
-                        pageStack.pop();
-                    });
-                }
+    head.actions: [
+        Action {
+            text: i18n.tr("Delete");
+            objectName: "delete"
+            iconName: "delete"
+            onTriggered: {
+                var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
+                dialog.deleteEvent.connect( function(eventId){
+                    model.removeItem(eventId);
+                    pageStack.pop();
+                });
             }
-        }
+        },
 
-        ToolbarButton {
-            action:Action {
-                text: i18n.tr("Edit");
-                objectName: "edit"
-                iconName: "edit";
-                onTriggered: {
-                    if( event.itemType === Type.EventOccurrence ) {
-                        var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
-                        dialog.editEvent.connect( function(eventId){
-                            if( eventId === event.parentId ) {
-                                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":internal.parentEvent,"model":model});
-                            } else {
-                                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
-                            }
-                        });
-                    } else {
-                        pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
-                    }
+        Action {
+            text: i18n.tr("Edit");
+            objectName: "edit"
+            iconName: "edit";
+            onTriggered: {
+                if( event.itemType === Type.EventOccurrence ) {
+                    var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
+                    dialog.editEvent.connect( function(eventId){
+                        if( eventId === event.parentId ) {
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":internal.parentEvent,"model":model});
+                        } else {
+                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                        }
+                    });
+                } else {
+                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
                 }
             }
         }
-    }
+    ]
+
     EventUtils{
         id:eventUtils
     }
@@ -219,28 +208,32 @@ Page {
 
     Flickable{
         id: flicable
-        width: parent.width
-        height: parent.height
-        clip: true
 
-        contentHeight: column.height + units.gu(3) /*top margin + spacing */
-        contentWidth: parent.width
-
+        clip: interactive
+        anchors.fill: parent
         interactive: contentHeight > height
+
+        contentWidth: parent.width
+        contentHeight: column.height + eventInfo.height + units.gu(3) /*top margin + spacing */
 
         Rectangle{
             id: eventInfo
-            width:parent.width
+
+            width: parent.width
             height: eventInfoList.height + units.gu(5)
 
             Column{
                 id:eventInfoList
-                width: parent.width
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                    margins: units.gu(2)
+                }
+
                 spacing: units.gu(0.5)
-                anchors.left: parent.left
-                anchors.leftMargin: units.gu(2)
-                anchors.top: parent.top
-                anchors.topMargin: units.gu(2)
+
                 Label{
                     id: titleLabel
                     objectName: "titleLabel"
@@ -249,120 +242,125 @@ Page {
                     wrapMode: Text.WordWrap
                     color: "white"
                 }
+
                 Label{
                     id: dateLabel
                     objectName: "dateLabel"
+                    color: "white"
                     fontSize: "medium"
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    color: "white"
-                    text:"Monday, September 22, 4:00 - 5:00 PM"
                 }
+
                 Label{
                     id: repeatLabel
                     objectName: "repeatLabel"
+                    color: "white"
                     fontSize: "small"
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    color: "white"
+                    visible: repeatLabel.text !== ""
                 }
+
                 Label{
                     id: locationLabel
                     objectName: "locationLabel"
+                    color: "white"
                     fontSize: "small"
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    color: "white"
+                    visible: locationLabel.text !== ""
                 }
             }
-
         }
+
         Column{
             id: column
+
             spacing: units.gu(1)
             anchors{
-                top:parent.top
-                topMargin: units.gu(2) + eventInfo.height
+                top: eventInfo.bottom
                 right: parent.right
-                rightMargin: units.gu(2)
                 left:parent.left
-                leftMargin: units.gu(2)
+                margins: units.gu(2)
             }
+
             Row{
                 width: parent.width
                 spacing: units.gu(1)
                 UbuntuShape{
                     id: calendarIndicator
                     width: parent.height
-                    height: parent.height
+                    height: width
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Label{
                     id:calendarName
                     objectName: "calendarName"
                     anchors.verticalCenter: parent.verticalCenter
-                    color: headerColor
                 }
             }
+
             Label{
                 id: descLabel
                 objectName: "descriptionLabel"
+                visible: text != ""
+                width: parent.width
                 wrapMode: Text.WordWrap
-                fontSize: "medium"
-                width: parent.width
-                color: detailColor
             }
-            ListItem.ThinDivider{}
-            Label{
-                text: i18n.tr("Guests");
-                fontSize: "medium"
-                color: headerColor
-            }
-            Label {
-                id:noGuests
-                color: detailColor
-                text: i18n.tr("No Guests added")
-                visible:contactModel.count == 0
 
-            }
-            //Guest Entery Model starts
-            Column{
-                id: contactList
-                objectName: 'contactList'
-                spacing: units.gu(1)
-                width: parent.width
-                clip: true
-                ListModel {
-                    id: contactModel
+            Column {
+                anchors{
+                    right: parent.right
+                    left:parent.left
+                    margins: units.gu(-2)
                 }
-                Repeater{
-                    model: contactModel
-                    delegate: Row{
-                        spacing: units.gu(1)
-                        CheckBox{
-                            checked: participationStatus
-                            enabled: false
-                        }
-                        Label {
-                            text:name
-                            anchors.verticalCenter:  parent.verticalCenter
-                            color: detailColor
+
+                ListItem.Header {
+                    text: i18n.tr("Guests")
+                    visible: contactModel.count !== 0
+                }
+
+                //Guest Entery Model starts
+                Column{
+                    id: contactList
+                    objectName: 'contactList'
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                    }
+
+                    ListModel {
+                        id: contactModel
+                    }
+
+                    Repeater{
+                        model: contactModel
+                        delegate: ListItem.Standard {
+                            Label {
+                                text: name
+                                color: UbuntuColors.midAubergine
+                                anchors {
+                                    left: parent.left
+                                    leftMargin: units.gu(2)
+                                    verticalCenter: parent.verticalCenter
+                                }
+                            }
+
+                            control: CheckBox {
+                                enabled: false
+                                checked: participationStatus
+                            }
                         }
                     }
                 }
+                //Guest Entries ends
 
-
-            }
-            //Guest Entries ends
-            ListItem.ThinDivider{}
-            Label{
-                text: i18n.tr("Reminder");
-                fontSize: "medium"
-                color: headerColor
-            }
-            Label {
-                id:reminderHeader
-                color: detailColor
+                ListItem.Subtitled {
+                    id: reminderHeader
+                    text: i18n.tr("Reminder")
+                }
             }
         }
     }

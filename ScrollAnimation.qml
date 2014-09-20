@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 PropertyAnimation {
     duration: 500

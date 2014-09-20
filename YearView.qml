@@ -18,8 +18,8 @@
 
 import QtQuick 2.3
 import Ubuntu.Components 1.1
-import "dateExt.js" as DateExt
 
+import "dateExt.js" as DateExt
 Page {
     id: yearViewPage
     objectName: "yearViewPage"
@@ -39,12 +39,14 @@ Page {
         }
     }
 
-    head.actions: [
-        calendarTodayAction,
-        commonHeaderActions.newEventAction,
-        commonHeaderActions.showCalendarAction,
-        commonHeaderActions.reloadAction
-    ]
+    head {
+        actions: [
+            calendarTodayAction,
+            commonHeaderActions.newEventAction,
+            commonHeaderActions.showCalendarAction,
+            commonHeaderActions.reloadAction
+        ]
+    }
 
     PathViewBase {
         id: yearPathView
@@ -116,23 +118,28 @@ Page {
                 width: yearView.cellWidth
                 height: yearView.cellHeight
 
-                MonthComponent {
-                    id: monthComponent
-                    objectName: "monthComponent" + index
-                    showEvents: false
-                    currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
-
-                    isYearView: true
+                UbuntuShape {
                     anchors.fill: parent
                     anchors.margins: units.gu(0.5)
+                    radius: "medium"
 
-                    dayLabelFontSize:"x-small"
-                    dateLabelFontSize: "medium"
-                    monthLabelFontSize: "medium"
-                    yearLabelFontSize: "small"
+                    MonthComponent {
+                        id: monthComponent
+                        objectName: "monthComponent" + index
+                        showEvents: false
+                        currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
 
-                    onMonthSelected: {
-                        yearViewPage.monthSelected(date);
+                        isYearView: true
+                        anchors.fill: parent
+
+                        dayLabelFontSize:"x-small"
+                        dateLabelFontSize: "medium"
+                        monthLabelFontSize: "medium"
+                        yearLabelFontSize: "small"
+
+                        onMonthSelected: {
+                            yearViewPage.monthSelected(date);
+                        }
                     }
                 }
             }

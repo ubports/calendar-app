@@ -18,8 +18,7 @@ Package: calendar-app
 Architecture: all
 Depends: ${misc:Depends},
          qmlscene,
-         qtdeclarative5-localstorage-plugin,
-         qtdeclarative5-qtquick2-plugin,
+         qtdeclarative5-quicklayouts-plugin,
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
          ${misc:Depends},
          libqt5organizer5,
