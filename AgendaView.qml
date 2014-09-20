@@ -224,29 +224,19 @@ Page{
                     }
 
                     height: detailsColumn.height + units.gu(1)
+                    borderSource: "radius_ide.sci"
 
                     states: [
                         State {
                             name: "selected"
+                            when: mouseArea.pressed
 
                             PropertyChanges {
                                 target: detailsContainer
-                                color: UbuntuColors.orange
-                            }
-
-                            PropertyChanges {
-                                target: timeLabel
-                                color: "white"
+                                borderSource: "radius_pressed.sci"
                             }
                         }
-
                     ]
-
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: 50
-                        }
-                    }
 
                     Column{
                         id: detailsColumn
@@ -285,17 +275,10 @@ Page{
                     }
 
                     MouseArea{
+                        id: mouseArea
                         anchors.fill: parent
                         onClicked: {
                             pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
-                        }
-
-                        onPressed: {
-                            parent.state = "selected"
-                        }
-
-                        onReleased: {
-                            parent.state = ""
                         }
                     }
                 }
