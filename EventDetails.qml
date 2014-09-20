@@ -107,16 +107,11 @@ Page {
     }
 
     function showEvent(e) {
-        // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-        var timeFormat = i18n.tr("hh:mm");
-        // TRANSLATORS: this is a time & Date formatting string,
-        //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-        var dateFormat = i18n.tr("dddd, MMMM dd")
-        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
-        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
-        dateLabel.text = e.allDay === true ? i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleString(Qt.locale(),dateFormat))
-                                           :e.startDateTime.toLocaleString(Qt.locale(),dateFormat) + ", " +startTime + "-"  + endTime;
+        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+
+        dateLabel.text = e.allDay === true ? i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                                           : e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
 
         if( e.itemType === Type.EventOccurrence ){
             var requestId = -1;
