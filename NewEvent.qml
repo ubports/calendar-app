@@ -114,11 +114,9 @@ Page {
     //Editing Event
     function editEvent(e) {
         //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
-        if(e.itemType === Type.Event){
         rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
                     Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml")
                   : e.recurrence.recurrenceRules[0];
-        }
 
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
@@ -605,7 +603,7 @@ Page {
                 progression: true
                 visible: event.itemType === Type.Event
                 text: i18n.tr("This Happens")
-                subText: event.itemType === Type.Event ? eventUtils.getRecurrenceString(rule) : ""
+                subText: eventUtils.getRecurrenceString(rule)
                 onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
             }
 
