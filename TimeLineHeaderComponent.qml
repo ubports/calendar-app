@@ -15,12 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 1.1
 
+import QtQuick 2.3
+import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
-
 
 Row{
     id: header
@@ -47,13 +46,13 @@ Row{
                 }
             }
 
-            dateColor: {
+            dayColor: {
                 if( type == ViewType.ViewTypeWeek && date.isSameDay(DateExt.today())){
-                    "#5D5D5D"
+                    UbuntuColors.orange
                 } else if( type == ViewType.ViewTypeDay && header.isCurrentItem ) {
-                    "#5D5D5D"
+                    UbuntuColors.orange
                 } else {
-                    "#AEA79F"
+                    UbuntuColors.darkGrey
                 }
             }
 

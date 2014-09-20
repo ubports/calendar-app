@@ -34,34 +34,37 @@ Page{
     Keys.forwardTo: [weekViewPath]
 
     flickable: null
-    Action {
-           id: calendarTodayAction
-           objectName:"todaybutton"
-           iconName: "calendar-today"
-           text: i18n.tr("Today")
-           onTriggered: {
-               dayStart = new Date()
-           }
-       }
 
-       head.actions: [
-           calendarTodayAction,
-           commonHeaderActions.newEventAction,
-           commonHeaderActions.showCalendarAction,
-           commonHeaderActions.reloadAction
-       ]
+    Action {
+        id: calendarTodayAction
+        objectName:"todaybutton"
+        iconName: "calendar-today"
+        text: i18n.tr("Today")
+        onTriggered: {
+            dayStart = new Date()
+        }
+    }
+
+    head {
+        actions: [
+            calendarTodayAction,
+            commonHeaderActions.newEventAction,
+            commonHeaderActions.showCalendarAction,
+            commonHeaderActions.reloadAction
+        ]
+
+        contents: Label {
+            id:monthYear
+            objectName:"monthYearLabel"
+            fontSize: "x-large"
+            text: i18n.tr(dayStart.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
+        }
+    }
 
     Column {
         anchors.fill: parent
-        anchors.top: parent.top
-        anchors.topMargin: units.gu(1.5)
+        anchors.topMargin: units.gu(1)
         spacing: units.gu(1)
-
-        ViewHeader{
-            id: viewHeader
-            month: dayStart.getMonth()
-            year: dayStart.getFullYear()
-        }
 
         TimeLineHeader{
             id: weekHeader

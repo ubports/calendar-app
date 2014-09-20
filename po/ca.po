@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-09-18 06:52+0000\n"
+"PO-Revision-Date: 2014-09-20 06:13+0000\n"
 "Last-Translator: David Planella <david.planella@ubuntu.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-19 08:03+0000\n"
+"X-Launchpad-Export-Date: 2014-09-20 06:26+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:72
@@ -214,7 +214,7 @@ msgstr "Recordatori"
 
 #: ../EventRepetition.qml:36 ../EventRepetition.qml:121
 msgid "Repeat"
-msgstr ""
+msgstr "Repetició"
 
 #: ../EventRepetition.qml:140
 msgid "Repeats On:"
@@ -264,11 +264,11 @@ msgstr "D'acord"
 
 #: ../NewEvent.qml:345
 msgid "From"
-msgstr ""
+msgstr "Des de"
 
 #: ../NewEvent.qml:388
 msgid "To"
-msgstr ""
+msgstr "Fins"
 
 #: ../NewEvent.qml:466
 msgid "Event Name"
@@ -288,7 +288,7 @@ msgstr "Afegeix un participant"
 
 #: ../NewEvent.qml:612
 msgid "This Happens"
-msgstr ""
+msgstr "Té lloc"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -300,15 +300,15 @@ msgstr "Cada dia"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "Dies laborables"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Dilluns, dimecres i divendres"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "Dimarts i dijous"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"

@@ -15,11 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
+
+import QtQuick 2.3
 import Ubuntu.Components 1.1
 
 Column {
     width: parent.width
+
     Repeater {
         model: 24 // hour in a day
 
@@ -31,19 +33,20 @@ Column {
             Label {
                 id: timeLabel
 
-                // TRANSLATORS: this is a time formatting string,
-                // see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
                 text: {
-                    var locale = Qt.locale();
-
-                    return new Date( 0, 0, 0, index )
-                        .toLocaleTimeString( locale, locale.timeFormat( Locale.NarrowFormat ) );
+                    var locale = Qt.locale()
+                    return new Date(0, 0, 0, index).toLocaleTimeString
+                            (locale, locale.timeFormat(Locale.NarrowFormat))
                 }
-                color: "#5D5D5D"
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                fontSize: "x-large"
-                opacity: 0.3
+
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+
+                color: UbuntuColors.lightGrey
+                fontSize: "small"
             }
         }
     }
