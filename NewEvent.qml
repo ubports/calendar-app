@@ -581,6 +581,10 @@ Page {
                                 objectName: "eventGuest%1".arg(index)
                                 height: units.gu(4)
                                 text: name
+                                removable: true
+                                onItemRemoved: {
+                                    contactModel.remove(index)
+                                }
                             }
                         }
                     }
