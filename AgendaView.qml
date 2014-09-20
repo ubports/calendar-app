@@ -166,6 +166,7 @@ Page{
 
                 header.text = date
                 timeLabel.text = timeString
+                detailsContainer.color = eventListModel.collection(event.collectionId).color
 
                 if( event.displayLabel) {
                     titleLabel.text = event.displayLabel;
@@ -186,15 +187,23 @@ Page{
 
                 DayHeaderBackground{
                     id: headerContainer
+
                     height: visible ? header.height + units.gu(1) : 0
                     width: parent.width
+
                     Label{
                         id: header
-                        width: parent.height
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.left
-                        anchors.leftMargin: units.gu(1)
-                        color: "white"
+
+                        fontSize: "small"
+                        width: parent.width
+                        elide: Text.ElideRight
+                        color: UbuntuColors.darkGrey
+
+                        anchors {
+                            left: parent.left
+                            leftMargin: units.gu(1)
+                            verticalCenter: parent.verticalCenter
+                        }
                     }
 
                     MouseArea{
@@ -207,10 +216,13 @@ Page{
 
                 UbuntuShape{
                     id: detailsContainer
-                    color: backgroundColor
 
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    width: parent.width - units.gu(4)
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
                     height: detailsColumn.height + units.gu(1)
 
                     states: [
@@ -239,33 +251,30 @@ Page{
                     Column{
                         id: detailsColumn
 
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.top: parent.top
-                        anchors.margins: units.gu(0.5)
-
-                        spacing: units.gu(0.5)
-
-                        Row{
-                            width: parent.width
-                            Label{
-                                id: timeLabel
-                                color:"gray"
-                                width: parent.width - rect.width
-                            }
-                            Rectangle{
-                                id:rect
-                                width: units.gu(1)
-                                radius: width/2
-                                height: width
-                                color: "#715772"
-                            }
+                        anchors {
+                            top: parent.top
+                            left: parent.left
+                            right: parent.right
+                            margins: units.gu(0.5)
                         }
+
+                        Label{
+                            id: timeLabel
+                            color:"White"
+                            font.bold: true
+                            fontSize: "small"
+                            width: parent.width
+                        }
+
                         Label{
                             id: titleLabel
-                            color:"black"
-                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+
+                            color:"White"
+                            fontSize: "small"
                             width: parent.width
+                            maximumLineCount: 2
+                            elide: Text.ElideRight
+                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 
                             Behavior on color {
                                 ColorAnimation {
