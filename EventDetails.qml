@@ -218,7 +218,7 @@ Page {
         height: parent.height
         clip: true
 
-        contentHeight: column.height + units.gu(3) /*top margin + spacing */
+        contentHeight: column.height + eventInfo.height + units.gu(3) /*top margin + spacing */
         contentWidth: parent.width
 
         interactive: contentHeight > height
