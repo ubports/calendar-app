@@ -22,7 +22,7 @@ import Ubuntu.Components.Popups 1.0
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
-Rectangle{
+Row {
     id: root
 
     property var allDayEvents;
@@ -31,9 +31,7 @@ Rectangle{
 
     property int type: ViewType.ViewTypeWeek
 
-    height: units.gu(6)
     width: parent.width
-    color: "#C8C8C8"
 
     function getAllDayEvents(startDate, endDate) {
         var map = {};
@@ -60,65 +58,58 @@ Rectangle{
         allDayEvents = getAllDayEvents(sd,ed);
     }
 
-    Row {
-        width: parent.width
-        anchors.verticalCenter: parent.verticalCenter
+    Repeater{
+        model: type == ViewType.ViewTypeWeek ? 7 : 1
+        delegate: Button {
+            id: allDayButton
 
-        Repeater{
-            model: type == ViewType.ViewTypeWeek ? 7 : 1
-            delegate: Label{
-                id: allDayLabel
+            property var events;
+            gradient: UbuntuColors.orangeGradient
 
-                property var events;
+            clip: true
+            width: parent.width/ (type == ViewType.ViewTypeWeek ? 7 : 1)
+            height: !allDayButton.events || allDayButton.events.length === 0 ? 0.01 : units.gu(3)
 
-                clip: true
-                width: parent.width/ (type == ViewType.ViewTypeWeek ? 7 : 1)
-                horizontalAlignment: Text.AlignHCenter
-
-                MouseArea{
-                    anchors.fill: parent
-                    onClicked: {
-                        if(!allDayLabel.events || allDayLabel.events.length === 0) {
-                            return;
-                        }
-
-                        if(type == ViewType.ViewTypeWeek) {
-                            PopupUtils.open(popoverComponent, root,{"events": allDayLabel.events})
-                        } else {
-                            if( allDayLabel.events.length > 1 ) {
-                                PopupUtils.open(popoverComponent, root,{"events": allDayLabel.events})
-                            } else {
-                                pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayLabel.events[0],"model": root.model});
-                            }
-                        }
-                    }
+            onClicked: {
+                if(!allDayButton.events || allDayButton.events.length === 0) {
+                    return;
                 }
 
-                Connections{
-                    target: root
-                    onAllDayEventsChanged:{
-                        var sd = startDay.midnight();
-                        sd = sd.addDays(index);
-                        var key  = Qt.formatDateTime(sd, "dd-MMM-yyyy");
-                        events = allDayEvents[key];
+                if(type == ViewType.ViewTypeWeek) {
+                    PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
+                } else {
+                    if( allDayButton.events.length > 1 ) {
+                        PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
+                    } else {
+                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayButton.events[0],"model": root.model});
+                    }
+                }
+            }
 
-                        if(!events || events.length === 0) {
-                            text = "";
-                            return;
-                        }
+            Connections{
+                target: root
+                onAllDayEventsChanged:{
+                    var sd = startDay.midnight();
+                    sd = sd.addDays(index);
+                    var key  = Qt.formatDateTime(sd, "dd-MMM-yyyy");
+                    events = allDayEvents[key];
 
-                        if(type == ViewType.ViewTypeWeek) {
-                            // TRANSLATORS: the first parameter refers to the number of all-day events
-                            // on a given day. "Ev." is short form for "Events".
-                            // Please keep the translation of "Ev." to 3 characters only, as the week view
-                            // where it's shown has limited space
-                            text =  i18n.tr("%1 Ev.").arg(events.length)
+                    if(!events || events.length === 0) {
+                        text = "";
+                        return;
+                    }
+
+                    if(type == ViewType.ViewTypeWeek) {
+                        // TRANSLATORS: the first parameter refers to the number of all-day events
+                        // on a given day. "Ev." is short form for "Events".
+                        // Please keep the translation of "Ev." to 3 characters only, as the week view
+                        // where it's shown has limited space
+                        text =  i18n.tr("%1 Ev.").arg(events.length)
+                    } else {
+                        if( events.length > 1) {
+                            text = i18n.tr("%1 All day events").arg(events.length)
                         } else {
-                            if( events.length > 1) {
-                                text = i18n.tr("%1 All day events").arg(events.length)
-                            } else {
-                                text = events[0].displayLabel;
-                            }
+                            text = events[0].displayLabel;
                         }
                     }
                 }

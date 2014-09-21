@@ -89,21 +89,22 @@ Item {
         z:2
     }
 
+    AllDayEventComponent {
+        id: allDayContainer
+        type: root.type
+        startDay: root.startDay
+        model: mainModel
+        z:1
+        Component.onCompleted: {
+            mainModel.addModelChangeListener(createAllDayEvents);
+        }
+        Component.onDestruction: {
+            mainModel.removeModelChangeListener(createAllDayEvents);
+        }
+    }
+
     ColumnLayout {
         anchors.fill: parent
-
-        AllDayEventComponent {
-            id: allDayContainer
-            type: root.type
-            startDay: root.startDay
-            model: mainModel
-            Component.onCompleted: {
-                mainModel.addModelChangeListener(createAllDayEvents);
-            }
-            Component.onDestruction: {
-                mainModel.removeModelChangeListener(createAllDayEvents);
-            }
-        }
 
         Flickable {
             id: timeLineView
