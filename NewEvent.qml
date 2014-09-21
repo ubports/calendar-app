@@ -78,7 +78,7 @@ Page {
         if (typeof(endDate) === 'undefined') {
             endDate = new Date(root.roundDate(date))
             endDate.setMinutes(endDate.getMinutes() + 30)
-            endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
+            endTimeInput.text = Qt.formatDateTime(endDate, Qt.locale().timeFormat(Locale.ShortFormat));
         }
 
         if(event === null){
@@ -426,7 +426,7 @@ Page {
                     leftMargin: units.gu(-1)
                 }
 
-                text: "All Day Event"
+                text: i18n.tr("All day event")
                 showDivider: false
                 control: CheckBox {
                     id: allDayEventCheckbox
@@ -601,7 +601,7 @@ Page {
                 showDivider: false
                 progression: true
                 visible: event.itemType === Type.Event
-                text: i18n.tr("This Happens")
+                text: i18n.tr("Repeats")
                 subText: eventUtils.getRecurrenceString(rule)
                 onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
             }

@@ -119,10 +119,13 @@ Page {
     function showEvent(e) {
         // TRANSLATORS: this is a time formatting string,
         // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-        var timeFormat = i18n.tr("hh:mm");
-        // TRANSLATORS: this is a time & Date formatting string,
-        //see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-        var dateFormat = i18n.tr("dd-MMM-yyyy")
+        // It's used to display the start and end times of an event in the event details
+        // and new event views
+        var timeFormat = Qt.locale().timeFormat(Locale.ShortFormat);
+        // TRANSLATORS: this is a date formatting string,
+        // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
+        // It's used to display the date in the event details view
+        var dateFormat = i18n.tr("MMMM dd, yyyy")
         eventDate.value = e.startDateTime.toLocaleString(Qt.locale(),dateFormat);
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat);
@@ -281,7 +284,7 @@ Page {
                 visible: allDayEventCheckbox.checked
 
                 Label {
-                    text: i18n.tr("All Day event:")
+                    text: i18n.tr("All day event")
                     anchors.verticalCenter: allDayEventCheckbox.verticalCenter
                     color: headerColor
                 }
@@ -394,12 +397,12 @@ Page {
             EventDetailsInfo{
                 id: recurrentHeader
                 xMargin: column.recurranceAreaMaxWidth
-                header: i18n.tr("This happens")
+                header: i18n.tr("Repeats")
             }
             EventDetailsInfo{
                 id: reminderHeader
                 xMargin: column.recurranceAreaMaxWidth
-                header: i18n.tr("Remind me")
+                header: i18n.tr("Reminder")
             }
 
         }
