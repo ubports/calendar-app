@@ -113,6 +113,8 @@ Item {
 
             contentHeight: units.gu(10) * 24
             contentWidth: width
+            anchors.right: parent.right
+            anchors.left: parent.left
 
             clip: true
 
