@@ -115,7 +115,7 @@ Rectangle{
                             text =  i18n.tr("%1 Ev.").arg(events.length)
                         } else {
                             if( events.length > 1) {
-                                text = i18n.tr("%1 All day events").arg(events.length)
+                                text = i18n.tr("%1 All day event", "%1 All day events", events.length).arg(events.length)
                             } else {
                                 text = events[0].displayLabel;
                             }

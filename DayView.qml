@@ -54,13 +54,17 @@ Page{
 
             Label {
                 fontSize: "medium"
-                text: i18n.tr(currentDay.toLocaleString(Qt.locale(),i18n.tr("dddd")))
+                text: Qt.locale().standaloneDayName(currentDay.getDay())
+                font.capitalization: Font.Capitalize
             }
 
             Label {
                 id:cuurentDay
                 objectName:"monthYearLabel"
                 fontSize: "large"
+                // TRANSLATORS: this is a time formatting string,
+                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+                // It's used in the header of the day view
                 text:i18n.tr(currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM dd, yyyy")))
             }
         }
