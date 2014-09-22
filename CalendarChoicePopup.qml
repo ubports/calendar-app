@@ -36,14 +36,6 @@ Page {
             text: i18n.tr("Back")
             iconName: "back"
             onTriggered: {
-                pop();
-            }
-        }
-
-        actions: Action {
-            text: i18n.tr("Save");
-            iconName: "save"
-            onTriggered: {
                 root.collectionUpdated();
                 pop();
             }
@@ -72,6 +64,7 @@ Page {
                 }
 
                 color: modelData.color
+                opacity: checkBox.checked ? 1.0 : 0.8
 
                 MouseArea{
                     anchors.fill: parent
@@ -90,6 +83,7 @@ Page {
             Label{
                 text: modelData.name
                 elide: Text.ElideRight
+                opacity: checkBox.checked ? 1.0 : 0.8
                 color: UbuntuColors.midAubergine
                 anchors {
                     left: calendarColorCode.right
