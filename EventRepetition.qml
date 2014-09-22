@@ -93,9 +93,9 @@ Page {
                 rule.frequency = recurrenceRule;
                 if(recurrenceOption.selectedIndex > 0) {
                     rule.daysOfWeek = eventUtils.getDaysOfWeek(recurrenceOption.selectedIndex,weekDays );
-                    if( limitOptions.selectedIndex === 1
+                    if(limitOptions.selectedIndex === 1
                             && recurrenceOption.selectedIndex > 0
-                            && limitCount.text != "" ){
+                            && limitCount.text != ""){
                         rule.limit =  parseInt(limitCount.text);
                     }
                     else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
@@ -120,7 +120,7 @@ Page {
         spacing: units.gu(1)
 
         ListItem.Header{
-            text: i18n.tr("Recurring")
+            text: i18n.tr("Repeat")
         }
 
         OptionSelector{
