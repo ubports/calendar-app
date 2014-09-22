@@ -367,6 +367,7 @@ Page {
                     anchors.right: parent.right
                     width: parent.width / 5
                     visible: !allDayEventCheckbox.checked
+                    horizontalAlignment: Text.AlignRight
 
                     MouseArea{
                         anchors.fill: parent
@@ -407,10 +408,10 @@ Page {
                 NewEventEntryField{
                     id: endTimeInput
                     objectName: "endTimeInput"
-
                     text: ""
                     width: parent.width / 5
                     anchors.right: parent.right
+                    horizontalAlignment: Text.AlignRight
 
                     MouseArea{
                         anchors.fill: parent
