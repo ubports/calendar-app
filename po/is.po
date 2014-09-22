@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: po_com.ubuntu.calendar-is\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-08-21 10:54+0000\n"
+"PO-Revision-Date: 2014-09-20 11:15+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-21 06:20+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: is\n"
 
@@ -27,11 +27,11 @@ msgstr "Engir atburðir á næstunni"
 
 #: ../AgendaView.qml:75
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Þú ert ekki með nein virk dagatöl"
 
 #: ../AgendaView.qml:85
 msgid "Enable calendars"
-msgstr ""
+msgstr "Virkja dagatöl"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -213,11 +213,11 @@ msgstr "Endurtekning hættir"
 
 #: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
 msgid "Reminder"
-msgstr ""
+msgstr "Áminning"
 
 #: ../EventRepetition.qml:36 ../EventRepetition.qml:121
 msgid "Repeat"
-msgstr ""
+msgstr "Endurtaka"
 
 #: ../EventRepetition.qml:140
 msgid "Repeats On:"
@@ -229,17 +229,17 @@ msgstr "Endurtekinn atburður endar"
 
 #: ../EventRepetition.qml:205
 msgid "Recurrences"
-msgstr ""
+msgstr "Endurtekningar"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1 ; %2 sinnum "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1 ;  til %2"
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
@@ -267,11 +267,11 @@ msgstr "Í lagi"
 
 #: ../NewEvent.qml:345
 msgid "From"
-msgstr ""
+msgstr "Frá"
 
 #: ../NewEvent.qml:388
 msgid "To"
-msgstr ""
+msgstr "Til"
 
 #: ../NewEvent.qml:466
 msgid "Event Name"
@@ -291,7 +291,7 @@ msgstr "Bæta við gesti"
 
 #: ../NewEvent.qml:612
 msgid "This Happens"
-msgstr ""
+msgstr "Gerist þetta"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -303,15 +303,15 @@ msgstr "Daglega"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "Virka daga"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Á mánudegi, miðvikudegi og föstudegi"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "Á þriðjudegi og fimmtudegi"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
@@ -414,27 +414,3 @@ msgstr "Dagatal fyrir Ubuntu með samstillingu við netreikninga."
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "dagatal;atburður;dagur;vika;ár;stefnumót;fundur;"
-
-#~ msgid "Done"
-#~ msgstr "Lokið"
-
-#~ msgid "at"
-#~ msgstr "kl."
-
-#~ msgid "hh ap"
-#~ msgstr "hh"
-
-#~ msgid "Recurrence"
-#~ msgstr "Endurtekning"
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "Alla mánudaga, miðvikudaga og föstudaga"
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "Alla virka daga (mán-fös)"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "Alla þriðjudaga og fimmtudaga"
-
-#~ msgid "Calendar "
-#~ msgstr "Dagatal "

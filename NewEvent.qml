@@ -78,7 +78,7 @@ Page {
         if (typeof(endDate) === 'undefined') {
             endDate = new Date(root.roundDate(date))
             endDate.setMinutes(endDate.getMinutes() + 30)
-            endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
+            endTimeInput.text = Qt.formatDateTime(endDate, Qt.locale().timeFormat(Locale.ShortFormat));
         }
 
         if(event === null){
@@ -427,7 +427,7 @@ Page {
                     leftMargin: units.gu(-1)
                 }
 
-                text: "All Day Event"
+                text: i18n.tr("All day event")
                 showDivider: false
                 control: CheckBox {
                     id: allDayEventCheckbox
