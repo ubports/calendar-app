@@ -22,7 +22,7 @@ import Ubuntu.Components.Popups 1.0
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
-Row {
+Item {
     id: root
 
     property var allDayEvents;
@@ -65,10 +65,22 @@ Row {
 
             property var events;
             gradient: UbuntuColors.orangeGradient
+            function getPosition(){
+                var sd = startDay.midnight();
+                sd = sd.addDays(index);
+                if(Qt.formatDateTime(sd, "ddd") === "Sun"){return root.width/7*0}
+                if(Qt.formatDateTime(sd, "ddd") === "Mon"){return root.width/7*1}
+                if(Qt.formatDateTime(sd, "ddd") === "Tue"){return root.width/7*2}
+                if(Qt.formatDateTime(sd, "ddd") === "Wed"){return root.width/7*3}
+                if(Qt.formatDateTime(sd, "ddd") === "Thu"){return root.width/7*4}
+                if(Qt.formatDateTime(sd, "ddd") === "Fri"){return root.width/7*5}
+                if(Qt.formatDateTime(sd, "ddd") === "Sat"){return root.width/7*6}
+            }
+            x: if(type === ViewType.ViewTypeWeek) {getPosition()}
 
             clip: true
             width: parent.width/ (type == ViewType.ViewTypeWeek ? 7 : 1)
-            height: !allDayButton.events || allDayButton.events.length === 0 ? 0.01 : units.gu(3)
+            visible: !allDayButton.events || allDayButton.events.length === 0 ? false : true
 
             onClicked: {
                 if(!allDayButton.events || allDayButton.events.length === 0) {
