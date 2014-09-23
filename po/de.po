@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-08-17 17:23+0000\n"
-"Last-Translator: Christian Gärtner <chrisdagardner@gmail.com>\n"
+"PO-Revision-Date: 2014-09-22 18:07+0000\n"
+"Last-Translator: Niklas Wenzel <nikwen.developer@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-23 07:07+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:72
@@ -24,11 +24,11 @@ msgstr "Es sind keine anstehenden Termine vorhanden"
 
 #: ../AgendaView.qml:75
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Sie haben keine Kalender aktiviert"
 
 #: ../AgendaView.qml:85
 msgid "Enable calendars"
-msgstr ""
+msgstr "Kalender aktivieren"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
@@ -210,11 +210,11 @@ msgstr "Wiederholung endet"
 
 #: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
 msgid "Reminder"
-msgstr ""
+msgstr "Erinnerung"
 
 #: ../EventRepetition.qml:36 ../EventRepetition.qml:121
 msgid "Repeat"
-msgstr ""
+msgstr "Wiederholung"
 
 #: ../EventRepetition.qml:140
 msgid "Repeats On:"
@@ -226,17 +226,17 @@ msgstr "Wiederkehrender Termin endet"
 
 #: ../EventRepetition.qml:205
 msgid "Recurrences"
-msgstr ""
+msgstr "Wiederholungen"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1 ; %2-mal "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1 ;  bis %2"
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
@@ -264,11 +264,11 @@ msgstr "OK"
 
 #: ../NewEvent.qml:345
 msgid "From"
-msgstr ""
+msgstr "Von"
 
 #: ../NewEvent.qml:388
 msgid "To"
-msgstr ""
+msgstr "Bis"
 
 #: ../NewEvent.qml:466
 msgid "Event Name"
@@ -288,7 +288,7 @@ msgstr "Gast hinzufügen"
 
 #: ../NewEvent.qml:612
 msgid "This Happens"
-msgstr ""
+msgstr "Das passiert"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -300,15 +300,15 @@ msgstr "Täglich"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "An Werktagen"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Am Montag, Mittwoch und Freitag"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "Am Dienstag und Donnerstag"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
@@ -369,8 +369,8 @@ msgid ""
 "about them"
 msgstr ""
 "Die Kalenderanwendung akzeptiert vier Argumente: --starttime, --endtime, --"
-"newevent und --eventid. Diese werden vom System verwaltet. Siehe die Quelle "
-"um eine komplette Beschreibung zu erhalten."
+"newevent und --eventid. Diese werden vom System verwaltet. Die Quelle "
+"ansehen, um eine komplette Beschreibung zu erhalten."
 
 #: ../calendar.qml:304
 msgid "Today"
@@ -412,27 +412,3 @@ msgstr ""
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "Kalender,Veranstaltung,Tag,Woche,Jahr,Termin,Treffen;"
-
-#~ msgid "hh ap"
-#~ msgstr "hh"
-
-#~ msgid "Done"
-#~ msgstr "Erledigt"
-
-#~ msgid "at"
-#~ msgstr "um"
-
-#~ msgid "Calendar "
-#~ msgstr "Kalender "
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "Jeder Wochentag (Montag bis Freitag)"
-
-#~ msgid "Recurrence"
-#~ msgstr "Wiederholung"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "Jeder Dienstag und Donnerstag"
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "Jeder Montag, Mittwoch und Freitag"

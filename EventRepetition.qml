@@ -33,7 +33,7 @@ Page {
     property var isEdit
 
     visible: false
-    title: i18n.tr("Repeat")
+    title: i18n.tr("Repeats")
 
     EventUtils{
         id:eventUtils
@@ -89,22 +89,24 @@ Page {
         iconName: "back"
         onTriggered: {
             var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
-            if( recurrenceRule !== RecurrenceRule.Invalid ) {
+            if (recurrenceRule !== RecurrenceRule.Invalid) {
                 rule.frequency = recurrenceRule;
-                if(recurrenceOption.selectedIndex > 0) {
+                if (recurrenceOption.selectedIndex > 0) {
                     rule.daysOfWeek = eventUtils.getDaysOfWeek(recurrenceOption.selectedIndex,weekDays );
-                    if(limitOptions.selectedIndex === 1 && recurrenceOption.selectedIndex > 0){
+                    if (limitOptions.selectedIndex === 1
+                            && recurrenceOption.selectedIndex > 0
+                            && limitCount.text != "") {
                         rule.limit =  parseInt(limitCount.text);
                     }
-                    else if(limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0){
+                    else if (limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0) {
                         rule.limit =  datePick.date;
                     }
-                    else{
+                    else {
                         rule.limit = undefined;
                     }
                 }
             }
-            else{
+            else {
                 rule.frequency = 0
             }
             pop()
