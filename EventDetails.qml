@@ -67,7 +67,7 @@ Page {
 
     function updateRecurrence( event ) {
         var index = 0;
-        if(event.recurrence) {
+        if (event.recurrence) {
             if(event.recurrence.recurrenceRules[0] !== undefined){
                 var rule =  event.recurrence.recurrenceRules[0];
                 repeatLabel.text = eventUtils.getRecurrenceString(rule)
@@ -79,7 +79,7 @@ Page {
         var attendees = event.attendees;
         contactModel.clear();
         if( attendees !== undefined ) {
-            for( var j = 0 ; j < attendees.length ; ++j ) {
+            for (var j = 0 ; j < attendees.length ; ++j) {
                 contactModel.append( {"name": attendees[j].name,"participationStatus": attendees[j].participationStatus }  );
             }
         }
@@ -340,6 +340,7 @@ Page {
                         delegate: ListItem.Standard {
                             Label {
                                 text: name
+                                objectName: "eventGuest%1".arg(index)
                                 color: UbuntuColors.midAubergine
                                 anchors {
                                     left: parent.left

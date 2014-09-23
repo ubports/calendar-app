@@ -700,10 +700,7 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         guests = []
         contacts_list = self.select_single(
             'QQuickColumn', objectName='contactList')
-        guest_labels = contacts_list.select_many('Label')
-        for label in guest_labels:
-            guests.append(label.text)
-
+        guests.append(contacts_list.select_single("Label",objectName='eventGuest0').text)
         return guests
 
 
