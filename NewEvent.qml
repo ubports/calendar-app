@@ -606,9 +606,13 @@ Page {
                 showDivider: false
                 progression: true
                 visible: event.itemType === Type.Event
-                text: i18n.tr("This Happens")
+                text: i18n.tr("Repeats")
                 subText: event.itemType === Type.Event ? eventUtils.getRecurrenceString(rule) : ""
                 onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
+            }
+
+            ListItem.ThinDivider {
+                visible: event.itemType === Type.Event
             }
 
             ListItem.Subtitled{
@@ -640,6 +644,8 @@ Page {
                                               "reminderModel": reminderModel,
                                               "eventTitle": titleEdit.text})
             }
+
+            ListItem.ThinDivider {}
         }
     }
     // used to keep the field visible when the keyboard appear or dismiss
