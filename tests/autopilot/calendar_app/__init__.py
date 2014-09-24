@@ -682,7 +682,7 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return data.Event(calendar, name, description, location, guests)
 
     def _get_calendar(self):
-        return self._get_label_text('calendarName')
+        return self._get_label_text('calendarName').split(" ")[0]
 
     def _get_name(self):
         return self._get_label_text('titleLabel')
@@ -700,10 +700,10 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         guests = []
         contacts_list = self.select_single(
             'QQuickColumn', objectName='contactList')
-        guest_labels = contacts_list.select_many('Label')
-        for label in guest_labels:
-            guests.append(label.text)
-
+        guests.append(
+            contacts_list.select_single(
+                "Label",
+                objectName='eventGuest0').text)
         return guests
 
 
