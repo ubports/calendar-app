@@ -76,8 +76,8 @@ Item {
                 if(Qt.formatDateTime(sd, "ddd") === "Fri"){return root.width/7*5}
                 if(Qt.formatDateTime(sd, "ddd") === "Sat"){return root.width/7*6}
             }
-            x: if(type === ViewType.ViewTypeWeek) {getPosition()}
-
+            x: if(type === ViewType.ViewTypeWeek) {getPosition()}else{0}
+            height: units.gu(3)
             clip: true
             width: parent.width/ (type == ViewType.ViewTypeWeek ? 7 : 1)
             visible: !allDayButton.events || allDayButton.events.length === 0 ? false : true

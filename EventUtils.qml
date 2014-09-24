@@ -78,7 +78,7 @@ QtObject{
         var index;
         var reccurence = "";
         var limit,str = "";
-        var dateFormat = i18n.tr("ddd MMMM d yyyy");
+        var dateFormat = Qt.locale().dateFormat(Locale.LongFormat);
         index = rule.frequency;
         if(index === RecurrenceRule.Weekly){
             index = getWeekDaysIndex(rule.daysOfWeek.sort() )
