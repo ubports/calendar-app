@@ -7,42 +7,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-16 09:39+0200\n"
-"PO-Revision-Date: 2014-08-09 18:00+0000\n"
-"Last-Translator: omarjan <bahadiromar@outlook.com>\n"
+"POT-Creation-Date: 2014-09-23 08:25+0200\n"
+"PO-Revision-Date: 2014-09-24 06:26+0000\n"
+"Last-Translator: Gheyret T.Kenji <Unknown>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-17 07:15+0000\n"
+"X-Launchpad-Export-Date: 2014-09-24 07:33+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
-#: ../AgendaView.qml:72
+#: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
+#: ../WeekView.qml:42 ../YearView.qml:36
+msgid "Today"
+msgstr "بۈگۈن"
+
+#: ../AgendaView.qml:90
 msgid "No upcoming events"
 msgstr "پىلاندا ھادىسىلەر يوق"
 
-#: ../AgendaView.qml:75
+#: ../AgendaView.qml:93
 msgid "You have no calendars enabled"
 msgstr ""
 
-#: ../AgendaView.qml:85
+#: ../AgendaView.qml:103
 msgid "Enable calendars"
 msgstr ""
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:143 ../EventBubble.qml:90 ../EventDetails.qml:151
-msgid "hh:mm"
-msgstr "hh:mm"
-
-#: ../AgendaView.qml:144
-msgid "dddd , d MMMM"
-msgstr "dddd ، d MMMM"
-
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:151 ../EventBubble.qml:95
+#: ../AgendaView.qml:165 ../EventBubble.qml:92
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -54,14 +49,16 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:115
 #, qt-format
 msgid "%1 Ev."
-msgstr ""
+msgstr "%1 Ev."
 
 #: ../AllDayEventComponent.qml:118
 #, qt-format
-msgid "%1 All day events"
-msgstr "%1 پۈتۈن كۈنلۈك ھادىسىلەر"
+msgid "%1 All day event"
+msgid_plural "%1 All day events"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../CalendarChoicePopup.qml:32 ../calendar.qml:332
+#: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
 msgstr "يىلنامىلەر"
 
@@ -69,25 +66,31 @@ msgstr "يىلنامىلەر"
 msgid "Back"
 msgstr "كەينى"
 
-#: ../CalendarChoicePopup.qml:44 ../NewEvent.qml:66
-msgid "Save"
-msgstr "ساقلا"
-
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
 msgstr "رەڭ تاللا"
 
-#: ../ColorPickerDialog.qml:54 ../DeleteConfirmationDialog.qml:59
+#: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:59
 #: ../EditEventConfirmationDialog.qml:52
 msgid "Cancel"
 msgstr "ئەمەلدىن قالدۇر"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr ""
+msgstr "ئالاقەداش يوق"
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
+msgstr "ئالاقەداش ئىزدە"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the day view
+#. TRANSLATORS: this is a date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
+#. It's used to display the date in the event details view
+#: ../DayView.qml:68 ../EventDetails.qml:128
+msgid "MMMM dd, yyyy"
 msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:31
@@ -106,11 +109,11 @@ msgstr "تەرتىپىنى ئۆچۈر"
 msgid "Delete this"
 msgstr "بۇنى ئۆچۈر"
 
-#: ../DeleteConfirmationDialog.qml:50 ../EventDetails.qml:212
+#: ../DeleteConfirmationDialog.qml:50 ../EventDetails.qml:187
 msgid "Delete"
 msgstr "ئۆچۈر"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:282
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:273
 msgid "Edit Event"
 msgstr "ھادىسە تەھرىرلەش"
 
@@ -122,109 +125,75 @@ msgstr "تەرتىپىنى تەھرىرلە"
 msgid "Edit this"
 msgstr "بۇنى تەھرىرلە"
 
-#: ../EventDetails.qml:44 ../NewEvent.qml:453
+#: ../EventActions.qml:33 ../NewEvent.qml:273
+msgid "New Event"
+msgstr "يېڭى ھادىسە"
+
+#: ../EventActions.qml:53
+msgid "Sync"
+msgstr "قەدەمداشلا"
+
+#: ../EventActions.qml:53
+msgid "Syncing"
+msgstr "قەدەمداشلاۋاتىدۇ"
+
+#: ../EventDetails.qml:44 ../NewEvent.qml:445
 msgid "Event Details"
-msgstr ""
+msgstr "ھادىسە تەپسىلاتلىرى"
 
-#: ../EventDetails.qml:72 ../LimitLabelDefines.qml:21
-msgid "Never"
-msgstr "بىر قېتىممۇ يېڭىلانمىغان"
-
-#. TRANSLATORS: this is a date shown in the event details view,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:76 ../EventUtils.qml:81
-msgid "ddd MMMM d yyyy"
-msgstr "ddd MMMM d yyyy"
-
-#: ../EventDetails.qml:79
-#, qt-format
-msgid "After %1 Occurrence"
-msgid_plural "After %1 Occurrences"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../EventDetails.qml:80
-#, qt-format
-msgid "After Date %1"
-msgstr "چېسلا %1 دىن كېيىن"
-
-#. TRANSLATORS: the argument is a day of the week or a list of days
-#: ../EventDetails.qml:92
-#, qt-format
-msgid "Every %1"
-msgstr "ھەر %1"
-
-#: ../EventDetails.qml:143
+#: ../EventDetails.qml:114
 msgid "Not specified"
 msgstr "بەلگىلەنمىگەن"
 
-#. TRANSLATORS: this is a time & Date formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:154
-msgid "dd-MMM-yyyy"
-msgstr "dd-MMM-yyyy"
-
-#: ../EventDetails.qml:227
+#: ../EventDetails.qml:202
 msgid "Edit"
 msgstr "تەھرىرلەش"
 
-#: ../EventDetails.qml:290 ../EventRepetition.qml:230
+#: ../EventDetails.qml:268 ../EventRepetition.qml:232
 msgid "Date"
 msgstr "چېسلا"
 
-#: ../EventDetails.qml:295
+#: ../EventDetails.qml:273
 msgid "Start"
 msgstr "باشلاش"
 
-#: ../EventDetails.qml:300
+#: ../EventDetails.qml:278
 msgid "End"
 msgstr "تامام"
 
-#: ../EventDetails.qml:309
-msgid "All Day event:"
-msgstr "پۈتۈن كۈنلۈك ھادىسە"
+#: ../EventDetails.qml:287 ../NewEvent.qml:430
+msgid "All day event"
+msgstr ""
 
-#: ../EventDetails.qml:358 ../NewEvent.qml:492
+#: ../EventDetails.qml:336 ../NewEvent.qml:484
 msgid "Location"
 msgstr "ئورنى"
 
-#: ../EventDetails.qml:384 ../NewEvent.qml:539
+#: ../EventDetails.qml:362 ../NewEvent.qml:531
 msgid "Guests"
 msgstr "مېھمانلار"
 
-#: ../EventDetails.qml:422
-msgid "This happens"
+#: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
+msgid "Repeats"
 msgstr ""
 
-#: ../EventDetails.qml:427
-msgid "Remind me"
-msgstr "ئەسكەرت"
-
-#: ../EventDetails.qml:432
-msgid "Repeats On"
-msgstr ""
-
-#: ../EventDetails.qml:438
-msgid "Repetition Ends"
-msgstr "تەكرارلىنىش تۈگىدى"
-
-#: ../EventReminder.qml:37 ../EventReminder.qml:71 ../NewEvent.qml:626
+#: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
 msgid "Reminder"
 msgstr ""
 
-#: ../EventRepetition.qml:36 ../EventRepetition.qml:121
+#: ../EventRepetition.qml:123
 msgid "Repeat"
 msgstr ""
 
-#: ../EventRepetition.qml:140
+#: ../EventRepetition.qml:142
 msgid "Repeats On:"
 msgstr ""
 
-#: ../EventRepetition.qml:185
+#: ../EventRepetition.qml:187
 msgid "Recurring event ends"
 msgstr ""
 
-#: ../EventRepetition.qml:205
+#: ../EventRepetition.qml:207
 msgid "Recurrences"
 msgstr ""
 
@@ -239,60 +208,67 @@ msgid "%1 ;  until %2"
 msgstr ""
 
 #: ../LimitLabelDefines.qml:21
+msgid "Never"
+msgstr "بىر قېتىممۇ يېڭىلانمىغان"
+
+#: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
-msgstr ""
+msgstr "X قېتىم تەكرارلانغاندىن كېيىن"
 
 #: ../LimitLabelDefines.qml:22
 msgid "After Date"
+msgstr "چېسلا كېيىن"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../MonthView.qml:56 ../WeekView.qml:60
+msgid "MMMM yyyy"
 msgstr ""
 
-#: ../NewEvent.qml:170
+#: ../NewEvent.qml:59
+msgid "Save"
+msgstr "ساقلا"
+
+#: ../NewEvent.qml:161
 msgid "End time can't be before start time"
 msgstr "ئاخىرلىشىش ۋاقتى باشلىنىش ۋاقتىدىن بۇرۇن بولسا بولمايدۇ"
 
-#: ../NewEvent.qml:282 ../calendar.qml:323
-msgid "New Event"
-msgstr "يېڭى ھادىسە"
-
-#: ../NewEvent.qml:292
+#: ../NewEvent.qml:283
 msgid "Error"
 msgstr "خاتالىق"
 
-#: ../NewEvent.qml:294
+#: ../NewEvent.qml:285
 msgid "OK"
 msgstr "تامام"
 
-#: ../NewEvent.qml:345
+#: ../NewEvent.qml:336
 msgid "From"
 msgstr ""
 
-#: ../NewEvent.qml:388
+#: ../NewEvent.qml:380
 msgid "To"
 msgstr ""
 
-#: ../NewEvent.qml:466
+#: ../NewEvent.qml:458
 msgid "Event Name"
 msgstr "ھادىسە ئاتى"
 
-#: ../NewEvent.qml:479
+#: ../NewEvent.qml:471
 msgid "Description"
-msgstr "چۈشەندۈرۈش"
+msgstr "چۈشەندۈرۈلۈشى"
 
-#: ../NewEvent.qml:501 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:493 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "يىلنامە"
 
-#: ../NewEvent.qml:543
+#: ../NewEvent.qml:535
 msgid "Add Guest"
-msgstr ""
-
-#: ../NewEvent.qml:612
-msgid "This Happens"
 msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
-msgstr "بىر قېتىم"
+msgstr "بىر قېتىملىق"
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
@@ -322,43 +298,43 @@ msgstr "ھەر ئايدا"
 msgid "Yearly"
 msgstr "ھەر يىلى"
 
-#: ../ReminderLabelDefines.qml:21
+#: ../RemindersModel.qml:26
 msgid "No Reminder"
-msgstr ""
+msgstr "ئەسكەرتكۈچ يوق"
 
-#: ../ReminderLabelDefines.qml:22
+#: ../RemindersModel.qml:27
 msgid "5 minutes"
 msgstr "5 مىنۇت"
 
-#: ../ReminderLabelDefines.qml:23
+#: ../RemindersModel.qml:28
 msgid "15 minutes"
 msgstr "15 مىنۇت"
 
-#: ../ReminderLabelDefines.qml:24
+#: ../RemindersModel.qml:29
 msgid "30 minutes"
 msgstr "30 مىنۇت"
 
-#: ../ReminderLabelDefines.qml:25
+#: ../RemindersModel.qml:30
 msgid "1 hour"
 msgstr "1 سائەت"
 
-#: ../ReminderLabelDefines.qml:26
+#: ../RemindersModel.qml:31
 msgid "2 hours"
 msgstr "2 سائەت"
 
-#: ../ReminderLabelDefines.qml:27
+#: ../RemindersModel.qml:32
 msgid "1 day"
 msgstr "1 كۈن"
 
-#: ../ReminderLabelDefines.qml:28
+#: ../RemindersModel.qml:33
 msgid "2 days"
 msgstr "2 كۈن"
 
-#: ../ReminderLabelDefines.qml:29
+#: ../RemindersModel.qml:34
 msgid "1 week"
-msgstr "بىر ھەپتە"
+msgstr "1 ھەپتە"
 
-#: ../ReminderLabelDefines.qml:30
+#: ../RemindersModel.qml:35
 msgid "2 weeks"
 msgstr "2 ھەپتە"
 
@@ -369,35 +345,23 @@ msgid ""
 "about them"
 msgstr ""
 
-#: ../calendar.qml:304
-msgid "Today"
-msgstr "بۈگۈن"
-
-#: ../calendar.qml:343
-msgid "Sync"
-msgstr "قەدەمداشلا"
-
-#: ../calendar.qml:343
-msgid "Syncing"
-msgstr "قەدەمداشلاۋاتىدۇ"
-
-#: ../calendar.qml:376
+#: ../calendar.qml:326
 msgid "Year"
 msgstr "يىل"
 
-#: ../calendar.qml:411
+#: ../calendar.qml:360
 msgid "Month"
 msgstr "ئاي"
 
-#: ../calendar.qml:440
+#: ../calendar.qml:388
 msgid "Week"
 msgstr "ھەپتە"
 
-#: ../calendar.qml:474
+#: ../calendar.qml:421
 msgid "Day"
 msgstr "كۈن"
 
-#: ../calendar.qml:503
+#: ../calendar.qml:449
 msgid "Agenda"
 msgstr "كۈنتەرتىپ"
 
@@ -409,17 +373,62 @@ msgstr "توردىكى ھېساباتلار بىلەن قەدەمداشلىغى�
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "يىلنامە;ھادىسە;كۈن;ھەپتە;يىل;دېيىشمە;يىغىن;"
 
-#~ msgid "hh ap"
-#~ msgstr "hh ap"
+#, qt-format
+#~ msgid "%1 All day events"
+#~ msgstr "%1 پۈتۈن كۈنلۈك ھادىسىلەر"
+
+#, qt-format
+#~ msgid "After Date %1"
+#~ msgstr "چېسلا %1 دىن كېيىن"
+
+#~ msgid "All Day event:"
+#~ msgstr "پۈتۈن كۈنلۈك ھادىسە"
+
+#~ msgid "Remind me"
+#~ msgstr "ئەسكەرت"
+
+#~ msgid "Repetition Ends"
+#~ msgstr "تەكرارلىنىش تۈگىدى"
+
+#~ msgid "hh:mm"
+#~ msgstr "hh:mm"
+
+#~ msgid "dddd , d MMMM"
+#~ msgstr "dddd ، d MMMM"
+
+#~ msgid "dd-MMM-yyyy"
+#~ msgstr "dd-MMM-yyyy"
+
+#~ msgid "ddd MMMM d yyyy"
+#~ msgstr "ddd MMMM d yyyy"
+
+#~ msgid "Every %1"
+#~ msgstr "ھەر %1"
 
 #~ msgid "Done"
 #~ msgstr "تامام"
 
+#~ msgid "After %1 Occurrence"
+#~ msgid_plural "After %1 Occurrences"
+#~ msgstr[0] "%1 قېتىم تەكرارلانغاندىن كېيىن"
+
 #~ msgid "at"
 #~ msgstr "دا"
+
+#~ msgid "Calendar "
+#~ msgstr "يىلنامە "
 
 #~ msgid "Recurrence"
 #~ msgstr "قايتىلىنىش"
 
-#~ msgid "Calendar "
-#~ msgstr "يىلنامە "
+#~ msgid "Every Weekday (Monday to Friday)"
+#~ msgstr "بىنەپتە كۈنلىرى(دۈشەنبىدىن جۈمەگىچە)"
+
+#~ msgid "Every Monday, Wednesday and Friday"
+#~ msgstr "ھەر دۈشەنبە، چارشەنبە ۋە جۈمە كۈنلىرى"
+
+#~ msgid "Every Tuesday and Thursday"
+#~ msgstr "ھەر سەيشەنبە ۋە پەيشەنبە كۈنلىرى"
+
+#~ msgid "hh ap"
+#~ msgstr "hh ap"
