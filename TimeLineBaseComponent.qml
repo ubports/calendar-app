@@ -108,11 +108,12 @@ Item {
         Flickable {
             id: timeLineView
 
-            width: parent.width
             Layout.fillHeight: true
 
             contentHeight: units.gu(10) * 24
             contentWidth: width
+            anchors.right: parent.right
+            anchors.left: parent.left
 
             clip: true
 
