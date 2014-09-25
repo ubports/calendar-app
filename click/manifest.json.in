@@ -4,6 +4,7 @@
     "framework": "ubuntu-sdk-14.10-qml-dev3",
     "hooks": {
         "calendar": {
+            "account-application": "@PROJECT_NAME@_@APP_NAME@.application",
             "apparmor": "calendar.apparmor",
             "desktop": "@DESKTOP_FILE@",
             "urls": "@URLS_FILE@"
