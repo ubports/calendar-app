@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-09-18 11:52+0000\n"
+"PO-Revision-Date: 2014-09-25 03:14+0000\n"
 "Last-Translator: Mitsuya Shibata <mty.shibata@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-09-25 06:42+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -91,7 +91,7 @@ msgstr "連絡先を検索"
 #. It's used to display the date in the event details view
 #: ../DayView.qml:68 ../EventDetails.qml:128
 msgid "MMMM dd, yyyy"
-msgstr ""
+msgstr "yyyy年MMMMd日"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -376,23 +376,3 @@ msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
 "calendar;event;day;week;year;appointment;meeting;カレンダー;イベント;予定表;日;週;年;約束;ミーティ"
 "ング;"
-
-#, qt-format
-#~ msgid "%1 All day events"
-#~ msgstr "%1件の終日イベント"
-
-#, qt-format
-#~ msgid "After Date %1"
-#~ msgstr "残り%1日繰り返す"
-
-#~ msgid "Repetition Ends"
-#~ msgstr "繰り返しの終了"
-
-#~ msgid "All Day event:"
-#~ msgstr "終日イベント："
-
-#~ msgid "Remind me"
-#~ msgstr "通知"
-
-#~ msgid "This happens"
-#~ msgstr "繰り返し"

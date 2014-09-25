@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-08-26 06:37+0000\n"
+"PO-Revision-Date: 2014-09-24 08:57+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:31+0000\n"
+"X-Launchpad-Export-Date: 2014-09-25 06:42+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -29,11 +29,11 @@ msgstr "Darvoud ebet da zont"
 
 #: ../AgendaView.qml:93
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "N'ho peus deiziadur gweredekaet ebet"
 
 #: ../AgendaView.qml:103
 msgid "Enable calendars"
-msgstr ""
+msgstr "Gweredekaat deiziadurioù"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -55,8 +55,8 @@ msgstr "%1 Dar."
 #, qt-format
 msgid "%1 All day event"
 msgid_plural "%1 All day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 darvoud e-pad an deiz"
+msgstr[1] "%1 a zarvoudoù a-pad an deiz"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -91,7 +91,7 @@ msgstr "Klask un darempred"
 #. It's used to display the date in the event details view
 #: ../DayView.qml:68 ../EventDetails.qml:128
 msgid "MMMM dd, yyyy"
-msgstr ""
+msgstr "MMMM dd, yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -163,7 +163,7 @@ msgstr "Fin"
 
 #: ../EventDetails.qml:287 ../NewEvent.qml:430
 msgid "All day event"
-msgstr ""
+msgstr "Darvoud e-pad an deiz"
 
 #: ../EventDetails.qml:336 ../NewEvent.qml:484
 msgid "Location"
@@ -175,15 +175,15 @@ msgstr "Kouvidi"
 
 #: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
 msgid "Repeats"
-msgstr ""
+msgstr "A vez graet en-dro"
 
 #: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
 msgid "Reminder"
-msgstr ""
+msgstr "Degas-da-soñj"
 
 #: ../EventRepetition.qml:123
 msgid "Repeat"
-msgstr ""
+msgstr "Adober"
 
 #: ../EventRepetition.qml:142
 msgid "Repeats On:"
@@ -195,17 +195,17 @@ msgstr "fin an darvoud a c'hoarvez ingal"
 
 #: ../EventRepetition.qml:207
 msgid "Recurrences"
-msgstr ""
+msgstr "Niver a wechoù"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1 ; %2 a wechoù "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1 ;  betek %2"
 
 #: ../LimitLabelDefines.qml:21
 msgid "Never"
@@ -224,7 +224,7 @@ msgstr "Goude an"
 #. It's used in the header of the month and week views
 #: ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../NewEvent.qml:59
 msgid "Save"
@@ -244,11 +244,11 @@ msgstr "Mat eo"
 
 #: ../NewEvent.qml:336
 msgid "From"
-msgstr ""
+msgstr "Eus"
 
 #: ../NewEvent.qml:380
 msgid "To"
-msgstr ""
+msgstr "Da"
 
 #: ../NewEvent.qml:458
 msgid "Event Name"
@@ -276,15 +276,15 @@ msgstr "Bemdez"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "War ar pemdez"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Da Lun, da Verc'her ha da Wener"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "Da Veurzh ha da Yaou"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
@@ -376,23 +376,3 @@ msgstr ""
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "deiziadur;darvoud;deiz;sizhun;bloaz;emgav;emvod;"
-
-#~ msgid "Remind me"
-#~ msgstr "Degas da soñj din"
-
-#~ msgid "This happens"
-#~ msgstr "C'hoarvezout a ra"
-
-#, qt-format
-#~ msgid "%1 All day events"
-#~ msgstr "%1 a zarvoudoù hag a bad a-hed an deiz"
-
-#~ msgid "All Day event:"
-#~ msgstr "Darvoud hag a bad a-hed an deiz :"
-
-#~ msgid "Repetition Ends"
-#~ msgstr "Fin an adober"
-
-#, qt-format
-#~ msgid "After Date %1"
-#~ msgstr "Goude an deiziad %1"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-09-17 17:03+0000\n"
+"PO-Revision-Date: 2014-09-24 13:53+0000\n"
 "Last-Translator: Marian Vasile <marianvasile1972@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-09-25 06:42+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -56,8 +56,9 @@ msgstr "%1 Ev."
 #, qt-format
 msgid "%1 All day event"
 msgid_plural "%1 All day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 eveniment în derulare pe parcursul întregii zile"
+msgstr[1] "%1 evenimente în derulare pe parcursul întregii zile"
+msgstr[2] "%1 de evenimente în derulare pe parcursul întregii zile"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -92,7 +93,7 @@ msgstr "Caută contacte"
 #. It's used to display the date in the event details view
 #: ../DayView.qml:68 ../EventDetails.qml:128
 msgid "MMMM dd, yyyy"
-msgstr ""
+msgstr "dd MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -164,7 +165,7 @@ msgstr "Terminare"
 
 #: ../EventDetails.qml:287 ../NewEvent.qml:430
 msgid "All day event"
-msgstr ""
+msgstr "Eveniment în derulare pe parcursul întregii zile"
 
 #: ../EventDetails.qml:336 ../NewEvent.qml:484
 msgid "Location"
@@ -176,7 +177,7 @@ msgstr "Invitați"
 
 #: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
 msgid "Repeats"
-msgstr ""
+msgstr "Se repetă"
 
 #: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
 msgid "Reminder"
@@ -225,7 +226,7 @@ msgstr "După data"
 #. It's used in the header of the month and week views
 #: ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../NewEvent.qml:59
 msgid "Save"
@@ -377,26 +378,3 @@ msgstr ""
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "calendar;eveniment;zi;săptămână;an;întâlnire;ședință;"
-
-#, qt-format
-#~ msgid "%1 All day events"
-#~ msgstr "%1 evenimente care se desfășoară pe toată ziua"
-
-#, qt-format
-#~ msgid "After Date %1"
-#~ msgstr "După data de %1"
-
-#~ msgid "Repetition Ends"
-#~ msgstr "Repetarea se încheie"
-
-#~ msgid "Remind me"
-#~ msgstr "Reamintește-mi"
-
-#~ msgid "All Day event:"
-#~ msgstr "Eveniment desfășurat pe parcursul întregii zile:"
-
-#~ msgid "This happens"
-#~ msgstr "Se întâmplă"
-
-#~ msgid "This Happens"
-#~ msgstr "Se întâmplă"

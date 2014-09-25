@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-09-24 06:26+0000\n"
+"PO-Revision-Date: 2014-09-24 12:37+0000\n"
 "Last-Translator: Gheyret T.Kenji <Unknown>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:33+0000\n"
+"X-Launchpad-Export-Date: 2014-09-25 06:42+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -29,11 +29,11 @@ msgstr "پىلاندا ھادىسىلەر يوق"
 
 #: ../AgendaView.qml:93
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "ھېچقانداق يىلنامە ئىناۋەتلىك ئەمەس"
 
 #: ../AgendaView.qml:103
 msgid "Enable calendars"
-msgstr ""
+msgstr "يىلنامىلەرنى ئىناۋەتلىك قىل"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -55,8 +55,7 @@ msgstr "%1 Ev."
 #, qt-format
 msgid "%1 All day event"
 msgid_plural "%1 All day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 پۈتۈن كۈنلۈك ھادىسە"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -91,7 +90,7 @@ msgstr "ئالاقەداش ئىزدە"
 #. It's used to display the date in the event details view
 #: ../DayView.qml:68 ../EventDetails.qml:128
 msgid "MMMM dd, yyyy"
-msgstr ""
+msgstr "MMMM dd، yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -163,7 +162,7 @@ msgstr "تامام"
 
 #: ../EventDetails.qml:287 ../NewEvent.qml:430
 msgid "All day event"
-msgstr ""
+msgstr "پۈتۈن كۈنلۈك ھادىسە"
 
 #: ../EventDetails.qml:336 ../NewEvent.qml:484
 msgid "Location"
@@ -175,41 +174,41 @@ msgstr "مېھمانلار"
 
 #: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
 msgid "Repeats"
-msgstr ""
+msgstr "قايتىلىنىش"
 
 #: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
 msgid "Reminder"
-msgstr ""
+msgstr "ئەسكەرتكۈچ"
 
 #: ../EventRepetition.qml:123
 msgid "Repeat"
-msgstr ""
+msgstr "قايتىلا"
 
 #: ../EventRepetition.qml:142
 msgid "Repeats On:"
-msgstr ""
+msgstr "تەكرارلىنىش:"
 
 #: ../EventRepetition.qml:187
 msgid "Recurring event ends"
-msgstr ""
+msgstr "تەكرارلىنىشنىڭ ئاخىرلىشىشى"
 
 #: ../EventRepetition.qml:207
 msgid "Recurrences"
-msgstr ""
+msgstr "تەكرارلىنىش تەڭشىكى"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1 ؛ %2 قېتىم "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1 ؛  %2 غىچە"
 
 #: ../LimitLabelDefines.qml:21
 msgid "Never"
-msgstr "بىر قېتىممۇ يېڭىلانمىغان"
+msgstr "ھەرگىز"
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
@@ -224,7 +223,7 @@ msgstr "چېسلا كېيىن"
 #. It's used in the header of the month and week views
 #: ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../NewEvent.qml:59
 msgid "Save"
@@ -244,11 +243,11 @@ msgstr "تامام"
 
 #: ../NewEvent.qml:336
 msgid "From"
-msgstr ""
+msgstr "يوللىغۇچى"
 
 #: ../NewEvent.qml:380
 msgid "To"
-msgstr ""
+msgstr "تاپشۇرۇپ ئالغۇچى"
 
 #: ../NewEvent.qml:458
 msgid "Event Name"
@@ -264,7 +263,7 @@ msgstr "يىلنامە"
 
 #: ../NewEvent.qml:535
 msgid "Add Guest"
-msgstr ""
+msgstr "مېھمان قوش"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -276,15 +275,15 @@ msgstr "كۈندە"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "بىنەپتە كۈنلىرى"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "دۈشەنبە، چارشەنبە ۋە جۈمە كۈنلىرى"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "سەيشەنبە ۋە پەيشەنبە كۈنلىرى"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
@@ -372,63 +371,3 @@ msgstr "توردىكى ھېساباتلار بىلەن قەدەمداشلىغى�
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "يىلنامە;ھادىسە;كۈن;ھەپتە;يىل;دېيىشمە;يىغىن;"
-
-#, qt-format
-#~ msgid "%1 All day events"
-#~ msgstr "%1 پۈتۈن كۈنلۈك ھادىسىلەر"
-
-#, qt-format
-#~ msgid "After Date %1"
-#~ msgstr "چېسلا %1 دىن كېيىن"
-
-#~ msgid "All Day event:"
-#~ msgstr "پۈتۈن كۈنلۈك ھادىسە"
-
-#~ msgid "Remind me"
-#~ msgstr "ئەسكەرت"
-
-#~ msgid "Repetition Ends"
-#~ msgstr "تەكرارلىنىش تۈگىدى"
-
-#~ msgid "hh:mm"
-#~ msgstr "hh:mm"
-
-#~ msgid "dddd , d MMMM"
-#~ msgstr "dddd ، d MMMM"
-
-#~ msgid "dd-MMM-yyyy"
-#~ msgstr "dd-MMM-yyyy"
-
-#~ msgid "ddd MMMM d yyyy"
-#~ msgstr "ddd MMMM d yyyy"
-
-#~ msgid "Every %1"
-#~ msgstr "ھەر %1"
-
-#~ msgid "Done"
-#~ msgstr "تامام"
-
-#~ msgid "After %1 Occurrence"
-#~ msgid_plural "After %1 Occurrences"
-#~ msgstr[0] "%1 قېتىم تەكرارلانغاندىن كېيىن"
-
-#~ msgid "at"
-#~ msgstr "دا"
-
-#~ msgid "Calendar "
-#~ msgstr "يىلنامە "
-
-#~ msgid "Recurrence"
-#~ msgstr "قايتىلىنىش"
-
-#~ msgid "Every Weekday (Monday to Friday)"
-#~ msgstr "بىنەپتە كۈنلىرى(دۈشەنبىدىن جۈمەگىچە)"
-
-#~ msgid "Every Monday, Wednesday and Friday"
-#~ msgstr "ھەر دۈشەنبە، چارشەنبە ۋە جۈمە كۈنلىرى"
-
-#~ msgid "Every Tuesday and Thursday"
-#~ msgstr "ھەر سەيشەنبە ۋە پەيشەنبە كۈنلىرى"
-
-#~ msgid "hh ap"
-#~ msgstr "hh ap"

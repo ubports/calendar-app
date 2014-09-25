@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-09-23 14:01+0000\n"
+"PO-Revision-Date: 2014-09-24 15:10+0000\n"
 "Last-Translator: Víctor R. Ruiz <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-09-25 06:42+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -91,7 +91,7 @@ msgstr "Buscar contacto"
 #. It's used to display the date in the event details view
 #: ../DayView.qml:68 ../EventDetails.qml:128
 msgid "MMMM dd, yyyy"
-msgstr ""
+msgstr "dd MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -375,26 +375,3 @@ msgstr "Un calendario para Ubuntu que sincroniza con cuentas en línea."
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "calendario;evento;día;semana;año;cita;reunión;"
-
-#~ msgid "Remind me"
-#~ msgstr "Recordarme"
-
-#~ msgid "Repetition Ends"
-#~ msgstr "La repetición finaliza"
-
-#~ msgid "This happens"
-#~ msgstr "Esto ocurre"
-
-#, qt-format
-#~ msgid "After Date %1"
-#~ msgstr "Después de la fecha %1"
-
-#, qt-format
-#~ msgid "%1 All day events"
-#~ msgstr "%1 eventos de todo el día"
-
-#~ msgid "All Day event:"
-#~ msgstr "Evento de todo el día:"
-
-#~ msgid "This Happens"
-#~ msgstr "Esto ocurre"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-08-30 11:49+0000\n"
+"PO-Revision-Date: 2014-09-24 13:15+0000\n"
 "Last-Translator: Данило Шеган <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-09-25 06:42+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -30,11 +30,11 @@ msgstr "Нема предстојећих догађаја"
 
 #: ../AgendaView.qml:93
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Немате укључених календара"
 
 #: ../AgendaView.qml:103
 msgid "Enable calendars"
-msgstr ""
+msgstr "Укључи календаре"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -56,8 +56,9 @@ msgstr "%1 дог."
 #, qt-format
 msgid "%1 All day event"
 msgid_plural "%1 All day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 целодневни догађај"
+msgstr[1] "%1 целодневна догађаја"
+msgstr[2] "%1 целодневних догађаја"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -92,7 +93,7 @@ msgstr "Тражи потсетницу"
 #. It's used to display the date in the event details view
 #: ../DayView.qml:68 ../EventDetails.qml:128
 msgid "MMMM dd, yyyy"
-msgstr ""
+msgstr "dd. MMMM, yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -164,7 +165,7 @@ msgstr "Крај"
 
 #: ../EventDetails.qml:287 ../NewEvent.qml:430
 msgid "All day event"
-msgstr ""
+msgstr "Целодневни догађај"
 
 #: ../EventDetails.qml:336 ../NewEvent.qml:484
 msgid "Location"
@@ -176,15 +177,15 @@ msgstr "Гости"
 
 #: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
 msgid "Repeats"
-msgstr ""
+msgstr "Понавља се"
 
 #: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
 msgid "Reminder"
-msgstr ""
+msgstr "Подсетник"
 
 #: ../EventRepetition.qml:123
 msgid "Repeat"
-msgstr ""
+msgstr "Понови"
 
 #: ../EventRepetition.qml:142
 msgid "Repeats On:"
@@ -196,17 +197,17 @@ msgstr "Понављање догађаја престаје"
 
 #: ../EventRepetition.qml:207
 msgid "Recurrences"
-msgstr ""
+msgstr "Понављања"
 
 #: ../EventUtils.qml:99
 #, qt-format
 msgid "%1 ; %2 times "
-msgstr ""
+msgstr "%1 ; %2 пута "
 
 #: ../EventUtils.qml:100
 #, qt-format
 msgid "%1 ;  until %2"
-msgstr ""
+msgstr "%1 ;  до %2"
 
 #: ../LimitLabelDefines.qml:21
 msgid "Never"
@@ -225,7 +226,7 @@ msgstr "Након датума"
 #. It's used in the header of the month and week views
 #: ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../NewEvent.qml:59
 msgid "Save"
@@ -245,11 +246,11 @@ msgstr "У реду"
 
 #: ../NewEvent.qml:336
 msgid "From"
-msgstr ""
+msgstr "Од"
 
 #: ../NewEvent.qml:380
 msgid "To"
-msgstr ""
+msgstr "До"
 
 #: ../NewEvent.qml:458
 msgid "Event Name"
@@ -277,15 +278,15 @@ msgstr "Дневно"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "Радним данима"
 
 #: ../RecurrenceLabelDefines.qml:26
 msgid "On Monday, Wednesday and Friday"
-msgstr ""
+msgstr "Понедељком, средом и петком"
 
 #: ../RecurrenceLabelDefines.qml:27
 msgid "On Tuesday and Thursday"
-msgstr ""
+msgstr "Уторком и четвртком"
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
@@ -376,23 +377,3 @@ msgstr "Календар за Убунту који се усклађује са
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "календар;догађај;дан;недеља;месец;састанак;"
-
-#, qt-format
-#~ msgid "%1 All day events"
-#~ msgstr "%1 целодневних догађаја"
-
-#, qt-format
-#~ msgid "After Date %1"
-#~ msgstr "После датума %1"
-
-#~ msgid "Repetition Ends"
-#~ msgstr "Понављање престаје"
-
-#~ msgid "Remind me"
-#~ msgstr "Подсети ме"
-
-#~ msgid "This happens"
-#~ msgstr "Догађа се"
-
-#~ msgid "All Day event:"
-#~ msgstr "Целодневни догађај:"
