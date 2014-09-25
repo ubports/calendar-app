@@ -243,7 +243,6 @@ Item{
                                           && intern.eventStatus[index] !== undefined
                                           && intern.eventStatus[index]
 
-                //property bool shouldLoad;
                 sourceComponent: shouldLoad ? eventIndicatorComp : undefined
                 anchors.top: dateLabel.bottom
                 anchors.horizontalCenter: dateLabel.horizontalCenter
