@@ -66,7 +66,7 @@ Item {
             property var events;
             gradient: UbuntuColors.orangeGradient
 
-            x: if(type === ViewType.ViewTypeWeek) {root.width/7*index}else{0}
+            x: type === ViewType.ViewTypeWeek ? root.width/7*index : 0
             height: units.gu(3)
             clip: true
             width: parent.width/ (type == ViewType.ViewTypeWeek ? 7 : 1)
