@@ -114,10 +114,11 @@ Page {
     //Editing Event
     function editEvent(e) {
         //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
-        rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
-                    Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml")
-                  : e.recurrence.recurrenceRules[0];
-
+        if(e.itemType === Type.Event){
+            rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
+                        Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml")
+                      : e.recurrence.recurrenceRules[0];
+        }
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
 
@@ -587,7 +588,10 @@ Page {
                     }
                 }
 
-                ListItem.ThinDivider {}
+                ListItem.ThinDivider {
+                    visible: event.itemType === Type.Event
+                }
+
             }
 
             ListItem.Subtitled{
@@ -603,11 +607,13 @@ Page {
                 progression: true
                 visible: event.itemType === Type.Event
                 text: i18n.tr("Repeats")
-                subText: eventUtils.getRecurrenceString(rule)
+                subText: event.itemType === Type.Event ? eventUtils.getRecurrenceString(rule) : ""
                 onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
             }
 
-            ListItem.ThinDivider {}
+            ListItem.ThinDivider {
+                visible: event.itemType === Type.Event
+            }
 
             ListItem.Subtitled{
                 id:eventReminder
@@ -638,6 +644,8 @@ Page {
                                               "reminderModel": reminderModel,
                                               "eventTitle": titleEdit.text})
             }
+
+            ListItem.ThinDivider {}
         }
     }
     // used to keep the field visible when the keyboard appear or dismiss
