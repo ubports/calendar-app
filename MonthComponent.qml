@@ -237,12 +237,10 @@ Item{
             }
 
             Loader{
-                id: eventIndicatorLoader
                 property bool shouldLoad: showEvents
                                           && intern.eventStatus !== undefined
                                           && intern.eventStatus[index] !== undefined
-                                          && intern.eventStatus[index]
-
+                                          &&intern.eventStatus[index]
                 sourceComponent: shouldLoad ? eventIndicatorComp : undefined
                 anchors.top: dateLabel.bottom
                 anchors.horizontalCenter: dateLabel.horizontalCenter
