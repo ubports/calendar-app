@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-09-23 11:29+0000\n"
+"PO-Revision-Date: 2014-09-25 07:27+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:31+0000\n"
+"X-Launchpad-Export-Date: 2014-09-26 06:43+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -175,7 +175,7 @@ msgstr "Vieraat"
 
 #: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
 msgid "Repeats"
-msgstr ""
+msgstr "Toistuu"
 
 #: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
 msgid "Reminder"
@@ -378,26 +378,3 @@ msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
 "calendar;event;day;week;year;appointment;meeting;kalenteri;tapahtuma;päivä;vi"
 "ikko;tapaaminen;kokous;"
-
-#~ msgid "All Day event:"
-#~ msgstr "Koko päivän tapahtuma:"
-
-#~ msgid "This happens"
-#~ msgstr "Tapahtuu"
-
-#, qt-format
-#~ msgid "%1 All day events"
-#~ msgstr "%1 koko päivän tapahtumaa"
-
-#~ msgid "Remind me"
-#~ msgstr "Muistuta"
-
-#~ msgid "Repetition Ends"
-#~ msgstr "Toisto loppuu"
-
-#, qt-format
-#~ msgid "After Date %1"
-#~ msgstr "Päivämäärän %1 jälkeen"
-
-#~ msgid "This Happens"
-#~ msgstr "Tapahtuu"
