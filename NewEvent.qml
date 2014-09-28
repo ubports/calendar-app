@@ -499,7 +499,7 @@ Page {
                     containerHeight: itemHeight * 4
                     model: root.model.getCollections();
                     delegate: OptionSelectorDelegate{
-                        text: modelData.name
+                        text: modelData.name                        
 
                         UbuntuShape{
                             id: calColor

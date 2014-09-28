@@ -91,6 +91,7 @@ Page {
                 text: modelData.name
                 elide: Text.ElideRight
                 color: UbuntuColors.midAubergine
+                width: parent.width - calendarColorCode.width - checkBox.width - units.gu(6) /*margins*/
                 anchors {
                     left: calendarColorCode.right
                     margins: units.gu(2)
