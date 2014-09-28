@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-09-17 10:18+0000\n"
+"PO-Revision-Date: 2014-09-25 12:32+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-09-26 06:43+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: gd\n"
 
@@ -57,8 +57,10 @@ msgstr "%1 Ta."
 #, qt-format
 msgid "%1 All day event"
 msgid_plural "%1 All day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 tachartas fad an latha"
+msgstr[1] "%1 thachartas fad an latha"
+msgstr[2] "%1 tachartasan fad an latha"
+msgstr[3] "%1 tachartas fad an latha"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -93,7 +95,7 @@ msgstr "Lorg neach-aithne"
 #. It's used to display the date in the event details view
 #: ../DayView.qml:68 ../EventDetails.qml:128
 msgid "MMMM dd, yyyy"
-msgstr ""
+msgstr "dd MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -165,7 +167,7 @@ msgstr "Deireadh"
 
 #: ../EventDetails.qml:287 ../NewEvent.qml:430
 msgid "All day event"
-msgstr ""
+msgstr "Tachartas fad an latha"
 
 #: ../EventDetails.qml:336 ../NewEvent.qml:484
 msgid "Location"
@@ -177,7 +179,7 @@ msgstr "Aoighean"
 
 #: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
 msgid "Repeats"
-msgstr ""
+msgstr "Tachraidh seo a-rithist"
 
 #: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
 msgid "Reminder"
@@ -226,7 +228,7 @@ msgstr "Às dèidh ceann-là"
 #. It's used in the header of the month and week views
 #: ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../NewEvent.qml:59
 msgid "Save"
@@ -380,26 +382,3 @@ msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
 "calendar;event;day;week;year;appointment;meeting;mìosachan;tachartas;là;latha"
 ";seachdain;mìos;bliadhna;coinneamh;ceann-là;ceann-latha;"
-
-#~ msgid "All Day event:"
-#~ msgstr "Tachartas fad an latha:"
-
-#, qt-format
-#~ msgid "%1 All day events"
-#~ msgstr "%1 Tachartasan fad an latha"
-
-#~ msgid "Remind me"
-#~ msgstr "Cuir 'nam chuimhne"
-
-#~ msgid "This happens"
-#~ msgstr "Tachraidh na leanas"
-
-#, qt-format
-#~ msgid "After Date %1"
-#~ msgstr "Às dèidh ceann-là %1"
-
-#~ msgid "Repetition Ends"
-#~ msgstr "Deireadh an ath-nochdaidh"
-
-#~ msgid "This Happens"
-#~ msgstr "Tachraidh seo"
