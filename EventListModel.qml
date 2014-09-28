@@ -47,6 +47,7 @@ OrganizerModel {
             var items = getItems(eventModel.startPeriod, eventModel.endPeriod);
             if( isLoading == true && items.length === 0) {
                 isLoading = false;
+                modelChanged();
             }
             newObject.destroy();
         });
