@@ -37,7 +37,7 @@ Page{
     head.backAction: Action{
         iconName:"back"
         onTriggered:{
-            if(reminderTime !== 0){
+            if(reminderTime >= 0){
                 visualReminder.repetitionCount = 3;
                 visualReminder.repetitionDelay = 120;
                 visualReminder.message = eventTitle
