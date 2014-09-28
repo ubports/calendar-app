@@ -26,11 +26,11 @@ QtObject{
     id:eventUtil
     function getWeekDaysIndex(daysOfWeek){
         var index = 0;
-        if (compareArrays(daysOfWeek,[Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday])) {
+        if (compareArrays(daysOfWeek,[Qt.Monday, Qt.Tuesday, Qt.Wednesday, Qt.Thursday, Qt.Friday])) {
             index = 2
-        } else if (compareArrays(daysOfWeek,[Qt.Monday,Qt.Wednesday,Qt.Friday])) {
+        } else if (compareArrays(daysOfWeek,[Qt.Monday, Qt.Wednesday, Qt.Friday])) {
             index = 3
-        } else if (compareArrays(daysOfWeek,[Qt.Tuesday,Qt.Thursday])) {
+        } else if (compareArrays(daysOfWeek,[Qt.Tuesday, Qt.Thursday])) {
             index = 4
         } else {
             index = 5
@@ -45,17 +45,17 @@ QtObject{
         }
         return true;
     }
-    function getDaysOfWeek(index,weekDays){
+    function getDaysOfWeek(index, weekDays){
         var daysOfWeek = [];
         switch(index){
         case 2:
-            daysOfWeek = [Qt.Monday,Qt.Tuesday,Qt.Wednesday,Qt.Thursday,Qt.Friday];
+            daysOfWeek = [Qt.Monday, Qt.Tuesday, Qt.Wednesday, Qt.Thursday, Qt.Friday];
             break;
         case 3:
-            daysOfWeek = [Qt.Monday,Qt.Wednesday,Qt.Friday];
+            daysOfWeek = [Qt.Monday, Qt.Wednesday, Qt.Friday];
             break;
         case 4:
-            daysOfWeek = [Qt.Tuesday,Qt.Thursday];
+            daysOfWeek = [Qt.Tuesday, Qt.Thursday];
             break;
         case 5:
             daysOfWeek = weekDays.length === 0 ? [date.getDay()] : weekDays;
@@ -66,9 +66,9 @@ QtObject{
     //Function to get Weeknames in narrow Format
     function getDays(daysOfWeek) {
         var days = []
-        for (var j = 0;j<daysOfWeek.length;++j) {
+        for (var j = 0; j < daysOfWeek.length; ++j) {
             //push all days
-            days.push(Qt.locale().dayName(daysOfWeek[j],Locale.NarrowFormat))
+            days.push(Qt.locale().dayName(daysOfWeek[j], Locale.NarrowFormat))
         }
         days = days.join(', ');
         return days;
