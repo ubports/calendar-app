@@ -15,10 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 0.1
 
-import "dateExt.js" as DateExt
+import QtQuick 2.3
+import Ubuntu.Components 1.1
 import "ViewType.js" as ViewType
 
 PathViewBase {
@@ -29,16 +28,12 @@ PathViewBase {
     interactive: false
     model:3
 
-    height: units.gu(8)
+    height: units.gu(4)
     width: parent.width
 
     property var date;
 
     signal dateSelected(var date);
-
-    DayHeaderBackground{
-        height: FontUtils.sizeToPixels("medium") + units.gu(1.5)
-    }
 
     delegate: TimeLineHeaderComponent{
         type: header.type
@@ -47,7 +42,7 @@ PathViewBase {
 
         width: {
             if( type == ViewType.ViewTypeWeek ) {
-                 parent.width
+                parent.width
             } else if( type == ViewType.ViewTypeDay && isCurrentItem ){
                 (header.width/7) * 5
             } else {
@@ -55,11 +50,8 @@ PathViewBase {
             }
         }
 
-        startDay: {
-            (type == ViewType.ViewTypeWeek) ?
-                date.addDays(7*header.indexType(index)) :
-                date.addDays(1*header.indexType(index));
-        }
+        startDay: type == ViewType.ViewTypeWeek ? date.addDays(7*header.indexType(index))
+                                                : date.addDays(1*header.indexType(index))
 
         onDateSelected: {
             header.dateSelected(date);

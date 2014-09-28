@@ -19,19 +19,6 @@
 
 .import QtOrganizer 5.0 as QtPim
 
-var reminderLabel = getReminderLabels();
-//value in seconds
-var reminderValue = [ 0,
-    300 /*5 * 60*/,
-    900 /*15* 60*/,
-    1800 /*30* 60*/,
-    3600 /*1*60*60*/,
-    7200 /*2*60*60*/,
-    86400 /*24*60*60*/,
-    172800 /*2*24*60*60*/,
-    604800 /*7*24*60*60*/,
-    1209600 /*14*24*60*60*/];
-
 var recurrenceLabel = getRecurrenceLabels();
 var limitLabel = getLimitLabels();
 var weekLabel = getWeekLabels();
@@ -49,12 +36,6 @@ var recurrenceValue = [ QtPim.RecurrenceRule.Invalid,
     QtPim.RecurrenceRule.Monthly,
     QtPim.RecurrenceRule.Yearly];
 
-function getReminderLabels() {
-    var component = Qt.createComponent(Qt.resolvedUrl("ReminderLabelDefines.qml"));
-    var object = component.createObject(Qt.application);
-    return object.reminderLabel;
-}
-
 function getRecurrenceLabels() {
     var component = Qt.createComponent(Qt.resolvedUrl("RecurrenceLabelDefines.qml"));
     var object = component.createObject(Qt.application);
@@ -67,8 +48,8 @@ function getLimitLabels(){
 }
 function getWeekLabels(){
     var object = Qt.createQmlObject('\
-        import QtQuick 2.0;\
-        import Ubuntu.Components 0.1;\
+        import QtQuick 2.3;\
+        import Ubuntu.Components 1.1;\
         QtObject {\
             property var weekLabel:[Qt.locale().dayName(7,Locale.NarrowFormat),\
                                     Qt.locale().dayName(1,Locale.NarrowFormat),\

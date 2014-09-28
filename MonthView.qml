@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+import QtQuick 2.3
+import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
@@ -29,6 +29,34 @@ Page {
     signal dateSelected(var date);
 
     Keys.forwardTo: [monthViewPath]
+
+    Action {
+        id: calendarTodayAction
+        objectName:"todaybutton"
+        iconName: "calendar-today"
+        text: i18n.tr("Today")
+        onTriggered: {
+            currentMonth = new Date().midnight()
+        }
+    }
+
+    head {
+        actions: [
+            calendarTodayAction,
+            commonHeaderActions.newEventAction,
+            commonHeaderActions.showCalendarAction,
+            commonHeaderActions.reloadAction
+        ]
+
+        contents: Label {
+            fontSize: "x-large"
+            // TRANSLATORS: this is a time formatting string,
+            // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+            // It's used in the header of the month and week views
+            text: i18n.tr(currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
+            font.capitalization: Font.Capitalize
+        }
+    }
 
     PathViewBase{
         id: monthViewPath
@@ -66,8 +94,8 @@ Page {
 
             showEvents: true
 
-            width: parent.width - units.gu(5)
-            height: parent.height - units.gu(5)
+            width: parent.width - units.gu(4)
+            height: parent.height
 
             currentMonth: monthViewPath.addMonth(monthViewPath.startMonth,
                                                  monthViewPath.indexType(index));

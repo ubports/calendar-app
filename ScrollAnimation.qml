@@ -1,0 +1,7 @@
+import QtQuick 2.3
+
+PropertyAnimation {
+    duration: 500
+    easing.type: Easing.OutQuad
+    property: "contentY"
+}

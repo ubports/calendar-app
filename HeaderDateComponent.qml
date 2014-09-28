@@ -15,46 +15,48 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+
+import QtQuick 2.3
+import Ubuntu.Components 1.1
 
 Item {
     id: root
 
+    // Property to set the day and date
     property var date;
 
-    property alias dateColor: dateLabel.color
+    // Property to set the font color of the day label
     property alias dayColor: dayLabel.color
 
-    property int dayFormat: Locale.ShortFormat;
+    // Property to set the time format of the day label
+    property int dayFormat: Locale.ShortFormat
 
-    signal dateSelected(var date);
+    // Signal fired when pressing on the date
+    signal dateSelected(var date)
 
-    width: parent.width
-    height: innerColumn.height
+    width: dayLabel.paintedWidth
+    height: dateContainer.height
 
     Column {
-        id: innerColumn
-        width: parent.width
-        spacing: units.gu(2)
+        id: dateContainer
+
+        width: dayLabel.paintedWidth
+        spacing: units.gu(0.2)
+
+        anchors.centerIn: parent
 
         Label{
             id: dayLabel
-            property var day: Qt.locale().standaloneDayName(date.getDay(), dayFormat)
-            text: day.toUpperCase();
-            fontSize: "medium"
-            horizontalAlignment: Text.AlignHCenter
-            color: "white"
-            width: parent.width
+            objectName: "dayLabel"
+            text: Qt.locale().standaloneDayName(date.getDay(), dayFormat)
         }
 
         Label{
             id: dateLabel
             objectName: "dateLabel"
             text: date.getDate();
-            fontSize: "large"
-            horizontalAlignment: Text.AlignHCenter
-            width: parent.width
+            color: dayLabel.color
+            anchors.horizontalCenter: dayLabel.horizontalCenter
         }
     }
 

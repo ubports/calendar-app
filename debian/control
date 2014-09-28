@@ -4,7 +4,7 @@ Maintainer: Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>
 Build-Depends: cmake,
                debhelper (>= 9),
                intltool,
-               python,
+               python3,
                qtdeclarative5-dev-tools,
                qt5-default,
                qtdeclarative5-qtquick2-plugin,
@@ -18,8 +18,7 @@ Package: calendar-app
 Architecture: all
 Depends: ${misc:Depends},
          qmlscene,
-         qtdeclarative5-localstorage-plugin,
-         qtdeclarative5-qtquick2-plugin,
+         qtdeclarative5-quicklayouts-plugin,
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
          ${misc:Depends},
          libqt5organizer5,
@@ -43,9 +42,10 @@ Architecture: all
 Depends: libautopilot-qt (>= 1.4),
          libqt5test5,
          calendar-app (= ${source:Version}),
-         python-dateutil,
+         python3-dateutil,
          ubuntu-ui-toolkit-autopilot,
-         address-book-service-dummy
+         address-book-service-dummy,
+         address-book-service-testability
 Description: Autopilot tests for Ubuntu Calendar Application
  This package contains autopilot tests for the Ubuntu Calendar application.
 

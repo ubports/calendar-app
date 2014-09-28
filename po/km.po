@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-15 23:27-0500\n"
+"POT-Creation-Date: 2014-09-23 08:25+0200\n"
 "PO-Revision-Date: 2014-08-20 04:44+0000\n"
 "Last-Translator: Sok Sophea <sksophea@gmail.com>\n"
 "Language-Team: Khmer <km@li.org>\n"
@@ -15,26 +15,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-21 06:41+0000\n"
-"X-Generator: Launchpad (build 17163)\n"
+"X-Launchpad-Export-Date: 2014-09-24 07:32+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
-#: ../AgendaView.qml:43
+#: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
+#: ../WeekView.qml:42 ../YearView.qml:36
+msgid "Today"
+msgstr "ថ្ងៃ​នេះ"
+
+#: ../AgendaView.qml:90
 msgid "No upcoming events"
 msgstr "គ្មាន​ព្រឹត្តិការ​នឹង​កើត​ឡើង"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
-msgid "hh:mm"
-msgstr "hh:mm"
+#: ../AgendaView.qml:93
+msgid "You have no calendars enabled"
+msgstr ""
 
-#: ../AgendaView.qml:94
-msgid "dddd , d MMMM"
-msgstr "dddd , d MMMM"
+#: ../AgendaView.qml:103
+msgid "Enable calendars"
+msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:101 ../EventBubble.qml:61
+#: ../AgendaView.qml:165 ../EventBubble.qml:92
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -43,304 +46,299 @@ msgstr "%1 - %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:98
+#: ../AllDayEventComponent.qml:115
 #, qt-format
 msgid "%1 Ev."
 msgstr "%1 Ev."
 
-#: ../AllDayEventComponent.qml:101
+#: ../AllDayEventComponent.qml:118
 #, qt-format
-msgid "%1 All day events"
-msgstr "%1 ព្រឹត្តិការណ៍​ពេញ​មួយ​ថ្ងៃ"
+msgid "%1 All day event"
+msgid_plural "%1 All day events"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
+#: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
 msgstr "ប្រតិទិន"
 
-#: ../CalendarChoicePopup.qml:20
+#: ../CalendarChoicePopup.qml:36
 msgid "Back"
 msgstr "ថយក្រោយ"
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
-msgid "Save"
-msgstr "រក្សាទុក"
-
-#: ../ColorPickerDialog.qml:7
+#: ../ColorPickerDialog.qml:24
 msgid "Select Color"
 msgstr "ជ្រើស​ពណ៌"
 
-#: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
-#: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:722
+#: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:59
+#: ../EditEventConfirmationDialog.qml:52
 msgid "Cancel"
 msgstr "បោះ​បង់"
 
-#: ../ContactChoicePopup.qml:20
+#: ../ContactChoicePopup.qml:37
 msgid "No contact"
 msgstr "មិន​មាន​ទំនាក់ទំនង"
 
-#: ../ContactChoicePopup.qml:66
+#: ../ContactChoicePopup.qml:83
 msgid "Search contact"
 msgstr "ស្វែងរក​ទំនាក់ទំនង"
 
-#: ../DeleteConfirmationDialog.qml:14
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the day view
+#. TRANSLATORS: this is a date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
+#. It's used to display the date in the event details view
+#: ../DayView.qml:68 ../EventDetails.qml:128
+msgid "MMMM dd, yyyy"
+msgstr ""
+
+#: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
 msgstr "លុប​ព្រឹត្តិការ​កើតឡើងដដែល"
 
-#: ../DeleteConfirmationDialog.qml:15
+#: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
 msgstr "លុប​ព្រឹត្តិការណ៍"
 
-#: ../DeleteConfirmationDialog.qml:22
+#: ../DeleteConfirmationDialog.qml:39
 msgid "Delete series"
 msgstr "លុប​ស៊េរី"
 
-#: ../DeleteConfirmationDialog.qml:33
+#: ../DeleteConfirmationDialog.qml:50
 msgid "Delete this"
 msgstr "លុប​វា"
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
+#: ../DeleteConfirmationDialog.qml:50 ../EventDetails.qml:187
 msgid "Delete"
 msgstr "លុប"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:273
 msgid "Edit Event"
 msgstr "កែសម្រួល​ព្រឹត្តិការណ៍"
 
-#: ../EditEventConfirmationDialog.qml:17
+#: ../EditEventConfirmationDialog.qml:34
 msgid "Edit series"
 msgstr "កែសម្រួល​ស៊េរី"
 
-#: ../EditEventConfirmationDialog.qml:26
+#: ../EditEventConfirmationDialog.qml:43
 msgid "Edit this"
 msgstr "កែសម្រួល​វា"
 
-#: ../EditToolbar.qml:52
-msgid "Done"
-msgstr "រូចរាល់"
-
-#: ../EventDetails.qml:27
-msgid "Event Details"
-msgstr "ព័ត៌មាន​លម្អិត​ព្រឹត្តិការណ៍"
-
-#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
-msgid "Never"
-msgstr "មិនដែល"
-
-#. TRANSLATORS: this is a date shown in the event details view,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59
-msgid "ddd MMMM d yyyy"
-msgstr "ddd MMMM d yyyy"
-
-#: ../EventDetails.qml:62
-#, qt-format
-msgid "After %1 Occurrence"
-msgid_plural "After %1 Occurrences"
-msgstr[0] "បន្ទាប់ពី %1 ព្រឹត្តិការណ៍"
-
-#: ../EventDetails.qml:63
-#, qt-format
-msgid "After Date %1"
-msgstr "បន្ទាប់ពី​កាលបរិច្ឆេទ %1"
-
-#. TRANSLATORS: the argument is a day of the week or a list of days
-#: ../EventDetails.qml:75
-#, qt-format
-msgid "Every %1"
-msgstr "រៀងរាល់ %1"
-
-#: ../EventDetails.qml:126
-msgid "Not specified"
-msgstr "មិនបាន​បញ្ជាក់"
-
-#. TRANSLATORS: this is a time & Date formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:137
-msgid "dd-MMM-yyyy"
-msgstr "dd-MMM-yyyy"
-
-#: ../EventDetails.qml:210
-msgid "Edit"
-msgstr "កែសម្រួល"
-
-#: ../EventDetails.qml:272
-msgid "Date"
-msgstr "កាល​​បរិច្ឆេទ"
-
-#: ../EventDetails.qml:277 ../NewEvent.qml:387
-msgid "Start"
-msgstr "ចាប់ផ្ដើម"
-
-#: ../EventDetails.qml:282 ../NewEvent.qml:426
-msgid "End"
-msgstr "បញ្ចប់"
-
-#: ../EventDetails.qml:291 ../NewEvent.qml:497
-msgid "All Day event:"
-msgstr "ព្រឹត្តិការណ៍​ពេញ​មួយ​ថ្ងៃ៖"
-
-#: ../EventDetails.qml:340 ../NewEvent.qml:542
-msgid "Location"
-msgstr "ទីតាំង"
-
-#: ../EventDetails.qml:366
-msgid "Guests"
-msgstr "ភ្ញៀវ"
-
-#: ../EventDetails.qml:404 ../NewEvent.qml:592
-msgid "This happens"
-msgstr "វា​កើត​ឡើង"
-
-#: ../EventDetails.qml:409 ../NewEvent.qml:693
-msgid "Remind me"
-msgstr "រំលឹក​ខ្ញុំ"
-
-#: ../EventDetails.qml:414
-msgid "Repeats On"
-msgstr "ធ្វើ​ម្ដងទៀត​នៅ"
-
-#: ../EventDetails.qml:420
-msgid "Repetition Ends"
-msgstr "បញ្ចប់​ស្ទួន"
-
-#: ../LimitLabelDefines.qml:4
-msgid "After X Occurrence"
-msgstr "បន្ទាប់ពី X ព្រឹត្តិការណ៍"
-
-#: ../LimitLabelDefines.qml:5
-msgid "After Date"
-msgstr "បន្ទាប់ពី​កាលបរិច្ឆេទ"
-
-#: ../NewEvent.qml:186
-msgid "End time can't be before start time"
-msgstr "ពេល​វេលា​បញ្ចប់​មិន​អាច​មុន​ពេលវេលា​ចាប់ផ្ដើម"
-
-#: ../NewEvent.qml:297 ../calendar.qml:306
+#: ../EventActions.qml:33 ../NewEvent.qml:273
 msgid "New Event"
 msgstr "ព្រឹត្តិការណ៍​ថ្មី"
 
-#: ../NewEvent.qml:313
-msgid "Error"
-msgstr "កំហុស"
+#: ../EventActions.qml:53
+msgid "Sync"
+msgstr "ធ្វើ​សមកាលកម្ម"
 
-#: ../NewEvent.qml:315
-msgid "OK"
-msgstr "យល់ព្រម"
+#: ../EventActions.qml:53
+msgid "Syncing"
+msgstr "ធ្វើ​សមកាលកម្ម"
 
-#. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:403 ../NewEvent.qml:442
-msgid "at"
-msgstr "នៅ"
+#: ../EventDetails.qml:44 ../NewEvent.qml:445
+msgid "Event Details"
+msgstr "ព័ត៌មាន​លម្អិត​ព្រឹត្តិការណ៍"
 
-#: ../NewEvent.qml:463
-msgid "Calendar "
-msgstr "ប្រតិទិន "
+#: ../EventDetails.qml:114
+msgid "Not specified"
+msgstr "មិនបាន​បញ្ជាក់"
 
-#: ../NewEvent.qml:512
-msgid "Event Name"
-msgstr "ឈ្មោះ​ព្រឹត្តិការណ៍"
+#: ../EventDetails.qml:202
+msgid "Edit"
+msgstr "កែសម្រួល"
 
-#: ../NewEvent.qml:522
-msgid "Description"
-msgstr "ការពិពណ៌នា"
+#: ../EventDetails.qml:268 ../EventRepetition.qml:232
+msgid "Date"
+msgstr "កាល​​បរិច្ឆេទ"
 
-#: ../NewEvent.qml:560
-msgid "Add Guest"
-msgstr "បន្ថែម​ភ្ញៀវ"
+#: ../EventDetails.qml:273
+msgid "Start"
+msgstr "ចាប់ផ្ដើម"
 
-#: ../NewEvent.qml:612
+#: ../EventDetails.qml:278
+msgid "End"
+msgstr "បញ្ចប់"
+
+#: ../EventDetails.qml:287 ../NewEvent.qml:430
+msgid "All day event"
+msgstr ""
+
+#: ../EventDetails.qml:336 ../NewEvent.qml:484
+msgid "Location"
+msgstr "ទីតាំង"
+
+#: ../EventDetails.qml:362 ../NewEvent.qml:531
+msgid "Guests"
+msgstr "ភ្ញៀវ"
+
+#: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
+msgid "Repeats"
+msgstr ""
+
+#: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
+msgid "Reminder"
+msgstr ""
+
+#: ../EventRepetition.qml:123
+msgid "Repeat"
+msgstr ""
+
+#: ../EventRepetition.qml:142
 msgid "Repeats On:"
 msgstr "ធ្វើ​ម្ដងទៀត​នៅ៖"
 
-#: ../NewEvent.qml:647
+#: ../EventRepetition.qml:187
 msgid "Recurring event ends"
 msgstr "បញ្ចប់​ព្រឹត្តិការណ៍​កើត​ឡើង​ដដែល"
 
-#. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:670
-msgid "Recurrence"
-msgstr "ការ​មាន​ឡើងវិញ"
+#: ../EventRepetition.qml:207
+msgid "Recurrences"
+msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:4
+#: ../EventUtils.qml:99
+#, qt-format
+msgid "%1 ; %2 times "
+msgstr ""
+
+#: ../EventUtils.qml:100
+#, qt-format
+msgid "%1 ;  until %2"
+msgstr ""
+
+#: ../LimitLabelDefines.qml:21
+msgid "Never"
+msgstr "មិនដែល"
+
+#: ../LimitLabelDefines.qml:21
+msgid "After X Occurrence"
+msgstr "បន្ទាប់ពី X ព្រឹត្តិការណ៍"
+
+#: ../LimitLabelDefines.qml:22
+msgid "After Date"
+msgstr "បន្ទាប់ពី​កាលបរិច្ឆេទ"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../MonthView.qml:56 ../WeekView.qml:60
+msgid "MMMM yyyy"
+msgstr ""
+
+#: ../NewEvent.qml:59
+msgid "Save"
+msgstr "រក្សាទុក"
+
+#: ../NewEvent.qml:161
+msgid "End time can't be before start time"
+msgstr "ពេល​វេលា​បញ្ចប់​មិន​អាច​មុន​ពេលវេលា​ចាប់ផ្ដើម"
+
+#: ../NewEvent.qml:283
+msgid "Error"
+msgstr "កំហុស"
+
+#: ../NewEvent.qml:285
+msgid "OK"
+msgstr "យល់ព្រម"
+
+#: ../NewEvent.qml:336
+msgid "From"
+msgstr ""
+
+#: ../NewEvent.qml:380
+msgid "To"
+msgstr ""
+
+#: ../NewEvent.qml:458
+msgid "Event Name"
+msgstr "ឈ្មោះ​ព្រឹត្តិការណ៍"
+
+#: ../NewEvent.qml:471
+msgid "Description"
+msgstr "ការពិពណ៌នា"
+
+#: ../NewEvent.qml:493 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "ប្រតិទិន"
+
+#: ../NewEvent.qml:535
+msgid "Add Guest"
+msgstr "បន្ថែម​ភ្ញៀវ"
+
+#: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr "ម្ដង"
 
-#: ../RecurrenceLabelDefines.qml:5
+#: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
 msgstr "ប្រចាំថ្ងៃ"
 
-#: ../RecurrenceLabelDefines.qml:6
-msgid "Every Weekday (Monday to Friday)"
-msgstr "រាល់​ថ្ងៃ​ធ្វើការ (ចន្ទ-សុក្រ)"
+#: ../RecurrenceLabelDefines.qml:25
+msgid "On Weekdays"
+msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:7
-msgid "Every Monday, Wednesday and Friday"
-msgstr "រាល់​ថ្ងៃ​ចន្ទ ពុធ និង​សុក្រ"
+#: ../RecurrenceLabelDefines.qml:26
+msgid "On Monday, Wednesday and Friday"
+msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:8
-msgid "Every Tuesday and Thursday"
-msgstr "រាល់ថ្ងៃ​អង្គារ និង​ព្រហស្បតិ៍"
+#: ../RecurrenceLabelDefines.qml:27
+msgid "On Tuesday and Thursday"
+msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:9
+#: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
 msgstr "ប្រចាំ​សប្តាហ៍"
 
-#: ../RecurrenceLabelDefines.qml:10
+#: ../RecurrenceLabelDefines.qml:29
 msgid "Monthly"
 msgstr "ប្រចាំខែ"
 
-#: ../RecurrenceLabelDefines.qml:11
+#: ../RecurrenceLabelDefines.qml:30
 msgid "Yearly"
 msgstr "ប្រចាំឆ្នាំ"
 
-#: ../ReminderLabelDefines.qml:4
+#: ../RemindersModel.qml:26
 msgid "No Reminder"
 msgstr "កុំ​រំលឹក"
 
-#: ../ReminderLabelDefines.qml:5
+#: ../RemindersModel.qml:27
 msgid "5 minutes"
 msgstr "៥ នាទី"
 
-#: ../ReminderLabelDefines.qml:6
+#: ../RemindersModel.qml:28
 msgid "15 minutes"
 msgstr "១៥ នាទី"
 
-#: ../ReminderLabelDefines.qml:7
+#: ../RemindersModel.qml:29
 msgid "30 minutes"
 msgstr "៣០ នាទី"
 
-#: ../ReminderLabelDefines.qml:8
+#: ../RemindersModel.qml:30
 msgid "1 hour"
 msgstr "១ ម៉ោង"
 
-#: ../ReminderLabelDefines.qml:9
+#: ../RemindersModel.qml:31
 msgid "2 hours"
 msgstr "២ ម៉ោង"
 
-#: ../ReminderLabelDefines.qml:10
+#: ../RemindersModel.qml:32
 msgid "1 day"
 msgstr "១ ថ្ងៃ"
 
-#: ../ReminderLabelDefines.qml:11
+#: ../RemindersModel.qml:33
 msgid "2 days"
 msgstr "២ ថ្ងៃ"
 
-#: ../ReminderLabelDefines.qml:12
+#: ../RemindersModel.qml:34
 msgid "1 week"
 msgstr "១ សប្ដាហ៍"
 
-#: ../ReminderLabelDefines.qml:13
+#: ../RemindersModel.qml:35
 msgid "2 weeks"
 msgstr "២ សប្ដាហ៍"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../TimeLineBackground.qml:19
-msgid "hh ap"
-msgstr "hh ap"
-
-#: ../calendar.qml:28
+#: ../calendar.qml:45
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -350,41 +348,25 @@ msgstr ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 
-#: ../calendar.qml:287
-msgid "Today"
-msgstr "ថ្ងៃ​នេះ"
-
 #: ../calendar.qml:326
-msgid "Sync"
-msgstr "ធ្វើ​សមកាលកម្ម"
-
-#: ../calendar.qml:326
-msgid "Syncing"
-msgstr "ធ្វើ​សមកាលកម្ម"
-
-#: ../calendar.qml:359
 msgid "Year"
 msgstr "ឆ្នាំ"
 
-#: ../calendar.qml:394
+#: ../calendar.qml:360
 msgid "Month"
 msgstr "ខែ"
 
-#: ../calendar.qml:423
+#: ../calendar.qml:388
 msgid "Week"
 msgstr "សប្ដាហ៍"
 
-#: ../calendar.qml:457
+#: ../calendar.qml:421
 msgid "Day"
 msgstr "ថ្ងៃ"
 
-#: ../calendar.qml:486
+#: ../calendar.qml:449
 msgid "Agenda"
 msgstr "របៀប​វារៈ"
-
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "ប្រតិទិន"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
@@ -393,3 +375,23 @@ msgstr "ប្រតិទិន​សម្រាប់ Ubuntu ដែល​ធ�
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "ប្រតិទិន;ព្រឹត្តិការណ៍;ថ្ងៃ;សប្ដាហ៍;ឆ្នាំ;ការ​ណាត់ជួប;ប្រជុំ;"
+
+#, qt-format
+#~ msgid "%1 All day events"
+#~ msgstr "%1 ព្រឹត្តិការណ៍​ពេញ​មួយ​ថ្ងៃ"
+
+#, qt-format
+#~ msgid "After Date %1"
+#~ msgstr "បន្ទាប់ពី​កាលបរិច្ឆេទ %1"
+
+#~ msgid "Repetition Ends"
+#~ msgstr "បញ្ចប់​ស្ទួន"
+
+#~ msgid "Remind me"
+#~ msgstr "រំលឹក​ខ្ញុំ"
+
+#~ msgid "All Day event:"
+#~ msgstr "ព្រឹត្តិការណ៍​ពេញ​មួយ​ថ្ងៃ៖"
+
+#~ msgid "This happens"
+#~ msgstr "វា​កើត​ឡើង"

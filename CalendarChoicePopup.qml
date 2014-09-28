@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
+import QtQuick 2.3
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.ListItems 1.0 as ListItem
@@ -35,14 +35,6 @@ Page {
         backAction: Action {
             text: i18n.tr("Back")
             iconName: "back"
-            onTriggered: {
-                pop();
-            }
-        }
-
-        actions: Action {
-            text: i18n.tr("Save");
-            iconName: "save"
             onTriggered: {
                 root.collectionUpdated();
                 pop();
@@ -72,6 +64,7 @@ Page {
                 }
 
                 color: modelData.color
+                opacity: checkBox.checked ? 1.0 : 0.8
 
                 MouseArea{
                     anchors.fill: parent
@@ -90,6 +83,7 @@ Page {
             Label{
                 text: modelData.name
                 elide: Text.ElideRight
+                opacity: checkBox.checked ? 1.0 : 0.8
                 color: UbuntuColors.midAubergine
                 width: parent.width - calendarColorCode.width - checkBox.width - units.gu(6) /*margins*/
                 anchors {

@@ -29,72 +29,24 @@ if sys.version_info < (3,):
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
-from calendar_app.tests import CalendarTestCase
+from calendar_app.tests import CalendarAppTestCase
 
 
-class TestDayView(CalendarTestCase):
+class TestDayView(CalendarAppTestCase):
 
     def setUp(self):
         super(TestDayView, self).setUp()
-        self.assertThat(self.main_view.visible, Eventually(Equals(True)))
-
-        self.day_view = self.main_view.go_to_day_view()
+        self.day_view = self.app.main_view.go_to_day_view()
 
     def test_current_month_and_year_is_selected(self):
         """By default, the day view shows the current month and year."""
 
         now = datetime.datetime.now()
 
-        expected_year = now.year
-        expected_month_name = now.strftime("%B")
+        expected_month_name_year = now.strftime("%B %d, %Y")
 
-        self.assertThat(self.main_view.get_year(self.day_view),
-                        Equals(expected_year))
-
-        self.assertThat(self.main_view.get_month_name(self.day_view),
-                        Equals(expected_month_name))
-
-    def test_show_current_days(self):
-        """By default, the day view show the last day, the current
-
-        and the next day.
-
-        """
-
-        days = self.day_view.select_many(objectName='dateLabel')
-        days = [int(day.text) for day in days]
-
-        now = datetime.datetime.now()
-
-        today = now.day
-        tomorrow = (now + datetime.timedelta(days=1)).day
-        yesterday = (now - datetime.timedelta(days=1)).day
-
-        self.assertIn(today, days)
-        self.assertIn(tomorrow, days)
-        self.assertIn(yesterday, days)
-
-    def test_switch_day_by_tapping(self):
-        """Selecting a day by touching the screen should also switch the day"""
-        today = self.day_view.get_day_header().startDay.datetime
-
-        # click yesterday
-        yesterday = (today - datetime.timedelta(days=1))
-        yesterday_header = self.day_view.get_day_header(yesterday)
-
-        self.assertThat(yesterday_header.isCurrentItem, Equals(False))
-        self.pointing_device.click_object(yesterday_header)
-        self.assertThat(yesterday_header.isCurrentItem,
-                        Eventually(Equals(True)))
-
-        # click tomorrow
-        tomorrow = (yesterday + datetime.timedelta(days=1))
-        tomorrow_header = self.day_view.get_day_header(tomorrow)
-
-        self.assertThat(tomorrow_header.isCurrentItem, Equals(False))
-        self.pointing_device.click_object(tomorrow_header)
-        self.assertThat(tomorrow_header.isCurrentItem,
-                        Eventually(Equals(True)))
+        self.assertThat(self.app.main_view.get_month_year(self.day_view),
+                        Equals(expected_month_name_year))
 
     def test_show_next_days(self):
         """It must be possible to show next days by swiping the view."""
@@ -110,7 +62,7 @@ class TestDayView(CalendarTestCase):
         for i in range(1, 5):
             # prevent timing issues with swiping
             old_day = self.day_view.currentDay.datetime
-            self.main_view.swipe_view(direction, self.day_view)
+            self.app.main_view.swipe_view(direction, self.day_view)
             self.assertThat(lambda: self.day_view.currentDay.datetime,
                             Eventually(NotEquals(old_day)))
 

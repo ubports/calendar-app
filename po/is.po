@@ -9,35 +9,38 @@ msgid ""
 msgstr ""
 "Project-Id-Version: po_com.ubuntu.calendar-is\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-21 10:54+0000\n"
+"POT-Creation-Date: 2014-09-23 08:25+0200\n"
+"PO-Revision-Date: 2014-09-20 11:15+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-08-22 07:15+0000\n"
-"X-Generator: Launchpad (build 17163)\n"
+"X-Launchpad-Export-Date: 2014-09-24 07:32+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: is\n"
 
-#: ../AgendaView.qml:43
+#: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
+#: ../WeekView.qml:42 ../YearView.qml:36
+msgid "Today"
+msgstr "Í dag"
+
+#: ../AgendaView.qml:90
 msgid "No upcoming events"
 msgstr "Engir atburðir á næstunni"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
-msgid "hh:mm"
-msgstr "hh:mm"
+#: ../AgendaView.qml:93
+msgid "You have no calendars enabled"
+msgstr "Þú ert ekki með nein virk dagatöl"
 
-#: ../AgendaView.qml:94
-msgid "dddd , d MMMM"
-msgstr "dddd , d MMMM"
+#: ../AgendaView.qml:103
+msgid "Enable calendars"
+msgstr "Virkja dagatöl"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:101 ../EventBubble.qml:61
+#: ../AgendaView.qml:165 ../EventBubble.qml:92
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -46,305 +49,299 @@ msgstr "%1 - %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:98
+#: ../AllDayEventComponent.qml:115
 #, qt-format
 msgid "%1 Ev."
 msgstr "%1 atb"
 
-#: ../AllDayEventComponent.qml:101
+#: ../AllDayEventComponent.qml:118
 #, qt-format
-msgid "%1 All day events"
-msgstr "%1 heilsdagsatburðir"
+msgid "%1 All day event"
+msgid_plural "%1 All day events"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
+#: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
 msgstr "Dagatöl"
 
-#: ../CalendarChoicePopup.qml:20
+#: ../CalendarChoicePopup.qml:36
 msgid "Back"
 msgstr "Til baka"
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
-msgid "Save"
-msgstr "Vista"
-
-#: ../ColorPickerDialog.qml:7
+#: ../ColorPickerDialog.qml:24
 msgid "Select Color"
 msgstr "Veldu lit"
 
-#: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
-#: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:722
+#: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:59
+#: ../EditEventConfirmationDialog.qml:52
 msgid "Cancel"
 msgstr "Hætta við"
 
-#: ../ContactChoicePopup.qml:20
+#: ../ContactChoicePopup.qml:37
 msgid "No contact"
 msgstr "Enginn tengiliður"
 
-#: ../ContactChoicePopup.qml:66
+#: ../ContactChoicePopup.qml:83
 msgid "Search contact"
 msgstr "Leita að tengilið"
 
-#: ../DeleteConfirmationDialog.qml:14
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the day view
+#. TRANSLATORS: this is a date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
+#. It's used to display the date in the event details view
+#: ../DayView.qml:68 ../EventDetails.qml:128
+msgid "MMMM dd, yyyy"
+msgstr ""
+
+#: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
 msgstr "Eyða endurteknum atburði"
 
-#: ../DeleteConfirmationDialog.qml:15
+#: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
 msgstr "Eyða atburði"
 
-#: ../DeleteConfirmationDialog.qml:22
+#: ../DeleteConfirmationDialog.qml:39
 msgid "Delete series"
 msgstr "Eyða röð"
 
-#: ../DeleteConfirmationDialog.qml:33
+#: ../DeleteConfirmationDialog.qml:50
 msgid "Delete this"
 msgstr "Eyða þessu"
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
+#: ../DeleteConfirmationDialog.qml:50 ../EventDetails.qml:187
 msgid "Delete"
 msgstr "Eyða"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:273
 msgid "Edit Event"
 msgstr "Breyta atburði"
 
-#: ../EditEventConfirmationDialog.qml:17
+#: ../EditEventConfirmationDialog.qml:34
 msgid "Edit series"
 msgstr "Breyta röð"
 
-#: ../EditEventConfirmationDialog.qml:26
+#: ../EditEventConfirmationDialog.qml:43
 msgid "Edit this"
 msgstr "Breyta þessu"
 
-#: ../EditToolbar.qml:52
-msgid "Done"
-msgstr "Lokið"
-
-#: ../EventDetails.qml:27
-msgid "Event Details"
-msgstr "Nánar um atburð"
-
-#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
-msgid "Never"
-msgstr "Aldrei"
-
-#. TRANSLATORS: this is a date shown in the event details view,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59
-msgid "ddd MMMM d yyyy"
-msgstr "dddd d. MMMM yyyy"
-
-#: ../EventDetails.qml:62
-#, qt-format
-msgid "After %1 Occurrence"
-msgid_plural "After %1 Occurrences"
-msgstr[0] "Eftir %1 tilvik"
-msgstr[1] "Eftir %1tilvik"
-
-#: ../EventDetails.qml:63
-#, qt-format
-msgid "After Date %1"
-msgstr "Eftir dagsetninguna %1"
-
-#. TRANSLATORS: the argument is a day of the week or a list of days
-#: ../EventDetails.qml:75
-#, qt-format
-msgid "Every %1"
-msgstr "Hvern %1"
-
-#: ../EventDetails.qml:126
-msgid "Not specified"
-msgstr "Ótilgreint"
-
-#. TRANSLATORS: this is a time & Date formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:137
-msgid "dd-MMM-yyyy"
-msgstr "dd-MMM-yyyy"
-
-#: ../EventDetails.qml:210
-msgid "Edit"
-msgstr "Breyta"
-
-#: ../EventDetails.qml:272
-msgid "Date"
-msgstr "Dagsetning"
-
-#: ../EventDetails.qml:277 ../NewEvent.qml:387
-msgid "Start"
-msgstr "Upphaf"
-
-#: ../EventDetails.qml:282 ../NewEvent.qml:426
-msgid "End"
-msgstr "Endir"
-
-#: ../EventDetails.qml:291 ../NewEvent.qml:497
-msgid "All Day event:"
-msgstr "Heilsdagsatburður:"
-
-#: ../EventDetails.qml:340 ../NewEvent.qml:542
-msgid "Location"
-msgstr "Staðsetning"
-
-#: ../EventDetails.qml:366
-msgid "Guests"
-msgstr "Gestir"
-
-#: ../EventDetails.qml:404 ../NewEvent.qml:592
-msgid "This happens"
-msgstr "Þetta gerist"
-
-#: ../EventDetails.qml:409 ../NewEvent.qml:693
-msgid "Remind me"
-msgstr "Áminna mig"
-
-#: ../EventDetails.qml:414
-msgid "Repeats On"
-msgstr "Endurtekið þann"
-
-#: ../EventDetails.qml:420
-msgid "Repetition Ends"
-msgstr "Endurtekning hættir"
-
-#: ../LimitLabelDefines.qml:4
-msgid "After X Occurrence"
-msgstr "Eftir X tilvik"
-
-#: ../LimitLabelDefines.qml:5
-msgid "After Date"
-msgstr "Eftir dagsetninguna"
-
-#: ../NewEvent.qml:186
-msgid "End time can't be before start time"
-msgstr "Lokatími getur ekki verið á undan upphafstíma"
-
-#: ../NewEvent.qml:297 ../calendar.qml:306
+#: ../EventActions.qml:33 ../NewEvent.qml:273
 msgid "New Event"
 msgstr "Nýr atburður"
 
-#: ../NewEvent.qml:313
-msgid "Error"
-msgstr "Villa"
+#: ../EventActions.qml:53
+msgid "Sync"
+msgstr "Samstilla"
 
-#: ../NewEvent.qml:315
-msgid "OK"
-msgstr "Í lagi"
+#: ../EventActions.qml:53
+msgid "Syncing"
+msgstr "Samstilling"
 
-#. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:403 ../NewEvent.qml:442
-msgid "at"
-msgstr "kl."
+#: ../EventDetails.qml:44 ../NewEvent.qml:445
+msgid "Event Details"
+msgstr "Nánar um atburð"
 
-#: ../NewEvent.qml:463
-msgid "Calendar "
-msgstr "Dagatal "
+#: ../EventDetails.qml:114
+msgid "Not specified"
+msgstr "Ótilgreint"
 
-#: ../NewEvent.qml:512
-msgid "Event Name"
-msgstr "Heiti atburðar"
+#: ../EventDetails.qml:202
+msgid "Edit"
+msgstr "Breyta"
 
-#: ../NewEvent.qml:522
-msgid "Description"
-msgstr "Lýsing"
+#: ../EventDetails.qml:268 ../EventRepetition.qml:232
+msgid "Date"
+msgstr "Dagsetning"
 
-#: ../NewEvent.qml:560
-msgid "Add Guest"
-msgstr "Bæta við gesti"
+#: ../EventDetails.qml:273
+msgid "Start"
+msgstr "Upphaf"
 
-#: ../NewEvent.qml:612
+#: ../EventDetails.qml:278
+msgid "End"
+msgstr "Endir"
+
+#: ../EventDetails.qml:287 ../NewEvent.qml:430
+msgid "All day event"
+msgstr ""
+
+#: ../EventDetails.qml:336 ../NewEvent.qml:484
+msgid "Location"
+msgstr "Staðsetning"
+
+#: ../EventDetails.qml:362 ../NewEvent.qml:531
+msgid "Guests"
+msgstr "Gestir"
+
+#: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
+msgid "Repeats"
+msgstr ""
+
+#: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
+msgid "Reminder"
+msgstr "Áminning"
+
+#: ../EventRepetition.qml:123
+msgid "Repeat"
+msgstr "Endurtaka"
+
+#: ../EventRepetition.qml:142
 msgid "Repeats On:"
 msgstr "Endurtekið:"
 
-#: ../NewEvent.qml:647
+#: ../EventRepetition.qml:187
 msgid "Recurring event ends"
 msgstr "Endurtekinn atburður endar"
 
-#. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:670
-msgid "Recurrence"
-msgstr "Endurtekning"
+#: ../EventRepetition.qml:207
+msgid "Recurrences"
+msgstr "Endurtekningar"
 
-#: ../RecurrenceLabelDefines.qml:4
+#: ../EventUtils.qml:99
+#, qt-format
+msgid "%1 ; %2 times "
+msgstr "%1 ; %2 sinnum "
+
+#: ../EventUtils.qml:100
+#, qt-format
+msgid "%1 ;  until %2"
+msgstr "%1 ;  til %2"
+
+#: ../LimitLabelDefines.qml:21
+msgid "Never"
+msgstr "Aldrei"
+
+#: ../LimitLabelDefines.qml:21
+msgid "After X Occurrence"
+msgstr "Eftir X tilvik"
+
+#: ../LimitLabelDefines.qml:22
+msgid "After Date"
+msgstr "Eftir dagsetninguna"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../MonthView.qml:56 ../WeekView.qml:60
+msgid "MMMM yyyy"
+msgstr ""
+
+#: ../NewEvent.qml:59
+msgid "Save"
+msgstr "Vista"
+
+#: ../NewEvent.qml:161
+msgid "End time can't be before start time"
+msgstr "Lokatími getur ekki verið á undan upphafstíma"
+
+#: ../NewEvent.qml:283
+msgid "Error"
+msgstr "Villa"
+
+#: ../NewEvent.qml:285
+msgid "OK"
+msgstr "Í lagi"
+
+#: ../NewEvent.qml:336
+msgid "From"
+msgstr "Frá"
+
+#: ../NewEvent.qml:380
+msgid "To"
+msgstr "Til"
+
+#: ../NewEvent.qml:458
+msgid "Event Name"
+msgstr "Heiti atburðar"
+
+#: ../NewEvent.qml:471
+msgid "Description"
+msgstr "Lýsing"
+
+#: ../NewEvent.qml:493 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "Dagatal"
+
+#: ../NewEvent.qml:535
+msgid "Add Guest"
+msgstr "Bæta við gesti"
+
+#: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr "Einu sinni"
 
-#: ../RecurrenceLabelDefines.qml:5
+#: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
 msgstr "Daglega"
 
-#: ../RecurrenceLabelDefines.qml:6
-msgid "Every Weekday (Monday to Friday)"
-msgstr "Alla virka daga (mán-fös)"
+#: ../RecurrenceLabelDefines.qml:25
+msgid "On Weekdays"
+msgstr "Virka daga"
 
-#: ../RecurrenceLabelDefines.qml:7
-msgid "Every Monday, Wednesday and Friday"
-msgstr "Alla mánudaga, miðvikudaga og föstudaga"
+#: ../RecurrenceLabelDefines.qml:26
+msgid "On Monday, Wednesday and Friday"
+msgstr "Á mánudegi, miðvikudegi og föstudegi"
 
-#: ../RecurrenceLabelDefines.qml:8
-msgid "Every Tuesday and Thursday"
-msgstr "Alla þriðjudaga og fimmtudaga"
+#: ../RecurrenceLabelDefines.qml:27
+msgid "On Tuesday and Thursday"
+msgstr "Á þriðjudegi og fimmtudegi"
 
-#: ../RecurrenceLabelDefines.qml:9
+#: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
 msgstr "Í hverri viku"
 
-#: ../RecurrenceLabelDefines.qml:10
+#: ../RecurrenceLabelDefines.qml:29
 msgid "Monthly"
 msgstr "Mánaðarlega"
 
-#: ../RecurrenceLabelDefines.qml:11
+#: ../RecurrenceLabelDefines.qml:30
 msgid "Yearly"
 msgstr "Árlega"
 
-#: ../ReminderLabelDefines.qml:4
+#: ../RemindersModel.qml:26
 msgid "No Reminder"
 msgstr "Engin áminning"
 
-#: ../ReminderLabelDefines.qml:5
+#: ../RemindersModel.qml:27
 msgid "5 minutes"
 msgstr "5 mínútur"
 
-#: ../ReminderLabelDefines.qml:6
+#: ../RemindersModel.qml:28
 msgid "15 minutes"
 msgstr "15 mínútur"
 
-#: ../ReminderLabelDefines.qml:7
+#: ../RemindersModel.qml:29
 msgid "30 minutes"
 msgstr "30 mínútur"
 
-#: ../ReminderLabelDefines.qml:8
+#: ../RemindersModel.qml:30
 msgid "1 hour"
 msgstr "1 klukkustund"
 
-#: ../ReminderLabelDefines.qml:9
+#: ../RemindersModel.qml:31
 msgid "2 hours"
 msgstr "2 klukkustundir"
 
-#: ../ReminderLabelDefines.qml:10
+#: ../RemindersModel.qml:32
 msgid "1 day"
 msgstr "1 dagur"
 
-#: ../ReminderLabelDefines.qml:11
+#: ../RemindersModel.qml:33
 msgid "2 days"
 msgstr "2 dagar"
 
-#: ../ReminderLabelDefines.qml:12
+#: ../RemindersModel.qml:34
 msgid "1 week"
 msgstr "1 vika"
 
-#: ../ReminderLabelDefines.qml:13
+#: ../RemindersModel.qml:35
 msgid "2 weeks"
 msgstr "2 vikur"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../TimeLineBackground.qml:19
-msgid "hh ap"
-msgstr "hh"
-
-#: ../calendar.qml:28
+#: ../calendar.qml:45
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -354,41 +351,25 @@ msgstr ""
 "newevent og --eventid. Þeim er stýrt af kerfinu. Skoðaðu upprunakóðann til "
 "að sjá fullt af athugasemdum um þetta"
 
-#: ../calendar.qml:287
-msgid "Today"
-msgstr "Í dag"
-
 #: ../calendar.qml:326
-msgid "Sync"
-msgstr "Samstilla"
-
-#: ../calendar.qml:326
-msgid "Syncing"
-msgstr "Samstilling"
-
-#: ../calendar.qml:359
 msgid "Year"
 msgstr "Ár"
 
-#: ../calendar.qml:394
+#: ../calendar.qml:360
 msgid "Month"
 msgstr "Mánuður"
 
-#: ../calendar.qml:423
+#: ../calendar.qml:388
 msgid "Week"
 msgstr "Vika"
 
-#: ../calendar.qml:457
+#: ../calendar.qml:421
 msgid "Day"
 msgstr "Dagur"
 
-#: ../calendar.qml:486
+#: ../calendar.qml:449
 msgid "Agenda"
 msgstr "Dagskrá"
-
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "Dagatal"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
@@ -397,3 +378,26 @@ msgstr "Dagatal fyrir Ubuntu með samstillingu við netreikninga."
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "dagatal;atburður;dagur;vika;ár;stefnumót;fundur;"
+
+#, qt-format
+#~ msgid "%1 All day events"
+#~ msgstr "%1 heilsdagsatburðir"
+
+#, qt-format
+#~ msgid "After Date %1"
+#~ msgstr "Eftir dagsetninguna %1"
+
+#~ msgid "All Day event:"
+#~ msgstr "Heilsdagsatburður:"
+
+#~ msgid "This happens"
+#~ msgstr "Þetta gerist"
+
+#~ msgid "Remind me"
+#~ msgstr "Áminna mig"
+
+#~ msgid "Repetition Ends"
+#~ msgstr "Endurtekning hættir"
+
+#~ msgid "This Happens"
+#~ msgstr "Gerist þetta"

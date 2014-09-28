@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+import QtQuick 2.3
+import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
@@ -39,8 +39,6 @@ Item{
 
     signal monthSelected(var date);
     signal dateSelected(var date)
-
-    height: ubuntuShape.height
 
     Loader{
         id: modelLoader
@@ -85,8 +83,8 @@ Item{
 
         //check if current month is start month
         property bool isCurMonthStartMonth: curMonthDate === monthStartDate
-                        && curMonth === monthStartMonth
-                        && curMonthYear === monthStartYear
+                                            && curMonth === monthStartMonth
+                                            && curMonthYear === monthStartYear
 
         //check current month is same as today's month
         property bool isCurMonthTodayMonth: todayYear === curMonthYear && todayMonth == curMonth
@@ -94,70 +92,66 @@ Item{
         property int offset: isCurMonthStartMonth ? -1 : (daysInStartMonth - monthStartDate)
     }
 
-    UbuntuShape {
-        id: ubuntuShape
+    Column{
+        id: column
 
-        anchors.fill: parent
-        radius: "medium"
+        anchors {
+            fill: parent
+            topMargin: units.gu(1.5)
+            bottomMargin: units.gu(1)
+        }
 
-        Column{
-            id: column
+        spacing: units.gu(1.5)
 
-            anchors.top: parent.top
-            anchors.topMargin: units.gu(1.5)
-            anchors.bottomMargin: units.gu(1)
-            anchors.fill: parent
-            spacing: units.gu(1.5)
+        ViewHeader{
+            id: monthHeader
+            month: intern.curMonth
+            year: intern.curMonthYear
 
-            ViewHeader{
-                id: monthHeader
-                month: intern.curMonth
-                year: intern.curMonthYear
+            monthLabelFontSize: root.monthLabelFontSize
+            yearLabelFontSize: root.yearLabelFontSize
+            visible: isYearView === true
+        }
 
-                monthLabelFontSize: root.monthLabelFontSize
-                yearLabelFontSize: root.yearLabelFontSize
-            }
+        Item {
+            width: parent.width
+            height: dayLabelRow.height + units.gu(1)
 
-            Item {
+            DayHeaderBackground{}
+
+            Row{
+                id: dayLabelRow
                 width: parent.width
-                height: dayLabelRow.height + units.gu(1)
-
-                DayHeaderBackground{}
-
-                Row{
-                    id: dayLabelRow
-                    width: parent.width
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    Repeater{
-                        id: dayLabelRepeater
-                        model:7
-                        delegate: dafaultDayLabelComponent
-                    }
-                }
-            }
-
-            Grid{
-                id: monthGrid
-                objectName: "monthGrid"
-
-                property int weekCount : 6
-
-                width: parent.width
-                height: parent.height - monthGrid.y
-
-                property int dayWidth: width / 7;
-                property int dayHeight: height / weekCount
-
-                rows: weekCount
-                columns: 7
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
 
                 Repeater{
-                    id: dateLabelRepeater
-                    model: monthGrid.rows * monthGrid.columns
-                    delegate: defaultDateLabelComponent
+                    id: dayLabelRepeater
+                    model:7
+                    delegate: dafaultDayLabelComponent
                 }
+            }
+        }
+
+        Grid{
+            id: monthGrid
+            objectName: "monthGrid"
+
+            property int weekCount : 6
+
+            width: parent.width
+            height: parent.height - monthGrid.y
+
+            property int dayWidth: width / 7;
+            property int dayHeight: height / weekCount
+
+            rows: weekCount
+            columns: 7
+
+            Repeater{
+                id: dateLabelRepeater
+                model: monthGrid.rows * monthGrid.columns
+                delegate: defaultDateLabelComponent
             }
         }
     }
@@ -216,7 +210,7 @@ Item{
                 color: {
                     if( isCurrentMonth ) {
                         if(isToday) {
-                            "#2C001E"
+                            "white"
                         } else {
                             "#5D5D5D"
                         }
@@ -228,9 +222,9 @@ Item{
 
             Loader{
                 property bool shouldLoad: showEvents
-                         && intern.eventStatus !== undefined
-                         && intern.eventStatus[index] !== undefined
-                         &&intern.eventStatus[index]
+                                          && intern.eventStatus !== undefined
+                                          && intern.eventStatus[index] !== undefined
+                                          &&intern.eventStatus[index]
                 sourceComponent: shouldLoad ? eventIndicatorComp : undefined
                 anchors.top: dateLabel.bottom
                 anchors.horizontalCenter: dateLabel.horizontalCenter
@@ -280,7 +274,7 @@ Item{
             id: weekDay
             width: parent.width / 7
             property var day :Qt.locale().standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat)
-            text: day.toUpperCase();
+            text: day;
             horizontalAlignment: Text.AlignHCenter
             fontSize: root.dayLabelFontSize
             color: "white"
@@ -290,7 +284,7 @@ Item{
     Component{
         id: highLightComp
         UbuntuShape{
-            color: "white"
+            color: "#DD4814"
         }
     }
 }

@@ -7,34 +7,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-26 06:37+0000\n"
+"POT-Creation-Date: 2014-09-23 08:25+0200\n"
+"PO-Revision-Date: 2014-09-24 08:57+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-08-27 07:39+0000\n"
-"X-Generator: Launchpad (build 17174)\n"
+"X-Launchpad-Export-Date: 2014-09-25 06:42+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
-#: ../AgendaView.qml:43
+#: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
+#: ../WeekView.qml:42 ../YearView.qml:36
+msgid "Today"
+msgstr "Hiziv"
+
+#: ../AgendaView.qml:90
 msgid "No upcoming events"
 msgstr "Darvoud ebet da zont"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
-msgid "hh:mm"
-msgstr "hh:mm"
+#: ../AgendaView.qml:93
+msgid "You have no calendars enabled"
+msgstr "N'ho peus deiziadur gweredekaet ebet"
 
-#: ../AgendaView.qml:94
-msgid "dddd , d MMMM"
-msgstr "dddd , d MMMM"
+#: ../AgendaView.qml:103
+msgid "Enable calendars"
+msgstr "Gweredekaat deiziadurioù"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:101 ../EventBubble.qml:61
+#: ../AgendaView.qml:165 ../EventBubble.qml:92
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -43,305 +46,299 @@ msgstr "%1 - %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:98
+#: ../AllDayEventComponent.qml:115
 #, qt-format
 msgid "%1 Ev."
 msgstr "%1 Dar."
 
-#: ../AllDayEventComponent.qml:101
+#: ../AllDayEventComponent.qml:118
 #, qt-format
-msgid "%1 All day events"
-msgstr "%1 a zarvoudoù hag a bad a-hed an deiz"
+msgid "%1 All day event"
+msgid_plural "%1 All day events"
+msgstr[0] "%1 darvoud e-pad an deiz"
+msgstr[1] "%1 a zarvoudoù a-pad an deiz"
 
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
+#: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
 msgstr "Deiziadurioù"
 
-#: ../CalendarChoicePopup.qml:20
+#: ../CalendarChoicePopup.qml:36
 msgid "Back"
 msgstr "Distreiñ"
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
-msgid "Save"
-msgstr "Enrollañ"
-
-#: ../ColorPickerDialog.qml:7
+#: ../ColorPickerDialog.qml:24
 msgid "Select Color"
 msgstr "Diuzañ al liv"
 
-#: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
-#: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:722
+#: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:59
+#: ../EditEventConfirmationDialog.qml:52
 msgid "Cancel"
 msgstr "Nullañ"
 
-#: ../ContactChoicePopup.qml:20
+#: ../ContactChoicePopup.qml:37
 msgid "No contact"
 msgstr "Darempred ebet"
 
-#: ../ContactChoicePopup.qml:66
+#: ../ContactChoicePopup.qml:83
 msgid "Search contact"
 msgstr "Klask un darempred"
 
-#: ../DeleteConfirmationDialog.qml:14
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the day view
+#. TRANSLATORS: this is a date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
+#. It's used to display the date in the event details view
+#: ../DayView.qml:68 ../EventDetails.qml:128
+msgid "MMMM dd, yyyy"
+msgstr "MMMM dd, yyyy"
+
+#: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
 msgstr "Diverkañ un darvoud hag a zeu en-dro ingal"
 
-#: ../DeleteConfirmationDialog.qml:15
+#: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
 msgstr "Diverkañ an darvoud"
 
-#: ../DeleteConfirmationDialog.qml:22
+#: ../DeleteConfirmationDialog.qml:39
 msgid "Delete series"
 msgstr "Diverkañ rummadoù"
 
-#: ../DeleteConfirmationDialog.qml:33
+#: ../DeleteConfirmationDialog.qml:50
 msgid "Delete this"
 msgstr "Diverkañ an dra-mañ"
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
+#: ../DeleteConfirmationDialog.qml:50 ../EventDetails.qml:187
 msgid "Delete"
 msgstr "Diverkañ"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:273
 msgid "Edit Event"
 msgstr "Aozañ an darvoud"
 
-#: ../EditEventConfirmationDialog.qml:17
+#: ../EditEventConfirmationDialog.qml:34
 msgid "Edit series"
 msgstr "Aozañ rummadoù"
 
-#: ../EditEventConfirmationDialog.qml:26
+#: ../EditEventConfirmationDialog.qml:43
 msgid "Edit this"
 msgstr "Aozañ an dra-mañ"
 
-#: ../EditToolbar.qml:52
-msgid "Done"
-msgstr "Graet eo"
-
-#: ../EventDetails.qml:27
-msgid "Event Details"
-msgstr "Munudoù an darvoud"
-
-#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
-msgid "Never"
-msgstr "Morse"
-
-#. TRANSLATORS: this is a date shown in the event details view,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59
-msgid "ddd MMMM d yyyy"
-msgstr "ddd MMMM d yyyy"
-
-#: ../EventDetails.qml:62
-#, qt-format
-msgid "After %1 Occurrence"
-msgid_plural "After %1 Occurrences"
-msgstr[0] "Goude %1 wech"
-msgstr[1] "Goude %1 gwech"
-
-#: ../EventDetails.qml:63
-#, qt-format
-msgid "After Date %1"
-msgstr "Goude an deiziad %1"
-
-#. TRANSLATORS: the argument is a day of the week or a list of days
-#: ../EventDetails.qml:75
-#, qt-format
-msgid "Every %1"
-msgstr "Bep %1"
-
-#: ../EventDetails.qml:126
-msgid "Not specified"
-msgstr "N'eo ket diferet"
-
-#. TRANSLATORS: this is a time & Date formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:137
-msgid "dd-MMM-yyyy"
-msgstr "dd-MMM-yyyy"
-
-#: ../EventDetails.qml:210
-msgid "Edit"
-msgstr "Aozañ"
-
-#: ../EventDetails.qml:272
-msgid "Date"
-msgstr "Deiziad"
-
-#: ../EventDetails.qml:277 ../NewEvent.qml:387
-msgid "Start"
-msgstr "Deroù"
-
-#: ../EventDetails.qml:282 ../NewEvent.qml:426
-msgid "End"
-msgstr "Fin"
-
-#: ../EventDetails.qml:291 ../NewEvent.qml:497
-msgid "All Day event:"
-msgstr "Darvoud hag a bad a-hed an deiz :"
-
-#: ../EventDetails.qml:340 ../NewEvent.qml:542
-msgid "Location"
-msgstr "Lec'h"
-
-#: ../EventDetails.qml:366
-msgid "Guests"
-msgstr "Kouvidi"
-
-#: ../EventDetails.qml:404 ../NewEvent.qml:592
-msgid "This happens"
-msgstr "C'hoarvezout a ra"
-
-#: ../EventDetails.qml:409 ../NewEvent.qml:693
-msgid "Remind me"
-msgstr "Degas da soñj din"
-
-#: ../EventDetails.qml:414
-msgid "Repeats On"
-msgstr "C'hoarvezout a ra en-dro d'an"
-
-#: ../EventDetails.qml:420
-msgid "Repetition Ends"
-msgstr "Fin an adober"
-
-#: ../LimitLabelDefines.qml:4
-msgid "After X Occurrence"
-msgstr "Goude X gwech"
-
-#: ../LimitLabelDefines.qml:5
-msgid "After Date"
-msgstr "Goude an"
-
-#: ../NewEvent.qml:186
-msgid "End time can't be before start time"
-msgstr "Ne c'hall ket ar fin bezañ a-raok an deroù"
-
-#: ../NewEvent.qml:297 ../calendar.qml:306
+#: ../EventActions.qml:33 ../NewEvent.qml:273
 msgid "New Event"
 msgstr "Darvoud nevez"
 
-#: ../NewEvent.qml:313
-msgid "Error"
-msgstr "Fazi"
+#: ../EventActions.qml:53
+msgid "Sync"
+msgstr "Sink"
 
-#: ../NewEvent.qml:315
-msgid "OK"
-msgstr "Mat eo"
+#: ../EventActions.qml:53
+msgid "Syncing"
+msgstr "O sinkronelaat"
 
-#. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:403 ../NewEvent.qml:442
-msgid "at"
-msgstr "arobaz"
+#: ../EventDetails.qml:44 ../NewEvent.qml:445
+msgid "Event Details"
+msgstr "Munudoù an darvoud"
 
-#: ../NewEvent.qml:463
-msgid "Calendar "
-msgstr "Deiziadur "
+#: ../EventDetails.qml:114
+msgid "Not specified"
+msgstr "N'eo ket diferet"
 
-#: ../NewEvent.qml:512
-msgid "Event Name"
-msgstr "Anv an darvoud"
+#: ../EventDetails.qml:202
+msgid "Edit"
+msgstr "Aozañ"
 
-#: ../NewEvent.qml:522
-msgid "Description"
-msgstr "Deskrivadur"
+#: ../EventDetails.qml:268 ../EventRepetition.qml:232
+msgid "Date"
+msgstr "Deiziad"
 
-#: ../NewEvent.qml:560
-msgid "Add Guest"
-msgstr "Ouzhpennañ ur c'houviad"
+#: ../EventDetails.qml:273
+msgid "Start"
+msgstr "Deroù"
 
-#: ../NewEvent.qml:612
+#: ../EventDetails.qml:278
+msgid "End"
+msgstr "Fin"
+
+#: ../EventDetails.qml:287 ../NewEvent.qml:430
+msgid "All day event"
+msgstr "Darvoud e-pad an deiz"
+
+#: ../EventDetails.qml:336 ../NewEvent.qml:484
+msgid "Location"
+msgstr "Lec'h"
+
+#: ../EventDetails.qml:362 ../NewEvent.qml:531
+msgid "Guests"
+msgstr "Kouvidi"
+
+#: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
+msgid "Repeats"
+msgstr "A vez graet en-dro"
+
+#: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
+msgid "Reminder"
+msgstr "Degas-da-soñj"
+
+#: ../EventRepetition.qml:123
+msgid "Repeat"
+msgstr "Adober"
+
+#: ../EventRepetition.qml:142
 msgid "Repeats On:"
 msgstr "C'hoarvezout a ra en-dro d'an :"
 
-#: ../NewEvent.qml:647
+#: ../EventRepetition.qml:187
 msgid "Recurring event ends"
 msgstr "fin an darvoud a c'hoarvez ingal"
 
-#. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:670
-msgid "Recurrence"
-msgstr "Mareadegezh"
+#: ../EventRepetition.qml:207
+msgid "Recurrences"
+msgstr "Niver a wechoù"
 
-#: ../RecurrenceLabelDefines.qml:4
+#: ../EventUtils.qml:99
+#, qt-format
+msgid "%1 ; %2 times "
+msgstr "%1 ; %2 a wechoù "
+
+#: ../EventUtils.qml:100
+#, qt-format
+msgid "%1 ;  until %2"
+msgstr "%1 ;  betek %2"
+
+#: ../LimitLabelDefines.qml:21
+msgid "Never"
+msgstr "Morse"
+
+#: ../LimitLabelDefines.qml:21
+msgid "After X Occurrence"
+msgstr "Goude X gwech"
+
+#: ../LimitLabelDefines.qml:22
+msgid "After Date"
+msgstr "Goude an"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../MonthView.qml:56 ../WeekView.qml:60
+msgid "MMMM yyyy"
+msgstr "MMMM yyyy"
+
+#: ../NewEvent.qml:59
+msgid "Save"
+msgstr "Enrollañ"
+
+#: ../NewEvent.qml:161
+msgid "End time can't be before start time"
+msgstr "Ne c'hall ket ar fin bezañ a-raok an deroù"
+
+#: ../NewEvent.qml:283
+msgid "Error"
+msgstr "Fazi"
+
+#: ../NewEvent.qml:285
+msgid "OK"
+msgstr "Mat eo"
+
+#: ../NewEvent.qml:336
+msgid "From"
+msgstr "Eus"
+
+#: ../NewEvent.qml:380
+msgid "To"
+msgstr "Da"
+
+#: ../NewEvent.qml:458
+msgid "Event Name"
+msgstr "Anv an darvoud"
+
+#: ../NewEvent.qml:471
+msgid "Description"
+msgstr "Deskrivadur"
+
+#: ../NewEvent.qml:493 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "Deiziadur"
+
+#: ../NewEvent.qml:535
+msgid "Add Guest"
+msgstr "Ouzhpennañ ur c'houviad"
+
+#: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr "Ur wech"
 
-#: ../RecurrenceLabelDefines.qml:5
+#: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
 msgstr "Bemdez"
 
-#: ../RecurrenceLabelDefines.qml:6
-msgid "Every Weekday (Monday to Friday)"
-msgstr "Bep deiz eus ar sizhun (a Lun da Wener)"
+#: ../RecurrenceLabelDefines.qml:25
+msgid "On Weekdays"
+msgstr "War ar pemdez"
 
-#: ../RecurrenceLabelDefines.qml:7
-msgid "Every Monday, Wednesday and Friday"
-msgstr "bep Lun, Merc'her ha Gwener"
+#: ../RecurrenceLabelDefines.qml:26
+msgid "On Monday, Wednesday and Friday"
+msgstr "Da Lun, da Verc'her ha da Wener"
 
-#: ../RecurrenceLabelDefines.qml:8
-msgid "Every Tuesday and Thursday"
-msgstr "Bep Meurzh ha Yaou"
+#: ../RecurrenceLabelDefines.qml:27
+msgid "On Tuesday and Thursday"
+msgstr "Da Veurzh ha da Yaou"
 
-#: ../RecurrenceLabelDefines.qml:9
+#: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
 msgstr "Bep sizhun"
 
-#: ../RecurrenceLabelDefines.qml:10
+#: ../RecurrenceLabelDefines.qml:29
 msgid "Monthly"
 msgstr "Bep miz"
 
-#: ../RecurrenceLabelDefines.qml:11
+#: ../RecurrenceLabelDefines.qml:30
 msgid "Yearly"
 msgstr "Bep bloaz"
 
-#: ../ReminderLabelDefines.qml:4
+#: ../RemindersModel.qml:26
 msgid "No Reminder"
 msgstr "degas-da-soñj ebet"
 
-#: ../ReminderLabelDefines.qml:5
+#: ../RemindersModel.qml:27
 msgid "5 minutes"
 msgstr "5 munut"
 
-#: ../ReminderLabelDefines.qml:6
+#: ../RemindersModel.qml:28
 msgid "15 minutes"
 msgstr "15 munut"
 
-#: ../ReminderLabelDefines.qml:7
+#: ../RemindersModel.qml:29
 msgid "30 minutes"
 msgstr "30 munut"
 
-#: ../ReminderLabelDefines.qml:8
+#: ../RemindersModel.qml:30
 msgid "1 hour"
 msgstr "1 eur"
 
-#: ../ReminderLabelDefines.qml:9
+#: ../RemindersModel.qml:31
 msgid "2 hours"
 msgstr "2 eur"
 
-#: ../ReminderLabelDefines.qml:10
+#: ../RemindersModel.qml:32
 msgid "1 day"
 msgstr "1 deiz"
 
-#: ../ReminderLabelDefines.qml:11
+#: ../RemindersModel.qml:33
 msgid "2 days"
 msgstr "2 zeiz"
 
-#: ../ReminderLabelDefines.qml:12
+#: ../RemindersModel.qml:34
 msgid "1 week"
 msgstr "1 sizhun"
 
-#: ../ReminderLabelDefines.qml:13
+#: ../RemindersModel.qml:35
 msgid "2 weeks"
 msgstr "2 sizhun"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../TimeLineBackground.qml:19
-msgid "hh ap"
-msgstr "hh ap"
-
-#: ../calendar.qml:28
+#: ../calendar.qml:45
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -351,41 +348,25 @@ msgstr ""
 "-darvoudnevez hag --iddarvoud. Meret e vint gant ar reizhiad. Sellet ouzh an "
 "tarzh evit gouzout hiroc'h diwar o fenn"
 
-#: ../calendar.qml:287
-msgid "Today"
-msgstr "Hiziv"
-
 #: ../calendar.qml:326
-msgid "Sync"
-msgstr "Sink"
-
-#: ../calendar.qml:326
-msgid "Syncing"
-msgstr "O sinkronelaat"
-
-#: ../calendar.qml:359
 msgid "Year"
 msgstr "Bloaz"
 
-#: ../calendar.qml:394
+#: ../calendar.qml:360
 msgid "Month"
 msgstr "Miz"
 
-#: ../calendar.qml:423
+#: ../calendar.qml:388
 msgid "Week"
 msgstr "Sizhun"
 
-#: ../calendar.qml:457
+#: ../calendar.qml:421
 msgid "Day"
 msgstr "Deiz"
 
-#: ../calendar.qml:486
+#: ../calendar.qml:449
 msgid "Agenda"
 msgstr "Deiziataer"
-
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "Deiziadur"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."

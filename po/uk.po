@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-15 23:27-0500\n"
-"PO-Revision-Date: 2014-08-17 14:51+0000\n"
+"POT-Creation-Date: 2014-09-23 08:25+0200\n"
+"PO-Revision-Date: 2014-09-23 08:50+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,26 +16,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-08-18 07:16+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-09-24 07:33+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
-#: ../AgendaView.qml:43
+#: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
+#: ../WeekView.qml:42 ../YearView.qml:36
+msgid "Today"
+msgstr "Сьогодні"
+
+#: ../AgendaView.qml:90
 msgid "No upcoming events"
 msgstr "Записів майбутніх подій не виявлено"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
-msgid "hh:mm"
-msgstr "hh:mm"
+#: ../AgendaView.qml:93
+msgid "You have no calendars enabled"
+msgstr "Вами не увімкнено жодного календаря"
 
-#: ../AgendaView.qml:94
-msgid "dddd , d MMMM"
-msgstr "dddd , d MMMM"
+#: ../AgendaView.qml:103
+msgid "Enable calendars"
+msgstr "Увімкнути календарі"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:101 ../EventBubble.qml:61
+#: ../AgendaView.qml:165 ../EventBubble.qml:92
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 — %2"
@@ -44,306 +47,300 @@ msgstr "%1 — %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:98
+#: ../AllDayEventComponent.qml:115
 #, qt-format
 msgid "%1 Ev."
 msgstr "%1 под."
 
-#: ../AllDayEventComponent.qml:101
+#: ../AllDayEventComponent.qml:118
 #, qt-format
-msgid "%1 All day events"
-msgstr "Події на увесь день %1"
+msgid "%1 All day event"
+msgid_plural "%1 All day events"
+msgstr[0] "%1 подія на увесь день"
+msgstr[1] "%1 події на увесь день"
+msgstr[2] "%1 подій на увесь день"
 
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
+#: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
 msgstr "Календарі"
 
-#: ../CalendarChoicePopup.qml:20
+#: ../CalendarChoicePopup.qml:36
 msgid "Back"
 msgstr "Назад"
 
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
-msgid "Save"
-msgstr "Зберегти"
-
-#: ../ColorPickerDialog.qml:7
+#: ../ColorPickerDialog.qml:24
 msgid "Select Color"
 msgstr "Вибір кольору"
 
-#: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
-#: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:722
+#: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:59
+#: ../EditEventConfirmationDialog.qml:52
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: ../ContactChoicePopup.qml:20
+#: ../ContactChoicePopup.qml:37
 msgid "No contact"
 msgstr "Немає контакту"
 
-#: ../ContactChoicePopup.qml:66
+#: ../ContactChoicePopup.qml:83
 msgid "Search contact"
 msgstr "Пощук контактів"
 
-#: ../DeleteConfirmationDialog.qml:14
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the day view
+#. TRANSLATORS: this is a date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
+#. It's used to display the date in the event details view
+#: ../DayView.qml:68 ../EventDetails.qml:128
+msgid "MMMM dd, yyyy"
+msgstr "dd-MMM-yyyy"
+
+#: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
 msgstr "Вилучити регулярну подію"
 
-#: ../DeleteConfirmationDialog.qml:15
+#: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
 msgstr "Вилучити подію"
 
-#: ../DeleteConfirmationDialog.qml:22
+#: ../DeleteConfirmationDialog.qml:39
 msgid "Delete series"
 msgstr "Вилучити послідовність"
 
-#: ../DeleteConfirmationDialog.qml:33
+#: ../DeleteConfirmationDialog.qml:50
 msgid "Delete this"
 msgstr "Вилучити це"
 
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
+#: ../DeleteConfirmationDialog.qml:50 ../EventDetails.qml:187
 msgid "Delete"
 msgstr "Вилучити"
 
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:273
 msgid "Edit Event"
 msgstr "Редагування події"
 
-#: ../EditEventConfirmationDialog.qml:17
+#: ../EditEventConfirmationDialog.qml:34
 msgid "Edit series"
 msgstr "Змінити послідовність"
 
-#: ../EditEventConfirmationDialog.qml:26
+#: ../EditEventConfirmationDialog.qml:43
 msgid "Edit this"
 msgstr "Змінити це"
 
-#: ../EditToolbar.qml:52
-msgid "Done"
-msgstr "Виконано"
-
-#: ../EventDetails.qml:27
-msgid "Event Details"
-msgstr "Докладніше про подію"
-
-#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
-msgid "Never"
-msgstr "Ніколи"
-
-#. TRANSLATORS: this is a date shown in the event details view,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59
-msgid "ddd MMMM d yyyy"
-msgstr "ddd, dd-MM-yyyy"
-
-#: ../EventDetails.qml:62
-#, qt-format
-msgid "After %1 Occurrence"
-msgid_plural "After %1 Occurrences"
-msgstr[0] "Після %1 повторення"
-msgstr[1] "Після %1 повторень"
-msgstr[2] "Після %1 повторень"
-
-#: ../EventDetails.qml:63
-#, qt-format
-msgid "After Date %1"
-msgstr "Після %1"
-
-#. TRANSLATORS: the argument is a day of the week or a list of days
-#: ../EventDetails.qml:75
-#, qt-format
-msgid "Every %1"
-msgstr "Кожні %1"
-
-#: ../EventDetails.qml:126
-msgid "Not specified"
-msgstr "Не вказано"
-
-#. TRANSLATORS: this is a time & Date formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:137
-msgid "dd-MMM-yyyy"
-msgstr "yyyy-MM-dd"
-
-#: ../EventDetails.qml:210
-msgid "Edit"
-msgstr "Змінити"
-
-#: ../EventDetails.qml:272
-msgid "Date"
-msgstr "Дата"
-
-#: ../EventDetails.qml:277 ../NewEvent.qml:387
-msgid "Start"
-msgstr "Початок"
-
-#: ../EventDetails.qml:282 ../NewEvent.qml:426
-msgid "End"
-msgstr "Завершення"
-
-#: ../EventDetails.qml:291 ../NewEvent.qml:497
-msgid "All Day event:"
-msgstr "Подія на увесь день:"
-
-#: ../EventDetails.qml:340 ../NewEvent.qml:542
-msgid "Location"
-msgstr "Розташування"
-
-#: ../EventDetails.qml:366
-msgid "Guests"
-msgstr "Гості"
-
-#: ../EventDetails.qml:404 ../NewEvent.qml:592
-msgid "This happens"
-msgstr "Триває"
-
-#: ../EventDetails.qml:409 ../NewEvent.qml:693
-msgid "Remind me"
-msgstr "Нагадати"
-
-#: ../EventDetails.qml:414
-msgid "Repeats On"
-msgstr "Повтор"
-
-#: ../EventDetails.qml:420
-msgid "Repetition Ends"
-msgstr "Завершення повторень"
-
-#: ../LimitLabelDefines.qml:4
-msgid "After X Occurrence"
-msgstr "Після вказаного повторення"
-
-#: ../LimitLabelDefines.qml:5
-msgid "After Date"
-msgstr "Після дати"
-
-#: ../NewEvent.qml:186
-msgid "End time can't be before start time"
-msgstr "Момент завершення не може передувати моментові початку"
-
-#: ../NewEvent.qml:297 ../calendar.qml:306
+#: ../EventActions.qml:33 ../NewEvent.qml:273
 msgid "New Event"
 msgstr "Нова подія"
 
-#: ../NewEvent.qml:313
-msgid "Error"
-msgstr "Помилка"
+#: ../EventActions.qml:53
+msgid "Sync"
+msgstr "Синхронізувати"
 
-#: ../NewEvent.qml:315
-msgid "OK"
-msgstr "Гаразд"
+#: ../EventActions.qml:53
+msgid "Syncing"
+msgstr "Синхронізація"
 
-#. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:403 ../NewEvent.qml:442
-msgid "at"
-msgstr "о"
+#: ../EventDetails.qml:44 ../NewEvent.qml:445
+msgid "Event Details"
+msgstr "Докладніше про подію"
 
-#: ../NewEvent.qml:463
-msgid "Calendar "
-msgstr "Календар "
+#: ../EventDetails.qml:114
+msgid "Not specified"
+msgstr "Не вказано"
 
-#: ../NewEvent.qml:512
-msgid "Event Name"
-msgstr "Назва події"
+#: ../EventDetails.qml:202
+msgid "Edit"
+msgstr "Змінити"
 
-#: ../NewEvent.qml:522
-msgid "Description"
-msgstr "Опис"
+#: ../EventDetails.qml:268 ../EventRepetition.qml:232
+msgid "Date"
+msgstr "Дата"
 
-#: ../NewEvent.qml:560
-msgid "Add Guest"
-msgstr "Додати гостя"
+#: ../EventDetails.qml:273
+msgid "Start"
+msgstr "Початок"
 
-#: ../NewEvent.qml:612
+#: ../EventDetails.qml:278
+msgid "End"
+msgstr "Завершення"
+
+#: ../EventDetails.qml:287 ../NewEvent.qml:430
+msgid "All day event"
+msgstr "Подія на весь день"
+
+#: ../EventDetails.qml:336 ../NewEvent.qml:484
+msgid "Location"
+msgstr "Розташування"
+
+#: ../EventDetails.qml:362 ../NewEvent.qml:531
+msgid "Guests"
+msgstr "Гості"
+
+#: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
+msgid "Repeats"
+msgstr "Повторюється"
+
+#: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
+msgid "Reminder"
+msgstr "Нагадування"
+
+#: ../EventRepetition.qml:123
+msgid "Repeat"
+msgstr "Повторити"
+
+#: ../EventRepetition.qml:142
 msgid "Repeats On:"
 msgstr "Повтор:"
 
-#: ../NewEvent.qml:647
+#: ../EventRepetition.qml:187
 msgid "Recurring event ends"
 msgstr "Повторення події завершиться"
 
-#. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:670
-msgid "Recurrence"
+#: ../EventRepetition.qml:207
+msgid "Recurrences"
 msgstr "Повторення"
 
-#: ../RecurrenceLabelDefines.qml:4
+#: ../EventUtils.qml:99
+#, qt-format
+msgid "%1 ; %2 times "
+msgstr "%1; %2 разів "
+
+#: ../EventUtils.qml:100
+#, qt-format
+msgid "%1 ;  until %2"
+msgstr "%1; до %2"
+
+#: ../LimitLabelDefines.qml:21
+msgid "Never"
+msgstr "Ніколи"
+
+#: ../LimitLabelDefines.qml:21
+msgid "After X Occurrence"
+msgstr "Після вказаного повторення"
+
+#: ../LimitLabelDefines.qml:22
+msgid "After Date"
+msgstr "Після дати"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../MonthView.qml:56 ../WeekView.qml:60
+msgid "MMMM yyyy"
+msgstr "MMMM yyyy"
+
+#: ../NewEvent.qml:59
+msgid "Save"
+msgstr "Зберегти"
+
+#: ../NewEvent.qml:161
+msgid "End time can't be before start time"
+msgstr "Момент завершення не може передувати моментові початку"
+
+#: ../NewEvent.qml:283
+msgid "Error"
+msgstr "Помилка"
+
+#: ../NewEvent.qml:285
+msgid "OK"
+msgstr "Гаразд"
+
+#: ../NewEvent.qml:336
+msgid "From"
+msgstr "З"
+
+#: ../NewEvent.qml:380
+msgid "To"
+msgstr "До"
+
+#: ../NewEvent.qml:458
+msgid "Event Name"
+msgstr "Назва події"
+
+#: ../NewEvent.qml:471
+msgid "Description"
+msgstr "Опис"
+
+#: ../NewEvent.qml:493 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "Календар"
+
+#: ../NewEvent.qml:535
+msgid "Add Guest"
+msgstr "Додати гостя"
+
+#: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr "Один раз"
 
-#: ../RecurrenceLabelDefines.qml:5
+#: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
 msgstr "Щодня"
 
-#: ../RecurrenceLabelDefines.qml:6
-msgid "Every Weekday (Monday to Friday)"
-msgstr "Щодня (з понеділка до п’ятниці)"
+#: ../RecurrenceLabelDefines.qml:25
+msgid "On Weekdays"
+msgstr "у дні тижня"
 
-#: ../RecurrenceLabelDefines.qml:7
-msgid "Every Monday, Wednesday and Friday"
-msgstr "Кожного понеділка, середи та п’ятниці"
+#: ../RecurrenceLabelDefines.qml:26
+msgid "On Monday, Wednesday and Friday"
+msgstr "по понеділках, середах і п’ятницях"
 
-#: ../RecurrenceLabelDefines.qml:8
-msgid "Every Tuesday and Thursday"
-msgstr "Кожного вівторка та четверга"
+#: ../RecurrenceLabelDefines.qml:27
+msgid "On Tuesday and Thursday"
+msgstr "по вівторках і червергах"
 
-#: ../RecurrenceLabelDefines.qml:9
+#: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
 msgstr "Щотижня"
 
-#: ../RecurrenceLabelDefines.qml:10
+#: ../RecurrenceLabelDefines.qml:29
 msgid "Monthly"
 msgstr "Щомісяця"
 
-#: ../RecurrenceLabelDefines.qml:11
+#: ../RecurrenceLabelDefines.qml:30
 msgid "Yearly"
 msgstr "Щороку"
 
-#: ../ReminderLabelDefines.qml:4
+#: ../RemindersModel.qml:26
 msgid "No Reminder"
 msgstr "Без нагадування"
 
-#: ../ReminderLabelDefines.qml:5
+#: ../RemindersModel.qml:27
 msgid "5 minutes"
 msgstr "5 хвилин"
 
-#: ../ReminderLabelDefines.qml:6
+#: ../RemindersModel.qml:28
 msgid "15 minutes"
 msgstr "15 хвилин"
 
-#: ../ReminderLabelDefines.qml:7
+#: ../RemindersModel.qml:29
 msgid "30 minutes"
 msgstr "30 хвилин"
 
-#: ../ReminderLabelDefines.qml:8
+#: ../RemindersModel.qml:30
 msgid "1 hour"
 msgstr "1 година"
 
-#: ../ReminderLabelDefines.qml:9
+#: ../RemindersModel.qml:31
 msgid "2 hours"
 msgstr "2 години"
 
-#: ../ReminderLabelDefines.qml:10
+#: ../RemindersModel.qml:32
 msgid "1 day"
 msgstr "1 день"
 
-#: ../ReminderLabelDefines.qml:11
+#: ../RemindersModel.qml:33
 msgid "2 days"
 msgstr "2 дні"
 
-#: ../ReminderLabelDefines.qml:12
+#: ../RemindersModel.qml:34
 msgid "1 week"
 msgstr "1 тиждень"
 
-#: ../ReminderLabelDefines.qml:13
+#: ../RemindersModel.qml:35
 msgid "2 weeks"
 msgstr "2 тижні"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../TimeLineBackground.qml:19
-msgid "hh ap"
-msgstr "hh"
-
-#: ../calendar.qml:28
+#: ../calendar.qml:45
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -353,41 +350,25 @@ msgstr ""
 "-newevent та --eventid. Обробкою параметрів займатиметься система. З повним "
 "коментарем щодо параметрів можна ознайомитися у коді програми."
 
-#: ../calendar.qml:287
-msgid "Today"
-msgstr "Сьогодні"
-
 #: ../calendar.qml:326
-msgid "Sync"
-msgstr "Синхронізувати"
-
-#: ../calendar.qml:326
-msgid "Syncing"
-msgstr "Синхронізація"
-
-#: ../calendar.qml:359
 msgid "Year"
 msgstr "Рік"
 
-#: ../calendar.qml:394
+#: ../calendar.qml:360
 msgid "Month"
 msgstr "Місяць"
 
-#: ../calendar.qml:423
+#: ../calendar.qml:388
 msgid "Week"
 msgstr "Тиждень"
 
-#: ../calendar.qml:457
+#: ../calendar.qml:421
 msgid "Day"
 msgstr "День"
 
-#: ../calendar.qml:486
+#: ../calendar.qml:449
 msgid "Agenda"
 msgstr "Розклад"
-
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "Календар"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
@@ -399,3 +380,26 @@ msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
 "calendar;event;day;week;year;appointment;meeting;календар;подія;день;тиждень;"
 "рік;зустріч;нарада;"
+
+#~ msgid "Remind me"
+#~ msgstr "Нагадати"
+
+#~ msgid "All Day event:"
+#~ msgstr "Подія на увесь день:"
+
+#~ msgid "This happens"
+#~ msgstr "Триває"
+
+#, qt-format
+#~ msgid "%1 All day events"
+#~ msgstr "Події на увесь день %1"
+
+#~ msgid "Repetition Ends"
+#~ msgstr "Завершення повторень"
+
+#, qt-format
+#~ msgid "After Date %1"
+#~ msgstr "Після %1"
+
+#~ msgid "This Happens"
+#~ msgstr "Це відбувається"

@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 0.1
-import QtOrganizer 5.0
 
+import QtQuick 2.3
+import QtOrganizer 5.0
+import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
 
 Page{
@@ -34,6 +34,32 @@ Page{
     function goToBeginning() {
         eventList.positionViewAtBeginning();
     }
+
+    function hasEnabledCalendars() {
+        var enabled_calendars = eventListModel.getCollections().filter( function( item ) {
+            return item.extendedMetaData( "collection-selected" );
+        } );
+
+        return !!enabled_calendars.length;
+    }
+
+    Action {
+        id: calendarTodayAction
+        objectName:"todaybutton"
+        iconName: "calendar-today"
+        text: i18n.tr("Today")
+        onTriggered: {
+            currentDay = new Date()
+            goToBeginning()
+        }
+    }
+
+    head.actions: [
+        calendarTodayAction,
+        commonHeaderActions.newEventAction,
+        commonHeaderActions.showCalendarAction,
+        commonHeaderActions.reloadAction
+    ]
 
     EventListModel {
         id: eventListModel
@@ -58,10 +84,33 @@ Page{
         z:2
     }
 
-    Label{
-        text: i18n.tr("No upcoming events")
-        visible: eventListModel.itemCount === 0
+    Label {
+        id: noEventsOrCalendarsLabel
+        text: {
+            var default_title = i18n.tr( "No upcoming events" );
+
+            if ( !root.hasEnabledCalendars() ) {
+                default_title = i18n.tr("You have no calendars enabled")
+            }
+
+            return default_title;
+        }
+        visible: !root.hasEnabledCalendars() || !eventListModel.itemCount
         anchors.centerIn: parent
+    }
+
+    Button {
+        text: i18n.tr( "Enable calendars" )
+        visible: !root.hasEnabledCalendars()
+        anchors.top: noEventsOrCalendarsLabel.bottom
+        anchors.horizontalCenter: noEventsOrCalendarsLabel.horizontalCenter
+        anchors.topMargin: units.gu( 1.5 )
+        color: UbuntuColors.orange
+
+        onClicked: {
+            pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
+            pageStack.currentPage.collectionUpdated.connect(eventModel.delayedApplyFilter);
+        }
     }
 
     ListView{
@@ -107,13 +156,9 @@ Page{
                     }
                 }
 
-                // TRANSLATORS: this is a time formatting string,
-                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-                var timeFormat = i18n.tr("hh:mm");
-                var dateFormat = i18n.tr("dddd , d MMMM");
-                var date = event.startDateTime.toLocaleString(Qt.locale(),dateFormat);
-                var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
-                var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
+                var date = event.startDateTime.toLocaleDateString()
+                var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+                var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
 
                 // TRANSLATORS: the first argument (%1) refers to a start time for an event,
                 // while the second one (%2) refers to the end time
@@ -121,6 +166,8 @@ Page{
 
                 header.text = date
                 timeLabel.text = timeString
+                header.color = event.startDateTime.toLocaleDateString() === new Date().toLocaleDateString() ? UbuntuColors.orange : UbuntuColors.darkGrey
+                detailsContainer.color = eventListModel.collection(event.collectionId).color
 
                 if( event.displayLabel) {
                     titleLabel.text = event.displayLabel;
@@ -141,15 +188,22 @@ Page{
 
                 DayHeaderBackground{
                     id: headerContainer
+
                     height: visible ? header.height + units.gu(1) : 0
                     width: parent.width
+
                     Label{
                         id: header
-                        width: parent.height
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.left
-                        anchors.leftMargin: units.gu(1)
-                        color: "white"
+
+                        fontSize: "small"
+                        width: parent.width
+                        elide: Text.ElideRight
+
+                        anchors {
+                            left: parent.left
+                            leftMargin: units.gu(1)
+                            verticalCenter: parent.verticalCenter
+                        }
                     }
 
                     MouseArea{
@@ -162,46 +216,66 @@ Page{
 
                 UbuntuShape{
                     id: detailsContainer
-                    color: "white"
 
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    width: parent.width - units.gu(4)
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: units.gu(2)
+                    }
+
                     height: detailsColumn.height + units.gu(1)
+                    borderSource: "radius_ide.sci"
+
+                    states: [
+                        State {
+                            name: "selected"
+                            when: mouseArea.pressed
+
+                            PropertyChanges {
+                                target: detailsContainer
+                                borderSource: "radius_pressed.sci"
+                            }
+                        }
+                    ]
 
                     Column{
                         id: detailsColumn
 
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.top: parent.top
-                        anchors.margins: units.gu(0.5)
-
-                        spacing: units.gu(0.5)
-
-                        Row{
-                            width: parent.width
-                            Label{
-                                id: timeLabel
-                                color:"gray"
-                                width: parent.width - rect.width
-                            }
-                            Rectangle{
-                                id:rect
-                                width: units.gu(1)
-                                radius: width/2
-                                height: width
-                                color: "#715772"
-                            }
+                        anchors {
+                            top: parent.top
+                            left: parent.left
+                            right: parent.right
+                            margins: units.gu(0.5)
                         }
+
+                        Label{
+                            id: timeLabel
+                            color:"White"
+                            font.bold: true
+                            fontSize: "small"
+                            width: parent.width
+                        }
+
                         Label{
                             id: titleLabel
-                            color:"black"
-                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+
+                            color:"White"
+                            fontSize: "small"
                             width: parent.width
+                            maximumLineCount: 2
+                            elide: Text.ElideRight
+                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+
+                            Behavior on color {
+                                ColorAnimation {
+                                    duration: 50
+                                }
+                            }
                         }
                     }
 
                     MouseArea{
+                        id: mouseArea
                         anchors.fill: parent
                         onClicked: {
                             pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});

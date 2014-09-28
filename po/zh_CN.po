@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-15 23:27-0500\n"
+"POT-Creation-Date: 2014-09-23 08:25+0200\n"
 "PO-Revision-Date: 2014-08-12 14:07+0000\n"
 "Last-Translator: Anthony Wong <anthony.wong@ubuntu.com>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
@@ -15,26 +15,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-08-17 06:33+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-09-24 07:33+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
-#: ../AgendaView.qml:43
+#: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
+#: ../WeekView.qml:42 ../YearView.qml:36
+msgid "Today"
+msgstr "今天"
+
+#: ../AgendaView.qml:90
 msgid "No upcoming events"
 msgstr "没有即将到来的事件"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-#: ../AgendaView.qml:93 ../EventBubble.qml:56 ../EventDetails.qml:134
-msgid "hh:mm"
-msgstr "hh:mm"
+#: ../AgendaView.qml:93
+msgid "You have no calendars enabled"
+msgstr ""
 
-#: ../AgendaView.qml:94
-msgid "dddd , d MMMM"
-msgstr "dddd，MMMM d 日"
+#: ../AgendaView.qml:103
+msgid "Enable calendars"
+msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:101 ../EventBubble.qml:61
+#: ../AgendaView.qml:165 ../EventBubble.qml:92
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -43,305 +46,299 @@ msgstr "%1 - %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:98
+#: ../AllDayEventComponent.qml:115
 #, qt-format
 msgid "%1 Ev."
 msgstr "%1个事件"
 
-#: ../AllDayEventComponent.qml:101
+#: ../AllDayEventComponent.qml:118
 #, qt-format
-msgid "%1 All day events"
-msgstr "%1 全天事件"
-
-#: ../CalendarChoicePopup.qml:9 ../calendar.qml:315
-msgid "Calendars"
-msgstr "日历"
-
-#: ../CalendarChoicePopup.qml:20
-msgid "Back"
-msgstr "后退"
-
-#: ../CalendarChoicePopup.qml:30 ../NewEvent.qml:718
-msgid "Save"
-msgstr "保存"
-
-#: ../ColorPickerDialog.qml:7
-msgid "Select Color"
-msgstr "选择颜色"
-
-#: ../ColorPickerDialog.qml:37 ../DeleteConfirmationDialog.qml:42
-#: ../EditEventConfirmationDialog.qml:35 ../EditToolbar.qml:37
-#: ../NewEvent.qml:722
-msgid "Cancel"
-msgstr "取消"
-
-#: ../ContactChoicePopup.qml:20
-msgid "No contact"
-msgstr ""
-
-#: ../ContactChoicePopup.qml:66
-msgid "Search contact"
-msgstr ""
-
-#: ../DeleteConfirmationDialog.qml:14
-msgid "Delete Recurring Event"
-msgstr "删除循环事件"
-
-#: ../DeleteConfirmationDialog.qml:15
-msgid "Delete Event"
-msgstr "删除事件"
-
-#: ../DeleteConfirmationDialog.qml:22
-msgid "Delete series"
-msgstr "删除系列"
-
-#: ../DeleteConfirmationDialog.qml:33
-msgid "Delete this"
-msgstr "删除这个"
-
-#: ../DeleteConfirmationDialog.qml:33 ../EventDetails.qml:195
-msgid "Delete"
-msgstr "删除"
-
-#: ../EditEventConfirmationDialog.qml:12 ../NewEvent.qml:297
-msgid "Edit Event"
-msgstr "编辑事件"
-
-#: ../EditEventConfirmationDialog.qml:17
-msgid "Edit series"
-msgstr "编辑系列"
-
-#: ../EditEventConfirmationDialog.qml:26
-msgid "Edit this"
-msgstr "编辑这个"
-
-#: ../EditToolbar.qml:52
-msgid "Done"
-msgstr "完成"
-
-#: ../EventDetails.qml:27
-msgid "Event Details"
-msgstr "事件详情"
-
-#: ../EventDetails.qml:55 ../LimitLabelDefines.qml:4
-msgid "Never"
-msgstr "永不"
-
-#. TRANSLATORS: this is a date shown in the event details view,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:59
-msgid "ddd MMMM d yyyy"
-msgstr "yyyy 年 MMMM d 日 (ddd)"
-
-#: ../EventDetails.qml:62
-#, qt-format
-msgid "After %1 Occurrence"
-msgid_plural "After %1 Occurrences"
+msgid "%1 All day event"
+msgid_plural "%1 All day events"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../EventDetails.qml:63
-#, qt-format
-msgid "After Date %1"
-msgstr "%1 之后"
+#: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
+msgid "Calendars"
+msgstr "日历"
 
-#. TRANSLATORS: the argument is a day of the week or a list of days
-#: ../EventDetails.qml:75
-#, qt-format
-msgid "Every %1"
+#: ../CalendarChoicePopup.qml:36
+msgid "Back"
+msgstr "后退"
+
+#: ../ColorPickerDialog.qml:24
+msgid "Select Color"
+msgstr "选择颜色"
+
+#: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:59
+#: ../EditEventConfirmationDialog.qml:52
+msgid "Cancel"
+msgstr "取消"
+
+#: ../ContactChoicePopup.qml:37
+msgid "No contact"
 msgstr ""
 
-#: ../EventDetails.qml:126
-msgid "Not specified"
-msgstr "没有指定"
-
-#. TRANSLATORS: this is a time & Date formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details
-#: ../EventDetails.qml:137
-msgid "dd-MMM-yyyy"
-msgstr "yyyy-MM-dd"
-
-#: ../EventDetails.qml:210
-msgid "Edit"
-msgstr "编辑"
-
-#: ../EventDetails.qml:272
-msgid "Date"
-msgstr "日期"
-
-#: ../EventDetails.qml:277 ../NewEvent.qml:387
-msgid "Start"
-msgstr "开始"
-
-#: ../EventDetails.qml:282 ../NewEvent.qml:426
-msgid "End"
-msgstr "结束"
-
-#: ../EventDetails.qml:291 ../NewEvent.qml:497
-msgid "All Day event:"
-msgstr "全天事件："
-
-#: ../EventDetails.qml:340 ../NewEvent.qml:542
-msgid "Location"
-msgstr "位置"
-
-#: ../EventDetails.qml:366
-msgid "Guests"
-msgstr "客人"
-
-#: ../EventDetails.qml:404 ../NewEvent.qml:592
-msgid "This happens"
-msgstr "这发生于"
-
-#: ../EventDetails.qml:409 ../NewEvent.qml:693
-msgid "Remind me"
-msgstr "提醒我"
-
-#: ../EventDetails.qml:414
-msgid "Repeats On"
-msgstr "重复于"
-
-#: ../EventDetails.qml:420
-msgid "Repetition Ends"
-msgstr "结束重复"
-
-#: ../LimitLabelDefines.qml:4
-msgid "After X Occurrence"
+#: ../ContactChoicePopup.qml:83
+msgid "Search contact"
 msgstr ""
 
-#: ../LimitLabelDefines.qml:5
-msgid "After Date"
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the day view
+#. TRANSLATORS: this is a date formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
+#. It's used to display the date in the event details view
+#: ../DayView.qml:68 ../EventDetails.qml:128
+msgid "MMMM dd, yyyy"
 msgstr ""
 
-#: ../NewEvent.qml:186
-msgid "End time can't be before start time"
-msgstr "结束时间不能早于开始时间"
+#: ../DeleteConfirmationDialog.qml:31
+msgid "Delete Recurring Event"
+msgstr "删除循环事件"
 
-#: ../NewEvent.qml:297 ../calendar.qml:306
+#: ../DeleteConfirmationDialog.qml:32
+msgid "Delete Event"
+msgstr "删除事件"
+
+#: ../DeleteConfirmationDialog.qml:39
+msgid "Delete series"
+msgstr "删除系列"
+
+#: ../DeleteConfirmationDialog.qml:50
+msgid "Delete this"
+msgstr "删除这个"
+
+#: ../DeleteConfirmationDialog.qml:50 ../EventDetails.qml:187
+msgid "Delete"
+msgstr "删除"
+
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:273
+msgid "Edit Event"
+msgstr "编辑事件"
+
+#: ../EditEventConfirmationDialog.qml:34
+msgid "Edit series"
+msgstr "编辑系列"
+
+#: ../EditEventConfirmationDialog.qml:43
+msgid "Edit this"
+msgstr "编辑这个"
+
+#: ../EventActions.qml:33 ../NewEvent.qml:273
 msgid "New Event"
 msgstr "新建事件"
 
-#: ../NewEvent.qml:313
-msgid "Error"
-msgstr "错误"
+#: ../EventActions.qml:53
+msgid "Sync"
+msgstr "同步"
 
-#: ../NewEvent.qml:315
-msgid "OK"
-msgstr "确定"
+#: ../EventActions.qml:53
+msgid "Syncing"
+msgstr "正在同步"
 
-#. TRANSLATORS: This "at" refers to HH:MM of an event. E.g 1st January at 10:30
-#: ../NewEvent.qml:403 ../NewEvent.qml:442
-msgid "at"
-msgstr "于"
+#: ../EventDetails.qml:44 ../NewEvent.qml:445
+msgid "Event Details"
+msgstr "事件详情"
 
-#: ../NewEvent.qml:463
-msgid "Calendar "
-msgstr "日历 "
+#: ../EventDetails.qml:114
+msgid "Not specified"
+msgstr "没有指定"
 
-#: ../NewEvent.qml:512
-msgid "Event Name"
-msgstr "事件名称"
+#: ../EventDetails.qml:202
+msgid "Edit"
+msgstr "编辑"
 
-#: ../NewEvent.qml:522
-msgid "Description"
-msgstr "描述"
+#: ../EventDetails.qml:268 ../EventRepetition.qml:232
+msgid "Date"
+msgstr "日期"
 
-#: ../NewEvent.qml:560
-msgid "Add Guest"
+#: ../EventDetails.qml:273
+msgid "Start"
+msgstr "开始"
+
+#: ../EventDetails.qml:278
+msgid "End"
+msgstr "结束"
+
+#: ../EventDetails.qml:287 ../NewEvent.qml:430
+msgid "All day event"
 msgstr ""
 
-#: ../NewEvent.qml:612
+#: ../EventDetails.qml:336 ../NewEvent.qml:484
+msgid "Location"
+msgstr "位置"
+
+#: ../EventDetails.qml:362 ../NewEvent.qml:531
+msgid "Guests"
+msgstr "客人"
+
+#: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
+msgid "Repeats"
+msgstr ""
+
+#: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
+msgid "Reminder"
+msgstr ""
+
+#: ../EventRepetition.qml:123
+msgid "Repeat"
+msgstr ""
+
+#: ../EventRepetition.qml:142
 msgid "Repeats On:"
 msgstr "重复于："
 
-#: ../NewEvent.qml:647
+#: ../EventRepetition.qml:187
 msgid "Recurring event ends"
 msgstr "重复事件结束"
 
-#. TRANSLATORS: This refers to no of occurences of an event.
-#: ../NewEvent.qml:670
-msgid "Recurrence"
-msgstr "重复次数"
+#: ../EventRepetition.qml:207
+msgid "Recurrences"
+msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:4
+#: ../EventUtils.qml:99
+#, qt-format
+msgid "%1 ; %2 times "
+msgstr ""
+
+#: ../EventUtils.qml:100
+#, qt-format
+msgid "%1 ;  until %2"
+msgstr ""
+
+#: ../LimitLabelDefines.qml:21
+msgid "Never"
+msgstr "永不"
+
+#: ../LimitLabelDefines.qml:21
+msgid "After X Occurrence"
+msgstr ""
+
+#: ../LimitLabelDefines.qml:22
+msgid "After Date"
+msgstr ""
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../MonthView.qml:56 ../WeekView.qml:60
+msgid "MMMM yyyy"
+msgstr ""
+
+#: ../NewEvent.qml:59
+msgid "Save"
+msgstr "保存"
+
+#: ../NewEvent.qml:161
+msgid "End time can't be before start time"
+msgstr "结束时间不能早于开始时间"
+
+#: ../NewEvent.qml:283
+msgid "Error"
+msgstr "错误"
+
+#: ../NewEvent.qml:285
+msgid "OK"
+msgstr "确定"
+
+#: ../NewEvent.qml:336
+msgid "From"
+msgstr ""
+
+#: ../NewEvent.qml:380
+msgid "To"
+msgstr ""
+
+#: ../NewEvent.qml:458
+msgid "Event Name"
+msgstr "事件名称"
+
+#: ../NewEvent.qml:471
+msgid "Description"
+msgstr "描述"
+
+#: ../NewEvent.qml:493 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "日历"
+
+#: ../NewEvent.qml:535
+msgid "Add Guest"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr "一次"
 
-#: ../RecurrenceLabelDefines.qml:5
+#: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
 msgstr "每天"
 
-#: ../RecurrenceLabelDefines.qml:6
-msgid "Every Weekday (Monday to Friday)"
-msgstr "每个工作日（周一至周五）"
+#: ../RecurrenceLabelDefines.qml:25
+msgid "On Weekdays"
+msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:7
-msgid "Every Monday, Wednesday and Friday"
-msgstr "每周一、三、五"
+#: ../RecurrenceLabelDefines.qml:26
+msgid "On Monday, Wednesday and Friday"
+msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:8
-msgid "Every Tuesday and Thursday"
-msgstr "每周二、四"
+#: ../RecurrenceLabelDefines.qml:27
+msgid "On Tuesday and Thursday"
+msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:9
+#: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
 msgstr "每周"
 
-#: ../RecurrenceLabelDefines.qml:10
+#: ../RecurrenceLabelDefines.qml:29
 msgid "Monthly"
 msgstr "每月"
 
-#: ../RecurrenceLabelDefines.qml:11
+#: ../RecurrenceLabelDefines.qml:30
 msgid "Yearly"
 msgstr "每年"
 
-#: ../ReminderLabelDefines.qml:4
+#: ../RemindersModel.qml:26
 msgid "No Reminder"
 msgstr ""
 
-#: ../ReminderLabelDefines.qml:5
+#: ../RemindersModel.qml:27
 msgid "5 minutes"
 msgstr "5 分钟"
 
-#: ../ReminderLabelDefines.qml:6
+#: ../RemindersModel.qml:28
 msgid "15 minutes"
 msgstr "15 分钟"
 
-#: ../ReminderLabelDefines.qml:7
+#: ../RemindersModel.qml:29
 msgid "30 minutes"
 msgstr "30 分钟"
 
-#: ../ReminderLabelDefines.qml:8
+#: ../RemindersModel.qml:30
 msgid "1 hour"
 msgstr "一小时"
 
-#: ../ReminderLabelDefines.qml:9
+#: ../RemindersModel.qml:31
 msgid "2 hours"
 msgstr "两小时"
 
-#: ../ReminderLabelDefines.qml:10
+#: ../RemindersModel.qml:32
 msgid "1 day"
 msgstr "一天"
 
-#: ../ReminderLabelDefines.qml:11
+#: ../RemindersModel.qml:33
 msgid "2 days"
 msgstr "两天"
 
-#: ../ReminderLabelDefines.qml:12
+#: ../RemindersModel.qml:34
 msgid "1 week"
 msgstr "一周"
 
-#: ../ReminderLabelDefines.qml:13
+#: ../RemindersModel.qml:35
 msgid "2 weeks"
 msgstr "两周"
 
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5.0/qtqml/qml-qtquick2-date.html#details for valid expressions
-#: ../TimeLineBackground.qml:19
-msgid "hh ap"
-msgstr "ap hh 点"
-
-#: ../calendar.qml:28
+#: ../calendar.qml:45
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -350,41 +347,25 @@ msgstr ""
 "日历软件有四个参数：--starttime, --endtime, --newevent 和 --"
 "eventid，这些参数由系统管理，请查阅源代码了解更多信息"
 
-#: ../calendar.qml:287
-msgid "Today"
-msgstr "今天"
-
 #: ../calendar.qml:326
-msgid "Sync"
-msgstr "同步"
-
-#: ../calendar.qml:326
-msgid "Syncing"
-msgstr "正在同步"
-
-#: ../calendar.qml:359
 msgid "Year"
 msgstr "年"
 
-#: ../calendar.qml:394
+#: ../calendar.qml:360
 msgid "Month"
 msgstr "月"
 
-#: ../calendar.qml:423
+#: ../calendar.qml:388
 msgid "Week"
 msgstr "周"
 
-#: ../calendar.qml:457
+#: ../calendar.qml:421
 msgid "Day"
 msgstr "日"
 
-#: ../calendar.qml:486
+#: ../calendar.qml:449
 msgid "Agenda"
 msgstr "应办事项"
-
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "日历"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
@@ -393,3 +374,23 @@ msgstr "与在线账户同步的 Ubuntu 日历软件。"
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "calendar;event;day;week;year;appointment;meeting;日历;会;天;月;年;星期;周;"
+
+#, qt-format
+#~ msgid "%1 All day events"
+#~ msgstr "%1 全天事件"
+
+#~ msgid "This happens"
+#~ msgstr "这发生于"
+
+#~ msgid "Remind me"
+#~ msgstr "提醒我"
+
+#~ msgid "All Day event:"
+#~ msgstr "全天事件："
+
+#~ msgid "Repetition Ends"
+#~ msgstr "结束重复"
+
+#, qt-format
+#~ msgid "After Date %1"
+#~ msgstr "%1 之后"

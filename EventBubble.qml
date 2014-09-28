@@ -15,8 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+
+import QtQuick 2.3
+import Ubuntu.Components 1.1
 
 Item{
     id: infoBubble
@@ -28,6 +29,9 @@ Item{
     property int wideType: 1;
     property int narrowType: 2;
 
+    property int depthInRow: 0;
+    property int sizeOfRow:0
+
     property Flickable flickable;
 
     readonly property int minimumHeight: timeLabel.height + /*top-bottom margin*/ units.gu(2)
@@ -37,11 +41,23 @@ Item{
     UbuntuShape{
         id: bg
         anchors.fill: parent
-        color: "white"
-        gradientColor: "#F5F5F5"
+    }
+
+    function resize() {
+        var offset = parent.width/sizeOfRow;
+        x = (depthInRow) * offset;
+        width = parent.width - x;
+    }
+
+    Connections{
+        target: parent
+        onWidthChanged:{
+            resize();
+        }
     }
 
     onEventChanged: {
+        resize();
         setDetails();
     }
 
@@ -68,11 +84,9 @@ Item{
             return;
         }
 
-        // TRANSLATORS: this is a time formatting string,
-        // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions
-        var timeFormat = i18n.tr("hh:mm");
-        var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
-        var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), timeFormat)
+        var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+        var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+
         // TRANSLATORS: the first argument (%1) refers to a start time for an event,
         // while the second one (%2) refers to the end time
         var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
@@ -109,10 +123,10 @@ Item{
                 timeLabel.text = event.displayLabel;
         }
 
-       if(model) {
-           var collection = model.collection( event.collectionId );
-           calendarIndicator.color = collection.color
-       }
+        if(model) {
+            var collection = model.collection( event.collectionId );
+            bg.color = collection.color
+        }
 
         layoutBubbleDetails();
     }
@@ -144,47 +158,41 @@ Item{
         width: parent.width
         height: detailsColumn.height
 
-        Column{
+        Column {
             id: detailsColumn
 
             anchors {
-                top: parent.top; left: parent.left; right: parent.right; margins: units.gu(1)
+                top: parent.top
+                left: parent.left
+                right: parent.right
+                margins: units.gu(1)
             }
 
-            Row{
+            Label {
+                id: timeLabel
+                objectName: "timeLabel"
+                color: "White"
+                fontSize:"small"
+                font.bold: true
                 width: parent.width
-
-                Label{
-                    id: timeLabel
-                    objectName: "timeLabel"
-                    fontSize:"small";
-                    color:"gray"
-                    width: parent.width - calendarIndicator.width
-                }
-                Rectangle{
-                    id: calendarIndicator
-                    width: units.gu(1)
-                    radius: width/2
-                    height: width
-                    color: "#715772"
-                }
             }
-            Label{
+
+            Label {
                 id: titleLabel
                 objectName: "titleLabel"
+                color: "White"
                 fontSize: "small"
-                color: "black"
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
-            Label{
+            Label {
                 id: descriptionLabel
-                fontSize: "small"
-                color:"gray"
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                color: "White"
+                fontSize: "x-small"
                 width: parent.width
                 visible: type == wideType
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
         }
     }

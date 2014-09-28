@@ -15,28 +15,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 0.1
 
-TextField{
+import QtQuick 2.3
+import Ubuntu.Components 1.1
+
+Label {
     id: root
-    property alias title: label.text
 
-    primaryItem: Label{
-        id: label
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        color: root.highlighted ? "#2C001E" : Theme.palette.normal.baseText
-    }
+    property bool highlighted: false
 
-    color: focus ? "#2C001E" : "#5D5D5D"
-    font {
-        pixelSize: focus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
-    }
+    height: units.gu(3)
 
-    onActiveFocusChanged: {
-        if (activeFocus) {
-            flickable.makeMeVisible(root)
-        }
+    verticalAlignment: Text.AlignVCenter
+    color: highlighted ? "#2C001E" : Theme.palette.normal.baseText
+
+    Rectangle {
+        z: -1
+        anchors.fill: parent
+        color: root.highlighted ? Theme.palette.selected.background
+                                : "Transparent"
     }
 }

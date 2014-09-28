@@ -15,11 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.Popups 0.1
-import QtOrganizer 5.0
 
+import QtQuick 2.3
+import QtQuick.Layouts 1.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 1.0
+import QtOrganizer 5.0
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
@@ -88,44 +89,48 @@ Item {
         z:2
     }
 
-    Column {
-        anchors.top: parent.top
-
-        width: parent.width
-        height: parent.height
-
-        AllDayEventComponent {
-            id: allDayContainer
-            type: root.type
-            startDay: root.startDay
-            model: mainModel
-            Component.onCompleted: {
-                mainModel.addModelChangeListener(createAllDayEvents);
-            }
-            Component.onDestruction: {
-                mainModel.removeModelChangeListener(createAllDayEvents);
-            }
+    AllDayEventComponent {
+        id: allDayContainer
+        type: root.type
+        startDay: root.startDay
+        model: mainModel
+        z:1
+        Component.onCompleted: {
+            mainModel.addModelChangeListener(createAllDayEvents);
         }
+        Component.onDestruction: {
+            mainModel.removeModelChangeListener(createAllDayEvents);
+        }
+    }
+
+    ColumnLayout {
+        anchors.fill: parent
 
         Flickable {
             id: timeLineView
 
-            width: parent.width
-            height: parent.height - allDayContainer.height
+            Layout.fillHeight: true
 
             contentHeight: units.gu(10) * 24
             contentWidth: width
+            anchors.right: parent.right
+            anchors.left: parent.left
 
             clip: true
 
-            TimeLineBackground {
-            }
+            TimeLineBackground {}
 
             Row {
                 id: week
-                width: parent.width
-                height: parent.height
-                anchors.top: parent.top
+
+                anchors {
+                    fill: parent
+                    leftMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
+                                                              : units.gu(10)
+
+                    rightMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
+                                                              : units.gu(4)
+                }
 
                 Repeater {
                     model: type == ViewType.ViewTypeWeek ? 7 : 1
