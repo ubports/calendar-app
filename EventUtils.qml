@@ -26,11 +26,11 @@ QtObject{
     id:eventUtil
     function getWeekDaysIndex(daysOfWeek){
         var index = 0;
-        if (compareArrays(daysOfWeek,[Qt.Monday, Qt.Tuesday, Qt.Wednesday, Qt.Thursday, Qt.Friday])) {
+        if (compareArrays(daysOfWeek, [Qt.Monday, Qt.Tuesday, Qt.Wednesday, Qt.Thursday, Qt.Friday] )) {
             index = 2
-        } else if (compareArrays(daysOfWeek,[Qt.Monday, Qt.Wednesday, Qt.Friday])) {
+        } else if (compareArrays(daysOfWeek, [Qt.Monday, Qt.Wednesday, Qt.Friday] )) {
             index = 3
-        } else if (compareArrays(daysOfWeek,[Qt.Tuesday, Qt.Thursday])) {
+        } else if (compareArrays(daysOfWeek, [Qt.Tuesday, Qt.Thursday] )) {
             index = 4
         } else {
             index = 5
@@ -103,7 +103,7 @@ QtObject{
         } else if (rule.limit !== undefined && parseInt(rule.limit)) {
             // TRANSLATORS: the argument refers to multiple recurrence of event with count .
             // E.g. "Daily; 5 times."
-            str = i18n.tr("%1; %2 times ").arg(recurrence).arg(rule.limit)
+            str = i18n.tr("%1; %2 times").arg(recurrence).arg(rule.limit)
         } else {
             // TRANSLATORS: the argument refers to recurrence until user selected date.
             // E.g. "Daily; until 12/12/2014."
