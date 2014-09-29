@@ -25,6 +25,7 @@ Page {
     objectName: "monthViewPage"
 
     property var currentMonth: DateExt.today();
+    property var monthNumber: currentMonth.getMonth();
 
     signal dateSelected(var date);
 

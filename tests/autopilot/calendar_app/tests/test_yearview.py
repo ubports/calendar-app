@@ -52,34 +52,14 @@ class TestYearView(CalendarAppTestCase):
                 lambda: self.year_view.currentYear,
                 Eventually(Equals(current_year + (i * direction))))
 
-    def _flick_view_up(self, view):
-        """Swipe the given view to bottom to up"""
-
-        start = (0.15) % 1
-        stop = (-0.15) % 1
-
-        x_line = view.globalRect[0] + view.globalRect[2] / 2
-        y_start = view.globalRect[1] + view.globalRect[3] * start
-        y_stop = view.globalRect[1] + view.globalRect[3] * stop
-
-        self.app.pointing_device.drag(x_line, y_start, x_line, y_stop)
-
-    def _flick_view(self, view):
-        """Swipe the given view to bottom to up"""
-        counter = 0
-        # try up to 3 times to swipe
-        while counter < 3:
-            self._flick_view_up(view)
-            sleep(1)
-            counter += 1
-
     def test_default_view(self):
         """The current year should be the default shown
-        and the current month should be visible"""
-        self.assertThat(self.year_view.currentYear,
-                        Equals(datetime.datetime.now().year))
-        self.assertThat(self.year_view.monthSelected,
-                        Equals(datetime.datetime.now().month))
+        and the current month should be visible. In addition
+        the current day should be selected"""
+        date = datetime.datetime.now()
+        self.assertEqual(self.year_view.currentYear, date.year)
+        self.assertEqual(self.year_view.get_selected_month().monthNumber, date.month)
+        self.assertEqual(self.year_view.get_selected_day().date, date.day)
 
     def test_selecting_a_month_switch_to_month_view(self):
         """It must be possible to select a month and open the month view."""
@@ -90,7 +70,11 @@ class TestYearView(CalendarAppTestCase):
         months = year_grid.select_many("MonthComponent")
         months.sort(key=lambda month: month.currentMonth)
 
-        # Swiping view vertically enought time to make sure January is visible
+        #Open year view
+
+
+
+        # Swipe view to display January
         self._flick_view(self.year_view)
 
         february = months[1]
@@ -118,9 +102,7 @@ class TestYearView(CalendarAppTestCase):
 
     def test_current_day_is_selected(self):
         """The current day must be selected."""
-        selected_day = self.year_view.get_selected_day()
-        self.assertEqual(
-            selected_day, datetime.date.today())
+
 
     def test_show_next_years(self):
         """It must be possible to show next years by swiping the view."""

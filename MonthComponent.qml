@@ -27,6 +27,7 @@ Item{
     property bool showEvents: false
 
     property var currentMonth;
+    property var monthNumber;
     property var isYearView;
 
     property string dayLabelFontSize: "medium"
