@@ -85,6 +85,7 @@ Page {
                 elide: Text.ElideRight
                 opacity: checkBox.checked ? 1.0 : 0.8
                 color: UbuntuColors.midAubergine
+                width: parent.width - calendarColorCode.width - checkBox.width - units.gu(6) /*margins*/
                 anchors {
                     left: calendarColorCode.right
                     margins: units.gu(2)

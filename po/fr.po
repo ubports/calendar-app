@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-09-17 18:03+0000\n"
-"Last-Translator: Jean Marc <Unknown>\n"
+"PO-Revision-Date: 2014-09-28 16:13+0000\n"
+"Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:31+0000\n"
+"X-Launchpad-Export-Date: 2014-09-29 05:16+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -55,8 +55,8 @@ msgstr "%1 Év."
 #, qt-format
 msgid "%1 All day event"
 msgid_plural "%1 All day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 événement sur toute la journée"
+msgstr[1] "%1 événements sur toute la journée"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -91,7 +91,7 @@ msgstr "Rechercher un contact"
 #. It's used to display the date in the event details view
 #: ../DayView.qml:68 ../EventDetails.qml:128
 msgid "MMMM dd, yyyy"
-msgstr ""
+msgstr "dd MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -163,7 +163,7 @@ msgstr "Fin"
 
 #: ../EventDetails.qml:287 ../NewEvent.qml:430
 msgid "All day event"
-msgstr ""
+msgstr "Événement sur toute la journée"
 
 #: ../EventDetails.qml:336 ../NewEvent.qml:484
 msgid "Location"
@@ -175,7 +175,7 @@ msgstr "Invités"
 
 #: ../EventDetails.qml:400 ../EventRepetition.qml:36 ../NewEvent.qml:605
 msgid "Repeats"
-msgstr ""
+msgstr "Répétitions"
 
 #: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
 msgid "Reminder"
@@ -224,7 +224,7 @@ msgstr "Après le"
 #. It's used in the header of the month and week views
 #: ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../NewEvent.qml:59
 msgid "Save"
@@ -376,26 +376,3 @@ msgstr ""
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "calendrier;événement;jour;semaine;année;rendez-vous;réunion;"
-
-#~ msgid "This happens"
-#~ msgstr "Cela se produit"
-
-#~ msgid "Remind me"
-#~ msgstr "Me rappeler"
-
-#, qt-format
-#~ msgid "After Date %1"
-#~ msgstr "Après le %1"
-
-#~ msgid "Repetition Ends"
-#~ msgstr "Fin des répétitions"
-
-#~ msgid "All Day event:"
-#~ msgstr "Événement sur la journée entière :"
-
-#, qt-format
-#~ msgid "%1 All day events"
-#~ msgstr "%1 Événements sur la journée entière"
-
-#~ msgid "This Happens"
-#~ msgstr "Cela se produit"
