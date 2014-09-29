@@ -62,7 +62,7 @@ class TestYearView(CalendarAppTestCase):
         y_start = view.globalRect[1] + view.globalRect[3] * start
         y_stop = view.globalRect[1] + view.globalRect[3] * stop
 
-        self.pointing_device.drag(x_line, y_start, x_line, y_stop)
+        self.app.pointing_device.drag(x_line, y_start, x_line, y_stop)
 
     def _flick_view(self, view):
         """Swipe the given view to bottom to up"""
@@ -73,10 +73,13 @@ class TestYearView(CalendarAppTestCase):
             sleep(1)
             counter += 1
 
-    def test_current_year_is_default(self):
-        """The current year should be the default shown"""
+    def test_default_view(self):
+        """The current year should be the default shown
+        and the current month should be visible"""
         self.assertThat(self.year_view.currentYear,
                         Equals(datetime.datetime.now().year))
+        self.assertThat(self.year_view.monthSelected,
+                        Equals(datetime.datetime.now().month))
 
     def test_selecting_a_month_switch_to_month_view(self):
         """It must be possible to select a month and open the month view."""
