@@ -336,7 +336,14 @@ class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
 class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
-    """Autopilot helper for the Year View page."""
+    """Autopilot helper for the Month View page."""
+
+    def get_current_month(self):
+        return self.select_single('MonthComponent', isCurrentItem=True)
+
+    def get_current_month_name(self):
+        return self.get_current_month().select_single('Label',
+            objectName='monthLabel').text
 
 
 class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):

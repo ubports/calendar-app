@@ -110,7 +110,6 @@ Page {
                     objectName: "monthComponent" + index
                     showEvents: false
                     currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
-                    monthNumber: currentMonth.getMonth() + 1;
 
                     isYearView: true
                     anchors.fill: parent

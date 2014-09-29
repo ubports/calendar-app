@@ -58,51 +58,32 @@ class TestYearView(CalendarAppTestCase):
         the current day should be selected"""
         date = datetime.datetime.now()
         self.assertEqual(self.year_view.currentYear, date.year)
-        self.assertEqual(self.year_view.get_selected_month().monthNumber, date.month)
+        self.assertEqual(self.year_view.get_selected_month().currentMonth.datetime.month, date.month)
         self.assertEqual(self.year_view.get_selected_day().date, date.day)
 
     def test_selecting_a_month_switch_to_month_view(self):
         """It must be possible to select a month and open the month view."""
 
-        # TODO: the component indexed at 1 is the one currently displayed,
-        # investigate a way to validate this assumption visually.
-        year_grid = self._get_year_grid()
-        months = year_grid.select_many("MonthComponent")
-        months.sort(key=lambda month: month.currentMonth)
+        # click the select month
+        month = self.year_view.get_selected_month()
+        expected_year = self.year_view.currentYear
+        expected_month = month.currentMonth.datetime.month
+        expected_month_name = month.select_single('Label',
+            objectName = 'monthLabel').text
 
-        #Open year view
+        self.app.pointing_device.click_object(month)
 
-
-
-        # Swipe view to display January
-        self._flick_view(self.year_view)
-
-        february = months[1]
-        expected_month_name = self.app.main_view.get_month_name(february)
-        expected_year = self.app.main_view.get_year(february)
-
-        self.app.pointing_device.click_object(february)
-
-        self.assertThat(
-            self.app.main_view.get_month_view, Eventually(NotEquals(None)))
-
+        # confirm month transition
         month_view = self.app.main_view.get_month_view()
         self.assertThat(month_view.visible, Eventually(Equals(True)))
 
-        selected_month = month_view.select_single("MonthComponent",
-                                                  isCurrentItem=True)
+        self.assertEquals(month_view.currentMonth.datetime.year,
+            expected_year)
 
-        self.assertThat(selected_month, NotEquals(None))
+        self.assertEquals(month_view.currentMonth.datetime.month,
+            expected_month)
 
-        self.assertThat(self.app.main_view.get_year(selected_month),
-                        Equals(expected_year))
-
-        self.assertThat(self.app.main_view.get_month_name(selected_month),
-                        Equals(expected_month_name))
-
-    def test_current_day_is_selected(self):
-        """The current day must be selected."""
-
+        self.assertEquals(month_view.get_current_month_name(), expected_month_name)
 
     def test_show_next_years(self):
         """It must be possible to show next years by swiping the view."""
