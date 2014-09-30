@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="com.ubuntu.calendar_calendar">
+  <description>Calendar</description>
+  <translations>calendar-sync</translations>
+
+  <services>
+    <service id="google-caldav">
+      <description>Syncronize your calendar</description>
+    </service>
+  </services>
+
+</application>

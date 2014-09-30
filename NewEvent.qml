@@ -78,7 +78,7 @@ Page {
         if (typeof(endDate) === 'undefined') {
             endDate = new Date(root.roundDate(date))
             endDate.setMinutes(endDate.getMinutes() + 30)
-            endTimeInput.text = Qt.formatDateTime(endDate, "hh:mm");
+            endTimeInput.text = Qt.formatDateTime(endDate, Qt.locale().timeFormat(Locale.ShortFormat));
         }
 
         if(event === null){
@@ -114,10 +114,11 @@ Page {
     //Editing Event
     function editEvent(e) {
         //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
-        rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
-                    Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml")
-                  : e.recurrence.recurrenceRules[0];
-
+        if(e.itemType === Type.Event){
+            rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
+                        Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml")
+                      : e.recurrence.recurrenceRules[0];
+        }
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
 
@@ -367,6 +368,7 @@ Page {
                     anchors.right: parent.right
                     width: parent.width / 5
                     visible: !allDayEventCheckbox.checked
+                    horizontalAlignment: Text.AlignRight
 
                     MouseArea{
                         anchors.fill: parent
@@ -407,10 +409,10 @@ Page {
                 NewEventEntryField{
                     id: endTimeInput
                     objectName: "endTimeInput"
-
                     text: ""
                     width: parent.width / 5
                     anchors.right: parent.right
+                    horizontalAlignment: Text.AlignRight
 
                     MouseArea{
                         anchors.fill: parent
@@ -426,7 +428,7 @@ Page {
                     leftMargin: units.gu(-1)
                 }
 
-                text: "All Day Event"
+                text: i18n.tr("All day event")
                 showDivider: false
                 control: CheckBox {
                     id: allDayEventCheckbox
@@ -506,7 +508,7 @@ Page {
                     model: root.model.getCollections();
 
                     delegate: OptionSelectorDelegate{
-                        text: modelData.name
+                        text: modelData.name                        
 
                         UbuntuShape{
                             id: calColor
@@ -591,7 +593,10 @@ Page {
                     }
                 }
 
-                ListItem.ThinDivider {}
+                ListItem.ThinDivider {
+                    visible: event.itemType === Type.Event
+                }
+
             }
 
             ListItem.Subtitled{
@@ -606,12 +611,14 @@ Page {
                 showDivider: false
                 progression: true
                 visible: event.itemType === Type.Event
-                text: i18n.tr("This Happens")
-                subText: eventUtils.getRecurrenceString(rule)
+                text: i18n.tr("Repeats")
+                subText: event.itemType === Type.Event ? eventUtils.getRecurrenceString(rule) : ""
                 onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
             }
 
-            ListItem.ThinDivider {}
+            ListItem.ThinDivider {
+                visible: event.itemType === Type.Event
+            }
 
             ListItem.Subtitled{
                 id:eventReminder
@@ -642,6 +649,8 @@ Page {
                                               "reminderModel": reminderModel,
                                               "eventTitle": titleEdit.text})
             }
+
+            ListItem.ThinDivider {}
         }
     }
     // used to keep the field visible when the keyboard appear or dismiss
