@@ -123,7 +123,7 @@ class MainView(ubuntuuitoolkit.MainView):
         """
         header = self.get_header()
         header.click_action_button('neweventbutton')
-        return self.select_single(NewEvent, objectName='newEventPage')
+        return self.wait_single(NewEvent, objectName='newEventPage')
 
     def set_picker(self, field, mode, value):
         # open picker
