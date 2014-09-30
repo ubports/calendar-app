@@ -103,7 +103,7 @@ QtObject{
         } else if (rule.limit !== undefined && parseInt(rule.limit)) {
             // TRANSLATORS: the argument refers to multiple recurrence of event with count .
             // E.g. "Daily; 5 times."
-            str = i18n.tr("%1; %2 time", "%1; %2 times", rule limit).arg(recurrence).arg(rule.limit)
+            str = i18n.tr("%1; %2 time", "%1; %2 times", rule.limit).arg(recurrence).arg(rule.limit)
         } else {
             // TRANSLATORS: the argument refers to recurrence until user selected date.
             // E.g. "Daily; until 12/12/2014."
