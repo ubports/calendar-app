@@ -583,8 +583,8 @@ Page {
                                 text: name
                                 removable: true
                                 onItemRemoved: {
-                                    contactModel.remove(index)
                                     contactList.array.splice(index,1)
+                                    contactModel.remove(index)
                                 }
                             }
                         }
