@@ -16,7 +16,6 @@
 
 """Calendar app autopilot helpers."""
 
-import datetime
 import logging
 from time import sleep
 
@@ -249,8 +248,7 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
             today = month.select_single(
                 'QQuickItem', isCurrentMonth=True, isToday=True)
         except exceptions.StateNotFoundError:
-            raise CalendarException(
-            'No day is selected on the currently visible year.')
+            raise CalendarException('No day is selected on the visible year.')
         else:
             return today
 
@@ -261,7 +259,8 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
         """
         current_year_grid = self._get_current_year_grid()
-        return self._get_month_component(current_year_grid, current_year_grid.scrollMonth)
+        return self._get_month_component(current_year_grid,
+                                         current_year_grid.scrollMonth)
 
     def get_day(self, monthNumber, dayNumber):
         """Return the day object.
@@ -278,8 +277,7 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
             raise CalendarException('%s not found in %s' % (
                 dayNumber, monthNumber))
         else:
-            return today
-
+            return day
 
     def get_month(self, monthNumber):
         """Return the month object.
@@ -290,7 +288,6 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         current_year_grid = self._get_current_year_grid()
         # the monthcomponents start at zero, thus subtract 1 to get month
         return self._find_month_component(current_year_grid, monthNumber - 1)
-
 
     def _get_current_year_grid(self):
         path_view_base = self.select_single(
@@ -342,8 +339,8 @@ class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return self.select_single('MonthComponent', isCurrentItem=True)
 
     def get_current_month_name(self):
-        return self.get_current_month().select_single('Label',
-            objectName='monthLabel').text
+        month = self.get_current_month()
+        return month.select_single('Label', objectName='monthLabel').text
 
 
 class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):

@@ -24,10 +24,9 @@ import sys
 if sys.version_info < (3,):
     range = xrange
 
-from time import sleep
 import datetime
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals, NotEquals
+from testtools.matchers import Equals
 
 from calendar_app.tests import CalendarAppTestCase
 
@@ -58,7 +57,9 @@ class TestYearView(CalendarAppTestCase):
         the current day should be selected"""
         date = datetime.datetime.now()
         self.assertEqual(self.year_view.currentYear, date.year)
-        self.assertEqual(self.year_view.get_selected_month().currentMonth.datetime.month, date.month)
+        self.assertEqual(
+            self.year_view.get_selected_month().currentMonth.datetime.month,
+            date.month)
         self.assertEqual(self.year_view.get_selected_day().date, date.day)
 
     def test_selecting_a_month_switch_to_month_view(self):
@@ -69,7 +70,7 @@ class TestYearView(CalendarAppTestCase):
         expected_year = self.year_view.currentYear
         expected_month = month.currentMonth.datetime.month
         expected_month_name = month.select_single('Label',
-            objectName = 'monthLabel').text
+                                                  objectName='monthLabel').text
 
         self.app.pointing_device.click_object(month)
 
@@ -78,12 +79,13 @@ class TestYearView(CalendarAppTestCase):
         self.assertThat(month_view.visible, Eventually(Equals(True)))
 
         self.assertEquals(month_view.currentMonth.datetime.year,
-            expected_year)
+                          expected_year)
 
         self.assertEquals(month_view.currentMonth.datetime.month,
-            expected_month)
+                          expected_month)
 
-        self.assertEquals(month_view.get_current_month_name(), expected_month_name)
+        self.assertEquals(month_view.get_current_month_name(),
+                          expected_month_name)
 
     def test_show_next_years(self):
         """It must be possible to show next years by swiping the view."""
