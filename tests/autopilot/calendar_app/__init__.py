@@ -123,7 +123,7 @@ class MainView(ubuntuuitoolkit.MainView):
         """
         header = self.get_header()
         header.click_action_button('neweventbutton')
-        return self.select_single(NewEvent, objectName='newEventPage')
+        return self.wait_select_single(NewEvent, objectName='newEventPage')
 
     def set_picker(self, field, mode, value):
         # open picker
@@ -491,7 +491,7 @@ class EventBubble(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         center_y = self.globalRect.y + self.globalRect.height // 2
         self.pointing_device.move(left, center_y)
         self.pointing_device.click()
-        return self.get_root_instance().select_single(
+        return self.get_root_instance().wait_select_single(
             EventDetails, objectName='eventDetails')
 
 
@@ -654,11 +654,11 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         header = root.select_single(MainView).get_header()
         header.click_action_button('delete')
 
-        delete_confirmation_dialog = root.select_single(
+        delete_confirmation_dialog = root.wait_select_single(
             DeleteConfirmationDialog, objectName='deleteConfirmationDialog')
         delete_confirmation_dialog.confirm_deletion()
 
-        return root.select_single(DayView, objectName='dayViewPage')
+        return root.wait_select_single(DayView, objectName='dayViewPage')
 
     @autopilot.logging.log_action(logger.debug)
     def edit(self):
@@ -670,7 +670,7 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         root = self.get_root_instance()
         header = root.select_single(MainView).get_header()
         header.click_action_button('edit')
-        return root.select_single(NewEvent, objectName='newEventPage')
+        return root.wait_select_single(NewEvent, objectName='newEventPage')
 
     def get_event_information(self):
         """Return the information of the event."""
