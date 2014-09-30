@@ -123,7 +123,7 @@ class MainView(ubuntuuitoolkit.MainView):
         """
         header = self.get_header()
         header.click_action_button('neweventbutton')
-        return self.wait_single(NewEvent, objectName='newEventPage')
+        return self.wait_select_single(NewEvent, objectName='newEventPage')
 
     def set_picker(self, field, mode, value):
         # open picker
@@ -654,7 +654,7 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         header = root.select_single(MainView).get_header()
         header.click_action_button('delete')
 
-        delete_confirmation_dialog = root.wait_single(
+        delete_confirmation_dialog = root.wait_select_single(
             DeleteConfirmationDialog, objectName='deleteConfirmationDialog')
         delete_confirmation_dialog.confirm_deletion()
 
