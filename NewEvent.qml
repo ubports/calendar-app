@@ -191,9 +191,10 @@ Page {
             if(oldAudibleReminder) {
                 event.removeDetail(oldAudibleReminder);
             }
-            event.setDetail(visualReminder);
-            event.setDetail(audibleReminder);
-
+            if(visualReminder.secondsBeforeStart >= 0) {
+                event.setDetail(visualReminder);
+                event.setDetail(audibleReminder);
+            }
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
             model.saveItem(event);
             pageStack.pop();
@@ -632,9 +633,13 @@ Page {
                 }
 
                 subText:{
-                    for(var i=0; i<reminderModel.count; i++) {
-                        if(visualReminder.secondsBeforeStart === reminderModel.get(i).value)
-                            return reminderModel.get(i).label
+                    if(visualReminder.secondsBeforeStart !== -1) {
+                        for(var i=0; i<reminderModel.count; i++) {
+                            if(visualReminder.secondsBeforeStart === reminderModel.get(i).value)
+                                return reminderModel.get(i).label
+                        }
+                    } else {
+                        reminderModel.get(0).label
                     }
                 }
 
