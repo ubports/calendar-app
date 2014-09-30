@@ -116,8 +116,7 @@ Item {
             if( children[i].objectName !== "separator") {
                 children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
                 var key = children[i].objectName;
-                if (intern.unUsedEvents[key] == "undefined") {
-
+                if (intern.unUsedEvents[key] === "undefined") {
                     intern.unUsedEvents[key] = children[i];
                 }
             }

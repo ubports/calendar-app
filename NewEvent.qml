@@ -509,7 +509,7 @@ Page {
                     model: root.model.getCollections();
 
                     delegate: OptionSelectorDelegate{
-                        text: modelData.name
+                        text: modelData.name                        
 
                         UbuntuShape{
                             id: calColor
