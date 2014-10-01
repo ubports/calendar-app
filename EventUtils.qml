@@ -20,22 +20,18 @@ import QtQuick 2.3
 import Ubuntu.Components 1.1
 import QtOrganizer 5.0
 import "Defines.js" as Defines
+import "Recurrence.js" as Recurrence
 
 
 QtObject{
     id:eventUtil
     function getWeekDaysIndex(daysOfWeek){
-        var index = 0;
-        if (compareArrays(daysOfWeek, [Qt.Monday, Qt.Tuesday, Qt.Wednesday, Qt.Thursday, Qt.Friday])) {
-            index = 2
-        } else if (compareArrays(daysOfWeek, [Qt.Monday, Qt.Wednesday, Qt.Friday])) {
-            index = 3
-        } else if (compareArrays(daysOfWeek, [Qt.Tuesday, Qt.Thursday])) {
-            index = 4
-        } else {
-            index = 5
+        for (var i = 2; i < 5; i++) {
+            if (compareArrays(daysOfWeek, Recurrence.weeklyDays[i-2])) {
+                return i;
+            }
         }
-        return index;
+        return Recurrence.OnDiffDays;
     }
 
     function compareArrays(daysOfWeek, actualArray) {
@@ -48,16 +44,16 @@ QtObject{
     function getDaysOfWeek(index, weekDays) {
         var daysOfWeek = [];
         switch(index){
-        case 2:
-            daysOfWeek = [Qt.Monday, Qt.Tuesday, Qt.Wednesday, Qt.Thursday, Qt.Friday];
+        case Recurrence.Weekdays:
+            daysOfWeek = Recurrence.weeklyDays[0];
             break;
-        case 3:
-            daysOfWeek = [Qt.Monday, Qt.Wednesday, Qt.Friday];
+        case Recurrence.MonWedFri:
+            daysOfWeek = Recurrence.weeklyDays[1];
             break;
-        case 4:
-            daysOfWeek = [Qt.Tuesday, Qt.Thursday];
+        case Recurrence.TueThu:
+            daysOfWeek = Recurrence.weeklyDays[2];
             break;
-        case 5:
+        case Recurrence.OnDiffDays:
             daysOfWeek = weekDays.length === 0 ? [date.getDay()] : weekDays;
             break;
         }
@@ -86,12 +82,12 @@ QtObject{
             // We are using a custom index
             // because we have more options than the Qt RecurrenceRule enum.
         } else if (index === RecurrenceRule.Monthly) {
-            index = 6 // If reccurence is Monthly
+            index = Recurrence.Monthly // If reccurence is Monthly
         } else if (index === RecurrenceRule.Yearly) {
-            index = 7 // If reccurence is Yearly
+            index = Recurrence.Yearly // If reccurence is Yearly
         }
         // if reccurrence is on different days.
-        if (index === 5) {
+        if (index === Recurrence.OnDiffDays) {
             // TRANSLATORS: the argument refers to several different days of the week.
             // E.g. "Weekly on Mondays, Tuesdays"
             recurrence += i18n.tr("Weekly on %1").arg(getDays(rule.daysOfWeek.sort()))
