@@ -85,12 +85,19 @@ Page {
 
             onYearChanged: {
                 scrollMonth = 0;
+                var today = new Date();
+                if(year == today.getFullYear()) {
+                    scrollMonth = today.getMonth();
+                }
                 yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
             }
 
             //scroll in case content height changed
             onHeightChanged: {
-                scrollMonth = 0;
+                yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
+            }
+
+            Component.onCompleted: {
                 yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
             }
 
