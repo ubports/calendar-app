@@ -64,11 +64,6 @@ class BaseTestCaseWithPatchedHome(AutopilotTestCase):
         self.launcher, self.test_type = self.get_launcher_and_type()
         self.home_dir = self._patch_home()
 
-        # Unset the current locale to ensure locale-specific data
-        # (day and month names, first day of the week, …) doesn’t get
-        # in the way of test expectations.
-        self.useFixture(fixtures.EnvironmentVariable('LC_ALL', newvalue='C'))
-
     @autopilot_logging.log_action(logger.info)
     def launch_test_local(self):
         return self.launch_test_application(
