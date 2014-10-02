@@ -11,6 +11,7 @@ option(CLICK_MODE "Installs to a contained location" on)
 
 set(APP_NAME calendar)
 set(DESKTOP_FILE "${PROJECT_NAME}_${APP_NAME}.desktop")
+set(APPLICATION_FILE "${PROJECT_NAME}_${APP_NAME}.application")
 set(URLS_FILE "${PROJECT_NAME}_${APP_NAME}.url-dispatcher")
 set(MAIN_QML calendar.qml)
 set(ICON_FILE calendar-app@30.png)
@@ -20,26 +21,28 @@ set(UBUNTU_MANIFEST_PATH "click/manifest.json.in" CACHE INTERNAL "Relative path 
 
 if(CLICK_MODE)
     if(NOT DEFINED BZR_SOURCE)
-		set(BZR_SOURCE "lp:ubuntu-${APP_HARDCODE}")
-		message("-- Setting BZR_SOURCE to ${BZR_SOURCE}")
+        set(BZR_SOURCE "lp:ubuntu-${APP_HARDCODE}")
+        message("-- Setting BZR_SOURCE to ${BZR_SOURCE}")
     endif(NOT DEFINED BZR_SOURCE)
     set(CMAKE_INSTALL_PREFIX /)
     set(CMAKE_INSTALL_BINDIR /)
-	set(DATA_DIR /)
-	set (ICON ${ICON_FILE})
-	set(EXEC "qmlscene %u ${MAIN_QML}")
-	set(DESKTOP_DIR ${DATA_DIR})
-	set(URLS_DIR ${DATA_DIR})
+    set(DATA_DIR /)
+    set(ICON ${ICON_FILE})
+    set(EXEC "qmlscene %u ${MAIN_QML}")
+    set(DESKTOP_DIR ${DATA_DIR})
+    set(URLS_DIR ${DATA_DIR})
+    set(APPLICATION_DIR ${DATA_DIR})
 else(CLICK_MODE)
-	set(DATA_DIR ${CMAKE_INSTALL_DATADIR}/${APP_HARDCODE})
-	set(EXEC ${APP_HARDCODE})
-	set(ICON ${CMAKE_INSTALL_PREFIX}/${DATA_DIR}/${ICON_FILE})
-	configure_file(${APP_HARDCODE}.in
-		${CMAKE_CURRENT_BINARY_DIR}/${APP_HARDCODE})
-	install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${APP_HARDCODE}
-		DESTINATION ${CMAKE_INSTALL_BINDIR})
-	set(DESKTOP_DIR ${CMAKE_INSTALL_DATADIR}/applications)
-	set(URLS_DIR ${CMAKE_INSTALL_DATADIR}/url-dispatcher/urls)
+    set(DATA_DIR ${CMAKE_INSTALL_DATADIR}/${APP_HARDCODE})
+    set(EXEC ${APP_HARDCODE})
+    set(ICON ${CMAKE_INSTALL_PREFIX}/${DATA_DIR}/${ICON_FILE})
+    configure_file(${APP_HARDCODE}.in
+            ${CMAKE_CURRENT_BINARY_DIR}/${APP_HARDCODE})
+    install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${APP_HARDCODE}
+            DESTINATION ${CMAKE_INSTALL_BINDIR})
+    set(DESKTOP_DIR ${CMAKE_INSTALL_DATADIR}/applications)
+    set(URLS_DIR ${CMAKE_INSTALL_DATADIR}/url-dispatcher/urls)
+    set(APPLICATION_DIR ${CMAKE_INSTALL_DATADIR}/accounts/applications)
 endif(CLICK_MODE)
 
 file(GLOB_RECURSE I18N_SRC_FILES
@@ -67,8 +70,10 @@ add_custom_target(${DESKTOP_FILE} ALL
 )
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE} DESTINATION ${DESKTOP_DIR})
- 
+
 install(FILES ${URLS_FILE} DESTINATION ${URLS_DIR})
+
+install(FILES ${APPLICATION_FILE} DESTINATION ${APPLICATION_DIR})
 
 # Tests
 enable_testing()
