@@ -16,7 +16,6 @@
 
 """Calendar app autopilot helpers."""
 
-import datetime
 import logging
 from time import sleep
 
@@ -241,24 +240,54 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     def get_selected_day(self):
         """Return the selected day.
 
-        :returns: A python datetime.date object with the selected day.
+        :returns: A today calendar object
+
+        """
+        month = self.get_selected_month()
+        try:
+            today = month.select_single(
+                'QQuickItem', isCurrentMonth=True, isToday=True)
+        except exceptions.StateNotFoundError:
+            raise CalendarException('No day is selected on the visible year.')
+        else:
+            return today
+
+    def get_selected_month(self):
+        """Return the selected month.
+
+        :returns: A month calendar object
 
         """
         current_year_grid = self._get_current_year_grid()
-        for index in range(12):
-            month_component = self._find_month_component(
-                current_year_grid, index)
-            try:
-                today = month_component.select_single(
-                    'QQuickItem', isCurrentMonth=True, isToday=True)
-            except exceptions.StateNotFoundError:
-                continue
-            else:
-                return datetime.date(
-                    current_year_grid.year, index + 1, today.date)
+        return self._get_month_component(current_year_grid,
+                                         current_year_grid.scrollMonth)
+
+    def get_day(self, monthNumber, dayNumber):
+        """Return the day object.
+        :param monthNumber the numeric month to get
+        :param dayNumber the numeric day to get
+        :returns: A month calendar object
+
+        """
+        month = self.get_month(monthNumber)
+
+        try:
+            day = month.select_single('QQuickItem', date=dayNumber)
+        except exceptions.StateNotFoundError:
+            raise CalendarException('%s not found in %s' % (
+                dayNumber, monthNumber))
         else:
-            raise CalendarException(
-                'No day is selected on the currently visible year.')
+            return day
+
+    def get_month(self, monthNumber):
+        """Return the month object.
+        :param monthNumber the numeric month to get
+        :returns: A month calendar object
+
+        """
+        current_year_grid = self._get_current_year_grid()
+        # the monthcomponents start at zero, thus subtract 1 to get month
+        return self._find_month_component(current_year_grid, monthNumber - 1)
 
     def _get_current_year_grid(self):
         path_view_base = self.select_single(
@@ -304,7 +333,14 @@ class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
 class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
-    """Autopilot helper for the Year View page."""
+    """Autopilot helper for the Month View page."""
+
+    def get_current_month(self):
+        return self.select_single('MonthComponent', isCurrentItem=True)
+
+    def get_current_month_name(self):
+        month = self.get_current_month()
+        return month.select_single('Label', objectName='monthLabel').text
 
 
 class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
