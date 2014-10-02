@@ -24,7 +24,6 @@ import sys
 if sys.version_info < (3,):
     range = xrange
 
-from time import sleep
 import datetime
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
@@ -52,27 +51,6 @@ class TestYearView(CalendarAppTestCase):
                 lambda: self.year_view.currentYear,
                 Eventually(Equals(current_year + (i * direction))))
 
-    def _flick_view_up(self, view):
-        """Swipe the given view to bottom to up"""
-
-        start = (0.15) % 1
-        stop = (-0.15) % 1
-
-        x_line = view.globalRect[0] + view.globalRect[2] / 2
-        y_start = view.globalRect[1] + view.globalRect[3] * start
-        y_stop = view.globalRect[1] + view.globalRect[3] * stop
-
-        self.pointing_device.drag(x_line, y_start, x_line, y_stop)
-
-    def _flick_view(self, view):
-        """Swipe the given view to bottom to up"""
-        counter = 0
-        # try up to 3 times to swipe
-        while counter < 3:
-            self._flick_view_up(view)
-            sleep(1)
-            counter += 1
-
     def test_current_year_is_default(self):
         """The current year should be the default shown"""
         self.assertThat(self.year_view.currentYear,
@@ -86,9 +64,6 @@ class TestYearView(CalendarAppTestCase):
         year_grid = self._get_year_grid()
         months = year_grid.select_many("MonthComponent")
         months.sort(key=lambda month: month.currentMonth)
-
-        # Swiping view vertically enought time to make sure January is visible
-        self._flick_view(self.year_view)
 
         february = months[1]
         expected_month_name = self.app.main_view.get_month_name(february)
