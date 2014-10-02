@@ -40,9 +40,25 @@ Item{
     signal monthSelected(var date);
     signal dateSelected(var date)
 
+    //creatng timer only if we need to show events in month
+    Loader {
+        id: timerLoader
+        sourceComponent: showEvents ? timerComp : undefined
+    }
+
+    // Timer to delay creation of Model, There seems some problem fetching events if we create Model immediatly
+    Component {
+        id: timerComp
+        Timer{
+           interval: 200; running: true; repeat: false
+           onTriggered: {
+                modelLoader.sourceComponent = modelComponent
+           }
+        }
+    }
+
     Loader{
         id: modelLoader
-        sourceComponent: showEvents ? modelComponent: undefined
     }
 
     Component{
