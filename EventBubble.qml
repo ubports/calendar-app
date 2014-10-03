@@ -19,6 +19,7 @@
 import QtQuick 2.3
 import Ubuntu.Components 1.1
 
+
 Item{
     id: infoBubble
 
@@ -94,35 +95,35 @@ Item{
         timeLabel.text = ""
         titleLabel.text = ""
         descriptionLabel.text = ""
+        if (type === wideType) {
+            //height is less then set only event title
+            if( height > minimumHeight ) {
+                //on wide type show all details
+                if( type == wideType) {
+                    timeLabel.text = timeString
 
-        //height is less then set only event title
-        if( height > minimumHeight ) {
-            //on wide type show all details
-            if( type == wideType) {
-                timeLabel.text = timeString
-
-                if( event.displayLabel)
-                    titleLabel.text = event.displayLabel;
-                if( event.description)
-                {
-                    descriptionLabel.text = event.description
-                    //If content is too much don't display.
-                    if( height < descriptionLabel.height + descriptionLabel.y){
-                        descriptionLabel.text = ""
+                    if( event.displayLabel)
+                        titleLabel.text = event.displayLabel;
+                    if( event.description)
+                    {
+                        descriptionLabel.text = event.description
+                        //If content is too much don't display.
+                        if( height < descriptionLabel.height + descriptionLabel.y){
+                            descriptionLabel.text = ""
+                        }
                     }
+                } else {
+                    //narrow type shows only time and title
+                    timeLabel.text = startTime
+
+                    if( event.displayLabel)
+                        titleLabel.text = event.displayLabel;
                 }
             } else {
-                //narrow type shows only time and title
-                timeLabel.text = startTime
-
                 if( event.displayLabel)
-                    titleLabel.text = event.displayLabel;
+                    timeLabel.text = event.displayLabel;
             }
-        } else {
-            if( event.displayLabel)
-                timeLabel.text = event.displayLabel;
         }
-
         if(model) {
             var collection = model.collection( event.collectionId );
             bg.color = collection.color
