@@ -46,7 +46,7 @@ Column {
                 }
 
                 color: UbuntuColors.lightGrey
-                fontSize: "small"
+                fontSize: "medium"
             }
         }
     }

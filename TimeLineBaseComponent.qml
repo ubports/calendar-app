@@ -126,7 +126,7 @@ Item {
                 anchors {
                     fill: parent
                     leftMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
-                                                              : units.gu(10)
+                                                              : units.gu(11)
 
                     rightMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
                                                               : units.gu(4)
@@ -149,6 +149,21 @@ Item {
                         height: parent.height
                         delegate: comp
                         day: startDay.addDays(index)
+
+                        Loader{
+                            objectName: "weekdevider"
+                            height: parent.height
+                            width: units.gu(0.15)
+                            sourceComponent: type == ViewType.ViewTypeWeek ? weekDeviderComponent : undefined
+                        }
+
+                        Component {
+                            id: weekDeviderComponent
+                            Rectangle{
+                                anchors.fill: parent
+                                color: "darkgray"
+                            }
+                        }
 
                         Connections{
                             target: mainModel
