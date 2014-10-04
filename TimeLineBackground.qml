@@ -32,21 +32,23 @@ Column {
 
             Label {
                 id: timeLabel
+                width: (parent.width / 7) - units.gu(1)
+                wrapMode: Text.WordWrap
 
                 text: {
-                    var locale = Qt.locale()
+                    var locale = Qt.locale()                    
                     return new Date(0, 0, 0, index).toLocaleTimeString
                             (locale, locale.timeFormat(Locale.NarrowFormat))
                 }
 
                 anchors {
                     left: parent.left
-                    leftMargin: units.gu(2)
+                    leftMargin: units.gu(0.5)
                     verticalCenter: parent.verticalCenter
                 }
 
                 color: UbuntuColors.lightGrey
-                fontSize: "medium"
+                fontSize: "small"
             }
         }
     }

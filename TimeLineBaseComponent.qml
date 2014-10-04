@@ -126,10 +126,10 @@ Item {
                 anchors {
                     fill: parent
                     leftMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
-                                                              : units.gu(11)
+                                                              : units.gu(6)
 
                     rightMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
-                                                              : units.gu(4)
+                                                              : units.gu(3)
                 }
 
                 Repeater {
@@ -161,7 +161,7 @@ Item {
                             id: weekDeviderComponent
                             Rectangle{
                                 anchors.fill: parent
-                                color: "darkgray"
+                                color: "#e5e2e2"
                             }
                         }
 
