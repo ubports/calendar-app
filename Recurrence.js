@@ -17,14 +17,15 @@
  */
 .pragma library
 
-var Daily = 1
-var Weekely =2
+var Daily = 0
+var Weekly =1
 var Weekdays = 2;
 var MonWedFri = 3;
 var TueThu = 4;
 var OnDiffDays = 5;
 var Monthly = 6;
 var Yearly = 7;
-var weeklyDays = [[Qt.Monday, Qt.Tuesday, Qt.Wednesday, Qt.Thursday, Qt.Friday],
-                               [Qt.Monday, Qt.Wednesday, Qt.Friday],
-                               [Qt.Tuesday, Qt.Thursday]];
+var weeklyDays = [[], [],
+                    [Qt.Monday, Qt.Tuesday, Qt.Wednesday, Qt.Thursday, Qt.Friday],
+                    [Qt.Monday, Qt.Wednesday, Qt.Friday],
+                    [Qt.Tuesday, Qt.Thursday]];

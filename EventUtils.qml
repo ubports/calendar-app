@@ -25,10 +25,11 @@ import "Recurrence.js" as Recurrence
 
 QtObject{
     id:eventUtil
+
     function getWeekDaysIndex(daysOfWeek){
-        for (var i = 2; i < 5; i++) {
-            if (compareArrays(daysOfWeek, Recurrence.weeklyDays[i-2])) {
-                return i;
+        for (var index = Recurrence.Weekdays; index < Recurrence.OnDiffDays; index++) {
+            if (compareArrays(daysOfWeek, Recurrence.weeklyDays[index])) {
+                return index;
             }
         }
         return Recurrence.OnDiffDays;
@@ -41,24 +42,17 @@ QtObject{
         }
         return true;
     }
+
     function getDaysOfWeek(index, weekDays) {
         var daysOfWeek = [];
-        switch(index){
-        case Recurrence.Weekdays:
-            daysOfWeek = Recurrence.weeklyDays[0];
-            break;
-        case Recurrence.MonWedFri:
-            daysOfWeek = Recurrence.weeklyDays[1];
-            break;
-        case Recurrence.TueThu:
-            daysOfWeek = Recurrence.weeklyDays[2];
-            break;
-        case Recurrence.OnDiffDays:
+        if (index !== Recurrence.OnDiffDays) {
+            daysOfWeek = Recurrence.weeklyDays[index];
+        } else {
             daysOfWeek = weekDays.length === 0 ? [date.getDay()] : weekDays;
-            break;
         }
         return daysOfWeek;
     }
+
     //Function to get Weeknames in narrow Format
     function getDays(daysOfWeek) {
         var days = []
@@ -70,12 +64,27 @@ QtObject{
         return days;
     }
 
+    function getString(rule,recurrence){
+        var dateFormat = Qt.locale().dateFormat(Locale.LongFormat);
+        var str = "";
+        if (rule.limit === undefined) {
+            str = i18n.tr(recurrence)
+        } else if (rule.limit !== undefined && parseInt(rule.limit)) {
+            // TRANSLATORS: the argument refers to multiple recurrence of event with count .
+            // E.g. "Daily; 5 times."
+            str = i18n.tr("%1; %2 time", "%1; %2 times", rule.limit).arg(recurrence).arg(rule.limit)
+        } else {
+            // TRANSLATORS: the argument refers to recurrence until user selected date.
+            // E.g. "Daily; until 12/12/2014."
+            str = i18n.tr("%1; until %2").arg(recurrence).arg(rule.limit.toLocaleString(Qt.locale(), dateFormat))
+        }
+        return str;
+    }
+
     function getRecurrenceString(rule) {
         var index = rule.frequency;
         var recurrence = "";
         var str = "";
-        var dateFormat = Qt.locale().dateFormat(Locale.LongFormat);
-
         //Check if reccurence is weekly or not
         if (index === RecurrenceRule.Weekly) {
             index = getWeekDaysIndex(rule.daysOfWeek.sort())
@@ -94,17 +103,7 @@ QtObject{
         } else {
             recurrence += Defines.recurrenceLabel[index]
         }
-        if (rule.limit === undefined) {
-            str = i18n.tr(recurrence)
-        } else if (rule.limit !== undefined && parseInt(rule.limit)) {
-            // TRANSLATORS: the argument refers to multiple recurrence of event with count .
-            // E.g. "Daily; 5 times."
-            str = i18n.tr("%1; %2 time", "%1; %2 times", rule.limit).arg(recurrence).arg(rule.limit)
-        } else {
-            // TRANSLATORS: the argument refers to recurrence until user selected date.
-            // E.g. "Daily; until 12/12/2014."
-            str = i18n.tr("%1; until %2").arg(recurrence).arg(rule.limit.toLocaleString(Qt.locale(), dateFormat))
-        }
+        str = getString(rule,recurrence);
         return str;
     }
 }

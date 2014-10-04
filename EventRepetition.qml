@@ -23,6 +23,7 @@ import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
 import "Defines.js" as Defines
+import "Recurrence.js" as Recurrence
 
 Page {
     id: repetition
@@ -61,21 +62,21 @@ Page {
                     // If limit is infinite
                     limitOptions.selectedIndex = 0;
                 }
-                switch(index){
+                switch (index) {
                 case RecurrenceRule.Weekly:
                     index = eventUtils.getWeekDaysIndex(rule.daysOfWeek.sort());
-                    if(rule.daysOfWeek.length>0 && index === 5){
-                        for(var j = 0;j<rule.daysOfWeek.length;++j){
+                    if (rule.daysOfWeek.length>0 && index === Recurrence.OnDiffDays) {
+                        for (var j = 0; j < rule.daysOfWeek.length; ++j) {
                             //Start childern after first element.
                             weeksRow.children[rule.daysOfWeek[j] === 7 ? 0 :rule.daysOfWeek[j]].children[1].checked = true;
                         }
                     }
                     break;
                 case RecurrenceRule.Monthly:
-                    index = 6
+                    index = Recurrence.Monthly
                     break;
                 case RecurrenceRule.Yearly:
-                    index = 7
+                    index = Recurrence.Yearly
                     break;
                 }
 
