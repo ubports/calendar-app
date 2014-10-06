@@ -99,26 +99,18 @@ Item{
             //height is less then set only event title
             if( height > minimumHeight ) {
                 //on wide type show all details
-                if (type == wideType) {
-                    timeLabel.text = timeString
-
-                    if (event.displayLabel)
-                        titleLabel.text = event.displayLabel;
-                    if (event.description)
-                    {
-                        descriptionLabel.text = event.description
-                        //If content is too much don't display.
-                        if (height < descriptionLabel.height + descriptionLabel.y) {
-                            descriptionLabel.text = ""
-                        }
+                timeLabel.text = timeString
+                if (event.displayLabel)
+                    titleLabel.text = event.displayLabel;
+                if (event.description)
+                {
+                    descriptionLabel.text = event.description
+                    //If content is too much don't display.
+                    if (height < descriptionLabel.height + descriptionLabel.y) {
+                        descriptionLabel.text = ""
                     }
-                } else {
-                    //narrow type shows only time and title
-                    timeLabel.text = startTime
-
-                    if (event.displayLabel)
-                        titleLabel.text = event.displayLabel;
                 }
+
             } else {
                 if (event.displayLabel)
                     timeLabel.text = event.displayLabel;
