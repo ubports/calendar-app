@@ -163,7 +163,7 @@ class TestWeekView(CalendarAppTestCase):
     def test_selecting_a_day_switches_to_day_view(self):
         """It must be possible to show a single day by clicking on it."""
         first_day_date = self.week_view.firstDay
-        expected_day = first_day_date.day
+        # expected_day = first_day_date.day
         expected_month = first_day_date.month
         expected_year = first_day_date.year
 
