@@ -43,7 +43,7 @@ class TestDayView(CalendarAppTestCase):
 
         now = datetime.datetime.now()
 
-        expected_month_name_year = now.strftime("%B %d, %Y")
+        expected_month_name_year = now.strftime("%B %Y")
 
         self.assertThat(self.app.main_view.get_month_year(self.day_view),
                         Equals(expected_month_name_year))
