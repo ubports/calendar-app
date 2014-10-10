@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-08-18 07:09+0000\n"
-"Last-Translator: Gio <gio.scino@gmail.com>\n"
+"PO-Revision-Date: 2014-09-30 11:27+0000\n"
+"Last-Translator: Claudio Arseni <claudio.arseni@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-10-01 06:22+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -29,11 +29,11 @@ msgstr "Nessun evento in scadenza"
 
 #: ../AgendaView.qml:93
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Non ci sono calendari abilitati"
 
 #: ../AgendaView.qml:103
 msgid "Enable calendars"
-msgstr ""
+msgstr "Abilita calendari"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -179,11 +179,11 @@ msgstr ""
 
 #: ../EventDetails.qml:405 ../EventReminder.qml:35 ../NewEvent.qml:622
 msgid "Reminder"
-msgstr ""
+msgstr "Promemoria"
 
 #: ../EventRepetition.qml:123
 msgid "Repeat"
-msgstr ""
+msgstr "Ripeti"
 
 #: ../EventRepetition.qml:142
 msgid "Repeats On:"
@@ -376,23 +376,3 @@ msgstr "Un calendario per Ubuntu che si sincronizza con gli account online."
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "calendario;evento;giorno;settimana;anno;appuntamento;riunione;"
-
-#~ msgid "Remind me"
-#~ msgstr "Promemoria"
-
-#~ msgid "All Day event:"
-#~ msgstr "Evento giornata intera:"
-
-#, qt-format
-#~ msgid "%1 All day events"
-#~ msgstr "Eventi giornata intera %1"
-
-#~ msgid "Repetition Ends"
-#~ msgstr "La ripetizione termina"
-
-#, qt-format
-#~ msgid "After Date %1"
-#~ msgstr "Dopo la data %1"
-
-#~ msgid "This happens"
-#~ msgstr "Si ripete"
