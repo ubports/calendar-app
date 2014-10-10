@@ -37,16 +37,15 @@ Page{
     head.backAction: Action{
         iconName:"back"
         onTriggered:{
-            if(reminderTime >= 0) {
-                visualReminder.repetitionCount = 3;
-                visualReminder.repetitionDelay = 120;
-                visualReminder.message = eventTitle
-                visualReminder.secondsBeforeStart = reminderTime === 0 ? -1 : reminderTime ;
+            visualReminder.repetitionCount = 3;
+            visualReminder.repetitionDelay = 120;
+            visualReminder.message = eventTitle
+            visualReminder.secondsBeforeStart = reminderTime;
 
-                audibleReminder.repetitionCount = 3;
-                audibleReminder.repetitionDelay = 120;
-                audibleReminder.secondsBeforeStart = reminderTime === 0 ? -1 : reminderTime;
-            }
+            audibleReminder.repetitionCount = 3;
+            audibleReminder.repetitionDelay = 120;
+            audibleReminder.secondsBeforeStart = reminderTime;
+
             pop();
         }
     }

@@ -149,10 +149,12 @@ Page {
             }
         }
         var reminder = e.detail( Detail.VisualReminder);
-        if( reminder ) {
+        if (reminder) {
             visualReminder.secondsBeforeStart = reminder.secondsBeforeStart;
-
+        } else {
+            visualReminder.secondsBeforeStart = reminderModel.get(0).value;
         }
+
         selectCalendar(e.collectionId);
     }
     //Save the new or Existing event
@@ -509,7 +511,7 @@ Page {
                     model: root.model.getCollections();
 
                     delegate: OptionSelectorDelegate{
-                        text: modelData.name                        
+                        text: modelData.name
 
                         UbuntuShape{
                             id: calColor
