@@ -69,7 +69,7 @@ Page{
             type: ViewType.ViewTypeDay
             currentDay: dayViewPage.currentDay
 
-            Component.onCompleted: {
+            onCurrentDayChanged: {
                 date = dayViewPage.currentDay.weekStart(Qt.locale().firstDayOfWeek);
             }
 
