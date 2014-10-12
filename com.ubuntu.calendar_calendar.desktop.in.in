@@ -9,3 +9,5 @@ _Comment=A calendar for Ubuntu which syncs with online accounts.
 _Keywords=calendar;event;day;week;year;appointment;meeting;
 X-Ubuntu-Touch=true
 X-Ubuntu-Default-Department-ID=accessories
+X-Ubuntu-Splash-Show-Header=true
+_X-Ubuntu-Splash-Color=#f5f5f5
