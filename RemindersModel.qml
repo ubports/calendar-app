@@ -23,7 +23,8 @@ ListModel {
     Component.onCompleted: initialise()
 
     function initialise() {
-        reminderModel.append({ "label": i18n.tr("No Reminder"), "value": 0 })
+        reminderModel.append({ "label": i18n.tr("No Reminder"), "value": -1 })
+        reminderModel.append({ "label": i18n.tr("On Event"), "value": 0 })
         reminderModel.append({ "label": i18n.tr("5 minutes"), "value": 300 })
         reminderModel.append({ "label": i18n.tr("15 minutes"), "value": 900 })
         reminderModel.append({ "label": i18n.tr("30 minutes"), "value": 1800 })

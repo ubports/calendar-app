@@ -109,7 +109,8 @@ Item {
 
     function destroyAllChildren() {
         for( var i = children.length - 1; i >= 0; --i ) {
-            if( children[i].objectName === "mouseArea" ) {
+            if( children[i].objectName === "mouseArea" ||
+                    children[i].objectName === "weekdevider") {
                 continue;
             }
             children[i].visible = false;
