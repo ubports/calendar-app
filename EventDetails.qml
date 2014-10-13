@@ -87,10 +87,11 @@ Page {
 
     function updateReminder(event) {
         var reminder = event.detail( Detail.VisualReminder)
-        if( reminder ) {
+        if(reminder) {
             for(var i=0; i<reminderModel.count; i++) {
-                if(reminder.secondsBeforeStart === reminderModel.get(i).value)
+                if(reminder.secondsBeforeStart === reminderModel.get(i).value) {
                     reminderHeader.subText = reminderModel.get(i).label
+                }
             }
         } else {
             reminderHeader.subText = reminderModel.get(0).label
