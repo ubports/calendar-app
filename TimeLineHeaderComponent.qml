@@ -28,41 +28,30 @@ Row{
 
     property var startDay: DateExt.today();
     property bool isCurrentItem: false
+    property var currentDay
 
     signal dateSelected(var date);
 
     width: parent.width
 
     Repeater{
-        model: type == ViewType.ViewTypeWeek ? 7 : 1
+        model: 7
 
         delegate: HeaderDateComponent{
             date: startDay.addDays(index);
-            dayFormat: {
-                if( type == ViewType.ViewTypeWeek || (type == ViewType.ViewTypeDay && !header.isCurrentItem) ) {
-                    Locale.ShortFormat
-                } else {
-                    Locale.LongFormat
-                }
-            }
+            dayFormat: Locale.ShortFormat
 
             dayColor: {
                 if( type == ViewType.ViewTypeWeek && date.isSameDay(DateExt.today())){
                     UbuntuColors.orange
-                } else if( type == ViewType.ViewTypeDay && header.isCurrentItem ) {
+                } else if( type == ViewType.ViewTypeDay && date.isSameDay(currentDay) ) {
                     UbuntuColors.orange
                 } else {
                     UbuntuColors.darkGrey
                 }
             }
 
-            width: {
-                if( type == ViewType.ViewTypeWeek ) {
-                    header.width/7
-                } else {
-                    header.width
-                }
-            }
+            width: header.width/7
 
             onDateSelected: {
                 header.dateSelected(date);

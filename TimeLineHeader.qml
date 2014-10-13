@@ -32,6 +32,7 @@ PathViewBase {
     width: parent.width
 
     property var date;
+    property var currentDay;
 
     signal dateSelected(var date);
 
@@ -39,19 +40,11 @@ PathViewBase {
         type: header.type
 
         isCurrentItem: index == header.currentIndex
+        currentDay: header.currentDay
 
-        width: {
-            if( type == ViewType.ViewTypeWeek ) {
-                parent.width
-            } else if( type == ViewType.ViewTypeDay && isCurrentItem ){
-                (header.width/7) * 5
-            } else {
-                (header.width/7)
-            }
-        }
+        width: parent.width
 
-        startDay: type == ViewType.ViewTypeWeek ? date.addDays(7*header.indexType(index))
-                                                : date.addDays(1*header.indexType(index))
+        startDay: date.addDays(7*header.indexType(index))
 
         onDateSelected: {
             header.dateSelected(date);

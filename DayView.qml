@@ -49,87 +49,108 @@ Page{
             commonHeaderActions.reloadAction
         ]
 
-        contents: Column{
-            width: parent ? parent.width - units.gu(2) : undefined
-
-            Label {
-                fontSize: "medium"
-                text: Qt.locale().standaloneDayName(currentDay.getDay())
-                font.capitalization: Font.Capitalize
-            }
-
-            Label {
-                id:cuurentDay
-                objectName:"monthYearLabel"
-                fontSize: "large"
-                // TRANSLATORS: this is a time formatting string,
-                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-                // It's used in the header of the day view
-                text:i18n.tr(currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM dd, yyyy")))
-            }
+        contents: Label {
+            id:monthYear
+            objectName:"monthYearLabel"
+            fontSize: "x-large"
+            text: i18n.tr(currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
+            font.capitalization: Font.Capitalize
         }
     }
 
-    PathViewBase{
-        id: dayViewPath
-        objectName: "dayViewPath"
-
-        property var startDay: currentDay
-        //This is used to scroll all view together when currentItem scrolls
-        property var childContentY;
-
+    Column {
         anchors.fill: parent
+        anchors.topMargin: units.gu(1)
+        spacing: units.gu(1)
 
-        onNextItemHighlighted: {
-            //next day
-            currentDay = currentDay.addDays(1);
-        }
-
-        onPreviousItemHighlighted: {
-            //previous day
-            currentDay = currentDay.addDays(-1);
-        }
-
-        delegate: TimeLineBaseComponent {
-            id: timeLineView
-            objectName: "DayComponent-"+index
-
+        TimeLineHeader{
+            id: dayHeader
+            objectName: "dayHeader"
             type: ViewType.ViewTypeDay
+            currentDay: dayViewPage.currentDay
 
-            width: parent.width
-            height: parent.height
-            z: index == dayViewPath.currentIndex ? 2 : 1
-            isActive: true
+            onCurrentDayChanged: {
+                date = dayViewPage.currentDay.weekStart(Qt.locale().firstDayOfWeek);
+            }
 
-            Connections{
-                target: dayViewPage
-                onIsCurrentPageChanged:{
-                    if(dayViewPage.isCurrentPage){
-                        timeLineView.scrollToCurrentTime();
-                    }
+            function nextDay() {
+                if(currentDay >= date.addDays(7)) {
+                    date = dayViewPage.currentDay.weekStart(Qt.locale().firstDayOfWeek);
+                    dayHeader.incrementCurrentIndex();
                 }
             }
 
-            //get contentY value from PathView, if its not current Item
-            Binding{
-                target: timeLineView
-                property: "contentY"
-                value: dayViewPath.childContentY;
-                when: !timeLineView.PathView.isCurrentItem
+            function previousDay() {
+                if( currentDay < date) {
+                    date = dayViewPage.currentDay.weekStart(Qt.locale().firstDayOfWeek);
+                    dayHeader.decrementCurrentIndex();
+                }
+            }
+        }
+
+        PathViewBase{
+            id: dayViewPath
+            objectName: "dayViewPath"
+
+            property var startDay: currentDay
+            //This is used to scroll all view together when currentItem scrolls
+            property var childContentY;
+
+            width: parent.width
+            height: dayViewPage.height - dayViewPath.y
+
+            onNextItemHighlighted: {
+                //next day
+                currentDay = currentDay.addDays(1);
+                dayHeader.nextDay();
             }
 
-            //set PathView's contentY property, if its current item
-            Binding{
-                target: dayViewPath
-                property: "childContentY"
-                value: contentY
-                when: timeLineView.PathView.isCurrentItem
+            onPreviousItemHighlighted: {
+                //previous day
+                currentDay = currentDay.addDays(-1);
+                dayHeader.previousDay();
             }
 
-            contentInteractive: timeLineView.PathView.isCurrentItem
+            delegate: TimeLineBaseComponent {
+                id: timeLineView
+                objectName: "DayComponent-"+index
 
-            startDay: dayViewPath.startDay.addDays(dayViewPath.indexType(index))
+                type: ViewType.ViewTypeDay
+
+                width: parent.width
+                height: parent.height
+                z: index == dayViewPath.currentIndex ? 2 : 1
+                isActive: true
+
+                Connections{
+                    target: dayViewPage
+                    onIsCurrentPageChanged:{
+                        if(dayViewPage.isCurrentPage){
+                            timeLineView.scrollToCurrentTime();
+                        }
+                    }
+                }
+
+                //get contentY value from PathView, if its not current Item
+                Binding{
+                    target: timeLineView
+                    property: "contentY"
+                    value: dayViewPath.childContentY;
+                    when: !timeLineView.PathView.isCurrentItem
+                }
+
+                //set PathView's contentY property, if its current item
+                Binding{
+                    target: dayViewPath
+                    property: "childContentY"
+                    value: contentY
+                    when: timeLineView.PathView.isCurrentItem
+                }
+
+                contentInteractive: timeLineView.PathView.isCurrentItem
+
+                startDay: dayViewPath.startDay.addDays(dayViewPath.indexType(index))
+            }
         }
     }
 }
-
