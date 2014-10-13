@@ -110,6 +110,7 @@ Item{
                         descriptionLabel.text = ""
                     }
                 }
+                layoutBubbleDetails();
 
             } else {
                 if (event.displayLabel)
@@ -120,8 +121,6 @@ Item{
             var collection = model.collection( event.collectionId );
             bg.color = collection.color
         }
-
-        layoutBubbleDetails();
     }
 
     function layoutBubbleDetails() {
