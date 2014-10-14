@@ -28,7 +28,7 @@ Dialog {
 
     title: i18n.tr("Edit Event")
 
-    text: i18n.tr('Edit only this event \"%1\", or all events in the series?').arg(event.displayLabel);
+    text: i18n.tr("Edit only this event \"%1\", or all events in the series?").arg(event.displayLabel);
 
     Button {
         text: i18n.tr("Edit series")
