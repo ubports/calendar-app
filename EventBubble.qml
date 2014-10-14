@@ -35,7 +35,9 @@ Item{
 
     property Flickable flickable;
 
-    readonly property int minimumHeight: timeLabel.height + /*top-bottom margin*/ units.gu(2)
+    readonly property int minimumHeight: type == wideType
+                                         ? eventDetails.item.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
+                                         : units.gu(2)
 
     signal clicked(var event);
 
@@ -92,29 +94,29 @@ Item{
         // while the second one (%2) refers to the end time
         var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
 
-        timeLabel.text = ""
-        titleLabel.text = ""
-        descriptionLabel.text = ""
         if (type === wideType) {
+            eventDetails.item.timeLableText= ""
+             eventDetails.item.titleLabelText = ""
+             eventDetails.item.descriptionText.text = ""
             //height is less then set only event title
             if( height > minimumHeight ) {
                 //on wide type show all details
-                timeLabel.text = timeString
+                eventDetails.item.timeLableText = timeString
                 if (event.displayLabel)
-                    titleLabel.text = event.displayLabel;
+                    eventDetails.item.titleLabelText = event.displayLabel;
                 if (event.description)
                 {
-                    descriptionLabel.text = event.description
+                    eventDetails.item.descriptionText= event.description
                     //If content is too much don't display.
                     if (height < descriptionLabel.height + descriptionLabel.y) {
-                        descriptionLabel.text = ""
+                        eventDetails.item.descriptionText.text = ""
                     }
                 }
                 layoutBubbleDetails();
 
             } else {
                 if (event.displayLabel)
-                    timeLabel.text = event.displayLabel;
+                    eventDetails.item.timeLableText = event.displayLabel;
             }
         }
         if (model) {
@@ -130,68 +132,82 @@ Item{
 
         if( infoBubble.y < flickable.contentY && infoBubble.height > flickable.height) {
             var y = (flickable.contentY - infoBubble.y) * 1.2;
-            if( ( y + detailsItems.height + units.gu(2)) > infoBubble.height) {
-                y = infoBubble.height - detailsItems.height - units.gu(2);
+            if( ( y + eventDetails.item.height + units.gu(2)) > infoBubble.height) {
+                y = infoBubble.height - eventDetails.item.height - units.gu(2);
             }
-            detailsItems.y = y;
+            eventDetails.item.y = y;
         }
     }
 
-    Connections{
-        target: detailsItems
+    Connections {
+        target: eventDetails.item
         onHeightChanged: {
             if (type == wideType) {
                 layoutBubbleDetails();
             }
         }
     }
+    Loader {
+        id:eventDetails
+        sourceComponent: type == wideType ? detailsComponent : undefined
 
-    Item {
-        id: detailsItems
+    }
+    Component {
+        id:detailsComponent
 
-        width: parent.width
-        height: detailsColumn.height
+        Item {
 
-        Column {
-            id: detailsColumn
+            id: detailsItems
+            property alias timeLabelHeight : timeLabel.height
+            property alias timeLableText: timeLabel.text
+            property alias titleLabelText: titleLabel.text
+            property alias descriptionText: descriptionLabel.text
 
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-                margins: units.gu(1)
-            }
+            width: parent.width
+            height: detailsColumn.height
 
-            Label {
-                id: timeLabel
-                objectName: "timeLabel"
-                color: "White"
-                fontSize:"small"
-                font.bold: true
-                width: parent.width
-            }
+            Column {
+                id: detailsColumn
 
-            Label {
-                id: titleLabel
-                objectName: "titleLabel"
-                color: "White"
-                fontSize: "small"
-                width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            }
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(1)
+                }
 
-            Label {
-                id: descriptionLabel
-                color: "White"
-                fontSize: "x-small"
-                width: parent.width
-                visible: type == wideType
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                Label {
+                    id: timeLabel
+                    objectName: "timeLabel"
+                    color: "White"
+                    fontSize:"small"
+                    font.bold: true
+                    width: parent.width
+
+                }
+
+                Label {
+                    id: titleLabel
+                    objectName: "titleLabel"
+                    color: "White"
+                    fontSize: "small"
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
+
+                Label {
+                    id: descriptionLabel
+                    color: "White"
+                    fontSize: "x-small"
+                    width: parent.width
+                    visible: type == wideType
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
             }
         }
     }
 
-    MouseArea{
+    MouseArea {
         anchors.fill: parent
         onClicked: {
             infoBubble.clicked(event);
