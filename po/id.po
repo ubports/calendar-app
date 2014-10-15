@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-23 08:25+0200\n"
-"PO-Revision-Date: 2014-02-11 09:43+0000\n"
+"PO-Revision-Date: 2014-10-13 23:53+0000\n"
 "Last-Translator: Dirgita <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-10-14 07:07+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -60,7 +60,7 @@ msgstr[1] ""
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
-msgstr ""
+msgstr "Kalender"
 
 #: ../CalendarChoicePopup.qml:36
 msgid "Back"
@@ -68,7 +68,7 @@ msgstr ""
 
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
-msgstr ""
+msgstr "Pilih Warna"
 
 #: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:59
 #: ../EditEventConfirmationDialog.qml:52
@@ -77,11 +77,11 @@ msgstr "Batal"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr ""
+msgstr "Tak ada kontak"
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr ""
+msgstr "Cari kontak"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.

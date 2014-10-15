@@ -28,7 +28,8 @@ Dialog {
 
     title: i18n.tr("Edit Event")
 
-    text: i18n.tr('Edit only this event "'+event.displayLabel+'", or all events in the series?');
+    // TRANSLATORS: argument (%1) refers to an event name.
+    text: i18n.tr("Edit only this event \"%1\", or all events in the series?").arg(event.displayLabel);
 
     Button {
         text: i18n.tr("Edit series")
