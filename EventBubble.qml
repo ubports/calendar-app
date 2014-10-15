@@ -64,6 +64,13 @@ Item{
         setDetails();
     }
 
+    //on weekview flickable changes, so we need to setup connection on flickble change
+    onFlickableChanged: {
+        if( flickable && height > flickable.height && type == wideType) {
+            flickable.onContentYChanged.connect(layoutBubbleDetails);
+        }
+    }
+
 
     Component.onCompleted: {
         setDetails();
