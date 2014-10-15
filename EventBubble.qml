@@ -64,19 +64,7 @@ Item{
         setDetails();
     }
 
-    //on weekview flickable changes, so we need to setup connection on flickble change
-    onFlickableChanged: {
-        if( flickable && height > flickable.height && type == wideType) {
-            flickable.onContentYChanged.connect(layoutBubbleDetails);
-        }
-    }
 
-    //on dayview, flickable never changed so when height changes we setup connection
-    onHeightChanged: {
-        if( flickable && height > flickable.height && type == wideType) {
-            flickable.onContentYChanged.connect(layoutBubbleDetails);
-        }
-    }
     Component.onCompleted: {
         setDetails();
     }
@@ -96,8 +84,8 @@ Item{
 
         if (type === wideType) {
             eventDetails.item.timeLableText= ""
-             eventDetails.item.titleLabelText = ""
-             eventDetails.item.descriptionText.text = ""
+            eventDetails.item.titleLabelText = ""
+            eventDetails.item.descriptionText.text = ""
             //height is less then set only event title
             if( height > minimumHeight ) {
                 //on wide type show all details
@@ -141,9 +129,11 @@ Item{
 
     Connections {
         target: eventDetails.item
+        //on dayview, flickable never changed so when height changes we setup connection
         onHeightChanged: {
-            if (type == wideType) {
+            if( flickable && height > flickable.height && type == wideType) {
                 layoutBubbleDetails();
+                flickable.onContentYChanged.connect(layoutBubbleDetails);
             }
         }
     }
@@ -201,7 +191,6 @@ Item{
                     fontSize: "x-small"
                     width: parent.width
                     visible: type == wideType
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 }
             }
         }
