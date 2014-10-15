@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-15 23:06+0530\n"
+"POT-Creation-Date: 2014-10-15 23:15+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,8 +53,10 @@ msgstr ""
 
 #: ../AllDayEventComponent.qml:112
 #, qt-format
-msgid "%1 All day events"
-msgstr ""
+msgid "%1 All day event"
+msgid_plural "%1 All day events"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
