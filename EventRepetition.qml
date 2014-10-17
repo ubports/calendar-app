@@ -34,7 +34,11 @@ Page {
     property var isEdit
 
     visible: false
-    title: i18n.tr("Repeats")
+    // TRANSLATORS: this refers to how often a recurrent event repeats
+    // and it is shown as the header of the page to choose repetition
+    // and as the header of the list item that shows the repetition
+    // summary in the page that displays the event details
+    title: i18n.tr("Repeat")
 
     EventUtils{
         id:eventUtils
@@ -205,7 +209,10 @@ Page {
         }
 
         ListItem.Header{
-            text:i18n.tr("Recurrences")
+            // TRANSLATORS: this refers to how often a recurrent event repeats
+            // and it is shown as the header of the option selector to choose
+            // its repetition
+            text:i18n.tr("Repeats")
             visible: recurrenceOption.selectedIndex != 0
                      && limitOptions.selectedIndex == 1
         }
