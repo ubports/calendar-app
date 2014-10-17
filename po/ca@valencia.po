@@ -1,16 +1,16 @@
-# Dutch translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Catalan (Valencian) translation for ubuntu-calendar-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-15 23:15+0530\n"
-"PO-Revision-Date: 2014-09-24 21:31+0000\n"
-"Last-Translator: rob <linuxned@gmail.com>\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"PO-Revision-Date: 2014-10-17 05:38+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Catalan (Valencian) <ca@valencia@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,26 +21,26 @@ msgstr ""
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
-msgstr "Vandaag"
+msgstr ""
 
 #: ../AgendaView.qml:90
 msgid "No upcoming events"
-msgstr "Geen komende gebeurtenissen"
+msgstr ""
 
 #: ../AgendaView.qml:93
 msgid "You have no calendars enabled"
-msgstr "U heeft geen agenda´s ingeschakeld"
+msgstr ""
 
 #: ../AgendaView.qml:103
 msgid "Enable calendars"
-msgstr "Agenda´s inschakelen"
+msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../AgendaView.qml:165 ../EventBubble.qml:92
 #, qt-format
 msgid "%1 - %2"
-msgstr "%1 - %2"
+msgstr ""
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -49,54 +49,54 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:109
 #, qt-format
 msgid "%1 Ev."
-msgstr "%1 Geb."
+msgstr ""
 
 #: ../AllDayEventComponent.qml:112
 #, qt-format
 msgid "%1 All day event"
 msgid_plural "%1 All day events"
-msgstr[0] "%1 hele dag gebeurtenis"
-msgstr[1] "%1 hele dag gebeurtenissen"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
-msgstr "Agenda's"
+msgstr ""
 
 #: ../CalendarChoicePopup.qml:36
 msgid "Back"
-msgstr "Terug"
+msgstr ""
 
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
-msgstr "Selecteer kleur"
+msgstr ""
 
 #: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
-msgstr "Annuleren"
+msgstr ""
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr "Geen contact"
+msgstr ""
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr "Contact zoeken"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../DayView.qml:56 ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr "MMMM yyyy"
+msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr "Terugkerende gebeurtenis verwijderen"
+msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
-msgstr "Gebeurtenis verwijderen"
+msgstr ""
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../DeleteConfirmationDialog.qml:36
@@ -111,19 +111,19 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
-msgstr "Reeks verwijderen"
+msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:51
 msgid "Delete this"
-msgstr "Dit verwijderen"
+msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:157
 msgid "Delete"
-msgstr "Verwijderen"
+msgstr ""
 
 #: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:277
 msgid "Edit Event"
-msgstr "Gebeurtenis bewerken"
+msgstr ""
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../EditEventConfirmationDialog.qml:32
@@ -133,27 +133,27 @@ msgstr ""
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
-msgstr "Reeks bewerken"
+msgstr ""
 
 #: ../EditEventConfirmationDialog.qml:44
 msgid "Edit this"
-msgstr "Dit bewerken"
+msgstr ""
 
 #: ../EventActions.qml:33 ../NewEvent.qml:277
 msgid "New Event"
-msgstr "Nieuwe gebeurtenis"
+msgstr ""
 
 #: ../EventActions.qml:53
 msgid "Sync"
-msgstr "Synchroniseren"
+msgstr ""
 
 #: ../EventActions.qml:53
 msgid "Syncing"
-msgstr "Synchroniseren"
+msgstr ""
 
 #: ../EventDetails.qml:42 ../NewEvent.qml:449
 msgid "Event Details"
-msgstr "Gebeurtenisdetails"
+msgstr ""
 
 #: ../EventDetails.qml:65
 #, qt-format
@@ -172,39 +172,39 @@ msgstr ""
 
 #: ../EventDetails.qml:170
 msgid "Edit"
-msgstr "Bewerken"
+msgstr ""
 
 #: ../EventDetails.qml:321 ../NewEvent.qml:535
 msgid "Guests"
-msgstr "Gasten"
+msgstr ""
 
 #: ../EventDetails.qml:364 ../EventReminder.qml:35 ../NewEvent.qml:636
 msgid "Reminder"
-msgstr "Herinnering"
+msgstr ""
 
 #: ../EventRepetition.qml:37 ../NewEvent.qml:617
 msgid "Repeats"
-msgstr "Herhalingen"
+msgstr ""
 
 #: ../EventRepetition.qml:124
 msgid "Repeat"
-msgstr "Herhalen"
+msgstr ""
 
 #: ../EventRepetition.qml:143
 msgid "Repeats On:"
-msgstr "Herhalen op:"
+msgstr ""
 
 #: ../EventRepetition.qml:188
 msgid "Recurring event ends"
-msgstr "Einde terugkerende gebeurtenis"
+msgstr ""
 
 #: ../EventRepetition.qml:208
 msgid "Recurrences"
-msgstr "Herhalingen"
+msgstr ""
 
 #: ../EventRepetition.qml:233
 msgid "Date"
-msgstr "Datum"
+msgstr ""
 
 #. TRANSLATORS: the argument refers to multiple recurrence of event with count .
 #. E.g. "Daily; 5 times."
@@ -231,75 +231,75 @@ msgstr ""
 
 #: ../LimitLabelDefines.qml:21
 msgid "Never"
-msgstr "Nooit"
+msgstr ""
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
-msgstr "Na X complete herhaling"
+msgstr ""
 
 #: ../LimitLabelDefines.qml:22
 msgid "After Date"
-msgstr "Na datum"
+msgstr ""
 
 #: ../NewEvent.qml:59
 msgid "Save"
-msgstr "Opslaan"
+msgstr ""
 
 #: ../NewEvent.qml:164
 msgid "End time can't be before start time"
-msgstr "Eindtijd kan niet voor begintijd zijn"
+msgstr ""
 
 #: ../NewEvent.qml:287
 msgid "Error"
-msgstr "Fout"
+msgstr ""
 
 #: ../NewEvent.qml:289
 msgid "OK"
-msgstr "Ok"
+msgstr ""
 
 #: ../NewEvent.qml:340
 msgid "From"
-msgstr "Van"
+msgstr ""
 
 #: ../NewEvent.qml:384
 msgid "To"
-msgstr "Tot"
+msgstr ""
 
 #: ../NewEvent.qml:434
 msgid "All day event"
-msgstr "Hele dag gebeurtenis"
+msgstr ""
 
 #: ../NewEvent.qml:462
 msgid "Event Name"
-msgstr "Naam gebeurtenis"
+msgstr ""
 
 #: ../NewEvent.qml:475
 msgid "Description"
-msgstr "Beschrijving"
+msgstr ""
 
 #: ../NewEvent.qml:488
 msgid "Location"
-msgstr "Plaats"
+msgstr ""
 
 #: ../NewEvent.qml:497 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr "Agenda"
+msgstr ""
 
 #: ../NewEvent.qml:539
 msgid "Add Guest"
-msgstr "Gast toevoegen"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
-msgstr "Eenmalig"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr "Dagelijks"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "Op werkdagen"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:26
 #, qt-format
@@ -313,19 +313,19 @@ msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:28
 msgid "Weekly"
-msgstr "Wekelijks"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:29
 msgid "Monthly"
-msgstr "Maandelijks"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Yearly"
-msgstr "Jaarlijks"
+msgstr ""
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
-msgstr "Geen herinnering"
+msgstr ""
 
 #: ../RemindersModel.qml:27
 msgid "On Event"
@@ -333,39 +333,39 @@ msgstr ""
 
 #: ../RemindersModel.qml:28
 msgid "5 minutes"
-msgstr "5 minuten"
+msgstr ""
 
 #: ../RemindersModel.qml:29
 msgid "15 minutes"
-msgstr "15 minuten"
+msgstr ""
 
 #: ../RemindersModel.qml:30
 msgid "30 minutes"
-msgstr "30 minuten"
+msgstr ""
 
 #: ../RemindersModel.qml:31
 msgid "1 hour"
-msgstr "1 uur"
+msgstr ""
 
 #: ../RemindersModel.qml:32
 msgid "2 hours"
-msgstr "2 uren"
+msgstr ""
 
 #: ../RemindersModel.qml:33
 msgid "1 day"
-msgstr "1 dag"
+msgstr ""
 
 #: ../RemindersModel.qml:34
 msgid "2 days"
-msgstr "2 dagen"
+msgstr ""
 
 #: ../RemindersModel.qml:35
 msgid "1 week"
-msgstr "1 week"
+msgstr ""
 
 #: ../RemindersModel.qml:36
 msgid "2 weeks"
-msgstr "2 weken"
+msgstr ""
 
 #: ../calendar.qml:45
 msgid ""
@@ -373,36 +373,31 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
-"Kalenderapp accepteert vier argumenten: --starttime, --endtime, --newevent "
-"en --eventid. Deze worden beheerd door het systeem. Zie de bron voor een "
-"volledige beschrijving ervan"
 
 #: ../calendar.qml:326
 msgid "Year"
-msgstr "Jaar"
+msgstr ""
 
 #: ../calendar.qml:360
 msgid "Month"
-msgstr "Maand"
+msgstr ""
 
 #: ../calendar.qml:388
 msgid "Week"
-msgstr "Week"
+msgstr ""
 
 #: ../calendar.qml:421
 msgid "Day"
-msgstr "Dag"
+msgstr ""
 
 #: ../calendar.qml:449
 msgid "Agenda"
-msgstr "Agenda"
+msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr "Een agenda voor Ubuntu die synchroniseert met online-accounts."
+msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
-"calendar;event;day;week;year;appointment;meeting;agenda;gebeurtenis;dag;week;"
-"jaar;afspraak;bijeenkomst;"
