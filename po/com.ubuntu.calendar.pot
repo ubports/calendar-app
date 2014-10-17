@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-17 07:46+0200\n"
+"POT-Creation-Date: 2014-10-17 17:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,7 +118,7 @@ msgstr ""
 msgid "Delete this"
 msgstr ""
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:159
+#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:158
 msgid "Delete"
 msgstr ""
 
@@ -162,27 +162,21 @@ msgstr ""
 msgid "%1 Calendar"
 msgstr ""
 
-#. TRANSLATORS: the first parameter refers to event location.
-#: ../EventDetails.qml:105
-#, qt-format
-msgid "%1"
-msgstr ""
-
 #. TRANSLATORS: the first parameter refers to number of all day events.
-#: ../EventDetails.qml:113
+#: ../EventDetails.qml:112
 #, qt-format
 msgid "%1 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:172
+#: ../EventDetails.qml:171
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:323 ../NewEvent.qml:535
+#: ../EventDetails.qml:322 ../NewEvent.qml:535
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:366 ../EventReminder.qml:35 ../NewEvent.qml:636
+#: ../EventDetails.qml:365 ../EventReminder.qml:35 ../NewEvent.qml:636
 msgid "Reminder"
 msgstr ""
 

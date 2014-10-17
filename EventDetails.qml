@@ -101,8 +101,7 @@ Page {
 
     function updateLocation(event) {
         if( event.location ) {
-            // TRANSLATORS: the first parameter refers to event location.
-            locationLabel.text = i18n.tr("%1").arg(event.location)
+            locationLabel.text = event.location
         }
     }
 
