@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-10-15 23:15+0530\n"
-"PO-Revision-Date: 2014-09-23 08:50+0000\n"
+"POT-Creation-Date: 2014-10-17 17:41+0200\n"
+"PO-Revision-Date: 2014-10-17 11:47+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2014-10-17 06:18+0000\n"
+"X-Launchpad-Export-Date: 2014-10-18 07:05+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -49,13 +49,14 @@ msgstr "%1 — %2"
 #. where it's shown has limited space
 #: ../AllDayEventComponent.qml:109
 #, qt-format
-msgid "%1 Ev."
+msgid "%1 ev."
 msgstr "%1 под."
 
-#: ../AllDayEventComponent.qml:112
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../AllDayEventComponent.qml:113
 #, qt-format
-msgid "%1 All day event"
-msgid_plural "%1 All day events"
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
 msgstr[0] "%1 подія на увесь день"
 msgstr[1] "%1 події на увесь день"
 msgstr[2] "%1 подій на увесь день"
@@ -104,12 +105,12 @@ msgstr "Вилучити подію"
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Вилучити лише подію «%1» чи усі події у послідовності?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Ви справді хочете вилучити запис події «%1»?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -119,7 +120,7 @@ msgstr "Вилучити послідовність"
 msgid "Delete this"
 msgstr "Вилучити це"
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:157
+#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:158
 msgid "Delete"
 msgstr "Вилучити"
 
@@ -131,7 +132,7 @@ msgstr "Редагування події"
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Редагувати лише подію «%1» чи усі події у послідовності?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -157,54 +158,54 @@ msgstr "Синхронізація"
 msgid "Event Details"
 msgstr "Докладніше про подію"
 
-#: ../EventDetails.qml:65
+#. TRANSLATORS: the first parameter refers to the name of event calendar.
+#: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "Календар %1"
 
-#: ../EventDetails.qml:103
-#, qt-format
-msgid "%1"
-msgstr ""
-
-#: ../EventDetails.qml:111
+#. TRANSLATORS: the first parameter refers to number of all day events.
+#: ../EventDetails.qml:112
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (увесь день)"
 
-#: ../EventDetails.qml:170
+#: ../EventDetails.qml:171
 msgid "Edit"
 msgstr "Змінити"
 
-#: ../EventDetails.qml:321 ../NewEvent.qml:535
+#: ../EventDetails.qml:322 ../NewEvent.qml:535
 msgid "Guests"
 msgstr "Гості"
 
-#: ../EventDetails.qml:364 ../EventReminder.qml:35 ../NewEvent.qml:636
+#: ../EventDetails.qml:365 ../EventReminder.qml:35 ../NewEvent.qml:636
 msgid "Reminder"
 msgstr "Нагадування"
 
-#: ../EventRepetition.qml:37 ../NewEvent.qml:617
-msgid "Repeats"
-msgstr "Повторюється"
-
-#: ../EventRepetition.qml:124
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../EventRepetition.qml:41 ../EventRepetition.qml:128
 msgid "Repeat"
 msgstr "Повторити"
 
-#: ../EventRepetition.qml:143
+#: ../EventRepetition.qml:147
 msgid "Repeats On:"
 msgstr "Повтор:"
 
-#: ../EventRepetition.qml:188
+#: ../EventRepetition.qml:192
 msgid "Recurring event ends"
 msgstr "Повторення події завершиться"
 
-#: ../EventRepetition.qml:208
-msgid "Recurrences"
-msgstr "Повторення"
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../EventRepetition.qml:215 ../NewEvent.qml:617
+msgid "Repeats"
+msgstr "Повторюється"
 
-#: ../EventRepetition.qml:233
+#: ../EventRepetition.qml:240
 msgid "Date"
 msgstr "Дата"
 
@@ -214,22 +215,23 @@ msgstr "Дата"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 раз"
+msgstr[1] "%1; %2 рази"
+msgstr[2] "%1; %2 разів"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; до %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Щотижня у %1"
 
 #: ../LimitLabelDefines.qml:21
 msgid "Never"
@@ -303,25 +305,27 @@ msgstr "Щодня"
 msgid "On Weekdays"
 msgstr "у дні тижня"
 
-#: ../RecurrenceLabelDefines.qml:26
-#, qt-format
-msgid "On %1 , %2 , %3"
-msgstr ""
-
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
-msgid "On %1 and %2"
-msgstr ""
+msgid "On %1, %2 ,%3"
+msgstr "У %1, %2 ,%3"
 
-#: ../RecurrenceLabelDefines.qml:28
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
+#: ../RecurrenceLabelDefines.qml:29
+#, qt-format
+msgid "On %1 and %2"
+msgstr "У %1 і %2"
+
+#: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
 msgstr "Щотижня"
 
-#: ../RecurrenceLabelDefines.qml:29
+#: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
 msgstr "Щомісяця"
 
-#: ../RecurrenceLabelDefines.qml:30
+#: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
 msgstr "Щороку"
 
@@ -329,43 +333,46 @@ msgstr "Щороку"
 msgid "No Reminder"
 msgstr "Без нагадування"
 
-#: ../RemindersModel.qml:27
+#. TRANSLATORS: this refers to when a reminder should be shown as a notification
+#. in the indicators. "On Event" means that it will be shown right at the time
+#. the event starts, not any time before
+#: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "Уразі події"
 
-#: ../RemindersModel.qml:28
+#: ../RemindersModel.qml:31
 msgid "5 minutes"
 msgstr "5 хвилин"
 
-#: ../RemindersModel.qml:29
+#: ../RemindersModel.qml:32
 msgid "15 minutes"
 msgstr "15 хвилин"
 
-#: ../RemindersModel.qml:30
+#: ../RemindersModel.qml:33
 msgid "30 minutes"
 msgstr "30 хвилин"
 
-#: ../RemindersModel.qml:31
+#: ../RemindersModel.qml:34
 msgid "1 hour"
 msgstr "1 година"
 
-#: ../RemindersModel.qml:32
+#: ../RemindersModel.qml:35
 msgid "2 hours"
 msgstr "2 години"
 
-#: ../RemindersModel.qml:33
+#: ../RemindersModel.qml:36
 msgid "1 day"
 msgstr "1 день"
 
-#: ../RemindersModel.qml:34
+#: ../RemindersModel.qml:37
 msgid "2 days"
 msgstr "2 дні"
 
-#: ../RemindersModel.qml:35
+#: ../RemindersModel.qml:38
 msgid "1 week"
 msgstr "1 тиждень"
 
-#: ../RemindersModel.qml:36
+#: ../RemindersModel.qml:39
 msgid "2 weeks"
 msgstr "2 тижні"
 

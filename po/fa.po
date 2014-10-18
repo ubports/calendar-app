@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-10-15 23:15+0530\n"
-"PO-Revision-Date: 2014-09-25 01:17+0000\n"
+"POT-Creation-Date: 2014-10-17 17:41+0200\n"
+"PO-Revision-Date: 2014-10-17 22:33+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-10-17 06:18+0000\n"
+"X-Launchpad-Export-Date: 2014-10-18 07:05+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -48,14 +48,15 @@ msgstr "%1 تا %2"
 #. where it's shown has limited space
 #: ../AllDayEventComponent.qml:109
 #, qt-format
-msgid "%1 Ev."
+msgid "%1 ev."
 msgstr "%1 رویداد"
 
-#: ../AllDayEventComponent.qml:112
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../AllDayEventComponent.qml:113
 #, qt-format
-msgid "%1 All day event"
-msgid_plural "%1 All day events"
-msgstr[0] "%1 رویداد تمام‌روز"
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
+msgstr[0] "%1 رویداد تمام روز"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -101,12 +102,12 @@ msgstr "حذف رویداد"
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "تنها این رویداد «%1» حذف شود یا همه‌ی رویدادهای سری؟"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "آیا مطمئنید که می‌خواهید رویداد «%1» را حذف کنید؟"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -116,7 +117,7 @@ msgstr "حذف سری‌ها"
 msgid "Delete this"
 msgstr "حذف این مورد"
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:157
+#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:158
 msgid "Delete"
 msgstr "حذف"
 
@@ -128,7 +129,7 @@ msgstr "ویرایش رویداد"
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "تنها این رویداد «%1» ویرایش شود یا همه‌ی رویدادهای سری؟"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -154,54 +155,54 @@ msgstr "در حال هم‌گام سازی"
 msgid "Event Details"
 msgstr "جزئیات رویداد"
 
-#: ../EventDetails.qml:65
+#. TRANSLATORS: the first parameter refers to the name of event calendar.
+#: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "گاه‌شمار %1"
 
-#: ../EventDetails.qml:103
-#, qt-format
-msgid "%1"
-msgstr ""
-
-#: ../EventDetails.qml:111
+#. TRANSLATORS: the first parameter refers to number of all day events.
+#: ../EventDetails.qml:112
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 تمام روز"
 
-#: ../EventDetails.qml:170
+#: ../EventDetails.qml:171
 msgid "Edit"
 msgstr "ویرایش"
 
-#: ../EventDetails.qml:321 ../NewEvent.qml:535
+#: ../EventDetails.qml:322 ../NewEvent.qml:535
 msgid "Guests"
 msgstr "مهمان‌ها"
 
-#: ../EventDetails.qml:364 ../EventReminder.qml:35 ../NewEvent.qml:636
+#: ../EventDetails.qml:365 ../EventReminder.qml:35 ../NewEvent.qml:636
 msgid "Reminder"
 msgstr "یادآور"
 
-#: ../EventRepetition.qml:37 ../NewEvent.qml:617
-msgid "Repeats"
-msgstr "تکرارها"
-
-#: ../EventRepetition.qml:124
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../EventRepetition.qml:41 ../EventRepetition.qml:128
 msgid "Repeat"
 msgstr "تکرار"
 
-#: ../EventRepetition.qml:143
+#: ../EventRepetition.qml:147
 msgid "Repeats On:"
 msgstr "تکرار در:"
 
-#: ../EventRepetition.qml:188
+#: ../EventRepetition.qml:192
 msgid "Recurring event ends"
 msgstr "تکرار رویداد خاتمه می‌یابد"
 
-#: ../EventRepetition.qml:208
-msgid "Recurrences"
-msgstr "تکرار رویداد"
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../EventRepetition.qml:215 ../NewEvent.qml:617
+msgid "Repeats"
+msgstr "تکرارها"
 
-#: ../EventRepetition.qml:233
+#: ../EventRepetition.qml:240
 msgid "Date"
 msgstr "تاریخ"
 
@@ -211,22 +212,21 @@ msgstr "تاریخ"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1؛ %2 بار"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1؛ تا %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "هر هفته در %1"
 
 #: ../LimitLabelDefines.qml:21
 msgid "Never"
@@ -300,25 +300,27 @@ msgstr "روزانه"
 msgid "On Weekdays"
 msgstr "در روزهای هفته"
 
-#: ../RecurrenceLabelDefines.qml:26
-#, qt-format
-msgid "On %1 , %2 , %3"
-msgstr ""
-
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
-msgid "On %1 and %2"
-msgstr ""
+msgid "On %1, %2 ,%3"
+msgstr "در %1، %2 و %3"
 
-#: ../RecurrenceLabelDefines.qml:28
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
+#: ../RecurrenceLabelDefines.qml:29
+#, qt-format
+msgid "On %1 and %2"
+msgstr "در %1 و %2"
+
+#: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
 msgstr "هفتگی"
 
-#: ../RecurrenceLabelDefines.qml:29
+#: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
 msgstr "ماهانه"
 
-#: ../RecurrenceLabelDefines.qml:30
+#: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
 msgstr "سالانه"
 
@@ -326,43 +328,46 @@ msgstr "سالانه"
 msgid "No Reminder"
 msgstr "بدون یادآور"
 
-#: ../RemindersModel.qml:27
+#. TRANSLATORS: this refers to when a reminder should be shown as a notification
+#. in the indicators. "On Event" means that it will be shown right at the time
+#. the event starts, not any time before
+#: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "هنگام رویداد"
 
-#: ../RemindersModel.qml:28
+#: ../RemindersModel.qml:31
 msgid "5 minutes"
 msgstr "۵ دقیقه"
 
-#: ../RemindersModel.qml:29
+#: ../RemindersModel.qml:32
 msgid "15 minutes"
 msgstr "۱۵ دقیقه"
 
-#: ../RemindersModel.qml:30
+#: ../RemindersModel.qml:33
 msgid "30 minutes"
 msgstr "۳۰ دقیقه"
 
-#: ../RemindersModel.qml:31
+#: ../RemindersModel.qml:34
 msgid "1 hour"
 msgstr "۱ ساعت"
 
-#: ../RemindersModel.qml:32
+#: ../RemindersModel.qml:35
 msgid "2 hours"
 msgstr "۲ ساعت"
 
-#: ../RemindersModel.qml:33
+#: ../RemindersModel.qml:36
 msgid "1 day"
 msgstr "۱ روز"
 
-#: ../RemindersModel.qml:34
+#: ../RemindersModel.qml:37
 msgid "2 days"
 msgstr "۲ روز"
 
-#: ../RemindersModel.qml:35
+#: ../RemindersModel.qml:38
 msgid "1 week"
 msgstr "۱ هفته"
 
-#: ../RemindersModel.qml:36
+#: ../RemindersModel.qml:39
 msgid "2 weeks"
 msgstr "۲ هفته"
 

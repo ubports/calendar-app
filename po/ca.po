@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-10-15 23:15+0530\n"
-"PO-Revision-Date: 2014-10-11 10:41+0000\n"
+"POT-Creation-Date: 2014-10-17 17:41+0200\n"
+"PO-Revision-Date: 2014-10-17 09:45+0000\n"
 "Last-Translator: David Planella <david.planella@ubuntu.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-10-17 06:17+0000\n"
+"X-Launchpad-Export-Date: 2014-10-18 07:04+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -48,13 +48,14 @@ msgstr "%1 - %2"
 #. where it's shown has limited space
 #: ../AllDayEventComponent.qml:109
 #, qt-format
-msgid "%1 Ev."
+msgid "%1 ev."
 msgstr "%1 esd."
 
-#: ../AllDayEventComponent.qml:112
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../AllDayEventComponent.qml:113
 #, qt-format
-msgid "%1 All day event"
-msgid_plural "%1 All day events"
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
 msgstr[0] "%1 esdeveniment de tot el dia"
 msgstr[1] "%1 esdeveniments de tot el dia"
 
@@ -103,11 +104,13 @@ msgstr "Suprimeix l'esdeveniment"
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
 msgstr ""
+"Voleu suprimir només l'esdeveniment «%1», o bé tots els esdeveniments de la "
+"sèrie?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Segur que voleu suprimir l'esdeveniment «%1»?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -117,7 +120,7 @@ msgstr "Suprimeix la sèrie"
 msgid "Delete this"
 msgstr "Suprimeix-ho"
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:157
+#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:158
 msgid "Delete"
 msgstr "Suprimeix-lo"
 
@@ -130,6 +133,8 @@ msgstr "Edita l'esdeveniment"
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
 msgstr ""
+"Voleu editar només l'esdeveniment «%1», o bé tots els esdeveniments de la "
+"sèrie?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -155,54 +160,54 @@ msgstr "S'està sincronitzant"
 msgid "Event Details"
 msgstr "Detalls de l'esdeveniment"
 
-#: ../EventDetails.qml:65
+#. TRANSLATORS: the first parameter refers to the name of event calendar.
+#: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "Calendari %1"
 
-#: ../EventDetails.qml:103
-#, qt-format
-msgid "%1"
-msgstr ""
-
-#: ../EventDetails.qml:111
+#. TRANSLATORS: the first parameter refers to number of all day events.
+#: ../EventDetails.qml:112
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (esdeveniments de tot el dia)"
 
-#: ../EventDetails.qml:170
+#: ../EventDetails.qml:171
 msgid "Edit"
 msgstr "Edita"
 
-#: ../EventDetails.qml:321 ../NewEvent.qml:535
+#: ../EventDetails.qml:322 ../NewEvent.qml:535
 msgid "Guests"
 msgstr "Participants"
 
-#: ../EventDetails.qml:364 ../EventReminder.qml:35 ../NewEvent.qml:636
+#: ../EventDetails.qml:365 ../EventReminder.qml:35 ../NewEvent.qml:636
 msgid "Reminder"
 msgstr "Recordatori"
 
-#: ../EventRepetition.qml:37 ../NewEvent.qml:617
-msgid "Repeats"
-msgstr "Es repeteix"
-
-#: ../EventRepetition.qml:124
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../EventRepetition.qml:41 ../EventRepetition.qml:128
 msgid "Repeat"
 msgstr "Repetició"
 
-#: ../EventRepetition.qml:143
+#: ../EventRepetition.qml:147
 msgid "Repeats On:"
 msgstr "Es repeteix:"
 
-#: ../EventRepetition.qml:188
+#: ../EventRepetition.qml:192
 msgid "Recurring event ends"
 msgstr "L'esdeveniment repetitiu finalitza"
 
-#: ../EventRepetition.qml:208
-msgid "Recurrences"
-msgstr ""
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../EventRepetition.qml:215 ../NewEvent.qml:617
+msgid "Repeats"
+msgstr "Es repeteix"
 
-#: ../EventRepetition.qml:233
+#: ../EventRepetition.qml:240
 msgid "Date"
 msgstr "Data"
 
@@ -212,22 +217,22 @@ msgstr "Data"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 vegada"
+msgstr[1] "%1; %2 vegades"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; fins %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Setmanalment els %1"
 
 #: ../LimitLabelDefines.qml:21
 msgid "Never"
@@ -301,25 +306,27 @@ msgstr "Cada dia"
 msgid "On Weekdays"
 msgstr "Dies laborables"
 
-#: ../RecurrenceLabelDefines.qml:26
-#, qt-format
-msgid "On %1 , %2 , %3"
-msgstr ""
-
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
-msgid "On %1 and %2"
-msgstr ""
+msgid "On %1, %2 ,%3"
+msgstr "Els %1, %2 ,%3"
 
-#: ../RecurrenceLabelDefines.qml:28
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
+#: ../RecurrenceLabelDefines.qml:29
+#, qt-format
+msgid "On %1 and %2"
+msgstr "Els %1 i %2"
+
+#: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
 msgstr "Cada setmana"
 
-#: ../RecurrenceLabelDefines.qml:29
+#: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
 msgstr "Cada mes"
 
-#: ../RecurrenceLabelDefines.qml:30
+#: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
 msgstr "Cada any"
 
@@ -327,43 +334,46 @@ msgstr "Cada any"
 msgid "No Reminder"
 msgstr "Sense recordatori"
 
-#: ../RemindersModel.qml:27
+#. TRANSLATORS: this refers to when a reminder should be shown as a notification
+#. in the indicators. "On Event" means that it will be shown right at the time
+#. the event starts, not any time before
+#: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "A l'hora de l'esdeveniment"
 
-#: ../RemindersModel.qml:28
+#: ../RemindersModel.qml:31
 msgid "5 minutes"
 msgstr "5 minuts"
 
-#: ../RemindersModel.qml:29
+#: ../RemindersModel.qml:32
 msgid "15 minutes"
 msgstr "15 minuts"
 
-#: ../RemindersModel.qml:30
+#: ../RemindersModel.qml:33
 msgid "30 minutes"
 msgstr "30 minuts"
 
-#: ../RemindersModel.qml:31
+#: ../RemindersModel.qml:34
 msgid "1 hour"
 msgstr "1 hora"
 
-#: ../RemindersModel.qml:32
+#: ../RemindersModel.qml:35
 msgid "2 hours"
 msgstr "2 hores"
 
-#: ../RemindersModel.qml:33
+#: ../RemindersModel.qml:36
 msgid "1 day"
 msgstr "1 dia"
 
-#: ../RemindersModel.qml:34
+#: ../RemindersModel.qml:37
 msgid "2 days"
 msgstr "2 dies"
 
-#: ../RemindersModel.qml:35
+#: ../RemindersModel.qml:38
 msgid "1 week"
 msgstr "1 setmana"
 
-#: ../RemindersModel.qml:36
+#: ../RemindersModel.qml:39
 msgid "2 weeks"
 msgstr "2 setmanes"
 
