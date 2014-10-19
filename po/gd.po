@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-17 17:41+0200\n"
-"PO-Revision-Date: 2014-10-17 19:05+0000\n"
+"PO-Revision-Date: 2014-10-18 19:42+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2014-10-18 07:04+0000\n"
+"X-Launchpad-Export-Date: 2014-10-19 07:01+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: gd\n"
 
@@ -58,8 +58,10 @@ msgstr "%1 ta."
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 tachartas fad an latha"
+msgstr[1] "%1 thachartas fad an latha"
+msgstr[2] "%1 tachartasan fad an latha"
+msgstr[3] "%1 tachartas fad an latha"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -106,11 +108,14 @@ msgstr "Sguab às an tachartas"
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
 msgstr ""
+"A bheil thu airson an tachartas \"%1\" a-mhàin no a h-uile tachartas san t-"
+"sreath a sguabadh às?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
 msgstr ""
+"A bheil thu cinnteach gu bheil thu airson an tachartas \"%1\" a sguabadh às?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -133,6 +138,8 @@ msgstr "Deasaich an tachartas"
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
 msgstr ""
+"A bheil thu airson an tachartas \"%1\" a-mhàin no a h-uile tachartas san t-"
+"sreath a dheasachadh?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -162,13 +169,13 @@ msgstr "Fiosrachadh an tachartais"
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "Mìosachan %1"
 
 #. TRANSLATORS: the first parameter refers to number of all day events.
 #: ../EventDetails.qml:112
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (fad an latha)"
 
 #: ../EventDetails.qml:171
 msgid "Edit"
@@ -337,7 +344,7 @@ msgstr "Na cuir 'nam chuimhne"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "Àm an tachartais"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"

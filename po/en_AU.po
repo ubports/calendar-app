@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-17 17:41+0200\n"
-"PO-Revision-Date: 2014-09-23 12:25+0000\n"
+"PO-Revision-Date: 2014-10-18 11:03+0000\n"
 "Last-Translator: Jared Norris <jarednorris@ubuntu.com>\n"
 "Language-Team: English (Australia) <en_AU@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-10-18 07:05+0000\n"
+"X-Launchpad-Export-Date: 2014-10-19 07:01+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -49,15 +49,15 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:109
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 ev."
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:113
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 all day event"
+msgstr[1] "%1 all day events"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -103,12 +103,12 @@ msgstr "Delete Event"
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Delete only this event \"%1\", or all events in the series?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Are you sure you want to delete the event \"%1\"?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -130,7 +130,7 @@ msgstr "Edit Event"
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Edit only this event \"%1\", or all events in the series?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -160,13 +160,13 @@ msgstr "Event Details"
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "%1 Calendar"
 
 #. TRANSLATORS: the first parameter refers to number of all day events.
 #: ../EventDetails.qml:112
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (All Day)"
 
 #: ../EventDetails.qml:171
 msgid "Edit"
@@ -213,22 +213,22 @@ msgstr "Date"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 time"
+msgstr[1] "%1; %2 times"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; until %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Weekly on %1"
 
 #: ../LimitLabelDefines.qml:21
 msgid "Never"
@@ -306,13 +306,13 @@ msgstr "On Weekdays"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "On %1, %2 ,%3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "On %1 and %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -335,7 +335,7 @@ msgstr "No Reminder"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "On Event"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
