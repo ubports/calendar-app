@@ -42,6 +42,8 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
+    signal eventAdded(var event);
+
     onStartDateChanged: {
         startDateInput.text = startDate.toLocaleDateString();
         startTimeInput.text = Qt.formatTime(startDate);
@@ -166,17 +168,12 @@ Page {
         } else {
             var newCollection = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
             if( internal.collectionId !== newCollection ){
-                print("Collection changed");
                 //collection change to event is not suported
                 //to change collection we create new event with same data with different collection
                 //and remove old event
-                if( event.parentId ) {
-                    model.removeItem(event.parentId);
-                } else {
-                    model.removeItem(event.itemId)
-                }
-
-                event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+                var eventId = event.itemId;
+                model.removeItem(event.itemId)
+                event = Qt.createQmlObject("import QtOrganizer 5.0; Event {}", Qt.application,"NewEvent.qml");
             }
 
             event.startDateTime = startDate;
@@ -217,8 +214,9 @@ Page {
                 event.setDetail(audibleReminder);
             }
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
-            model.saveItem(event);
+            model.saveItem(event);            
             pageStack.pop();
+            root.eventAdded(event);
         }
     }
 
