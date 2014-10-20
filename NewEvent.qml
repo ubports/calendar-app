@@ -101,6 +101,7 @@ Page {
             }
         }
         calendarsOption.selectedIndex = index
+        internal.collectionId = collectionId;
     }
 
     //Data for Add events
@@ -108,7 +109,7 @@ Page {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
         //Create fresh Recurrence Object.
         rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml");
-        selectCalendar(model.defaultCollection().collectionId);
+        selectCalendar(model.defaultCollection().collectionId);        
     }
 
     //Editing Event
@@ -163,6 +164,14 @@ Page {
         if ( startDate >= endDate && !allDayEventCheckbox.checked) {
             PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
         } else {
+            var newCollection = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
+            if( internal.collectionId !== newCollection ){
+                print("Collection changed");
+                //collection change to event is not suported
+                //to change collection we create new event with same data with different collection
+                event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
+            }
+
             event.startDateTime = startDate;
             event.endDateTime = endDate;
             event.displayLabel = titleEdit.text;
@@ -673,6 +682,8 @@ Page {
 
     QtObject {
         id: internal
+        property var collectionId;
+
         function clearFocus() {
             Qt.inputMethod.hide()
             titleEdit.focus = false
