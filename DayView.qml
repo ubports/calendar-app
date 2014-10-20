@@ -119,8 +119,10 @@ Page{
 
                 width: parent.width
                 height: parent.height
-                z: index == dayViewPath.currentIndex ? 2 : 1
-                isActive: true
+
+                isActive: timeLineView.PathView.isCurrentItem
+                contentInteractive: timeLineView.PathView.isCurrentItem
+                startDay: dayViewPath.startDay.addDays(dayViewPath.indexType(index))
 
                 Connections{
                     target: dayViewPage
@@ -146,10 +148,6 @@ Page{
                     value: contentY
                     when: timeLineView.PathView.isCurrentItem
                 }
-
-                contentInteractive: timeLineView.PathView.isCurrentItem
-
-                startDay: dayViewPath.startDay.addDays(dayViewPath.indexType(index))
             }
         }
     }
