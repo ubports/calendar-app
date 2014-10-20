@@ -165,8 +165,6 @@ Page {
         } else {
             event.startDateTime = startDate;
             event.endDateTime = endDate;
-            print(startDate+ ":" + event.startDateTime)
-            print(endDate + ":" + event.endDateTime)
             event.displayLabel = titleEdit.text;
             event.description = messageEdit.text;
             event.location = locationEdit.text
@@ -384,7 +382,6 @@ Page {
 
             ListItem.Header {
                 text: i18n.tr("To")
-                //visible: !allDayEventCheckbox.checked
             }
 
             Item {
@@ -395,7 +392,6 @@ Page {
                 }
 
                 height: endDateInput.height
-                //visible: !allDayEventCheckbox.checked
 
                 NewEventEntryField{
                     id: endDateInput
