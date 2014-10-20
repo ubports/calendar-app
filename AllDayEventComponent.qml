@@ -106,10 +106,11 @@ Item {
                         // on a given day. "Ev." is short form for "Events".
                         // Please keep the translation of "Ev." to 3 characters only, as the week view
                         // where it's shown has limited space
-                        text =  i18n.tr("%1 Ev.").arg(events.length)
+                        text =  i18n.tr("%1 ev.").arg(events.length)
                     } else {
                         if( events.length > 1) {
-                            text = i18n.tr("%1 All day events").arg(events.length)
+                           // TRANSLATORS: the argument refers to the number of all day events
+                           text = i18n.tr("%1 all day event", "%1 all day events", events.length).arg(events.length)
                         } else {
                             text = events[0].displayLabel;
                         }
