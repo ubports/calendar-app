@@ -32,8 +32,9 @@ Dialog {
                i18n.tr("Delete Event") ;
 
     text: event.parentId ?
-              i18n.tr('Delete only this event "'+event.displayLabel+'", or all events in the series?'):
-              i18n.tr('Are you sure you want to delete the event "'+ event.displayLabel +'"?');
+              // TRANSLATORS: argument (%1) refers to an event name.
+              i18n.tr("Delete only this event \"%1\", or all events in the series?").arg(event.displayLabel):
+              i18n.tr("Are you sure you want to delete the event \"%1\"?").arg(event.displayLabel);
 
     Button {
         text: i18n.tr("Delete series")

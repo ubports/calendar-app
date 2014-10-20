@@ -62,6 +62,7 @@ Page {
         var collection = model.collection( event.collectionId );
         calendarIndicator.color = collection.color
         eventInfo.color=collection.color
+        // TRANSLATORS: the first parameter refers to the name of event calendar.
         calendarName.text = i18n.tr("%1 Calendar").arg( collection.name)
     }
 
@@ -87,10 +88,11 @@ Page {
 
     function updateReminder(event) {
         var reminder = event.detail( Detail.VisualReminder)
-        if( reminder ) {
+        if(reminder) {
             for(var i=0; i<reminderModel.count; i++) {
-                if(reminder.secondsBeforeStart === reminderModel.get(i).value)
+                if(reminder.secondsBeforeStart === reminderModel.get(i).value) {
                     reminderHeader.subText = reminderModel.get(i).label
+                }
             }
         } else {
             reminderHeader.subText = reminderModel.get(0).label
@@ -99,14 +101,14 @@ Page {
 
     function updateLocation(event) {
         if( event.location ) {
-            locationLabel.text = i18n.tr("%1").arg(event.location)
+            locationLabel.text = event.location
         }
     }
 
     function showEvent(e) {
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-
+        // TRANSLATORS: the first parameter refers to number of all day events.
         dateLabel.text = e.allDay === true ? i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
                                            : e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
 

@@ -23,6 +23,7 @@ import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
 import "Defines.js" as Defines
+import "Recurrence.js" as Recurrence
 
 Page {
     id: repetition
@@ -33,7 +34,11 @@ Page {
     property var isEdit
 
     visible: false
-    title: i18n.tr("Repeats")
+    // TRANSLATORS: this refers to how often a recurrent event repeats
+    // and it is shown as the header of the page to choose repetition
+    // and as the header of the list item that shows the repetition
+    // summary in the page that displays the event details
+    title: i18n.tr("Repeat")
 
     EventUtils{
         id:eventUtils
@@ -61,21 +66,21 @@ Page {
                     // If limit is infinite
                     limitOptions.selectedIndex = 0;
                 }
-                switch(index){
+                switch (index) {
                 case RecurrenceRule.Weekly:
                     index = eventUtils.getWeekDaysIndex(rule.daysOfWeek.sort());
-                    if(rule.daysOfWeek.length>0 && index === 5){
-                        for(var j = 0;j<rule.daysOfWeek.length;++j){
+                    if (rule.daysOfWeek.length>0 && index === Recurrence.OnDiffDays) {
+                        for (var j = 0; j < rule.daysOfWeek.length; ++j) {
                             //Start childern after first element.
                             weeksRow.children[rule.daysOfWeek[j] === 7 ? 0 :rule.daysOfWeek[j]].children[1].checked = true;
                         }
                     }
                     break;
                 case RecurrenceRule.Monthly:
-                    index = 6
+                    index = Recurrence.Monthly
                     break;
                 case RecurrenceRule.Yearly:
-                    index = 7
+                    index = Recurrence.Yearly
                     break;
                 }
 
@@ -204,7 +209,10 @@ Page {
         }
 
         ListItem.Header{
-            text:i18n.tr("Recurrences")
+            // TRANSLATORS: this refers to how often a recurrent event repeats
+            // and it is shown as the header of the option selector to choose
+            // its repetition
+            text:i18n.tr("Repeats")
             visible: recurrenceOption.selectedIndex != 0
                      && limitOptions.selectedIndex == 1
         }

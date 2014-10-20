@@ -10,4 +10,4 @@ _Keywords=calendar;event;day;week;year;appointment;meeting;
 X-Ubuntu-Touch=true
 X-Ubuntu-Default-Department-ID=accessories
 X-Ubuntu-Splash-Show-Header=true
-_X-Ubuntu-Splash-Color=#f5f5f5
+X-Ubuntu-Splash-Color=#f5f5f5

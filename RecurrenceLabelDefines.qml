@@ -23,8 +23,10 @@ QtObject {
     property var recurrenceLabel:[i18n.tr("Once"),
         i18n.tr("Daily"),
         i18n.tr("On Weekdays"),
-        i18n.tr("On Monday, Wednesday and Friday"),
-        i18n.tr("On Tuesday and Thursday"),
+        // TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
+        i18n.tr("On %1, %2 ,%3").arg(Qt.locale().dayName(Qt.Monday,Locale.NarrowFormat)).arg(Qt.locale().dayName(Qt.Wednesday,Locale.NarrowFormat)).arg(Qt.locale().dayName(Qt.Friday,Locale.NarrowFormat)),
+        // TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
+        i18n.tr("On %1 and %2").arg(Qt.locale().dayName(Qt.Tuesday,Locale.NarrowFormat)).arg(Qt.locale().dayName(Qt.Thursday,Locale.NarrowFormat)),
         i18n.tr("Weekly"),
         i18n.tr("Monthly"),
         i18n.tr("Yearly")];
