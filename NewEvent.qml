@@ -169,6 +169,13 @@ Page {
                 print("Collection changed");
                 //collection change to event is not suported
                 //to change collection we create new event with same data with different collection
+                //and remove old event
+                if( event.parentId ) {
+                    model.removeItem(event.parentId);
+                } else {
+                    model.removeItem(event.itemId)
+                }
+
                 event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
             }
 
@@ -189,9 +196,12 @@ Page {
                 }
                 event.attendees = contacts;
             }
+
             //Set the Rule object to an event
-            if(rule !== null && rule !== undefined)
-                event.recurrence.recurrenceRules= [rule]
+            if(rule !== null && rule !== undefined) {
+                event.recurrence.recurrenceRules = [rule]
+            }
+
             //remove old reminder value
             var oldVisualReminder = event.detail(Detail.VisualReminder);
             if(oldVisualReminder) {
