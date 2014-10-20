@@ -61,51 +61,7 @@ Item{
 
     onEventChanged: {
         resize();
-        setDetails();
-    }
-
-    Component.onCompleted: {
-        setDetails();
-    }
-
-    function setDetails() {
-        if(event === null || event === undefined) {
-            return;
-        }
-
-        var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-        var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-
-        // TRANSLATORS: the first argument (%1) refers to a start time for an event,
-        // while the second one (%2) refers to the end time
-        var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
-
-        if (type === wideType) {
-            eventDetails.item.timeLableText= ""
-            eventDetails.item.titleLabelText = ""
-            eventDetails.item.descriptionText.text = ""
-            //height is less then set only event title
-            if( height > minimumHeight ) {
-                //on wide type show all details
-                eventDetails.item.timeLableText = timeString
-                if (event.displayLabel)
-                    eventDetails.item.titleLabelText = event.displayLabel;
-                if (event.description)
-                {
-                    eventDetails.item.descriptionText= event.description
-                    //If content is too much don't display.
-                    if (height < descriptionLabel.height + descriptionLabel.y) {
-                        eventDetails.item.descriptionText.text = ""
-                    }
-                }
-                layoutBubbleDetails();
-
-            } else {
-                if (event.displayLabel)
-                    eventDetails.item.timeLableText = event.displayLabel;
-            }
-        }
-        if (model) {
+        if (model && event ) {
             var collection = model.collection( event.collectionId );
             bg.color = collection.color
         }
@@ -151,7 +107,7 @@ Item{
                     top: parent.top
                     left: parent.left
                     right: parent.right
-                    margins: units.gu(1)
+                    margins: units.gu(0.5)
                 }
 
                 Label {
@@ -161,7 +117,6 @@ Item{
                     fontSize:"small"
                     font.bold: true
                     width: parent.width
-
                 }
 
                 Label {
@@ -178,7 +133,6 @@ Item{
                     color: "White"
                     fontSize: "x-small"
                     width: parent.width
-                    visible: type == wideType
                 }
             }
 
@@ -197,6 +151,53 @@ Item{
                 onHeightChanged: {
                     if(flickable && infoBubble.height > flickable.height) {
                         flickable.onContentYChanged.connect(layoutBubbleDetails);
+                    }
+                }
+
+                onEventChanged: {
+                    setDetails();
+                }
+            }
+
+            function setDetails() {
+                if(event === null || event === undefined) {
+                    return;
+                }
+
+                var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+                var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+
+                if (type === wideType) {
+                    timeLableText= ""
+                    titleLabelText = ""
+                    descriptionText.text = ""
+                    //height is less then set only event title
+                    if( infoBubble.height > minimumHeight ) {
+                        //on wide type show all details
+                        if( infoBubble.height > titleLabel.y + titleLabel.height + units.gu(1)) {
+                            // TRANSLATORS: the first argument (%1) refers to a start time for an event,
+                            // while the second one (%2) refers to the end time
+                            var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
+                            timeLableText = timeString
+                            titleLabelText = event.displayLabel
+                        } else if ( event.displayLabel ) {
+                            // TRANSLATORS: the first argument (%1) refers to a start time for an event,
+                            // while the second one (%2) refers to title of event
+                            timeLableText = i18n.tr("%1 - %2").arg(startTime).arg(event.displayLabel);
+                        }
+
+                        if (event.description) {
+                            descriptionText = event.description
+                            //descriptionText = event.description
+                            //If content is too much don't display.
+                            if (infoBubble.height < descriptionLabel.y + descriptionLabel.height + units.gu(1)) {
+                                descriptionText = ""
+                            }
+                        }
+
+                        layoutBubbleDetails();
+                    } else if (event.displayLabel){
+                        eventDetails.item.timeLableText = event.displayLabel;
                     }
                 }
             }
