@@ -64,18 +64,9 @@ Item{
         setDetails();
     }
 
-    //on weekview flickable changes, so we need to setup connection on flickble change
-    onFlickableChanged: {
-        if( flickable && height > flickable.height && type == wideType) {
-            flickable.onContentYChanged.connect(layoutBubbleDetails);
-        }
-    }
-
-
     Component.onCompleted: {
         setDetails();
     }
-
 
     function setDetails() {
         if(event === null || event === undefined) {
@@ -134,21 +125,11 @@ Item{
         }
     }
 
-    Connections {
-        target: eventDetails.item
-        //on dayview, flickable never changed so when height changes we setup connection
-        onHeightChanged: {
-            if( flickable && height > flickable.height && type == wideType) {
-                layoutBubbleDetails();
-                flickable.onContentYChanged.connect(layoutBubbleDetails);
-            }
-        }
-    }
     Loader {
         id:eventDetails
         sourceComponent: type == wideType ? detailsComponent : undefined
-
     }
+
     Component {
         id:detailsComponent
 
@@ -198,6 +179,25 @@ Item{
                     fontSize: "x-small"
                     width: parent.width
                     visible: type == wideType
+                }
+            }
+
+            onHeightChanged: {
+                layoutBubbleDetails();
+            }
+
+            Connections {
+                target: infoBubble
+                onFlickableChanged: {
+                    if (flickable && infoBubble.height > flickable.height) {
+                        flickable.onContentYChanged.connect(layoutBubbleDetails);
+                    }
+                }
+
+                onHeightChanged: {
+                    if(flickable && infoBubble.height > flickable.height) {
+                        flickable.onContentYChanged.connect(layoutBubbleDetails);
+                    }
                 }
             }
         }
