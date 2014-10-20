@@ -439,6 +439,10 @@ MainView {
                         onCurrentDayChanged: {
                             tabs.currentDay = dayViewLoader.item.currentDay;
                         }
+
+                        onDateSelected: {
+                            tabs.currentDay = date;
+                        }
                     }
                 }
             }

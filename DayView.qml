@@ -28,6 +28,8 @@ Page{
     property var currentDay: new Date()
     property bool isCurrentPage: false
 
+    signal dateSelected(var date);
+
     Keys.forwardTo: [dayViewPath]
     flickable: null
 
@@ -68,6 +70,11 @@ Page{
             objectName: "dayHeader"
             type: ViewType.ViewTypeDay
             currentDay: dayViewPage.currentDay
+
+            onDateSelected: {
+                dayViewPage.currentDay = date;
+                dayViewPage.dateSelected(date);
+            }
 
             onCurrentDayChanged: {
                 date = dayViewPage.currentDay.weekStart(Qt.locale().firstDayOfWeek);
