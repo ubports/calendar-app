@@ -382,7 +382,6 @@ Page {
 
             ListItem.Header {
                 text: i18n.tr("To")
-                visible: !allDayEventCheckbox.checked
             }
 
             Item {
@@ -393,7 +392,6 @@ Page {
                 }
 
                 height: endDateInput.height
-                visible: !allDayEventCheckbox.checked
 
                 NewEventEntryField{
                     id: endDateInput
@@ -401,7 +399,7 @@ Page {
 
                     text: ""
                     anchors.left: parent.left
-                    width: 4 * parent.width / 5
+                    width: allDayEventCheckbox.checked ? parent.width : 4 * parent.width / 5
 
                     MouseArea{
                         anchors.fill: parent
@@ -414,6 +412,7 @@ Page {
                     objectName: "endTimeInput"
                     text: ""
                     width: parent.width / 5
+                    visible: !allDayEventCheckbox.checked
                     anchors.right: parent.right
                     horizontalAlignment: Text.AlignRight
 
