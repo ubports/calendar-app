@@ -19,6 +19,7 @@
 import QtQuick 2.3
 import Ubuntu.Components 1.1
 
+
 Item{
     id: infoBubble
 
@@ -34,7 +35,9 @@ Item{
 
     property Flickable flickable;
 
-    readonly property int minimumHeight: timeLabel.height + /*top-bottom margin*/ units.gu(2)
+    readonly property int minimumHeight: type == wideType
+                                         ? eventDetails.item.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
+                                         : units.gu(2)
 
     signal clicked(var event);
 
@@ -61,20 +64,6 @@ Item{
         setDetails();
     }
 
-    //on weekview flickable changes, so we need to setup connection on flickble change
-    onFlickableChanged: {
-        if( flickable && height > flickable.height ) {
-            flickable.onContentYChanged.connect(layoutBubbleDetails);
-        }
-    }
-
-    //on dayview, flickable never changed so when height changes we setup connection
-    onHeightChanged: {
-        if( flickable && height > flickable.height ) {
-            flickable.onContentYChanged.connect(layoutBubbleDetails);
-        }
-    }
-
     Component.onCompleted: {
         setDetails();
     }
@@ -91,44 +80,35 @@ Item{
         // while the second one (%2) refers to the end time
         var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
 
-        timeLabel.text = ""
-        titleLabel.text = ""
-        descriptionLabel.text = ""
-
-        //height is less then set only event title
-        if( height > minimumHeight ) {
-            //on wide type show all details
-            if( type == wideType) {
-                timeLabel.text = timeString
-
-                if( event.displayLabel)
-                    titleLabel.text = event.displayLabel;
-                if( event.description)
+        if (type === wideType) {
+            eventDetails.item.timeLableText= ""
+            eventDetails.item.titleLabelText = ""
+            eventDetails.item.descriptionText.text = ""
+            //height is less then set only event title
+            if( height > minimumHeight ) {
+                //on wide type show all details
+                eventDetails.item.timeLableText = timeString
+                if (event.displayLabel)
+                    eventDetails.item.titleLabelText = event.displayLabel;
+                if (event.description)
                 {
-                    descriptionLabel.text = event.description
+                    eventDetails.item.descriptionText= event.description
                     //If content is too much don't display.
-                    if( height < descriptionLabel.height + descriptionLabel.y){
-                        descriptionLabel.text = ""
+                    if (height < descriptionLabel.height + descriptionLabel.y) {
+                        eventDetails.item.descriptionText.text = ""
                     }
                 }
+                layoutBubbleDetails();
+
             } else {
-                //narrow type shows only time and title
-                timeLabel.text = startTime
-
-                if( event.displayLabel)
-                    titleLabel.text = event.displayLabel;
+                if (event.displayLabel)
+                    eventDetails.item.timeLableText = event.displayLabel;
             }
-        } else {
-            if( event.displayLabel)
-                timeLabel.text = event.displayLabel;
         }
-
-        if(model) {
+        if (model) {
             var collection = model.collection( event.collectionId );
             bg.color = collection.color
         }
-
-        layoutBubbleDetails();
     }
 
     function layoutBubbleDetails() {
@@ -138,66 +118,92 @@ Item{
 
         if( infoBubble.y < flickable.contentY && infoBubble.height > flickable.height) {
             var y = (flickable.contentY - infoBubble.y) * 1.2;
-            if( ( y + detailsItems.height + units.gu(2)) > infoBubble.height) {
-                y = infoBubble.height - detailsItems.height - units.gu(2);
+            if( ( y + eventDetails.item.height + units.gu(2)) > infoBubble.height) {
+                y = infoBubble.height - eventDetails.item.height - units.gu(2);
             }
-            detailsItems.y = y;
+            eventDetails.item.y = y;
         }
     }
 
-    Connections{
-        target: detailsItems
-        onHeightChanged: {
-            layoutBubbleDetails();
+    Loader {
+        id:eventDetails
+        sourceComponent: type == wideType ? detailsComponent : undefined
+    }
+
+    Component {
+        id:detailsComponent
+
+        Item {
+
+            id: detailsItems
+            property alias timeLabelHeight : timeLabel.height
+            property alias timeLableText: timeLabel.text
+            property alias titleLabelText: titleLabel.text
+            property alias descriptionText: descriptionLabel.text
+
+            width: parent.width
+            height: detailsColumn.height
+
+            Column {
+                id: detailsColumn
+
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(1)
+                }
+
+                Label {
+                    id: timeLabel
+                    objectName: "timeLabel"
+                    color: "White"
+                    fontSize:"small"
+                    font.bold: true
+                    width: parent.width
+
+                }
+
+                Label {
+                    id: titleLabel
+                    objectName: "titleLabel"
+                    color: "White"
+                    fontSize: "small"
+                    width: parent.width
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                }
+
+                Label {
+                    id: descriptionLabel
+                    color: "White"
+                    fontSize: "x-small"
+                    width: parent.width
+                    visible: type == wideType
+                }
+            }
+
+            onHeightChanged: {
+                layoutBubbleDetails();
+            }
+
+            Connections {
+                target: infoBubble
+                onFlickableChanged: {
+                    if (flickable && infoBubble.height > flickable.height) {
+                        flickable.onContentYChanged.connect(layoutBubbleDetails);
+                    }
+                }
+
+                onHeightChanged: {
+                    if(flickable && infoBubble.height > flickable.height) {
+                        flickable.onContentYChanged.connect(layoutBubbleDetails);
+                    }
+                }
+            }
         }
     }
 
-    Item {
-        id: detailsItems
-
-        width: parent.width
-        height: detailsColumn.height
-
-        Column {
-            id: detailsColumn
-
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-                margins: units.gu(1)
-            }
-
-            Label {
-                id: timeLabel
-                objectName: "timeLabel"
-                color: "White"
-                fontSize:"small"
-                font.bold: true
-                width: parent.width
-            }
-
-            Label {
-                id: titleLabel
-                objectName: "titleLabel"
-                color: "White"
-                fontSize: "small"
-                width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            }
-
-            Label {
-                id: descriptionLabel
-                color: "White"
-                fontSize: "x-small"
-                width: parent.width
-                visible: type == wideType
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            }
-        }
-    }
-
-    MouseArea{
+    MouseArea {
         anchors.fill: parent
         onClicked: {
             infoBubble.clicked(event);
