@@ -61,6 +61,10 @@ Item{
 
     onEventChanged: {
         resize();
+        assingnBgColor();
+    }
+
+    function assingnBgColor() {
         if (model && event ) {
             var collection = model.collection( event.collectionId );
             var now = new Date();
@@ -69,6 +73,20 @@ Item{
             } else {
                 //if event is on past then add some white color to original color
                 bg.color = Qt.tint( collection.color, "#aaffffff" );
+                return;
+            }
+
+            var attendees = event.attendees;
+            if( attendees !== undefined ) {
+                for (var j = 0 ; j < attendees.length ; ++j) {
+                    var contact = attendees[j];
+                    if(contact.emailAddress === collection.name &&
+                        contact.participationStatus === EventAttendee.StatusDeclined) {
+                        //if user is not attending event then dim it out
+                        bg.color = Qt.tint( collection.color, "#aaffffff" );
+                        return;
+                    }
+                }
             }
         }
     }
