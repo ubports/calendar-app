@@ -107,7 +107,13 @@ Item{
         }
         if (model) {
             var collection = model.collection( event.collectionId );
-            bg.color = collection.color
+            var now = new Date();
+            if( event.endDateTime >= now) {
+                bg.color = collection.color
+            } else {
+                //if event is on past then add some white color to original color
+                bg.color = Qt.tint( collection.color, "#aaffffff" );
+            }
         }
     }
 
