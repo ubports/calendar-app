@@ -18,7 +18,7 @@
 
 import QtQuick 2.3
 import Ubuntu.Components 1.1
-
+import QtOrganizer 5.0
 
 Item{
     id: infoBubble
@@ -74,19 +74,6 @@ Item{
                 //if event is on past then add some white color to original color
                 bg.color = Qt.tint( collection.color, "#aaffffff" );
                 return;
-            }
-
-            var attendees = event.attendees;
-            if( attendees !== undefined ) {
-                for (var j = 0 ; j < attendees.length ; ++j) {
-                    var contact = attendees[j];
-                    if(contact.emailAddress === collection.name &&
-                        contact.participationStatus === EventAttendee.StatusDeclined) {
-                        //if user is not attending event then dim it out
-                        bg.color = Qt.tint( collection.color, "#aaffffff" );
-                        return;
-                    }
-                }
             }
         }
     }
