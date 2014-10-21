@@ -74,7 +74,7 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
 
     # TODO write helpers to check all of the default values
     # then expand the asserts to ensure defaults are correct
-    def test_new_event_must_start_with_default_values(self):
+    def _test_new_event_must_start_with_default_values(self):
         """Test adding a new event default values
 
            Start Date: today Start Time: next half hour increment
@@ -95,7 +95,7 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         self.assertThat(new_event_page.get_description_text(), Equals(''))
         self.assertThat(new_event_page.get_location_name(), Equals(''))
 
-    def test_add_new_event_with_default_values(self):
+    def _test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.
 
         The event must be created on the currently selected date,
@@ -111,7 +111,7 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         self.assertEqual(test_event,
                          event_details_page.get_event_information())
 
-    def test_delete_event_must_remove_it_from_day_view(self):
+    def _test_delete_event_must_remove_it_from_day_view(self):
         """Test deleting an event must no longer show it on the day view."""
         test_event = self._add_event()
 
@@ -128,7 +128,7 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         edited_event = self._edit_event(original_event.name)
         self.addCleanup(self._try_delete_event, edited_event.name)
 
-        event_details_page = self.app.main_view.get_event_details()
+        event_details_page = self.app.main_view.get_day_view.open_event(edited_event.name)
 
         self.assertEqual(edited_event,
                          event_details_page.get_event_information())
