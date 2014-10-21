@@ -104,9 +104,6 @@ Item{
 
             id: detailsItems
             property alias timeLabelHeight : timeLabel.height
-            property alias timeLableText: timeLabel.text
-            property alias titleLabelText: titleLabel.text
-            property alias descriptionText: descriptionLabel.text
 
             width: parent.width
             height: detailsColumn.height
@@ -179,9 +176,9 @@ Item{
                 var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
 
                 if (type === wideType) {
-                    timeLableText= ""
-                    titleLabelText = ""
-                    descriptionText.text = ""
+                    timeLabel.text = ""
+                    titleLabel.text = ""
+                    descriptionLabel.text = ""
                     //height is less then set only event title
                     if( infoBubble.height > minimumHeight ) {
                         //on wide type show all details
@@ -189,20 +186,20 @@ Item{
                             // TRANSLATORS: the first argument (%1) refers to a start time for an event,
                             // while the second one (%2) refers to the end time
                             var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
-                            timeLableText = timeString
-                            titleLabelText = event.displayLabel
+                            timeLabel.text = timeString
+                            titleLabel.text = event.displayLabel
                         } else if ( event.displayLabel ) {
                             // TRANSLATORS: the first argument (%1) refers to a start time for an event,
                             // while the second one (%2) refers to title of event
-                            timeLableText = i18n.tr("%1 - %2").arg(startTime).arg(event.displayLabel);
+                            timeLabel.text = i18n.tr("%1 - %2").arg(startTime).arg(event.displayLabel);
                         }
 
                         if (event.description) {
-                            descriptionText = event.description
+                            descriptionLabel.text = event.description
                             //descriptionText = event.description
                             //If content is too much don't display.
                             if (infoBubble.height < descriptionLabel.y + descriptionLabel.height + units.gu(1)) {
-                                descriptionText = ""
+                                descriptionLabel.text = ""
                             }
                         }
 
