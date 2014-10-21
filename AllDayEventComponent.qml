@@ -39,11 +39,13 @@ Item {
         for(var i = 0 ; i < items.length ; ++i) {
             var event = items[(i)];
             if( event && event.allDay ) {
-                var key  = Qt.formatDateTime(event.startDateTime, "dd-MMM-yyyy");
-                if( !(key in map)) {
-                    map[key] = [];
+                for(var d = event.startDateTime; d <= event.endDateTime; d = d.addDays(1)) {
+                    var key = Qt.formatDateTime(d, "dd-MMM-yyyy");
+                    if( !(key in map)) {
+                        map[key] = [];
+                    }
+                    map[key].push(event);
                 }
-                map[key].push(event);
             }
         }
         return map;

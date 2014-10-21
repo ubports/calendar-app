@@ -108,9 +108,18 @@ Page {
     function showEvent(e) {
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-        // TRANSLATORS: the first parameter refers to number of all day events.
-        dateLabel.text = e.allDay === true ? i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
-                                           : e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
+
+        if( e.allDay ) {
+            if( !e.startDateTime.isSameDay( e.endDateTime) ) {
+                dateLabel.text = i18n.tr("%1 - %2 (All Day)")
+                .arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                .arg( e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+            } else {
+                dateLabel.text = i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+            }
+        } else {
+           dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
+        }
 
         if( e.itemType === Type.EventOccurrence ){
             var requestId = -1;
