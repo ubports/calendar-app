@@ -144,9 +144,8 @@ Page {
     }
 
     function showEditEventPage(event, model) {
-        print( "Show edit event page "+ event.itemId);
         if(event.itemId === "qtorganizer:::") {
-            print("Can not edit event without eventId");
+            //Can not edit event without proper itemid
             return;
         }
 
