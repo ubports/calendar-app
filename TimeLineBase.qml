@@ -36,6 +36,13 @@ Item {
             selectedDate.setHours(hour)
             pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
         }
+
+        onPressed: {
+            intern.now = new Date();
+            if( intern.now.isSameDay( bubbleOverLay.day ) ) {
+                bubbleOverLay.showSeparator();
+            }
+        }
     }
 
     TimeSeparator {
@@ -103,7 +110,7 @@ Item {
         eventLayoutHelper.sendMessage(allSchs);
 
         if( intern.now.isSameDay( bubbleOverLay.day ) ) {
-            bubbleOverLay.showSeparator(intern.now.getHours());
+            bubbleOverLay.showSeparator();
         }
     }
 
@@ -174,8 +181,8 @@ Item {
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
     }
 
-    function showSeparator(hour) {
-        var y = ((intern.now.getMinutes() * hourHeight) / 60) + hour * hourHeight;
+    function showSeparator() {
+        var y = ((intern.now.getMinutes() * hourHeight) / 60) + intern.now.getHours() * hourHeight;
         separator.y = y;
         separator.visible = true;
     }
