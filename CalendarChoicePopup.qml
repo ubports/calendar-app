@@ -42,6 +42,15 @@ Page {
         }
     }
 
+    head.actions:  Action {
+        iconName: "contact-group"
+        objectName: "contactGroup"
+        text: i18n.tr("Accounts")
+        onTriggered: {
+            Qt.openUrlExternally("settings:///online-accounts")
+        }
+    }
+
     ListView {
         id: calendarsList
 

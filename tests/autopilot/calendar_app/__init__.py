@@ -277,7 +277,8 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         month = self.get_month(monthNumber)
 
         try:
-            day = month.select_single('QQuickItem', date=dayNumber)
+            day = month.select_single('MonthComponentDateDelegate',
+                                      date=dayNumber)
         except exceptions.StateNotFoundError:
             raise CalendarException('%s not found in %s' % (
                 dayNumber, monthNumber))
