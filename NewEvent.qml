@@ -355,7 +355,6 @@ Page {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    leftMargin: units.gu(-1)
                 }
 
                 text: i18n.tr("All day event")
@@ -535,7 +534,6 @@ Page {
 
                 anchors {
                     left: parent.left
-                    leftMargin: units.gu(-1)
                 }
 
                 showDivider: false
@@ -556,7 +554,6 @@ Page {
 
                 anchors{
                     left:parent.left
-                    leftMargin: units.gu(-1)
                 }
                 showDivider: false
                 progression: true
