@@ -250,7 +250,7 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         month = self.get_selected_month()
         try:
             today = month.select_single(
-                'QQuickItem', isCurrentMonth=True, isToday=True)
+                'MonthComponentDateDelegate', isCurrentMonth=True, isToday=True)
         except exceptions.StateNotFoundError:
             raise CalendarException('No day is selected on the visible year.')
         else:
@@ -272,11 +272,11 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         :param dayNumber the numeric day to get
         :returns: A month calendar object
 
-        """
-        month = self.get_month(monthNumber)
+        """      
+        month = self.get_month(monthNumber)       
 
         try:
-            day = month.select_single('QQuickItem', date=dayNumber)
+            day = month.select_single('MonthComponentDateDelegate', date=dayNumber)
         except exceptions.StateNotFoundError:
             raise CalendarException('%s not found in %s' % (
                 dayNumber, monthNumber))
