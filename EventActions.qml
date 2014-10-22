@@ -50,8 +50,8 @@ Item {
         id: _reloadAction
         objectName: "syncbutton"
         iconName: "reload"
-        // TRANSLATORS: Please tranlat this to 15 characters only.
-        // Currently ,there is no way we can increase width of action menu currently.
+	// TRANSLATORS: Please translate this string  to 15 characters only.
+	// Currently ,there is no way we can increase width of action menu currently.
         text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
         onTriggered: syncMonitor.sync(["calendar"])
         enabled: (syncMonitor.state !== "syncing")
