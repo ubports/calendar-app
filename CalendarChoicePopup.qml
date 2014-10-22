@@ -40,7 +40,6 @@ Page {
                 pop();
             }
         }
-
     }
 
     head.actions:  Action {
