@@ -171,6 +171,7 @@ Item{
             }
         }
     }
+
     Component{
         id: defaultDateLabelComponent
         MonthComponentDateDelegate{
