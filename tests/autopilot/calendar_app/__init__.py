@@ -250,7 +250,8 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         month = self.get_selected_month()
         try:
             today = month.select_single(
-                'QQuickItem', isCurrentMonth=True, isToday=True)
+                'MonthComponentDateDelegate',
+                isCurrentMonth=True, isToday=True)
         except exceptions.StateNotFoundError:
             raise CalendarException('No day is selected on the visible year.')
         else:
@@ -297,7 +298,7 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         path_view_base = self.select_single(
             'PathViewBase', objectName='yearPathView')
         return path_view_base.select_single(
-            ubuntuuitoolkit.QQuickGridView, isCurrentItem=True)
+            "YearViewDelegate", isCurrentItem=True)
 
     def _find_month_component(self, grid, index):
         try:
