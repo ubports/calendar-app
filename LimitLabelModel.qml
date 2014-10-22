@@ -21,10 +21,9 @@ ListModel {
     id:limitLables
     Component.onCompleted: initialise()
 
-        function initialise() {
-
-            limitLables.append({ "label": i18n.tr("Never") })
-            limitLables.append({ "label": i18n.tr("After X Occurrence") })
-            limitLables.append({ "label": i18n.tr("After Date") })
-        }
+    function initialise() {
+        limitLables.append({ "label": i18n.tr("Never") })
+        limitLables.append({ "label": i18n.tr("After X Occurrence") })
+        limitLables.append({ "label": i18n.tr("After Date") })
+    }
 }

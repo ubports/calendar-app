@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-17 17:41+0200\n"
+"POT-Creation-Date: 2014-10-22 10:05-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
+#: ../AgendaView.qml:50 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
 msgstr ""
@@ -37,7 +37,9 @@ msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:165 ../EventBubble.qml:92
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to title of event
+#: ../AgendaView.qml:165 ../EventBubble.qml:177 ../EventBubble.qml:183
 #, qt-format
 msgid "%1 - %2"
 msgstr ""
@@ -46,13 +48,13 @@ msgstr ""
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:109
+#: ../AllDayEventComponent.qml:111
 #, qt-format
 msgid "%1 ev."
 msgstr ""
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:113
+#: ../AllDayEventComponent.qml:115
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
@@ -87,7 +89,7 @@ msgstr ""
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:56 ../MonthView.qml:56 ../WeekView.qml:60
+#: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
 msgstr ""
 
@@ -118,11 +120,11 @@ msgstr ""
 msgid "Delete this"
 msgstr ""
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:158
+#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:167
 msgid "Delete"
 msgstr ""
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:277
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:266
 msgid "Edit Event"
 msgstr ""
 
@@ -140,19 +142,21 @@ msgstr ""
 msgid "Edit this"
 msgstr ""
 
-#: ../EventActions.qml:33 ../NewEvent.qml:277
+#: ../EventActions.qml:33 ../NewEvent.qml:266
 msgid "New Event"
 msgstr ""
 
-#: ../EventActions.qml:53
+#. TRANSLATORS: Please translate this string  to 15 characters only.
+#. Currently ,there is no way we can increase width of action menu currently.
+#: ../EventActions.qml:55
 msgid "Sync"
 msgstr ""
 
-#: ../EventActions.qml:53
+#: ../EventActions.qml:55
 msgid "Syncing"
 msgstr ""
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:449
+#: ../EventDetails.qml:42 ../NewEvent.qml:376
 msgid "Event Details"
 msgstr ""
 
@@ -162,21 +166,25 @@ msgstr ""
 msgid "%1 Calendar"
 msgstr ""
 
-#. TRANSLATORS: the first parameter refers to number of all day events.
-#: ../EventDetails.qml:112
+#: ../EventDetails.qml:114
+#, qt-format
+msgid "%1 - %2 (All Day)"
+msgstr ""
+
+#: ../EventDetails.qml:118
 #, qt-format
 msgid "%1 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:171
+#: ../EventDetails.qml:180
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:322 ../NewEvent.qml:535
+#: ../EventDetails.qml:331 ../NewEvent.qml:462
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:365 ../EventReminder.qml:35 ../NewEvent.qml:636
+#: ../EventDetails.qml:374 ../EventReminder.qml:35 ../NewEvent.qml:563
 msgid "Reminder"
 msgstr ""
 
@@ -184,26 +192,26 @@ msgstr ""
 #. and it is shown as the header of the page to choose repetition
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
-#: ../EventRepetition.qml:41 ../EventRepetition.qml:128
+#: ../EventRepetition.qml:41 ../EventRepetition.qml:132
 msgid "Repeat"
 msgstr ""
 
-#: ../EventRepetition.qml:147
+#: ../EventRepetition.qml:151
 msgid "Repeats On:"
 msgstr ""
 
-#: ../EventRepetition.qml:192
+#: ../EventRepetition.qml:196
 msgid "Recurring event ends"
 msgstr ""
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:215 ../NewEvent.qml:617
+#: ../EventRepetition.qml:219 ../NewEvent.qml:544
 msgid "Repeats"
 msgstr ""
 
-#: ../EventRepetition.qml:240
+#: ../EventRepetition.qml:244
 msgid "Date"
 msgstr ""
 
@@ -230,63 +238,63 @@ msgstr ""
 msgid "Weekly on %1"
 msgstr ""
 
-#: ../LimitLabelDefines.qml:21
+#: ../LimitLabelModel.qml:26
 msgid "Never"
 msgstr ""
 
-#: ../LimitLabelDefines.qml:21
+#: ../LimitLabelModel.qml:27
 msgid "After X Occurrence"
 msgstr ""
 
-#: ../LimitLabelDefines.qml:22
+#: ../LimitLabelModel.qml:28
 msgid "After Date"
 msgstr ""
 
-#: ../NewEvent.qml:59
+#: ../NewEvent.qml:57
 msgid "Save"
 msgstr ""
 
-#: ../NewEvent.qml:164
+#: ../NewEvent.qml:162
 msgid "End time can't be before start time"
 msgstr ""
 
-#: ../NewEvent.qml:287
+#: ../NewEvent.qml:276
 msgid "Error"
 msgstr ""
 
-#: ../NewEvent.qml:289
+#: ../NewEvent.qml:278
 msgid "OK"
 msgstr ""
 
-#: ../NewEvent.qml:340
+#: ../NewEvent.qml:330
 msgid "From"
 msgstr ""
 
-#: ../NewEvent.qml:384
+#: ../NewEvent.qml:343
 msgid "To"
 msgstr ""
 
-#: ../NewEvent.qml:434
+#: ../NewEvent.qml:361
 msgid "All day event"
 msgstr ""
 
-#: ../NewEvent.qml:462
+#: ../NewEvent.qml:389
 msgid "Event Name"
 msgstr ""
 
-#: ../NewEvent.qml:475
+#: ../NewEvent.qml:402
 msgid "Description"
 msgstr ""
 
-#: ../NewEvent.qml:488
+#: ../NewEvent.qml:415
 msgid "Location"
 msgstr ""
 
-#: ../NewEvent.qml:497 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:424 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr ""
 
-#: ../NewEvent.qml:539
+#: ../NewEvent.qml:466
 msgid "Add Guest"
 msgstr ""
 
@@ -396,7 +404,7 @@ msgstr ""
 msgid "Day"
 msgstr ""
 
-#: ../calendar.qml:449
+#: ../calendar.qml:453
 msgid "Agenda"
 msgstr ""
 
