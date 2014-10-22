@@ -18,7 +18,7 @@
 
 import QtQuick 2.3
 import Ubuntu.Components 1.1
-
+import QtOrganizer 5.0
 
 Item{
     id: infoBubble
@@ -61,9 +61,20 @@ Item{
 
     onEventChanged: {
         resize();
+        assingnBgColor();
+    }
+
+    function assingnBgColor() {
         if (model && event ) {
             var collection = model.collection( event.collectionId );
-            bg.color = collection.color
+            var now = new Date();
+            if( event.endDateTime >= now) {
+                bg.color = collection.color
+            } else {
+                //if event is on past then add some white color to original color
+                bg.color = Qt.tint( collection.color, "#aaffffff" );
+                return;
+            }
         }
     }
 
