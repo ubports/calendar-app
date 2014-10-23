@@ -299,7 +299,7 @@ class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         path_view_base = self.select_single(
             'PathViewBase', objectName='yearPathView')
         return path_view_base.select_single(
-            ubuntuuitoolkit.QQuickGridView, isCurrentItem=True)
+            "YearViewDelegate", isCurrentItem=True)
 
     def _find_month_component(self, grid, index):
         try:
