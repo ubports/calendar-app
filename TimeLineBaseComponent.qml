@@ -27,6 +27,8 @@ import "ViewType.js" as ViewType
 Item {
     id: root
 
+    property var keyboardEventProvider;
+
     property var startDay: DateExt.today();
     property bool isActive: false
     property alias contentY: timeLineView.contentY
@@ -48,7 +50,7 @@ Item {
     }
 
     Connections{
-        target: parent
+        target: keyboardEventProvider
         onScrollUp:{
             scrollHour--;
             if( scrollHour < 0) {

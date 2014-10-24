@@ -43,14 +43,12 @@ Page {
     property bool isEdit: false
 
     onStartDateChanged: {
-        startDateInput.text = startDate.toLocaleDateString();
-        startTimeInput.text = Qt.formatTime(startDate);
+        startDateTimeInput.dateTime = startDate;
         adjustEndDateToStartDate()
     }
 
     onEndDateChanged: {
-        endDateInput.text = endDate.toLocaleDateString();
-        endTimeInput.text = Qt.formatTime(endDate);
+        endDateTimeInput.dateTime = endDate;
     }
 
     head.actions: Action {
@@ -229,15 +227,6 @@ Page {
         return daysOfWeek;
     }
 
-    function openDatePicker (element, caller, callerProperty, mode) {
-        element.highlighted = true;
-        var picker = PickerPanel.openDatePicker(caller, callerProperty, mode);
-        if (!picker) return;
-        picker.closed.connect(function () {
-            element.highlighted = false;
-        });
-    }
-
     // Calucate default hour and minute for start and end time on event
     function roundDate(date) {
         var tempDate = new Date(date)
@@ -336,90 +325,29 @@ Page {
 
             width: parent.width
 
-            ListItem.Header {
-                text: i18n.tr("From")
-            }
-
-            Item {
+            NewEventTimePicker{
+                id: startDateTimeInput
+                header: i18n.tr("From")
+                showTimePicker: !allDayEventCheckbox.checked
                 anchors {
                     left: parent.left
                     right: parent.right
-                    margins: units.gu(2)
                 }
-
-                height: startDateInput.height
-
-                NewEventEntryField{
-                    id: startDateInput
-                    objectName: "startDateInput"
-
-                    text: ""
-                    anchors.left: parent.left
-                    width: allDayEventCheckbox.checked ? parent.width : 4 * parent.width / 5
-
-                    MouseArea{
-                        anchors.fill: parent
-                        onClicked: openDatePicker(startDateInput, root, "startDate", "Years|Months|Days")
-                    }
-                }
-
-                NewEventEntryField{
-                    id: startTimeInput
-                    objectName: "startTimeInput"
-
-                    text: ""
-                    anchors.right: parent.right
-                    width: parent.width / 5
-                    visible: !allDayEventCheckbox.checked
-                    horizontalAlignment: Text.AlignRight
-
-                    MouseArea{
-                        anchors.fill: parent
-                        onClicked: openDatePicker(startTimeInput, root, "startDate", "Hours|Minutes")
-                    }
+                onDateTimeChanged: {
+                    startDate = dateTime;
                 }
             }
 
-            ListItem.Header {
-                text: i18n.tr("To")
-            }
-
-            Item {
+            NewEventTimePicker{
+                id: endDateTimeInput
+                header: i18n.tr("To")
+                showTimePicker: !allDayEventCheckbox.checked
                 anchors {
                     left: parent.left
                     right: parent.right
-                    margins: units.gu(2)
                 }
-
-                height: endDateInput.height
-
-                NewEventEntryField{
-                    id: endDateInput
-                    objectName: "endDateInput"
-
-                    text: ""
-                    anchors.left: parent.left
-                    width: allDayEventCheckbox.checked ? parent.width : 4 * parent.width / 5
-
-                    MouseArea{
-                        anchors.fill: parent
-                        onClicked: openDatePicker(endDateInput, root, "endDate", "Years|Months|Days")
-                    }
-                }
-
-                NewEventEntryField{
-                    id: endTimeInput
-                    objectName: "endTimeInput"
-                    text: ""
-                    width: parent.width / 5
-                    visible: !allDayEventCheckbox.checked
-                    anchors.right: parent.right
-                    horizontalAlignment: Text.AlignRight
-
-                    MouseArea{
-                        anchors.fill: parent
-                        onClicked: openDatePicker(endTimeInput, root, "endDate", "Hours|Minutes")
-                    }
+                onDateTimeChanged: {
+                    endDate = dateTime;
                 }
             }
 
@@ -427,7 +355,6 @@ Page {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    leftMargin: units.gu(-1)
                 }
 
                 text: i18n.tr("All day event")
@@ -607,7 +534,6 @@ Page {
 
                 anchors {
                     left: parent.left
-                    leftMargin: units.gu(-1)
                 }
 
                 showDivider: false
@@ -628,7 +554,6 @@ Page {
 
                 anchors{
                     left:parent.left
-                    leftMargin: units.gu(-1)
                 }
                 showDivider: false
                 progression: true
@@ -676,10 +601,8 @@ Page {
             Qt.inputMethod.hide()
             titleEdit.focus = false
             locationEdit.focus = false
-            startDateInput.focus = false
-            startTimeInput.focus = false
-            endDateInput.focus = false
-            endTimeInput.focus = false
+            startDateTimeInput.clearFocus();
+            endDateTimeInput.clearFocus();
             messageEdit.focus = false
         }
 

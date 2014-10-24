@@ -89,21 +89,32 @@ Page {
             return  new Date(date.getFullYear(), date.getMonth() + month, 1, 0, 0, 0);
         }
 
-        delegate: MonthComponent {
-            property bool isCurrentItem: index === monthViewPath.currentIndex
-
-            showEvents: true
-
+        delegate: Loader {
             width: parent.width - units.gu(4)
             height: parent.height
 
-            currentMonth: monthViewPath.addMonth(monthViewPath.startMonth,
-                                                 monthViewPath.indexType(index));
+            sourceComponent: delegateComponent
+            asynchronous: index !== monthViewPath.currentIndex
 
-            isYearView: false
+            Component {
+                id: delegateComponent
 
-            onDateSelected: {
-                monthViewPage.dateSelected(date);
+                MonthComponent {
+                    isCurrentItem: index === monthViewPath.currentIndex
+
+                    showEvents: true
+
+                    anchors.fill: parent
+
+                    currentMonth: monthViewPath.addMonth(monthViewPath.startMonth,
+                                                         monthViewPath.indexType(index));
+
+                    isYearView: false
+
+                    onDateSelected: {
+                        monthViewPage.dateSelected(date);
+                    }
+                }
             }
         }
     }

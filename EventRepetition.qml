@@ -44,6 +44,10 @@ Page {
         id:eventUtils
     }
 
+    LimitLabelModel {
+        id:limitLabels
+    }
+
     Component.onCompleted: {
         //Fill Date & limitcount if any
         var index = 0;
@@ -203,7 +207,7 @@ Page {
                 margins: units.gu(2)
             }
 
-            model: Defines.limitLabel
+            model: limitLabels
             containerHeight: itemHeight * 4
             onExpandedChanged:   Qt.inputMethod.hide()
         }

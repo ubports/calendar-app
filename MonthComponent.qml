@@ -24,6 +24,8 @@ Item{
     id: root
     objectName: "MonthComponent"
 
+    property bool isCurrentItem;
+
     property bool showEvents: false
 
     property var currentMonth;
@@ -66,7 +68,7 @@ Item{
         EventListModel {
             id: mainModel
             startPeriod: intern.monthStart.midnight();
-            endPeriod: intern.monthStart.addDays((monthGrid.weekCount*7)-1).endOfDay()
+            endPeriod: intern.monthStart.addDays((/*monthGrid.weekCount*/ 6 * 7)-1).endOfDay()
             filter: eventModel.filter
             onModelChanged: {
                 intern.eventStatus = Qt.binding(function() { return mainModel.containsItems(startPeriod,endPeriod,24*60*60)});
@@ -174,11 +176,8 @@ Item{
 
     Component{
         id: defaultDateLabelComponent
-
-        Item{
-            id: dateRootItem
-
-            property int date: {
+        MonthComponentDateDelegate{
+            date: {
                 //try to find date from index and month's first week's first date
                 var temp = intern.daysInStartMonth - intern.offset + index
                 //date exceeds days in startMonth,
@@ -196,7 +195,7 @@ Item{
                 return temp;
             }
 
-            property bool isCurrentMonth: {
+            isCurrentMonth: {
                 //remove offset from index
                 //if index falls in 1 to no of days in current month
                 //then date is inside current month
@@ -204,72 +203,10 @@ Item{
                 return (temp >= 1 && temp <= intern.daysInCurMonth)
             }
 
-            property bool isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
+            isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
 
             width: parent.dayWidth
             height: parent.dayHeight
-
-            Loader {
-                width: parent.width < parent.height ? parent.width : parent.height
-                height: width
-                anchors.centerIn: parent
-                sourceComponent: isToday && isCurrentMonth ? highLightComp : undefined
-            }
-
-            Label {
-                id: dateLabel
-                anchors.centerIn: parent
-                width: parent.width
-                text: date
-                horizontalAlignment: Text.AlignHCenter
-                fontSize: root.dateLabelFontSize
-                color: {
-                    if( isCurrentMonth ) {
-                        if(isToday) {
-                            "white"
-                        } else {
-                            "#5D5D5D"
-                        }
-                    } else {
-                        "#AEA79F"
-                    }
-                }
-            }
-
-            Loader{
-                property bool shouldLoad: showEvents
-                                          && intern.eventStatus !== undefined
-                                          && intern.eventStatus[index] !== undefined
-                                          &&intern.eventStatus[index]
-                sourceComponent: shouldLoad ? eventIndicatorComp : undefined
-                anchors.top: dateLabel.bottom
-                anchors.horizontalCenter: dateLabel.horizontalCenter
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                onPressAndHold: {
-                    var selectedDate = new Date();
-                    selectedDate.setFullYear(intern.monthStartYear)
-                    selectedDate.setMonth(intern.monthStartMonth + 1)
-                    selectedDate.setDate(date)
-                    selectedDate.setMinutes(60, 0, 0)
-                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
-                }
-                onClicked: {
-                    var selectedDate = new Date(intern.monthStartYear,
-                                                intern.monthStartMonth,
-                                                intern.monthStartDate + index, 0, 0, 0, 0)
-                    //If monthView is clicked then open selected DayView
-                    if ( isYearView === false ) {
-                        root.dateSelected(selectedDate);
-                    }
-                    //If yearView is clicked then open selected MonthView
-                    else {
-                        root.monthSelected(selectedDate);
-                    }
-                }
-            }
         }
     }
 
