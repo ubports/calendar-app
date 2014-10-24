@@ -46,6 +46,12 @@ Page {
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction
         ]
+        contents: Label {
+            id:year
+            objectName:"yearLabel"
+            fontSize: "x-large"
+            text: i18n.tr("Year %1").arg(currentYear)
+        }
     }
 
     PathViewBase {
