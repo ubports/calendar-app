@@ -207,16 +207,10 @@ Item{
 
             width: parent.dayWidth
             height: parent.dayHeight
-        }
-    }
-
-    Component{
-        id: eventIndicatorComp
-        Rectangle {
-            width: units.gu(1)
-            height: width
-            radius: height/2
-            color:"#5E2750"
+            showEvent : showEvents
+                        && intern.eventStatus !== undefined
+                        && intern.eventStatus[index] !== undefined
+                        && intern.eventStatus[index]
         }
     }
 
