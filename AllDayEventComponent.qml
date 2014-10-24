@@ -33,6 +33,13 @@ Item {
 
     width: parent.width
 
+    anchors {
+        left :parent.left
+        right: parent.right
+        leftMargin: units.gu(6)
+        rightMargin: units.gu(3)
+    }
+
     function getAllDayEvents(startDate, endDate) {
         var map = {};
         var items = model.getItems(startDate,endDate);
