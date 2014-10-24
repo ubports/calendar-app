@@ -50,7 +50,7 @@ Page {
             id:year
             objectName:"yearLabel"
             fontSize: "x-large"
-            text: currentYear
+            text: i18n.tr("Year %1").arg(currentYear)
         }
     }
 
