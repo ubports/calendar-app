@@ -55,7 +55,7 @@ Page{
 
         clip: true
         anchors.fill: parent
-        contentHeight: reminderModel.count * units.gu(7)
+        contentHeight: reminderModel.count
 
         Column {
             id: _reminderColumn
@@ -66,40 +66,27 @@ Page{
                 right: parent.right
             }
 
-            Repeater {
+            ListItem.ItemSelector {
                 id: _reminders
-
+                expanded: true
                 model: reminderModel
-
-                ListItem.Standard {
-                    id: _reminderDelegate
-
-                    property alias isChecked: reminderCheckbox.checked
-
-                    text: label
-                    control: CheckBox {
-                        id: reminderCheckbox
-
-                        checked: root.reminderTime === value
-
-                        onClicked: {
-                            root.reminderTime = value
-                            if (checked) {
-                                // Ensures only one reminder option is selected
-                                for(var i=0; i<reminderModel.count; i++) {
-                                    if(_reminders.itemAt(i).isChecked &&
-                                            i !== index) {
-                                        _reminders.itemAt(i).isChecked = false
-                                    }
-                                }
-                            }
-
-                            else {
-                                checked = !checked
-                            }
+                delegate: selectorDelegate
+                selectedIndex: reminderModel.get
+                onSelectedIndexChanged: {
+                    root.reminderTime = reminderModel.get(selectedIndex).value
+                }
+                Component.onCompleted: {
+                    for(var i=0; i<reminderModel.count; i++) {
+                        if (root.reminderTime === reminderModel.get(i).value){
+                            _reminders.selectedIndex = i
+                            return;
                         }
                     }
                 }
+            }
+            Component {
+                id: selectorDelegate
+                OptionSelectorDelegate { text: label; }
             }
         }
     }
