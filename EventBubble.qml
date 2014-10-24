@@ -69,11 +69,29 @@ Item{
             var collection = model.collection( event.collectionId );
             var now = new Date();
             if( event.endDateTime >= now) {
-                bg.color = collection.color
+                if( getOwnersStatus(collection) === EventAttendee.StatusDeclined ) {
+                    //if owner of account is not attending event the dim it
+                    bg.color = Qt.tint( collection.color, "#aaffffff" );
+                } else {
+                    bg.color = collection.color
+                }
             } else {
                 //if event is on past then add some white color to original color
                 bg.color = Qt.tint( collection.color, "#aaffffff" );
-                return;
+            }
+        }
+    }
+
+    function getOwnersStatus(collection) {
+        var attendees = event.attendees;
+        if( attendees !== undefined ) {
+            for (var j = 0 ; j < attendees.length ; ++j) {
+                var contact = attendees[j];
+                //mail to is appended on email address so remove it
+                var email = contact.emailAddress.replace("mailto:", "");
+                if( email === collection.name) {
+                    return contact.participationStatus;
+                }
             }
         }
     }
@@ -205,7 +223,7 @@ Item{
 
                         layoutBubbleDetails();
                     } else if (event.displayLabel){
-                        eventDetails.item.timeLableText = event.displayLabel;
+                        timeLabel.text = event.displayLabel;
                     }
                 }
             }
