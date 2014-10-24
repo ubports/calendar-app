@@ -55,10 +55,11 @@ Page{
 
         clip: true
         anchors.fill: parent
-        contentHeight: reminderModel.count
+        contentHeight: _reminders.itemHeight * reminderModel.count + units.gu(2)
 
         Column {
             id: _reminderColumn
+            anchors.fill: parent
 
             anchors {
                 top: parent.top
@@ -75,6 +76,7 @@ Page{
                 onSelectedIndexChanged: {
                     root.reminderTime = reminderModel.get(selectedIndex).value
                 }
+
                 Component.onCompleted: {
                     for(var i=0; i<reminderModel.count; i++) {
                         if (root.reminderTime === reminderModel.get(i).value){
