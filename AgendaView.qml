@@ -19,6 +19,7 @@
 import QtQuick 2.3
 import QtOrganizer 5.0
 import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
 import "dateExt.js" as DateExt
 
 Page{
@@ -64,7 +65,7 @@ Page{
     EventListModel {
         id: eventListModel
         startPeriod: currentDay.midnight();
-        endPeriod: currentDay.addDays(30).endOfDay()
+        endPeriod: currentDay.addDays(7).endOfDay()
         filter: eventModel.filter
 
         sortOrders: [
@@ -119,7 +120,8 @@ Page{
         anchors.fill: parent
         visible: eventListModel.itemCount > 0
 
-        delegate: listDelegate
+        delegate:listDelegate
+
     }
 
     Scrollbar{
@@ -167,7 +169,7 @@ Page{
                 header.text = date
                 timeLabel.text = timeString
                 header.color = event.startDateTime.toLocaleDateString() === new Date().toLocaleDateString() ? UbuntuColors.orange : UbuntuColors.darkGrey
-                detailsContainer.color = eventListModel.collection(event.collectionId).color
+                calendarColorCode.color = eventListModel.collection(event.collectionId).color
 
                 if( event.displayLabel) {
                     titleLabel.text = event.displayLabel;
@@ -178,17 +180,16 @@ Page{
                 id: container
 
                 width: parent.width
-                height: detailsContainer.height + headerContainer.height +
+                height: headerContainer.height + eventDetails.height +
                         (headerContainer.visible ? units.gu(2) : units.gu(0.5))
 
                 spacing: headerContainer.visible ? units.gu(1) : 0
-
-                anchors.top: parent.top
                 anchors.topMargin: headerContainer.visible ? units.gu(1.5) : units.gu(1)
 
+                anchors.top: parent.top
                 DayHeaderBackground{
                     id: headerContainer
-
+                    visible: true
                     height: visible ? header.height + units.gu(1) : 0
                     width: parent.width
 
@@ -213,44 +214,33 @@ Page{
                         }
                     }
                 }
+                ListItem.Standard {
+                    id:eventDetails
+                    showDivider: false
+                    Rectangle {
+                        id: calendarColorCode
 
-                UbuntuShape{
-                    id: detailsContainer
+                        width: parent.height
+                        height: width - units.gu(2)
 
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: units.gu(2)
-                    }
-
-                    height: detailsColumn.height + units.gu(1)
-                    borderSource: "radius_ide.sci"
-
-                    states: [
-                        State {
-                            name: "selected"
-                            when: mouseArea.pressed
-
-                            PropertyChanges {
-                                target: detailsContainer
-                                borderSource: "radius_pressed.sci"
-                            }
+                        anchors {
+                            left: parent.left
+                            leftMargin: units.gu(2)
+                            verticalCenter: parent.verticalCenter
                         }
-                    ]
-
+                    }
                     Column{
                         id: detailsColumn
 
                         anchors {
                             top: parent.top
-                            left: parent.left
+                            left: calendarColorCode.right
                             right: parent.right
-                            margins: units.gu(0.5)
+                            margins: units.gu(1)
                         }
 
                         Label{
                             id: timeLabel
-                            color:"White"
                             font.bold: true
                             fontSize: "small"
                             width: parent.width
@@ -258,8 +248,6 @@ Page{
 
                         Label{
                             id: titleLabel
-
-                            color:"White"
                             fontSize: "small"
                             width: parent.width
                             maximumLineCount: 2
@@ -273,13 +261,8 @@ Page{
                             }
                         }
                     }
-
-                    MouseArea{
-                        id: mouseArea
-                        anchors.fill: parent
-                        onClicked: {
-                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
-                        }
+                    onClicked: {
+                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
                     }
                 }
             }
