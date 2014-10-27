@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-17 17:41+0200\n"
-"PO-Revision-Date: 2014-10-24 16:57+0000\n"
-"Last-Translator: Anne <anneonyme017@gmail.com>\n"
+"PO-Revision-Date: 2014-10-26 15:20+0000\n"
+"Last-Translator: Jean Marc <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2014-10-25 05:58+0000\n"
+"X-Launchpad-Export-Date: 2014-10-27 06:28+0000\n"
 "X-Generator: Launchpad (build 17203)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -215,8 +215,8 @@ msgstr "Date"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 ; %2 fois"
+msgstr[1] "%1 ; %2 fois"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
@@ -337,7 +337,7 @@ msgstr "Pas de rappel"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "Lors de l'événement"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
