@@ -6,43 +6,55 @@ Item{
 
     property int date;
     property bool isCurrentMonth;
-    property bool isToday
+    property bool isToday;
+    property bool showEvent;
 
     Loader {
         width: parent.width < parent.height ? parent.width : parent.height
         height: width
-        anchors.centerIn: parent
+        anchors.centerIn: columns
         sourceComponent: isToday && isCurrentMonth ? highLightComp : undefined
     }
 
-    Label {
-        id: dateLabel
+    Column {
+        id: columns
         anchors.centerIn: parent
         width: parent.width
-        text: date
-        horizontalAlignment: Text.AlignHCenter
-        fontSize: root.dateLabelFontSize
-        color: {
-            if( isCurrentMonth ) {
-                if(isToday) {
-                    "white"
+        spacing: units.gu(0.5)
+        Label {
+            id: dateLabel
+            text: date
+            //horizontalAlignment: Text.AlignHCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            fontSize: root.dateLabelFontSize
+            color: {
+                if( isCurrentMonth ) {
+                    if(isToday) {
+                        "white"
+                    } else {
+                        "#5D5D5D"
+                    }
                 } else {
-                    "#5D5D5D"
+                    "#AEA79F"
                 }
-            } else {
-                "#AEA79F"
             }
+        }
+
+        Loader{
+            width: units.gu(1)
+            height: width
+            sourceComponent: showEvent ? eventIndicatorComp : undefined
+            anchors.horizontalCenter: dateLabel.horizontalCenter
         }
     }
 
-    Loader{
-        property bool shouldLoad: showEvents
-                                  && intern.eventStatus !== undefined
-                                  && intern.eventStatus[index] !== undefined
-                                  &&intern.eventStatus[index]
-        sourceComponent: shouldLoad ? eventIndicatorComp : undefined
-        anchors.top: dateLabel.bottom
-        anchors.horizontalCenter: dateLabel.horizontalCenter
+    Component{
+        id: eventIndicatorComp
+        Rectangle {
+            anchors.fill: parent
+            radius: height/2
+            color:"#5E2750"
+        }
     }
 
     MouseArea {
