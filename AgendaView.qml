@@ -189,7 +189,6 @@ Page{
                 anchors.top: parent.top
                 DayHeaderBackground{
                     id: headerContainer
-                    visible: true
                     height: visible ? header.height + units.gu(1) : 0
                     width: parent.width
 
@@ -220,8 +219,8 @@ Page{
                     Rectangle {
                         id: calendarColorCode
 
-                        width: parent.height
-                        height: width - units.gu(2)
+                        width: parent.height- units.gu(2)
+                        height: width
 
                         anchors {
                             left: parent.left
@@ -253,12 +252,6 @@ Page{
                             maximumLineCount: 2
                             elide: Text.ElideRight
                             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: 50
-                                }
-                            }
                         }
                     }
                     onClicked: {
