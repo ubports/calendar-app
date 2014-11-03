@@ -84,8 +84,8 @@ Page {
             Rectangle {
                 id: calendarColorCode
 
-                width: parent.height
-                height: width - units.gu(2)
+                width: parent.height - units.gu(2)
+                height: width
 
                 anchors {
                     left: parent.left
