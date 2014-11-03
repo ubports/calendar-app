@@ -148,13 +148,13 @@ Page{
                     return;
                 }
 
-                headerContainer.visible = false;
+                headerList.visible = false;
                 if( index == 0 ) {
-                    headerContainer.visible = true;
+                    headerList.visible = true;
                 } else {
                     var prevEvent = eventListModel.items[index-1];
                     if( prevEvent.startDateTime.midnight() < event.startDateTime.midnight()) {
-                        headerContainer.visible = true;
+                        headerList.visible = true;
                     }
                 }
 
@@ -180,39 +180,42 @@ Page{
                 id: container
 
                 width: parent.width
-                height: headerContainer.height + eventDetails.height +
-                        (headerContainer.visible ? units.gu(2) : units.gu(0.5))
-
-                spacing: headerContainer.visible ? units.gu(1) : 0
-                anchors.topMargin: headerContainer.visible ? units.gu(1.5) : units.gu(1)
-
                 anchors.top: parent.top
-                DayHeaderBackground{
-                    id: headerContainer
-                    height: visible ? header.height + units.gu(1) : 0
-                    width: parent.width
 
+                ListItem.Header{
+                    id:headerList
                     Label{
-                        id: header
-
-                        fontSize: "small"
-                        width: parent.width
-                        elide: Text.ElideRight
-
+                        id:header
                         anchors {
                             left: parent.left
-                            leftMargin: units.gu(1)
+                            leftMargin : units.gu(1)
                             verticalCenter: parent.verticalCenter
                         }
                     }
 
+                    states: [
+                        State {
+                            name: "headerDateClicked"
+                            when:testClick.pressed
+                            PropertyChanges {
+                                target: header
+                                color :  header.color == UbuntuColors.orange
+                                         ? UbuntuColors.darkGrey
+                                         : UbuntuColors.orange
+                            }
+                        }
+                    ]
+
                     MouseArea{
+                        id:testClick
                         anchors.fill: parent
                         onClicked: {
                             dateSelected(event.startDateTime);
                         }
                     }
+
                 }
+
                 ListItem.Standard {
                     id:eventDetails
                     showDivider: false
@@ -258,6 +261,7 @@ Page{
                         pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
                     }
                 }
+
             }
         }
     }
