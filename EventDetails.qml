@@ -76,6 +76,20 @@ Page {
         }
     }
 
+    function updateContacts(event) {
+        var attendees = event.attendees;
+        contactModel.clear();
+        if( attendees !== undefined ) {
+            for (var j = 0 ; j < attendees.length ; ++j) {
+                var name = attendees[j].name.trim().length === 0 ?
+                                attendees[j].emailAddress.replace("mailto:", ""):
+                                attendees[j].name
+
+                contactModel.append( {"name": name,"participationStatus": attendees[j].participationStatus }  );
+            }
+        }
+    }
+
     function updateReminder(event) {
         var reminder = event.detail( Detail.VisualReminder)
         if(reminder) {
@@ -132,6 +146,8 @@ Page {
         }
 
         updateCollection(e);
+
+        updateContacts(e);
 
         updateRecurrence(e);
 
@@ -330,13 +346,15 @@ Page {
                         right: parent.right
                     }
 
+                    ListModel {
+                        id: contactModel
+                    }
+
                     Repeater{
-                        model: event.attendees
+                        model: contactModel
                         delegate: ListItem.Standard {
                             Label {
-                                text: modelData.name.trim().length === 0 ?
-                                          modelData.emailAddress.replace("mailto:", ""):
-                                          modelData.name
+                                text: name
                                 objectName: "eventGuest%1".arg(index)
                                 color: UbuntuColors.midAubergine
                                 anchors {
