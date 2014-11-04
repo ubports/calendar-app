@@ -84,7 +84,7 @@ Column {
                 width: parent.width
                 height: units.gu(5)
                 sourceComponent: {
-                    if( type == ViewType.ViewTypeWeek ) {
+                    if( root.type == ViewType.ViewTypeWeek ) {
                         weekHeaderComponent
                     } else {
                         dayHeaderComponent
@@ -104,7 +104,7 @@ Column {
                 width: parent.width
                 height: units.gu(5)
                 sourceComponent: {
-                    if( type == ViewType.ViewTypeWeek ) {
+                    if( root.type == ViewType.ViewTypeWeek ) {
                         weekAllDayComponent
                     } else {
                         dayAllDayComponent
@@ -202,6 +202,7 @@ Column {
             width: parent.width
             height: parent.height
             startDay: root.startDay
+            type: ViewType.ViewTypeDay
 
             onDateSelected: {
                 root.dateSelected(date);
