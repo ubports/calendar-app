@@ -43,7 +43,7 @@ Item {
         var currentTime = new Date();
         scrollHour = currentTime.getHours();
 
-        timeLineView.contentY = scrollHour * units.gu(10);
+        timeLineView.contentY = scrollHour * units.gu(8);
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
@@ -61,7 +61,7 @@ Item {
 
         onScrollDown:{
             scrollHour++;
-            var visibleHour = root.height / units.gu(10);
+            var visibleHour = root.height / units.gu(8);
             if( scrollHour > (25 -visibleHour)) {
                 scrollHour = 25 - visibleHour;
             }
@@ -70,7 +70,7 @@ Item {
     }
 
     function scrollToHour() {
-        timeLineView.contentY = scrollHour * units.gu(10);
+        timeLineView.contentY = scrollHour * units.gu(8);
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
@@ -108,7 +108,7 @@ Item {
     Flickable {
         id: timeLineView
 
-        contentHeight: units.gu(10) * 24
+        contentHeight: units.gu(8) * 24
         contentWidth: width
         anchors.fill: parent
 

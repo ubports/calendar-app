@@ -21,34 +21,16 @@ import Ubuntu.Components 1.1
 
 Column {
     width: parent.width
-
     Repeater {
         model: 24 // hour in a day
-
-        delegate: Rectangle {
+        delegate: Item {
             width: parent.width
-            height: units.gu(10)
-            color: (index % 2 == 0) ? "#F5F5F5" : "#ECECEC"
+            height: units.gu(8)
 
-            Label {
-                id: timeLabel
-                width: (parent.width / 7) - units.gu(1)
-                wrapMode: Text.WordWrap
-
-                text: {
-                    var locale = Qt.locale()                    
-                    return new Date(0, 0, 0, index).toLocaleTimeString
-                            (locale, locale.timeFormat(Locale.NarrowFormat))
-                }
-
-                anchors {
-                    left: parent.left
-                    leftMargin: units.gu(0.5)
-                    verticalCenter: parent.verticalCenter
-                }
-
-                color: UbuntuColors.lightGrey
-                fontSize: "small"
+            Rectangle{
+                 height: units.gu(0.1)
+                 width: parent.width
+                 color: "#e5e2e2"
             }
         }
     }
