@@ -21,6 +21,7 @@ import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
+
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
@@ -39,11 +40,13 @@ Item {
     //visible hour
     property int scrollHour;
 
+    signal dateSelected(var date);
+
     function scrollToCurrentTime() {
         var currentTime = new Date();
         scrollHour = currentTime.getHours();
 
-        timeLineView.contentY = scrollHour * units.gu(10);
+        timeLineView.contentY = scrollHour * units.gu(8);
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
@@ -54,14 +57,14 @@ Item {
         onScrollUp:{
             scrollHour--;
             if( scrollHour < 0) {
-                scrollHour =0;
+                scrollHour = 0;
             }
             scrollToHour();
         }
 
         onScrollDown:{
             scrollHour++;
-            var visibleHour = root.height / units.gu(10);
+            var visibleHour = root.height / units.gu(8);
             if( scrollHour > (25 -visibleHour)) {
                 scrollHour = 25 - visibleHour;
             }
@@ -70,7 +73,7 @@ Item {
     }
 
     function scrollToHour() {
-        timeLineView.contentY = scrollHour * units.gu(10);
+        timeLineView.contentY = scrollHour * units.gu(8);
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
@@ -91,94 +94,133 @@ Item {
         z:2
     }
 
-    AllDayEventComponent {
-        id: allDayContainer
-        type: root.type
-        startDay: root.startDay
-        model: mainModel
-        z:1
-        Component.onCompleted: {
-            mainModel.addModelChangeListener(createAllDayEvents);
-        }
-        Component.onDestruction: {
-            mainModel.removeModelChangeListener(createAllDayEvents);
-        }
-    }
-
-    Flickable {
-        id: timeLineView
-
-        contentHeight: units.gu(10) * 24
-        contentWidth: width
+    Column {
         anchors.fill: parent
 
-        clip: true
+        TimeLineHeader{
+            id: header
+            startDay: root.startDay
+            weekHeaderScrollX: timeLineView.contentX
+            type: root.type
 
-        TimeLineBackground {}
+            onDateSelected: {
+                root.dateSelected(date);
+            }
+        }
+
+        Rectangle{
+            height: units.gu(0.1)
+            width: parent.width
+            color: "#e5e2e2"
+        }
 
         Row {
-            id: week
+            width: parent.width
+            height: parent.height - header.height
 
-            anchors {
-                fill: parent
-                leftMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
-                                                          : units.gu(6)
-
-                rightMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
-                                                           : units.gu(3)
+            TimeLineTimeScale{
+                contentY: timeLineView.contentY
             }
 
-            Repeater {
-                model: type == ViewType.ViewTypeWeek ? 7 : 1
+            Rectangle{
+                width: units.gu(0.1)
+                height: parent.height
+                color: "#e5e2e2"
+            }
 
-                delegate: TimeLineBase {
-                    property int idx: index
-                    anchors.top: parent.top
-                    width: {
-                        if( type == ViewType.ViewTypeWeek ) {
-                            parent.width / 7
-                        } else {
-                            (parent.width)
-                        }
+            Flickable {
+                id: timeLineView
+
+                height: parent.height
+                width: parent.width - units.gu(6)
+
+                boundsBehavior: Flickable.StopAtBounds
+
+                property int delegateWidth: {
+                    if( type == ViewType.ViewTypeWeek ) {
+                        width/3 - units.gu(1) /*partial visible area*/
+                    } else {
+                        width
                     }
+                }
 
-                    height: parent.height
-                    delegate: comp
-                    day: startDay.addDays(index)
-                    model: mainModel
-
-                    Loader{
-                        objectName: "weekdevider"
-                        height: parent.height
-                        width: units.gu(0.15)
-                        sourceComponent: type == ViewType.ViewTypeWeek ? weekDeviderComponent : undefined
+                contentHeight: units.gu(8) * 24
+                contentWidth: {
+                    if( type == ViewType.ViewTypeWeek ) {
+                        delegateWidth*7
+                    } else {
+                        width
                     }
+                }
 
-                    Component {
-                        id: weekDeviderComponent
-                        Rectangle{
-                            anchors.fill: parent
-                            color: "#e5e2e2"
-                        }
-                    }
+                clip: true
 
-                    Connections{
-                        target: mainModel
-                        onStartPeriodChanged:{
-                            destroyAllChildren();
+                TimeLineBackground{}
+
+                Row {
+                    id: week
+                    anchors.fill: parent
+                    Repeater {
+                        model: type == ViewType.ViewTypeWeek ? 7 : 1
+
+                        delegate: TimeLineBase {
+                            property int idx: index
+                            anchors.top: parent.top
+                            width: {
+                                if( type == ViewType.ViewTypeWeek ) {
+                                    parent.width / 7
+                                } else {
+                                    (parent.width)
+                                }
+                            }
+                            height: parent.height
+                            delegate: comp
+                            day: startDay.addDays(index)
+
+                            Loader{
+                                objectName: "weekdevider"
+                                height: parent.height
+                                width: units.gu(0.15)
+                                sourceComponent: type == ViewType.ViewTypeWeek ? weekDeviderComponent : undefined
+                            }
+
+                            Component {
+                                id: weekDeviderComponent
+                                Rectangle{
+                                    anchors.fill: parent
+                                    color: "#e5e2e2"
+                                }
+                            }
+
+                            Connections{
+                                target: mainModel
+                                onStartPeriodChanged:{
+                                    destroyAllChildren();
+                                }
+                            }
+
+                            model: mainModel
+                            Component.onCompleted: {
+                                model.addModelChangeListener(destroyAllChildren);
+                                model.addModelChangeListener(createEvents);
+                            }
+                            Component.onDestruction: {
+                                model.removeModelChangeListener(destroyAllChildren);
+                                model.removeModelChangeListener(createEvents);
+                            }
                         }
                     }
                 }
             }
-        }
-    }
 
-    Component {
-        id: comp
-        EventBubble {
-            type: root.type == ViewType.ViewTypeWeek ? narrowType : wideType
-            flickable: root.isActive ? timeLineView : null
-            clip: true
+            Component {
+                id: comp
+                EventBubble {
+                    type: root.type == ViewType.ViewTypeWeek ? narrowType : wideType
+                    flickable: root.isActive ? timeLineView : null
+                    clip: true
+                }
+            }
         }
     }
 }

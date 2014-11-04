@@ -62,98 +62,82 @@ Page{
         }
     }
 
-    Column {
+    PathViewBase{
+        id: weekViewPath
+        objectName: "weekViewPath"
+
         anchors.fill: parent
-        anchors.topMargin: units.gu(1)
-        spacing: units.gu(1)
 
-        TimeLineHeader{
-            id: weekHeader
-            objectName: "weekHeader"
-            type: ViewType.ViewTypeWeek
-            date: firstDay
+        //This is used to scroll all view together when currentItem scrolls
+        property var childContentY;
 
-            onDateSelected: {
-                weekViewPage.dateSelected(date);
-            }
+        onNextItemHighlighted: {
+            nextWeek();
         }
 
-        PathViewBase{
-            id: weekViewPath
-            objectName: "weekViewPath"
+        onPreviousItemHighlighted: {
+            previousWeek();
+        }
 
+        function nextWeek() {
+            dayStart = firstDay.addDays(7);
+        }
+
+        function previousWeek(){
+            dayStart = firstDay.addDays(-7);
+        }
+
+        delegate: Loader {
             width: parent.width
-            height: weekViewPage.height - weekViewPath.y
+            height: parent.height
+            asynchronous: !weekViewPath.isCurrentItem
+            sourceComponent: delegateComponent
 
-            //This is used to scroll all view together when currentItem scrolls
-            property var childContentY;
+            Component{
+                id: delegateComponent
 
-            onNextItemHighlighted: {
-                nextWeek();
-                weekHeader.incrementCurrentIndex()
-            }
+                TimeLineBaseComponent {
+                    id: timeLineView
 
-            onPreviousItemHighlighted: {
-                previousWeek();
-                weekHeader.decrementCurrentIndex()
-            }
+                    type: ViewType.ViewTypeWeek
+                    anchors.fill: parent
+                    isActive: parent.PathView.isCurrentItem
+                    startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
+                    keyboardEventProvider: weekViewPath
 
-            function nextWeek() {
-                dayStart = firstDay.addDays(7);
-            }
+                    Component.onCompleted: {
+                        if(weekViewPage.isCurrentPage){
+                            timeLineView.scrollToCurrentTime();
+                        }
+                    }
 
-            function previousWeek(){
-                dayStart = firstDay.addDays(-7);
-            }
+                    onDateSelected: {
+                        weekViewPage.dateSelected(date);
+                    }
 
-            delegate: Loader {
-                width: parent.width
-                height: parent.height
-                asynchronous: index !== weekViewPath.currentIndex
-                sourceComponent: delegateComponent
-
-                Component{
-                    id: delegateComponent
-
-                    TimeLineBaseComponent {
-                        id: timeLineView
-
-                        type: ViewType.ViewTypeWeek
-                        anchors.fill: parent
-                        isActive: parent.PathView.isCurrentItem
-                        startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
-                        keyboardEventProvider: weekViewPath
-
-                        Component.onCompleted: {
+                    Connections{
+                        target: weekViewPage
+                        onIsCurrentPageChanged:{
                             if(weekViewPage.isCurrentPage){
                                 timeLineView.scrollToCurrentTime();
                             }
                         }
+                    }
 
-                        Connections{
-                            target: weekViewPage
-                            onIsCurrentPageChanged:{
-                                if(weekViewPage.isCurrentPage){
-                                    timeLineView.scrollToCurrentTime();
-                                }
-                            }
-                        }
+                    //get contentY value from PathView, if its not current Item
+                    Binding{
+                        target: timeLineView
+                        property: "contentY"
+                        value: weekViewPath.childContentY;
+                        when: !parent.PathView.isCurrentItem
+                    }
 
-                        //get contentY value from PathView, if its not current Item
-                        Binding{
-                            target: timeLineView
-                            property: "contentY"
-                            value: weekViewPath.childContentY;
-                            when: !parent.PathView.isCurrentItem
-                        }
-
-                        //set PathView's contentY property, if its current item
-                        Binding{
-                            target: weekViewPath
-                            property: "childContentY"
-                            value: contentY
-                            when: parent.PathView.isCurrentItem
-                        }
+                    //set PathView's contentY property, if its current item
+                    Binding{
+                        target: weekViewPath
+                        property: "childContentY"
+                        value: contentY
+                        when: parent.PathView.isCurrentItem
                     }
                 }
             }

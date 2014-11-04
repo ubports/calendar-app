@@ -18,6 +18,7 @@
 
 import QtQuick 2.3
 import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
@@ -60,115 +61,76 @@ Page{
         }
     }
 
-    Column {
+    PathViewBase{
+        id: dayViewPath
+        objectName: "dayViewPath"
+
+        property var startDay: currentDay
+        //This is used to scroll all view together when currentItem scrolls
+        property var childContentY;
+
         anchors.fill: parent
-        anchors.topMargin: units.gu(1)
-        spacing: units.gu(1)
 
-        TimeLineHeader{
-            id: dayHeader
-            objectName: "dayHeader"
-            type: ViewType.ViewTypeDay
-            currentDay: dayViewPage.currentDay
-
-            onDateSelected: {
-                dayViewPage.currentDay = date;
-                dayViewPage.dateSelected(date);
-            }
-
-            onCurrentDayChanged: {
-                date = dayViewPage.currentDay.weekStart(Qt.locale().firstDayOfWeek);
-            }
-
-            function nextDay() {
-                if(currentDay >= date.addDays(7)) {
-                    date = dayViewPage.currentDay.weekStart(Qt.locale().firstDayOfWeek);
-                    dayHeader.incrementCurrentIndex();
-                }
-            }
-
-            function previousDay() {
-                if( currentDay < date) {
-                    date = dayViewPage.currentDay.weekStart(Qt.locale().firstDayOfWeek);
-                    dayHeader.decrementCurrentIndex();
-                }
-            }
+        onNextItemHighlighted: {
+            //next day
+            currentDay = currentDay.addDays(1);
         }
 
-        PathViewBase{
-            id: dayViewPath
-            objectName: "dayViewPath"
+        onPreviousItemHighlighted: {
+            //previous day
+            currentDay = currentDay.addDays(-1);
+        }
 
-            property var startDay: currentDay
-            //This is used to scroll all view together when currentItem scrolls
-            property var childContentY;
-
+        delegate: Loader {
             width: parent.width
-            height: dayViewPage.height - dayViewPath.y
+            height: parent.height
+            asynchronous: !dayViewPath.isCurrentItem
+            sourceComponent: delegateComponent
 
-            onNextItemHighlighted: {
-                //next day
-                currentDay = currentDay.addDays(1);
-                dayHeader.nextDay();
-            }
+            Component {
+                id: delegateComponent
 
-            onPreviousItemHighlighted: {
-                //previous day
-                currentDay = currentDay.addDays(-1);
-                dayHeader.previousDay();
-            }
+                TimeLineBaseComponent {
+                    id: timeLineView
+                    objectName: "DayComponent-"+index
 
-            delegate: Loader {
-                width: parent.width
-                height: parent.height
-                asynchronous: index !== dayViewPath.currentIndex
-                sourceComponent: delegateComponent
+                    type: ViewType.ViewTypeDay
+                    anchors.fill: parent
 
-                Component {
-                    id: delegateComponent
+                    isActive: parent.PathView.isCurrentItem
+                    contentInteractive: parent.PathView.isCurrentItem
+                    startDay: dayViewPath.startDay.addDays(dayViewPath.indexType(index))
+                    keyboardEventProvider: dayViewPath
 
-                    TimeLineBaseComponent {
-                        id: timeLineView
-                        objectName: "DayComponent-"+index
+                    Component.onCompleted: {
+                        if(dayViewPage.isCurrentPage){
+                            timeLineView.scrollToCurrentTime();
+                        }
+                    }
 
-                        type: ViewType.ViewTypeDay
-                        anchors.fill: parent
-
-                        isActive: parent.PathView.isCurrentItem
-                        contentInteractive: parent.PathView.isCurrentItem
-                        startDay: dayViewPath.startDay.addDays(dayViewPath.indexType(index))
-                        keyboardEventProvider: dayViewPath
-
-                        Component.onCompleted: {
+                    Connections{
+                        target: dayViewPage
+                        onIsCurrentPageChanged:{
                             if(dayViewPage.isCurrentPage){
                                 timeLineView.scrollToCurrentTime();
                             }
                         }
+                    }
 
-                        Connections{
-                            target: dayViewPage
-                            onIsCurrentPageChanged:{
-                                if(dayViewPage.isCurrentPage){
-                                    timeLineView.scrollToCurrentTime();
-                                }
-                            }
-                        }
+                    //get contentY value from PathView, if its not current Item
+                    Binding{
+                        target: timeLineView
+                        property: "contentY"
+                        value: dayViewPath.childContentY;
+                        when: !parent.PathView.isCurrentItem
+                    }
 
-                        //get contentY value from PathView, if its not current Item
-                        Binding{
-                            target: timeLineView
-                            property: "contentY"
-                            value: dayViewPath.childContentY;
-                            when: !parent.PathView.isCurrentItem
-                        }
-
-                        //set PathView's contentY property, if its current item
-                        Binding{
-                            target: dayViewPath
-                            property: "childContentY"
-                            value: contentY
-                            when: parent.PathView.isCurrentItem
-                        }
+                    //set PathView's contentY property, if its current item
+                    Binding{
+                        target: dayViewPath
+                        property: "childContentY"
+                        value: contentY
+                        when: parent.PathView.isCurrentItem
                     }
                 }
             }

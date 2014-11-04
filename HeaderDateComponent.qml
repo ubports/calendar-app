@@ -49,6 +49,7 @@ Item {
             id: dayLabel
             objectName: "dayLabel"
             text: Qt.locale().standaloneDayName(date.getDay(), dayFormat)
+            font.bold: true
         }
 
         Label{
