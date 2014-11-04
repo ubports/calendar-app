@@ -106,41 +106,55 @@ Page{
                 dayStart = firstDay.addDays(-7);
             }
 
-            delegate: TimeLineBaseComponent {
-                id: timeLineView
-
-                type: ViewType.ViewTypeWeek
-
+            delegate: Loader {
                 width: parent.width
                 height: parent.height
+                asynchronous: !weekViewPath.isCurrentItem
+                sourceComponent: delegateComponent
 
-                isActive: timeLineView.PathView.isCurrentItem
+                Component{
+                    id: delegateComponent
 
-                startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
+                    TimeLineBaseComponent {
+                        id: timeLineView
 
-                Connections{
-                    target: weekViewPage
-                    onIsCurrentPageChanged:{
-                        if(weekViewPage.isCurrentPage){
-                            timeLineView.scrollToCurrentTime();
+                        type: ViewType.ViewTypeWeek
+                        anchors.fill: parent
+                        isActive: parent.PathView.isCurrentItem
+                        startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
+                        keyboardEventProvider: weekViewPath
+
+                        Component.onCompleted: {
+                            if(weekViewPage.isCurrentPage){
+                                timeLineView.scrollToCurrentTime();
+                            }
+                        }
+
+                        Connections{
+                            target: weekViewPage
+                            onIsCurrentPageChanged:{
+                                if(weekViewPage.isCurrentPage){
+                                    timeLineView.scrollToCurrentTime();
+                                }
+                            }
+                        }
+
+                        //get contentY value from PathView, if its not current Item
+                        Binding{
+                            target: timeLineView
+                            property: "contentY"
+                            value: weekViewPath.childContentY;
+                            when: !parent.PathView.isCurrentItem
+                        }
+
+                        //set PathView's contentY property, if its current item
+                        Binding{
+                            target: weekViewPath
+                            property: "childContentY"
+                            value: contentY
+                            when: parent.PathView.isCurrentItem
                         }
                     }
-                }
-
-                //get contentY value from PathView, if its not current Item
-                Binding{
-                    target: timeLineView
-                    property: "contentY"
-                    value: weekViewPath.childContentY;
-                    when: !timeLineView.PathView.isCurrentItem
-                }
-
-                //set PathView's contentY property, if its current item
-                Binding{
-                    target: weekViewPath
-                    property: "childContentY"
-                    value: contentY
-                    when: timeLineView.PathView.isCurrentItem
                 }
             }
         }

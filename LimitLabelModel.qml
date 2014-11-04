@@ -16,9 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.3;
-import Ubuntu.Components 1.1;
-QtObject {
-    property var limitLabel:[i18n.tr("Never"),i18n.tr("After X Occurrence"),
-        i18n.tr("After Date")];
 
+ListModel {
+    id:limitLables
+    Component.onCompleted: initialise()
+
+    function initialise() {
+        limitLables.append({ "label": i18n.tr("Never") })
+        limitLables.append({ "label": i18n.tr("After X Occurrence") })
+        limitLables.append({ "label": i18n.tr("After Date") })
+    }
 }
