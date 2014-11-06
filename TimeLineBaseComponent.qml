@@ -151,6 +151,7 @@ Item {
                         height: parent.height
                         delegate: comp
                         day: startDay.addDays(index)
+                        model: mainModel
 
                         Loader{
                             objectName: "weekdevider"
@@ -172,16 +173,6 @@ Item {
                             onStartPeriodChanged:{
                                 destroyAllChildren();
                             }
-                        }
-
-                        model: mainModel
-                        Component.onCompleted: {
-                            model.addModelChangeListener(destroyAllChildren);
-                            model.addModelChangeListener(createEvents);
-                        }
-                        Component.onDestruction: {
-                            model.removeModelChangeListener(destroyAllChildren);
-                            model.removeModelChangeListener(createEvents);
                         }
                     }
                 }
