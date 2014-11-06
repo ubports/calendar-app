@@ -27,6 +27,17 @@ Item {
     property int hourHeight: units.gu(10)
     property var model;
 
+    Component.onCompleted: {
+        bubbleOverLay.createEvents();
+        model.addModelChangeListener(destroyAllChildren);
+        model.addModelChangeListener(createEvents);
+    }
+
+    Component.onDestruction: {
+        model.removeModelChangeListener(destroyAllChildren);
+        model.removeModelChangeListener(createEvents);
+    }
+
     MouseArea {
         anchors.fill: parent
         objectName: "mouseArea"
