@@ -81,7 +81,11 @@ Page {
         contactModel.clear();
         if( attendees !== undefined ) {
             for (var j = 0 ; j < attendees.length ; ++j) {
-                contactModel.append( {"name": attendees[j].name,"participationStatus": attendees[j].participationStatus }  );
+                var name = attendees[j].name.trim().length === 0 ?
+                                attendees[j].emailAddress.replace("mailto:", ""):
+                                attendees[j].name
+
+                contactModel.append( {"name": name,"participationStatus": attendees[j].participationStatus }  );
             }
         }
     }

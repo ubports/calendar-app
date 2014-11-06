@@ -33,6 +33,13 @@ Item {
 
     width: parent.width
 
+    anchors {
+        left :parent.left
+        right: parent.right
+        leftMargin: type == ViewType.ViewTypeDay ? units.gu(6) : 0
+        rightMargin: type == ViewType.ViewTypeDay ? units.gu(3): 0
+    }
+
     function getAllDayEvents(startDate, endDate) {
         var map = {};
         var items = model.getItems(startDate,endDate);
@@ -111,8 +118,8 @@ Item {
                         text =  i18n.tr("%1 ev.").arg(events.length)
                     } else {
                         if( events.length > 1) {
-                           // TRANSLATORS: the argument refers to the number of all day events
-                           text = i18n.tr("%1 all day event", "%1 all day events", events.length).arg(events.length)
+                            // TRANSLATORS: the argument refers to the number of all day events
+                            text = i18n.tr("%1 all day event", "%1 all day events", events.length).arg(events.length)
                         } else {
                             text = events[0].displayLabel;
                         }
