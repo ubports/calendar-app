@@ -18,7 +18,6 @@
 
 import QtQuick 2.3
 import Ubuntu.Components 1.1
-import Ubuntu.SyncMonitor 0.1
 
 Item {
     id: actionPool
