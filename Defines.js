@@ -20,7 +20,6 @@
 .import QtOrganizer 5.0 as QtPim
 
 var recurrenceLabel = getRecurrenceLabels();
-var limitLabel = getLimitLabels();
 var weekLabel = getWeekLabels();
 // It contains multiple weekly entries to handle following occurence
 //1.Every Weekday (Monday to Friday
@@ -41,11 +40,7 @@ function getRecurrenceLabels() {
     var object = component.createObject(Qt.application);
     return object.recurrenceLabel;
 }
-function getLimitLabels(){
-    var component = Qt.createComponent(Qt.resolvedUrl("LimitLabelDefines.qml"));
-    var object = component.createObject(Qt.application);
-    return object.limitLabel;
-}
+
 function getWeekLabels(){
     var object = Qt.createQmlObject('\
         import QtQuick 2.3;\

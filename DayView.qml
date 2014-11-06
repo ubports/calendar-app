@@ -118,42 +118,58 @@ Page{
                 dayHeader.previousDay();
             }
 
-            delegate: TimeLineBaseComponent {
-                id: timeLineView
-                objectName: "DayComponent-"+index
-
-                type: ViewType.ViewTypeDay
-
+            delegate: Loader {
                 width: parent.width
                 height: parent.height
+                asynchronous: !dayViewPath.isCurrentItem
+                sourceComponent: delegateComponent
 
-                isActive: timeLineView.PathView.isCurrentItem
-                contentInteractive: timeLineView.PathView.isCurrentItem
-                startDay: dayViewPath.startDay.addDays(dayViewPath.indexType(index))
+                Component {
+                    id: delegateComponent
 
-                Connections{
-                    target: dayViewPage
-                    onIsCurrentPageChanged:{
-                        if(dayViewPage.isCurrentPage){
-                            timeLineView.scrollToCurrentTime();
+                    TimeLineBaseComponent {
+                        id: timeLineView
+                        objectName: "DayComponent-"+index
+
+                        type: ViewType.ViewTypeDay
+                        anchors.fill: parent
+
+                        isActive: parent.PathView.isCurrentItem
+                        contentInteractive: parent.PathView.isCurrentItem
+                        startDay: dayViewPath.startDay.addDays(dayViewPath.indexType(index))
+                        keyboardEventProvider: dayViewPath
+
+                        Component.onCompleted: {
+                            if(dayViewPage.isCurrentPage){
+                                timeLineView.scrollToCurrentTime();
+                            }
+                        }
+
+                        Connections{
+                            target: dayViewPage
+                            onIsCurrentPageChanged:{
+                                if(dayViewPage.isCurrentPage){
+                                    timeLineView.scrollToCurrentTime();
+                                }
+                            }
+                        }
+
+                        //get contentY value from PathView, if its not current Item
+                        Binding{
+                            target: timeLineView
+                            property: "contentY"
+                            value: dayViewPath.childContentY;
+                            when: !parent.PathView.isCurrentItem
+                        }
+
+                        //set PathView's contentY property, if its current item
+                        Binding{
+                            target: dayViewPath
+                            property: "childContentY"
+                            value: contentY
+                            when: parent.PathView.isCurrentItem
                         }
                     }
-                }
-
-                //get contentY value from PathView, if its not current Item
-                Binding{
-                    target: timeLineView
-                    property: "contentY"
-                    value: dayViewPath.childContentY;
-                    when: !timeLineView.PathView.isCurrentItem
-                }
-
-                //set PathView's contentY property, if its current item
-                Binding{
-                    target: dayViewPath
-                    property: "childContentY"
-                    value: contentY
-                    when: timeLineView.PathView.isCurrentItem
                 }
             }
         }

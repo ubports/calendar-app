@@ -18,7 +18,7 @@
 
 import QtQuick 2.3
 import Ubuntu.Components 1.1
-
+import QtOrganizer 5.0
 
 Item{
     id: infoBubble
@@ -61,9 +61,38 @@ Item{
 
     onEventChanged: {
         resize();
+        assingnBgColor();
+    }
+
+    function assingnBgColor() {
         if (model && event ) {
             var collection = model.collection( event.collectionId );
-            bg.color = collection.color
+            var now = new Date();
+            if( event.endDateTime >= now) {
+                if( getOwnersStatus(collection) === EventAttendee.StatusDeclined ) {
+                    //if owner of account is not attending event the dim it
+                    bg.color = Qt.tint( collection.color, "#aaffffff" );
+                } else {
+                    bg.color = collection.color
+                }
+            } else {
+                //if event is on past then add some white color to original color
+                bg.color = Qt.tint( collection.color, "#aaffffff" );
+            }
+        }
+    }
+
+    function getOwnersStatus(collection) {
+        var attendees = event.attendees;
+        if( attendees !== undefined ) {
+            for (var j = 0 ; j < attendees.length ; ++j) {
+                var contact = attendees[j];
+                //mail to is appended on email address so remove it
+                var email = contact.emailAddress.replace("mailto:", "");
+                if( email === collection.name) {
+                    return contact.participationStatus;
+                }
+            }
         }
     }
 
@@ -93,9 +122,6 @@ Item{
 
             id: detailsItems
             property alias timeLabelHeight : timeLabel.height
-            property alias timeLableText: timeLabel.text
-            property alias titleLabelText: titleLabel.text
-            property alias descriptionText: descriptionLabel.text
 
             width: parent.width
             height: detailsColumn.height
@@ -168,9 +194,9 @@ Item{
                 var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
 
                 if (type === wideType) {
-                    timeLableText= ""
-                    titleLabelText = ""
-                    descriptionText.text = ""
+                    timeLabel.text = ""
+                    titleLabel.text = ""
+                    descriptionLabel.text = ""
                     //height is less then set only event title
                     if( infoBubble.height > minimumHeight ) {
                         //on wide type show all details
@@ -178,26 +204,26 @@ Item{
                             // TRANSLATORS: the first argument (%1) refers to a start time for an event,
                             // while the second one (%2) refers to the end time
                             var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
-                            timeLableText = timeString
-                            titleLabelText = event.displayLabel
+                            timeLabel.text = timeString
+                            titleLabel.text = event.displayLabel
                         } else if ( event.displayLabel ) {
                             // TRANSLATORS: the first argument (%1) refers to a start time for an event,
                             // while the second one (%2) refers to title of event
-                            timeLableText = i18n.tr("%1 - %2").arg(startTime).arg(event.displayLabel);
+                            timeLabel.text = i18n.tr("%1 - %2").arg(startTime).arg(event.displayLabel);
                         }
 
                         if (event.description) {
-                            descriptionText = event.description
+                            descriptionLabel.text = event.description
                             //descriptionText = event.description
                             //If content is too much don't display.
                             if (infoBubble.height < descriptionLabel.y + descriptionLabel.height + units.gu(1)) {
-                                descriptionText = ""
+                                descriptionLabel.text = ""
                             }
                         }
 
                         layoutBubbleDetails();
                     } else if (event.displayLabel){
-                        eventDetails.item.timeLableText = event.displayLabel;
+                        timeLabel.text = event.displayLabel;
                     }
                 }
             }
