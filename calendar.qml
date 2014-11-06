@@ -453,10 +453,6 @@ MainView {
                     objectName: "agendaViewLoader"
                     source: tabs.selectedTab == agendaTab ? Qt.resolvedUrl("AgendaView.qml"):""
 
-                    onLoaded: {
-                        item.currentDay = tabs.currentDay;
-                    }
-
                     anchors{
                         left: parent.left
                         right: parent.right
