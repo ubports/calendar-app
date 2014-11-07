@@ -96,9 +96,6 @@ MainView {
     footerColor: "#ECECEC"
     anchorToKeyboard: true
 
-    SyncMonitor {
-        id: syncMonitor
-    }
 
     PageStack {
         id: pageStack
