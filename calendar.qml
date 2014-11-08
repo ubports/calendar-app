@@ -19,7 +19,6 @@ import QtQuick 2.3
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
-import Ubuntu.SyncMonitor 0.1
 
 import "dateExt.js" as DateExt
 
