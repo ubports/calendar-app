@@ -169,12 +169,25 @@ Item {
     function createEvent( event, depth, sizeOfRow ) {
         var eventBubble;
         if( isHashEmpty(intern.unUsedEvents) ) {
-            eventBubble = delegate.createObject(bubbleOverLay);
-            eventBubble.objectName = children.length;
+            var incubator = delegate.incubateObject(bubbleOverLay);
+            if (incubator.status !== Component.Ready) {
+                incubator.onStatusChanged = function(status) {
+                    if (status === Component.Ready) {
+                        incubator.object.objectName = children.length;
+                        assignBubbleProperties(incubator.object, event, depth, sizeOfRow);
+                    }
+                }
+            } else {
+                incubator.object.objectName = children.length;
+                assignBubbleProperties(incubator.object, event, depth, sizeOfRow);
+            }
         } else {
             eventBubble = getUnusedEventBubble();
+            assignBubbleProperties(eventBubble, event, depth, sizeOfRow);
         }
+    }
 
+    function assignBubbleProperties(eventBubble, event, depth, sizeOfRow) {
         var hour = event.startDateTime.getHours();
         var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
         eventBubble.y = yPos;
