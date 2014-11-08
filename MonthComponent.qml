@@ -68,10 +68,10 @@ Item{
         EventListModel {
             id: mainModel
             startPeriod: intern.monthStart.midnight();
-            endPeriod: intern.monthStart.addDays((/*monthGrid.weekCount*/ 6 * 7)-1).endOfDay()
+            endPeriod: intern.monthStart.addDays((/*monthGrid.rows * cols */ 42 )-1).endOfDay()
             filter: eventModel.filter
             onModelChanged: {
-                intern.eventStatus = Qt.binding(function() { return mainModel.containsItems(startPeriod,endPeriod,24*60*60)});
+                intern.eventStatus = Qt.binding(function() { return mainModel.containsItems(startPeriod, endPeriod, 86400/*24*60*60*/)});
             }
         }
     }
@@ -108,6 +108,9 @@ Item{
         property bool isCurMonthTodayMonth: todayYear === curMonthYear && todayMonth == curMonth
         //offset from current month's first date to start date of current month
         property int offset: isCurMonthStartMonth ? -1 : (daysInStartMonth - monthStartDate)
+
+        property int dateFontSize: FontUtils.sizeToPixels(root.dateLabelFontSize)
+        property int dayFontSize: FontUtils.sizeToPixels(root.dayLabelFontSize)
     }
 
     Column{
@@ -139,6 +142,9 @@ Item{
 
             Row{
                 id: dayLabelRow
+
+                property int dayWidth: width / 7;
+
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
@@ -155,20 +161,18 @@ Item{
             id: monthGrid
             objectName: "monthGrid"
 
-            property int weekCount : 6
-
             width: parent.width
             height: parent.height - monthGrid.y
 
-            property int dayWidth: width / 7;
-            property int dayHeight: height / weekCount
+            property int dayWidth: width / 7 /*cols*/;
+            property int dayHeight: height / 6/*rows*/;
 
-            rows: weekCount
+            rows: 6
             columns: 7
 
             Repeater{
                 id: dateLabelRepeater
-                model: monthGrid.rows * monthGrid.columns
+                model: 42 //monthGrid.rows * monthGrid.columns
                 delegate: defaultDateLabelComponent
             }
         }
@@ -207,6 +211,7 @@ Item{
 
             width: parent.dayWidth
             height: parent.dayHeight
+            fontSize: intern.dateFontSize
             showEvent : showEvents
                         && intern.eventStatus !== undefined
                         && intern.eventStatus[index] !== undefined
@@ -219,11 +224,11 @@ Item{
 
         Label{
             id: weekDay
-            width: parent.width / 7
+            width: parent.dayWidth
             property var day :Qt.locale().standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat)
             text: isYearView ? day.charAt(0) : day;
             horizontalAlignment: Text.AlignHCenter
-            fontSize: root.dayLabelFontSize
+            font.pixelSize: intern.dayFontSize
             color: "white"
         }
     }
