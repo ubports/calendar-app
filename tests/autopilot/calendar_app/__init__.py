@@ -592,7 +592,7 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return self.select_single(NewEventEntryField, objectName=object_name)
 
     def _get_text_box(self, object_name):
-        return self.select_single(
+        return self.wait_select_single(
             ubuntuuitoolkit.TextField, objectName=object_name)
 
     def _ensure_visible_and_write(self, text_field, value):

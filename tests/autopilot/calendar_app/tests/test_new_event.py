@@ -128,7 +128,8 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         edited_event = self._edit_event(original_event.name)
         self.addCleanup(self._try_delete_event, edited_event.name)
 
-        event_details_page = self.app.main_view.get_event_details()
+        day_view = self.app.main_view.get_day_view()
+        event_details_page = day_view.open_event(edited_event.name)
 
         self.assertEqual(edited_event,
                          event_details_page.get_event_information())
