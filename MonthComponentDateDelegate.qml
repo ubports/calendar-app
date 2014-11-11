@@ -8,12 +8,15 @@ Item{
     property bool isCurrentMonth;
     property bool isToday;
     property bool showEvent;
+    property alias fontSize: dateLabel.font.pixelSize
 
     Loader {
-        width: parent.width < parent.height ? parent.width : parent.height
-        height: width
-        anchors.centerIn: columns
         sourceComponent: isToday && isCurrentMonth ? highLightComp : undefined
+        onSourceComponentChanged: {
+            width =  Qt.binding( function() { return parent.width < parent.height ? parent.width : parent.height } );
+            height = Qt.binding ( function() { return width} );
+            anchors.centerIn = Qt.binding( function() { return parent});
+        }
     }
 
     Column {
@@ -24,7 +27,6 @@ Item{
         Label {
             id: dateLabel
             text: date
-            //horizontalAlignment: Text.AlignHCenter
             anchors.horizontalCenter: parent.horizontalCenter
             fontSize: root.dateLabelFontSize
             color: {
@@ -41,10 +43,12 @@ Item{
         }
 
         Loader{
-            width: units.gu(1)
-            height: width
             sourceComponent: showEvent ? eventIndicatorComp : undefined
-            anchors.horizontalCenter: dateLabel.horizontalCenter
+            onSourceComponentChanged: {
+                width = Qt.binding( function() { return units.gu(1) } );
+                height = Qt.binding( function() { return width } );
+                anchors.horizontalCenter =  Qt.binding( function () { return parent.horizontalCenter } );
+            }
         }
     }
 
