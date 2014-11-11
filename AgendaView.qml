@@ -120,8 +120,7 @@ Page{
         anchors.fill: parent
         visible: eventListModel.itemCount > 0
 
-        delegate:listDelegate
-
+        delegate: listDelegate
     }
 
     Scrollbar{
@@ -148,13 +147,13 @@ Page{
                     return;
                 }
 
-                headerList.visible = false;
+                headerContainer.visible = false;
                 if( index == 0 ) {
-                    headerList.visible = true;
+                    headerContainer.visible = true;
                 } else {
                     var prevEvent = eventListModel.items[index-1];
                     if( prevEvent.startDateTime.midnight() < event.startDateTime.midnight()) {
-                        headerList.visible = true;
+                        headerContainer.visible = true;
                     }
                 }
 
@@ -169,7 +168,7 @@ Page{
                 header.text = date
                 timeLabel.text = timeString
                 header.color = event.startDateTime.toLocaleDateString() === new Date().toLocaleDateString() ? UbuntuColors.orange : UbuntuColors.darkGrey
-                calendarColorCode.color = eventListModel.collection(event.collectionId).color
+                detailsContainer.color = eventListModel.collection(event.collectionId).color
 
                 if( event.displayLabel) {
                     titleLabel.text = event.displayLabel;
@@ -182,86 +181,79 @@ Page{
                 width: parent.width
                 anchors.top: parent.top
 
-                ListItem.Header{
-                    id:headerList
+                //Not using ListItem.Header because of bug #1380766
+                ListItem.Standard{
+                    id: headerContainer
+
+                    height: visible ? header.height + units.gu(1) : 0
+                    width: parent.width
+
                     Label{
-                        id:header
+                        id: header
+                        fontSize: "medium"
+                        width: parent.width
+                        elide: Text.ElideRight
                         anchors {
                             left: parent.left
-                            leftMargin : units.gu(1)
+                            leftMargin: units.gu(1)
                             verticalCenter: parent.verticalCenter
-                        }
-                    }
-
-                    states: [
-                        State {
-                            name: "headerDateClicked"
-                            when:testClick.pressed
-                            PropertyChanges {
-                                target: header
-                                color :  header.color == UbuntuColors.orange
-                                         ? UbuntuColors.darkGrey
-                                         : UbuntuColors.orange
-                            }
-                        }
-                    ]
-
-                    MouseArea{
-                        id:testClick
-                        anchors.fill: parent
-                        onClicked: {
-                            dateSelected(event.startDateTime);
-                        }
-                    }
-
-                }
-
-                ListItem.Standard {
-                    id:eventDetails
-                    showDivider: false
-                    Rectangle {
-                        id: calendarColorCode
-
-                        width: parent.height- units.gu(2)
-                        height: width
-
-                        anchors {
-                            left: parent.left
-                            leftMargin: units.gu(2)
-                            verticalCenter: parent.verticalCenter
-                        }
-                    }
-                    Column{
-                        id: detailsColumn
-
-                        anchors {
-                            top: parent.top
-                            left: calendarColorCode.right
-                            right: parent.right
-                            margins: units.gu(1)
-                        }
-
-                        Label{
-                            id: timeLabel
-                            font.bold: true
-                            fontSize: "small"
-                            width: parent.width
-                        }
-
-                        Label{
-                            id: titleLabel
-                            fontSize: "small"
-                            width: parent.width
-                            maximumLineCount: 2
-                            elide: Text.ElideRight
-                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                         }
                     }
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
+                        dateSelected(event.startDateTime);
+                    }
+                    showDivider: false
+                }
+                ListItem.ThinDivider {}
+
+                Rectangle{
+                    id: detailsContainer
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                    }
+
+                    height: detailsColumn.height + units.gu(1)
+
+                    ListItem.Standard{
+
+
+                        showDivider:false
+                        Column{
+                            id: detailsColumn
+
+                            anchors {
+                                top: parent.top
+                                left: parent.left
+                                right: parent.right
+                                margins: units.gu(0.5)
+                            }
+
+                            Label{
+                                id: timeLabel
+                                color:"White"
+                                font.bold: true
+                                fontSize: "small"
+                                width: parent.width
+                            }
+
+                            Label{
+                                id: titleLabel
+
+                                color:"White"
+                                fontSize: "small"
+                                width: parent.width
+                                maximumLineCount: 2
+                                elide: Text.ElideRight
+                                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                            }
+                        }
+                        onClicked: {
+                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
+                        }
                     }
                 }
-
             }
         }
     }
