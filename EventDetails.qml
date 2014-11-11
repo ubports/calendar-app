@@ -156,13 +156,25 @@ Page {
         updateLocation(e);
     }
 
+    function showEditEventPage(event, model) {
+        if(event.itemId === "qtorganizer:::") {
+            //Can not edit event without proper itemid
+            return;
+        }
+
+        pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event": event, "model":model});
+        pageStack.currentPage.eventAdded.connect( function(event){
+            pageStack.pop();
+        })
+    }
+
     Keys.onEscapePressed: {
         pageStack.pop();
     }
 
     Keys.onPressed: {
         if ((event.key === Qt.Key_E) && ( event.modifiers & Qt.ControlModifier)) {
-            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event": root.event});
+            showEditEventPage(event, model);
         }
     }
 
@@ -189,13 +201,13 @@ Page {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
                     dialog.editEvent.connect( function(eventId){
                         if( eventId === event.parentId ) {
-                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":internal.parentEvent,"model":model});
-                        } else {
-                            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                            showEditEventPage(internal.parentEvent, model)
+                        } else {                            
+                            showEditEventPage(event, model)
                         }
                     });
                 } else {
-                    pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event":event,"model":model});
+                    showEditEventPage(event, model)
                 }
             }
         }

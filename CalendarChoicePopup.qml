@@ -20,6 +20,7 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import QtOrganizer 5.0
+import Ubuntu.SyncMonitor 0.1
 
 Page {
     id: root
@@ -43,28 +44,48 @@ Page {
     }
 
     head.actions:  Action {
-        iconName: "contact-group"
-        objectName: "contactGroup"
-        text: i18n.tr("Accounts")
-        onTriggered: {
-            Qt.openUrlExternally("settings:///online-accounts")
-        }
+        objectName: "syncbutton"
+        iconName: "reload"
+        // TRANSLATORS: Please translate this string  to 15 characters only.
+        // Currently ,there is no way we can increase width of action menu currently.
+        text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
+        onTriggered: syncMonitor.sync(["calendar"])
+        enabled: (syncMonitor.state !== "syncing")
+        visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
+    }
+
+    SyncMonitor {
+        id: syncMonitor
     }
 
     ListView {
         id: calendarsList
-
         anchors.fill: parent
+        footer: Item {
+            id: footer
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: aadCalendar.width
+            Button {
+                id:aadCalendar
+                text: i18n.tr("Add new Calendar")
+                anchors.top :parent.top
+                anchors.topMargin:units.gu(2)
+                color: UbuntuColors.green
+                onClicked: {
+                    Qt.openUrlExternally("settings:///online-accounts")
+                }
 
+            }
+        }
         model : root.model.getCollections();
         delegate: ListItem.Standard {
             id: delegateComp
 
-            UbuntuShape {
+            Rectangle {
                 id: calendarColorCode
 
-                width: parent.height
-                height: width - units.gu(2)
+                width: parent.height - units.gu(2)
+                height: width
 
                 anchors {
                     left: parent.left
@@ -112,7 +133,9 @@ Page {
                     root.model.saveCollection(collection);
                 }
             }
+
         }
     }
+
 }
 

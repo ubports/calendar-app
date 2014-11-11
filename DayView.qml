@@ -121,7 +121,7 @@ Page{
             delegate: Loader {
                 width: parent.width
                 height: parent.height
-                asynchronous: !dayViewPath.isCurrentItem
+                asynchronous: index !== dayViewPath.currentIndex
                 sourceComponent: delegateComponent
 
                 Component {

@@ -109,7 +109,7 @@ Page{
             delegate: Loader {
                 width: parent.width
                 height: parent.height
-                asynchronous: !weekViewPath.isCurrentItem
+                asynchronous: index !== weekViewPath.currentIndex
                 sourceComponent: delegateComponent
 
                 Component{

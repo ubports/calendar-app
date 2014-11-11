@@ -24,7 +24,6 @@ Item {
 
     property alias newEventAction: _newEventAction
     property alias showCalendarAction: _showCalendarAction
-    property alias reloadAction: _reloadAction
 
     Action {
         id: _newEventAction
@@ -44,17 +43,5 @@ Item {
             pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
             pageStack.currentPage.collectionUpdated.connect(eventModel.delayedApplyFilter);
         }
-    }
-
-    Action {
-        id: _reloadAction
-        objectName: "syncbutton"
-        iconName: "reload"
-	// TRANSLATORS: Please translate this string  to 15 characters only.
-	// Currently ,there is no way we can increase width of action menu currently.
-        text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
-        onTriggered: syncMonitor.sync(["calendar"])
-        enabled: (syncMonitor.state !== "syncing")
-        visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
     }
 }

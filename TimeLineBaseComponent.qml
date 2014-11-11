@@ -105,83 +105,67 @@ Item {
         }
     }
 
-    ColumnLayout {
+    Flickable {
+        id: timeLineView
+
+        contentHeight: units.gu(10) * 24
+        contentWidth: width
         anchors.fill: parent
 
-        Flickable {
-            id: timeLineView
+        clip: true
 
-            Layout.fillHeight: true
+        TimeLineBackground {}
 
-            contentHeight: units.gu(10) * 24
-            contentWidth: width
-            anchors.right: parent.right
-            anchors.left: parent.left
+        Row {
+            id: week
 
-            clip: true
+            anchors {
+                fill: parent
+                leftMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
+                                                          : units.gu(6)
 
-            TimeLineBackground {}
+                rightMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
+                                                           : units.gu(3)
+            }
 
-            Row {
-                id: week
+            Repeater {
+                model: type == ViewType.ViewTypeWeek ? 7 : 1
 
-                anchors {
-                    fill: parent
-                    leftMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
-                                                              : units.gu(6)
-
-                    rightMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
-                                                              : units.gu(3)
-                }
-
-                Repeater {
-                    model: type == ViewType.ViewTypeWeek ? 7 : 1
-
-                    delegate: TimeLineBase {
-                        property int idx: index
-                        anchors.top: parent.top
-                        width: {
-                            if( type == ViewType.ViewTypeWeek ) {
-                                parent.width / 7
-                            } else {
-                                (parent.width)
-                            }
+                delegate: TimeLineBase {
+                    property int idx: index
+                    anchors.top: parent.top
+                    width: {
+                        if( type == ViewType.ViewTypeWeek ) {
+                            parent.width / 7
+                        } else {
+                            (parent.width)
                         }
+                    }
 
+                    height: parent.height
+                    delegate: comp
+                    day: startDay.addDays(index)
+                    model: mainModel
+
+                    Loader{
+                        objectName: "weekdevider"
                         height: parent.height
-                        delegate: comp
-                        day: startDay.addDays(index)
+                        width: units.gu(0.15)
+                        sourceComponent: type == ViewType.ViewTypeWeek ? weekDeviderComponent : undefined
+                    }
 
-                        Loader{
-                            objectName: "weekdevider"
-                            height: parent.height
-                            width: units.gu(0.15)
-                            sourceComponent: type == ViewType.ViewTypeWeek ? weekDeviderComponent : undefined
+                    Component {
+                        id: weekDeviderComponent
+                        Rectangle{
+                            anchors.fill: parent
+                            color: "#e5e2e2"
                         }
+                    }
 
-                        Component {
-                            id: weekDeviderComponent
-                            Rectangle{
-                                anchors.fill: parent
-                                color: "#e5e2e2"
-                            }
-                        }
-
-                        Connections{
-                            target: mainModel
-                            onStartPeriodChanged:{
-                                destroyAllChildren();
-                            }
-                        }
-
-                        model: mainModel
-                        Component.onCompleted: {
-                            model.addModelChangeListener(destroyAllChildren);
-                            model.addModelChangeListener(createEvents);
-                        }
-                        Component.onDestruction: {
-                            model.removeModelChangeListener(destroyAllChildren);
-                            model.removeModelChangeListener(createEvents);
+                    Connections{
+                        target: mainModel
+                        onStartPeriodChanged:{
+                            destroyAllChildren();
                         }
                     }
                 }
