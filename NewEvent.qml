@@ -377,6 +377,7 @@ Page {
                 text: i18n.tr("All day event")
                 showDivider: false
                 control: CheckBox {
+                    objectName: "allDayEventCheckbox"
                     id: allDayEventCheckbox
                     checked: false
                 }
