@@ -24,7 +24,7 @@ Item {
 
     property var delegate;
     property var day;
-    property int hourHeight: units.gu(10)
+    property int hourHeight: units.gu(8)
     property var model;
 
     Component.onCompleted: {

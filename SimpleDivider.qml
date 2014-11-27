@@ -16,18 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.3
-import Ubuntu.Components 1.1
+import QtQuick 2.0
 
-Column {
-    width: parent.width
-    Repeater {
-        model: 24 // hour in a day
-        delegate: Item {
-            width: parent.width
-            height: units.gu(8)
-
-            SimpleDivider{}
-        }
-    }
+Rectangle{
+     height: units.gu(0.1)
+     width: parent.width
+     color: "#e5e2e2"
 }
