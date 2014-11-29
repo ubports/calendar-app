@@ -108,6 +108,7 @@ Page{
                     Component.onCompleted: {
                         if(weekViewPage.isCurrentPage){
                             timeLineView.scrollToCurrentTime();
+                            timeLineView.scrollTocurrentDate();
                         }
                     }
 
@@ -120,6 +121,7 @@ Page{
                         onIsCurrentPageChanged:{
                             if(weekViewPage.isCurrentPage){
                                 timeLineView.scrollToCurrentTime();
+                                timeLineView.scrollTocurrentDate();
                             }
                         }
                     }
