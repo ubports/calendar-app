@@ -41,9 +41,10 @@ Item{
 
     signal clicked(var event);
 
-    UbuntuShape{
+    Rectangle{
         id: bg
         anchors.fill: parent
+        border.color: "white"
     }
 
     function resize() {

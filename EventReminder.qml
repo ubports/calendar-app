@@ -49,58 +49,41 @@ Page{
             pop();
         }
     }
-
+    Scrollbar{
+        id:scrollList
+        flickableItem: _pageFlickable
+        anchors.fill :parent
+    }
     Flickable {
         id: _pageFlickable
 
+
         clip: true
         anchors.fill: parent
-        contentHeight: reminderModel.count * units.gu(7)
-
-        Column {
-            id: _reminderColumn
-
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
+        contentHeight: _reminders.itemHeight * reminderModel.count + units.gu(2)
+        ListItem.ItemSelector {
+            id: _reminders
+            expanded: true
+            model: reminderModel
+            delegate: selectorDelegate
+            selectedIndex: reminderModel.get
+            onSelectedIndexChanged: {
+                root.reminderTime = reminderModel.get(selectedIndex).value
             }
 
-            Repeater {
-                id: _reminders
-
-                model: reminderModel
-
-                ListItem.Standard {
-                    id: _reminderDelegate
-
-                    property alias isChecked: reminderCheckbox.checked
-
-                    text: label
-                    control: CheckBox {
-                        id: reminderCheckbox
-
-                        checked: root.reminderTime === value
-
-                        onClicked: {
-                            root.reminderTime = value
-                            if (checked) {
-                                // Ensures only one reminder option is selected
-                                for(var i=0; i<reminderModel.count; i++) {
-                                    if(_reminders.itemAt(i).isChecked &&
-                                            i !== index) {
-                                        _reminders.itemAt(i).isChecked = false
-                                    }
-                                }
-                            }
-
-                            else {
-                                checked = !checked
-                            }
-                        }
+            Component.onCompleted: {
+                for(var i=0; i<reminderModel.count; i++) {
+                    if (root.reminderTime === reminderModel.get(i).value){
+                        _reminders.selectedIndex = i
+                        return;
                     }
                 }
             }
         }
+        Component {
+            id: selectorDelegate
+            OptionSelectorDelegate { text: label; }
+        }
+
     }
 }

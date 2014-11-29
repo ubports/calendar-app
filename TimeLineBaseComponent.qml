@@ -108,11 +108,7 @@ Item {
             }
         }
 
-        Rectangle{
-            height: units.gu(0.1)
-            width: parent.width
-            color: "#e5e2e2"
-        }
+        SimpleDivider{}
 
         Row {
             width: parent.width
@@ -122,10 +118,9 @@ Item {
                 contentY: timeLineView.contentY
             }
 
-            Rectangle{
+            SimpleDivider{
                 width: units.gu(0.1)
                 height: parent.height
-                color: "#e5e2e2"
             }
 
             Flickable {

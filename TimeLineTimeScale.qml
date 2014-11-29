@@ -54,11 +54,7 @@ Flickable{
                     fontSize: "small"
                 }
 
-                Rectangle{
-                     height: units.gu(0.1)
-                     width: parent.width
-                     color: "#e5e2e2"
-                }
+                SimpleDivider{}
             }
         }
     }
