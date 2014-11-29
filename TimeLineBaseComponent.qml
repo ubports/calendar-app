@@ -65,6 +65,8 @@ Item {
             if( timeLineView.contentX  > (timeLineView.contentWidth - timeLineView.width) ) {
                 timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
             }
+        } else {
+            timeLineView.contentX = 0;
         }
     }
 

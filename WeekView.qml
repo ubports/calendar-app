@@ -112,6 +112,10 @@ Page{
                         }
                     }
 
+                    onIsActiveChanged: {
+                        timeLineView.scrollTocurrentDate();
+                    }
+
                     onDateSelected: {
                         weekViewPage.dateSelected(date);
                     }
