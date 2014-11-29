@@ -81,17 +81,13 @@ class TestWeekView(CalendarAppTestCase):
         return sorteddays
 
     def _get_date_label_headers(self):
-        #get the pathview first
         pathView = self.week_view.select_single("PathViewBase")
-        #select time line base component
         timeLineBase = pathView.select_single("TimeLineBaseComponent",
-                                                    isActive=True)
-        #select viewHeader from timelinebasecomponent
+                                              isActive=True)
         viewHeader = timeLineBase.select_single(objectName="viewHeader")
-        #select timelineHeader
         timeLineHeader = viewHeader.select_single(objectName="timelineHeader")
-        #select dateLabel
-        dateLabels = timeLineHeader.select_many("Label", objectName="dateLabel")
+        dateLabels = timeLineHeader.select_many("Label",
+                                                objectName="dateLabel")
         return dateLabels
 
     def _get_first_day_of_week(self):
