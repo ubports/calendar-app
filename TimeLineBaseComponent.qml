@@ -30,7 +30,7 @@ Item {
 
     property var keyboardEventProvider;
 
-    property var startDay: DateExt.today();
+    property date startDay: DateExt.today();
     property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive

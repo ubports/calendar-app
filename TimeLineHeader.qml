@@ -23,7 +23,7 @@ import QtQuick.Layouts 1.1
 import "ViewType.js" as ViewType
 
 Column {
-    id: root
+    id: headerRoot
 
     property int type: ViewType.ViewTypeWeek
     property date startDay;
@@ -65,7 +65,10 @@ Column {
             }
         }
 
-        SimpleDivider{}
+        SimpleDivider{
+            width: units.gu(0.1);
+            height: parent.height
+        }
 
         Loader{
             id: headerLoader
@@ -88,9 +91,22 @@ Column {
         Column{
             anchors.fill: parent
 
+            TimeLineHeaderComponent{
+                width: parent.width
+                height: units.gu(5)
+                startDay: headerRoot.startDay
+                type: ViewType.ViewTypeDay
+
+                onDateSelected: {
+                    headerRoot.dateSelected(date);
+                }
+            }
+
+            SimpleDivider{}
+
             AllDayEventComponent {
-                type: root.type
-                startDay: root.startDay
+                type: ViewType.ViewTypeDay
+                startDay: headerRoot.startDay
                 model: mainModel
                 width: parent.width
                 height: units.gu(5)
@@ -102,19 +118,6 @@ Column {
                     mainModel.removeModelChangeListener(createAllDayEvents);
                 }
             }
-
-            SimpleDivider{}
-
-            TimeLineHeaderComponent{
-                width: parent.width
-                height: units.gu(5)
-                startDay: root.startDay
-                type: ViewType.ViewTypeDay
-
-                onDateSelected: {
-                    root.dateSelected(date);
-                }
-            }
         }
     }
 
@@ -122,20 +125,10 @@ Column {
         id: weekHeaderComponent
 
         Flickable{
-            width: parent.width
-            height: parent.height
+            anchors.fill: parent
             clip: true
-            contentX: root.contentX
+            contentX: headerRoot.contentX
             interactive: false
-
-
-            Connections{
-                target: root
-                onContentXChanged:{
-                    contentX = root.contentX;
-                    print(contentX + " ,, " + root.contentX);
-                }
-            }
 
             property int delegateWidth: {
                 width/3 - units.gu(1) /*partial visible area*/
@@ -150,7 +143,8 @@ Column {
                 height: parent.height
 
                 TimeLineHeaderComponent{
-                    startDay: root.startDay
+                    startDay: headerRoot.startDay
+                    type: ViewType.ViewTypeWeek
                     width: parent.width
                     height: units.gu(5)
 
@@ -162,8 +156,8 @@ Column {
                 SimpleDivider{}
 
                 AllDayEventComponent {
-                    type: root.type
-                    startDay: root.startDay
+                    type: ViewType.ViewTypeWeek
+                    startDay: headerRoot.startDay
                     width: parent.width
                     height: units.gu(5)
                     model: mainModel

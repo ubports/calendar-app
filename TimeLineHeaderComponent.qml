@@ -39,20 +39,21 @@ Row{
         model: type == ViewType.ViewTypeWeek ? 7 : 1
 
         delegate: HeaderDateComponent{
-            date: startDay.addDays(index);
+            date: type == ViewType.ViewTypeWeek ? startDay.addDays(index) : startDay
             dayFormat: Locale.ShortFormat
 
             dayColor: {
                 if( type == ViewType.ViewTypeWeek && date.isSameDay(DateExt.today())){
                     UbuntuColors.orange
-                } else if( type == ViewType.ViewTypeDay && date.isSameDay(currentDay) ) {
+                } /*else if( type == ViewType.ViewTypeDay && date.isSameDay(currentDay) ) {
                     UbuntuColors.orange
-                } else {
+                } */ else {
                     UbuntuColors.darkGrey
                 }
             }
 
             width: type == ViewType.ViewTypeWeek ? ( header.width/7) : header.width
+            height: header.height
 
             onDateSelected: {
                 header.dateSelected(date);
@@ -61,7 +62,7 @@ Row{
             Loader{
                 objectName: "divider"
                 height: parent.height
-                width: units.gu(0.15)
+                width: units.gu(0.1)
                 sourceComponent: type == ViewType.ViewTypeWeek ? dividerComponent : undefined
             }
 
