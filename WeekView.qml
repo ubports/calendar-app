@@ -88,6 +88,7 @@ Page{
         }
 
         delegate: Loader {
+            id: timelineLoader
             width: parent.width
             height: parent.height
             asynchronous: !weekViewPath.isCurrentItem
@@ -118,6 +119,14 @@ Page{
 
                     onDateSelected: {
                         weekViewPage.dateSelected(date);
+                    }
+
+                    Connections{
+                        target: calendarTodayAction
+                        onTriggered:{
+                            if( isActive )
+                                timeLineView.scrollTocurrentDate();
+                        }
                     }
 
                     Connections{
