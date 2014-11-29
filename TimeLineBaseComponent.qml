@@ -100,7 +100,7 @@ Item {
         TimeLineHeader{
             id: header
             startDay: root.startDay
-            weekHeaderScrollX: timeLineView.contentX
+            contentX: timeLineView.contentX
             type: root.type
 
             onDateSelected: {
@@ -171,19 +171,28 @@ Item {
                             height: parent.height
                             delegate: comp
                             day: startDay.addDays(index)
+                            model: mainModel
+
+                            Component.onCompleted: {
+                                model.addModelChangeListener(destroyAllChildren);
+                                model.addModelChangeListener(createEvents);
+                            }
+                            Component.onDestruction: {
+                                model.removeModelChangeListener(destroyAllChildren);
+                                model.removeModelChangeListener(createEvents);
+                            }
 
                             Loader{
                                 objectName: "weekdevider"
                                 height: parent.height
                                 width: units.gu(0.15)
-                                sourceComponent: type == ViewType.ViewTypeWeek ? weekDeviderComponent : undefined
+                                sourceComponent: type == ViewType.ViewTypeWeek ? weekDividerComponent : undefined
                             }
 
                             Component {
-                                id: weekDeviderComponent
-                                Rectangle{
+                                id: weekDividerComponent
+                                SimpleDivider{
                                     anchors.fill: parent
-                                    color: "#e5e2e2"
                                 }
                             }
 
@@ -193,29 +202,19 @@ Item {
                                     destroyAllChildren();
                                 }
                             }
-
-                            model: mainModel
-                            Component.onCompleted: {
-                                model.addModelChangeListener(destroyAllChildren);
-                                model.addModelChangeListener(createEvents);
-                            }
-                            Component.onDestruction: {
-                                model.removeModelChangeListener(destroyAllChildren);
-                                model.removeModelChangeListener(createEvents);
-                            }
                         }
                     }
                 }
             }
+        }
+    }
 
-            Component {
-                id: comp
-                EventBubble {
-                    type: root.type == ViewType.ViewTypeWeek ? narrowType : wideType
-                    flickable: root.isActive ? timeLineView : null
-                    clip: true
-                }
-            }
+    Component {
+        id: comp
+        EventBubble {
+            type: root.type == ViewType.ViewTypeWeek ? narrowType : wideType
+            flickable: root.isActive ? timeLineView : null
+            clip: true
         }
     }
 }

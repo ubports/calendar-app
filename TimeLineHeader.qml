@@ -27,7 +27,7 @@ Column {
 
     property int type: ViewType.ViewTypeWeek
     property date startDay;
-    property int weekHeaderScrollX;
+    property double contentX;
 
     signal dateSelected(var date);
 
@@ -52,15 +52,11 @@ Column {
                 horizontalAlignment: Text.AlignHCenter
             }
 
-            Rectangle{
-                height: units.gu(0.1)
-                width: parent.width
-                color: "#e5e2e2"
-            }
+            SimpleDivider{}
 
             Label {
                 height: units.gu(5)
-                text:i18n.tr("All Day");
+                text: i18n.tr("All Day");
                 fontSize: "small"
                 width: parent.width
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -69,73 +65,35 @@ Column {
             }
         }
 
-        Rectangle{
-            width: units.gu(0.2)
-            height: parent.height
-            color: "#e5e2e2"
-        }
+        SimpleDivider{}
 
-        Column{
+        Loader{
+            id: headerLoader
             width: parent.width - labelColumn.width
             height: parent.height
 
-            Loader{
-                id: headerloader
-                width: parent.width
-                height: units.gu(5)
-                sourceComponent: {
-                    if( root.type == ViewType.ViewTypeWeek ) {
-                        weekHeaderComponent
-                    } else {
-                        dayHeaderComponent
-                    }
-                }
-            }
-
-
-            Rectangle{
-                height: units.gu(0.1)
-                width: parent.width
-                color: "#e5e2e2"
-            }
-
-            Loader{
-                id: allDayLoader
-                width: parent.width
-                height: units.gu(5)
-                sourceComponent: {
-                    if( root.type == ViewType.ViewTypeWeek ) {
-                        weekAllDayComponent
-                    } else {
-                        dayAllDayComponent
-                    }
+            sourceComponent: {
+                if( root.type == ViewType.ViewTypeWeek ) {
+                    weekHeaderComponent
+                } else {
+                    dayHeaderComponent
                 }
             }
         }
     }
 
-    Component {
-        id: weekAllDayComponent
-        Flickable{
-            id: weekAllDay
+    Component{
+        id: dayHeaderComponent
 
-            width: parent.width
-            height: parent.height
-            clip: true
-            contentX: root.weekHeaderScrollX
-
-            property int delegateWidth: {
-                width/3 - units.gu(1) /*partial visible area*/
-            }
-            contentHeight: height
-            contentWidth: {
-                (delegateWidth*7)
-            }
+        Column{
+            anchors.fill: parent
 
             AllDayEventComponent {
                 type: root.type
                 startDay: root.startDay
                 model: mainModel
+                width: parent.width
+                height: units.gu(5)
 
                 Component.onCompleted: {
                     mainModel.addModelChangeListener(createAllDayEvents);
@@ -144,37 +102,40 @@ Column {
                     mainModel.removeModelChangeListener(createAllDayEvents);
                 }
             }
-        }
-    }
 
-    Component {
-        id: dayAllDayComponent
+            SimpleDivider{}
 
-        AllDayEventComponent {
-            type: root.type
-            startDay: root.startDay
-            model: mainModel
-            width: parent.width
-            height: parent.height
+            TimeLineHeaderComponent{
+                width: parent.width
+                height: units.gu(5)
+                startDay: root.startDay
+                type: ViewType.ViewTypeDay
 
-            Component.onCompleted: {
-                mainModel.addModelChangeListener(createAllDayEvents);
-            }
-            Component.onDestruction: {
-                mainModel.removeModelChangeListener(createAllDayEvents);
+                onDateSelected: {
+                    root.dateSelected(date);
+                }
             }
         }
     }
 
-    Component {
+    Component{
         id: weekHeaderComponent
-        Flickable{
-            id: weekDateHeader
 
+        Flickable{
             width: parent.width
             height: parent.height
             clip: true
-            contentX: root.weekHeaderScrollX
+            contentX: root.contentX
+            interactive: false
+
+
+            Connections{
+                target: root
+                onContentXChanged:{
+                    contentX = root.contentX;
+                    print(contentX + " ,, " + root.contentX);
+                }
+            }
 
             property int delegateWidth: {
                 width/3 - units.gu(1) /*partial visible area*/
@@ -184,28 +145,36 @@ Column {
                 (delegateWidth*7)
             }
 
-            TimeLineHeaderComponent{
-                id: dateHeader
-                startDay: root.startDay
+            Column{
+                width: parent.width
+                height: parent.height
 
-                onDateSelected: {
-                    root.dateSelected(date);
+                TimeLineHeaderComponent{
+                    startDay: root.startDay
+                    width: parent.width
+                    height: units.gu(5)
+
+                    onDateSelected: {
+                        root.dateSelected(date);
+                    }
                 }
-            }
-        }
-    }
 
-    Component {
-        id: dayHeaderComponent
-        TimeLineHeaderComponent{
-            id: dateHeader
-            width: parent.width
-            height: parent.height
-            startDay: root.startDay
-            type: ViewType.ViewTypeDay
+                SimpleDivider{}
 
-            onDateSelected: {
-                root.dateSelected(date);
+                AllDayEventComponent {
+                    type: root.type
+                    startDay: root.startDay
+                    width: parent.width
+                    height: units.gu(5)
+                    model: mainModel
+
+                    Component.onCompleted: {
+                        mainModel.addModelChangeListener(createAllDayEvents);
+                    }
+                    Component.onDestruction: {
+                        mainModel.removeModelChangeListener(createAllDayEvents);
+                    }
+                }
             }
         }
     }

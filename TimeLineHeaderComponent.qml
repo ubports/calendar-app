@@ -67,9 +67,8 @@ Row{
 
             Component {
                 id: dividerComponent
-                Rectangle{
+                SimpleDivider{
                     anchors.fill: parent
-                    color: "#e5e2e2"
                 }
             }
         }
