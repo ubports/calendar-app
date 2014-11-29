@@ -347,7 +347,7 @@ class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     def get_current_month_name(self):
         month = self.get_current_month()
-        return month.select_single('Label', objectName='monthLabel').text
+        return month.currentMonth.datetime.strftime("%B")
 
 
 class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
