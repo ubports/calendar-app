@@ -143,7 +143,8 @@ Column {
                 height: parent.height
 
                 TimeLineHeaderComponent{
-                    startDay: headerRoot.startDay
+                    objectName: "timelineHeader"
+                    startDay: headerRoot.startDay 
                     type: ViewType.ViewTypeWeek
                     width: parent.width
                     height: units.gu(5)

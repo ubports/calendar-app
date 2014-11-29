@@ -99,6 +99,7 @@ Item {
 
         TimeLineHeader{
             id: header
+            objectName: "viewHeader"
             startDay: root.startDay
             contentX: timeLineView.contentX
             type: root.type
