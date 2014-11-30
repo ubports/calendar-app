@@ -633,7 +633,7 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     def _get_calendar(self):
         return self.wait_select_single(ubuntuuitoolkit.OptionSelector,
-            objectName="calendarsOption")
+                                       objectName="calendarsOption")
 
     def _get_guests(self):
         guestlist = self.select_single('QQuickColumn', objectName='guestList')
@@ -660,25 +660,27 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     def get_is_all_day_event(self):
         return self.wait_select_single('CheckBox',
-            objectName='allDayEventCheckbox').checked
+                                       objectName='allDayEventCheckbox'
+                                       ).checked
 
     def get_this_happens(self):
         return self.wait_select_single('Subtitled',
-            objectName='thisHappens').subText
+                                       objectName='thisHappens').subText
 
     def get_reminder(self):
         return self.wait_select_single('Subtitled',
-            objectName='eventReminder').subText
+                                       objectName='eventReminder').subText
 
     def get_start_date(self):
         startDate = self.startDate
         return datetime.datetime(startDate.year, startDate.month,
-            startDate.day, startDate.hour, startDate.minute)
+                                 startDate.day, startDate.hour,
+                                 startDate.minute)
 
     def get_end_date(self):
         endDate = self.endDate
         return datetime.datetime(endDate.year, endDate.month,
-            endDate.day, endDate.hour, endDate.minute)
+                                 endDate.day, endDate.hour, endDate.minute)
 
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and
