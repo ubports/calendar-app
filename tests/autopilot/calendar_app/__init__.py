@@ -19,6 +19,7 @@
 import logging
 from time import sleep
 
+import datetime
 import autopilot.logging
 import ubuntuuitoolkit
 from autopilot import exceptions
@@ -631,8 +632,8 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         self._get_calendar().select_option('Label', text=calendar)
 
     def _get_calendar(self):
-        return self.select_single(ubuntuuitoolkit.OptionSelector,
-                                  objectName="calendarsOption")
+        return self.wait_select_single(ubuntuuitoolkit.OptionSelector,
+                                       objectName="calendarsOption")
 
     def _get_guests(self):
         guestlist = self.select_single('QQuickColumn', objectName='guestList')
@@ -641,6 +642,9 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         for guest in guests:
             guest_names.append(guest.text)
         return guest_names
+
+    def has_guests(self):
+        return len(self._get_guests()) > 0
 
     def get_calendar_name(self):
         return self._get_calendar().get_current_label().text
@@ -653,6 +657,30 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     def get_location_name(self):
         return self._get_text_box('eventLocationInput').text
+
+    def get_is_all_day_event(self):
+        return self.wait_select_single('CheckBox',
+                                       objectName='allDayEventCheckbox'
+                                       ).checked
+
+    def get_this_happens(self):
+        return self.wait_select_single('Subtitled',
+                                       objectName='thisHappens').subText
+
+    def get_reminder(self):
+        return self.wait_select_single('Subtitled',
+                                       objectName='eventReminder').subText
+
+    def get_start_date(self):
+        startDate = self.startDate
+        return datetime.datetime(startDate.year, startDate.month,
+                                 startDate.day, startDate.hour,
+                                 startDate.minute)
+
+    def get_end_date(self):
+        endDate = self.endDate
+        return datetime.datetime(endDate.year, endDate.month,
+                                 endDate.day, endDate.hour, endDate.minute)
 
     def _get_form_values(self):
         # TODO get start date and end date, is all day event, recurrence and

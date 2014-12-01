@@ -19,6 +19,7 @@
 from __future__ import absolute_import
 
 import logging
+import datetime
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
@@ -72,13 +73,24 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
             return False
         return True
 
-    # TODO write helpers to check all of the default values
-    # then expand the asserts to ensure defaults are correct
+    def _expected_start_date(self):
+        now = datetime.datetime.now()
+        now = datetime.datetime(now.year, now.month,
+                                now.day, now.hour, now.minute)
+
+        if now.minute < 30:
+            return datetime.datetime(now.year, now.month,
+                                     now.day, now.hour, 30)
+        else:
+            start_date = datetime.datetime(now.year, now.month,
+                                           now.day, now.hour, 0)
+            return start_date + datetime.timedelta(hours=1)
+
     def test_new_event_must_start_with_default_values(self):
         """Test adding a new event default values
 
            Start Date: today Start Time: next half hour increment
-           End Date: today End Time: 30 mins after start time
+           End Date: today End Time: 1 hour after start time
            Calendar: Personal
            All Day Event: unchecked
            Event Name: blank, selected
@@ -86,7 +98,7 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
            Location: none
            Guests: none
            This happens: Once
-           Remind me: No Reminder
+           Remind me: On Event
         """
 
         new_event_page = self.app.main_view.go_to_new_event()
@@ -94,6 +106,18 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         self.assertThat(new_event_page.get_event_name(), Equals(''))
         self.assertThat(new_event_page.get_description_text(), Equals(''))
         self.assertThat(new_event_page.get_location_name(), Equals(''))
+        self.assertThat(new_event_page.get_is_all_day_event(), Equals(False))
+        self.assertThat(new_event_page.has_guests(), Equals(False))
+        self.assertThat(new_event_page.get_this_happens(), Equals('Once'))
+        self.assertThat(new_event_page.get_reminder(), Equals('On Event'))
+
+        expected_start_date = self._expected_start_date()
+        expected_end_date = expected_start_date + datetime.timedelta(hours=1)
+
+        self.assertThat(new_event_page.get_start_date(),
+                        Equals(expected_start_date))
+        self.assertThat(new_event_page.get_end_date(),
+                        Equals(expected_end_date))
 
     def test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.
