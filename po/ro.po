@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-17 17:41+0200\n"
-"PO-Revision-Date: 2014-11-10 17:24+0000\n"
-"Last-Translator: Meriuță Cornel <meriutacornel@neacornel.eu>\n"
+"PO-Revision-Date: 2014-12-01 18:16+0000\n"
+"Last-Translator: Marian Vasile <marianvasile1972@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2014-12-01 06:27+0000\n"
+"X-Launchpad-Export-Date: 2014-12-02 06:09+0000\n"
 "X-Generator: Launchpad (build 17274)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -57,8 +57,9 @@ msgstr "%1 ev."
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 eveniment în desfășurare pe durata întregii zile"
+msgstr[1] "%1 evenimente în desfășurare pe durata întregii zile"
+msgstr[2] "%1 de evenimente în desfășurare pe durata întregii zile"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -161,7 +162,7 @@ msgstr "Detalii eveniment"
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "Calendar %1"
 
 #. TRANSLATORS: the first parameter refers to number of all day events.
 #: ../EventDetails.qml:112
@@ -214,8 +215,9 @@ msgstr "Dată"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 apariție"
+msgstr[1] "%1; %2 apariții"
+msgstr[2] "%1; %2 de apariții"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
@@ -307,13 +309,13 @@ msgstr "În zilele lucrătoare"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "În zilele de %1, %2 ,%3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "În zilele de %1 și %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -336,7 +338,7 @@ msgstr "Fără memento"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "În momentul evenimentului"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
