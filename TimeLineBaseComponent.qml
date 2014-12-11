@@ -114,7 +114,12 @@ Item {
 
         clip: true
 
-        TimeLineBackground {}
+        Row {
+            width: parent.width
+            height: timeLineView.contentHeight
+            TimeLineTimeScale{ id: timeScale }
+            TimeLineBackground { width: parent.width - x}
+        }
 
         Row {
             id: week
