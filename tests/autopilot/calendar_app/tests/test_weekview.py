@@ -50,7 +50,11 @@ class TestWeekView(CalendarAppTestCase):
         timeLineBase = pathView.select_single("TimeLineBaseComponent",
                                               isActive=True)
         timelineview = timeLineBase.select_single(objectName="timelineview")
-        while timelineview.contentX != 0:
+        val = 0
+        if direction == 1:
+            val = timelineview.contentWidth - timelineview.width
+
+        while timelineview.contentX != val:
             self.app.main_view.swipe_view(direction, self.week_view)
 
         self.app.main_view.swipe_view(direction, self.week_view)
