@@ -214,7 +214,7 @@ class MainView(ubuntuuitoolkit.MainView):
                 sleep(1)
             timeout += 1
 
-    def swipe_view(self, direction, view, x_pad=0.15):
+    def swipe_view(self, direction, view, x_pad=0.20):
         """Swipe the given view to left or right.
 
         Args:
