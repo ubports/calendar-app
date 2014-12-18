@@ -400,7 +400,7 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         for event in event_bubbles:
             # Event-bubbles objects are recycled, only show visible ones.
             temp = "<b>"+event_name+"</b>"
-            print(temp + "-----" + event.get_name());
+            print(temp + "-----" + event.get_name())
             if event.get_name() == temp:
                 if (visible and event.visible) or not visible:
                     matched_event = event
