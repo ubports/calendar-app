@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-17 17:41+0200\n"
-"PO-Revision-Date: 2014-11-12 03:54+0000\n"
+"PO-Revision-Date: 2015-01-15 07:01+0000\n"
 "Last-Translator: Yongmin Hong <revi@fastlizard4.org>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-12-23 07:15+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-16 06:16+0000\n"
+"X-Generator: Launchpad (build 17303)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -153,7 +153,7 @@ msgstr "동기화 중"
 
 #: ../EventDetails.qml:42 ../NewEvent.qml:449
 msgid "Event Details"
-msgstr ""
+msgstr "일정 세부 사항"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
 #: ../EventDetails.qml:66
@@ -169,7 +169,7 @@ msgstr ""
 
 #: ../EventDetails.qml:171
 msgid "Edit"
-msgstr "고치기"
+msgstr "편집"
 
 #: ../EventDetails.qml:322 ../NewEvent.qml:535
 msgid "Guests"
@@ -177,7 +177,7 @@ msgstr "손님"
 
 #: ../EventDetails.qml:365 ../EventReminder.qml:35 ../NewEvent.qml:636
 msgid "Reminder"
-msgstr ""
+msgstr "알림"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -185,11 +185,11 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:41 ../EventRepetition.qml:128
 msgid "Repeat"
-msgstr ""
+msgstr "반복"
 
 #: ../EventRepetition.qml:147
 msgid "Repeats On:"
-msgstr ""
+msgstr "반복:"
 
 #: ../EventRepetition.qml:192
 msgid "Recurring event ends"
@@ -200,7 +200,7 @@ msgstr "반복되는 행사 종료"
 #. its repetition
 #: ../EventRepetition.qml:215 ../NewEvent.qml:617
 msgid "Repeats"
-msgstr ""
+msgstr "반복"
 
 #: ../EventRepetition.qml:240
 msgid "Date"
@@ -235,11 +235,11 @@ msgstr "사용 안 함"
 
 #: ../LimitLabelDefines.qml:21
 msgid "After X Occurrence"
-msgstr ""
+msgstr "X 회 발생 이후"
 
 #: ../LimitLabelDefines.qml:22
 msgid "After Date"
-msgstr ""
+msgstr "날짜 이후"
 
 #: ../NewEvent.qml:59
 msgid "Save"
@@ -255,19 +255,19 @@ msgstr "오류"
 
 #: ../NewEvent.qml:289
 msgid "OK"
-msgstr ""
+msgstr "확인"
 
 #: ../NewEvent.qml:340
 msgid "From"
-msgstr ""
+msgstr "보낸 사람"
 
 #: ../NewEvent.qml:384
 msgid "To"
-msgstr ""
+msgstr "받는 사람"
 
 #: ../NewEvent.qml:434
 msgid "All day event"
-msgstr ""
+msgstr "하루 종일"
 
 #: ../NewEvent.qml:462
 msgid "Event Name"
@@ -287,19 +287,19 @@ msgstr "캘린더"
 
 #: ../NewEvent.qml:539
 msgid "Add Guest"
-msgstr ""
+msgstr "손님 추가"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
-msgstr ""
+msgstr "한 번"
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr ""
+msgstr "날마다"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "주중에"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
@@ -315,15 +315,15 @@ msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
-msgstr ""
+msgstr "주간"
 
 #: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
-msgstr ""
+msgstr "월간"
 
 #: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
-msgstr ""
+msgstr "연간"
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
@@ -338,39 +338,39 @@ msgstr ""
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
-msgstr ""
+msgstr "5분"
 
 #: ../RemindersModel.qml:32
 msgid "15 minutes"
-msgstr ""
+msgstr "15분"
 
 #: ../RemindersModel.qml:33
 msgid "30 minutes"
-msgstr ""
+msgstr "30분"
 
 #: ../RemindersModel.qml:34
 msgid "1 hour"
-msgstr ""
+msgstr "1시간"
 
 #: ../RemindersModel.qml:35
 msgid "2 hours"
-msgstr ""
+msgstr "2시간"
 
 #: ../RemindersModel.qml:36
 msgid "1 day"
-msgstr ""
+msgstr "1일"
 
 #: ../RemindersModel.qml:37
 msgid "2 days"
-msgstr ""
+msgstr "2일"
 
 #: ../RemindersModel.qml:38
 msgid "1 week"
-msgstr ""
+msgstr "1주"
 
 #: ../RemindersModel.qml:39
 msgid "2 weeks"
-msgstr ""
+msgstr "2주"
 
 #: ../calendar.qml:45
 msgid ""
