@@ -13,43 +13,37 @@ Item{
     Loader {
         sourceComponent: isToday && isCurrentMonth ? highLightComp : undefined
         onSourceComponentChanged: {
-            width =  Qt.binding( function() { return parent.width < parent.height ? parent.width : parent.height } );
+            width = Qt.binding( function() { return ( dateRootItem.height / 1.5 ); });
             height = Qt.binding ( function() { return width} );
-            anchors.centerIn = Qt.binding( function() { return parent});
+            anchors.centerIn = Qt.binding( function() { return dateLabel});
         }
     }
 
-    Column {
-        id: columns
+    Label {
+        id: dateLabel
         anchors.centerIn: parent
-        width: parent.width
-        spacing: units.gu(0.5)
-        Label {
-            id: dateLabel
-            text: date
-            anchors.horizontalCenter: parent.horizontalCenter
-            fontSize: root.dateLabelFontSize
-            color: {
-                if( isCurrentMonth ) {
-                    if(isToday) {
-                        "white"
-                    } else {
-                        "#5D5D5D"
-                    }
+        text: date
+        fontSize: root.dateLabelFontSize
+        color: {
+            if( isCurrentMonth ) {
+                if(isToday) {
+                    "white"
                 } else {
-                    "#AEA79F"
+                    "#5D5D5D"
                 }
+            } else {
+                "#AEA79F"
             }
         }
+    }
 
-        Loader{
-            sourceComponent: showEvent ? eventIndicatorComp : undefined
-            onSourceComponentChanged: {
-                width = Qt.binding( function() { return units.gu(1) } );
-                height = Qt.binding( function() { return width } );
-                anchors.horizontalCenter =  Qt.binding( function () { return parent.horizontalCenter } );
-            }
-        }
+    Loader{
+        width: units.gu(1)
+        height: width
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: dateLabel.bottom
+        anchors.topMargin: dateRootItem.height/4
+        sourceComponent: showEvent ? eventIndicatorComp : undefined
     }
 
     Component{
@@ -58,6 +52,13 @@ Item{
             anchors.fill: parent
             radius: height/2
             color:"#5E2750"
+        }
+    }
+
+    Component{
+        id: highLightComp
+        UbuntuShape{
+            color: "#DD4814"
         }
     }
 

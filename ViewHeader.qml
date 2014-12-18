@@ -36,7 +36,7 @@ Item{
         text: Qt.locale().standaloneMonthName(month)
         anchors.leftMargin: units.gu(1)
         anchors.left: parent.left
-        //color:"white"
+        color:"black"
         anchors.verticalCenter: parent.verticalCenter
     }
 
@@ -47,7 +47,7 @@ Item{
         text: year
         anchors.right: parent.right
         anchors.rightMargin: units.gu(1)
-        color:"#AEA79F"
+        color:"black"
         anchors.verticalCenter: parent.verticalCenter
     }
 }
