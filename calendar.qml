@@ -195,7 +195,7 @@ MainView {
             property int starttime: -1;
             property int endtime: -1;
 
-            selectedTabIndex: monthTab.index
+            selectedTabIndex: weekTab.index
 
             function newEvent() {
                 var startDate = new Date();
