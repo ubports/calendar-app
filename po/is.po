@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: po_com.ubuntu.calendar-is\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-17 17:41+0200\n"
-"PO-Revision-Date: 2014-11-13 09:37+0000\n"
+"PO-Revision-Date: 2014-12-02 12:07+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-11-14 06:30+0000\n"
-"X-Generator: Launchpad (build 17241)\n"
+"X-Launchpad-Export-Date: 2014-12-23 07:15+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 "Language: is\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
@@ -107,11 +107,12 @@ msgstr "Eyða atburði"
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
 msgstr ""
+"Eyða einungis atburðinum \"%1\", eða öllum tilvikum atburða í lotunni?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Ertu viss um að þú viljir eyða atburðinum \"%1\"?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -134,6 +135,7 @@ msgstr "Breyta atburði"
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
 msgstr ""
+"Breyta einungis atburðinum \"%1\", eða öllum tilvikum atburða í lotunni?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"

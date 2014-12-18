@@ -65,10 +65,9 @@ GridView{
         Component {
             id: delegateComponent
 
-            UbuntuShape {
+            Item {
                 anchors.fill: parent
                 anchors.margins: units.gu(0.5)
-                radius: "medium"
 
                 MonthComponent {
                     id: monthComponent
@@ -84,7 +83,7 @@ GridView{
                     dayLabelFontSize:"x-small"
                     dateLabelFontSize: "medium"
                     monthLabelFontSize: "medium"
-                    yearLabelFontSize: "small"
+                    yearLabelFontSize: "medium"
 
                     onMonthSelected: {
                         yearViewPage.monthSelected(date);

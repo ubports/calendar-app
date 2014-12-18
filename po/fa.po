@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-17 17:41+0200\n"
-"PO-Revision-Date: 2014-10-17 22:33+0000\n"
-"Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
+"PO-Revision-Date: 2014-12-01 08:45+0000\n"
+"Last-Translator: Arash Badie Modiri <arashbm@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2014-10-18 07:05+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-12-23 07:15+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -242,7 +242,7 @@ msgstr "بعد از تاریخ"
 
 #: ../NewEvent.qml:59
 msgid "Save"
-msgstr "ذخیره‌کردن"
+msgstr "ذخیره"
 
 #: ../NewEvent.qml:164
 msgid "End time can't be before start time"

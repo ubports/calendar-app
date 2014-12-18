@@ -124,21 +124,27 @@ Item{
 
         spacing: units.gu(1.5)
 
-        ViewHeader{
-            id: monthHeader
-            month: intern.curMonth
-            year: intern.curMonthYear
+        Loader {
+            width: parent.width
+            height: isYearView ? FontUtils.sizeToPixels(root.monthLabelFontSize) : 0;
+            sourceComponent: isYearView ? headerComp : undefined
+            Component{
+                id: headerComp
+                ViewHeader{
+                    id: monthHeader
+                    anchors.fill: parent
+                    month: intern.curMonth
+                    year: intern.curMonthYear
 
-            monthLabelFontSize: root.monthLabelFontSize
-            yearLabelFontSize: root.yearLabelFontSize
-            visible: isYearView === true
+                    monthLabelFontSize: root.monthLabelFontSize
+                    yearLabelFontSize: root.yearLabelFontSize
+                }
+            }
         }
 
         Item {
             width: parent.width
             height: dayLabelRow.height + units.gu(1)
-
-            DayHeaderBackground{}
 
             Row{
                 id: dayLabelRow
@@ -229,14 +235,8 @@ Item{
             text: isYearView ? day.charAt(0) : day;
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: intern.dayFontSize
-            color: "white"
-        }
-    }
-
-    Component{
-        id: highLightComp
-        UbuntuShape{
-            color: "#DD4814"
+            font.bold: true
+            color: "black"
         }
     }
 }
