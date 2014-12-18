@@ -46,6 +46,7 @@ class TestWeekView(CalendarAppTestCase):
         # prevent timing issues with swiping
         old_day = self.app.main_view.to_local_date(
             self.week_view.dayStart.datetime)
+
         pathView = self.week_view.select_single("PathViewBase")
         timeLineBase = pathView.select_single("TimeLineBaseComponent",
                                               isActive=True)
