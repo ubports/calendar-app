@@ -1,7 +1,7 @@
 {
     "architecture": "all",
     "description": "A calendar for Ubuntu which syncs with online accounts",
-    "framework": "ubuntu-sdk-14.10-qml-dev3",
+    "framework": "ubuntu-sdk-14.10-qml",
     "hooks": {
         "calendar": {
             "account-application": "@PROJECT_NAME@_@APP_NAME@.application",
