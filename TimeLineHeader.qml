@@ -16,38 +16,161 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.3
+import QtQuick 2.0
 import Ubuntu.Components 1.1
+import QtQuick.Layouts 1.1
+
 import "ViewType.js" as ViewType
 
-PathViewBase {
-    id: header
+Column {
+    id: headerRoot
 
     property int type: ViewType.ViewTypeWeek
-
-    interactive: false
-    model:3
-
-    height: units.gu(4)
-    width: parent.width
-
-    property var date;
-    property var currentDay;
+    property date startDay;
+    property double contentX;
 
     signal dateSelected(var date);
 
-    delegate: TimeLineHeaderComponent{
-        type: header.type
+    width: parent.width
+    height: units.gu(10)
 
-        isCurrentItem: index == header.currentIndex
-        currentDay: header.currentDay
-
+    Row{
         width: parent.width
+        height: parent.height
 
-        startDay: date.addDays(7*header.indexType(index))
+        Column{
+            id: labelColumn
+            width : units.gu(6)
 
-        onDateSelected: {
-            header.dateSelected(date);
+            Label{
+                id: weekNumLabel
+                text: "W"+ root.startDay.weekNumber()
+                fontSize: "small"
+                height: units.gu(5)
+                width: parent.width
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+            }
+
+            SimpleDivider{}
+
+            Label {
+                height: units.gu(5)
+                text: i18n.tr("All Day");
+                fontSize: "small"
+                width: parent.width
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+            }
+        }
+
+        SimpleDivider{
+            width: units.gu(0.1);
+            height: parent.height
+        }
+
+        Loader{
+            id: headerLoader
+            width: parent.width - labelColumn.width
+            height: parent.height
+
+            sourceComponent: {
+                if( root.type == ViewType.ViewTypeWeek ) {
+                    weekHeaderComponent
+                } else {
+                    dayHeaderComponent
+                }
+            }
+        }
+    }
+
+    Component{
+        id: dayHeaderComponent
+
+        Column{
+            anchors.fill: parent
+
+            TimeLineHeaderComponent{
+                width: parent.width
+                height: units.gu(5)
+                startDay: headerRoot.startDay
+                type: ViewType.ViewTypeDay
+
+                onDateSelected: {
+                    headerRoot.dateSelected(date);
+                }
+            }
+
+            SimpleDivider{}
+
+            AllDayEventComponent {
+                type: ViewType.ViewTypeDay
+                startDay: headerRoot.startDay
+                model: mainModel
+                width: parent.width
+                height: units.gu(5)
+
+                Component.onCompleted: {
+                    mainModel.addModelChangeListener(createAllDayEvents);
+                }
+                Component.onDestruction: {
+                    mainModel.removeModelChangeListener(createAllDayEvents);
+                }
+            }
+        }
+    }
+
+    Component{
+        id: weekHeaderComponent
+
+        Flickable{
+            anchors.fill: parent
+            clip: true
+            contentX: headerRoot.contentX
+            interactive: false
+
+            property int delegateWidth: {
+                width/3 - units.gu(1) /*partial visible area*/
+            }
+            contentHeight: height
+            contentWidth: {
+                (delegateWidth*7)
+            }
+
+            Column{
+                width: parent.width
+                height: parent.height
+
+                TimeLineHeaderComponent{
+                    objectName: "timelineHeader"
+                    startDay: headerRoot.startDay 
+                    type: ViewType.ViewTypeWeek
+                    width: parent.width
+                    height: units.gu(5)
+
+                    onDateSelected: {
+                        root.dateSelected(date);
+                    }
+                }
+
+                SimpleDivider{}
+
+                AllDayEventComponent {
+                    type: ViewType.ViewTypeWeek
+                    startDay: headerRoot.startDay
+                    width: parent.width
+                    height: units.gu(5)
+                    model: mainModel
+
+                    Component.onCompleted: {
+                        mainModel.addModelChangeListener(createAllDayEvents);
+                    }
+                    Component.onDestruction: {
+                        mainModel.removeModelChangeListener(createAllDayEvents);
+                    }
+                }
+            }
         }
     }
 }

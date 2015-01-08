@@ -22,23 +22,16 @@ import Ubuntu.Components.Popups 1.0
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
-Item {
+Row {
     id: root
 
-    property var allDayEvents;
     property var startDay: DateExt.today();
+    property int type: ViewType.ViewTypeWeek
+    property var allDayEvents;
     property var model;
 
-    property int type: ViewType.ViewTypeWeek
-
     width: parent.width
-
-    anchors {
-        left :parent.left
-        right: parent.right
-        leftMargin: type == ViewType.ViewTypeDay ? units.gu(6) : 0
-        rightMargin: type == ViewType.ViewTypeDay ? units.gu(3): 0
-    }
+    height: units.gu(5)
 
     function getAllDayEvents(startDate, endDate) {
         var map = {};
@@ -69,32 +62,44 @@ Item {
 
     Repeater{
         model: type == ViewType.ViewTypeWeek ? 7 : 1
-        delegate: Button {
+        delegate: Item {
             id: allDayButton
 
             property var events;
-            gradient: UbuntuColors.orangeGradient
 
-            x: type === ViewType.ViewTypeWeek ? root.width/7*index : 0
-            height: units.gu(3)
-            clip: true
-            width: parent.width/ (type == ViewType.ViewTypeWeek ? 7 : 1)
-            visible: !allDayButton.events || allDayButton.events.length === 0 ? false : true
+            height: units.gu(5)
+            width: parent.width / (type == ViewType.ViewTypeWeek ? 7 : 1)
 
-            onClicked: {
-                if(!allDayButton.events || allDayButton.events.length === 0) {
-                    return;
-                }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    if(!allDayButton.events || allDayButton.events.length === 0) {
+                        return;
+                    }
 
-                if(type == ViewType.ViewTypeWeek) {
-                    PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
-                } else {
-                    if( allDayButton.events.length > 1 ) {
+                    if(type == ViewType.ViewTypeWeek) {
                         PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
                     } else {
-                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayButton.events[0],"model": root.model});
+                        if( allDayButton.events.length > 1 ) {
+                            PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
+                        } else {
+                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayButton.events[0],"model": root.model});
+                        }
                     }
                 }
+            }
+
+            Loader {
+                id: eventLabelLoader
+                anchors.fill: parent
+                sourceComponent : !allDayButton.events || allDayButton.events.length === 0 ? undefined : eventComponent
+            }
+
+            Loader{
+                objectName: "divider"
+                height: parent.height
+                width: units.gu(0.15)
+                sourceComponent: root.type == ViewType.ViewTypeWeek ? dividerComponent : undefined
             }
 
             Connections{
@@ -106,7 +111,6 @@ Item {
                     events = allDayEvents[key];
 
                     if(!events || events.length === 0) {
-                        text = "";
                         return;
                     }
 
@@ -115,17 +119,33 @@ Item {
                         // on a given day. "Ev." is short form for "Events".
                         // Please keep the translation of "Ev." to 3 characters only, as the week view
                         // where it's shown has limited space
-                        text =  i18n.tr("%1 ev.").arg(events.length)
+                        eventLabelLoader.item.text =  i18n.tr("%1 ev.").arg(events.length)
                     } else {
                         if( events.length > 1) {
-                            // TRANSLATORS: the argument refers to the number of all day events
-                            text = i18n.tr("%1 all day event", "%1 all day events", events.length).arg(events.length)
+                           // TRANSLATORS: the argument refers to the number of all day events
+                           eventLabelLoader.item.text = i18n.tr("%1 all day event", "%1 all day events", events.length).arg(events.length)
                         } else {
-                            text = events[0].displayLabel;
+                            eventLabelLoader.item.text = events[0].displayLabel;
                         }
                     }
                 }
             }
+        }
+    }
+
+
+    Component{
+        id: eventComponent
+        Label {
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
+
+    Component {
+        id: dividerComponent
+        SimpleDivider{
+            anchors.fill: parent
         }
     }
 

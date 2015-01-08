@@ -39,6 +39,8 @@ Item{
                                          ? eventDetails.item.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
                                          : units.gu(2)
 
+    z: depthInRow
+
     signal clicked(var event);
 
     Rectangle{

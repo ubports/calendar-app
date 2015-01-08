@@ -21,6 +21,7 @@ import QtQuick.Layouts 1.1
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
+
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
@@ -29,7 +30,7 @@ Item {
 
     property var keyboardEventProvider;
 
-    property var startDay: DateExt.today();
+    property date startDay: DateExt.today();
     property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
@@ -38,6 +39,8 @@ Item {
 
     //visible hour
     property int scrollHour;
+
+    signal dateSelected(var date);
 
     function scrollToCurrentTime() {
         var currentTime = new Date();
@@ -54,7 +57,7 @@ Item {
         onScrollUp:{
             scrollHour--;
             if( scrollHour < 0) {
-                scrollHour =0;
+                scrollHour = 0;
             }
             scrollToHour();
         }
@@ -91,86 +94,115 @@ Item {
         z:2
     }
 
-    AllDayEventComponent {
-        id: allDayContainer
-        type: root.type
-        startDay: root.startDay
-        model: mainModel
-        z:1
-        Component.onCompleted: {
-            mainModel.addModelChangeListener(createAllDayEvents);
-        }
-        Component.onDestruction: {
-            mainModel.removeModelChangeListener(createAllDayEvents);
-        }
-    }
-
-    Flickable {
-        id: timeLineView
-
-        contentHeight: units.gu(8) * 24
-        contentWidth: width
+    Column {
         anchors.fill: parent
 
-        clip: true
+        TimeLineHeader{
+            id: header
+            objectName: "viewHeader"
+            startDay: root.startDay
+            contentX: timeLineView.contentX
+            type: root.type
+
+            onDateSelected: {
+                root.dateSelected(date);
+            }
+        }
+
+        SimpleDivider{}
 
         Row {
             width: parent.width
-            height: timeLineView.contentHeight
-            TimeLineTimeScale{ id: timeScale }
-            TimeLineBackground { width: parent.width - x}
-        }
+            height: parent.height - header.height
 
-        Row {
-            id: week
-
-            anchors {
-                fill: parent
-                leftMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
-                                                          : units.gu(6)
-
-                rightMargin: type == ViewType.ViewTypeWeek ? units.gu(0)
-                                                           : units.gu(3)
+            TimeLineTimeScale{
+                contentY: timeLineView.contentY
             }
 
-            Repeater {
-                model: type == ViewType.ViewTypeWeek ? 7 : 1
+            SimpleDivider{
+                width: units.gu(0.1)
+                height: parent.height
+            }
 
-                delegate: TimeLineBase {
-                    property int idx: index
-                    anchors.top: parent.top
-                    width: {
-                        if( type == ViewType.ViewTypeWeek ) {
-                            parent.width / 7
-                        } else {
-                            (parent.width)
-                        }
+            Flickable {
+                id: timeLineView
+
+                height: parent.height
+                width: parent.width - units.gu(6)
+
+                boundsBehavior: Flickable.StopAtBounds
+
+                property int delegateWidth: {
+                    if( type == ViewType.ViewTypeWeek ) {
+                        width/3 - units.gu(1) /*partial visible area*/
+                    } else {
+                        width
                     }
+                }
 
-                    height: parent.height
-                    delegate: comp
-                    day: startDay.addDays(index)
-                    model: mainModel
-
-                    Loader{
-                        objectName: "weekdevider"
-                        height: parent.height
-                        width: units.gu(0.15)
-                        sourceComponent: type == ViewType.ViewTypeWeek ? weekDeviderComponent : undefined
+                contentHeight: units.gu(8) * 24
+                contentWidth: {
+                    if( type == ViewType.ViewTypeWeek ) {
+                        delegateWidth*7
+                    } else {
+                        width
                     }
+                }
 
-                    Component {
-                        id: weekDeviderComponent
-                        Rectangle{
-                            anchors.fill: parent
-                            color: "#e5e2e2"
-                        }
-                    }
+                clip: true
 
-                    Connections{
-                        target: mainModel
-                        onStartPeriodChanged:{
-                            destroyAllChildren();
+                TimeLineBackground{}
+
+                Row {
+                    id: week
+                    anchors.fill: parent
+                    Repeater {
+                        model: type == ViewType.ViewTypeWeek ? 7 : 1
+
+                        delegate: TimeLineBase {
+                            property int idx: index
+                            anchors.top: parent.top
+                            width: {
+                                if( type == ViewType.ViewTypeWeek ) {
+                                    parent.width / 7
+                                } else {
+                                    (parent.width)
+                                }
+                            }
+                            height: parent.height
+                            delegate: comp
+                            day: startDay.addDays(index)
+                            model: mainModel
+
+                            Component.onCompleted: {
+                                model.addModelChangeListener(destroyAllChildren);
+                                model.addModelChangeListener(createEvents);
+                            }
+                            Component.onDestruction: {
+                                model.removeModelChangeListener(destroyAllChildren);
+                                model.removeModelChangeListener(createEvents);
+                            }
+
+                            Loader{
+                                objectName: "weekdevider"
+                                height: parent.height
+                                width: units.gu(0.15)
+                                sourceComponent: type == ViewType.ViewTypeWeek ? weekDividerComponent : undefined
+                            }
+
+                            Component {
+                                id: weekDividerComponent
+                                SimpleDivider{
+                                    anchors.fill: parent
+                                }
+                            }
+
+                            Connections{
+                                target: mainModel
+                                onStartPeriodChanged:{
+                                    destroyAllChildren();
+                                }
+                            }
                         }
                     }
                 }
