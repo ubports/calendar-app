@@ -36,7 +36,7 @@ Item{
     property Flickable flickable;
 
     readonly property int minimumHeight: type == wideType
-                                         ? eventDetails.item.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
+                                         ? detailsItems.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
                                          : units.gu(2)
 
     z: depthInRow
@@ -65,6 +65,7 @@ Item{
     onEventChanged: {
         resize();
         assingnBgColor();
+        setDetails();
     }
 
     function assingnBgColor() {
@@ -106,128 +107,106 @@ Item{
 
         if( infoBubble.y < flickable.contentY && infoBubble.height > flickable.height) {
             var y = (flickable.contentY - infoBubble.y) * 1.2;
-            if( ( y + eventDetails.item.height + units.gu(2)) > infoBubble.height) {
-                y = infoBubble.height - eventDetails.item.height - units.gu(2);
+            if( ( y + detailsItems.height + units.gu(2)) > infoBubble.height) {
+                y = infoBubble.height - detailsItems.height - units.gu(2);
             }
-            eventDetails.item.y = y;
+            detailsItems.y = y;
         }
     }
 
-    Loader {
-        id:eventDetails
-        sourceComponent: type == wideType ? detailsComponent : undefined
+    function setDetails() {
+        if(event === null || event === undefined) {
+            return;
+        }
+
+        var startTime = Qt.formatTime( event.startDateTime, "hh:mm")
+        var endTime = Qt.formatTime( event.endDateTime, "hh:mm")
+
+        if (type === wideType) {
+            timeLabel.text = ""
+            titleLabel.text = ""
+
+            // TRANSLATORS: the first argument (%1) refers to a start time for an event,
+            // while the second one (%2) refers to the end time
+            var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
+
+            //height is less then set only event title
+            if( infoBubble.height > minimumHeight ) {
+                //on wide type show all details
+                if( infoBubble.height > titleLabel.y + titleLabel.height + units.gu(1)) {
+                    timeLabel.text = timeString
+                    titleLabel.text = "<b>" + event.displayLabel +"</b>"
+                } else if ( event.displayLabel ) {
+                    // TRANSLATORS: the first argument (%1) refers to a time for an event,
+                    // while the second one (%2) refers to title of event
+                    timeLabel.text = i18n.tr("%1 <b>%2</b>").arg(timeString).arg(event.displayLabel);
+                }
+            } else if (event.displayLabel){
+                // TRANSLATORS: the first argument (%1) refers to a time for an event,
+                // while the second one (%2) refers to title of event
+                timeLabel.text = i18n.tr("%1 <b>%2</b>").arg(timeString).arg(event.displayLabel);
+            }
+        } else {
+            timeLabel.text = event.displayLabel;
+            timeLabel.horizontalAlignment = Text.AlignHCenter
+            timeLabel.wrapMode = Text.WrapAtWordBoundaryOrAnywhere
+        }
+
+        layoutBubbleDetails();
     }
 
-    Component {
-        id:detailsComponent
+    Item {
+        id: detailsItems
 
-        Item {
+        property alias timeLabelHeight : timeLabel.height
 
-            id: detailsItems
-            property alias timeLabelHeight : timeLabel.height
+        width: parent.width
+        height: detailsColumn.height
 
-            width: parent.width
-            height: detailsColumn.height
+        Column {
+            id: detailsColumn
 
-            Column {
-                id: detailsColumn
+            anchors {
+                top: parent.top
+                left: parent.left
+                right: parent.right
+                margins: units.gu(0.5)
+            }
 
-                anchors {
-                    top: parent.top
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(0.5)
-                }
+            Label {
+                id: timeLabel
+                objectName: "timeLabel"
+                color: "White"
+                fontSize:"small"
+                font.bold: true
+                width: parent.width
+            }
 
-                Label {
-                    id: timeLabel
-                    objectName: "timeLabel"
-                    color: "White"
-                    fontSize:"small"
-                    font.bold: true
-                    width: parent.width
-                }
+            Label {
+                id: titleLabel
+                objectName: "titleLabel"
+                color: "White"
+                fontSize: "small"
+                width: parent.width
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
+        }
 
-                Label {
-                    id: titleLabel
-                    objectName: "titleLabel"
-                    color: "White"
-                    fontSize: "small"
-                    width: parent.width
-                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                }
+        onHeightChanged: {
+            layoutBubbleDetails();
+        }
 
-                Label {
-                    id: descriptionLabel
-                    color: "White"
-                    fontSize: "x-small"
-                    width: parent.width
+        Connections {
+            target: infoBubble
+            onFlickableChanged: {
+                if (flickable && infoBubble.height > flickable.height) {
+                    flickable.onContentYChanged.connect(layoutBubbleDetails);
                 }
             }
 
             onHeightChanged: {
-                layoutBubbleDetails();
-            }
-
-            Connections {
-                target: infoBubble
-                onFlickableChanged: {
-                    if (flickable && infoBubble.height > flickable.height) {
-                        flickable.onContentYChanged.connect(layoutBubbleDetails);
-                    }
-                }
-
-                onHeightChanged: {
-                    if(flickable && infoBubble.height > flickable.height) {
-                        flickable.onContentYChanged.connect(layoutBubbleDetails);
-                    }
-                }
-
-                onEventChanged: {
-                    setDetails();
-                }
-            }
-
-            function setDetails() {
-                if(event === null || event === undefined) {
-                    return;
-                }
-
-                var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-                var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-
-                if (type === wideType) {
-                    timeLabel.text = ""
-                    titleLabel.text = ""
-                    descriptionLabel.text = ""
-                    //height is less then set only event title
-                    if( infoBubble.height > minimumHeight ) {
-                        //on wide type show all details
-                        if( infoBubble.height > titleLabel.y + titleLabel.height + units.gu(1)) {
-                            // TRANSLATORS: the first argument (%1) refers to a start time for an event,
-                            // while the second one (%2) refers to the end time
-                            var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
-                            timeLabel.text = timeString
-                            titleLabel.text = event.displayLabel
-                        } else if ( event.displayLabel ) {
-                            // TRANSLATORS: the first argument (%1) refers to a start time for an event,
-                            // while the second one (%2) refers to title of event
-                            timeLabel.text = i18n.tr("%1 - %2").arg(startTime).arg(event.displayLabel);
-                        }
-
-                        if (event.description) {
-                            descriptionLabel.text = event.description
-                            //descriptionText = event.description
-                            //If content is too much don't display.
-                            if (infoBubble.height < descriptionLabel.y + descriptionLabel.height + units.gu(1)) {
-                                descriptionLabel.text = ""
-                            }
-                        }
-
-                        layoutBubbleDetails();
-                    } else if (event.displayLabel){
-                        timeLabel.text = event.displayLabel;
-                    }
+                if(flickable && infoBubble.height > flickable.height) {
+                    flickable.onContentYChanged.connect(layoutBubbleDetails);
                 }
             }
         }
