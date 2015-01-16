@@ -126,6 +126,7 @@ Item {
 
             Flickable {
                 id: timeLineView
+                objectName: "timelineview"
 
                 height: parent.height
                 width: parent.width - units.gu(6)
