@@ -195,7 +195,7 @@ MainView {
             property int starttime: -1;
             property int endtime: -1;
 
-            selectedTabIndex: dayTab.index
+            selectedTabIndex: weekTab.index
 
             function newEvent() {
                 var startDate = new Date();
@@ -282,11 +282,11 @@ MainView {
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex = dayTab.index;
+                        tabs.selectedTabIndex = weekTab.index;
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex = dayTab.index;
+                    tabs.selectedTabIndex = weekTab.index;
                 }
             } // End of Component.onCompleted:
 
