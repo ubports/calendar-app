@@ -222,6 +222,7 @@ Item {
 
                                     event.startDateTime = startDate;
                                     event.endDateTime = endDate;
+                                    eventBubble.assingnBgColor();
                                     eventBubble.setDetails();
 
                                     if( eventBubble.y + eventBubble.height + units.gu(8) > timeLineView.contentY + timeLineView.height ) {
