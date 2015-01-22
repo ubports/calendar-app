@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-17 17:41+0200\n"
-"PO-Revision-Date: 2014-08-07 05:19+0000\n"
+"PO-Revision-Date: 2015-02-08 04:59+0000\n"
 "Last-Translator: Gursharnjit_Singh <ubuntuser13@gmail.com>\n"
 "Language-Team: Punjabi <pa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2014-12-23 07:15+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-02-09 06:17+0000\n"
+"X-Generator: Launchpad (build 17331)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -29,11 +29,11 @@ msgstr "ਕੋਈ ਆਉਣ ਵਾਲਾ ਸਮਾਗਮ ਨਹੀਂ"
 
 #: ../AgendaView.qml:93
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "ਤੁਸੀਂ ਕੋਈ ਵੀ ਕੈਲੰਡਰ ਲਾਗੂ ਨਹੀਂ ਕੀਤਾ"
 
 #: ../AgendaView.qml:103
 msgid "Enable calendars"
-msgstr ""
+msgstr "ਕੈਲੰਡਰ ਲਾਗੂ ਕਰੋ"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -49,15 +49,15 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:109
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 ev."
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:113
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 ਸਾਰੇ ਦਿਨ ਸਮਾਗਮ"
+msgstr[1] "%1 ਸਾਰੇ ਦਿਨ ਸਮਾਗਮ"
 
 #: ../CalendarChoicePopup.qml:32 ../EventActions.qml:42
 msgid "Calendars"
@@ -78,18 +78,18 @@ msgstr "ਰੱਦ"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr ""
+msgstr "ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ"
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr ""
+msgstr "ਸੰਪਰਕ ਖੋਜੋ"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../DayView.qml:56 ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -103,12 +103,12 @@ msgstr "ਸਮਾਗਮ ਹਟਾਓ"
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "ਕੇਵਲ ਇਹ ਸਮਾਗਮ \"%1\", ਜਾਂ ਇਸ ਲੜੀ ਦੇ ਸਾਰੇ ਸਮਾਗਮ ਹਟਾਓ?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "ਕੀ ਤੁਸੀਂ \"%1\" ਸਮਾਗਮ ਨੂੰ ਹਟਾਊਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -130,7 +130,7 @@ msgstr "ਸਮਾਗਮ ਸੋਧ"
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "ਕੇਵਲ ਇਸ ਸਮਾਗਮ \"%1\" ਜਾਂ ਇਸ ਲੜੀ ਦੇ ਸਾਰੇ ਸਮਾਗਮਾਂ ਵਿੱਚ ਸੋਧ ਕਰੋ?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -160,13 +160,13 @@ msgstr "ਸਮਾਗਮ ਵੇਰਵੇ"
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "%1 ਕੈਲੰਡਰ"
 
 #. TRANSLATORS: the first parameter refers to number of all day events.
 #: ../EventDetails.qml:112
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (ਸਾਰਾ ਦਿਨ)"
 
 #: ../EventDetails.qml:171
 msgid "Edit"
@@ -178,7 +178,7 @@ msgstr "ਮਹਿਮਾਨ"
 
 #: ../EventDetails.qml:365 ../EventReminder.qml:35 ../NewEvent.qml:636
 msgid "Reminder"
-msgstr ""
+msgstr "ਰੀਮਾਈਂਡਰ"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -186,7 +186,7 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:41 ../EventRepetition.qml:128
 msgid "Repeat"
-msgstr ""
+msgstr "ਦੁਹਰਾਓ"
 
 #: ../EventRepetition.qml:147
 msgid "Repeats On:"
@@ -201,7 +201,7 @@ msgstr "ਦੁਹਰਾਈ ਸਮਾਗਮ ਸਮਾਪਤ"
 #. its repetition
 #: ../EventRepetition.qml:215 ../NewEvent.qml:617
 msgid "Repeats"
-msgstr ""
+msgstr "ਦੁਹਰਾਓ"
 
 #: ../EventRepetition.qml:240
 msgid "Date"
@@ -213,22 +213,22 @@ msgstr "ਤਾਰੀਖ"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 ਸਮਾਂ"
+msgstr[1] "%1; %2 ਵਾਰ"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; ਜਦੋਂ ਤੱਕ %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "ਹਫ਼ਤੇ ਵਿੱਚ %1"
 
 #: ../LimitLabelDefines.qml:21
 msgid "Never"
@@ -260,15 +260,15 @@ msgstr "OK"
 
 #: ../NewEvent.qml:340
 msgid "From"
-msgstr ""
+msgstr "ਵੱਲੋਂ"
 
 #: ../NewEvent.qml:384
 msgid "To"
-msgstr ""
+msgstr "ਵੱਲ"
 
 #: ../NewEvent.qml:434
 msgid "All day event"
-msgstr ""
+msgstr "ਸਾਰਾ ਦਿਨ ਸਮਾਗਮ"
 
 #: ../NewEvent.qml:462
 msgid "Event Name"
@@ -288,7 +288,7 @@ msgstr "ਕਲੰਡਰ"
 
 #: ../NewEvent.qml:539
 msgid "Add Guest"
-msgstr ""
+msgstr "ਮਹਿਮਾਨ ਜੋੜੋ"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -300,19 +300,19 @@ msgstr "ਰੋਜ਼"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "ਬਾਕੀ ਦਿਨਾਂ ਵਿੱਚ"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "%1, %2 ,%3 ਨੂੰ"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "%1 ਅਤੇ %2 ਨੂੰ"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -335,7 +335,7 @@ msgstr "ਰੀਮਾਈਂਡਰ ਨਹੀਂ"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "ਸਮਾਗਮ ਤੇ"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
