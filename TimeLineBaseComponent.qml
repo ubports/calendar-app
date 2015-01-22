@@ -213,6 +213,7 @@ Item {
                                 }
 
                                 onPositionChanged: {
+                                    var eventBubble = drag.source;
                                     var event = drag.source.event;
                                     var diff = event.endDateTime.getTime() - event.startDateTime.getTime();
 
@@ -221,7 +222,27 @@ Item {
 
                                     event.startDateTime = startDate;
                                     event.endDateTime = endDate;
-                                    drag.source.setDetails();
+                                    eventBubble.setDetails();
+
+                                    if( eventBubble.y + eventBubble.height + units.gu(8) > timeLineView.contentY + timeLineView.height ) {
+                                        var diff = Math.abs((eventBubble.y + eventBubble.height + units.gu(8))  -
+                                                            (timeLineView.height + timeLineView.contentY));
+                                        timeLineView.contentY += diff
+
+                                        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
+                                            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
+                                        }
+                                    }
+
+
+                                    if(eventBubble.y - units.gu(8) < timeLineView.contentY ) {
+                                        var diff = Math.abs((eventBubble.y - units.gu(8))  - timeLineView.contentY);
+                                        timeLineView.contentY -= diff
+
+                                        if(timeLineView.contentY <= 0) {
+                                            timeLineView.contentY = 0;
+                                        }
+                                    }
                                 }
                             }
 
