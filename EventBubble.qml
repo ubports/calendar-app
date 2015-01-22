@@ -221,11 +221,13 @@ Item{
         anchors.fill: parent
         drag.target: isLiveEditing ? infoBubble : null
         drag.axis: Drag.YAxis
-        //drag.minimumY: parent.y
+        drag.minimumY: flickable.y
+        drag.maximumY: flickable.contentHeight - infoBubble.height
         onReleased: parent.Drag.drop()
         onClicked: {
             if( isLiveEditing ) {
                 isLiveEditing = false;
+                infoBubble.z -= 1;
             } else {
                 infoBubble.clicked(event);
             }
@@ -233,6 +235,7 @@ Item{
 
         onPressAndHold: {
             isLiveEditing = true;
+            infoBubble.z += 1;
         }
     }
 }

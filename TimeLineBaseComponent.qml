@@ -197,23 +197,11 @@ Item {
                             }
 
                             DropArea {
+                                id: dropArea
                                 objectName: "mouseArea"
                                 anchors.fill: parent
 
-                                onDropped: {
-                                    var event = drag.source.event;
-                                    var diff = event.endDateTime.getTime() - event.startDateTime.getTime();
-
-                                    var startDate = getTimeFromYPos(drop.y, day);
-                                    var endDate = new Date( startDate.getTime() + diff );
-
-                                    event.startDateTime = startDate;
-                                    event.endDateTime = endDate;
-                                    model.saveItem(event);
-                                }
-
-                                onPositionChanged: {
-                                    var eventBubble = drag.source;
+                                 function modifyEventForDrag(drag) {
                                     var event = drag.source.event;
                                     var diff = event.endDateTime.getTime() - event.startDateTime.getTime();
 
@@ -222,6 +210,18 @@ Item {
 
                                     event.startDateTime = startDate;
                                     event.endDateTime = endDate;
+
+                                     return event;
+                                }
+
+                                onDropped: {
+                                    var event = dropArea.modifyEventForDrag(drop);
+                                    model.saveItem(event);
+                                }
+
+                                onPositionChanged: {
+                                    dropArea.modifyEventForDrag(drag)
+                                    var eventBubble = drag.source;
                                     eventBubble.assingnBgColor();
                                     eventBubble.setDetails();
 
@@ -234,7 +234,6 @@ Item {
                                             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
                                         }
                                     }
-
 
                                     if(eventBubble.y - units.gu(8) < timeLineView.contentY ) {
                                         var diff = Math.abs((eventBubble.y - units.gu(8))  - timeLineView.contentY);
