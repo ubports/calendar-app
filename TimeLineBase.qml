@@ -58,7 +58,7 @@ Item {
         var minutes = time % 1 ;
         var hour = time - minutes;
         minutes = parseInt(60 * minutes);
-        minutes = Math.floor(minutes/5) * 5;
+        minutes = Math.floor(minutes/15) * 15;
         date.setHours(hour);
         date.setMinutes(minutes);
         return date;
