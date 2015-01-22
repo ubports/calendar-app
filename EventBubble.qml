@@ -33,6 +33,8 @@ Item{
     property int depthInRow: 0;
     property int sizeOfRow:0
 
+    property bool isLiveEditing: false
+
     property Flickable flickable;
 
     readonly property int minimumHeight: type == wideType
@@ -46,7 +48,7 @@ Item{
     Rectangle{
         id: bg
         anchors.fill: parent
-        border.color: "white"
+        border.color: isLiveEditing ? "red" : "white"
     }
 
     function resize() {
@@ -212,8 +214,15 @@ Item{
         }
     }
 
+    Drag.active: dragArea.drag.active
+
     MouseArea {
+        id: dragArea
         anchors.fill: parent
+        drag.target: infoBubble
+        drag.axis: Drag.YAxis
+        //drag.minimumY: parent.y
+        onReleased: parent.Drag.drop()
         onClicked: {
             infoBubble.clicked(event);
         }

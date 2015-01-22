@@ -17,6 +17,8 @@
  */
 import QtQuick 2.3
 import Ubuntu.Components 1.1
+import QtOrganizer 5.0
+
 import "dateExt.js" as DateExt
 
 Item {
@@ -45,7 +47,8 @@ Item {
             var selectedDate = new Date(day);
             var hour = parseInt(mouseY / hourHeight);
             selectedDate.setHours(hour)
-            pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
+            //pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
+            createOrganizerEvent(selectedDate);
         }
 
         onPressed: {
@@ -54,6 +57,35 @@ Item {
                 bubbleOverLay.showSeparator();
             }
         }
+    }
+
+    DropArea {
+        objectName: "mouseArea"
+        anchors.fill: parent
+
+        onDropped: {
+            var event = drag.source.event;
+            var diff = event.endDateTime.getTime() - event.startDateTime.getTime();
+
+            var startDate = new Date(day);
+            var hour = parseInt(drop.y / hourHeight);
+            startDate.setHours(hour);
+            var endDate = new Date( startDate.getTime() + diff );
+
+            event.startDateTime = startDate;
+            event.endDateTime = endDate;
+            model.saveItem(event);
+        }
+    }
+
+    function createOrganizerEvent( startDate ) {
+        var event = Qt.createQmlObject("import QtOrganizer 5.0; Event {}", Qt.application,"TimeLineBase.qml");
+        event.collectionId = (model.defaultCollection().collectionId);
+        var endDate = new Date( startDate.getTime() + 3600000 );
+        event.startDateTime = startDate;
+        event.endDateTime = endDate;
+        event.displayLabel = i18n.tr("Untitled");
+        model.saveItem(event);
     }
 
     TimeSeparator {
@@ -84,7 +116,7 @@ Item {
         }
     }
 
-    function layoutEvents(array, depth) {              
+    function layoutEvents(array, depth) {
         for(var i=0; i < array.length ; ++i) {
             var schedule = array[i];
             var event = intern.eventMap[schedule.id];
@@ -105,6 +137,7 @@ Item {
         var startDate = new Date(day).midnight();
         var endDate = new Date(day).endOfDay();
         var items = model.getItems(startDate,endDate);
+        print("######### createEvents....." + items.length);
         for(var i = 0; i < items.length; ++i) {
             var event = items[i];
 
@@ -188,6 +221,7 @@ Item {
     }
 
     function assignBubbleProperties(eventBubble, event, depth, sizeOfRow) {
+        print(event.eventId);
         var hour = event.startDateTime.getHours();
         var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
         eventBubble.y = yPos;
