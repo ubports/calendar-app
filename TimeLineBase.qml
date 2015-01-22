@@ -52,23 +52,16 @@ Item {
         }
     }
 
-    DropArea {
-        objectName: "mouseArea"
-        anchors.fill: parent
-
-        onDropped: {
-            var event = drag.source.event;
-            var diff = event.endDateTime.getTime() - event.startDateTime.getTime();
-
-            var startDate = new Date(day);
-            var hour = parseInt(drop.y / hourHeight);
-            startDate.setHours(hour);
-            var endDate = new Date( startDate.getTime() + diff );
-
-            event.startDateTime = startDate;
-            event.endDateTime = endDate;
-            model.saveItem(event);
-        }
+    function getTimeFromYPos(y, day) {
+        var date = new Date(day);
+        var time = y / hourHeight;
+        var minutes = time % 1 ;
+        var hour = time - minutes;
+        minutes = parseInt(60 * minutes);
+        minutes = Math.floor(minutes/5) * 5;
+        date.setHours(hour);
+        date.setMinutes(minutes);
+        return date;
     }
 
     function createOrganizerEvent( startDate ) {

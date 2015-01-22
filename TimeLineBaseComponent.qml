@@ -196,6 +196,35 @@ Item {
                                 }
                             }
 
+                            DropArea {
+                                objectName: "mouseArea"
+                                anchors.fill: parent
+
+                                onDropped: {
+                                    var event = drag.source.event;
+                                    var diff = event.endDateTime.getTime() - event.startDateTime.getTime();
+
+                                    var startDate = getTimeFromYPos(drop.y, day);
+                                    var endDate = new Date( startDate.getTime() + diff );
+
+                                    event.startDateTime = startDate;
+                                    event.endDateTime = endDate;
+                                    model.saveItem(event);
+                                }
+
+                                onPositionChanged: {
+                                    var event = drag.source.event;
+                                    var diff = event.endDateTime.getTime() - event.startDateTime.getTime();
+
+                                    var startDate = getTimeFromYPos(drag.y, day);
+                                    var endDate = new Date( startDate.getTime() + diff );
+
+                                    event.startDateTime = startDate;
+                                    event.endDateTime = endDate;
+                                    drag.source.setDetails();
+                                }
+                            }
+
                             Loader{
                                 objectName: "weekdevider"
                                 height: parent.height
