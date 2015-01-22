@@ -105,17 +105,18 @@ Column {
             SimpleDivider{}
 
             AllDayEventComponent {
+                id: dayAllDayComp
                 type: ViewType.ViewTypeDay
                 startDay: headerRoot.startDay
                 model: mainModel
                 width: parent.width
                 height: units.gu(5)
 
-                Component.onCompleted: {
-                    mainModel.addModelChangeListener(createAllDayEvents);
-                }
-                Component.onDestruction: {
-                    mainModel.removeModelChangeListener(createAllDayEvents);
+                Connections{
+                    target: mainModel
+                    onModelChanged : {
+                        dayAllDayComp.createAllDayEvents();
+                    }
                 }
             }
         }
@@ -157,17 +158,18 @@ Column {
                 SimpleDivider{}
 
                 AllDayEventComponent {
+                    id: weekAllDayComp
                     type: ViewType.ViewTypeWeek
                     startDay: headerRoot.startDay
                     width: parent.width
                     height: units.gu(5)
                     model: mainModel
 
-                    Component.onCompleted: {
-                        mainModel.addModelChangeListener(createAllDayEvents);
-                    }
-                    Component.onDestruction: {
-                        mainModel.removeModelChangeListener(createAllDayEvents);
+                    Connections{
+                        target: mainModel
+                        onModelChanged : {
+                            weekAllDayComp.createAllDayEvents();
+                        }
                     }
                 }
             }

@@ -31,13 +31,6 @@ Item {
 
     Component.onCompleted: {
         bubbleOverLay.createEvents();
-        model.addModelChangeListener(destroyAllChildren);
-        model.addModelChangeListener(createEvents);
-    }
-
-    Component.onDestruction: {
-        model.removeModelChangeListener(destroyAllChildren);
-        model.removeModelChangeListener(createEvents);
     }
 
     MouseArea {
@@ -125,7 +118,7 @@ Item {
     }
 
     function createEvents() {
-        if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined) {
+        if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined || model === null) {
             return;
         }
 
@@ -137,7 +130,6 @@ Item {
         var startDate = new Date(day).midnight();
         var endDate = new Date(day).endOfDay();
         var items = model.getItems(startDate,endDate);
-        print("######### createEvents....." + items.length);
         for(var i = 0; i < items.length; ++i) {
             var event = items[i];
 
@@ -221,7 +213,6 @@ Item {
     }
 
     function assignBubbleProperties(eventBubble, event, depth, sizeOfRow) {
-        print(event.eventId);
         var hour = event.startDateTime.getHours();
         var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
         eventBubble.y = yPos;

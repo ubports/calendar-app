@@ -219,12 +219,20 @@ Item{
     MouseArea {
         id: dragArea
         anchors.fill: parent
-        drag.target: infoBubble
+        drag.target: isLiveEditing ? infoBubble : null
         drag.axis: Drag.YAxis
         //drag.minimumY: parent.y
         onReleased: parent.Drag.drop()
         onClicked: {
-            infoBubble.clicked(event);
+            if( isLiveEditing ) {
+                isLiveEditing = false;
+            } else {
+                infoBubble.clicked(event);
+            }
+        }
+
+        onPressAndHold: {
+            isLiveEditing = true;
         }
     }
 }

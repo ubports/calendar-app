@@ -40,6 +40,8 @@ Item {
     //visible hour
     property int scrollHour;
 
+    property EventListModel mainModel;
+
     signal dateSelected(var date);
 
     function scrollToCurrentTime() {
@@ -79,17 +81,28 @@ Item {
         }
     }
 
-    EventListModel {
-        id: mainModel
-        startPeriod: startDay.midnight();
-        endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
-        filter: eventModel.filter
+    Timer{
+       interval: 200; running: true; repeat: false
+       onTriggered: {
+           mainModel = modelComponent.createObject();
+           activityLoader.running = Qt.binding( function (){ return mainModel.isLoading;});
+       }
+    }
+
+    Component {
+        id: modelComponent
+        EventListModel {
+            id: mainModel
+            startPeriod: startDay.midnight();
+            endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
+            filter: eventModel.filter
+        }
     }
 
     ActivityIndicator {
+        id: activityLoader
         visible: running
         objectName : "activityIndicator"
-        running: mainModel.isLoading
         anchors.centerIn: parent
         z:2
     }
@@ -175,13 +188,12 @@ Item {
                             day: startDay.addDays(index)
                             model: mainModel
 
-                            Component.onCompleted: {
-                                model.addModelChangeListener(destroyAllChildren);
-                                model.addModelChangeListener(createEvents);
-                            }
-                            Component.onDestruction: {
-                                model.removeModelChangeListener(destroyAllChildren);
-                                model.removeModelChangeListener(createEvents);
+                            Connections{
+                                target: mainModel
+
+                                onModelChanged: {
+                                    createEvents();
+                                }
                             }
 
                             Loader{
