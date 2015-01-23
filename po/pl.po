@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-10-17 17:41+0200\n"
-"PO-Revision-Date: 2015-01-17 19:36+0000\n"
+"PO-Revision-Date: 2015-01-22 16:32+0000\n"
 "Last-Translator: GTriderXC <gtriderxc@yahoo.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-01-18 05:01+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-01-23 06:42+0000\n"
+"X-Generator: Launchpad (build 17306)\n"
 
 #: ../AgendaView.qml:50 ../DayView.qml:38 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -264,11 +264,11 @@ msgstr "OK"
 
 #: ../NewEvent.qml:340
 msgid "From"
-msgstr ""
+msgstr "Od"
 
 #: ../NewEvent.qml:384
 msgid "To"
-msgstr ""
+msgstr "Do"
 
 #: ../NewEvent.qml:434
 msgid "All day event"
@@ -292,31 +292,31 @@ msgstr "Kalendarz"
 
 #: ../NewEvent.qml:539
 msgid "Add Guest"
-msgstr ""
+msgstr "Dodaj gościa"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
-msgstr ""
+msgstr "Raz"
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr ""
+msgstr "Codziennie"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "W dni określone tygodnia"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "W %1, %2 ,%3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "W %1 oraz %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
