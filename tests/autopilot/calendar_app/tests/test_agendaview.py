@@ -19,7 +19,7 @@ Calendar app autopilot tests for the agenda view.
 """
 
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals, NotEquals
+from testtools.matchers import Equals
 
 from calendar_app.tests import CalendarAppTestCase
 
@@ -35,4 +35,3 @@ class TestAgendaView(CalendarAppTestCase):
 
         self.assertThat(self.agenda_view.visible, Eventually(Equals(True)))
         self.assertThat(self.agenda_view.active, Eventually(Equals(True)))
-
