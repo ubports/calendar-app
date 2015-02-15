@@ -115,6 +115,20 @@ class MainView(ubuntuuitoolkit.MainView):
         return self.get_day_view(day_tab)
 
     @autopilot.logging.log_action(logger.info)
+    def go_to_agenda_view(self):
+        """Open the agenda view.
+
+        :return: The Agenda View page.
+
+        """
+        agenda_tab = self.select_single('Tab', objectName='agendaTab')
+        if not agenda_tab.visible:
+            self.switch_to_tab('agendaTab')
+        else:
+            logger.debug('The Agenda View page is already opened.')
+        return self.get_agenda_view(agenda_tab)
+
+    @autopilot.logging.log_action(logger.info)
     def go_to_new_event(self):
         """Open the page to add a new event.
 
@@ -173,6 +187,11 @@ class MainView(ubuntuuitoolkit.MainView):
         if parent_object is None:
             parent_object = self
         return parent_object.select_single(WeekView, objectName='weekViewPage')
+
+    def get_agenda_view(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
+        return parent_object.select_single(AgendaView, objectName='AgendaView')
 
     def get_label_with_text(self, text, root=None):
         if root is None:
@@ -494,6 +513,11 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         if not(day_header):
             raise CalendarException('Day Header not found for %s' % day)
         return day_header
+
+
+class AgendaView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+
+    """Autopilot helper for the Week Agenda page."""
 
 
 class EventBubble(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
