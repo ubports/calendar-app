@@ -18,12 +18,30 @@
 
 import QtQuick 2.3
 import Ubuntu.Components 1.1
+import Ubuntu.SyncMonitor 0.1
 
 Item {
     id: actionPool
 
     property alias newEventAction: _newEventAction
     property alias showCalendarAction: _showCalendarAction
+    property alias syncCalendarAction: _syncCalendarAction
+
+    Action {
+        id: _syncCalendarAction
+        objectName: "syncbutton"
+        iconName: "reload"
+        // TRANSLATORS: Please translate this string  to 15 characters only.
+        // Currently ,there is no way we can increase width of action menu currently.
+        text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
+        onTriggered: syncMonitor.sync(["calendar"])
+        enabled: (syncMonitor.state !== "syncing")
+        visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
+    }
+
+    SyncMonitor {
+        id: syncMonitor
+    }
 
     Action {
         id: _newEventAction
