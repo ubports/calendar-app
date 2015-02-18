@@ -44,7 +44,7 @@ Column {
 
             Label{
                 id: weekNumLabel
-                text: "W"+ root.startDay.weekNumber()
+                text: i18n.tr("W") + root.startDay.weekNumber()
                 fontSize: "small"
                 height: units.gu(5)
                 width: parent.width
