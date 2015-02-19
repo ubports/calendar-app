@@ -24,6 +24,8 @@ import autopilot.logging
 import ubuntuuitoolkit
 from autopilot import exceptions
 from dateutil import tz
+import math
+from testtools.matchers import GreaterThan
 
 from calendar_app import data
 
@@ -115,6 +117,20 @@ class MainView(ubuntuuitoolkit.MainView):
         return self.get_day_view(day_tab)
 
     @autopilot.logging.log_action(logger.info)
+    def go_to_agenda_view(self):
+        """Open the agenda view.
+
+        :return: The Agenda View page.
+
+        """
+        agenda_tab = self.select_single('Tab', objectName='agendaTab')
+        if not agenda_tab.visible:
+            self.switch_to_tab('agendaTab')
+        else:
+            logger.debug('The Agenda View page is already opened.')
+        return self.get_agenda_view(agenda_tab)
+
+    @autopilot.logging.log_action(logger.info)
     def go_to_new_event(self):
         """Open the page to add a new event.
 
@@ -174,6 +190,11 @@ class MainView(ubuntuuitoolkit.MainView):
             parent_object = self
         return parent_object.select_single(WeekView, objectName='weekViewPage')
 
+    def get_agenda_view(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
+        return parent_object.select_single(AgendaView, objectName='AgendaView')
+
     def get_label_with_text(self, text, root=None):
         if root is None:
             root = self
@@ -214,7 +235,7 @@ class MainView(ubuntuuitoolkit.MainView):
                 sleep(1)
             timeout += 1
 
-    def swipe_view(self, direction, view, x_pad=0.15):
+    def swipe_view(self, direction, view, x_pad=0.08):
         """Swipe the given view to left or right.
 
         Args:
@@ -231,6 +252,23 @@ class MainView(ubuntuuitoolkit.MainView):
         x_stop = view.globalRect[0] + view.globalRect[2] * stop
 
         self.pointing_device.drag(x_start, y_line, x_stop, y_line)
+
+    def swipe_view_vertical(self, direction, view, y_pad=0.08):
+        """Swipe the given view to up or down.
+
+        Args:
+        direction:
+        """
+
+        start = (-direction * y_pad) % 1
+        stop = (direction * y_pad) % 1
+
+        x_line = view.globalRect[0] + view.globalRect[2] / 2
+        y_start = view.globalRect[1] + view.globalRect[3] * start
+        y_stop = view.globalRect[1] + view.globalRect[3] * stop
+
+        self.pointing_device.drag(x_line, y_start, x_line, y_stop)
+        sleep(1)
 
     def to_local_date(self, date):
         utc = date.replace(tzinfo=tz.tzutc())
@@ -337,6 +375,58 @@ class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Week View page."""
 
+    def get_current_weeknumber(self):
+        return self._get_timeline_base().weekNumber
+
+    def _get_timeline_base(self):
+        return self.select_single("TimeLineBaseComponent", isActive=True)
+
+    def _get_timeline_header(self):
+        return self._get_timeline_base().select_single(objectName="viewHeader")
+
+    def _get_date_label_headers(self):
+        return self._get_timeline_header().select_many("Label",
+                                                       objectName="dateLabel")
+
+    def _get_pathview_base(self):
+        # return self.select_single('PathViewBase',
+        #                           objectname='weekviewpathbase')
+        # why do you hate me autopilot? ^^
+        return self.select_single('PathViewBase')
+
+    def change_week(self, delta):
+        direction = int(math.copysign(1, delta))
+        main_view = self.get_root_instance().select_single(MainView)
+
+        pathview_base = self._get_pathview_base()
+
+        for _ in range(abs(delta)):
+            timeline_header = self._get_timeline_header()
+
+            main_view.swipe_view(direction, timeline_header)
+            # prevent timing issues with swiping
+            pathview_base.moving.wait_for(False)
+
+    def get_days_of_week(self):
+        # sort based on text value of the day
+        days = sorted(self._get_date_label_headers(),
+                      key=lambda label: label.text)
+        days = [int(item.text) for item in days]
+
+        # resort so beginning of next month comes after the end
+        # need to support overlapping months 28,30,31 -> 1
+        sorteddays = []
+        for day in days:
+            inserted = 0
+            for index, sortday in enumerate(sorteddays):
+                if day - sorteddays[index] == 1:
+                    sorteddays.insert(index + 1, day)
+                    inserted = 1
+                    break
+            if inserted == 0:
+                sorteddays.insert(0, day)
+        return sorteddays
+
 
 class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
@@ -400,12 +490,16 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         for event in event_bubbles:
             # Event-bubbles objects are recycled, only show visible ones.
             temp = "<b>"+event_name+"</b>"
+            print(temp + "-----" + event.get_name())
             if event.get_name() == temp:
                 if (visible and event.visible) or not visible:
                     matched_event = event
                     return matched_event
 
         raise CalendarException('No event found for %s' % event_name)
+
+    def get_selected_day(self):
+        return self._get_day_component()
 
     def _get_day_component(self, day='selected'):
         """Get the selected day component.
@@ -494,6 +588,32 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         if not(day_header):
             raise CalendarException('Day Header not found for %s' % day)
         return day_header
+
+
+class AgendaView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+
+    """Autopilot helper for the Week Agenda page."""
+
+    @autopilot.logging.log_action(logger.info)
+    def open_event(self, name):
+        """Open an event.
+
+
+        """
+        eventList = self.wait_select_single(
+            "QQuickListView", objectName="eventList")
+
+        eventList.count.wait_for(GreaterThan(0))
+
+        for index in range(int(eventList.count)):
+            event_item = self.wait_select_single(
+                objectName='eventContainer{}'.format(index))
+            title_label = event_item.wait_select_single(
+                'Label', objectName='titleLabel{}'.format(index))
+            if (title_label.text == name):
+                eventList.click_element(
+                    'eventContainer{}'.format(index), direction=None)
+                break
 
 
 class EventBubble(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
@@ -615,6 +735,7 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     def _fill_guests(self, guests):
         guests_btn = self.select_single('Button', objectName='addGuestButton')
         main_view = self.get_root_instance().select_single(MainView)
+        main_view.swipe_view_vertical(1, self)
 
         for guest in guests:
             self.pointing_device.click_object(guests_btn)

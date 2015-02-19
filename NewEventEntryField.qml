@@ -24,7 +24,7 @@ Label {
 
     property bool highlighted: false
 
-    height: units.gu(3)
+    height: units.gu(6)
 
     verticalAlignment: Text.AlignVCenter
     color: highlighted ? "#2C001E" : Theme.palette.normal.baseText

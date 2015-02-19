@@ -59,7 +59,8 @@ Page{
         calendarTodayAction,
         commonHeaderActions.newEventAction,
         commonHeaderActions.showCalendarAction,
-        commonHeaderActions.reloadAction
+        commonHeaderActions.reloadAction,
+        commonHeaderActions.syncCalendarAction
     ]
 
     EventListModel {
@@ -96,7 +97,7 @@ Page{
 
             return default_title;
         }
-        visible: !root.hasEnabledCalendars() || !eventListModel.itemCount
+        visible: (!root.hasEnabledCalendars() || !eventListModel.itemCount) && !eventListModel.isLoading
         anchors.centerIn: parent
     }
 
@@ -116,6 +117,7 @@ Page{
 
     ListView{
         id: eventList
+        objectName: "eventList"
         model: eventListModel
         anchors.fill: parent
         visible: eventListModel.itemCount > 0
@@ -177,6 +179,7 @@ Page{
 
             Column {
                 id: container
+                objectName: "eventContainer" + index
 
                 width: parent.width
                 anchors.top: parent.top
@@ -232,6 +235,7 @@ Page{
 
                             Label{
                                 id: timeLabel
+                                objectName: "timeLabel" + index
                                 color:"White"
                                 font.bold: true
                                 fontSize: "small"
@@ -240,6 +244,7 @@ Page{
 
                             Label{
                                 id: titleLabel
+                                objectName: "titleLabel" + index
 
                                 color:"White"
                                 fontSize: "small"

@@ -1,46 +1,46 @@
-# Chinese (Hong Kong) translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Kurdish translation for ubuntu-calendar-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2013-10-26 07:30+0000\n"
-"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
-"Language-Team: Chinese (Hong Kong) <zh_HK@li.org>\n"
+"PO-Revision-Date: 2015-02-09 12:13+0000\n"
+"Last-Translator: Amed Çeko Jiyan <amedcj@gmail.com>\n"
+"Language-Team: Kurdish <ku@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2015-02-19 05:36+0000\n"
 "X-Generator: Launchpad (build 17341)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
-msgstr "今天"
+msgstr "Îro"
 
 #: ../AgendaView.qml:91
 msgid "No upcoming events"
-msgstr ""
+msgstr "Çalakiyên nêzîk nînin"
 
 #: ../AgendaView.qml:94
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Te salname çalak nekiriye"
 
 #: ../AgendaView.qml:104
 msgid "Enable calendars"
-msgstr ""
+msgstr "Salnameyê çalak bike"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../AgendaView.qml:166 ../EventBubble.qml:131
 #, qt-format
 msgid "%1 - %2"
-msgstr "%1 - %2"
+msgstr "%1-%2"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -49,7 +49,7 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:122
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 çal."
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:126
@@ -61,11 +61,11 @@ msgstr[1] ""
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
 msgid "Calendars"
-msgstr ""
+msgstr "Salname"
 
 #: ../CalendarChoicePopup.qml:37
 msgid "Back"
-msgstr ""
+msgstr "Vegere"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
@@ -83,12 +83,12 @@ msgstr ""
 
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
-msgstr ""
+msgstr "Rengî hilbijêre"
 
 #: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
-msgstr "取消"
+msgstr ""
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
@@ -156,7 +156,7 @@ msgstr ""
 
 #: ../EventActions.qml:32 ../NewEvent.qml:283
 msgid "New Event"
-msgstr "新事件"
+msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -187,7 +187,7 @@ msgstr ""
 
 #: ../EventDetails.qml:196
 msgid "Edit"
-msgstr "編輯"
+msgstr ""
 
 #: ../EventDetails.qml:347 ../NewEvent.qml:479
 msgid "Guests"
@@ -261,15 +261,15 @@ msgstr ""
 
 #: ../NewEvent.qml:59
 msgid "Save"
-msgstr "儲存"
+msgstr ""
 
 #: ../NewEvent.qml:165
 msgid "End time can't be before start time"
-msgstr "結束時間不能早於開始時間"
+msgstr ""
 
 #: ../NewEvent.qml:293
 msgid "Error"
-msgstr "出錯"
+msgstr ""
 
 #: ../NewEvent.qml:295
 msgid "OK"
@@ -301,7 +301,7 @@ msgstr ""
 
 #: ../NewEvent.qml:441 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr "行事曆"
+msgstr ""
 
 #: ../NewEvent.qml:483
 msgid "Add Guest"
@@ -412,19 +412,19 @@ msgstr ""
 
 #: ../calendar.qml:322
 msgid "Year"
-msgstr "年"
+msgstr ""
 
 #: ../calendar.qml:356
 msgid "Month"
-msgstr "月"
+msgstr ""
 
 #: ../calendar.qml:384
 msgid "Week"
-msgstr "週"
+msgstr ""
 
 #: ../calendar.qml:417
 msgid "Day"
-msgstr "日"
+msgstr ""
 
 #: ../calendar.qml:449
 msgid "Agenda"

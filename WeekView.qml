@@ -50,7 +50,8 @@ Page{
             calendarTodayAction,
             commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
-            commonHeaderActions.reloadAction
+            commonHeaderActions.reloadAction,
+            commonHeaderActions.syncCalendarAction
         ]
 
         contents: Label {
@@ -64,7 +65,7 @@ Page{
 
     PathViewBase{
         id: weekViewPath
-        objectName: "weekViewPath"
+        objectName: "weekviewpathbase"
 
         anchors.fill: parent
 
@@ -88,6 +89,7 @@ Page{
         }
 
         delegate: Loader {
+            id: timelineLoader
             width: parent.width
             height: parent.height
             asynchronous: !weekViewPath.isCurrentItem
@@ -108,7 +110,12 @@ Page{
                     Component.onCompleted: {
                         if(weekViewPage.isCurrentPage){
                             timeLineView.scrollToCurrentTime();
+                            timeLineView.scrollTocurrentDate();
                         }
+                    }
+
+                    onIsActiveChanged: {
+                        timeLineView.scrollTocurrentDate();
                     }
 
                     onDateSelected: {
@@ -116,10 +123,19 @@ Page{
                     }
 
                     Connections{
+                        target: calendarTodayAction
+                        onTriggered:{
+                            if( isActive )
+                                timeLineView.scrollTocurrentDate();
+                        }
+                    }
+
+                    Connections{
                         target: weekViewPage
                         onIsCurrentPageChanged:{
                             if(weekViewPage.isCurrentPage){
                                 timeLineView.scrollToCurrentTime();
+                                timeLineView.scrollTocurrentDate();
                             }
                         }
                     }
