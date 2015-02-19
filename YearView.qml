@@ -44,7 +44,8 @@ Page {
             calendarTodayAction,
             commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
-            commonHeaderActions.reloadAction
+            commonHeaderActions.reloadAction,
+            commonHeaderActions.syncCalendarAction
         ]
         contents: Label {
             id:year
