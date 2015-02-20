@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2014-10-18 14:51+0000\n"
+"PO-Revision-Date: 2015-02-20 01:23+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-02-19 05:35+0000\n"
+"X-Launchpad-Export-Date: 2015-02-20 06:04+0000\n"
 "X-Generator: Launchpad (build 17341)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
@@ -79,7 +79,7 @@ msgstr "በ ማስማማት ላይ"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add new Calendar"
-msgstr ""
+msgstr "አዲስ ቀን መቁጠሪያ መጨመሪያ"
 
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
@@ -163,7 +163,7 @@ msgstr "አዲስ ሁኔታ"
 #: ../EventBubble.qml:142 ../EventBubble.qml:147
 #, qt-format
 msgid "%1 <b>%2</b>"
-msgstr ""
+msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:42 ../NewEvent.qml:393
 msgid "Event Details"
@@ -178,7 +178,7 @@ msgstr "%1 ቀን መቁጠሪያ"
 #: ../EventDetails.qml:118
 #, qt-format
 msgid "%1 - %2 (All Day)"
-msgstr ""
+msgstr "%1 - %2 (በ ሙሉ ቀን)"
 
 #: ../EventDetails.qml:122
 #, qt-format
@@ -392,16 +392,16 @@ msgstr "በ 2 ሳምንቶች ውስጥ"
 
 #: ../TimeLineHeader.qml:47
 msgid "W"
-msgstr ""
+msgstr "ረ"
 
 #: ../TimeLineHeader.qml:59
 msgid "All Day"
-msgstr ""
+msgstr "በ ሙሉ ቀን"
 
 #: ../YearView.qml:53
 #, qt-format
 msgid "Year %1"
-msgstr ""
+msgstr "አመት %1"
 
 #: ../calendar.qml:44
 msgid ""
