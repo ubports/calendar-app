@@ -24,6 +24,7 @@ import autopilot.logging
 import ubuntuuitoolkit
 from autopilot import exceptions
 from dateutil import tz
+from testtools.matchers import GreaterThan
 
 from calendar_app import data
 
@@ -518,6 +519,27 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 class AgendaView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Week Agenda page."""
+
+    @autopilot.logging.log_action(logger.info)
+    def open_event(self, name):
+        """Open an event.
+
+
+        """
+        eventList = self.wait_select_single(
+            "QQuickListView", objectName="eventList")
+
+        eventList.count.wait_for(GreaterThan(0))
+
+        for index in range(int(eventList.count)):
+            event_item = self.wait_select_single(
+                objectName='eventContainer{}'.format(index))
+            title_label = event_item.wait_select_single(
+                'Label', objectName='titleLabel{}'.format(index))
+            if (title_label.text == name):
+                eventList.click_element(
+                    'eventContainer{}'.format(index), direction=None)
+                break
 
 
 class EventBubble(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):

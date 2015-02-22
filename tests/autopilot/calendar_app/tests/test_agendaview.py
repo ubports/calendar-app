@@ -18,20 +18,35 @@
 Calendar app autopilot tests for the agenda view.
 """
 
+from __future__ import absolute_import
+
+import logging
+
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
 
-from calendar_app.tests import CalendarAppTestCase
+from calendar_app.tests import CalendarAppTestCaseWithVcard
+
+from calendar_app import data
+
+logger = logging.getLogger(__name__)
 
 
-class TestAgendaView(CalendarAppTestCase):
+class TestAgendaView(CalendarAppTestCaseWithVcard):
 
     def setUp(self):
         super(TestAgendaView, self).setUp()
         self.agenda_view = self.app.main_view.go_to_agenda_view()
 
-    def test_agenda_view_is_visible(self):
-        """Check that agenda view is visible and active"""
+    def test_selecting_event_opens_it(self):
+        test_event = data.Event.make_unique()
 
-        self.assertThat(self.agenda_view.visible, Eventually(Equals(True)))
-        self.assertThat(self.agenda_view.active, Eventually(Equals(True)))
+        new_event_page = self.app.main_view.go_to_new_event()
+        new_event_page.add_event(test_event)
+
+        self.agenda_view.open_event(test_event.name)
+        event_details_page = self.app.main_view.get_event_details()
+        event_details = event_details_page.get_event_information()
+
+        self.assertThat(
+            event_details.name, Eventually(Equals(test_event.name)))
