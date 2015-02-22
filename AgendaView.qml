@@ -59,7 +59,8 @@ Page{
         calendarTodayAction,
         commonHeaderActions.newEventAction,
         commonHeaderActions.showCalendarAction,
-        commonHeaderActions.reloadAction
+        commonHeaderActions.reloadAction,
+        commonHeaderActions.syncCalendarAction
     ]
 
     EventListModel {
@@ -96,7 +97,7 @@ Page{
 
             return default_title;
         }
-        visible: !root.hasEnabledCalendars() || !eventListModel.itemCount
+        visible: (!root.hasEnabledCalendars() || !eventListModel.itemCount) && !eventListModel.isLoading
         anchors.centerIn: parent
     }
 
