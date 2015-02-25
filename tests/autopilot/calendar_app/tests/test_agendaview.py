@@ -50,3 +50,12 @@ class TestAgendaView(CalendarAppTestCaseWithVcard):
 
         self.assertThat(
             event_details.name, Eventually(Equals(test_event.name)))
+        self.assertThat(
+            event_details.description,
+            Eventually(Equals(test_event.description)))
+        self.assertThat(
+            event_details.calendar, Eventually(Equals(test_event.calendar)))
+        self.assertThat(
+            event_details.location, Eventually(Equals(test_event.location)))
+        self.assertThat(
+            event_details.guests, Eventually(Equals(test_event.guests)))
