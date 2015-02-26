@@ -24,6 +24,7 @@ import autopilot.logging
 import ubuntuuitoolkit
 from autopilot import exceptions
 from dateutil import tz
+import math
 
 from calendar_app import data
 
@@ -214,7 +215,7 @@ class MainView(ubuntuuitoolkit.MainView):
                 sleep(1)
             timeout += 1
 
-    def swipe_view(self, direction, view, x_pad=0.08):
+    def swipe_view(self, direction, view, x_pad=0.15):
         """Swipe the given view to left or right.
 
         Args:
@@ -231,23 +232,6 @@ class MainView(ubuntuuitoolkit.MainView):
         x_stop = view.globalRect[0] + view.globalRect[2] * stop
 
         self.pointing_device.drag(x_start, y_line, x_stop, y_line)
-
-    def swipe_view_vertical(self, direction, view, y_pad=0.08):
-        """Swipe the given view to up or down.
-
-        Args:
-            direction:
-        """
-
-        start = (-direction * y_pad) % 1
-        stop = (direction * y_pad) % 1
-
-        x_line = view.globalRect[0] + view.globalRect[2] / 2
-        y_start = view.globalRect[1] + view.globalRect[3] * start
-        y_stop = view.globalRect[1] + view.globalRect[3] * stop
-
-        self.pointing_device.drag(x_line, y_start, x_line, y_stop)
-        sleep(1)
 
     def to_local_date(self, date):
         utc = date.replace(tzinfo=tz.tzutc())
@@ -354,6 +338,89 @@ class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Week View page."""
 
+    def get_current_weeknumber(self):
+        return self._get_timeline_base().weekNumber
+
+    def _get_timeline_base(self):
+        return self.select_single("TimeLineBaseComponent", isActive=True)
+
+    def _get_timeline_header(self):
+        return self._get_timeline_base().select_single(objectName="viewHeader")
+
+    def _get_date_label_headers(self):
+        return self._get_timeline_header().select_many("Label", objectName="dateLabel")
+
+    def _get_pathview_base(self):
+        # return self.select_single('PathViewBase', objectname='weekviewpathbase')
+        # why do you hate me autopilot? ^^
+        return self.select_single('PathViewBase')
+
+    def change_week(self, delta):
+        direction = int(math.copysign(1, delta))
+        main_view = self.get_root_instance().select_single(MainView)
+
+        pathview_base = self._get_pathview_base()
+
+        for _ in range(abs(delta)):
+            timeline_header = self._get_timeline_header()
+
+            main_view.swipe_view(direction, timeline_header)
+            # prevent timing issues with swiping
+            pathview_base.moving.wait_for(False)
+
+    def get_days_of_week(self):
+        # sort based on text value of the day
+        days = sorted(self._get_date_label_headers(),
+                      key=lambda label: label.text)
+        days = [int(item.text) for item in days]
+
+        # resort so beginning of next month comes after the end
+        # need to support overlapping months 28,30,31 -> 1
+        sorteddays = []
+        for day in days:
+            inserted = 0
+            for index, sortday in enumerate(sorteddays):
+                if day - sorteddays[index] == 1:
+                    sorteddays.insert(index + 1, day)
+                    inserted = 1
+                    break
+            if inserted == 0:
+                sorteddays.insert(0, day)
+        return sorteddays
+
+    def get_first_day_of_week(self):
+        date = self.app.main_view.to_local_date(
+            self.dayStart.datetime)
+        firstDay = self.app.main_view.to_local_date(
+            self.firstDay.datetime)
+
+        # sunday
+        if firstDay.weekday() == 6:
+            logger.debug("Locale has Sunday as first day of week")
+            weekday = date.weekday()
+            diff = datetime.timedelta(days=weekday + 1)
+        # saturday
+        elif firstDay.weekday() == 5:
+            logger.debug("Locale has Saturday as first day of week")
+            weekday = date.weekday()
+            diff = datetime.timedelta(days=weekday + 2)
+        # monday
+        else:
+            logger.debug("Locale has Monday as first day of week")
+            weekday = date.weekday()
+            diff = datetime.timedelta(days=weekday)
+
+        # set the start of week
+        if date.day != firstDay.day:
+            day_start = date - diff
+            logger.debug("Setting day_start to %s" % firstDay.day)
+        else:
+            day_start = date
+            logger.debug("Using today as day_start %s" % date)
+        #return day_start
+        logger.debug("day of week %s" % self.firstDay.weekday())
+        return self.firstDay
+
 
 class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
@@ -417,13 +484,15 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         for event in event_bubbles:
             # Event-bubbles objects are recycled, only show visible ones.
             temp = "<b>"+event_name+"</b>"
-            print(temp + "-----" + event.get_name())
             if event.get_name() == temp:
                 if (visible and event.visible) or not visible:
                     matched_event = event
                     return matched_event
 
         raise CalendarException('No event found for %s' % event_name)
+
+    def get_selected_day(self):
+        return self._get_day_component()
 
     def _get_day_component(self, day='selected'):
         """Get the selected day component.
@@ -633,7 +702,6 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     def _fill_guests(self, guests):
         guests_btn = self.select_single('Button', objectName='addGuestButton')
         main_view = self.get_root_instance().select_single(MainView)
-        main_view.swipe_view_vertical(1, self)
 
         for guest in guests:
             self.pointing_device.click_object(guests_btn)
