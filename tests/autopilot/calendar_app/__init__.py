@@ -25,6 +25,7 @@ import ubuntuuitoolkit
 from autopilot import exceptions
 from dateutil import tz
 import math
+from testtools.matchers import GreaterThan
 
 from calendar_app import data
 
@@ -116,6 +117,20 @@ class MainView(ubuntuuitoolkit.MainView):
         return self.get_day_view(day_tab)
 
     @autopilot.logging.log_action(logger.info)
+    def go_to_agenda_view(self):
+        """Open the agenda view.
+
+        :return: The Agenda View page.
+
+        """
+        agenda_tab = self.select_single('Tab', objectName='agendaTab')
+        if not agenda_tab.visible:
+            self.switch_to_tab('agendaTab')
+        else:
+            logger.debug('The Agenda View page is already opened.')
+        return self.get_agenda_view(agenda_tab)
+
+    @autopilot.logging.log_action(logger.info)
     def go_to_new_event(self):
         """Open the page to add a new event.
 
@@ -174,6 +189,11 @@ class MainView(ubuntuuitoolkit.MainView):
         if parent_object is None:
             parent_object = self
         return parent_object.select_single(WeekView, objectName='weekViewPage')
+
+    def get_agenda_view(self, parent_object=None):
+        if parent_object is None:
+            parent_object = self
+        return parent_object.select_single(AgendaView, objectName='AgendaView')
 
     def get_label_with_text(self, text, root=None):
         if root is None:
@@ -568,6 +588,32 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         if not(day_header):
             raise CalendarException('Day Header not found for %s' % day)
         return day_header
+
+
+class AgendaView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+
+    """Autopilot helper for the Week Agenda page."""
+
+    @autopilot.logging.log_action(logger.info)
+    def open_event(self, name):
+        """Open an event.
+
+
+        """
+        eventList = self.wait_select_single(
+            "QQuickListView", objectName="eventList")
+
+        eventList.count.wait_for(GreaterThan(0))
+
+        for index in range(int(eventList.count)):
+            event_item = self.wait_select_single(
+                objectName='eventContainer{}'.format(index))
+            title_label = event_item.wait_select_single(
+                'Label', objectName='titleLabel{}'.format(index))
+            if (title_label.text == name):
+                eventList.click_element(
+                    'eventContainer{}'.format(index), direction=None)
+                break
 
 
 class EventBubble(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
