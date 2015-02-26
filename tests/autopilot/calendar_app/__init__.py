@@ -348,10 +348,12 @@ class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return self._get_timeline_base().select_single(objectName="viewHeader")
 
     def _get_date_label_headers(self):
-        return self._get_timeline_header().select_many("Label", objectName="dateLabel")
+        return self._get_timeline_header().select_many("Label",
+                                                       objectName="dateLabel")
 
     def _get_pathview_base(self):
-        # return self.select_single('PathViewBase', objectname='weekviewpathbase')
+        # return self.select_single('PathViewBase',
+        #                           objectname='weekviewpathbase')
         # why do you hate me autopilot? ^^
         return self.select_single('PathViewBase')
 
@@ -387,39 +389,6 @@ class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
             if inserted == 0:
                 sorteddays.insert(0, day)
         return sorteddays
-
-    def get_first_day_of_week(self):
-        date = self.app.main_view.to_local_date(
-            self.dayStart.datetime)
-        firstDay = self.app.main_view.to_local_date(
-            self.firstDay.datetime)
-
-        # sunday
-        if firstDay.weekday() == 6:
-            logger.debug("Locale has Sunday as first day of week")
-            weekday = date.weekday()
-            diff = datetime.timedelta(days=weekday + 1)
-        # saturday
-        elif firstDay.weekday() == 5:
-            logger.debug("Locale has Saturday as first day of week")
-            weekday = date.weekday()
-            diff = datetime.timedelta(days=weekday + 2)
-        # monday
-        else:
-            logger.debug("Locale has Monday as first day of week")
-            weekday = date.weekday()
-            diff = datetime.timedelta(days=weekday)
-
-        # set the start of week
-        if date.day != firstDay.day:
-            day_start = date - diff
-            logger.debug("Setting day_start to %s" % firstDay.day)
-        else:
-            day_start = date
-            logger.debug("Using today as day_start %s" % date)
-        #return day_start
-        logger.debug("day of week %s" % self.firstDay.weekday())
-        return self.firstDay
 
 
 class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):

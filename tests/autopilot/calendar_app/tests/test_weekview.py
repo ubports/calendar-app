@@ -26,7 +26,7 @@ if sys.version_info < (3,):
 
 import datetime
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals, NotEquals
+from testtools.matchers import Equals
 from random import randint, randrange
 
 from calendar_app.tests import CalendarAppTestCase
@@ -88,8 +88,8 @@ class TestWeekView(CalendarAppTestCase):
 
     def test_change_week(self):
         """It must be possible to change weeks by swiping the timeline"""
-        weeks = randint(1,6)
-        direction = randrange(-1,1,2)
+        weeks = randint(1, 6)
+        direction = randrange(-1, 1, 2)
         delta = weeks * direction
         original_week = self.week_view.get_current_weeknumber()
 
@@ -112,7 +112,8 @@ class TestWeekView(CalendarAppTestCase):
         self.assertThat(day_view.visible, Eventually(Equals(True)))
 
         # Check that the 'Day' view is on the correct/selected day.
-        selected_date = self.app.main_view.get_day_view().get_selected_day().startDay
+        selected_date = \
+            self.app.main_view.get_day_view().get_selected_day().startDay
         self.assertThat(expected_day, Equals(selected_date.day))
         self.assertThat(expected_month, Equals(selected_date.month))
         self.assertThat(expected_year, Equals(selected_date.year))
