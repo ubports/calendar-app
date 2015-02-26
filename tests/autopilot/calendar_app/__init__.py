@@ -233,22 +233,22 @@ class MainView(ubuntuuitoolkit.MainView):
 
         self.pointing_device.drag(x_start, y_line, x_stop, y_line)
 
-- def swipe_view_vertical(self, direction, view, y_pad=0.08):
-      """Swipe the given view to up or down.
+    def swipe_view_vertical(self, direction, view, y_pad=0.08):
+        """Swipe the given view to up or down.
 
-      Args:
-      direction:
-      """
+        Args:
+        direction:
+        """
 
-      start = (-direction * y_pad) % 1
-      stop = (direction * y_pad) % 1
+        start = (-direction * y_pad) % 1
+        stop = (direction * y_pad) % 1
 
-      x_line = view.globalRect[0] + view.globalRect[2] / 2
-      y_start = view.globalRect[1] + view.globalRect[3] * start
-      y_stop = view.globalRect[1] + view.globalRect[3] * stop
+        x_line = view.globalRect[0] + view.globalRect[2] / 2
+        y_start = view.globalRect[1] + view.globalRect[3] * start
+        y_stop = view.globalRect[1] + view.globalRect[3] * stop
 
-      self.pointing_device.drag(x_line, y_start, x_line, y_stop)
-      sleep(1)
+        self.pointing_device.drag(x_line, y_start, x_line, y_stop)
+        sleep(1)
 
     def to_local_date(self, date):
         utc = date.replace(tzinfo=tz.tzutc())
