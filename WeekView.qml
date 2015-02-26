@@ -65,7 +65,7 @@ Page{
 
     PathViewBase{
         id: weekViewPath
-        objectName: "weekViewPath"
+        objectName: "weekviewpathbase"
 
         anchors.fill: parent
 

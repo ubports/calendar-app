@@ -44,7 +44,8 @@ Column {
 
             Label{
                 id: weekNumLabel
-                text: i18n.tr("W") + root.startDay.weekNumber()
+                objectName: "weeknumber"
+                text: i18n.tr("W") + root.weekNumber
                 fontSize: "small"
                 height: units.gu(5)
                 width: parent.width
@@ -144,7 +145,7 @@ Column {
 
                 TimeLineHeaderComponent{
                     objectName: "timelineHeader"
-                    startDay: headerRoot.startDay 
+                    startDay: headerRoot.startDay
                     type: ViewType.ViewTypeWeek
                     width: parent.width
                     height: units.gu(5)
