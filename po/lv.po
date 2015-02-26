@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2014-09-07 14:25+0000\n"
-"Last-Translator: Jānis Marks Gailis <jm-gailis@fai-vianet.fr>\n"
+"PO-Revision-Date: 2015-02-25 12:20+0000\n"
+"Last-Translator: Rūdolfs Mazurs <Unknown>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-02-19 05:36+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-02-26 05:47+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -29,18 +29,18 @@ msgstr "Nav gaidāmo notikumu"
 
 #: ../AgendaView.qml:94
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Nav ieslēgtu kalendāru"
 
 #: ../AgendaView.qml:104
 msgid "Enable calendars"
-msgstr ""
+msgstr "Ieslēgt kalendārus"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../AgendaView.qml:166 ../EventBubble.qml:131
 #, qt-format
 msgid "%1 - %2"
-msgstr "%1 - %2"
+msgstr "%1 – %2"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -49,15 +49,16 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:122
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 no."
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 visas dienas notikums"
+msgstr[1] "%1 visas dienas notikumi"
+msgstr[2] "%1 visas dienas notikumu"
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
 msgid "Calendars"
@@ -79,7 +80,7 @@ msgstr "Sinhronizē"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add new Calendar"
-msgstr ""
+msgstr "Pievienot jaunu kalendāru"
 
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
@@ -103,11 +104,11 @@ msgstr "Meklēt kontaktu"
 #. It's used in the header of the month and week views
 #: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr "Dzēst atkārtojošu notikumu"
+msgstr "Dzēst periodisku notikumu"
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
@@ -117,12 +118,12 @@ msgstr "Dzēst notikumu"
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Dzēst tikai notikumu “%1”, vai visus notikumu sērijā?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Vai tiešām vēlaties dzēst notikumu “%1”?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -144,7 +145,7 @@ msgstr "Rediģēt notikumu"
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Rediģēt tikai notikumu “%1” vai visus notikumus sērijā?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -163,27 +164,27 @@ msgstr "Jauns notikums"
 #: ../EventBubble.qml:142 ../EventBubble.qml:147
 #, qt-format
 msgid "%1 <b>%2</b>"
-msgstr ""
+msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:42 ../NewEvent.qml:393
 msgid "Event Details"
-msgstr ""
+msgstr "Sīkāk par notikumu"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "%1 kalendārs"
 
 #: ../EventDetails.qml:118
 #, qt-format
 msgid "%1 - %2 (All Day)"
-msgstr ""
+msgstr "%1 – %2 (visa diena)"
 
 #: ../EventDetails.qml:122
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (visa diena)"
 
 #: ../EventDetails.qml:196
 msgid "Edit"
@@ -195,7 +196,7 @@ msgstr "Viesi"
 
 #: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
 msgid "Reminder"
-msgstr ""
+msgstr "Atgādinājums"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -203,7 +204,7 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:41 ../EventRepetition.qml:132
 msgid "Repeat"
-msgstr ""
+msgstr "Atkārtot"
 
 #: ../EventRepetition.qml:151
 msgid "Repeats On:"
@@ -211,7 +212,7 @@ msgstr "Atkārtojas:"
 
 #: ../EventRepetition.qml:196
 msgid "Recurring event ends"
-msgstr "Atkārtotais notikums beidzas"
+msgstr "Periodiskais notikums beidzas"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
