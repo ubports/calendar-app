@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2015-02-25 12:20+0000\n"
+"PO-Revision-Date: 2015-02-28 15:35+0000\n"
 "Last-Translator: Rūdolfs Mazurs <Unknown>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-02-26 05:47+0000\n"
+"X-Launchpad-Export-Date: 2015-03-01 05:29+0000\n"
 "X-Generator: Launchpad (build 17361)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
@@ -219,7 +219,7 @@ msgstr "Periodiskais notikums beidzas"
 #. its repetition
 #: ../EventRepetition.qml:219 ../NewEvent.qml:560
 msgid "Repeats"
-msgstr ""
+msgstr "Atkārtošanās"
 
 #: ../EventRepetition.qml:244
 msgid "Date"
@@ -231,22 +231,23 @@ msgstr "Datums"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 reizi"
+msgstr[1] "%1; %2 reizes"
+msgstr[2] "%1; %2 reižu"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; līdz %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Ik nedēļu, %1"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -254,7 +255,7 @@ msgstr "Nekad"
 
 #: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr ""
+msgstr "Pēc X reizēm"
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
@@ -266,7 +267,7 @@ msgstr "Saglabāt"
 
 #: ../NewEvent.qml:165
 msgid "End time can't be before start time"
-msgstr "Beigas laiks nevar būt pirms sakuma laika"
+msgstr "Beigu laiks nevar būt pirms sākuma laika"
 
 #: ../NewEvent.qml:293
 msgid "Error"
@@ -274,19 +275,19 @@ msgstr "Kļūda"
 
 #: ../NewEvent.qml:295
 msgid "OK"
-msgstr "LABI"
+msgstr "Labi"
 
 #: ../NewEvent.qml:347
 msgid "From"
-msgstr ""
+msgstr "No"
 
 #: ../NewEvent.qml:360
 msgid "To"
-msgstr ""
+msgstr "Līdz"
 
 #: ../NewEvent.qml:377
 msgid "All day event"
-msgstr ""
+msgstr "Visas dienas notikums"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
@@ -306,7 +307,7 @@ msgstr "Kalendārs"
 
 #: ../NewEvent.qml:483
 msgid "Add Guest"
-msgstr "Pievienot ciemiņu"
+msgstr "Pievienot viesi"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -314,35 +315,35 @@ msgstr "Vienreiz"
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr "Ik dienu"
+msgstr "Katru dienu"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "Darba dienās"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "%1, %2 ,%3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "%1 un %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
-msgstr "Ik nedēļu"
+msgstr "Reizi nedēļā"
 
 #: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
-msgstr "Ik mēnesi"
+msgstr "Reizi mēnesī"
 
 #: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
-msgstr "Ik gadu"
+msgstr "Reizi gadā"
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
@@ -353,7 +354,7 @@ msgstr "Bez atgādinājuma"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "Sākoties notikumam"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
@@ -393,16 +394,16 @@ msgstr "2 nedēļas"
 
 #: ../TimeLineHeader.qml:47
 msgid "W"
-msgstr ""
+msgstr "N"
 
 #: ../TimeLineHeader.qml:59
 msgid "All Day"
-msgstr ""
+msgstr "Visu dienu"
 
 #: ../YearView.qml:53
 #, qt-format
 msgid "Year %1"
-msgstr ""
+msgstr "Gads %1"
 
 #: ../calendar.qml:44
 msgid ""
@@ -410,6 +411,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"Kalendāra lietotne pieņem četrus parametrus: --starttime, --endtime, --"
+"newevent un --eventid. Tos pārvalda sistēma. Skatiet pirmkodu, lai par tiem "
+"uzzinātu pilnu informāciju."
 
 #: ../calendar.qml:322
 msgid "Year"
@@ -429,12 +433,12 @@ msgstr "Diena"
 
 #: ../calendar.qml:449
 msgid "Agenda"
-msgstr ""
+msgstr "Dienas kārtība"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr "Ubuntu kalendārs kurš sinhronizē ar tiešsaistes kontiem"
+msgstr "Ubuntu kalendārs, kurš sinhronizējas ar tiešsaistes kontiem"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "kalendārs;notikums;diena;nedēļa;gads;tikšanās;pieraksts;"
