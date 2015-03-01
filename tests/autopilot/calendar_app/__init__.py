@@ -386,6 +386,9 @@ class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         month = self.get_current_month()
         return month.currentMonth.datetime.strftime("%B")
 
+    def get_current_selected_day(self):
+        return self.select_many('MonthComponentDateDelegate', isToday=True)
+            
 
 class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 

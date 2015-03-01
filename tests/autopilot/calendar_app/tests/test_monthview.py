@@ -25,7 +25,7 @@ import math
 
 from calendar_app.tests import CalendarAppTestCase
 
-from datetime import datetime
+import datetime
 from dateutil.relativedelta import relativedelta
 
 
@@ -96,3 +96,17 @@ class TestMonthView(CalendarAppTestCase):
 
     def test_monthview_go_to_today_prev_year(self):
         self._go_to_today(-12)
+
+    def test_current_day_month_and_year_is_selected(self):
+        """By default, the day view shows the current month and year."""
+        now = datetime.datetime.now()
+        expected_month_name_year = now.strftime("%B %Y")
+
+        self.assertThat(self.app.main_view.get_month_year(self.month_view),
+                        Equals(expected_month_name_year))
+
+        expected_day = str(int(now.strftime("%d")))
+        selected_day = self.month_view.get_current_selected_day()[0]
+
+        self.assertThat(selected_day.select_single('Label').text,
+                        Equals(expected_day))
