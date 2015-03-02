@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2014-11-19 13:50+0000\n"
-"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
+"PO-Revision-Date: 2015-03-01 07:19+0000\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-02-19 05:36+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-03-02 05:35+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -25,11 +25,11 @@ msgstr "今日"
 
 #: ../AgendaView.qml:91
 msgid "No upcoming events"
-msgstr "接下來沒有事件"
+msgstr "接下來沒有行程"
 
 #: ../AgendaView.qml:94
 msgid "You have no calendars enabled"
-msgstr "未有啟用行事曆"
+msgstr "您尚未啟用行事曆"
 
 #: ../AgendaView.qml:104
 msgid "Enable calendars"
@@ -49,14 +49,14 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:122
 #, qt-format
 msgid "%1 ev."
-msgstr "%1 件事"
+msgstr "%1 行程"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] "%1 件整日事件"
+msgstr[0] "%1 件整日行程"
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
 msgid "Calendars"
@@ -78,7 +78,7 @@ msgstr "同步中"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add new Calendar"
-msgstr ""
+msgstr "新增行事曆"
 
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
@@ -106,22 +106,22 @@ msgstr "yyyy年M月"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr "刪除循環事件"
+msgstr "刪除循環行程"
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
-msgstr "刪除事件"
+msgstr "刪除行程"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr "僅刪除此「%1」事件，還是整系列事件？"
+msgstr "僅刪除此「%1」行程，還是整系列行程？"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "確定刪除「%1」事件？"
+msgstr "確定刪除「%1」行程？"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -137,13 +137,13 @@ msgstr "刪除"
 
 #: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:283
 msgid "Edit Event"
-msgstr "編輯事件"
+msgstr "編輯行程"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "僅編輯此「%1」事件，還是整系列事件？"
+msgstr "僅編輯此「%1」行程，還是整系列行程？"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -155,18 +155,18 @@ msgstr "編輯這項"
 
 #: ../EventActions.qml:32 ../NewEvent.qml:283
 msgid "New Event"
-msgstr "新事件"
+msgstr "新增行程"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
 #: ../EventBubble.qml:142 ../EventBubble.qml:147
 #, qt-format
 msgid "%1 <b>%2</b>"
-msgstr ""
+msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:42 ../NewEvent.qml:393
 msgid "Event Details"
-msgstr "事件詳情"
+msgstr "行程詳情"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
 #: ../EventDetails.qml:66
@@ -177,12 +177,12 @@ msgstr "%1 行事曆"
 #: ../EventDetails.qml:118
 #, qt-format
 msgid "%1 - %2 (All Day)"
-msgstr ""
+msgstr "%1 - %2 (整天)"
 
 #: ../EventDetails.qml:122
 #, qt-format
 msgid "%1 (All Day)"
-msgstr "%1 件 (整日)"
+msgstr "%1  (整天)"
 
 #: ../EventDetails.qml:196
 msgid "Edit"
@@ -210,7 +210,7 @@ msgstr "重複於："
 
 #: ../EventRepetition.qml:196
 msgid "Recurring event ends"
-msgstr "循環事件結束"
+msgstr "循環行程結束"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
@@ -275,7 +275,7 @@ msgstr "確定"
 
 #: ../NewEvent.qml:347
 msgid "From"
-msgstr "由"
+msgstr "從"
 
 #: ../NewEvent.qml:360
 msgid "To"
@@ -283,11 +283,11 @@ msgstr "到"
 
 #: ../NewEvent.qml:377
 msgid "All day event"
-msgstr "整日事件"
+msgstr "整天行程"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
-msgstr "事件名稱"
+msgstr "行程名稱"
 
 #: ../NewEvent.qml:419
 msgid "Description"
@@ -295,7 +295,7 @@ msgstr "描述"
 
 #: ../NewEvent.qml:432
 msgid "Location"
-msgstr "位置"
+msgstr "地點"
 
 #: ../NewEvent.qml:441 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
@@ -303,7 +303,7 @@ msgstr "行事曆"
 
 #: ../NewEvent.qml:483
 msgid "Add Guest"
-msgstr "加入訪客"
+msgstr "加入賓客"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -311,11 +311,11 @@ msgstr "一次"
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr "每日"
+msgstr "每天"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "週一至週五"
+msgstr "平日"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
@@ -350,7 +350,7 @@ msgstr "無提醒"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr "事件開始時"
+msgstr "行程開始時"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
@@ -394,12 +394,12 @@ msgstr ""
 
 #: ../TimeLineHeader.qml:59
 msgid "All Day"
-msgstr ""
+msgstr "整天"
 
 #: ../YearView.qml:53
 #, qt-format
 msgid "Year %1"
-msgstr ""
+msgstr "%1年"
 
 #: ../calendar.qml:44
 msgid ""
@@ -438,4 +438,4 @@ msgstr "Ubuntu 行事曆，可與線上帳號同步。"
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
 "calendar;event;day;week;year;appointment;meeting;行事曆;事件;活動;日期;天;日;週;周;年;約會;會面"
-";會議;"
+";會議;行程;"
