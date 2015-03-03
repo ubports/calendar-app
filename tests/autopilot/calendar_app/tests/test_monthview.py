@@ -108,7 +108,7 @@ class TestMonthView(CalendarAppTestCase):
                         Equals(expected_month_name_year))
 
         expected_day = str(int(now.strftime("%d")))
-        selected_day = self.month_view.get_current_selected_day()[0]
+        selected_day = self.month_view.get_current_selected_day()
 
         self.assertThat(selected_day.select_single('Label').text,
                         Equals(expected_day))
