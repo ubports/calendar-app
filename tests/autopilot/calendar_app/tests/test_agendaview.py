@@ -22,7 +22,6 @@ from __future__ import absolute_import
 
 import logging
 
-from autopilot.matchers import Eventually
 from testtools.matchers import Equals
 
 from calendar_app.tests import CalendarAppTestCaseWithVcard
@@ -48,14 +47,8 @@ class TestAgendaView(CalendarAppTestCaseWithVcard):
         event_details_page = self.app.main_view.get_event_details()
         event_details = event_details_page.get_event_information()
 
-        self.assertThat(
-            event_details.name, Eventually(Equals(test_event.name)))
-        self.assertThat(
-            event_details.description,
-            Eventually(Equals(test_event.description)))
-        self.assertThat(
-            event_details.calendar, Eventually(Equals(test_event.calendar)))
-        self.assertThat(
-            event_details.location, Eventually(Equals(test_event.location)))
-        self.assertThat(
-            event_details.guests, Eventually(Equals(test_event.guests)))
+        self.assertEquals(event_details.name, test_event.name)
+        self.assertEquals(event_details.description, test_event.description)
+        self.assertEquals(event_details.calendar, test_event.calendar)
+        self.assertEquals(event_details.location, test_event.location)
+        #self.assertEquals(event_details.guests, test_event.guests)
