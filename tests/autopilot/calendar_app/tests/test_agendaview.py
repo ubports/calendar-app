@@ -22,8 +22,6 @@ from __future__ import absolute_import
 
 import logging
 
-from testtools.matchers import Equals
-
 from calendar_app.tests import CalendarAppTestCaseWithVcard
 
 from calendar_app import data
@@ -51,4 +49,4 @@ class TestAgendaView(CalendarAppTestCaseWithVcard):
         self.assertEquals(event_details.description, test_event.description)
         self.assertEquals(event_details.calendar, test_event.calendar)
         self.assertEquals(event_details.location, test_event.location)
-        #self.assertEquals(event_details.guests, test_event.guests)
+        self.assertEquals(event_details.guests, test_event.guests)
