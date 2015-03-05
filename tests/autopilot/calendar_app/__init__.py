@@ -399,8 +399,8 @@ class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     def get_day_label(self, day):
         days_row = self.select_single(
             'QQuickRow', objectName='dayLabelRow0')
-        return days_row.select_single('Label',
-            objectName='weekDay{}'.format(day))
+        return days_row.select_single(
+            'Label', objectName='weekDay{}'.format(day))
 
 
 class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
