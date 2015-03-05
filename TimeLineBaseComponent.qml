@@ -41,6 +41,8 @@ Item {
     //visible hour
     property int scrollHour;
 
+    property EventListModel mainModel;
+
     signal dateSelected(var date);
 
     function scrollToCurrentTime() {
@@ -98,17 +100,28 @@ Item {
         }
     }
 
-    EventListModel {
-        id: mainModel
-        startPeriod: startDay.midnight();
-        endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
-        filter: eventModel.filter
+    Timer{
+       interval: 200; running: true; repeat: false
+       onTriggered: {
+           mainModel = modelComponent.createObject();
+           activityLoader.running = Qt.binding( function (){ return mainModel.isLoading;});
+       }
+    }
+
+    Component {
+        id: modelComponent
+        EventListModel {
+            id: mainModel
+            startPeriod: startDay.midnight();
+            endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
+            filter: eventModel.filter
+        }
     }
 
     ActivityIndicator {
+        id: activityLoader
         visible: running
         objectName : "activityIndicator"
-        running: mainModel.isLoading
         anchors.centerIn: parent
         z:2
     }
@@ -194,13 +207,62 @@ Item {
                             day: startDay.addDays(index)
                             model: mainModel
 
-                            Component.onCompleted: {
-                                model.addModelChangeListener(destroyAllChildren);
-                                model.addModelChangeListener(createEvents);
+                            Connections{
+                                target: mainModel
+
+                                onModelChanged: {
+                                    createEvents();
+                                }
                             }
-                            Component.onDestruction: {
-                                model.removeModelChangeListener(destroyAllChildren);
-                                model.removeModelChangeListener(createEvents);
+
+                            DropArea {
+                                id: dropArea
+                                objectName: "mouseArea"
+                                anchors.fill: parent
+
+                                 function modifyEventForDrag(drag) {
+                                    var event = drag.source.event;
+                                    var diff = event.endDateTime.getTime() - event.startDateTime.getTime();
+
+                                    var startDate = getTimeFromYPos(drag.y, day);
+                                    var endDate = new Date( startDate.getTime() + diff );
+
+                                    event.startDateTime = startDate;
+                                    event.endDateTime = endDate;
+
+                                     return event;
+                                }
+
+                                onDropped: {
+                                    var event = dropArea.modifyEventForDrag(drop);
+                                    model.saveItem(event);
+                                }
+
+                                onPositionChanged: {
+                                    dropArea.modifyEventForDrag(drag)
+                                    var eventBubble = drag.source;
+                                    eventBubble.assingnBgColor();
+                                    eventBubble.setDetails();
+
+                                    if( eventBubble.y + eventBubble.height + units.gu(8) > timeLineView.contentY + timeLineView.height ) {
+                                        var diff = Math.abs((eventBubble.y + eventBubble.height + units.gu(8))  -
+                                                            (timeLineView.height + timeLineView.contentY));
+                                        timeLineView.contentY += diff
+
+                                        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
+                                            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
+                                        }
+                                    }
+
+                                    if(eventBubble.y - units.gu(8) < timeLineView.contentY ) {
+                                        var diff = Math.abs((eventBubble.y - units.gu(8))  - timeLineView.contentY);
+                                        timeLineView.contentY -= diff
+
+                                        if(timeLineView.contentY <= 0) {
+                                            timeLineView.contentY = 0;
+                                        }
+                                    }
+                                }
                             }
 
                             Loader{

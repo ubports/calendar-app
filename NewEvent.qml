@@ -109,7 +109,7 @@ Page {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
         //Create fresh Recurrence Object.
         rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml");
-        selectCalendar(model.defaultCollection().collectionId);        
+        selectCalendar(model.defaultCollection().collectionId);
     }
 
     //Editing Event
@@ -212,7 +212,7 @@ Page {
                 event.setDetail(audibleReminder);
             }
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
-            model.saveItem(event);            
+            model.saveItem(event);
             pageStack.pop();
             root.eventAdded(event);
         }

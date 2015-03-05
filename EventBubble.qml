@@ -33,6 +33,8 @@ Item{
     property int depthInRow: 0;
     property int sizeOfRow:0
 
+    property bool isLiveEditing: false
+
     property Flickable flickable;
 
     readonly property int minimumHeight: type == wideType
@@ -46,7 +48,7 @@ Item{
     Rectangle{
         id: bg
         anchors.fill: parent
-        border.color: "white"
+        border.color: isLiveEditing ? "red" : "white"
     }
 
     function resize() {
@@ -212,10 +214,28 @@ Item{
         }
     }
 
+    Drag.active: dragArea.drag.active
+
     MouseArea {
+        id: dragArea
         anchors.fill: parent
+        drag.target: isLiveEditing ? infoBubble : null
+        drag.axis: Drag.YAxis
+        drag.minimumY: flickable.y
+        drag.maximumY: flickable.contentHeight - infoBubble.height
+        onReleased: parent.Drag.drop()
         onClicked: {
-            infoBubble.clicked(event);
+            if( isLiveEditing ) {
+                isLiveEditing = false;
+                infoBubble.z -= 1;
+            } else {
+                infoBubble.clicked(event);
+            }
+        }
+
+        onPressAndHold: {
+            isLiveEditing = true;
+            infoBubble.z += 1;
         }
     }
 }

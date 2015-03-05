@@ -17,6 +17,8 @@
  */
 import QtQuick 2.3
 import Ubuntu.Components 1.1
+import QtOrganizer 5.0
+
 import "dateExt.js" as DateExt
 
 Item {
@@ -29,13 +31,6 @@ Item {
 
     Component.onCompleted: {
         bubbleOverLay.createEvents();
-        model.addModelChangeListener(destroyAllChildren);
-        model.addModelChangeListener(createEvents);
-    }
-
-    Component.onDestruction: {
-        model.removeModelChangeListener(destroyAllChildren);
-        model.removeModelChangeListener(createEvents);
     }
 
     MouseArea {
@@ -45,7 +40,8 @@ Item {
             var selectedDate = new Date(day);
             var hour = parseInt(mouseY / hourHeight);
             selectedDate.setHours(hour)
-            pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
+            //pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
+            createOrganizerEvent(selectedDate);
         }
 
         onPressed: {
@@ -54,6 +50,28 @@ Item {
                 bubbleOverLay.showSeparator();
             }
         }
+    }
+
+    function getTimeFromYPos(y, day) {
+        var date = new Date(day);
+        var time = y / hourHeight;
+        var minutes = time % 1 ;
+        var hour = time - minutes;
+        minutes = parseInt(60 * minutes);
+        minutes = Math.floor(minutes/15) * 15;
+        date.setHours(hour);
+        date.setMinutes(minutes);
+        return date;
+    }
+
+    function createOrganizerEvent( startDate ) {
+        var event = Qt.createQmlObject("import QtOrganizer 5.0; Event {}", Qt.application,"TimeLineBase.qml");
+        event.collectionId = (model.defaultCollection().collectionId);
+        var endDate = new Date( startDate.getTime() + 3600000 );
+        event.startDateTime = startDate;
+        event.endDateTime = endDate;
+        event.displayLabel = i18n.tr("Untitled");
+        model.saveItem(event);
     }
 
     TimeSeparator {
@@ -84,7 +102,7 @@ Item {
         }
     }
 
-    function layoutEvents(array, depth) {              
+    function layoutEvents(array, depth) {
         for(var i=0; i < array.length ; ++i) {
             var schedule = array[i];
             var event = intern.eventMap[schedule.id];
@@ -93,7 +111,7 @@ Item {
     }
 
     function createEvents() {
-        if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined) {
+        if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined || model === null) {
             return;
         }
 
