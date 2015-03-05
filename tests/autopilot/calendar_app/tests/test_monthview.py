@@ -22,6 +22,7 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
 import math
+import calendar
 
 from calendar_app.tests import CalendarAppTestCase
 
@@ -112,3 +113,40 @@ class TestMonthView(CalendarAppTestCase):
 
         self.assertThat(selected_day.select_single('Label').text,
                         Equals(expected_day))
+
+    def test_days_of_week_are_correct(self):
+        """
+        Verify that days of week are correct for the locale
+        """
+        first_week_day = calendar.day_abbr[calendar.firstweekday()]
+        day_0_label = self.month_view.get_day_label(0).day
+        day_1_label = self.month_view.get_day_label(1).day
+        day_2_label = self.month_view.get_day_label(2).day
+        day_3_label = self.month_view.get_day_label(3).day
+        day_4_label = self.month_view.get_day_label(4).day
+        day_5_label = self.month_view.get_day_label(5).day
+        day_6_label = self.month_view.get_day_label(6).day
+
+
+        self.assertThat(day_0_label, Equals(first_week_day))
+
+        self.assertThat(calendar.day_abbr[calendar.MONDAY],
+            Equals(day_0_label))
+
+        self.assertThat(calendar.day_abbr[calendar.TUESDAY],
+            Equals(day_1_label))
+
+        self.assertThat(calendar.day_abbr[calendar.WEDNESDAY],
+            Equals(day_2_label))
+
+        self.assertThat(calendar.day_abbr[calendar.THURSDAY],
+            Equals(day_3_label))
+
+        self.assertThat(calendar.day_abbr[calendar.FRIDAY],
+            Equals(day_4_label))
+
+        self.assertThat(calendar.day_abbr[calendar.SATURDAY],
+            Equals(day_5_label))
+
+        self.assertThat(calendar.day_abbr[calendar.SUNDAY],
+            Equals(day_6_label))

@@ -148,6 +148,7 @@ Item{
 
             Row{
                 id: dayLabelRow
+                objectName: "dayLabelRow" + index
 
                 property int dayWidth: width / 7;
 
@@ -230,6 +231,7 @@ Item{
 
         Label{
             id: weekDay
+            objectName: "weekDay" + index
             width: parent.dayWidth
             property var day :Qt.locale().standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat)
             text: isYearView ? day.charAt(0) : day;
