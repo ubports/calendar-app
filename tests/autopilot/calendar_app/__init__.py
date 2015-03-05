@@ -24,6 +24,7 @@ import autopilot.logging
 import ubuntuuitoolkit
 from autopilot import exceptions
 from dateutil import tz
+import math
 from testtools.matchers import GreaterThan
 
 from calendar_app import data
@@ -256,7 +257,7 @@ class MainView(ubuntuuitoolkit.MainView):
         """Swipe the given view to up or down.
 
         Args:
-            direction:
+        direction:
         """
 
         start = (-direction * y_pad) % 1
@@ -374,6 +375,58 @@ class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the Week View page."""
 
+    def get_current_weeknumber(self):
+        return self._get_timeline_base().weekNumber
+
+    def _get_timeline_base(self):
+        return self.select_single("TimeLineBaseComponent", isActive=True)
+
+    def _get_timeline_header(self):
+        return self._get_timeline_base().select_single(objectName="viewHeader")
+
+    def _get_date_label_headers(self):
+        return self._get_timeline_header().select_many("Label",
+                                                       objectName="dateLabel")
+
+    def _get_pathview_base(self):
+        # return self.select_single('PathViewBase',
+        #                           objectname='weekviewpathbase')
+        # why do you hate me autopilot? ^^
+        return self.select_single('PathViewBase')
+
+    def change_week(self, delta):
+        direction = int(math.copysign(1, delta))
+        main_view = self.get_root_instance().select_single(MainView)
+
+        pathview_base = self._get_pathview_base()
+
+        for _ in range(abs(delta)):
+            timeline_header = self._get_timeline_header()
+
+            main_view.swipe_view(direction, timeline_header)
+            # prevent timing issues with swiping
+            pathview_base.moving.wait_for(False)
+
+    def get_days_of_week(self):
+        # sort based on text value of the day
+        days = sorted(self._get_date_label_headers(),
+                      key=lambda label: label.text)
+        days = [int(item.text) for item in days]
+
+        # resort so beginning of next month comes after the end
+        # need to support overlapping months 28,30,31 -> 1
+        sorteddays = []
+        for day in days:
+            inserted = 0
+            for index, sortday in enumerate(sorteddays):
+                if day - sorteddays[index] == 1:
+                    sorteddays.insert(index + 1, day)
+                    inserted = 1
+                    break
+            if inserted == 0:
+                sorteddays.insert(0, day)
+        return sorteddays
+
 
 class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
@@ -444,6 +497,9 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
                     return matched_event
 
         raise CalendarException('No event found for %s' % event_name)
+
+    def get_selected_day(self):
+        return self._get_day_component()
 
     def _get_day_component(self, day='selected'):
         """Get the selected day component.
