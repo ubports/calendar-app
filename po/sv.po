@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2014-10-07 14:46+0000\n"
+"PO-Revision-Date: 2015-03-05 19:14+0000\n"
 "Last-Translator: Josef Andersson <Unknown>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-19 05:36+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-03-06 06:01+0000\n"
+"X-Generator: Launchpad (build 17374)\n"
 "Language: sv\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
@@ -50,15 +50,15 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:122
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 hä."
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 händelse idag"
+msgstr[1] "%1 händelser idag"
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
 msgid "Calendars"
@@ -80,7 +80,7 @@ msgstr "Synkroniserar"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add new Calendar"
-msgstr ""
+msgstr "Lägg till ny kalender"
 
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
@@ -118,12 +118,12 @@ msgstr "Ta bort händelse"
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Ta bort endast denna händelse \"%1\", eller alla händelser i serien?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Vill du verkligen ta bort denna händelse \"%1\"?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -145,7 +145,7 @@ msgstr "Redigera händelse"
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Redigera endast denna händelse ”%1” eller alla händelser i serien?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -164,7 +164,7 @@ msgstr "Ny händelse"
 #: ../EventBubble.qml:142 ../EventBubble.qml:147
 #, qt-format
 msgid "%1 <b>%2</b>"
-msgstr ""
+msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:42 ../NewEvent.qml:393
 msgid "Event Details"
@@ -174,17 +174,17 @@ msgstr "Händelsedetaljer"
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "%1 kalender"
 
 #: ../EventDetails.qml:118
 #, qt-format
 msgid "%1 - %2 (All Day)"
-msgstr ""
+msgstr "%1 - %2 (Hela dagen)"
 
 #: ../EventDetails.qml:122
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (Hela dagen)"
 
 #: ../EventDetails.qml:196
 msgid "Edit"
@@ -231,22 +231,22 @@ msgstr "Datum"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 gång"
+msgstr[1] "%1; %2 gånger"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; till %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Veckovis på %1"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -324,13 +324,13 @@ msgstr "På veckodagar"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "Var %1, %2 ,%3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "På %1 och %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -353,7 +353,7 @@ msgstr "Ingen påminnelse"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "Vid tillfälle"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
@@ -393,16 +393,16 @@ msgstr "Två veckor"
 
 #: ../TimeLineHeader.qml:47
 msgid "W"
-msgstr ""
+msgstr "V"
 
 #: ../TimeLineHeader.qml:59
 msgid "All Day"
-msgstr ""
+msgstr "Hela dagen"
 
 #: ../YearView.qml:53
 #, qt-format
 msgid "Year %1"
-msgstr ""
+msgstr "År %1"
 
 #: ../calendar.qml:44
 msgid ""
