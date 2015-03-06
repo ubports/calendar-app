@@ -111,8 +111,8 @@ class TestMonthView(CalendarAppTestCase):
         expected_day = str(int(now.strftime("%d")))
         selected_day = self.month_view.get_current_selected_day()
 
-        self.assertThat(selected_day.select_single('Label').text,
-                        Equals(expected_day))
+        self.assertEquals(
+            selected_day.select_single('Label').text, expected_day)
 
     def test_days_of_week_are_correct(self):
         """
@@ -127,25 +127,12 @@ class TestMonthView(CalendarAppTestCase):
         day_5_label = self.month_view.get_day_label(5).day
         day_6_label = self.month_view.get_day_label(6).day
 
-        self.assertThat(day_0_label, Equals(first_week_day))
+        self.assertEquals(day_0_label, first_week_day)
 
-        self.assertThat(
-            calendar.day_abbr[calendar.MONDAY], Equals(day_0_label))
-
-        self.assertThat(
-            calendar.day_abbr[calendar.TUESDAY], Equals(day_1_label))
-
-        self.assertThat(
-            calendar.day_abbr[calendar.WEDNESDAY], Equals(day_2_label))
-
-        self.assertThat(
-            calendar.day_abbr[calendar.THURSDAY], Equals(day_3_label))
-
-        self.assertThat(
-            calendar.day_abbr[calendar.FRIDAY], Equals(day_4_label))
-
-        self.assertThat(
-            calendar.day_abbr[calendar.SATURDAY], Equals(day_5_label))
-
-        self.assertThat(
-            calendar.day_abbr[calendar.SUNDAY], Equals(day_6_label))
+        self.assertEquals(calendar.day_abbr[calendar.MONDAY], day_0_label)
+        self.assertEquals(calendar.day_abbr[calendar.TUESDAY], day_1_label)
+        self.assertEquals(calendar.day_abbr[calendar.WEDNESDAY], day_2_label)
+        self.assertEquals(calendar.day_abbr[calendar.THURSDAY], day_3_label)
+        self.assertEquals(calendar.day_abbr[calendar.FRIDAY], day_4_label)
+        self.assertEquals(calendar.day_abbr[calendar.SATURDAY], day_5_label)
+        self.assertEquals(calendar.day_abbr[calendar.SUNDAY], day_6_label)
