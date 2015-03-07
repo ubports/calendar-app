@@ -435,9 +435,25 @@ class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     def get_current_month(self):
         return self.select_single('MonthComponent', isCurrentItem=True)
 
+    @autopilot.logging.log_action(logger.info)
     def get_current_month_name(self):
         month = self.get_current_month()
         return month.currentMonth.datetime.strftime("%B")
+
+    @autopilot.logging.log_action(logger.info)
+    def get_current_selected_day(self):
+        today_days = self.select_many(
+            'MonthComponentDateDelegate', isToday=True)
+        for item in today_days:
+            if item.isCurrentMonth:
+                return item
+
+    @autopilot.logging.log_action(logger.info)
+    def get_day_label(self, day):
+        days_row = self.select_single(
+            'QQuickRow', objectName='dayLabelRow0')
+        return days_row.select_single(
+            'Label', objectName='weekDay{}'.format(day))
 
 
 class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):

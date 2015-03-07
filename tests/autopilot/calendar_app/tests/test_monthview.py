@@ -22,6 +22,7 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
 import math
+import calendar
 
 from calendar_app.tests import CalendarAppTestCase
 
@@ -96,3 +97,42 @@ class TestMonthView(CalendarAppTestCase):
 
     def test_monthview_go_to_today_prev_year(self):
         self._go_to_today(-12)
+
+    def test_current_day_month_and_year_is_selected(self):
+        """
+        By default, the month view shows the current day, month and year.
+        """
+        now = datetime.now()
+        expected_month_name_year = now.strftime("%B %Y")
+
+        self.assertThat(self.app.main_view.get_month_year(self.month_view),
+                        Equals(expected_month_name_year))
+
+        expected_day = str(int(now.strftime("%d")))
+        selected_day = self.month_view.get_current_selected_day()
+
+        self.assertEquals(
+            selected_day.select_single('Label').text, expected_day)
+
+    def test_days_of_week_are_correct(self):
+        """
+        Verify that days of week are correct for the locale
+        """
+        first_week_day = calendar.day_abbr[calendar.firstweekday()]
+        day_0_label = self.month_view.get_day_label(0).day
+        day_1_label = self.month_view.get_day_label(1).day
+        day_2_label = self.month_view.get_day_label(2).day
+        day_3_label = self.month_view.get_day_label(3).day
+        day_4_label = self.month_view.get_day_label(4).day
+        day_5_label = self.month_view.get_day_label(5).day
+        day_6_label = self.month_view.get_day_label(6).day
+
+        self.assertEquals(day_0_label, first_week_day)
+
+        self.assertEquals(calendar.day_abbr[calendar.MONDAY], day_0_label)
+        self.assertEquals(calendar.day_abbr[calendar.TUESDAY], day_1_label)
+        self.assertEquals(calendar.day_abbr[calendar.WEDNESDAY], day_2_label)
+        self.assertEquals(calendar.day_abbr[calendar.THURSDAY], day_3_label)
+        self.assertEquals(calendar.day_abbr[calendar.FRIDAY], day_4_label)
+        self.assertEquals(calendar.day_abbr[calendar.SATURDAY], day_5_label)
+        self.assertEquals(calendar.day_abbr[calendar.SUNDAY], day_6_label)
