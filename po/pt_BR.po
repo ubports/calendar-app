@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2014-08-18 14:11+0000\n"
-"Last-Translator: Rafael Neri <Unknown>\n"
+"PO-Revision-Date: 2015-03-08 20:41+0000\n"
+"Last-Translator: Tiago Hillebrandt <tiagohillebrandt@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-02-19 05:36+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-03-09 05:56+0000\n"
+"X-Generator: Launchpad (build 17383)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -33,7 +33,7 @@ msgstr ""
 
 #: ../AgendaView.qml:104
 msgid "Enable calendars"
-msgstr ""
+msgstr "Habilitar calendários"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -122,7 +122,7 @@ msgstr ""
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Você tem certeza que deseja excluir o evento \"%1\"?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -195,7 +195,7 @@ msgstr "Convidados"
 
 #: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
 msgid "Reminder"
-msgstr ""
+msgstr "Lembrete"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -203,7 +203,7 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:41 ../EventRepetition.qml:132
 msgid "Repeat"
-msgstr ""
+msgstr "Repetir"
 
 #: ../EventRepetition.qml:151
 msgid "Repeats On:"
@@ -245,7 +245,7 @@ msgstr ""
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Semanalmente em %1"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -317,7 +317,7 @@ msgstr "Diariamente"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "Nos dias da semana"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
