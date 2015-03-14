@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2014-09-09 10:41+0000\n"
-"Last-Translator: Nicat Məmmədov <n1c4t97@gmail.com>\n"
+"PO-Revision-Date: 2015-03-13 12:45+0000\n"
+"Last-Translator: Turan Mahmudov <turan.mahmudov@gmail.com>\n"
 "Language-Team: Azerbaijani <az@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-19 05:35+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-03-14 05:29+0000\n"
+"X-Generator: Launchpad (build 17389)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -25,15 +25,15 @@ msgstr "Bu gün"
 
 #: ../AgendaView.qml:91
 msgid "No upcoming events"
-msgstr ""
+msgstr "Gələcək tədbir yoxdur"
 
 #: ../AgendaView.qml:94
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Heç bir təqvimi işə salmamısınız"
 
 #: ../AgendaView.qml:104
 msgid "Enable calendars"
-msgstr ""
+msgstr "Təqvimləri işə sal"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -49,15 +49,15 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:122
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 tə."
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 bütün gün tədbiri"
+msgstr[1] "%1 bütün gün tədbiri"
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
 msgid "Calendars"
@@ -71,15 +71,15 @@ msgstr "Geri"
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../CalendarChoicePopup.qml:51
 msgid "Sync"
-msgstr ""
+msgstr "Sinxronizasiya"
 
 #: ../CalendarChoicePopup.qml:51
 msgid "Syncing"
-msgstr ""
+msgstr "Sinxronlaşdırılır"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add new Calendar"
-msgstr ""
+msgstr "Yeni Təqvim əlavə et"
 
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
@@ -88,7 +88,7 @@ msgstr "Rәng Seçin"
 #: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
-msgstr "Ləğv et"
+msgstr "İmtina"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
@@ -103,30 +103,30 @@ msgstr ""
 #. It's used in the header of the month and week views
 #: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "Təkrar olunan Tədbiri Sil"
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
-msgstr ""
+msgstr "Tədbiri Sil"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Yalnız \"%1\" tədbirini silsin yoxsa qrupdakı bütün tədbirləri?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "\"%1\" tədbirini silmək istədiyinizə əminsiniz?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
-msgstr ""
+msgstr "Qrupları sil"
 
 #: ../DeleteConfirmationDialog.qml:51
 msgid "Delete this"
@@ -138,21 +138,22 @@ msgstr "Sil"
 
 #: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:283
 msgid "Edit Event"
-msgstr ""
+msgstr "Tədbiri Redaktə et"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
 msgstr ""
+"Yalnız \"%1\" tədbirini redaktə etsin yoxsa qrupdakı bütün tədbirləri?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
-msgstr ""
+msgstr "Qrupları redaktə et"
 
 #: ../EditEventConfirmationDialog.qml:44
 msgid "Edit this"
-msgstr ""
+msgstr "Bunu redaktə et"
 
 #: ../EventActions.qml:32 ../NewEvent.qml:283
 msgid "New Event"
@@ -163,39 +164,39 @@ msgstr "Yeni Tədbir"
 #: ../EventBubble.qml:142 ../EventBubble.qml:147
 #, qt-format
 msgid "%1 <b>%2</b>"
-msgstr ""
+msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:42 ../NewEvent.qml:393
 msgid "Event Details"
-msgstr ""
+msgstr "Tədbir Təfərrüatları"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "%1 Təqvimi"
 
 #: ../EventDetails.qml:118
 #, qt-format
 msgid "%1 - %2 (All Day)"
-msgstr ""
+msgstr "%1 - %2 (Bütün Gün)"
 
 #: ../EventDetails.qml:122
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (Bütün Gün)"
 
 #: ../EventDetails.qml:196
 msgid "Edit"
-msgstr "Redaktə"
+msgstr "Redaktə et"
 
 #: ../EventDetails.qml:347 ../NewEvent.qml:479
 msgid "Guests"
-msgstr ""
+msgstr "Qonaqlar"
 
 #: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
 msgid "Reminder"
-msgstr ""
+msgstr "Xatırladıcı"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -203,26 +204,26 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:41 ../EventRepetition.qml:132
 msgid "Repeat"
-msgstr ""
+msgstr "Təkrarla"
 
 #: ../EventRepetition.qml:151
 msgid "Repeats On:"
-msgstr ""
+msgstr "Təkrarla:"
 
 #: ../EventRepetition.qml:196
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Təkrarlanan tədbir bitir"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
 #: ../EventRepetition.qml:219 ../NewEvent.qml:560
 msgid "Repeats"
-msgstr ""
+msgstr "Təkrarlar"
 
 #: ../EventRepetition.qml:244
 msgid "Date"
-msgstr ""
+msgstr "Tarix"
 
 #. TRANSLATORS: the argument refers to multiple recurrence of event with count .
 #. E.g. "Daily; 5 times."
@@ -230,22 +231,22 @@ msgstr ""
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 dəfə"
+msgstr[1] "%1; %2 dəfə"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; %2 qədər"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "%1 Həftəlik"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -261,7 +262,7 @@ msgstr ""
 
 #: ../NewEvent.qml:59
 msgid "Save"
-msgstr "Qeyd et"
+msgstr "Saxla"
 
 #: ../NewEvent.qml:165
 msgid "End time can't be before start time"
@@ -273,31 +274,31 @@ msgstr "Xəta"
 
 #: ../NewEvent.qml:295
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../NewEvent.qml:347
 msgid "From"
-msgstr ""
+msgstr "-Dan"
 
 #: ../NewEvent.qml:360
 msgid "To"
-msgstr ""
+msgstr "-Ə"
 
 #: ../NewEvent.qml:377
 msgid "All day event"
-msgstr ""
+msgstr "Bütün gün tədbiri"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
-msgstr ""
+msgstr "Tədbirin Adı"
 
 #: ../NewEvent.qml:419
 msgid "Description"
-msgstr ""
+msgstr "Təsvir"
 
 #: ../NewEvent.qml:432
 msgid "Location"
-msgstr ""
+msgstr "Yer"
 
 #: ../NewEvent.qml:441 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
@@ -305,103 +306,103 @@ msgstr "Təqvim"
 
 #: ../NewEvent.qml:483
 msgid "Add Guest"
-msgstr ""
+msgstr "Qonaq Əlavə Et"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
-msgstr ""
+msgstr "Bir dəfə"
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr ""
+msgstr "Gündəlik"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "Həftə içi günlərində"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "%1, %2, %3 -də"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "%1 və %2 -də"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
-msgstr ""
+msgstr "Həftəlik"
 
 #: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
-msgstr ""
+msgstr "Aylıq"
 
 #: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
-msgstr ""
+msgstr "İllik"
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
-msgstr ""
+msgstr "Xatırladıcı Yoxdur"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "Tədbirdə"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
-msgstr ""
+msgstr "5 dəqiqə"
 
 #: ../RemindersModel.qml:32
 msgid "15 minutes"
-msgstr ""
+msgstr "15 dəqiqə"
 
 #: ../RemindersModel.qml:33
 msgid "30 minutes"
-msgstr ""
+msgstr "30 dəqiqə"
 
 #: ../RemindersModel.qml:34
 msgid "1 hour"
-msgstr ""
+msgstr "1 saat"
 
 #: ../RemindersModel.qml:35
 msgid "2 hours"
-msgstr ""
+msgstr "2 saat"
 
 #: ../RemindersModel.qml:36
 msgid "1 day"
-msgstr ""
+msgstr "1 gün"
 
 #: ../RemindersModel.qml:37
 msgid "2 days"
-msgstr ""
+msgstr "2 gün"
 
 #: ../RemindersModel.qml:38
 msgid "1 week"
-msgstr ""
+msgstr "1 həftə"
 
 #: ../RemindersModel.qml:39
 msgid "2 weeks"
-msgstr ""
+msgstr "2 həftə"
 
 #: ../TimeLineHeader.qml:47
 msgid "W"
-msgstr ""
+msgstr "H"
 
 #: ../TimeLineHeader.qml:59
 msgid "All Day"
-msgstr ""
+msgstr "Bütün Gün"
 
 #: ../YearView.qml:53
 #, qt-format
 msgid "Year %1"
-msgstr ""
+msgstr "İl %1"
 
 #: ../calendar.qml:44
 msgid ""
@@ -428,12 +429,12 @@ msgstr "Gün"
 
 #: ../calendar.qml:449
 msgid "Agenda"
-msgstr ""
+msgstr "Gündəlik"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "Ubuntu üçün onlayn hesablarla sinxronizasiya olunan təqvim"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "təqvim;tədbir;gün;həftə;il;vədə;görüş;"
