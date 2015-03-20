@@ -48,7 +48,6 @@ Item {
             var selectedDate = new Date(day);
             var hour = parseInt(mouseY / hourHeight);
             selectedDate.setHours(hour)
-            //pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
             createOrganizerEvent(selectedDate);
         }
 
@@ -79,6 +78,7 @@ Item {
         event.startDateTime = startDate;
         event.endDateTime = endDate;
         event.displayLabel = i18n.tr("Untitled");
+        event.setDetail(Qt.createQmlObject("import QtOrganizer 5.0; Comment{ comment: 'X-CAL-DEFAULT-EVENT'}", event,"TimeLineBase.qml"));
         model.saveItem(event);
     }
 
@@ -98,7 +98,12 @@ Item {
     }
 
     function showEventDetails(event) {
-        pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":model});
+        var comment = event.detail(Detail.Comment);
+        if(comment && comment.comment === "X-CAL-DEFAULT-EVENT") {
+            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event": event, "model":model});
+        } else {
+            pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":model});
+        }
     }
 
     WorkerScript {
