@@ -305,6 +305,7 @@ Page {
 
     Flickable{
         id: flickable
+        clip: true
 
         property var activeItem: null
 
@@ -317,14 +318,14 @@ Page {
             var position = flickable.contentItem.mapFromItem(item, 0, 0);
 
             // check if the item is already visible
-            var bottomY = flickable.contentY + flickable.height
-            var itemBottom = position.y + item.height
+            var bottomY =  flickable.contentY + flickable.height
+            var itemBottom = header.height + position.y + item.height
             if (position.y >= flickable.contentY && itemBottom <= bottomY) {
                 return;
             }
 
             // if it is not, try to scroll and make it visible
-            var targetY = position.y + item.height - flickable.height
+            var targetY = header.height + position.y + item.height - flickable.height
             if (targetY >= 0 && position.y) {
                 flickable.contentY = targetY;
             } else if (position.y < flickable.contentY) {
@@ -334,7 +335,10 @@ Page {
             flickable.returnToBounds()
         }
 
-        anchors.fill: parent
+        //anchors.fill: parent
+        y: header.height
+        width: parent.width;
+        height: parent.height;
         contentWidth: width
         contentHeight: column.height + units.gu(10)
 
@@ -405,6 +409,11 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Event Name")
+                    onFocusChanged: {
+                        if(titleEdit.focus) {
+                            flickable.makeMeVisible(titleEdit);
+                        }
+                    }
                 }
 
                 TextArea{
@@ -418,6 +427,11 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Description")
+                    onFocusChanged: {
+                        if(messageEdit.focus) {
+                            flickable.makeMeVisible(messageEdit);
+                        }
+                    }
                 }
 
                 TextField {
@@ -431,6 +445,12 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Location")
+
+                    onFocusChanged: {
+                        if(locationEdit.focus) {
+                            flickable.makeMeVisible(locationEdit);
+                        }
+                    }
                 }
             }
 
