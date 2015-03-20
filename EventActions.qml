@@ -55,7 +55,7 @@ Item {
 
     Action{
         id: _showCalendarAction
-        iconName: "new-event"
+        iconName: "calendar"
         text: i18n.tr("Calendars")
         onTriggered: {
             pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
