@@ -335,7 +335,6 @@ Page {
             flickable.returnToBounds()
         }
 
-        //anchors.fill: parent
         y: header.height
         width: parent.width;
         height: parent.height;
