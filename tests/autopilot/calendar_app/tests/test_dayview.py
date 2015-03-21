@@ -19,6 +19,7 @@ Calendar app autopilot tests for the day view.
 """
 
 import datetime
+import calendar
 
 # from __future__ import range
 # (python3's range, is same as python2's xrange)
@@ -30,6 +31,7 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals, NotEquals
 
 from calendar_app.tests import CalendarAppTestCase
+from datetime import date
 
 
 class TestDayView(CalendarAppTestCase):
@@ -38,15 +40,33 @@ class TestDayView(CalendarAppTestCase):
         super(TestDayView, self).setUp()
         self.day_view = self.app.main_view.go_to_day_view()
 
-    def test_current_month_and_year_is_selected(self):
-        """By default, the day view shows the current month and year."""
+    def test_default_view(self):
+        """By default, the day view shows the current month year and
+           today's date.
+           The day should be scrolled to the current time
+        """
 
         now = datetime.datetime.now()
+        today = date(now.year, now.month, now.day)
+        day_view_currentDay = self.day_view.currentDay
+        day_view_currentDay_date = \
+            date(day_view_currentDay.year,
+                 day_view_currentDay.month,
+                 day_view_currentDay.day)
+
+        self.assertEquals(day_view_currentDay_date, today)
 
         expected_month_name_year = now.strftime("%B %Y")
 
-        self.assertThat(self.app.main_view.get_month_year(self.day_view),
-                        Equals(expected_month_name_year))
+        self.assertEquals(
+            self.app.main_view.get_month_year(self.day_view),
+            expected_month_name_year)
+
+        self.assertEquals(
+            self.day_view.get_daylabel(today).text,
+            calendar.day_abbr[now.weekday()])
+        self.assertEquals(
+            self.day_view.get_datelabel(today).text, str(now.day))
 
     def test_show_next_days(self):
         """It must be possible to show next days by swiping the view."""
