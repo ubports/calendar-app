@@ -49,10 +49,12 @@ class TestDayView(CalendarAppTestCase):
         now = datetime.datetime.now()
         today = date(now.year, now.month, now.day)
         day_view_currentDay = self.day_view.currentDay
+
         day_view_currentDay_date = \
             date(day_view_currentDay.year,
                  day_view_currentDay.month,
                  day_view_currentDay.day)
+
         expected_month_name_year = now.strftime("%B %Y")
 
         # Checking today's date is correct
@@ -72,7 +74,10 @@ class TestDayView(CalendarAppTestCase):
 
         # Checking week number is  correct
         self.assertEquals(
-            self.day_view.get_weeknumer(today).text, 'W' + now.strftime("%U"))
+        self.day_view.get_weeknumer(today).text, 'W' + now.strftime("%U"))
+
+        # Check  day is scrolled to the current time
+        self.assertEquals(self.day_view.get_scrollHour(), now.hour)
 
     def test_show_next_days(self):
         """It must be possible to show next days by swiping the view."""
