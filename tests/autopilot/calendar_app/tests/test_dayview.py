@@ -74,7 +74,7 @@ class TestDayView(CalendarAppTestCase):
 
         # Checking week number is  correct
         self.assertEquals(
-        self.day_view.get_weeknumer(today).text, 'W' + now.strftime("%U"))
+            self.day_view.get_weeknumer(today).text, 'W' + now.strftime("%U"))
 
         # Check  day is scrolled to the current time
         self.assertEquals(self.day_view.get_scrollHour(), now.hour)
