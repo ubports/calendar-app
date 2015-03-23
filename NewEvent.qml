@@ -65,6 +65,9 @@ Page {
         //If current date is setted by an argument we don't have to change it.
         if(typeof(date) === 'undefined'){
             date = new Date();
+        }
+
+        if( typeof(date) == 'undefined' || (date.getHours() == 0 && date.getMinutes() == 0) ) {
             var newDate = new Date();
             date.setHours(newDate.getHours(), newDate.getMinutes());
         }
