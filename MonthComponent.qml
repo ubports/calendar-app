@@ -17,6 +17,7 @@
  */
 import QtQuick 2.3
 import Ubuntu.Components 1.1
+import QtOrganizer 5.0
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
@@ -42,37 +43,40 @@ Item{
     signal monthSelected(var date);
     signal dateSelected(var date)
 
-    //creatng timer only if we need to show events in month
-    Loader {
-        id: timerLoader
-        sourceComponent: showEvents ? timerComp : undefined
-    }
+    Timer {
+        id: modelIsDirty
 
-    // Timer to delay creation of Model, There seems some problem fetching events if we create Model immediatly
-    Component {
-        id: timerComp
-        Timer{
-           interval: 200; running: true; repeat: false
-           onTriggered: {
-                modelLoader.sourceComponent = modelComponent
-           }
+        interval: 500
+        repeat: false
+        onTriggered: {
+            if (showEvents) {
+                mainModel.startPeriod = intern.monthStart.midnight();
+                mainModel.endPeriod = intern.monthStart.addDays((/*monthGrid.rows * cols */ 42 )-1).endOfDay()
+                mainModel.filter = eventModel.filter
+            } else {
+                mainModel.filter = invalidFilter
+            }
         }
     }
 
-    Loader{
-        id: modelLoader
+    onCurrentMonthChanged: {
+        modelIsDirty.start()
     }
 
-    Component{
-        id: modelComponent
-        EventListModel {
-            id: mainModel
-            startPeriod: intern.monthStart.midnight();
-            endPeriod: intern.monthStart.addDays((/*monthGrid.rows * cols */ 42 )-1).endOfDay()
-            filter: eventModel.filter
-            onModelChanged: {
-                intern.eventStatus = Qt.binding(function() { return mainModel.containsItems(startPeriod, endPeriod, 86400/*24*60*60*/)});
-            }
+    InvalidFilter {
+        id: invalidFilter
+    }
+
+    EventListModel {
+        id: mainModel
+
+        filter: invalidFilter
+        onModelChanged: {
+            // do you really need binding it?? Is this really necessary
+            // I do not see use for that
+            intern.eventStatus = mainModel.containsItems(mainModel.startPeriod,
+                                                         mainModel.endPeriod,
+                                                         86400/*24*60*60*/);
         }
     }
 
@@ -219,6 +223,8 @@ Item{
             width: parent.dayWidth
             height: parent.dayHeight
             fontSize: intern.dateFontSize
+
+            // is this used outside this file ??
             showEvent : showEvents
                         && intern.eventStatus !== undefined
                         && intern.eventStatus[index] !== undefined
