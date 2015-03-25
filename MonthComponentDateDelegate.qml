@@ -10,13 +10,13 @@ Item{
     property bool showEvent;
     property alias fontSize: dateLabel.font.pixelSize
 
-    Loader {
-        sourceComponent: isToday && isCurrentMonth ? highLightComp : undefined
-        onSourceComponentChanged: {
-            width = Qt.binding( function() { return ( dateRootItem.height / 1.5 ); });
-            height = Qt.binding ( function() { return width} );
-            anchors.centerIn = Qt.binding( function() { return dateLabel});
-        }
+    UbuntuShape{
+        color: "#DD4814"
+
+        width: dateRootItem.height / 1.5
+        height: width
+        anchors.centerIn: dateLabel
+        visible: isToday && isCurrentMonth
     }
 
     Label {
@@ -37,29 +37,15 @@ Item{
         }
     }
 
-    Loader{
+    Rectangle{
         width: units.gu(1)
         height: width
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: dateLabel.bottom
         anchors.topMargin: dateRootItem.height/4
-        sourceComponent: showEvent ? eventIndicatorComp : undefined
-    }
-
-    Component{
-        id: eventIndicatorComp
-        Rectangle {
-            anchors.fill: parent
-            radius: height/2
-            color:"#5E2750"
-        }
-    }
-
-    Component{
-        id: highLightComp
-        UbuntuShape{
-            color: "#DD4814"
-        }
+        radius: height/2
+        color:"#5E2750"
+        visible: showEvent
     }
 
     MouseArea {
