@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2015-02-22 17:37+0000\n"
-"Last-Translator: António Miranda <Unknown>\n"
+"PO-Revision-Date: 2015-03-28 00:11+0000\n"
+"Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-23 05:33+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-03-28 05:30+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -29,11 +29,11 @@ msgstr "Nenhum evento próximo"
 
 #: ../AgendaView.qml:94
 msgid "You have no calendars enabled"
-msgstr "Não tem calendários habilitados"
+msgstr "Não tem calendários ativos"
 
 #: ../AgendaView.qml:104
 msgid "Enable calendars"
-msgstr "Habilitar calendários"
+msgstr "Ativar calendários"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -96,7 +96,7 @@ msgstr "Sem contacto"
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr "Pesquisar contacto"
+msgstr "Procurar contacto"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -396,7 +396,7 @@ msgstr "L"
 
 #: ../TimeLineHeader.qml:59
 msgid "All Day"
-msgstr "Todo o Dia"
+msgstr "Todo o dia"
 
 #: ../YearView.qml:53
 #, qt-format
