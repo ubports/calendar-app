@@ -61,22 +61,18 @@ Page {
     ListView {
         id: calendarsList
         anchors.fill: parent
-        footer: Item {
-            id: footer
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: aadCalendar.width
-            Button {
-                id:aadCalendar
-                text: i18n.tr("Add new Calendar")
-                anchors.top :parent.top
-                anchors.topMargin:units.gu(2)
-                color: UbuntuColors.green
-                onClicked: {
-                    Qt.openUrlExternally("settings:///online-accounts")
-                }
+        footer: CalendarListButtonDelegate {
+            id: importFromGoogleButton
 
+            visible: (onlineAccountHelper.status === Loader.Ready)
+            expandIcon: true
+            iconSource: "image://theme/google"
+            labelText: i18n.tr("Add online Calendar")
+            onClicked: {
+                onlineAccountHelper.item.setupExec()
             }
         }
+
         model : root.model.getCollections();
         delegate: ListItem.Standard {
             id: delegateComp
@@ -137,5 +133,15 @@ Page {
         }
     }
 
+    Loader {
+        id: onlineAccountHelper
+
+        // if running on test mode does not load online account modules
+        property string sourceFile: Qt.resolvedUrl("OnlineAccountsHelper.qml")
+
+        anchors.fill: parent
+        asynchronous: true
+        source: sourceFile
+    }
 }
 
