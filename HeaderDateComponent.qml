@@ -39,6 +39,7 @@ Item {
 
     Column {
         id: dateContainer
+        objectName: "dateContainer"
 
         width: dayLabel.paintedWidth
         spacing: units.gu(0.2)

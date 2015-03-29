@@ -28,6 +28,7 @@ import math
 from testtools.matchers import GreaterThan
 
 from calendar_app import data
+from datetime import date
 
 
 logger = logging.getLogger(__name__)
@@ -594,28 +595,73 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return event_details_page.edit()
 
     @autopilot.logging.log_action(logger.info)
-    def get_day_header(self, day=None):
+    def get_timeline_header_component(self, day):
         """Return the dayheader for a given day. If no day is given,
         return the current day.
 
-        :param day: A datetime object matching the header
+        :param day:  day in date(year, month, day) format
         :return: The day header object
         """
         if day:
             headers = self.select_many('TimeLineHeaderComponent')
             for header in headers:
-                if header.startDay.datetime == day:
-                    day_header = header
-                    break
+                header_date = date(header.startDay.datetime.year,
+                                   header.startDay.datetime.month,
+                                   header.startDay.datetime.day)
+                if header_date == day:
+                    return header
+
         else:
-            # just grab the current day
-            day_header = self.wait_select_single(
-                'TimeLineHeaderComponent', isCurrentItem=True)
-
-        if not(day_header):
             raise CalendarException('Day Header not found for %s' % day)
-        return day_header
 
+    @autopilot.logging.log_action(logger.info)
+    def get_timeline_header(self, day):
+        """Return the dayheader for a given day. If no day is given,
+        return the current day.
+
+        :param day:  day in date(year, month, day) format
+        :return: The day header object
+        """
+        if day:
+            headers = self.select_many('TimeLineHeader')
+            for header in headers:
+                header_date = date(header.startDay.datetime.year,
+                                   header.startDay.datetime.month,
+                                   header.startDay.datetime.day)
+                if header_date == day:
+                    return header
+
+        else:
+            raise CalendarException('Day Header not found for %s' % day)
+
+    @autopilot.logging.log_action(logger.info)
+    def get_daylabel(self, today):
+        current_day_header = self.get_timeline_header_component(today)
+        return current_day_header.wait_select_single(
+            'Label', objectName='dayLabel')
+
+    @autopilot.logging.log_action(logger.info)
+    def get_datelabel(self, today):
+        current_day_header = self.get_timeline_header_component(today)
+        return current_day_header.wait_select_single(
+            'Label', objectName='dateLabel')
+
+    @autopilot.logging.log_action(logger.info)
+    def get_weeknumer(self, today):
+        current_day_header = self.get_timeline_header(today)
+        return current_day_header.wait_select_single(
+            'Label', objectName='weeknumber')
+
+    @autopilot.logging.log_action(logger.info)
+    def get_scrollHour(self):
+        return self.wait_select_single(
+            'TimeLineBaseComponent', objectName='DayComponent-0').scrollHour
+
+    def get_timelinebase_weeknumber(self):
+        return self._get_timeline_base().weekNumber
+
+    def _get_timeline_base(self):
+        return self.select_single("TimeLineBaseComponent", isActive=True)
 
 class AgendaView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
