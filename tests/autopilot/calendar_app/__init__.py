@@ -647,7 +647,7 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
             'Label', objectName='dateLabel')
 
     @autopilot.logging.log_action(logger.info)
-    def get_weeknumer(self, today):
+    def get_weeknumer_label(self, today):
         current_day_header = self.get_timeline_header(today)
         return current_day_header.wait_select_single(
             'Label', objectName='weeknumber')
@@ -657,11 +657,13 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return self.wait_select_single(
             'TimeLineBaseComponent', objectName='DayComponent-0').scrollHour
 
-    def get_timelinebase_weeknumber(self):
+    @autopilot.logging.log_action(logger.info)
+    def get_weeknumber(self):
         return self._get_timeline_base().weekNumber
 
     def _get_timeline_base(self):
         return self.select_single("TimeLineBaseComponent", isActive=True)
+
 
 class AgendaView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 

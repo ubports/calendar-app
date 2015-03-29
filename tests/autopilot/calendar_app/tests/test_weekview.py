@@ -89,10 +89,8 @@ class TestWeekView(CalendarAppTestCase):
     def test_day_to_week(self):
         """Changing from a day to weekview should
            start weekview on the same week as the day"""
-        now = datetime.datetime.now()
-        today = datetime.date(now.year, now.month, now.day)
         day_view = self.app.main_view.go_to_day_view()
-        day_week_no = day_view.get_timelinebase_weeknumber()
+        day_week_no = day_view.get_weeknumber()
         week_view = self.app.main_view.go_to_week_view()
         week_week_no = week_view.get_current_weeknumber()
 
