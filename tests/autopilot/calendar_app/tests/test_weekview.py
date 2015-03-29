@@ -86,10 +86,15 @@ class TestWeekView(CalendarAppTestCase):
         # start weekview on the first week of the month"""
         # pass
 
-    # def test_day_to_week(self):
-        # """Changing from a day to weekview should
-        # start weekview on the same week as the day"""
-        # pass
+    def test_day_to_week(self):
+        """Changing from a day to weekview should
+           start weekview on the same week as the day"""
+        day_view = self.app.main_view.go_to_day_view()
+        day_week_no = day_view.get_weeknumer()
+        self.app.main_view.go_to_week_view()
+        week_week_no = self.week_view.get_current_weeknumber()
+
+        self.assertEquals(day_week_no, week_week_no)
 
     def test_change_week(self):
         """It must be possible to change weeks by swiping the timeline"""
