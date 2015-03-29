@@ -61,7 +61,13 @@ class TestWeekView(CalendarAppTestCase):
         self.assertThat(self.app.main_view.get_month_year(self.week_view),
                         Equals(expected_month_name_year))
 
-        # TODO: check current day is highlighted
+        # check current day is highlighted
+        header_date = self.week_view.get_headerdatecomponent(now)
+        self.assertEquals(header_date.dayColor[0], 221)
+        self.assertEquals(header_date.dayColor[1], 72)
+        self.assertEquals(header_date.dayColor[2], 20)
+        self.assertEquals(header_date.dayColor[3], 255)
+
 
     # These testing stubs need completed
     # def test_scroll_week_must_scroll_within_week(self):
