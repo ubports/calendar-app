@@ -68,7 +68,6 @@ class TestWeekView(CalendarAppTestCase):
         self.assertEquals(header_date.dayColor[2], 20)
         self.assertEquals(header_date.dayColor[3], 255)
 
-
     # These testing stubs need completed
     # def test_scroll_week_must_scroll_within_week(self):
         # """Scrolling inside the timeline should scroll the weekdays"""
