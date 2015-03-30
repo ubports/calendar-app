@@ -7,6 +7,9 @@ GridView{
     property int scrollMonth;
     property bool isCurrentItem;
     property int year;
+    readonly property var currentDate: new Date()
+    readonly property int currentYear: currentDate.getFullYear()
+    readonly property int currentMonth: currentDate.getMonth()
     readonly property int minCellWidth: units.gu(30)
 
     cellWidth: Math.floor(Math.min.apply(Math, [3, 4].map(function(n)
@@ -20,9 +23,8 @@ GridView{
 
     onYearChanged: {
         scrollMonth = 0;
-        var today = new Date();
-        if(year == today.getFullYear()) {
-            scrollMonth = today.getMonth();
+        if(year == currentYear) {
+            scrollMonth = currentMonth
         }
         yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
     }
