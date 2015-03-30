@@ -56,27 +56,26 @@ GridView{
         }
     }
 
-    delegate: Loader {
+    delegate: Item {
         width: yearView.cellWidth
         height: yearView.cellHeight
 
-        asynchronous: !yearView.focus
-        sourceComponent: UbuntuShape {
-            anchors.fill: parent
-            anchors.margins: units.gu(0.5)
+        UbuntuShape {
             radius: "medium"
+            anchors {
+                fill: parent
+                margins: units.gu(0.5)
+            }
 
             MonthComponent {
                 id: monthComponent
                 objectName: "monthComponent" + index
+
+                anchors.fill: parent
                 showEvents: false
                 currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
-
                 isCurrentItem: yearView.focus
-
                 isYearView: true
-                anchors.fill: parent
-
                 dayLabelFontSize:"x-small"
                 dateLabelFontSize: "medium"
                 monthLabelFontSize: "medium"

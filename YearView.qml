@@ -68,20 +68,20 @@ Page {
         }
 
         delegate: Loader {
-            width: parent.width
-            height: parent.height
-            anchors.top: parent.top
+             width: parent.width
+             height: parent.height
+             anchors.top: parent.top
 
-            asynchronous: index !== yearPathView.currentIndex
-            sourceComponent: YearViewDelegate{
-                focus: index == yearPathView.currentIndex
+             asynchronous: index !== yearPathView.currentIndex
+             sourceComponent: YearViewDelegate{
+                 focus: index == yearPathView.currentIndex
 
-                scrollMonth: 0;
-                isCurrentItem: index == yearPathView.currentIndex
-                year: (yearViewPage.currentYear + yearPathView.indexType(index))
+                 scrollMonth: 0;
+                 isCurrentItem: index == yearPathView.currentIndex
+                 year: (yearViewPage.currentYear + yearPathView.indexType(index))
 
-                anchors.fill: parent
-            }
-        }
+                 anchors.fill: parent
+             }
+         }
     }
 }
