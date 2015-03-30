@@ -3,17 +3,18 @@ import Ubuntu.Components 1.1
 
 GridView{
     id: yearView
-    clip: true
 
     property int scrollMonth;
     property bool isCurrentItem;
     property int year;
-
     readonly property int minCellWidth: units.gu(30)
+
     cellWidth: Math.floor(Math.min.apply(Math, [3, 4].map(function(n)
     { return ((width / n >= minCellWidth) ? width / n : width / 2) })))
 
     cellHeight: cellWidth * 1.4
+    clip: true
+    cacheBuffer: 6 * cellHeight
 
     model: 12 /* months in a year */
 
@@ -59,35 +60,30 @@ GridView{
         width: yearView.cellWidth
         height: yearView.cellHeight
 
-        sourceComponent: delegateComponent
         asynchronous: !yearView.focus
+        sourceComponent: UbuntuShape {
+            anchors.fill: parent
+            anchors.margins: units.gu(0.5)
+            radius: "medium"
 
-        Component {
-            id: delegateComponent
+            MonthComponent {
+                id: monthComponent
+                objectName: "monthComponent" + index
+                showEvents: false
+                currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
 
-            Item {
+                isCurrentItem: yearView.focus
+
+                isYearView: true
                 anchors.fill: parent
-                anchors.margins: units.gu(0.5)
 
-                MonthComponent {
-                    id: monthComponent
-                    objectName: "monthComponent" + index
-                    showEvents: false
-                    currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
+                dayLabelFontSize:"x-small"
+                dateLabelFontSize: "medium"
+                monthLabelFontSize: "medium"
+                yearLabelFontSize: "medium"
 
-                    isCurrentItem: yearView.focus
-
-                    isYearView: true
-                    anchors.fill: parent
-
-                    dayLabelFontSize:"x-small"
-                    dateLabelFontSize: "medium"
-                    monthLabelFontSize: "medium"
-                    yearLabelFontSize: "medium"
-
-                    onMonthSelected: {
-                        yearViewPage.monthSelected(date);
-                    }
+                onMonthSelected: {
+                    yearViewPage.monthSelected(date);
                 }
             }
         }

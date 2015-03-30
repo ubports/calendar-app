@@ -43,20 +43,15 @@ Item{
     signal monthSelected(var date);
     signal dateSelected(var date)
 
+    // optimize painter
+    layer.enabled: true
+
     Timer {
         id: modelIsDirty
 
         interval: 500
         repeat: false
-        onTriggered: {
-            if (showEvents) {
-                mainModel.startPeriod = intern.monthStart.midnight();
-                mainModel.endPeriod = intern.monthStart.addDays((/*monthGrid.rows * cols */ 42 )-1).endOfDay()
-                mainModel.filter = eventModel.filter
-            } else {
-                mainModel.filter = invalidFilter
-            }
-        }
+        onTriggered: if(showEvents) mainModel.update()
     }
 
     onCurrentMonthChanged: {
@@ -70,7 +65,11 @@ Item{
     EventListModel {
         id: mainModel
 
-        filter: invalidFilter
+        autoUpdate: false
+        startPeriod: intern.monthStart.midnight();
+        endPeriod: intern.monthStart.addDays((/*monthGrid.rows * cols */ 42 )-1).endOfDay()
+        filter: showEvents ? eventModel.filter : invalidFilter
+
         onModelChanged: {
             // do you really need binding it?? Is this really necessary
             // I do not see use for that

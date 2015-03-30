@@ -39,6 +39,8 @@ Page {
         }
     }
 
+    title: i18n.tr("Year %1").arg(currentYear)
+
     head {
         actions: [
             calendarTodayAction,
@@ -47,13 +49,9 @@ Page {
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction
         ]
-        contents: Label {
-            id:year
-            objectName:"yearLabel"
-            fontSize: "x-large"
-            text: i18n.tr("Year %1").arg(currentYear)
-        }
     }
+
+    flickable: null
 
     PathViewBase {
         id: yearPathView
@@ -75,20 +73,14 @@ Page {
             anchors.top: parent.top
 
             asynchronous: index !== yearPathView.currentIndex
-            sourceComponent: delegateComponent
+            sourceComponent: YearViewDelegate{
+                focus: index == yearPathView.currentIndex
 
-            Component{
-                id: delegateComponent
+                scrollMonth: 0;
+                isCurrentItem: index == yearPathView.currentIndex
+                year: (yearViewPage.currentYear + yearPathView.indexType(index))
 
-                YearViewDelegate{
-                    focus: index == yearPathView.currentIndex
-
-                    scrollMonth: 0;
-                    isCurrentItem: index == yearPathView.currentIndex
-                    year: (yearViewPage.currentYear + yearPathView.indexType(index))
-
-                    anchors.fill: parent
-                }
+                anchors.fill: parent
             }
         }
     }
