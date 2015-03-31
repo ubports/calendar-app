@@ -87,12 +87,19 @@ class TestWeekView(CalendarAppTestCase):
          start weekview on the first day of the week"""
         self.app.main_view.go_to_month_view()
         self.app.main_view.go_to_week_view()
-        week_firstday_timestamp = self.app.main_view.get_week_view().firstDay
+
+        cal_week_firstday_ts = self.app.main_view.get_week_view().firstDay
+        cal_week_firstday = datetime.date(cal_week_firstday_ts.datetime.year,
+                                          cal_week_firstday_ts.datetime.month,
+                                          cal_week_firstday_ts.datetime.day)
+
         now = datetime.datetime.now()
         delta = datetime.datetime.weekday(now)
-        expected_first_dow = now - timedelta(delta)
+        first_dow = now - timedelta(delta)
+        expected_first_dow = datetime.date(first_dow.year, first_dow.month,
+                                           first_dow.day)
 
-        self.assertEquals(week_firstday_timestamp, expected_first_dow)
+        self.assertEquals(cal_week_firstday, expected_first_dow)
 
     def test_day_to_week(self):
         """Changing from a day to weekview should
