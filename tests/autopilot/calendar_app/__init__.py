@@ -429,7 +429,7 @@ class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return sorteddays
 
     @autopilot.logging.log_action(logger.info)
-    def get_headerdatecomponent(self, now):
+    def get_current_headerdatecomponent(self, now):
         today = datetime.date(now.year, now.month, now.day)
         header_date_components = self.select_many('HeaderDateComponent')
         for header in header_date_components:

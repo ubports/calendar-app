@@ -25,6 +25,7 @@ if sys.version_info < (3,):
     range = xrange
 
 import datetime
+from datetime import timedelta
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
 from random import randint, randrange
@@ -62,7 +63,7 @@ class TestWeekView(CalendarAppTestCase):
                         Equals(expected_month_name_year))
 
         # check current day is highlighted
-        header_date = self.week_view.get_headerdatecomponent(now)
+        header_date = self.week_view.get_current_headerdatecomponent(now)
         self.assertEquals(header_date.dayColor[0], 221)
         self.assertEquals(header_date.dayColor[1], 72)
         self.assertEquals(header_date.dayColor[2], 20)
@@ -81,10 +82,17 @@ class TestWeekView(CalendarAppTestCase):
         # """Changing week across years should update the year"""
         # pass
 
-    # def test_month_to_week(self):
-        # """Changing from a month to weekview should
-        # start weekview on the first week of the month"""
-        # pass
+    def test_month_to_week(self):
+        """Changing from a month to weekview should
+         start weekview on the first day of the week"""
+        self.app.main_view.go_to_month_view()
+        self.app.main_view.go_to_week_view()
+        week_firstday_timestamp = self.app.main_view.get_week_view().firstDay
+        now = datetime.datetime.now()
+        delta = datetime.datetime.weekday(now)
+        expected_first_dow = now - timedelta(delta)
+
+        self.assertEquals(week_firstday_timestamp, expected_first_dow)
 
     def test_day_to_week(self):
         """Changing from a day to weekview should
