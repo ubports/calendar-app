@@ -85,16 +85,10 @@ Date.prototype.monthStart = function() {
     return this.midnight().addDays(1 - this.getDate())
 }
 
-Date.prototype.weekNumber = function() {
-    var date = this.weekStart(1).addDays(3) // Thursday midnight
-    var newYear = new Date(date.getFullYear(), 0 /*Jan*/, 1 /*the 1st*/)
-    var n = 0
-    var tx = date.getTime(), tn = newYear.getTime()
-    while (tn < tx) {
-        tx = tx - Date.msPerWeek
-        n = n + 1
-    }
-    return n
+Date.prototype.weekNumber = function(weekStartDay) {
+    var date = this.weekStart(weekStartDay).addDays(3) // Thursday midnight
+    var onejan = new Date(this.getFullYear(), 0, 3);
+    return Math.ceil((((date - onejan) / 86400000) + onejan.getDay()+1)/7);
 }
 
 Date.prototype.weeksInMonth = function(weekday) {

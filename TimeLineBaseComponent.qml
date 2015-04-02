@@ -31,7 +31,7 @@ Item {
     property var keyboardEventProvider;
 
     property date startDay: DateExt.today();
-    property int weekNumber: startDay.weekNumber();
+    property int weekNumber: startDay.weekNumber(Qt.locale().firstDayOfWeek);
     property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive

@@ -65,6 +65,9 @@ Page {
         //If current date is setted by an argument we don't have to change it.
         if(typeof(date) === 'undefined'){
             date = new Date();
+        }
+
+        if( typeof(date) == 'undefined' || (date.getHours() == 0 && date.getMinutes() == 0) ) {
             var newDate = new Date();
             date.setHours(newDate.getHours(), newDate.getMinutes());
         }
@@ -247,6 +250,7 @@ Page {
     // Calucate default hour and minute for start and end time on event
     function roundDate(date) {
         var tempDate = new Date(date)
+        tempDate.setHours(date.getHours(), date.getMinutes(), 0, 0);
         if(tempDate.getMinutes() < 30)
             return tempDate.setMinutes(30)
         tempDate.setMinutes(0)

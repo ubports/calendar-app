@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2015-03-09 23:58+0000\n"
-"Last-Translator: Aggelos Arnaoutis <angelosarn@hotmail.com>\n"
+"PO-Revision-Date: 2015-03-31 14:10+0000\n"
+"Last-Translator: Simos Xenitellis <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-03-11 05:42+0000\n"
-"X-Generator: Launchpad (build 17389)\n"
+"X-Launchpad-Export-Date: 2015-04-01 05:28+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -49,7 +49,7 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:122
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 συμ"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:126
@@ -79,7 +79,7 @@ msgstr "Συγχρονισμός"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add new Calendar"
-msgstr ""
+msgstr "Προσθήκη νέου ημερολογίου"
 
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
@@ -103,7 +103,7 @@ msgstr "Αναζήτηση επαφής"
 #. It's used in the header of the month and week views
 #: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "ΜΜΜΜ εεεε"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -117,16 +117,16 @@ msgstr "Διαγραφή γεγονότος"
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Διαγραφή μόνο του συμβάντος «%1», ή όλων των συμβάντων της σειράς;"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε το συμβάν «%1»;"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
-msgstr ""
+msgstr "Διαγραφή σειράς"
 
 #: ../DeleteConfirmationDialog.qml:51
 msgid "Delete this"
@@ -144,11 +144,11 @@ msgstr "Επεξεργασία γεγονότος"
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Επεξεργασία του συμβάντος \"%1\", ή όλων των συμβάντων της σειράς;"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
-msgstr ""
+msgstr "Επεξεργασία σειράς"
 
 #: ../EditEventConfirmationDialog.qml:44
 msgid "Edit this"
@@ -163,7 +163,7 @@ msgstr "Νέο συμβάν"
 #: ../EventBubble.qml:142 ../EventBubble.qml:147
 #, qt-format
 msgid "%1 <b>%2</b>"
-msgstr ""
+msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:42 ../NewEvent.qml:393
 msgid "Event Details"
@@ -173,17 +173,17 @@ msgstr "Λεπτομέρειες συμβάντος"
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "%1 ημερολόγιο"
 
 #: ../EventDetails.qml:118
 #, qt-format
 msgid "%1 - %2 (All Day)"
-msgstr ""
+msgstr "%1 - %2 (Ολοήμερο)"
 
 #: ../EventDetails.qml:122
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (Ολοήμερο)"
 
 #: ../EventDetails.qml:196
 msgid "Edit"
@@ -191,7 +191,7 @@ msgstr "Επεξεργασία"
 
 #: ../EventDetails.qml:347 ../NewEvent.qml:479
 msgid "Guests"
-msgstr ""
+msgstr "Καλεσμένοι"
 
 #: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
 msgid "Reminder"
@@ -207,18 +207,18 @@ msgstr "Επανάληψη"
 
 #: ../EventRepetition.qml:151
 msgid "Repeats On:"
-msgstr ""
+msgstr "Επαναλήψη κάθε:"
 
 #: ../EventRepetition.qml:196
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Το επαναλαμβανόμενο συμβάν τελειώνει"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
 #: ../EventRepetition.qml:219 ../NewEvent.qml:560
 msgid "Repeats"
-msgstr ""
+msgstr "Επαναλήψεις"
 
 #: ../EventRepetition.qml:244
 msgid "Date"
@@ -238,14 +238,14 @@ msgstr[1] "%1; %2 φορές"
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; εώς %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Εβδομαδιαία κάθε %1"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -257,7 +257,7 @@ msgstr ""
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
-msgstr ""
+msgstr "Μετά την ημερομηνία"
 
 #: ../NewEvent.qml:59
 msgid "Save"
@@ -281,7 +281,7 @@ msgstr "Από"
 
 #: ../NewEvent.qml:360
 msgid "To"
-msgstr ""
+msgstr "Έως"
 
 #: ../NewEvent.qml:377
 msgid "All day event"
@@ -305,7 +305,7 @@ msgstr "Ημερολόγιο"
 
 #: ../NewEvent.qml:483
 msgid "Add Guest"
-msgstr ""
+msgstr "Προσθήκη καλεσμένου"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -317,19 +317,19 @@ msgstr "Ημερησίως"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "Τις Καθημερινές"
+msgstr "Στις καθημερινές"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "Στις ημέρες %1, %2 και %3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "Στις ημέρες %1 και %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -345,14 +345,14 @@ msgstr "Ετησίως"
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
-msgstr ""
+msgstr "Χωρίς υπενθύμιση"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr "Στο συμβάν"
+msgstr "Στην αρχή του συμβάντος"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
@@ -392,7 +392,7 @@ msgstr "2 εβδομάδες"
 
 #: ../TimeLineHeader.qml:47
 msgid "W"
-msgstr ""
+msgstr "Ε"
 
 #: ../TimeLineHeader.qml:59
 msgid "All Day"
@@ -409,6 +409,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"Η εφαρμογή ημερολογίου δέχεται τέσσερα ορίσματα: --starttime, --endtime, --"
+"newevent και --eventid. Το σύστημα θα τα διαχειριστεί. Δείτε τον πηγαίο "
+"κώδικα για περισσότερες πληροφορίες για αυτά"
 
 #: ../calendar.qml:322
 msgid "Year"
@@ -428,11 +431,13 @@ msgstr "Ημέρα"
 
 #: ../calendar.qml:449
 msgid "Agenda"
-msgstr ""
+msgstr "Ατζέντα"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
 msgstr ""
+"Ένα ημερολόγιο για το Ubuntu που συγχρονίζεται με τους συνδεδεμένους σας "
+"λογαριασμούς."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
