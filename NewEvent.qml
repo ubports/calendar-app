@@ -42,6 +42,8 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
+    flickable: null
+
     signal eventAdded(var event);
 
     onStartDateChanged: {
@@ -278,9 +280,6 @@ Page {
         scrollAnimation.start()
     }
 
-    width: parent.width
-    height: parent.height
-
     title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
 
     Keys.onEscapePressed: {
@@ -318,14 +317,14 @@ Page {
             var position = flickable.contentItem.mapFromItem(item, 0, 0);
 
             // check if the item is already visible
-            var bottomY =  flickable.contentY + flickable.height
-            var itemBottom = header.height + position.y + item.height
+            var bottomY = flickable.contentY + flickable.height
+            var itemBottom = position.y + item.height
             if (position.y >= flickable.contentY && itemBottom <= bottomY) {
                 return;
             }
 
             // if it is not, try to scroll and make it visible
-            var targetY = header.height + position.y + item.height - flickable.height
+            var targetY = position.y + item.height - flickable.height
             if (targetY >= 0 && position.y) {
                 flickable.contentY = targetY;
             } else if (position.y < flickable.contentY) {
@@ -335,9 +334,7 @@ Page {
             flickable.returnToBounds()
         }
 
-        y: header.height
-        width: parent.width;
-        height: parent.height;
+        anchors.fill: parent
         contentWidth: width
         contentHeight: column.height + units.gu(10)
 
