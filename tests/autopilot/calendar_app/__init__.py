@@ -276,6 +276,10 @@ class MainView(ubuntuuitoolkit.MainView):
         local = utc.astimezone(tz.tzlocal())
         return local
 
+    def press_header_todaybutton(self):
+        header = self.get_header()
+        header.click_action_button('todaybutton')
+
 
 class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
@@ -645,6 +649,20 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     def get_scrollHour(self):
         return self.wait_select_single(
             'TimeLineBaseComponent', objectName='DayComponent-0').scrollHour
+
+    @autopilot.logging.log_action(logger.info)
+    def check_loading_spinnger(self):
+        timelinebasecomponent = self.get_active_timelinebasecomponent()
+        loading_spinner = timelinebasecomponent.wait_select_single(
+            "ActivityIndicator")
+        loading_spinner.running.wait_for(False)
+
+    @autopilot.logging.log_action(logger.info)
+    def get_active_timelinebasecomponent(self):
+        timelinebase_components = self.select_many(("TimeLineBaseComponent"))
+        for component in timelinebase_components:
+            if component.isActive:
+                return component
 
 
 class AgendaView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):

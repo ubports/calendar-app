@@ -87,6 +87,18 @@ class TestDayView(CalendarAppTestCase):
         """It must be possible to show previous days by swiping the view."""
         self._change_days(-1)
 
+    def test_today_button(self):
+        now = datetime.datetime.now()
+        today = date(now.year, now.month, now.day)
+        self._change_days(1)
+        self.app.main_view.press_header_todaybutton()
+        self.day_view.check_loading_spinnger()
+
+        current_day = self.day_view.get_active_timelinebasecomponent().startDay
+        new_today = date(current_day.year, current_day.month, current_day.day)
+
+        self.assertEquals(today, new_today)
+
     def _change_days(self, direction):
         firstday = self.day_view.currentDay.datetime
 
