@@ -101,7 +101,7 @@ class TestWeekView(CalendarAppTestCase):
         days = self.week_view.get_days_of_week()
         day_to_select = self.app.main_view.get_label_with_text(days[0])
         expected_day = days[0]
-        dayStart = self.week_view.dayStart
+        dayStart = self.week_view.firstDay
         expected_month = dayStart.month
         expected_year = dayStart.year
 
