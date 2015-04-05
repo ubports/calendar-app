@@ -90,7 +90,7 @@ Page {
 
             }
         }
-           recurrenceOption.selectedIndex = index;
+        recurrenceOption.selectedIndex = index;
     }
 
     head.backAction: Action{
@@ -100,20 +100,36 @@ Page {
             var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
             if (recurrenceRule !== RecurrenceRule.Invalid) {
                 rule.frequency = recurrenceRule;
-                if (recurrenceOption.selectedIndex > 0) {
-                    rule.daysOfWeek = eventUtils.getDaysOfWeek(recurrenceOption.selectedIndex,weekDays );
-                    if (limitOptions.selectedIndex === 1
-                            && recurrenceOption.selectedIndex > 0
-                            && limitCount.text != "") {
-                        rule.limit =  parseInt(limitCount.text);
-                    }
-                    else if (limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0) {
-                        rule.limit =  datePick.date;
-                    }
-                    else {
-                        rule.limit = undefined;
+                if( recurrenceOption.selectedIndex < 5 )
+                {
+                    //If it is daily or weekly or alternate days10+
+                    rule.daysOfWeek = eventUtils.getDaysOfWeek(recurrenceOption.selectedIndex, weekDays );
+                } else {
+                    //Monthly or Yearly
+                    switch(recurrenceOption.selectedIndex){
+                    case 6: //monthly
+                        rule.daysOfMonth = [date.getDate()];
+                        break;
+                    case 7: //yearly
+                        rule.monthsOfYear = [date.getMonth()];
+                        rule.daysOfMonth = [date.getDate()];
+                        break;
+                    default:
                     }
                 }
+
+                if (limitOptions.selectedIndex === 1
+                        && recurrenceOption.selectedIndex > 0
+                        && limitCount.text != "") {
+                    rule.limit =  parseInt(limitCount.text);
+                }
+                else if (limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0) {
+                    rule.limit =  datePick.date;
+                }
+                else {
+                    rule.limit = undefined;
+                }
+
             }
             else {
                 rule.frequency = 0
