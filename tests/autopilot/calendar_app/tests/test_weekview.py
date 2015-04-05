@@ -105,7 +105,7 @@ class TestWeekView(CalendarAppTestCase):
         expected_month = dayStart.month
         expected_year = dayStart.year
 
-        timeLineBase = self.week_view._get_timeline_base();
+        timeLineBase = self.week_view._get_timeline_base()
         timeline = timeLineBase.select_single(objectName="timelineview")
         while (timeline.contentX != 0):
             self.app.main_view.swipe_view(-1, self.week_view)
