@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2015-02-23 19:57+0000\n"
-"Last-Translator: Anne <anneonyme017@gmail.com>\n"
+"PO-Revision-Date: 2015-04-09 18:39+0000\n"
+"Last-Translator: Lacotiz <alexandre.payet@gadz.org>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-02-24 05:45+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-04-10 05:12+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -33,7 +33,7 @@ msgstr "Vous n'avez pas de calendriers activés"
 
 #: ../AgendaView.qml:104
 msgid "Enable calendars"
-msgstr "Activer des calendrier"
+msgstr "Activer des calendriers"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -65,7 +65,7 @@ msgstr "Calendriers"
 
 #: ../CalendarChoicePopup.qml:37
 msgid "Back"
-msgstr "Précédent"
+msgstr "Retour"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
@@ -92,7 +92,7 @@ msgstr "Annuler"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr "Pas de contact"
+msgstr "Aucun contact"
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
@@ -154,7 +154,7 @@ msgstr "Modifier la série"
 
 #: ../EditEventConfirmationDialog.qml:44
 msgid "Edit this"
-msgstr "Modifier ceci"
+msgstr "Modifier cet élément"
 
 #: ../EventActions.qml:32 ../NewEvent.qml:283
 msgid "New Event"
@@ -193,7 +193,7 @@ msgstr "Modifier"
 
 #: ../EventDetails.qml:347 ../NewEvent.qml:479
 msgid "Guests"
-msgstr "Invités"
+msgstr "Participants"
 
 #: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
 msgid "Reminder"
@@ -240,7 +240,7 @@ msgstr[1] "%1 ; %2 fois"
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr "%1; jusqu'au %2"
+msgstr "%1 ; jusqu'au %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
@@ -307,7 +307,7 @@ msgstr "Calendrier"
 
 #: ../NewEvent.qml:483
 msgid "Add Guest"
-msgstr "Ajouter un invité"
+msgstr "Ajouter un participant"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
