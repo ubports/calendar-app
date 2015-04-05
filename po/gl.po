@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2015-02-26 02:25+0000\n"
+"PO-Revision-Date: 2015-03-30 23:27+0000\n"
 "Last-Translator: Marcos Lans <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-27 05:52+0000\n"
-"X-Generator: Launchpad (build 17361)\n"
+"X-Launchpad-Export-Date: 2015-03-31 05:55+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -174,7 +174,7 @@ msgstr "Detalles da actividade"
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr "%1 Calendario"
+msgstr "Calendario %1"
 
 #: ../EventDetails.qml:118
 #, qt-format
@@ -212,14 +212,14 @@ msgstr "Repítese os:"
 
 #: ../EventRepetition.qml:196
 msgid "Recurring event ends"
-msgstr "A repetición remata"
+msgstr "O evento remata"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
 #: ../EventRepetition.qml:219 ../NewEvent.qml:560
 msgid "Repeats"
-msgstr "Repetición"
+msgstr "Veces"
 
 #: ../EventRepetition.qml:244
 msgid "Date"
@@ -254,7 +254,7 @@ msgstr "Nunca"
 
 #: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr "Despois de X repeticións"
+msgstr "Despois de X veces"
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
@@ -436,7 +436,7 @@ msgstr "Axenda"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr "Calendario para Ubuntu que se sincroniza con contas en liña."
+msgstr "Calendario para Ubuntu que se sincroniza coas contas en liña."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
