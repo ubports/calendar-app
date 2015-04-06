@@ -138,10 +138,10 @@ class TestMonthView(CalendarAppTestCase):
         self.assertEquals(calendar.day_abbr[calendar.SUNDAY], day_6_label)
 
     def test_today_button(self):
+        """ Verify that today button takes to today in month view """
         self._go_to_today(1)
 
         header = self.app.main_view.get_header()
         header.click_action_button('todaybutton')
 
         self._assert_today()
-

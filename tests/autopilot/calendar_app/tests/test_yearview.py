@@ -94,3 +94,13 @@ class TestYearView(CalendarAppTestCase):
     def test_show_previous_years(self):
         """It must be possible to show previous years by swiping the view."""
         self._change_year(-1)
+
+    def test_today_button(self):
+        """ Verify that today button takes to today in month view """
+        date = datetime.datetime.now()
+        self._change_year(1)
+
+        header = self.app.main_view.get_header()
+        header.click_action_button('todaybutton')
+
+        self.assertEqual(self.year_view.get_selected_day().date, date.day)
