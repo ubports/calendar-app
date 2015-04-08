@@ -69,7 +69,7 @@ class TestWeekView(CalendarAppTestCase):
         self.assertEquals(header_date.dayColor[2], 20)
         self.assertEquals(header_date.dayColor[3], 255)
 
-    def test_scroll_week_must_scroll_within_week(self):
+    def test_scroll_week_must_scroll_weekdays(self):
         """Scrolling inside the timeline should scroll the weekdays"""
         before_days = self.week_view.get_days_of_week()
 
@@ -88,10 +88,15 @@ class TestWeekView(CalendarAppTestCase):
         self.assertThat(before_days[5], NotEquals(after_days[5]))
         self.assertThat(before_days[6], NotEquals(after_days[6]))
 
-    # These testing stubs need completed
-    # def test_change_week_across_month(self):
-        # """Changing week across months should update the month"""
-        # pass
+    def test_change_week_across_months(self):
+        """Changing week across months should update the month"""
+        header = self.app.main_view.get_header()
+        before_month = self.app.main_view.get_month_year(header)
+        self.week_view.change_week(4)
+
+        after_month = self.app.main_view.get_month_year(header)
+
+        self.assertThat(before_month, NotEquals(after_month))
 
     # def test_change_week_across_year(self):
         # """Changing week across years should update the year"""

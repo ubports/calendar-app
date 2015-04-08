@@ -219,7 +219,7 @@ class MainView(ubuntuuitoolkit.MainView):
 
     def safe_swipe_view(self, direction, view, date):
         """
-        direction: direction to swip
+        direction: direction to swipe
         view: the view you are swiping against
         date: a function object of the view
         """
@@ -275,6 +275,11 @@ class MainView(ubuntuuitoolkit.MainView):
         utc = date.replace(tzinfo=tz.tzutc())
         local = utc.astimezone(tz.tzlocal())
         return local
+
+    @autopilot.logging.log_action(logger.info)
+    def get_header(self):
+        return self.wait_select_single(
+            "AppHeader", objectName="MainView_Header")
 
 
 class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
