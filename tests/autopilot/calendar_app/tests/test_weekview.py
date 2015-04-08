@@ -27,7 +27,7 @@ if sys.version_info < (3,):
 import datetime
 from datetime import timedelta
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals
+from testtools.matchers import Equals, NotEquals
 from random import randint, randrange
 
 from calendar_app.tests import CalendarAppTestCase
@@ -69,11 +69,26 @@ class TestWeekView(CalendarAppTestCase):
         self.assertEquals(header_date.dayColor[2], 20)
         self.assertEquals(header_date.dayColor[3], 255)
 
-    # These testing stubs need completed
-    # def test_scroll_week_must_scroll_within_week(self):
-        # """Scrolling inside the timeline should scroll the weekdays"""
-        # pass
+    def test_scroll_week_must_scroll_within_week(self):
+        """Scrolling inside the timeline should scroll the weekdays"""
+        before_days = self.week_view.get_days_of_week()
 
+        direction = 1
+        self.app.main_view.swipe_view(direction, self.week_view)
+        self.app.main_view.swipe_view(direction, self.week_view)
+        self.app.main_view.swipe_view(direction, self.week_view)
+
+        after_days = self.week_view.get_days_of_week()
+
+        self.assertThat(before_days[0], NotEquals(after_days[0]))
+        self.assertThat(before_days[1], NotEquals(after_days[1]))
+        self.assertThat(before_days[2], NotEquals(after_days[2]))
+        self.assertThat(before_days[3], NotEquals(after_days[3]))
+        self.assertThat(before_days[4], NotEquals(after_days[4]))
+        self.assertThat(before_days[5], NotEquals(after_days[5]))
+        self.assertThat(before_days[6], NotEquals(after_days[6]))
+
+    # These testing stubs need completed
     # def test_change_week_across_month(self):
         # """Changing week across months should update the month"""
         # pass
