@@ -74,9 +74,9 @@ class TestWeekView(CalendarAppTestCase):
         before_days = self.week_view.get_days_of_week()
 
         direction = 1
-        self.app.main_view.swipe_view(direction, self.week_view)
-        self.app.main_view.swipe_view(direction, self.week_view)
-        self.app.main_view.swipe_view(direction, self.week_view)
+        no_of_swipes = 3
+        for x in range(no_of_swipes):
+            self.app.main_view.swipe_view(direction, self.week_view)
 
         after_days = self.week_view.get_days_of_week()
 
@@ -98,9 +98,22 @@ class TestWeekView(CalendarAppTestCase):
 
         self.assertThat(before_month, NotEquals(after_month))
 
-    # def test_change_week_across_year(self):
-        # """Changing week across years should update the year"""
-        # pass
+    def test_change_week_across_year(self):
+        """Changing week across years should update the year"""
+        header = self.app.main_view.get_header()
+        month_year_label = self.app.main_view.get_month_year(header)
+        before_year = month_year_label[-4:]
+
+        current_week = self.week_view.get_current_weeknumber()
+        direction = 1
+        no_of_swipes = ((55 - current_week) * 3)  # 3 swipes to change week
+        for x in range(1, no_of_swipes):
+            self.app.main_view.swipe_view(direction, self.week_view)
+
+        month_year_label = self.app.main_view.get_month_year(header)
+        after_year = month_year_label[-4:]
+
+        self.assertThat(before_year, NotEquals(after_year))
 
     def test_month_to_week(self):
         """Changing from a month to weekview should
