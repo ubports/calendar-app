@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2015-03-19 07:28+0000\n"
+"PO-Revision-Date: 2015-03-31 14:10+0000\n"
 "Last-Translator: Simos Xenitellis <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-03-20 05:11+0000\n"
-"X-Generator: Launchpad (build 17405)\n"
+"X-Launchpad-Export-Date: 2015-04-01 05:28+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -191,7 +191,7 @@ msgstr "Επεξεργασία"
 
 #: ../EventDetails.qml:347 ../NewEvent.qml:479
 msgid "Guests"
-msgstr "Επισκέπτες"
+msgstr "Καλεσμένοι"
 
 #: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
 msgid "Reminder"
@@ -281,7 +281,7 @@ msgstr "Από"
 
 #: ../NewEvent.qml:360
 msgid "To"
-msgstr ""
+msgstr "Έως"
 
 #: ../NewEvent.qml:377
 msgid "All day event"
@@ -305,7 +305,7 @@ msgstr "Ημερολόγιο"
 
 #: ../NewEvent.qml:483
 msgid "Add Guest"
-msgstr "Προσθήκη επισκέπτη"
+msgstr "Προσθήκη καλεσμένου"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -317,19 +317,19 @@ msgstr "Ημερησίως"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "Τις Καθημερινές"
+msgstr "Στις καθημερινές"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr "Τη(ν) %1, %2 ,%3"
+msgstr "Στις ημέρες %1, %2 και %3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "Στις ημέρες %1 και %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -345,14 +345,14 @@ msgstr "Ετησίως"
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
-msgstr "Καμιά υπενθύμιση"
+msgstr "Χωρίς υπενθύμιση"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr "Στο συμβάν"
+msgstr "Στην αρχή του συμβάντος"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
@@ -392,7 +392,7 @@ msgstr "2 εβδομάδες"
 
 #: ../TimeLineHeader.qml:47
 msgid "W"
-msgstr ""
+msgstr "Ε"
 
 #: ../TimeLineHeader.qml:59
 msgid "All Day"
@@ -409,6 +409,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"Η εφαρμογή ημερολογίου δέχεται τέσσερα ορίσματα: --starttime, --endtime, --"
+"newevent και --eventid. Το σύστημα θα τα διαχειριστεί. Δείτε τον πηγαίο "
+"κώδικα για περισσότερες πληροφορίες για αυτά"
 
 #: ../calendar.qml:322
 msgid "Year"
@@ -433,6 +436,8 @@ msgstr "Ατζέντα"
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
 msgstr ""
+"Ένα ημερολόγιο για το Ubuntu που συγχρονίζεται με τους συνδεδεμένους σας "
+"λογαριασμούς."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
