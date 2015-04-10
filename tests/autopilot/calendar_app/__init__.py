@@ -656,7 +656,7 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
             'Label', objectName='dateLabel')
 
     @autopilot.logging.log_action(logger.info)
-    def get_weeknumer_label(self, today):
+    def get_weeknumer(self, today):
         current_day_header = self.get_timeline_header(today)
         return current_day_header.wait_select_single(
             'Label', objectName='weeknumber')
