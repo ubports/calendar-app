@@ -142,6 +142,18 @@ class MainView(ubuntuuitoolkit.MainView):
         header.click_action_button('neweventbutton')
         return self.wait_select_single(NewEvent, objectName='newEventPage')
 
+    @autopilot.logging.log_action(logger.info)
+    def go_to_calendar_choice_popup(self):
+        """Open the calendar chioce popup.
+
+        :return: CalendaChoicePopup.
+
+        """
+        header = self.get_header()
+        header.click_action_button('calendarsbutton')
+        return self.wait_select_single(
+            CalendarChoicePopup, objectName="calendarchoicepopup")
+
     def set_picker(self, field, mode, value):
         # open picker
         self.pointing_device.click_object(field)
@@ -1003,3 +1015,32 @@ class DeleteConfirmationDialog(
         delete_button = self.select_single(
             'Button', objectName='deleteEventButton')
         self.pointing_device.click_object(delete_button)
+
+
+class CalendarChoicePopup(
+        ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+
+    """Autopilot helper for the Calendar Choice Popup."""
+
+    @autopilot.logging.log_action(logger.debug)
+    def press_check_box_button(self, calendarName):
+        """ press check box button to select or unselect it """
+        calendar = self._get_calendar(calendarName)
+
+        check_box = calendar.wait_select_single(
+            "CheckBox", objectName="checkBox")
+        self.pointing_device.click_object(check_box)
+
+    def _get_calendar(self, calendarName):
+        calendarItems = self.select_many("Standard", objectName="calendarItem")
+        for item in calendarItems:
+            if item.select_single(
+                    "Label", objectName="calendarName").text == calendarName:
+                    return item
+
+    @autopilot.logging.log_action(logger.debug)
+    def get_checkbox_status(self, calendarName):
+        """ press check box button to select or unselect it """
+        calendar = self._get_calendar(calendarName)
+        return calendar.wait_select_single(
+            "CheckBox", objectName="checkBox").checked
