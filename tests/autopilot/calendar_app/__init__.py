@@ -297,6 +297,11 @@ class MainView(ubuntuuitoolkit.MainView):
         header = self.get_header()
         header.click_action_button('todaybutton')
 
+    @autopilot.logging.log_action(logger.info)
+    def get_ColorPickerDialog(self):
+        return self.wait_select_single(
+            "ColorPickerDialog", objectName="colorPickerDialog")
+
 
 class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
@@ -1026,7 +1031,6 @@ class CalendarChoicePopup(
     def press_check_box_button(self, calendarName):
         """ press check box button to select or unselect it """
         calendar = self._get_calendar(calendarName)
-
         check_box = calendar.wait_select_single(
             "CheckBox", objectName="checkBox")
         self.pointing_device.click_object(check_box)
@@ -1044,3 +1048,28 @@ class CalendarChoicePopup(
         calendar = self._get_calendar(calendarName)
         return calendar.wait_select_single(
             "CheckBox", objectName="checkBox").checked
+
+    @autopilot.logging.log_action(logger.debug)
+    def get_calendar_color(self, calendarName):
+        """ get calendar color """
+        calendar = self._get_calendar(calendarName)
+        return calendar.select_single(
+            "QQuickRectangle", objectName="calendarColorCode").color
+
+    @autopilot.logging.log_action(logger.debug)
+    def open_color_picker_dialog(self, calendarName):
+        """ press color rectangle to open calendar color picker"""
+        calendar = self._get_calendar(calendarName)
+        color_rectangle = calendar.wait_select_single(
+            "QQuickRectangle", objectName="calendarColorCode")
+        self.pointing_device.click_object(color_rectangle)
+
+
+class ColorPickerDialog(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+    """Autopilot helper for the Color Picker Dialog."""
+
+    @autopilot.logging.log_action(logger.debug)
+    def change_calendar_color(self, new_color):
+        new_color_circle = self.wait_select_single(
+            "QQuickRectangle", objectName=new_color)
+        self.pointing_device.click_object(new_color_circle)
