@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-05 09:04+0100\n"
+"POT-Creation-Date: 2015-04-16 22:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -390,12 +390,13 @@ msgstr ""
 msgid "2 weeks"
 msgstr ""
 
-#: ../TimeLineHeader.qml:48
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../TimeLineHeader.qml:49
 #, qt-format
 msgid "W%1"
 msgstr ""
 
-#: ../TimeLineHeader.qml:60
+#: ../TimeLineHeader.qml:61
 msgid "All Day"
 msgstr ""
 
