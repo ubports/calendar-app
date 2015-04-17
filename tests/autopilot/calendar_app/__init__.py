@@ -142,6 +142,18 @@ class MainView(ubuntuuitoolkit.MainView):
         header.click_action_button('neweventbutton')
         return self.wait_select_single(NewEvent, objectName='newEventPage')
 
+    @autopilot.logging.log_action(logger.info)
+    def go_to_calendar_choice_popup(self):
+        """Open the calendar chioce popup.
+
+        :return: CalendaChoicePopup.
+
+        """
+        header = self.get_header()
+        header.click_action_button('calendarsbutton')
+        return self.wait_select_single(
+            CalendarChoicePopup, objectName="calendarchoicepopup")
+
     def set_picker(self, field, mode, value):
         # open picker
         self.pointing_device.click_object(field)
@@ -284,6 +296,16 @@ class MainView(ubuntuuitoolkit.MainView):
     def press_header_todaybutton(self):
         header = self.get_header()
         header.click_action_button('todaybutton')
+
+    @autopilot.logging.log_action(logger.info)
+    def get_color_picker_dialog(self):
+        return self.wait_select_single(
+            "ColorPickerDialog", objectName="colorPickerDialog")
+
+    @autopilot.logging.log_action(logger.info)
+    def press_header_custombackbutton(self):
+        header = self.get_header()
+        header.click_custom_back_button()
 
 
 class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
@@ -1003,3 +1025,57 @@ class DeleteConfirmationDialog(
         delete_button = self.select_single(
             'Button', objectName='deleteEventButton')
         self.pointing_device.click_object(delete_button)
+
+
+class CalendarChoicePopup(
+        ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+
+    """Autopilot helper for the Calendar Choice Popup."""
+
+    @autopilot.logging.log_action(logger.debug)
+    def press_check_box_button(self):
+        """ press check box button to select or unselect it """
+        calendar = self._get_calendar()
+        check_box = calendar.wait_select_single(
+            "CheckBox", objectName="checkBox")
+        self.pointing_device.click_object(check_box)
+        check_box.checked.wait_for(False)
+
+    def _get_calendar(self):
+        calendarItems = self.select_many("Standard", objectName="calendarItem")
+        for item in calendarItems:
+            if item.select_single(
+                    "Label", objectName="calendarName").text == "Personal":
+                    return item
+
+    @autopilot.logging.log_action(logger.debug)
+    def get_checkbox_status(self):
+        """ press check box button to select or unselect it """
+        calendar = self._get_calendar()
+        return calendar.wait_select_single(
+            "CheckBox", objectName="checkBox").checked
+
+    @autopilot.logging.log_action(logger.debug)
+    def get_calendar_color(self):
+        """ get calendar color """
+        calendar = self._get_calendar()
+        return calendar.select_single(
+            "QQuickRectangle", objectName="calendarColorCode").color
+
+    @autopilot.logging.log_action(logger.debug)
+    def open_color_picker_dialog(self):
+        """ press color rectangle to open calendar color picker"""
+        calendar = self._get_calendar()
+        color_rectangle = calendar.wait_select_single(
+            "QQuickRectangle", objectName="calendarColorCode")
+        self.pointing_device.click_object(color_rectangle)
+
+
+class ColorPickerDialog(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+    """Autopilot helper for the Color Picker Dialog."""
+
+    @autopilot.logging.log_action(logger.debug)
+    def change_calendar_color(self, new_color):
+        new_color_circle = self.wait_select_single(
+            "QQuickRectangle", objectName=new_color)
+        self.pointing_device.click_object(new_color_circle)
