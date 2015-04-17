@@ -298,9 +298,14 @@ class MainView(ubuntuuitoolkit.MainView):
         header.click_action_button('todaybutton')
 
     @autopilot.logging.log_action(logger.info)
-    def get_ColorPickerDialog(self):
+    def get_color_picker_dialog(self):
         return self.wait_select_single(
             "ColorPickerDialog", objectName="colorPickerDialog")
+
+    @autopilot.logging.log_action(logger.info)
+    def press_header_custombackbutton(self):
+        header = self.get_header()
+        header.click_custom_back_button()
 
 
 class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
@@ -1028,38 +1033,39 @@ class CalendarChoicePopup(
     """Autopilot helper for the Calendar Choice Popup."""
 
     @autopilot.logging.log_action(logger.debug)
-    def press_check_box_button(self, calendarName):
+    def press_check_box_button(self):
         """ press check box button to select or unselect it """
-        calendar = self._get_calendar(calendarName)
+        calendar = self._get_calendar()
         check_box = calendar.wait_select_single(
             "CheckBox", objectName="checkBox")
         self.pointing_device.click_object(check_box)
+        check_box.checked.wait_for(False)
 
-    def _get_calendar(self, calendarName):
+    def _get_calendar(self):
         calendarItems = self.select_many("Standard", objectName="calendarItem")
         for item in calendarItems:
             if item.select_single(
-                    "Label", objectName="calendarName").text == calendarName:
+                    "Label", objectName="calendarName").text == "Personal":
                     return item
 
     @autopilot.logging.log_action(logger.debug)
-    def get_checkbox_status(self, calendarName):
+    def get_checkbox_status(self):
         """ press check box button to select or unselect it """
-        calendar = self._get_calendar(calendarName)
+        calendar = self._get_calendar()
         return calendar.wait_select_single(
             "CheckBox", objectName="checkBox").checked
 
     @autopilot.logging.log_action(logger.debug)
-    def get_calendar_color(self, calendarName):
+    def get_calendar_color(self):
         """ get calendar color """
-        calendar = self._get_calendar(calendarName)
+        calendar = self._get_calendar()
         return calendar.select_single(
             "QQuickRectangle", objectName="calendarColorCode").color
 
     @autopilot.logging.log_action(logger.debug)
-    def open_color_picker_dialog(self, calendarName):
+    def open_color_picker_dialog(self):
         """ press color rectangle to open calendar color picker"""
-        calendar = self._get_calendar(calendarName)
+        calendar = self._get_calendar()
         color_rectangle = calendar.wait_select_single(
             "QQuickRectangle", objectName="calendarColorCode")
         self.pointing_device.click_object(color_rectangle)

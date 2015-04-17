@@ -19,40 +19,64 @@ Calendar app autopilot tests calendar management.
 """
 
 
-from testtools.matchers import NotEquals
+from testtools.matchers import NotEquals, Equals
+from autopilot.matchers import Eventually
 
-from calendar_app.tests import CalendarAppTestCase
+from calendar_app import data
+
+from calendar_app.tests import CalendarAppTestCaseWithVcard
 
 
-class TestManagement(CalendarAppTestCase):
+class TestManagement(CalendarAppTestCaseWithVcard):
 
     def test_change_calendar_color(self):
         """ Test changing calendar color   """
         calendar_choice_popup = \
             self.app.main_view.go_to_calendar_choice_popup()
-        calendarName = "Personal"
         original_calendar_color = \
-            calendar_choice_popup.get_calendar_color(calendarName)
-        calendar_choice_popup.open_color_picker_dialog(calendarName)
-        colorPickerDialog = self.app.main_view.get_ColorPickerDialog()
+            calendar_choice_popup.get_calendar_color()
+        calendar_choice_popup.open_color_picker_dialog()
+        colorPickerDialog = self.app.main_view.get_color_picker_dialog()
         colorPickerDialog.change_calendar_color("color6")
 
         final_calendar_color = \
-            calendar_choice_popup.get_calendar_color(calendarName)
+            calendar_choice_popup.get_calendar_color()
 
         self.assertThat(
             original_calendar_color, NotEquals(final_calendar_color))
 
     def test_unselect_calendar(self):
-        """ Test unselecting calendar    """
+        """ Test unselecting calendar
+
+          First adding an Event to then check it no longer appears after
+          deselecting the Personal calendar  """
+        test_event = data.Event.make_unique()
+        new_event_page = self.app.main_view.go_to_new_event()
+        new_event_page.add_event(test_event)
+
+        self.assertThat(lambda: self._event_exists(test_event.name),
+                        Eventually(Equals(True)))
+
         calendar_choice_popup = \
             self.app.main_view.go_to_calendar_choice_popup()
-        calendarName = "Personal"
         original_checbox_status = \
-            calendar_choice_popup.get_checkbox_status(calendarName)
-        calendar_choice_popup.press_check_box_button(calendarName)
+            calendar_choice_popup.get_checkbox_status()
+        calendar_choice_popup.press_check_box_button()
 
         self.assertThat(
             original_checbox_status,
-            NotEquals(
-                calendar_choice_popup.press_check_box_button(calendarName)))
+            NotEquals(calendar_choice_popup.get_checkbox_status()))
+
+        self.app.main_view.press_header_custombackbutton()
+        self.app.main_view.go_to_day_view()
+
+        self.assertThat(lambda: self._event_exists(test_event.name),
+                        Eventually(Equals(False)))
+
+    def _event_exists(self, event_name):
+        try:
+            day_view = self.app.main_view.go_to_day_view()
+            day_view.get_event(event_name, True)
+        except Exception:
+            return False
+        return True
