@@ -45,7 +45,8 @@ Column {
             Label{
                 id: weekNumLabel
                 objectName: "weeknumber"
-                text: i18n.tr("W") + root.weekNumber
+                // TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+                text: i18n.tr("W%1").arg(root.weekNumber)
                 fontSize: "small"
                 height: units.gu(5)
                 width: parent.width
