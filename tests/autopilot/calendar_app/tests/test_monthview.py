@@ -72,7 +72,6 @@ class TestMonthView(CalendarAppTestCase):
         print(local)
         print(today)
 
-
         self.assertThat(lambda: local.day,
                         Eventually(Equals(today.day)))
         self.assertThat(lambda: local.month,
