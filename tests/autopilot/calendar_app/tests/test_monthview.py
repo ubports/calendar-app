@@ -69,6 +69,9 @@ class TestMonthView(CalendarAppTestCase):
         local = self.app.main_view.to_local_date(
             self.month_view.currentMonth.datetime)
         today = datetime.now()
+        print(local)
+        print(today)
+
 
         self.assertThat(lambda: local.day,
                         Eventually(Equals(today.day)))
