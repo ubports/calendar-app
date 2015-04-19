@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2015-03-20 11:41+0000\n"
+"POT-Creation-Date: 2015-04-17 07:04+0200\n"
+"PO-Revision-Date: 2015-04-17 18:21+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,29 +16,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-03-21 05:39+0000\n"
-"X-Generator: Launchpad (build 17405)\n"
+"X-Launchpad-Export-Date: 2015-04-18 05:46+0000\n"
+"X-Generator: Launchpad (build 17430)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
 msgstr "Сьогодні"
 
-#: ../AgendaView.qml:91
+#: ../AgendaView.qml:92
 msgid "No upcoming events"
 msgstr "Записів майбутніх подій не виявлено"
 
-#: ../AgendaView.qml:94
+#: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
 msgstr "Вами не увімкнено жодного календаря"
 
-#: ../AgendaView.qml:104
+#: ../AgendaView.qml:105
 msgid "Enable calendars"
 msgstr "Увімкнути календарі"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:166 ../EventBubble.qml:131
+#: ../AgendaView.qml:168 ../EventBubble.qml:131
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 — %2"
@@ -61,7 +61,7 @@ msgstr[0] "%1 подія на увесь день"
 msgstr[1] "%1 події на увесь день"
 msgstr[2] "%1 подій на увесь день"
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:59
 msgid "Calendars"
 msgstr "Календарі"
 
@@ -71,11 +71,11 @@ msgstr "Назад"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
 msgstr "Синхронізувати"
 
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
 msgstr "Синхронізація"
 
@@ -103,7 +103,7 @@ msgstr "Пощук контактів"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
+#: ../DayView.qml:59 ../MonthView.qml:57 ../WeekView.qml:61
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -156,7 +156,7 @@ msgstr "Змінити послідовність"
 msgid "Edit this"
 msgstr "Змінити це"
 
-#: ../EventActions.qml:32 ../NewEvent.qml:283
+#: ../EventActions.qml:50 ../NewEvent.qml:283
 msgid "New Event"
 msgstr "Нова подія"
 
@@ -393,15 +393,17 @@ msgstr "1 тиждень"
 msgid "2 weeks"
 msgstr "2 тижні"
 
-#: ../TimeLineHeader.qml:47
-msgid "W"
-msgstr "Т"
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../TimeLineHeader.qml:49
+#, qt-format
+msgid "W%1"
+msgstr "Т%1"
 
-#: ../TimeLineHeader.qml:59
+#: ../TimeLineHeader.qml:61
 msgid "All Day"
 msgstr "Цілий день"
 
-#: ../YearView.qml:53
+#: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
 msgstr "Рік %1"

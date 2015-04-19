@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: po_com.ubuntu.calendar-is\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-18 19:09+0000\n"
+"POT-Creation-Date: 2015-04-17 07:04+0200\n"
 "PO-Revision-Date: 2014-12-02 12:07+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-02-19 05:36+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-04-18 05:45+0000\n"
+"X-Generator: Launchpad (build 17430)\n"
 "Language: is\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
@@ -26,21 +26,21 @@ msgstr ""
 msgid "Today"
 msgstr "Í dag"
 
-#: ../AgendaView.qml:91
+#: ../AgendaView.qml:92
 msgid "No upcoming events"
 msgstr "Engir atburðir á næstunni"
 
-#: ../AgendaView.qml:94
+#: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
 msgstr "Þú ert ekki með nein virk dagatöl"
 
-#: ../AgendaView.qml:104
+#: ../AgendaView.qml:105
 msgid "Enable calendars"
 msgstr "Virkja dagatöl"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:166 ../EventBubble.qml:131
+#: ../AgendaView.qml:168 ../EventBubble.qml:131
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -62,7 +62,7 @@ msgid_plural "%1 all day events"
 msgstr[0] "%1 heilsdagsatburður"
 msgstr[1] "%1 heilsdagsatburðir"
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:59
 msgid "Calendars"
 msgstr "Dagatöl"
 
@@ -72,11 +72,11 @@ msgstr "Til baka"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
 msgstr "Samstilla"
 
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
 msgstr "Samstilling"
 
@@ -104,7 +104,7 @@ msgstr "Leita að tengilið"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
+#: ../DayView.qml:59 ../MonthView.qml:57 ../WeekView.qml:61
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -159,7 +159,7 @@ msgstr "Breyta röð"
 msgid "Edit this"
 msgstr "Breyta þessu"
 
-#: ../EventActions.qml:32 ../NewEvent.qml:283
+#: ../EventActions.qml:50 ../NewEvent.qml:283
 msgid "New Event"
 msgstr "Nýr atburður"
 
@@ -395,15 +395,17 @@ msgstr "1 vika"
 msgid "2 weeks"
 msgstr "2 vikur"
 
-#: ../TimeLineHeader.qml:47
-msgid "W"
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../TimeLineHeader.qml:49
+#, qt-format
+msgid "W%1"
 msgstr ""
 
-#: ../TimeLineHeader.qml:59
+#: ../TimeLineHeader.qml:61
 msgid "All Day"
 msgstr ""
 
-#: ../YearView.qml:53
+#: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
 msgstr ""

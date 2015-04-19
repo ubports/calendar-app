@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-18 19:09+0000\n"
+"POT-Creation-Date: 2015-04-17 07:04+0200\n"
 "PO-Revision-Date: 2015-02-20 13:37+0000\n"
 "Last-Translator: GTriderXC <gtriderxc@yahoo.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -16,29 +16,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-02-21 05:33+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-04-18 05:45+0000\n"
+"X-Generator: Launchpad (build 17430)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
 msgstr "Dzisiaj"
 
-#: ../AgendaView.qml:91
+#: ../AgendaView.qml:92
 msgid "No upcoming events"
 msgstr "Brak nadchodzących wydarzeń"
 
-#: ../AgendaView.qml:94
+#: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
 msgstr "Brak aktywnych kalendarzy"
 
-#: ../AgendaView.qml:104
+#: ../AgendaView.qml:105
 msgid "Enable calendars"
 msgstr "Aktywuj kalendarz"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:166 ../EventBubble.qml:131
+#: ../AgendaView.qml:168 ../EventBubble.qml:131
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 – %2"
@@ -61,7 +61,7 @@ msgstr[0] "%1 notatka w tym dniu"
 msgstr[1] "%1 notatki w tym dniu"
 msgstr[2] "%1 notatek w tym dniu"
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:59
 msgid "Calendars"
 msgstr "Kalendarze"
 
@@ -71,11 +71,11 @@ msgstr "Powrót"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
 msgstr "Synchronizacja"
 
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
 msgstr "Synchronizowanie"
 
@@ -103,7 +103,7 @@ msgstr "Szukaj kontaktu"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
+#: ../DayView.qml:59 ../MonthView.qml:57 ../WeekView.qml:61
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -156,7 +156,7 @@ msgstr "Edytuj serię"
 msgid "Edit this"
 msgstr "Edytuj to"
 
-#: ../EventActions.qml:32 ../NewEvent.qml:283
+#: ../EventActions.qml:50 ../NewEvent.qml:283
 msgid "New Event"
 msgstr "Nowe wydarzenie"
 
@@ -393,15 +393,17 @@ msgstr "1 tydzień"
 msgid "2 weeks"
 msgstr "2 tygodnie"
 
-#: ../TimeLineHeader.qml:47
-msgid "W"
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../TimeLineHeader.qml:49
+#, qt-format
+msgid "W%1"
 msgstr ""
 
-#: ../TimeLineHeader.qml:59
+#: ../TimeLineHeader.qml:61
 msgid "All Day"
 msgstr "Cały dzień"
 
-#: ../YearView.qml:53
+#: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
 msgstr "Rok %1"

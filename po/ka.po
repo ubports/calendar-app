@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-18 19:09+0000\n"
+"POT-Creation-Date: 2015-04-17 07:04+0200\n"
 "PO-Revision-Date: 2013-07-15 18:37+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Georgian <ka@li.org>\n"
@@ -15,29 +15,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-02-19 05:36+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-04-18 05:45+0000\n"
+"X-Generator: Launchpad (build 17430)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
 msgstr ""
 
-#: ../AgendaView.qml:91
+#: ../AgendaView.qml:92
 msgid "No upcoming events"
 msgstr ""
 
-#: ../AgendaView.qml:94
+#: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
 msgstr ""
 
-#: ../AgendaView.qml:104
+#: ../AgendaView.qml:105
 msgid "Enable calendars"
 msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:166 ../EventBubble.qml:131
+#: ../AgendaView.qml:168 ../EventBubble.qml:131
 #, qt-format
 msgid "%1 - %2"
 msgstr ""
@@ -59,7 +59,7 @@ msgid_plural "%1 all day events"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:59
 msgid "Calendars"
 msgstr ""
 
@@ -69,11 +69,11 @@ msgstr ""
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
 msgstr ""
 
@@ -101,7 +101,7 @@ msgstr ""
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
+#: ../DayView.qml:59 ../MonthView.qml:57 ../WeekView.qml:61
 msgid "MMMM yyyy"
 msgstr ""
 
@@ -154,7 +154,7 @@ msgstr ""
 msgid "Edit this"
 msgstr ""
 
-#: ../EventActions.qml:32 ../NewEvent.qml:283
+#: ../EventActions.qml:50 ../NewEvent.qml:283
 msgid "New Event"
 msgstr ""
 
@@ -390,15 +390,17 @@ msgstr ""
 msgid "2 weeks"
 msgstr ""
 
-#: ../TimeLineHeader.qml:47
-msgid "W"
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../TimeLineHeader.qml:49
+#, qt-format
+msgid "W%1"
 msgstr ""
 
-#: ../TimeLineHeader.qml:59
+#: ../TimeLineHeader.qml:61
 msgid "All Day"
 msgstr ""
 
-#: ../YearView.qml:53
+#: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
 msgstr ""

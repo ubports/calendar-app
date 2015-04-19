@@ -7,37 +7,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2015-03-31 14:10+0000\n"
+"POT-Creation-Date: 2015-04-17 07:04+0200\n"
+"PO-Revision-Date: 2015-04-17 12:57+0000\n"
 "Last-Translator: Simos Xenitellis <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-01 05:28+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Launchpad-Export-Date: 2015-04-18 05:45+0000\n"
+"X-Generator: Launchpad (build 17430)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
 msgstr "Σήμερα"
 
-#: ../AgendaView.qml:91
+#: ../AgendaView.qml:92
 msgid "No upcoming events"
 msgstr "Κανένα επερχόμενο γεγονός"
 
-#: ../AgendaView.qml:94
+#: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
 msgstr "Δεν έχετε ενεργοποιημένα ημερολόγια"
 
-#: ../AgendaView.qml:104
+#: ../AgendaView.qml:105
 msgid "Enable calendars"
 msgstr "Ενεργοποίηση ημερολογίων"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:166 ../EventBubble.qml:131
+#: ../AgendaView.qml:168 ../EventBubble.qml:131
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -59,7 +59,7 @@ msgid_plural "%1 all day events"
 msgstr[0] "%1 ολοήμερο συμβάν"
 msgstr[1] "%1 ολοήμερα συμβάντα"
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:59
 msgid "Calendars"
 msgstr "Ημερολόγια"
 
@@ -69,11 +69,11 @@ msgstr "Πίσω"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
 msgstr "Συγχρονισμός"
 
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
 msgstr "Συγχρονισμός"
 
@@ -101,9 +101,9 @@ msgstr "Αναζήτηση επαφής"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
+#: ../DayView.qml:59 ../MonthView.qml:57 ../WeekView.qml:61
 msgid "MMMM yyyy"
-msgstr "ΜΜΜΜ εεεε"
+msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -154,7 +154,7 @@ msgstr "Επεξεργασία σειράς"
 msgid "Edit this"
 msgstr "Επεξεργασία αυτού"
 
-#: ../EventActions.qml:32 ../NewEvent.qml:283
+#: ../EventActions.qml:50 ../NewEvent.qml:283
 msgid "New Event"
 msgstr "Νέο συμβάν"
 
@@ -230,15 +230,15 @@ msgstr "Ημερομηνία"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 φορά"
-msgstr[1] "%1; %2 φορές"
+msgstr[0] "%1· %2 φορά"
+msgstr[1] "%1· %2 φορές"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr "%1; εώς %2"
+msgstr "%1· έως %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
@@ -390,15 +390,17 @@ msgstr "1 εβδομάδα"
 msgid "2 weeks"
 msgstr "2 εβδομάδες"
 
-#: ../TimeLineHeader.qml:47
-msgid "W"
-msgstr "Ε"
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../TimeLineHeader.qml:49
+#, qt-format
+msgid "W%1"
+msgstr ""
 
-#: ../TimeLineHeader.qml:59
+#: ../TimeLineHeader.qml:61
 msgid "All Day"
 msgstr "Ολοήμερο"
 
-#: ../YearView.qml:53
+#: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
 msgstr "Έτος %1"

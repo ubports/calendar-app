@@ -45,7 +45,9 @@ Column {
             Label{
                 id: weekNumLabel
                 objectName: "weeknumber"
-                text: i18n.tr("W") + startDay.weekNumber(Qt.locale().firstDayOfWeek)
+
+		// TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+                text: i18n.tr("W%1").arg(startDay.weekNumber(Qt.locale().firstDayOfWeek))
                 fontSize: "small"
                 height: units.gu(5)
                 width: parent.width
