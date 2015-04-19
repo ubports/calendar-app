@@ -72,6 +72,7 @@ class TestDayView(CalendarAppTestCase):
         self.assertEquals(
             self.day_view.get_datelabel(today).text, str(now.day))
 
+        print(now)
         # Checking week number is  correct
         week = int(now.strftime("%U"))+1
         self.assertEquals(
