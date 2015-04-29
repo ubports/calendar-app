@@ -25,6 +25,7 @@ import ubuntuuitoolkit
 from autopilot import exceptions
 from dateutil import tz
 import math
+import locale
 from testtools.matchers import GreaterThan
 
 from calendar_app import data

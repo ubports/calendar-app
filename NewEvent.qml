@@ -42,6 +42,8 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
+    flickable: null
+
     signal eventAdded(var event);
 
     onStartDateChanged: {
@@ -281,9 +283,6 @@ Page {
         scrollAnimation.start()
     }
 
-    width: parent.width
-    height: parent.height
-
     title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
 
     Keys.onEscapePressed: {
@@ -308,6 +307,7 @@ Page {
 
     Flickable{
         id: flickable
+        clip: true
 
         property var activeItem: null
 
@@ -408,6 +408,11 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Event Name")
+                    onFocusChanged: {
+                        if(titleEdit.focus) {
+                            flickable.makeMeVisible(titleEdit);
+                        }
+                    }
                 }
 
                 TextArea{
@@ -421,6 +426,11 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Description")
+                    onFocusChanged: {
+                        if(messageEdit.focus) {
+                            flickable.makeMeVisible(messageEdit);
+                        }
+                    }
                 }
 
                 TextField {
@@ -434,6 +444,12 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Location")
+
+                    onFocusChanged: {
+                        if(locationEdit.focus) {
+                            flickable.makeMeVisible(locationEdit);
+                        }
+                    }
                 }
             }
 
