@@ -177,8 +177,8 @@ class TestWeekView(CalendarAppTestCase):
         selected_date = \
             self.app.main_view.get_day_view().get_selected_day().startDay
 
-        print(expected_day)
-        print(selected_date)
+        logger.debug(expected_day)
+        logger.debug(selected_date)
 
         self.assertThat(expected_day, Equals(selected_date.day))
         self.assertThat(expected_month, Equals(selected_date.month))
