@@ -648,8 +648,7 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     @autopilot.logging.log_action(logger.info)
     def get_timeline_header(self, day):
-        """Return the dayheader for a given day. If no day is given,
-        return the current day.
+        """Return the dayheader for a given day.
 
         :param day:  day in date(year, month, day) format
         :return: The day header object

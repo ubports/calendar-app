@@ -28,6 +28,7 @@ Column {
     property int type: ViewType.ViewTypeWeek
     property date startDay;
     property double contentX;
+    property int firstDayOfWeek: Qt.locale().firstDayOfWeek
 
     signal dateSelected(var date);
 
@@ -46,7 +47,7 @@ Column {
                 id: weekNumLabel
                 objectName: "weeknumber"
 
-		// TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+		        // TRANSLATORS: W refers to Week, followed by the actual week number (%1)
                 text: i18n.tr("W%1").arg(startDay.weekNumber(Qt.locale().firstDayOfWeek))
                 fontSize: "small"
                 height: units.gu(5)

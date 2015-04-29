@@ -75,13 +75,14 @@ class TestDayView(CalendarAppTestCase):
         self.assertEquals(
             self.day_view.get_datelabel(today).text, str(now.day))
 
-        locale = self.app.main_view.get_locale_first_week_day()
-        if locale == ('it_IT', 'UTF-8'):
+        first_day_of_week = self.day_view.get_timeline_header(today).\
+            firstDayOfWeek
+        if first_day_of_week == 1 :
             week = int(now.strftime("%W"))+1
-        elif locale == ('en_US', 'UTF-8'):
+        elif first_day_of_week == 0 :
             week = int(now.strftime("%U"))+1
 
-        logger.warn(locale)
+        logger.warn(first_day_of_week)
         logger.warn(now)
         logger.warn(str(week))
         logger.warn(self.day_view.get_weeknumer(today).text)
