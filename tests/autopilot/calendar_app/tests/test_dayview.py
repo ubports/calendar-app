@@ -77,9 +77,9 @@ class TestDayView(CalendarAppTestCase):
 
         first_day_of_week = self.day_view.get_timeline_header(today).\
             firstDayOfWeek
-        if first_day_of_week == 1 :
+        if first_day_of_week == 1:
             week = int(now.strftime("%W"))+1
-        elif first_day_of_week == 0 :
+        elif first_day_of_week == 0:
             week = int(now.strftime("%U"))+1
 
         logger.warn(first_day_of_week)
