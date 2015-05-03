@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-04-17 07:04+0200\n"
-"PO-Revision-Date: 2015-02-27 19:44+0000\n"
+"PO-Revision-Date: 2015-05-02 19:22+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2015-04-18 05:45+0000\n"
-"X-Generator: Launchpad (build 17430)\n"
+"X-Launchpad-Export-Date: 2015-05-03 05:59+0000\n"
+"X-Generator: Launchpad (build 17474)\n"
 "Language: gd\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
@@ -405,7 +405,7 @@ msgstr "2 sheachdain"
 #: ../TimeLineHeader.qml:49
 #, qt-format
 msgid "W%1"
-msgstr ""
+msgstr "S%1"
 
 #: ../TimeLineHeader.qml:61
 msgid "All Day"
