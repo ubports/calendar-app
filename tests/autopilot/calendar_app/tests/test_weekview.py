@@ -166,7 +166,16 @@ class TestWeekView(CalendarAppTestCase):
         timeLineBase = self.week_view._get_timeline_base()
         timeline = timeLineBase.select_single(objectName="timelineview")
         while (timeline.contentX != 0):
-            self.app.main_view.swipe_view(-1, self.week_view)
+            # self.app.main_view.swipe_view(-1, self.week_view)
+            start = (0.20) % 1
+            stop = (-0.20) % 1
+            view = self.week_view
+            y_line = view.globalRect[1] + view.globalRect[3] / 2
+            x_start = view.globalRect[0] + view.globalRect[2] * start
+            x_stop = view.globalRect[0] + view.globalRect[2] * stop
+
+            self.app.pointing_device.drag(x_start, y_line, x_stop, y_line)
+
         self.app.pointing_device.click_object(day_to_select)
 
         # Check that the view changed from 'Week' to 'Day'
