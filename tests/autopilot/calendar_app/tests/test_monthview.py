@@ -73,7 +73,7 @@ class TestMonthView(CalendarAppTestCase):
             self.month_view.currentMonth.datetime)
         today = datetime.now()
         logger.debug(local)
-        logger.degug(today)
+        logger.debug(today)
 
         self.assertThat(lambda: local.day,
                         Eventually(Equals(today.day)))
