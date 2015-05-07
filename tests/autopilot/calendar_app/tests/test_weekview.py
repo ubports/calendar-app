@@ -157,24 +157,19 @@ class TestWeekView(CalendarAppTestCase):
     def test_selecting_a_day_switches_to_day_view(self):
         """It must be possible to show a single day by clicking on it."""
         days = self.week_view.get_days_of_week()
-        day_to_select = self.app.main_view.get_label_with_text(days[0])
-        expected_day = days[0]
+        today = datetime.datetime.now()
+
+        # selecting today
+        index = 0
+        for i in range(len(days)):
+            if days[i] == today.day :
+                index = i
+
+        day_to_select = self.app.main_view.get_label_with_text(days[index])
+        expected_day = days[index]
         dayStart = self.week_view.firstDay
         expected_month = dayStart.month
         expected_year = dayStart.year
-
-        timeLineBase = self.week_view._get_timeline_base()
-        timeline = timeLineBase.select_single(objectName="timelineview")
-        while (timeline.contentX != 0):
-            # self.app.main_view.swipe_view(-1, self.week_view)
-            start = (0.35) % 1
-            stop = (-0.35) % 1
-            view = self.week_view
-            y_line = view.globalRect[1] + view.globalRect[3] / 2
-            x_start = view.globalRect[0] + view.globalRect[2] * start
-            x_stop = view.globalRect[0] + view.globalRect[2] * stop
-
-            self.app.pointing_device.drag(x_start, y_line, x_stop, y_line)
 
         self.app.pointing_device.click_object(day_to_select)
 
