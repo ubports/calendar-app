@@ -219,6 +219,7 @@ Page {
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
             model.saveItem(event);
             pageStack.pop();
+
             root.eventAdded(event);
         }
     }

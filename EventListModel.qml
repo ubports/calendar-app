@@ -44,7 +44,7 @@ OrganizerModel {
         var newObject = Qt.createQmlObject("import QtQuick 2.3; Timer {interval: 1000; running: true; repeat: false;}",
             eventModel, "EventListMode.qml");
         newObject.onTriggered.connect( function(){
-            var items = getItems(eventModel.startPeriod, eventModel.endPeriod);
+            var items = itemsByTimePeriod(eventModel.startPeriod, eventModel.endPeriod);
             if( isLoading == true && items.length === 0) {
                 isLoading = false;
                 modelChanged();
@@ -52,7 +52,6 @@ OrganizerModel {
             newObject.destroy();
         });
     }
-
 
     onModelChanged: {
         isLoading = false
