@@ -167,8 +167,8 @@ class TestWeekView(CalendarAppTestCase):
         timeline = timeLineBase.select_single(objectName="timelineview")
         while (timeline.contentX != 0):
             # self.app.main_view.swipe_view(-1, self.week_view)
-            start = (0.20) % 1
-            stop = (-0.20) % 1
+            start = (0.35) % 1
+            stop = (-0.35) % 1
             view = self.week_view
             y_line = view.globalRect[1] + view.globalRect[3] / 2
             x_start = view.globalRect[0] + view.globalRect[2] * start
