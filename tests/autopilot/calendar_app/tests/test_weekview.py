@@ -162,7 +162,7 @@ class TestWeekView(CalendarAppTestCase):
         # selecting today
         index = 0
         for i in range(len(days)):
-            if days[i] == today.day :
+            if days[i] == today.day:
                 index = i
 
         day_to_select = self.app.main_view.get_label_with_text(days[index])
