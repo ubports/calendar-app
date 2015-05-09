@@ -20,6 +20,7 @@ Calendar app autopilot tests for the day view.
 
 import datetime
 import calendar
+import logging
 
 # from __future__ import range
 # (python3's range, is same as python2's xrange)
@@ -32,6 +33,8 @@ from testtools.matchers import Equals, NotEquals
 
 from calendar_app.tests import CalendarAppTestCase
 from datetime import date
+
+logger = logging.getLogger(__name__)
 
 
 class TestDayView(CalendarAppTestCase):
@@ -72,9 +75,14 @@ class TestDayView(CalendarAppTestCase):
         self.assertEquals(
             self.day_view.get_datelabel(today).text, str(now.day))
 
+        week = int(now.strftime("%U"))+1
+
+        logger.warn(now)
+        logger.warn(str(week))
+        logger.warn(self.day_view.get_weeknumer(today).text)
         # Checking week number is  correct
         self.assertEquals(
-            self.day_view.get_weeknumer(today).text, 'W' + now.strftime("%W"))
+            self.day_view.get_weeknumer(today).text, 'W' + str(week))
 
         # Check  day is scrolled to the current time
         self.assertEquals(self.day_view.get_scrollHour(), now.hour)
