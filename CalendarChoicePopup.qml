@@ -73,7 +73,7 @@ Page {
                 anchors.topMargin:units.gu(2)
                 color: UbuntuColors.green
                 onClicked: {
-                    Qt.openUrlExternally("settings:///online-accounts")
+                    Qt.openUrlExternally("settings:///system/online-accounts")
                 }
 
             }
