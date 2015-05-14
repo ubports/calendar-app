@@ -111,6 +111,8 @@ Item{
 
         property int dateFontSize: FontUtils.sizeToPixels(root.dateLabelFontSize)
         property int dayFontSize: FontUtils.sizeToPixels(root.dayLabelFontSize)
+
+        property int selectedIndex: 0
     }
 
     Column{
@@ -215,6 +217,14 @@ Item{
             }
 
             isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
+
+            onIsTodayChanged: {
+                if( isToday ) {
+                    intern.selectedIndex = index
+                }
+            }
+
+            isSelected: intern.selectedIndex == index
 
             width: parent.dayWidth
             height: parent.dayHeight

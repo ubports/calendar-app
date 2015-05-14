@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.1
 
-Item{
+Rectangle{
     id: dateRootItem
 
     property int date;
@@ -9,6 +9,12 @@ Item{
     property bool isToday;
     property bool showEvent;
     property alias fontSize: dateLabel.font.pixelSize
+
+    property bool isSelected: false
+
+    border.width: isSelected ? units.gu(0.3) : 0
+    border.color: UbuntuColors.orange
+    color: "transparent"
 
     Loader {
         sourceComponent: isToday && isCurrentMonth ? highLightComp : undefined
@@ -73,16 +79,20 @@ Item{
             pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
         }
         onClicked: {
-            var selectedDate = new Date(intern.monthStartYear,
-                                        intern.monthStartMonth,
-                                        intern.monthStartDate + index, 0, 0, 0, 0)
-            //If monthView is clicked then open selected DayView
-            if ( isYearView === false ) {
-                root.dateSelected(selectedDate);
-            }
-            //If yearView is clicked then open selected MonthView
-            else {
-                root.monthSelected(selectedDate);
+            if( isSelected ) {
+                var selectedDate = new Date(intern.monthStartYear,
+                                            intern.monthStartMonth,
+                                            intern.monthStartDate + index, 0, 0, 0, 0)
+                //If monthView is clicked then open selected DayView
+                if ( isYearView === false ) {
+                    root.dateSelected(selectedDate);
+                }
+                //If yearView is clicked then open selected MonthView
+                else {
+                    root.monthSelected(selectedDate);
+                }
+            } else {
+                intern.selectedIndex = index
             }
         }
     }
