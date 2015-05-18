@@ -75,8 +75,16 @@ class TestDayView(CalendarAppTestCase):
         self.assertEquals(
             self.day_view.get_datelabel(today).text, str(now.day))
 
-        week = int(now.strftime("%U"))+1
+        # Qt locale will return 0 for Sunday as first day of week
+        # and will return 1 for monday.
+        first_day_of_week = self.day_view.get_timeline_header(today).\
+            firstDayOfWeek
+        if first_day_of_week == 1:
+            week = int(now.strftime("%W"))+1
+        elif first_day_of_week == 0:
+            week = int(now.strftime("%U"))+1
 
+        logger.warn(first_day_of_week)
         logger.warn(now)
         logger.warn(str(week))
         logger.warn(self.day_view.get_weeknumer(today).text)
