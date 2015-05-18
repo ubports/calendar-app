@@ -217,6 +217,12 @@ Page {
                 event.setDetail(audibleReminder);
             }
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
+
+            var comment = event.detail(Detail.Comment);
+            if(comment && comment.comment === "X-CAL-DEFAULT-EVENT") {
+                event.removeDetail(comment);
+            }
+
             model.saveItem(event);
             pageStack.pop();
             root.eventAdded(event);

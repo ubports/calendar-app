@@ -157,8 +157,16 @@ class TestWeekView(CalendarAppTestCase):
     def test_selecting_a_day_switches_to_day_view(self):
         """It must be possible to show a single day by clicking on it."""
         days = self.week_view.get_days_of_week()
-        day_to_select = self.app.main_view.get_label_with_text(days[0])
-        expected_day = days[0]
+        today = datetime.datetime.now()
+
+        # selecting today
+        index = 0
+        for i in range(len(days)):
+            if days[i] == today.day:
+                index = i
+
+        day_to_select = self.app.main_view.get_label_with_text(days[index])
+        expected_day = days[index]
         dayStart = self.week_view.firstDay
         expected_month = dayStart.month
         expected_year = dayStart.year
@@ -172,6 +180,10 @@ class TestWeekView(CalendarAppTestCase):
         # Check that the 'Day' view is on the correct/selected day.
         selected_date = \
             self.app.main_view.get_day_view().get_selected_day().startDay
+
+        logger.debug(expected_day)
+        logger.debug(selected_date)
+
         self.assertThat(expected_day, Equals(selected_date.day))
         self.assertThat(expected_month, Equals(selected_date.month))
         self.assertThat(expected_year, Equals(selected_date.year))

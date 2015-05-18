@@ -29,6 +29,9 @@ from calendar_app.tests import CalendarAppTestCase
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 class TestMonthView(CalendarAppTestCase):
 
@@ -69,6 +72,8 @@ class TestMonthView(CalendarAppTestCase):
         local = self.app.main_view.to_local_date(
             self.month_view.currentMonth.datetime)
         today = datetime.now()
+        logger.debug(local)
+        logger.debug(today)
 
         self.assertThat(lambda: local.day,
                         Eventually(Equals(today.day)))
