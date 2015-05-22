@@ -162,7 +162,7 @@ class TestWeekView(CalendarAppTestCase):
         expected_day = day_to_select.date.day
         expected_month = day_to_select.date.month
         expected_year = day_to_select.date.year
-        
+
         self.app.pointing_device.click_object(day_to_select)
 
         # Check that the view changed from 'Week' to 'Day'
@@ -171,7 +171,7 @@ class TestWeekView(CalendarAppTestCase):
 
         # Check that the 'Day' view is on the correct/selected day.
         day = self.app.main_view.get_day_view().get_selected_day().startDay
-        
+
         self.assertThat(expected_day, Equals(day.day))
         self.assertThat(expected_month, Equals(day.month))
         self.assertThat(expected_year, Equals(day.year))
