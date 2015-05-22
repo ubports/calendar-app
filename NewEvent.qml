@@ -230,10 +230,14 @@ Page {
     }
 
     VisualReminder{
-        id:visualReminder
+        id: visualReminder
+        //default reminder time = 15 min
+        secondsBeforeStart: 900
     }
     AudibleReminder{
-        id:audibleReminder
+        id: audibleReminder
+        //default reminder time = 15 min
+        secondsBeforeStart: 900
     }
 
     function getDaysOfWeek(){
@@ -596,9 +600,7 @@ Page {
                 id:eventReminder
                 objectName  : "eventReminder"
 
-                anchors{
-                    left:parent.left
-                }
+                anchors.left:parent.left
                 showDivider: false
                 progression: true
                 text: i18n.tr("Reminder")
@@ -609,12 +611,11 @@ Page {
 
                 subText:{
                     if(visualReminder.secondsBeforeStart !== -1) {
-                        for(var i=0; i<reminderModel.count; i++) {
-                            if(visualReminder.secondsBeforeStart === reminderModel.get(i).value)
+                        for( var i=0; i<reminderModel.count; i++ ) {
+                            if(visualReminder.secondsBeforeStart === reminderModel.get(i).value) {
                                 return reminderModel.get(i).label
+                            }
                         }
-                    } else {
-                        reminderModel.get(0).label
                     }
                 }
 
