@@ -65,7 +65,6 @@ Page {
             id: importFromGoogleButton
 
             visible: (onlineAccountHelper.status === Loader.Ready)
-            expandIcon: true
             iconSource: "image://theme/google"
             labelText: i18n.tr("Add online Calendar")
             onClicked: {
