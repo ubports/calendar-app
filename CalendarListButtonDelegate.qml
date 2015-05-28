@@ -45,7 +45,7 @@ ListItem.Standard {
            margins: units.gu(2)
            verticalCenter: parent.verticalCenter
        }
-       color: UbuntuColors.lightAubergine
+       color: UbuntuColors.midAubergine
        elide: Text.ElideRight
    }
 }
