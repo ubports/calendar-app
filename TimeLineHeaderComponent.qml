@@ -37,6 +37,10 @@ Row{
     width: parent.width
     height: units.gu(4)
 
+    onStartDayChanged: {
+        highlightedIndex = 0
+    }
+
     Repeater{
         model: type == ViewType.ViewTypeWeek ? 7 : 1
 
@@ -47,7 +51,7 @@ Row{
 
             dayColor: {
                 if( type == ViewType.ViewTypeWeek && date.isSameDay(DateExt.today())){
-                    highlightedIndex = index
+                    header.highlightedIndex = index
                     UbuntuColors.orange
                 } /*else if( type == ViewType.ViewTypeDay && date.isSameDay(currentDay) ) {
                     UbuntuColors.orange
