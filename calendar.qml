@@ -189,12 +189,15 @@ MainView {
                 }
 
                 var requestId = "";
-                eventModel.onItemsFetched.connect( function(id,fetchedItems) {
+                var callbackFunc = function(id,fetchedItems) {
                     if( requestId === id && fetchedItems.length > 0 ) {
                         var event = fetchedItems[0];
                         pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model": eventModel});
                     }
-                });
+                    eventModel.onItemsFetched.disconnect( callbackFunc );
+                }
+
+                eventModel.onItemsFetched.connect( callbackFunc );
                 requestId = eventModel.fetchItems(eventId);
             }
 
