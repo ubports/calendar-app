@@ -63,8 +63,9 @@ Item {
         var today = DateExt.today();
         var startOfWeek = today.weekStart(Qt.locale().firstDayOfWeek);
         var weekDay = today.getDay();
+
         if( startOfWeek.isSameDay(startDay) && weekDay > 2) {
-            timeLineView.contentX = (weekDay * timeLineView.delegateWidth);
+            timeLineView.contentX = (weekDay * timeLineView.delegateWidth);            
             if( timeLineView.contentX  > (timeLineView.contentWidth - timeLineView.width) ) {
                 timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
             }
@@ -180,6 +181,11 @@ Item {
                     } else {
                         width
                     }
+                }
+
+                onContentWidthChanged: {
+                    scrollToCurrentTime();
+                    scrollTocurrentDate();
                 }
 
                 clip: true
