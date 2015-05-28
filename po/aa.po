@@ -1,39 +1,39 @@
-# Dutch translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Afar translation for ubuntu-calendar-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-04-17 07:04+0200\n"
-"PO-Revision-Date: 2015-04-18 07:21+0000\n"
-"Last-Translator: rob <linuxned@gmail.com>\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"PO-Revision-Date: 2015-05-16 16:54+0000\n"
+"Last-Translator: Charif AYFARAH <ayfarah@ymail.com>\n"
+"Language-Team: Afar <aa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-04-19 05:47+0000\n"
-"X-Generator: Launchpad (build 17430)\n"
+"X-Launchpad-Export-Date: 2015-05-17 05:22+0000\n"
+"X-Generator: Launchpad (build 17493)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
-msgstr "Vandaag"
+msgstr "Asaaku"
 
 #: ../AgendaView.qml:92
 msgid "No upcoming events"
-msgstr "Geen komende gebeurtenissen"
+msgstr "Takku wayta tekko matan"
 
 #: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
-msgstr "U heeft geen agenda´s ingeschakeld"
+msgstr "Xiqit tan aysalitte mattu"
 
 #: ../AgendaView.qml:105
 msgid "Enable calendars"
-msgstr "Agenda´s inschakelen"
+msgstr "Aysalitte xiqis"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -49,54 +49,54 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:122
 #, qt-format
 msgid "%1 ev."
-msgstr "%1 geb."
+msgstr "%1 tek"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] "%1 hele dag gebeurtenis"
-msgstr[1] "%1 hele dag gebeurtenissen"
+msgstr[0] "%1 kulli ayroh tekko"
+msgstr[1] "%1 kulli ayroh tekkooka"
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:59
 msgid "Calendars"
-msgstr "Agenda's"
+msgstr "Aysalitte"
 
 #: ../CalendarChoicePopup.qml:37
 msgid "Back"
-msgstr "Terug"
+msgstr "Derre"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
-msgstr "Synchroniseren"
+msgstr "Sinjaar"
 
 #: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
-msgstr "Synchroniseren"
+msgstr "Sinjaaris"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add new Calendar"
-msgstr "Nieuwe agenda toevoegen"
+msgstr "Qusba Aysalu edde osis"
 
 #: ../ColorPickerDialog.qml:24
 msgid "Select Color"
-msgstr "Selecteer kleur"
+msgstr "Bisu meex"
 
 #: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
-msgstr "Annuleren"
+msgstr "Bayis"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr "Geen contact"
+msgstr "Axxoow mayan"
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr "Contact zoeken"
+msgstr "Axxoow gunnus"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -107,58 +107,60 @@ msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr "Terugkerende gebeurtenis verwijderen"
+msgstr "Qagaaqagitta Tekko dug"
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
-msgstr "Gebeurtenis verwijderen"
+msgstr "Tekko dug"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
 msgstr ""
-"Alleen de gebeurtenis \"%1\" verwijderen, of alle gebeurtenissen in de reeks?"
+"Cagal a \"%1\" magaq le tekko dugtaa, hinnay a rorsittet tan tekkooka inkih "
+"dugtaa?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "Weet u zeker dat u de gebeurtenis \"%1\" wilt verwijderen?"
+msgstr "A \"%1\" magaq le tekko dugtuh digga litoo?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
-msgstr "Reeks verwijderen"
+msgstr "Rorsitte dug"
 
 #: ../DeleteConfirmationDialog.qml:51
 msgid "Delete this"
-msgstr "Dit verwijderen"
+msgstr "Ah dug"
 
 #: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:183
 msgid "Delete"
-msgstr "Verwijderen"
+msgstr "Dug"
 
 #: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:283
 msgid "Edit Event"
-msgstr "Gebeurtenis bewerken"
+msgstr "Tekko fak"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
 msgstr ""
-"Alleen de gebeurtenis \"%1\" bewerken, of alle gebeurtenissen in de reeks?"
+"Cagal \"%1\" migaq le tekko faktaa, hinnay a rorsittet tan tekkooka inkih "
+"faktaa?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
-msgstr "Reeks bewerken"
+msgstr "Rorsitte fak"
 
 #: ../EditEventConfirmationDialog.qml:44
 msgid "Edit this"
-msgstr "Dit bewerken"
+msgstr "Ah fak"
 
 #: ../EventActions.qml:50 ../NewEvent.qml:283
 msgid "New Event"
-msgstr "Nieuwe gebeurtenis"
+msgstr "Qusba Tekko"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -169,35 +171,35 @@ msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:42 ../NewEvent.qml:393
 msgid "Event Details"
-msgstr "Gebeurtenisdetails"
+msgstr "Tekkoh Addaffakootu"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr "%1-agenda"
+msgstr "%1 Aysalu"
 
 #: ../EventDetails.qml:118
 #, qt-format
 msgid "%1 - %2 (All Day)"
-msgstr "%1 - %2 (hele dag)"
+msgstr "%1 - %2 (Kulli Ayro)"
 
 #: ../EventDetails.qml:122
 #, qt-format
 msgid "%1 (All Day)"
-msgstr "%1 (hele dag)"
+msgstr "%1 (Kulli Ayro)"
 
 #: ../EventDetails.qml:196
 msgid "Edit"
-msgstr "Bewerken"
+msgstr "Faku"
 
 #: ../EventDetails.qml:347 ../NewEvent.qml:479
 msgid "Guests"
-msgstr "Gasten"
+msgstr "Qibina"
 
 #: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
 msgid "Reminder"
-msgstr "Herinnering"
+msgstr "Kassiise"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -205,26 +207,26 @@ msgstr "Herinnering"
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:41 ../EventRepetition.qml:132
 msgid "Repeat"
-msgstr "Herhalen"
+msgstr "Qagis"
 
 #: ../EventRepetition.qml:151
 msgid "Repeats On:"
-msgstr "Herhalen op:"
+msgstr "Elle Qigis:"
 
 #: ../EventRepetition.qml:196
 msgid "Recurring event ends"
-msgstr "Einde terugkerende gebeurtenis"
+msgstr "Qagaaqagitta tekkok ellecabo"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
 #: ../EventRepetition.qml:219 ../NewEvent.qml:560
 msgid "Repeats"
-msgstr "Herhalingen"
+msgstr "Qagis"
 
 #: ../EventRepetition.qml:244
 msgid "Date"
-msgstr "Datum"
+msgstr "Taariki"
 
 #. TRANSLATORS: the argument refers to multiple recurrence of event with count .
 #. E.g. "Daily; 5 times."
@@ -232,180 +234,180 @@ msgstr "Datum"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 keer"
-msgstr[1] "%1; %2 keer"
+msgstr[0] "%1; %2 adda"
+msgstr[1] "%1; %2 adda"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr "%1; tot %2"
+msgstr "%1; %2 fan"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr "Wekelijks op %1"
+msgstr "Ayyaamal %1"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
-msgstr "Nooit"
+msgstr "Inkinnah"
 
 #: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr "Na X complete herhaling"
+msgstr "Mango adda tekkeemih lakal"
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
-msgstr "Na datum"
+msgstr "Taarik lakal"
 
 #: ../NewEvent.qml:59
 msgid "Save"
-msgstr "Opslaan"
+msgstr "Taagis"
 
 #: ../NewEvent.qml:165
 msgid "End time can't be before start time"
-msgstr "Eindtijd kan niet voor begintijd zijn"
+msgstr "Ellecabô waqla qimbô waqlak taakumem ma dudda"
 
 #: ../NewEvent.qml:293
 msgid "Error"
-msgstr "Fout"
+msgstr "Soka"
 
 #: ../NewEvent.qml:295
 msgid "OK"
-msgstr "Ok"
+msgstr "Hayya"
 
 #: ../NewEvent.qml:347
 msgid "From"
-msgstr "Van"
+msgstr "-ik"
 
 #: ../NewEvent.qml:360
 msgid "To"
-msgstr "Tot"
+msgstr "Fan"
 
 #: ../NewEvent.qml:377
 msgid "All day event"
-msgstr "Hele dag gebeurtenis"
+msgstr "Kulli ayroh tekko"
 
 #: ../NewEvent.qml:406
 msgid "Event Name"
-msgstr "Naam gebeurtenis"
+msgstr "Tekkô Migaaqa"
 
 #: ../NewEvent.qml:419
 msgid "Description"
-msgstr "Beschrijving"
+msgstr "Kinnim-warsa"
 
 #: ../NewEvent.qml:432
 msgid "Location"
-msgstr "Plaats"
+msgstr "Araca"
 
 #: ../NewEvent.qml:441 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr "Agenda"
+msgstr "Aysalu"
 
 #: ../NewEvent.qml:483
 msgid "Add Guest"
-msgstr "Gast toevoegen"
+msgstr "Qibnaytu(o) edde osis"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
-msgstr "Eenmalig"
+msgstr "Inki adda"
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr "Dagelijks"
+msgstr "Ayrol"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "Op werkdagen"
+msgstr "Ayyam-ayrooral"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr "Op %1, %2 ,%3"
+msgstr "%1, %2 ,%3 -l"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr "Op %1 en %2"
+msgstr "%1 -l and %2 -l"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
-msgstr "Wekelijks"
+msgstr "Ayyaamal"
 
 #: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
-msgstr "Maandelijks"
+msgstr "Alsal"
 
 #: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
-msgstr "Jaarlijks"
+msgstr "Liggidal"
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
-msgstr "Geen herinnering"
+msgstr "Kassiise mayan"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr "Bij start gebeurtenis"
+msgstr "Tekkol"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
-msgstr "5 minuten"
+msgstr "5 miniti"
 
 #: ../RemindersModel.qml:32
 msgid "15 minutes"
-msgstr "15 minuten"
+msgstr "15 miniti"
 
 #: ../RemindersModel.qml:33
 msgid "30 minutes"
-msgstr "30 minuten"
+msgstr "30 miniti"
 
 #: ../RemindersModel.qml:34
 msgid "1 hour"
-msgstr "1 uur"
+msgstr "1 saaqata"
 
 #: ../RemindersModel.qml:35
 msgid "2 hours"
-msgstr "2 uren"
+msgstr "2 saaqata"
 
 #: ../RemindersModel.qml:36
 msgid "1 day"
-msgstr "1 dag"
+msgstr "1 ayro"
 
 #: ../RemindersModel.qml:37
 msgid "2 days"
-msgstr "2 dagen"
+msgstr "2 ayro"
 
 #: ../RemindersModel.qml:38
 msgid "1 week"
-msgstr "1 week"
+msgstr "1 ayyaama"
 
 #: ../RemindersModel.qml:39
 msgid "2 weeks"
-msgstr "2 weken"
+msgstr "2 ayyaama"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:49
 #, qt-format
 msgid "W%1"
-msgstr "W%1"
+msgstr "%1 ayyaama"
 
 #: ../TimeLineHeader.qml:61
 msgid "All Day"
-msgstr "Hele dag"
+msgstr "Kulli Ayro"
 
 #: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
-msgstr "Jaar %1"
+msgstr "%1 liggida"
 
 #: ../calendar.qml:44
 msgid ""
@@ -413,36 +415,34 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
-"Kalenderapp accepteert vier argumenten: --starttime, --endtime, --newevent "
-"en --eventid. Deze worden beheerd door het systeem. Zie de bron voor een "
-"volledige beschrijving ervan"
+"Aysali abnisso affara cuggat oggolta: -qimbô-waqla, -ellecabô-waqla, -qisba-"
+"tekko kee -tekkô-mamaxxaga.  Siira ken makaabanisele. Ahak dudda le maqtura "
+"faxxeenik raceynat boosita."
 
 #: ../calendar.qml:322
 msgid "Year"
-msgstr "Jaar"
+msgstr "Liggida"
 
 #: ../calendar.qml:356
 msgid "Month"
-msgstr "Maand"
+msgstr "Alsa"
 
 #: ../calendar.qml:384
 msgid "Week"
-msgstr "Week"
+msgstr "Ayyaama"
 
 #: ../calendar.qml:417
 msgid "Day"
-msgstr "Dag"
+msgstr "Ayro"
 
 #: ../calendar.qml:449
 msgid "Agenda"
-msgstr "Agenda"
+msgstr "Ajenda"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr "Een agenda voor Ubuntu die synchroniseert met online-accounts."
+msgstr "Ubuntuh aysaluy gitaddih loowtat sinjaarah yani"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
-"calendar;event;day;week;year;appointment;meeting;agenda;gebeurtenis;dag;week;"
-"jaar;afspraak;bijeenkomst;"
+msgstr "aysalu;tekko;ayro;ayyaama;liggida;xagana;angaarawa;"

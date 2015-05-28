@@ -31,7 +31,7 @@ Item {
     property var keyboardEventProvider;
 
     property date startDay: DateExt.today();
-    property int weekNumber: startDay.weekNumber();
+    property int weekNumber: startDay.weekNumber(Qt.locale().firstDayOfWeek);
     property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
@@ -63,8 +63,9 @@ Item {
         var today = DateExt.today();
         var startOfWeek = today.weekStart(Qt.locale().firstDayOfWeek);
         var weekDay = today.getDay();
+
         if( startOfWeek.isSameDay(startDay) && weekDay > 2) {
-            timeLineView.contentX = (weekDay * timeLineView.delegateWidth);
+            timeLineView.contentX = (weekDay * timeLineView.delegateWidth);            
             if( timeLineView.contentX  > (timeLineView.contentWidth - timeLineView.width) ) {
                 timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
             }
@@ -180,6 +181,11 @@ Item {
                     } else {
                         width
                     }
+                }
+
+                onContentWidthChanged: {
+                    scrollToCurrentTime();
+                    scrollTocurrentDate();
                 }
 
                 clip: true

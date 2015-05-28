@@ -25,8 +25,9 @@ if sys.version_info < (3,):
     range = xrange
 
 import datetime
+from datetime import timedelta
 from autopilot.matchers import Eventually
-from testtools.matchers import Equals
+from testtools.matchers import Equals, NotEquals
 from random import randint, randrange
 
 from calendar_app.tests import CalendarAppTestCase
@@ -61,30 +62,87 @@ class TestWeekView(CalendarAppTestCase):
         self.assertThat(self.app.main_view.get_month_year(self.week_view),
                         Equals(expected_month_name_year))
 
-        # TODO: check current day is highlighted
+        # check current day is highlighted
+        header_date = self.week_view.get_current_headerdatecomponent(now)
+        self.assertEquals(header_date.dayColor[0], 221)
+        self.assertEquals(header_date.dayColor[1], 72)
+        self.assertEquals(header_date.dayColor[2], 20)
+        self.assertEquals(header_date.dayColor[3], 255)
 
-    # These testing stubs need completed
-    # def test_scroll_week_must_scroll_within_week(self):
-        # """Scrolling inside the timeline should scroll the weekdays"""
-        # pass
+    def test_scroll_week_must_scroll_weekdays(self):
+        """Scrolling inside the timeline should scroll the weekdays"""
+        before_days = self.week_view.get_days_of_week()
 
-    # def test_change_week_across_month(self):
-        # """Changing week across months should update the month"""
-        # pass
+        direction = 1
+        no_of_swipes = 3
+        for x in range(no_of_swipes):
+            self.app.main_view.swipe_view(direction, self.week_view)
 
-    # def test_change_week_across_year(self):
-        # """Changing week across years should update the year"""
-        # pass
+        after_days = self.week_view.get_days_of_week()
 
-    # def test_month_to_week(self):
-        # """Changing from a month to weekview should
-        # start weekview on the first week of the month"""
-        # pass
+        self.assertThat(before_days[0], NotEquals(after_days[0]))
+        self.assertThat(before_days[1], NotEquals(after_days[1]))
+        self.assertThat(before_days[2], NotEquals(after_days[2]))
+        self.assertThat(before_days[3], NotEquals(after_days[3]))
+        self.assertThat(before_days[4], NotEquals(after_days[4]))
+        self.assertThat(before_days[5], NotEquals(after_days[5]))
+        self.assertThat(before_days[6], NotEquals(after_days[6]))
 
-    # def test_day_to_week(self):
-        # """Changing from a day to weekview should
-        # start weekview on the same week as the day"""
-        # pass
+    def test_change_week_across_months(self):
+        """Changing week across months should update the month"""
+        header = self.app.main_view.get_header()
+        before_month = self.app.main_view.get_month_year(header)
+        self.week_view.change_week(4)
+
+        after_month = self.app.main_view.get_month_year(header)
+
+        self.assertThat(before_month, NotEquals(after_month))
+
+    def test_change_week_across_year(self):
+        """Changing week across years should update the year"""
+        header = self.app.main_view.get_header()
+        month_year_label = self.app.main_view.get_month_year(header)
+        before_year = month_year_label[-4:]
+
+        current_week = self.week_view.get_current_weeknumber()
+        direction = 1
+        no_of_swipes = ((55 - current_week) * 3)  # 3 swipes to change week
+        for x in range(1, no_of_swipes):
+            self.app.main_view.swipe_view(direction, self.week_view)
+
+        month_year_label = self.app.main_view.get_month_year(header)
+        after_year = month_year_label[-4:]
+
+        self.assertThat(before_year, NotEquals(after_year))
+
+    def test_month_to_week(self):
+        """Changing from a month to weekview should
+         start weekview on the first day of the week"""
+        self.app.main_view.go_to_month_view()
+        self.app.main_view.go_to_week_view()
+
+        cal_week_firstday_ts = self.app.main_view.get_week_view().firstDay
+        cal_week_firstday = datetime.date(cal_week_firstday_ts.datetime.year,
+                                          cal_week_firstday_ts.datetime.month,
+                                          cal_week_firstday_ts.datetime.day)
+
+        now = datetime.datetime.now()
+        delta = datetime.datetime.weekday(now)
+        first_dow = now - timedelta(delta)
+        expected_first_dow = datetime.date(first_dow.year, first_dow.month,
+                                           first_dow.day)
+
+        self.assertEquals(cal_week_firstday, expected_first_dow)
+
+    def test_day_to_week(self):
+        """Changing from a day to weekview should
+           start weekview on the same week as the day"""
+        day_view = self.app.main_view.go_to_day_view()
+        day_week_no = day_view.get_weeknumber()
+        week_view = self.app.main_view.go_to_week_view()
+        week_week_no = week_view.get_current_weeknumber()
+
+        self.assertEquals(day_week_no, week_week_no)
 
     def test_change_week(self):
         """It must be possible to change weeks by swiping the timeline"""
@@ -98,12 +156,12 @@ class TestWeekView(CalendarAppTestCase):
 
     def test_selecting_a_day_switches_to_day_view(self):
         """It must be possible to show a single day by clicking on it."""
-        days = self.week_view.get_days_of_week()
-        day_to_select = self.app.main_view.get_label_with_text(days[0])
-        expected_day = days[0]
-        dayStart = self.week_view.dayStart
-        expected_month = dayStart.month
-        expected_year = dayStart.year
+        today = datetime.datetime.now()
+        day_to_select = self.week_view.get_current_headerdatecomponent(today)
+
+        expected_day = day_to_select.date.day
+        expected_month = day_to_select.date.month
+        expected_year = day_to_select.date.year
 
         self.app.pointing_device.click_object(day_to_select)
 
@@ -112,8 +170,8 @@ class TestWeekView(CalendarAppTestCase):
         self.assertThat(day_view.visible, Eventually(Equals(True)))
 
         # Check that the 'Day' view is on the correct/selected day.
-        selected_date = \
-            self.app.main_view.get_day_view().get_selected_day().startDay
-        self.assertThat(expected_day, Equals(selected_date.day))
-        self.assertThat(expected_month, Equals(selected_date.month))
-        self.assertThat(expected_year, Equals(selected_date.year))
+        day = self.app.main_view.get_day_view().get_selected_day().startDay
+
+        self.assertThat(expected_day, Equals(day.day))
+        self.assertThat(expected_month, Equals(day.month))
+        self.assertThat(expected_year, Equals(day.year))

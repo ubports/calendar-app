@@ -42,6 +42,8 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
+    flickable: null
+
     signal eventAdded(var event);
 
     onStartDateChanged: {
@@ -215,6 +217,12 @@ Page {
                 event.setDetail(audibleReminder);
             }
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
+
+            var comment = event.detail(Detail.Comment);
+            if(comment && comment.comment === "X-CAL-DEFAULT-EVENT") {
+                event.removeDetail(comment);
+            }
+
             model.saveItem(event);
             pageStack.pop();
             root.eventAdded(event);
@@ -222,10 +230,14 @@ Page {
     }
 
     VisualReminder{
-        id:visualReminder
+        id: visualReminder
+        //default reminder time = 15 min
+        secondsBeforeStart: 900
     }
     AudibleReminder{
-        id:audibleReminder
+        id: audibleReminder
+        //default reminder time = 15 min
+        secondsBeforeStart: 900
     }
 
     function getDaysOfWeek(){
@@ -281,9 +293,6 @@ Page {
         scrollAnimation.start()
     }
 
-    width: parent.width
-    height: parent.height
-
     title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
 
     Keys.onEscapePressed: {
@@ -308,6 +317,7 @@ Page {
 
     Flickable{
         id: flickable
+        clip: true
 
         property var activeItem: null
 
@@ -408,6 +418,11 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Event Name")
+                    onFocusChanged: {
+                        if(titleEdit.focus) {
+                            flickable.makeMeVisible(titleEdit);
+                        }
+                    }
                 }
 
                 TextArea{
@@ -421,6 +436,11 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Description")
+                    onFocusChanged: {
+                        if(messageEdit.focus) {
+                            flickable.makeMeVisible(messageEdit);
+                        }
+                    }
                 }
 
                 TextField {
@@ -434,6 +454,12 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Location")
+
+                    onFocusChanged: {
+                        if(locationEdit.focus) {
+                            flickable.makeMeVisible(locationEdit);
+                        }
+                    }
                 }
             }
 
@@ -574,9 +600,7 @@ Page {
                 id:eventReminder
                 objectName  : "eventReminder"
 
-                anchors{
-                    left:parent.left
-                }
+                anchors.left:parent.left
                 showDivider: false
                 progression: true
                 text: i18n.tr("Reminder")
@@ -587,12 +611,11 @@ Page {
 
                 subText:{
                     if(visualReminder.secondsBeforeStart !== -1) {
-                        for(var i=0; i<reminderModel.count; i++) {
-                            if(visualReminder.secondsBeforeStart === reminderModel.get(i).value)
+                        for( var i=0; i<reminderModel.count; i++ ) {
+                            if(visualReminder.secondsBeforeStart === reminderModel.get(i).value) {
                                 return reminderModel.get(i).label
+                            }
                         }
-                    } else {
-                        reminderModel.get(0).label
                     }
                 }
 

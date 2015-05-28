@@ -7,37 +7,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-18 19:09+0000\n"
-"PO-Revision-Date: 2015-03-19 07:28+0000\n"
+"POT-Creation-Date: 2015-04-17 07:04+0200\n"
+"PO-Revision-Date: 2015-05-11 11:46+0000\n"
 "Last-Translator: Simos Xenitellis <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-03-20 05:11+0000\n"
-"X-Generator: Launchpad (build 17405)\n"
+"X-Launchpad-Export-Date: 2015-05-12 05:29+0000\n"
+"X-Generator: Launchpad (build 17487)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
 msgstr "Σήμερα"
 
-#: ../AgendaView.qml:91
+#: ../AgendaView.qml:92
 msgid "No upcoming events"
 msgstr "Κανένα επερχόμενο γεγονός"
 
-#: ../AgendaView.qml:94
+#: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
 msgstr "Δεν έχετε ενεργοποιημένα ημερολόγια"
 
-#: ../AgendaView.qml:104
+#: ../AgendaView.qml:105
 msgid "Enable calendars"
 msgstr "Ενεργοποίηση ημερολογίων"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:166 ../EventBubble.qml:131
+#: ../AgendaView.qml:168 ../EventBubble.qml:131
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -59,7 +59,7 @@ msgid_plural "%1 all day events"
 msgstr[0] "%1 ολοήμερο συμβάν"
 msgstr[1] "%1 ολοήμερα συμβάντα"
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:59
 msgid "Calendars"
 msgstr "Ημερολόγια"
 
@@ -69,11 +69,11 @@ msgstr "Πίσω"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
 msgstr "Συγχρονισμός"
 
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
 msgstr "Συγχρονισμός"
 
@@ -101,9 +101,9 @@ msgstr "Αναζήτηση επαφής"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
+#: ../DayView.qml:59 ../MonthView.qml:57 ../WeekView.qml:61
 msgid "MMMM yyyy"
-msgstr "ΜΜΜΜ εεεε"
+msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -154,7 +154,7 @@ msgstr "Επεξεργασία σειράς"
 msgid "Edit this"
 msgstr "Επεξεργασία αυτού"
 
-#: ../EventActions.qml:32 ../NewEvent.qml:283
+#: ../EventActions.qml:50 ../NewEvent.qml:283
 msgid "New Event"
 msgstr "Νέο συμβάν"
 
@@ -191,7 +191,7 @@ msgstr "Επεξεργασία"
 
 #: ../EventDetails.qml:347 ../NewEvent.qml:479
 msgid "Guests"
-msgstr "Επισκέπτες"
+msgstr "Καλεσμένοι"
 
 #: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
 msgid "Reminder"
@@ -230,15 +230,15 @@ msgstr "Ημερομηνία"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 φορά"
-msgstr[1] "%1; %2 φορές"
+msgstr[0] "%1· %2 φορά"
+msgstr[1] "%1· %2 φορές"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr "%1; εώς %2"
+msgstr "%1· έως %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
@@ -281,7 +281,7 @@ msgstr "Από"
 
 #: ../NewEvent.qml:360
 msgid "To"
-msgstr ""
+msgstr "Έως"
 
 #: ../NewEvent.qml:377
 msgid "All day event"
@@ -305,7 +305,7 @@ msgstr "Ημερολόγιο"
 
 #: ../NewEvent.qml:483
 msgid "Add Guest"
-msgstr "Προσθήκη επισκέπτη"
+msgstr "Προσθήκη καλεσμένου"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -317,19 +317,19 @@ msgstr "Ημερησίως"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "Τις Καθημερινές"
+msgstr "Στις καθημερινές"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr "Τη(ν) %1, %2 ,%3"
+msgstr "Στις ημέρες %1, %2 και %3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "Στις ημέρες %1 και %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -345,14 +345,14 @@ msgstr "Ετησίως"
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
-msgstr "Καμιά υπενθύμιση"
+msgstr "Χωρίς υπενθύμιση"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr "Στο συμβάν"
+msgstr "Στην αρχή του συμβάντος"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
@@ -390,15 +390,17 @@ msgstr "1 εβδομάδα"
 msgid "2 weeks"
 msgstr "2 εβδομάδες"
 
-#: ../TimeLineHeader.qml:47
-msgid "W"
-msgstr ""
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../TimeLineHeader.qml:49
+#, qt-format
+msgid "W%1"
+msgstr "Ε%1"
 
-#: ../TimeLineHeader.qml:59
+#: ../TimeLineHeader.qml:61
 msgid "All Day"
 msgstr "Ολοήμερο"
 
-#: ../YearView.qml:53
+#: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
 msgstr "Έτος %1"
@@ -409,6 +411,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"Η εφαρμογή ημερολογίου δέχεται τέσσερα ορίσματα: --starttime, --endtime, --"
+"newevent και --eventid. Το σύστημα θα τα διαχειριστεί. Δείτε τον πηγαίο "
+"κώδικα για περισσότερες πληροφορίες για αυτά"
 
 #: ../calendar.qml:322
 msgid "Year"
@@ -433,6 +438,8 @@ msgstr "Ατζέντα"
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
 msgstr ""
+"Ένα ημερολόγιο για το Ubuntu που συγχρονίζεται με τους συνδεδεμένους σας "
+"λογαριασμούς."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"

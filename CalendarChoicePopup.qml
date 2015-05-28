@@ -24,7 +24,7 @@ import Ubuntu.SyncMonitor 0.1
 
 Page {
     id: root
-
+    objectName: "calendarchoicepopup"
     property var model;
 
     signal collectionUpdated();
@@ -61,6 +61,7 @@ Page {
     ListView {
         id: calendarsList
         anchors.fill: parent
+
         footer: CalendarListButtonDelegate {
             id: importFromGoogleButton
 
@@ -75,9 +76,11 @@ Page {
         model : root.model.getCollections();
         delegate: ListItem.Standard {
             id: delegateComp
+            objectName: "calendarItem"
 
             Rectangle {
                 id: calendarColorCode
+                objectName: "calendarColorCode"
 
                 width: parent.height - units.gu(2)
                 height: width
@@ -106,6 +109,7 @@ Page {
             }
 
             Label{
+                objectName: "calendarName"
                 text: modelData.name
                 elide: Text.ElideRight
                 opacity: checkBox.checked ? 1.0 : 0.8
@@ -120,6 +124,7 @@ Page {
 
             control: CheckBox {
                 id: checkBox
+                objectName: "checkBox"
                 checked: modelData.extendedMetaData("collection-selected")
                 enabled:  !root.isInEditMode
                 onCheckedChanged: {
