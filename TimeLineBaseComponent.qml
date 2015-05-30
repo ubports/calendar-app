@@ -67,7 +67,7 @@ Item {
         if( startOfWeek.isSameDay(startDay) && weekDay > 2) {
             timeLineView.contentX = (weekDay * timeLineView.delegateWidth);
             print("############## scroll to currentdate ###########");
-            print(Qt.locale().firstDayOfWeek)
+            print(Qt.locale().firstDayOfWeek + "--" + weekDay)
             print(timeLineView.contentX +"----" + (timeLineView.contentWidth - timeLineView.width) )
             if( timeLineView.contentX  > (timeLineView.contentWidth - timeLineView.width) ) {
                 timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
