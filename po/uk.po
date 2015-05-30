@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-04-17 07:04+0200\n"
+"POT-Creation-Date: 2015-06-01 16:53+0800\n"
 "PO-Revision-Date: 2015-04-17 18:21+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-04-18 05:46+0000\n"
-"X-Generator: Launchpad (build 17430)\n"
+"X-Launchpad-Export-Date: 2015-06-02 05:34+0000\n"
+"X-Generator: Launchpad (build 17532)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -38,7 +38,7 @@ msgstr "Увімкнути календарі"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:168 ../EventBubble.qml:131
+#: ../AgendaView.qml:168 ../EventBubble.qml:133
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 — %2"
@@ -61,7 +61,7 @@ msgstr[0] "%1 подія на увесь день"
 msgstr[1] "%1 події на увесь день"
 msgstr[2] "%1 подій на увесь день"
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:59
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:60
 msgid "Calendars"
 msgstr "Календарі"
 
@@ -79,15 +79,15 @@ msgstr "Синхронізувати"
 msgid "Syncing"
 msgstr "Синхронізація"
 
-#: ../CalendarChoicePopup.qml:70
+#: ../CalendarChoicePopup.qml:71
 msgid "Add new Calendar"
 msgstr "Додати новий календар"
 
-#: ../ColorPickerDialog.qml:24
+#: ../ColorPickerDialog.qml:25
 msgid "Select Color"
 msgstr "Вибір кольору"
 
-#: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:60
+#: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
 msgstr "Скасувати"
@@ -103,7 +103,7 @@ msgstr "Пощук контактів"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:59 ../MonthView.qml:57 ../WeekView.qml:61
+#: ../DayView.qml:59 ../MonthView.qml:58 ../WeekView.qml:61
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -138,7 +138,7 @@ msgstr "Вилучити це"
 msgid "Delete"
 msgstr "Вилучити"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:283
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:296
 msgid "Edit Event"
 msgstr "Редагування події"
 
@@ -156,18 +156,18 @@ msgstr "Змінити послідовність"
 msgid "Edit this"
 msgstr "Змінити це"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:283
+#: ../EventActions.qml:50 ../NewEvent.qml:296
 msgid "New Event"
 msgstr "Нова подія"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
-#: ../EventBubble.qml:142 ../EventBubble.qml:147
+#: ../EventBubble.qml:144 ../EventBubble.qml:149
 #, qt-format
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:393
+#: ../EventDetails.qml:42 ../NewEvent.qml:407
 msgid "Event Details"
 msgstr "Докладніше про подію"
 
@@ -191,11 +191,11 @@ msgstr "%1 (увесь день)"
 msgid "Edit"
 msgstr "Змінити"
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:479
+#: ../EventDetails.qml:347 ../NewEvent.qml:509
 msgid "Guests"
 msgstr "Гості"
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
+#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:606
 msgid "Reminder"
 msgstr "Нагадування"
 
@@ -203,26 +203,26 @@ msgstr "Нагадування"
 #. and it is shown as the header of the page to choose repetition
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
-#: ../EventRepetition.qml:41 ../EventRepetition.qml:132
+#: ../EventRepetition.qml:41 ../EventRepetition.qml:150
 msgid "Repeat"
 msgstr "Повторити"
 
-#: ../EventRepetition.qml:151
+#: ../EventRepetition.qml:169
 msgid "Repeats On:"
 msgstr "Повтор:"
 
-#: ../EventRepetition.qml:196
+#: ../EventRepetition.qml:214
 msgid "Recurring event ends"
 msgstr "Повторення події завершиться"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:219 ../NewEvent.qml:560
+#: ../EventRepetition.qml:237 ../NewEvent.qml:590
 msgid "Repeats"
 msgstr "Повторюється"
 
-#: ../EventRepetition.qml:244
+#: ../EventRepetition.qml:262
 msgid "Date"
 msgstr "Дата"
 
@@ -262,51 +262,51 @@ msgstr "Після вказаного повторення"
 msgid "After Date"
 msgstr "Після дати"
 
-#: ../NewEvent.qml:59
+#: ../NewEvent.qml:61
 msgid "Save"
 msgstr "Зберегти"
 
-#: ../NewEvent.qml:165
+#: ../NewEvent.qml:170
 msgid "End time can't be before start time"
 msgstr "Момент завершення не може передувати моментові початку"
 
-#: ../NewEvent.qml:293
+#: ../NewEvent.qml:306
 msgid "Error"
 msgstr "Помилка"
 
-#: ../NewEvent.qml:295
+#: ../NewEvent.qml:308
 msgid "OK"
 msgstr "Гаразд"
 
-#: ../NewEvent.qml:347
+#: ../NewEvent.qml:361
 msgid "From"
 msgstr "З"
 
-#: ../NewEvent.qml:360
+#: ../NewEvent.qml:374
 msgid "To"
 msgstr "До"
 
-#: ../NewEvent.qml:377
+#: ../NewEvent.qml:391
 msgid "All day event"
 msgstr "Подія на весь день"
 
-#: ../NewEvent.qml:406
+#: ../NewEvent.qml:420
 msgid "Event Name"
 msgstr "Назва події"
 
-#: ../NewEvent.qml:419
+#: ../NewEvent.qml:438
 msgid "Description"
 msgstr "Опис"
 
-#: ../NewEvent.qml:432
+#: ../NewEvent.qml:456
 msgid "Location"
 msgstr "Розташування"
 
-#: ../NewEvent.qml:441 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:471 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Календар"
 
-#: ../NewEvent.qml:483
+#: ../NewEvent.qml:513
 msgid "Add Guest"
 msgstr "Додати гостя"
 
@@ -393,13 +393,17 @@ msgstr "1 тиждень"
 msgid "2 weeks"
 msgstr "2 тижні"
 
+#: ../TimeLineBase.qml:80
+msgid "Untitled"
+msgstr ""
+
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:49
+#: ../TimeLineHeader.qml:51
 #, qt-format
 msgid "W%1"
 msgstr "Т%1"
 
-#: ../TimeLineHeader.qml:61
+#: ../TimeLineHeader.qml:63
 msgid "All Day"
 msgstr "Цілий день"
 

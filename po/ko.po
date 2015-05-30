@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-04-17 07:04+0200\n"
+"POT-Creation-Date: 2015-06-01 16:53+0800\n"
 "PO-Revision-Date: 2015-01-15 07:01+0000\n"
 "Last-Translator: Yongmin Hong <revi@fastlizard4.org>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-04-18 05:45+0000\n"
-"X-Generator: Launchpad (build 17430)\n"
+"X-Launchpad-Export-Date: 2015-06-02 05:34+0000\n"
+"X-Generator: Launchpad (build 17532)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -37,7 +37,7 @@ msgstr "달력 활성화"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:168 ../EventBubble.qml:131
+#: ../AgendaView.qml:168 ../EventBubble.qml:133
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -58,7 +58,7 @@ msgid "%1 all day event"
 msgid_plural "%1 all day events"
 msgstr[0] "%1전체 행사"
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:59
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:60
 msgid "Calendars"
 msgstr "달력"
 
@@ -76,15 +76,15 @@ msgstr "동기화"
 msgid "Syncing"
 msgstr "동기화 중"
 
-#: ../CalendarChoicePopup.qml:70
+#: ../CalendarChoicePopup.qml:71
 msgid "Add new Calendar"
 msgstr ""
 
-#: ../ColorPickerDialog.qml:24
+#: ../ColorPickerDialog.qml:25
 msgid "Select Color"
 msgstr "색상 선택"
 
-#: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:60
+#: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
 msgstr "취소"
@@ -100,7 +100,7 @@ msgstr "연락처 검색"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:59 ../MonthView.qml:57 ../WeekView.qml:61
+#: ../DayView.qml:59 ../MonthView.qml:58 ../WeekView.qml:61
 msgid "MMMM yyyy"
 msgstr "yyyy MMMM"
 
@@ -135,7 +135,7 @@ msgstr "삭제"
 msgid "Delete"
 msgstr "삭제"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:283
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:296
 msgid "Edit Event"
 msgstr "이벤트 편집"
 
@@ -153,18 +153,18 @@ msgstr "일정 편집"
 msgid "Edit this"
 msgstr "편집"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:283
+#: ../EventActions.qml:50 ../NewEvent.qml:296
 msgid "New Event"
 msgstr "새 이벤트"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
-#: ../EventBubble.qml:142 ../EventBubble.qml:147
+#: ../EventBubble.qml:144 ../EventBubble.qml:149
 #, qt-format
 msgid "%1 <b>%2</b>"
 msgstr ""
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:393
+#: ../EventDetails.qml:42 ../NewEvent.qml:407
 msgid "Event Details"
 msgstr "일정 세부 사항"
 
@@ -188,11 +188,11 @@ msgstr ""
 msgid "Edit"
 msgstr "편집"
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:479
+#: ../EventDetails.qml:347 ../NewEvent.qml:509
 msgid "Guests"
 msgstr "손님"
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
+#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:606
 msgid "Reminder"
 msgstr "알림"
 
@@ -200,26 +200,26 @@ msgstr "알림"
 #. and it is shown as the header of the page to choose repetition
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
-#: ../EventRepetition.qml:41 ../EventRepetition.qml:132
+#: ../EventRepetition.qml:41 ../EventRepetition.qml:150
 msgid "Repeat"
 msgstr "반복"
 
-#: ../EventRepetition.qml:151
+#: ../EventRepetition.qml:169
 msgid "Repeats On:"
 msgstr "반복:"
 
-#: ../EventRepetition.qml:196
+#: ../EventRepetition.qml:214
 msgid "Recurring event ends"
 msgstr "반복되는 행사 종료"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:219 ../NewEvent.qml:560
+#: ../EventRepetition.qml:237 ../NewEvent.qml:590
 msgid "Repeats"
 msgstr "반복"
 
-#: ../EventRepetition.qml:244
+#: ../EventRepetition.qml:262
 msgid "Date"
 msgstr "날짜"
 
@@ -258,51 +258,51 @@ msgstr "X 회 발생 이후"
 msgid "After Date"
 msgstr "날짜 이후"
 
-#: ../NewEvent.qml:59
+#: ../NewEvent.qml:61
 msgid "Save"
 msgstr "저장"
 
-#: ../NewEvent.qml:165
+#: ../NewEvent.qml:170
 msgid "End time can't be before start time"
 msgstr "종료 시간은 시작 시간보다 이전으로 설정할 수 없습니다."
 
-#: ../NewEvent.qml:293
+#: ../NewEvent.qml:306
 msgid "Error"
 msgstr "오류"
 
-#: ../NewEvent.qml:295
+#: ../NewEvent.qml:308
 msgid "OK"
 msgstr "확인"
 
-#: ../NewEvent.qml:347
+#: ../NewEvent.qml:361
 msgid "From"
 msgstr "보낸 사람"
 
-#: ../NewEvent.qml:360
+#: ../NewEvent.qml:374
 msgid "To"
 msgstr "받는 사람"
 
-#: ../NewEvent.qml:377
+#: ../NewEvent.qml:391
 msgid "All day event"
 msgstr "하루 종일"
 
-#: ../NewEvent.qml:406
+#: ../NewEvent.qml:420
 msgid "Event Name"
 msgstr "행사 제목"
 
-#: ../NewEvent.qml:419
+#: ../NewEvent.qml:438
 msgid "Description"
 msgstr "요약"
 
-#: ../NewEvent.qml:432
+#: ../NewEvent.qml:456
 msgid "Location"
 msgstr "위치"
 
-#: ../NewEvent.qml:441 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:471 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "캘린더"
 
-#: ../NewEvent.qml:483
+#: ../NewEvent.qml:513
 msgid "Add Guest"
 msgstr "손님 추가"
 
@@ -389,13 +389,17 @@ msgstr "1주"
 msgid "2 weeks"
 msgstr "2주"
 
+#: ../TimeLineBase.qml:80
+msgid "Untitled"
+msgstr ""
+
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:49
+#: ../TimeLineHeader.qml:51
 #, qt-format
 msgid "W%1"
 msgstr ""
 
-#: ../TimeLineHeader.qml:61
+#: ../TimeLineHeader.qml:63
 msgid "All Day"
 msgstr ""
 
