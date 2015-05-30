@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 1.1
 
-Rectangle{
+Item{
     id: dateRootItem
 
     property int date;
@@ -12,12 +12,8 @@ Rectangle{
 
     property bool isSelected: false
 
-    border.width: isSelected ? units.gu(0.3) : 0
-    border.color: UbuntuColors.orange
-    color: "transparent"
-
     Loader {
-        sourceComponent: isToday && isCurrentMonth ? highLightComp : undefined
+        sourceComponent: (isToday && isCurrentMonth) || isSelected ? highLightComp : undefined
         onSourceComponentChanged: {
             width = Qt.binding( function() { return ( dateRootItem.height / 1.5 ); });
             height = Qt.binding ( function() { return width} );
@@ -32,13 +28,17 @@ Rectangle{
         fontSize: root.dateLabelFontSize
         color: {
             if( isCurrentMonth ) {
-                if(isToday) {
+                if( isToday || isSelected ) {
                     "white"
                 } else {
                     "#5D5D5D"
                 }
             } else {
-                "#AEA79F"
+                if(isSelected) {
+                    "white"
+                } else {
+                    "#AEA79F"
+                }
             }
         }
     }
@@ -64,7 +64,19 @@ Rectangle{
     Component{
         id: highLightComp
         UbuntuShape{
-            color: "#DD4814"
+            color: {
+                if( isToday && !isSelected ) {
+                    "#DD4814"
+                } else {
+                    "gray"
+                }
+            }
+
+            Rectangle{
+                anchors.fill: parent
+                anchors.margins: units.gu(0.5)
+                color: isToday ? "#DD4814" : "darkgray"
+            }
         }
     }
 
