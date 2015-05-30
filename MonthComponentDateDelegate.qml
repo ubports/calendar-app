@@ -93,20 +93,19 @@ Item{
             }
         }
         onClicked: {
-            if( isSelected ) {
-                var selectedDate = new Date(intern.monthStartYear,
-                                            intern.monthStartMonth,
-                                            intern.monthStartDate + index, 0, 0, 0, 0)
-                //If monthView is clicked then open selected DayView
-                if ( isYearView === false ) {
-                    root.dateSelected(selectedDate);
-                }
+            var selectedDate = new Date(intern.monthStartYear,
+                                        intern.monthStartMonth,
+                                        intern.monthStartDate + index, 0, 0, 0, 0)
+            if( isYearView ) {
                 //If yearView is clicked then open selected MonthView
-                else {
-                    root.monthSelected(selectedDate);
-                }
+                root.monthSelected(selectedDate);
             } else {
-                intern.selectedIndex = index
+                if( isSelected ) {
+                    //If monthView is clicked then open selected DayView
+                    root.dateSelected(selectedDate);
+                } else {
+                    intern.selectedIndex = index
+                }
             }
         }
     }
