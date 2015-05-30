@@ -83,12 +83,14 @@ Item{
     MouseArea {
         anchors.fill: parent
         onPressAndHold: {
-            var selectedDate = new Date();
-            selectedDate.setFullYear(intern.monthStartYear)
-            selectedDate.setMonth(intern.monthStartMonth + 1)
-            selectedDate.setDate(date)
-            selectedDate.setMinutes(60, 0, 0)
-            pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
+            if( isSelected ) {
+                var selectedDate = new Date();
+                selectedDate.setFullYear(intern.monthStartYear)
+                selectedDate.setMonth(intern.monthStartMonth + 1)
+                selectedDate.setDate(date)
+                selectedDate.setMinutes(60, 0, 0)
+                pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
+            }
         }
         onClicked: {
             if( isSelected ) {
