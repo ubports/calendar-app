@@ -219,13 +219,41 @@ Item {
     }
 
     function assignBubbleProperties(eventBubble, event, depth, sizeOfRow) {
-        var hour = event.startDateTime.getHours();
-        var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
-        eventBubble.y = yPos;
+        var yPos = 0;
+        var height = 0;
+        var hour = 0;
+        var durationMin = 0;
 
-        var durationMin = (event.endDateTime.getHours() - event.startDateTime.getHours()) * 60;
-        durationMin += (event.endDateTime.getMinutes() - event.startDateTime.getMinutes());
-        var height = (durationMin * hourHeight )/ 60;
+        if (event.endDateTime.getDate() - day.getDate() == 0 &&
+                event.startDateTime.getDate() - day.getDate() == 0) {
+                hour = event.startDateTime.getHours();
+                yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
+                durationMin = (event.endDateTime.getHours() - event.startDateTime.getHours()) * 60;
+                durationMin += (event.endDateTime.getMinutes() - event.startDateTime.getMinutes());
+        }
+        if (event.endDateTime.getDate() - day.getDate() == 0 &&
+                event.startDateTime.getDate() - day.getDate() < 0) {
+                hour = 0;
+                yPos = 0;
+                durationMin = event.endDateTime.getHours() * 60;
+                durationMin += event.endDateTime.getMinutes();
+        }
+        if (event.endDateTime.getDate() - day.getDate() > 0 &&
+                event.startDateTime.getDate() - day.getDate() == 0) {
+                hour = event.startDateTime.getHours();
+                yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
+                durationMin = (24 - event.startDateTime.getHours()) * 60;
+        }
+
+        if (event.endDateTime.getDate() - day.getDate() > 0 &&
+                event.startDateTime.getDate() - day.getDate() < 0) {
+            hour = 0;
+            yPos = 0;
+            durationMin = 24 * 60;
+        }
+
+        eventBubble.y = yPos;
+        height = (durationMin * hourHeight )/ 60;
         eventBubble.height = (height > eventBubble.minimumHeight) ? height:eventBubble.minimumHeight ;
 
         eventBubble.model = bubbleOverLay.model
