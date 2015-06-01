@@ -92,7 +92,7 @@ class TestWeekView(CalendarAppTestCase):
         """Changing week across months should update the month"""
         header = self.app.main_view.get_header()
         before_month = self.app.main_view.get_month_year(header)
-        self.week_view.change_week(4)
+        self.week_view.change_week(6)
 
         after_month = self.app.main_view.get_month_year(header)
 
