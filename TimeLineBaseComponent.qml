@@ -64,12 +64,11 @@ Item {
         var startOfWeek = today.weekStart(Qt.locale().firstDayOfWeek);
         var weekDay = today.getDay();
         var diff = weekDay - Qt.locale().firstDayOfWeek
-        print("diff = "+ diff)
+        diff = diff < 0 ? 6 : diff
+
+        print(diff + ", " + Qt.locale().firstDayOfWeek + "--" + weekDay)
         if( startOfWeek.isSameDay(startDay) && diff > 2) {
-            timeLineView.contentX = (weekDay * timeLineView.delegateWidth);
-            print("############## scroll to currentdate ###########");
-            print(Qt.locale().firstDayOfWeek + "--" + weekDay)
-            print(timeLineView.contentX +"----" + (timeLineView.contentWidth - timeLineView.width) )
+            timeLineView.contentX = (diff * timeLineView.delegateWidth);
             if( timeLineView.contentX  > (timeLineView.contentWidth - timeLineView.width) ) {
                 timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
                 print(timeLineView.contentX +"----" + (timeLineView.contentWidth - timeLineView.width) )
