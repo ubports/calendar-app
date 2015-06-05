@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-06-01 16:53+0800\n"
-"PO-Revision-Date: 2014-08-07 14:44+0000\n"
-"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
+"PO-Revision-Date: 2015-06-04 19:53+0000\n"
+"Last-Translator: Mads Dyrmann <madsdyrmannlarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-02 05:33+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-05 05:49+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -30,7 +30,7 @@ msgstr "Ingen kommende begivenheder"
 
 #: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Du har ingen aktiverede kalendere"
 
 #: ../AgendaView.qml:105
 msgid "Enable calendars"
@@ -80,7 +80,7 @@ msgstr "Synkroniserer"
 
 #: ../CalendarChoicePopup.qml:71
 msgid "Add new Calendar"
-msgstr ""
+msgstr "Tilføj ny kalender"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -93,11 +93,11 @@ msgstr "Annullér"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr ""
+msgstr "Ingen kontaktperson"
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr ""
+msgstr "Søg kontaktperson"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -118,7 +118,7 @@ msgstr "Slet begivenhed"
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Slet kun denne begivenhed \"%1\", eller alle begivenheder i serien?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
@@ -146,6 +146,7 @@ msgstr "Redigér begivenhed"
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
 msgstr ""
+"Redigér kun denne begivenhed \"%1\", eller alle begivenheder i serien?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -164,7 +165,7 @@ msgstr "Ny begivenhed"
 #: ../EventBubble.qml:144 ../EventBubble.qml:149
 #, qt-format
 msgid "%1 <b>%2</b>"
-msgstr ""
+msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:42 ../NewEvent.qml:407
 msgid "Event Details"
@@ -174,17 +175,17 @@ msgstr "Begivenhedsdetaljer"
 #: ../EventDetails.qml:66
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "%1 Kalender"
 
 #: ../EventDetails.qml:118
 #, qt-format
 msgid "%1 - %2 (All Day)"
-msgstr ""
+msgstr "%1 - %2 (Heldags)"
 
 #: ../EventDetails.qml:122
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (Heldags)"
 
 #: ../EventDetails.qml:196
 msgid "Edit"
@@ -196,7 +197,7 @@ msgstr "Gæster"
 
 #: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:606
 msgid "Reminder"
-msgstr ""
+msgstr "Påmindelse"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -204,7 +205,7 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:41 ../EventRepetition.qml:150
 msgid "Repeat"
-msgstr ""
+msgstr "Gentag"
 
 #: ../EventRepetition.qml:169
 msgid "Repeats On:"
@@ -219,7 +220,7 @@ msgstr "Gentagen begivenhed slutter"
 #. its repetition
 #: ../EventRepetition.qml:237 ../NewEvent.qml:590
 msgid "Repeats"
-msgstr ""
+msgstr "Gentagelser"
 
 #: ../EventRepetition.qml:262
 msgid "Date"
@@ -231,22 +232,22 @@ msgstr "Dato"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 gang"
+msgstr[1] "%1; %2 gange"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; indtil %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Ugenligt på %1"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -278,11 +279,11 @@ msgstr "O.k."
 
 #: ../NewEvent.qml:361
 msgid "From"
-msgstr ""
+msgstr "Fra"
 
 #: ../NewEvent.qml:374
 msgid "To"
-msgstr ""
+msgstr "Til"
 
 #: ../NewEvent.qml:391
 msgid "All day event"
@@ -306,7 +307,7 @@ msgstr "Kalender"
 
 #: ../NewEvent.qml:513
 msgid "Add Guest"
-msgstr ""
+msgstr "Tilføj gæst"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -318,19 +319,19 @@ msgstr "Dagligt"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "På hverdage"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "På %1, %2, %3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "På %1 og %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -403,12 +404,12 @@ msgstr ""
 
 #: ../TimeLineHeader.qml:63
 msgid "All Day"
-msgstr ""
+msgstr "Hele dagen"
 
 #: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
-msgstr ""
+msgstr "År %1"
 
 #: ../calendar.qml:44
 msgid ""
