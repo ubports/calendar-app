@@ -30,10 +30,16 @@ Row{
     property bool isCurrentItem: false
     property var currentDay
 
+    property int highlightedIndex;
+
     signal dateSelected(var date);
 
     width: parent.width
     height: units.gu(4)
+
+    onStartDayChanged: {
+        highlightedIndex = 0
+    }
 
     Repeater{
         model: type == ViewType.ViewTypeWeek ? 7 : 1
@@ -41,9 +47,11 @@ Row{
         delegate: HeaderDateComponent{
             date: type == ViewType.ViewTypeWeek ? startDay.addDays(index) : startDay
             dayFormat: Locale.ShortFormat
+            highlighted: (type == ViewType.ViewTypeWeek) && (highlightedIndex == index)
 
             dayColor: {
                 if( type == ViewType.ViewTypeWeek && date.isSameDay(DateExt.today())){
+                    header.highlightedIndex = index
                     UbuntuColors.orange
                 } /*else if( type == ViewType.ViewTypeDay && date.isSameDay(currentDay) ) {
                     UbuntuColors.orange
@@ -56,7 +64,15 @@ Row{
             height: header.height
 
             onDateSelected: {
-                header.dateSelected(date);
+                if( type == ViewType.ViewTypeDay ){
+                    header.dateSelected(date);
+                } else {
+                    if(highlighted) {
+                        header.dateSelected(date);
+                    } else {
+                        header.highlightedIndex = index
+                    }
+                }
             }
 
             Loader{
