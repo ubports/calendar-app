@@ -233,8 +233,8 @@ Item{
             id: weekDay
             objectName: "weekDay" + index
             width: parent.dayWidth
-            property var day :Qt.locale().standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat)
-            text: day;
+            text:isYearView ? Qt.locale(Qt.locale().name).standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.NarrowFormat) :
+                              Qt.locale(Qt.locale().name).standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat);
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: intern.dayFontSize
             font.bold: true
