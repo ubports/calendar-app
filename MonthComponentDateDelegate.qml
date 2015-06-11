@@ -15,7 +15,10 @@ Item{
     Loader {
         sourceComponent: (isToday && isCurrentMonth) || isSelected ? highLightComp : undefined
         onSourceComponentChanged: {
-            width = Qt.binding( function() { return ( dateRootItem.height / 1.5 ); });
+            width = Qt.binding( function() {
+                var width = dateRootItem.height > dateRootItem.width ? dateRootItem.width :dateRootItem.height
+                return ( width / 1.1 );
+            });
             height = Qt.binding ( function() { return width} );
             anchors.centerIn = Qt.binding( function() { return dateLabel});
         }
