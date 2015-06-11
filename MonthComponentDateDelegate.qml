@@ -60,7 +60,7 @@ Item{
         Rectangle {
             anchors.fill: parent
             radius: height/2
-            color:"#5E2750"
+            color: "black"
         }
     }
 

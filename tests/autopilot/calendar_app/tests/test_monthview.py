@@ -29,6 +29,9 @@ from calendar_app.tests import CalendarAppTestCase
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 class TestMonthView(CalendarAppTestCase):
 
@@ -41,17 +44,14 @@ class TestMonthView(CalendarAppTestCase):
         direction = int(math.copysign(1, delta))
 
         for _ in range(abs(delta)):
-            before = self.app.main_view.to_local_date(
-                month_view.currentMonth.datetime)
+            before = month_view.currentMonth.datetime
 
             # prevent timing issues with swiping
-            old_month = self.app.main_view.to_local_date(
-                month_view.currentMonth.datetime)
+            old_month = month_view.currentMonth.datetime
 
             self.app.main_view.swipe_view(direction, month_view)
 
-            month_after = self.app.main_view.to_local_date(
-                month_view.currentMonth.datetime)
+            month_after = month_view.currentMonth.datetime
 
             self.assertThat(lambda: month_after,
                             Eventually(NotEquals(old_month)))
@@ -66,9 +66,12 @@ class TestMonthView(CalendarAppTestCase):
                             Eventually(Equals(after.year)))
 
     def _assert_today(self):
-        local = self.app.main_view.to_local_date(
-            self.month_view.currentMonth.datetime)
         today = datetime.now()
+        local = self.month_view.currentMonth.datetime
+        converted_local = self.app.main_view.to_local_date(local)
+        logger.debug(local)
+        logger.debug(converted_local)
+        logger.debug(today)
 
         self.assertThat(lambda: local.day,
                         Eventually(Equals(today.day)))
@@ -78,12 +81,9 @@ class TestMonthView(CalendarAppTestCase):
                         Eventually(Equals(today.year)))
 
     def _go_to_today(self, delta):
-        self._assert_today()
-
         self._change_month(delta)
         header = self.app.main_view.get_header()
         header.click_action_button('todaybutton')
-
         self._assert_today()
 
     def test_monthview_go_to_today_next_month(self):
