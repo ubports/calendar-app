@@ -69,6 +69,7 @@ OrganizerModel {
         var collections = eventModel.collections;
         for(var i = 0 ; i < collections.length ; ++i) {
             var cal = collections[i];
+            //print(cal.name + " ---- " + cal.extendedMetaData("collection-readonly"));
             if( cal.extendedMetaData("collection-type") === "Calendar" ) {
                 cals.push(cal);
             }
