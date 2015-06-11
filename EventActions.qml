@@ -55,6 +55,7 @@ Item {
 
     Action{
         id: _showCalendarAction
+        objectName: "calendarsbutton"
         iconName: "calendar"
         text: i18n.tr("Calendars")
         onTriggered: {

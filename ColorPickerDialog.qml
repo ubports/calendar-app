@@ -21,6 +21,7 @@ import Ubuntu.Components.Popups 1.0
 
 Dialog {
     id: root
+    objectName: "colorPickerDialog"
     title: i18n.tr("Select Color")
     signal accepted(var color)
     signal rejected()
@@ -34,6 +35,7 @@ Dialog {
             Repeater{
                 model: ["#2C001E","#333333","#DD4814","#DF382C","#EFB73E","#19B6EE","#38B44A","#001F5C"];
                 delegate:Rectangle{
+                    objectName: "color" + index
                     width: parent.width/5
                     height: width
                     color: modelData

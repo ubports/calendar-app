@@ -50,10 +50,10 @@ class Event(DataMixin):
     def make_unique(cls, unique_id=None):
         """Return a unique event."""
         if unique_id is None:
-            unique_id = str(uuid.uuid1())
+            unique_id = str(uuid.uuid4())[:8]
         calendar = 'Personal'
-        name = 'Test event {}'.format(unique_id)
-        description = 'Test description {}.'.format(unique_id)
-        location = 'Test location {}'.format(unique_id)
+        name = 'Test ev {}'.format(unique_id)
+        description = 'Test desc {}.'.format(unique_id)
+        location = 'Test loc {}'.format(unique_id)
         guests = ['UX User']
         return cls(calendar, name, description, location, guests)

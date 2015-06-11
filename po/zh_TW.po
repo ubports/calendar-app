@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-18 19:09+0000\n"
+"POT-Creation-Date: 2015-06-09 18:44+0800\n"
 "PO-Revision-Date: 2015-03-01 07:19+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
@@ -15,29 +15,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-03-02 05:35+0000\n"
-"X-Generator: Launchpad (build 17361)\n"
+"X-Launchpad-Export-Date: 2015-06-11 05:36+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
 msgstr "今日"
 
-#: ../AgendaView.qml:91
+#: ../AgendaView.qml:92
 msgid "No upcoming events"
 msgstr "接下來沒有行程"
 
-#: ../AgendaView.qml:94
+#: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
 msgstr "您尚未啟用行事曆"
 
-#: ../AgendaView.qml:104
+#: ../AgendaView.qml:105
 msgid "Enable calendars"
 msgstr "啟用行事曆"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:166 ../EventBubble.qml:131
+#: ../AgendaView.qml:168 ../EventBubble.qml:133
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -58,7 +58,7 @@ msgid "%1 all day event"
 msgid_plural "%1 all day events"
 msgstr[0] "%1 件整日行程"
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:41
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:60
 msgid "Calendars"
 msgstr "行事曆"
 
@@ -68,23 +68,23 @@ msgstr "返回"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
 msgstr "同步"
 
-#: ../CalendarChoicePopup.qml:51
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
 msgstr "同步中"
 
-#: ../CalendarChoicePopup.qml:70
+#: ../CalendarChoicePopup.qml:71
 msgid "Add new Calendar"
 msgstr "新增行事曆"
 
-#: ../ColorPickerDialog.qml:24
+#: ../ColorPickerDialog.qml:25
 msgid "Select Color"
 msgstr "選取顏色"
 
-#: ../ColorPickerDialog.qml:53 ../DeleteConfirmationDialog.qml:60
+#: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
 msgstr "取消"
@@ -100,7 +100,7 @@ msgstr "搜尋聯絡人"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:58 ../MonthView.qml:56 ../WeekView.qml:60
+#: ../DayView.qml:59 ../MonthView.qml:58 ../WeekView.qml:61
 msgid "MMMM yyyy"
 msgstr "yyyy年M月"
 
@@ -135,7 +135,7 @@ msgstr "刪除這項"
 msgid "Delete"
 msgstr "刪除"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:283
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:296
 msgid "Edit Event"
 msgstr "編輯行程"
 
@@ -153,18 +153,18 @@ msgstr "編輯系列"
 msgid "Edit this"
 msgstr "編輯這項"
 
-#: ../EventActions.qml:32 ../NewEvent.qml:283
+#: ../EventActions.qml:50 ../NewEvent.qml:296
 msgid "New Event"
 msgstr "新增行程"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
-#: ../EventBubble.qml:142 ../EventBubble.qml:147
+#: ../EventBubble.qml:144 ../EventBubble.qml:149
 #, qt-format
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:393
+#: ../EventDetails.qml:42 ../NewEvent.qml:407
 msgid "Event Details"
 msgstr "行程詳情"
 
@@ -188,11 +188,11 @@ msgstr "%1  (整天)"
 msgid "Edit"
 msgstr "編輯"
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:479
+#: ../EventDetails.qml:347 ../NewEvent.qml:509
 msgid "Guests"
 msgstr "賓客"
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:578
+#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:606
 msgid "Reminder"
 msgstr "提醒"
 
@@ -200,26 +200,26 @@ msgstr "提醒"
 #. and it is shown as the header of the page to choose repetition
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
-#: ../EventRepetition.qml:41 ../EventRepetition.qml:132
+#: ../EventRepetition.qml:41 ../EventRepetition.qml:150
 msgid "Repeat"
 msgstr "重複"
 
-#: ../EventRepetition.qml:151
+#: ../EventRepetition.qml:169
 msgid "Repeats On:"
 msgstr "重複於："
 
-#: ../EventRepetition.qml:196
+#: ../EventRepetition.qml:214
 msgid "Recurring event ends"
 msgstr "循環行程結束"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:219 ../NewEvent.qml:560
+#: ../EventRepetition.qml:237 ../NewEvent.qml:590
 msgid "Repeats"
 msgstr "重複"
 
-#: ../EventRepetition.qml:244
+#: ../EventRepetition.qml:262
 msgid "Date"
 msgstr "日期"
 
@@ -257,51 +257,51 @@ msgstr "發生 X 次之後"
 msgid "After Date"
 msgstr "此日期之後："
 
-#: ../NewEvent.qml:59
+#: ../NewEvent.qml:61
 msgid "Save"
 msgstr "儲存"
 
-#: ../NewEvent.qml:165
+#: ../NewEvent.qml:170
 msgid "End time can't be before start time"
 msgstr "結束時間不能早於開始時間"
 
-#: ../NewEvent.qml:293
+#: ../NewEvent.qml:306
 msgid "Error"
 msgstr "錯誤"
 
-#: ../NewEvent.qml:295
+#: ../NewEvent.qml:308
 msgid "OK"
 msgstr "確定"
 
-#: ../NewEvent.qml:347
+#: ../NewEvent.qml:361
 msgid "From"
 msgstr "從"
 
-#: ../NewEvent.qml:360
+#: ../NewEvent.qml:374
 msgid "To"
 msgstr "到"
 
-#: ../NewEvent.qml:377
+#: ../NewEvent.qml:391
 msgid "All day event"
 msgstr "整天行程"
 
-#: ../NewEvent.qml:406
+#: ../NewEvent.qml:420
 msgid "Event Name"
 msgstr "行程名稱"
 
-#: ../NewEvent.qml:419
+#: ../NewEvent.qml:438
 msgid "Description"
 msgstr "描述"
 
-#: ../NewEvent.qml:432
+#: ../NewEvent.qml:456
 msgid "Location"
 msgstr "地點"
 
-#: ../NewEvent.qml:441 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:471 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "行事曆"
 
-#: ../NewEvent.qml:483
+#: ../NewEvent.qml:513
 msgid "Add Guest"
 msgstr "加入賓客"
 
@@ -388,15 +388,21 @@ msgstr "1 週"
 msgid "2 weeks"
 msgstr "2 週"
 
-#: ../TimeLineHeader.qml:47
-msgid "W"
+#: ../TimeLineBase.qml:80
+msgid "Untitled"
 msgstr ""
 
-#: ../TimeLineHeader.qml:59
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../TimeLineHeader.qml:51
+#, qt-format
+msgid "W%1"
+msgstr ""
+
+#: ../TimeLineHeader.qml:63
 msgid "All Day"
 msgstr "整天"
 
-#: ../YearView.qml:53
+#: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
 msgstr "%1年"

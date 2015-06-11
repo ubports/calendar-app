@@ -24,7 +24,7 @@ import Ubuntu.SyncMonitor 0.1
 
 Page {
     id: root
-
+    objectName: "calendarchoicepopup"
     property var model;
 
     signal collectionUpdated();
@@ -61,28 +61,26 @@ Page {
     ListView {
         id: calendarsList
         anchors.fill: parent
-        footer: Item {
-            id: footer
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: aadCalendar.width
-            Button {
-                id:aadCalendar
-                text: i18n.tr("Add new Calendar")
-                anchors.top :parent.top
-                anchors.topMargin:units.gu(2)
-                color: UbuntuColors.green
-                onClicked: {
-                    Qt.openUrlExternally("settings:///online-accounts")
-                }
 
+        footer: CalendarListButtonDelegate {
+            id: importFromGoogleButton
+
+            visible: (onlineAccountHelper.status === Loader.Ready)
+            iconSource: "image://theme/google"
+            labelText: i18n.tr("Add online Calendar")
+            onClicked: {
+                onlineAccountHelper.item.setupExec()
             }
         }
+
         model : root.model.getCollections();
         delegate: ListItem.Standard {
             id: delegateComp
+            objectName: "calendarItem"
 
             Rectangle {
                 id: calendarColorCode
+                objectName: "calendarColorCode"
 
                 width: parent.height - units.gu(2)
                 height: width
@@ -111,6 +109,7 @@ Page {
             }
 
             Label{
+                objectName: "calendarName"
                 text: modelData.name
                 elide: Text.ElideRight
                 opacity: checkBox.checked ? 1.0 : 0.8
@@ -125,6 +124,7 @@ Page {
 
             control: CheckBox {
                 id: checkBox
+                objectName: "checkBox"
                 checked: modelData.extendedMetaData("collection-selected")
                 enabled:  !root.isInEditMode
                 onCheckedChanged: {
@@ -137,5 +137,15 @@ Page {
         }
     }
 
+    Loader {
+        id: onlineAccountHelper
+
+        // if running on test mode does not load online account modules
+        property string sourceFile: Qt.resolvedUrl("OnlineAccountsHelper.qml")
+
+        anchors.fill: parent
+        asynchronous: true
+        source: sourceFile
+    }
 }
 

@@ -107,13 +107,6 @@ Page{
                     startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
                     keyboardEventProvider: weekViewPath
 
-                    Component.onCompleted: {
-                        if(weekViewPage.isCurrentPage){
-                            timeLineView.scrollToCurrentTime();
-                            timeLineView.scrollTocurrentDate();
-                        }
-                    }
-
                     onIsActiveChanged: {
                         timeLineView.scrollTocurrentDate();
                     }
