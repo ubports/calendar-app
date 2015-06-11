@@ -59,11 +59,17 @@ Page {
     }
 
     function updateCollection(event) {
+
         var collection = model.collection( event.collectionId );
         calendarIndicator.color = collection.color
         eventInfo.color=collection.color
         // TRANSLATORS: the first parameter refers to the name of event calendar.
         calendarName.text = i18n.tr("%1 Calendar").arg( collection.name)
+
+        //disable edit in case of read only calendar
+        if( collection.extendedMetaData("collection-readonly") === true ) {
+            editAction.enabled = false
+        }
     }
 
     function updateRecurrence( event ) {
@@ -198,6 +204,7 @@ Page {
         },
 
         Action {
+            id: editAction
             text: i18n.tr("Edit");
             objectName: "edit"
             iconName: "edit";
