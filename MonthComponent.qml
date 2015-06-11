@@ -112,12 +112,11 @@ Item{
         property int dateFontSize: FontUtils.sizeToPixels(root.dateLabelFontSize)
         property int dayFontSize: FontUtils.sizeToPixels(root.dayLabelFontSize)
 
-        property int selectedIndex: offset + 1
+        property int selectedIndex: -1
     }
 
     onCurrentMonthChanged: {
-        intern.selectedIndex = intern.isCurMonthTodayMonth ?
-                    intern.offset + intern.todayDate : intern.offset + 1
+        intern.selectedIndex = -1
     }
 
     Column{
@@ -222,12 +221,6 @@ Item{
             }
 
             isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
-
-            onIsTodayChanged : {
-                if( isToday ) {
-                    intern.selectedIndex = index
-                }
-            }
 
             isSelected: showEvents && intern.selectedIndex == index
 
