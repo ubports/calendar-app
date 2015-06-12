@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-06-09 18:44+0800\n"
-"PO-Revision-Date: 2015-06-04 19:53+0000\n"
-"Last-Translator: Mads Dyrmann <madsdyrmannlarsen@gmail.com>\n"
+"PO-Revision-Date: 2015-06-11 10:53+0000\n"
+"Last-Translator: Folmer Fredslund <Unknown>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-11 05:36+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-06-12 05:27+0000\n"
+"X-Generator: Launchpad (build 17557)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -34,7 +34,7 @@ msgstr "Du har ingen aktiverede kalendere"
 
 #: ../AgendaView.qml:105
 msgid "Enable calendars"
-msgstr ""
+msgstr "Aktivér kalendere"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -50,15 +50,15 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:122
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 bgh"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 heldagsbegivenhed"
+msgstr[1] "%1 heldagsbegivenheder"
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:60
 msgid "Calendars"
@@ -104,7 +104,7 @@ msgstr "Søg kontaktperson"
 #. It's used in the header of the month and week views
 #: ../DayView.qml:59 ../MonthView.qml:58 ../WeekView.qml:61
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -123,7 +123,7 @@ msgstr "Slet kun denne begivenhed \"%1\", eller alle begivenheder i serien?"
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Er du sikker på, at du vil slette begivenheden \"%1\"?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -287,7 +287,7 @@ msgstr "Til"
 
 #: ../NewEvent.qml:391
 msgid "All day event"
-msgstr ""
+msgstr "Heldagsbegivenhed"
 
 #: ../NewEvent.qml:420
 msgid "Event Name"
@@ -354,7 +354,7 @@ msgstr "Ingen påmindelse"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr ""
+msgstr "Ved begivenhed"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
@@ -394,13 +394,13 @@ msgstr "2 uger"
 
 #: ../TimeLineBase.qml:80
 msgid "Untitled"
-msgstr ""
+msgstr "Unavngivet"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:51
 #, qt-format
 msgid "W%1"
-msgstr ""
+msgstr "U%1"
 
 #: ../TimeLineHeader.qml:63
 msgid "All Day"
