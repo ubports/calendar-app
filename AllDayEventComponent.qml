@@ -18,6 +18,7 @@
 import QtQuick 2.3
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
+import QtOrganizer 5.0
 
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
@@ -39,7 +40,7 @@ Row {
         for(var i = 0 ; i < items.length ; ++i) {
             var event = items[(i)];
             if( event && event.allDay ) {
-                for(var d = event.startDateTime; d <= event.endDateTime; d = d.addDays(1)) {
+                for(var d = event.startDateTime; d < event.endDateTime; d = d.addDays(1)) {
                     var key = Qt.formatDateTime(d, "dd-MMM-yyyy");
                     if( !(key in map)) {
                         map[key] = [];
