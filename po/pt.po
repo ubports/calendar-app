@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-06-09 18:44+0800\n"
-"PO-Revision-Date: 2015-04-30 14:33+0000\n"
-"Last-Translator: António Miranda <Unknown>\n"
+"PO-Revision-Date: 2015-06-15 12:42+0000\n"
+"Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-11 05:36+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-06-16 11:10+0000\n"
+"X-Generator: Launchpad (build 17557)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -25,11 +25,11 @@ msgstr "Hoje"
 
 #: ../AgendaView.qml:92
 msgid "No upcoming events"
-msgstr "Nenhum evento próximo"
+msgstr "Sem eventos próximos"
 
 #: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
-msgstr "Não tem calendários ativos"
+msgstr "Sem calendários ativos"
 
 #: ../AgendaView.qml:105
 msgid "Enable calendars"
@@ -392,7 +392,7 @@ msgstr "2 semanas"
 
 #: ../TimeLineBase.qml:80
 msgid "Untitled"
-msgstr ""
+msgstr "Sem título"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:51
