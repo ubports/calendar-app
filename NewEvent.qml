@@ -617,7 +617,7 @@ Page {
                             }
                         }
                     } else {
-                        return reminderModel.get(i).label
+                        return reminderModel.get(0).label
                     }
 
                 }
