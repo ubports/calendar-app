@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-09 18:44+0800\n"
+"POT-Creation-Date: 2015-06-18 23:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,8 +77,8 @@ msgstr ""
 msgid "Syncing"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:71
-msgid "Add new Calendar"
+#: ../CalendarChoicePopup.qml:70
+msgid "Add online Calendar"
 msgstr ""
 
 #: ../ColorPickerDialog.qml:25
@@ -132,7 +132,7 @@ msgstr ""
 msgid "Delete this"
 msgstr ""
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:183
+#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:188
 msgid "Delete"
 msgstr ""
 
@@ -185,15 +185,15 @@ msgstr ""
 msgid "%1 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:196
+#: ../EventDetails.qml:201
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:509
+#: ../EventDetails.qml:352 ../NewEvent.qml:509
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:606
+#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:606
 msgid "Reminder"
 msgstr ""
 

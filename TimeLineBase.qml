@@ -232,21 +232,20 @@ Item {
                 durationMin += (event.endDateTime.getMinutes() - event.startDateTime.getMinutes());
         }
         if (event.endDateTime.getDate() - day.getDate() == 0 &&
-                event.startDateTime.getDate() - day.getDate() < 0) {
+                event.startDateTime - day < 0) {
                 hour = 0;
                 yPos = 0;
                 durationMin = event.endDateTime.getHours() * 60;
                 durationMin += event.endDateTime.getMinutes();
         }
-        if (event.endDateTime.getDate() - day.getDate() > 0 &&
-                event.startDateTime.getDate() - day.getDate() == 0) {
+        if (event.startDateTime.getDate() - day.getDate() == 0 &&
+                event.endDateTime - day > Date.msPerDay) {
                 hour = event.startDateTime.getHours();
                 yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
                 durationMin = (24 - event.startDateTime.getHours()) * 60;
         }
-
-        if (event.endDateTime.getDate() - day.getDate() > 0 &&
-                event.startDateTime.getDate() - day.getDate() < 0) {
+        if (event.endDateTime - day > Date.msPerDay &&
+                event.startDateTime- day < 0) {
             hour = 0;
             yPos = 0;
             durationMin = 24 * 60;
