@@ -619,7 +619,10 @@ Page {
                                 return reminderModel.get(i).label
                             }
                         }
+                    } else {
+                        return reminderModel.get(0).label
                     }
+
                 }
 
                 onClicked: pageStack.push(Qt.resolvedUrl("EventReminder.qml"),
