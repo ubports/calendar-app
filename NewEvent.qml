@@ -179,13 +179,16 @@ Page {
                 event = Qt.createQmlObject("import QtOrganizer 5.0; Event {}", Qt.application,"NewEvent.qml");
             }
 
+            event.allDay = allDayEventCheckbox.checked;
+
             event.startDateTime = startDate;
-            event.endDateTime = endDate;
+            if (event.allDay)
+                event.endDateTime = startDate.addDays(1);
+            else
+                event.endDateTime = endDate;
             event.displayLabel = titleEdit.text;
             event.description = messageEdit.text;
             event.location = locationEdit.text
-
-            event.allDay = allDayEventCheckbox.checked;
 
             if( event.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
