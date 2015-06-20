@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: po_com.ubuntu.calendar-is\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-09 18:44+0800\n"
+"POT-Creation-Date: 2015-06-16 17:18+0800\n"
 "PO-Revision-Date: 2015-04-20 21:45+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-11 05:36+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:31+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 "Language: is\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
@@ -49,13 +49,13 @@ msgstr "%1 - %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:122
+#: ../AllDayEventComponent.qml:123
 #, qt-format
 msgid "%1 ev."
 msgstr "%1 atb"
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:126
+#: ../AllDayEventComponent.qml:127
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
@@ -80,9 +80,9 @@ msgstr "Samstilla"
 msgid "Syncing"
 msgstr "Samstilling"
 
-#: ../CalendarChoicePopup.qml:71
-msgid "Add new Calendar"
-msgstr "Bæta við nýju dagatali"
+#: ../CalendarChoicePopup.qml:70
+msgid "Add online Calendar"
+msgstr ""
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -140,7 +140,7 @@ msgstr "Eyða þessu"
 msgid "Delete"
 msgstr "Eyða"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:296
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:299
 msgid "Edit Event"
 msgstr "Breyta atburði"
 
@@ -159,7 +159,7 @@ msgstr "Breyta röð"
 msgid "Edit this"
 msgstr "Breyta þessu"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:296
+#: ../EventActions.qml:50 ../NewEvent.qml:299
 msgid "New Event"
 msgstr "Nýr atburður"
 
@@ -170,7 +170,7 @@ msgstr "Nýr atburður"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:407
+#: ../EventDetails.qml:42 ../NewEvent.qml:410
 msgid "Event Details"
 msgstr "Nánar um atburð"
 
@@ -194,11 +194,11 @@ msgstr "%1 (allan daginn)"
 msgid "Edit"
 msgstr "Breyta"
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:509
+#: ../EventDetails.qml:347 ../NewEvent.qml:512
 msgid "Guests"
 msgstr "Gestir"
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:606
+#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:609
 msgid "Reminder"
 msgstr "Áminning"
 
@@ -221,7 +221,7 @@ msgstr "Endurtekinn atburður endar"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:590
+#: ../EventRepetition.qml:237 ../NewEvent.qml:593
 msgid "Repeats"
 msgstr "Endurtekningar"
 
@@ -272,43 +272,43 @@ msgstr "Vista"
 msgid "End time can't be before start time"
 msgstr "Lokatími getur ekki verið á undan upphafstíma"
 
-#: ../NewEvent.qml:306
+#: ../NewEvent.qml:309
 msgid "Error"
 msgstr "Villa"
 
-#: ../NewEvent.qml:308
+#: ../NewEvent.qml:311
 msgid "OK"
 msgstr "Í lagi"
 
-#: ../NewEvent.qml:361
+#: ../NewEvent.qml:364
 msgid "From"
 msgstr "Frá"
 
-#: ../NewEvent.qml:374
+#: ../NewEvent.qml:377
 msgid "To"
 msgstr "Til"
 
-#: ../NewEvent.qml:391
+#: ../NewEvent.qml:394
 msgid "All day event"
 msgstr "Heilsdagsatburður"
 
-#: ../NewEvent.qml:420
+#: ../NewEvent.qml:423
 msgid "Event Name"
 msgstr "Heiti atburðar"
 
-#: ../NewEvent.qml:438
+#: ../NewEvent.qml:441
 msgid "Description"
 msgstr "Lýsing"
 
-#: ../NewEvent.qml:456
+#: ../NewEvent.qml:459
 msgid "Location"
 msgstr "Staðsetning"
 
-#: ../NewEvent.qml:471 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:474 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Dagatal"
 
-#: ../NewEvent.qml:513
+#: ../NewEvent.qml:516
 msgid "Add Guest"
 msgstr "Bæta við gesti"
 

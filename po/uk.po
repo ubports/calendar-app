@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-09 18:44+0800\n"
+"POT-Creation-Date: 2015-06-16 17:18+0800\n"
 "PO-Revision-Date: 2015-04-17 18:21+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-06-11 05:36+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:31+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -47,13 +47,13 @@ msgstr "%1 — %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:122
+#: ../AllDayEventComponent.qml:123
 #, qt-format
 msgid "%1 ev."
 msgstr "%1 под."
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:126
+#: ../AllDayEventComponent.qml:127
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
@@ -79,9 +79,9 @@ msgstr "Синхронізувати"
 msgid "Syncing"
 msgstr "Синхронізація"
 
-#: ../CalendarChoicePopup.qml:71
-msgid "Add new Calendar"
-msgstr "Додати новий календар"
+#: ../CalendarChoicePopup.qml:70
+msgid "Add online Calendar"
+msgstr ""
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -138,7 +138,7 @@ msgstr "Вилучити це"
 msgid "Delete"
 msgstr "Вилучити"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:296
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:299
 msgid "Edit Event"
 msgstr "Редагування події"
 
@@ -156,7 +156,7 @@ msgstr "Змінити послідовність"
 msgid "Edit this"
 msgstr "Змінити це"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:296
+#: ../EventActions.qml:50 ../NewEvent.qml:299
 msgid "New Event"
 msgstr "Нова подія"
 
@@ -167,7 +167,7 @@ msgstr "Нова подія"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:407
+#: ../EventDetails.qml:42 ../NewEvent.qml:410
 msgid "Event Details"
 msgstr "Докладніше про подію"
 
@@ -191,11 +191,11 @@ msgstr "%1 (увесь день)"
 msgid "Edit"
 msgstr "Змінити"
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:509
+#: ../EventDetails.qml:347 ../NewEvent.qml:512
 msgid "Guests"
 msgstr "Гості"
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:606
+#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:609
 msgid "Reminder"
 msgstr "Нагадування"
 
@@ -218,7 +218,7 @@ msgstr "Повторення події завершиться"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:590
+#: ../EventRepetition.qml:237 ../NewEvent.qml:593
 msgid "Repeats"
 msgstr "Повторюється"
 
@@ -270,43 +270,43 @@ msgstr "Зберегти"
 msgid "End time can't be before start time"
 msgstr "Момент завершення не може передувати моментові початку"
 
-#: ../NewEvent.qml:306
+#: ../NewEvent.qml:309
 msgid "Error"
 msgstr "Помилка"
 
-#: ../NewEvent.qml:308
+#: ../NewEvent.qml:311
 msgid "OK"
 msgstr "Гаразд"
 
-#: ../NewEvent.qml:361
+#: ../NewEvent.qml:364
 msgid "From"
 msgstr "З"
 
-#: ../NewEvent.qml:374
+#: ../NewEvent.qml:377
 msgid "To"
 msgstr "До"
 
-#: ../NewEvent.qml:391
+#: ../NewEvent.qml:394
 msgid "All day event"
 msgstr "Подія на весь день"
 
-#: ../NewEvent.qml:420
+#: ../NewEvent.qml:423
 msgid "Event Name"
 msgstr "Назва події"
 
-#: ../NewEvent.qml:438
+#: ../NewEvent.qml:441
 msgid "Description"
 msgstr "Опис"
 
-#: ../NewEvent.qml:456
+#: ../NewEvent.qml:459
 msgid "Location"
 msgstr "Розташування"
 
-#: ../NewEvent.qml:471 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:474 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Календар"
 
-#: ../NewEvent.qml:513
+#: ../NewEvent.qml:516
 msgid "Add Guest"
 msgstr "Додати гостя"
 
