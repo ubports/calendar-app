@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-06-16 17:18+0800\n"
-"PO-Revision-Date: 2015-06-11 15:46+0000\n"
+"PO-Revision-Date: 2015-06-20 11:58+0000\n"
 "Last-Translator: Marcos Lans <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-20 05:31+0000\n"
+"X-Launchpad-Export-Date: 2015-06-21 05:25+0000\n"
 "X-Generator: Launchpad (build 17572)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
@@ -79,7 +79,7 @@ msgstr "Sincronización"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add online Calendar"
-msgstr ""
+msgstr "Engadir calendario en liña"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
