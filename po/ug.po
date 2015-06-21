@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-09 18:44+0800\n"
+"POT-Creation-Date: 2015-06-16 17:18+0800\n"
 "PO-Revision-Date: 2014-10-17 07:44+0000\n"
 "Last-Translator: Gheyret T.Kenji <Unknown>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-06-11 05:36+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-06-20 05:31+0000\n"
+"X-Generator: Launchpad (build 17572)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -46,13 +46,13 @@ msgstr "%1 - %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:122
+#: ../AllDayEventComponent.qml:123
 #, qt-format
 msgid "%1 ev."
 msgstr ""
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:126
+#: ../AllDayEventComponent.qml:127
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
@@ -76,8 +76,8 @@ msgstr "قەدەمداشلا"
 msgid "Syncing"
 msgstr "قەدەمداشلاۋاتىدۇ"
 
-#: ../CalendarChoicePopup.qml:71
-msgid "Add new Calendar"
+#: ../CalendarChoicePopup.qml:70
+msgid "Add online Calendar"
 msgstr ""
 
 #: ../ColorPickerDialog.qml:25
@@ -137,7 +137,7 @@ msgstr "بۇنى ئۆچۈر"
 msgid "Delete"
 msgstr "ئۆچۈر"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:296
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:299
 msgid "Edit Event"
 msgstr "ھادىسە تەھرىرلە"
 
@@ -157,7 +157,7 @@ msgstr "توپنى تەھرىرلە"
 msgid "Edit this"
 msgstr "بۇنى تەھرىرلە"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:296
+#: ../EventActions.qml:50 ../NewEvent.qml:299
 msgid "New Event"
 msgstr "يېڭى ھادىسە"
 
@@ -168,7 +168,7 @@ msgstr "يېڭى ھادىسە"
 msgid "%1 <b>%2</b>"
 msgstr ""
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:407
+#: ../EventDetails.qml:42 ../NewEvent.qml:410
 msgid "Event Details"
 msgstr "ھادىسە تەپسىلاتلىرى"
 
@@ -192,11 +192,11 @@ msgstr "%1 (پۈتۈن كۈن)"
 msgid "Edit"
 msgstr "تەھرىرلە"
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:509
+#: ../EventDetails.qml:347 ../NewEvent.qml:512
 msgid "Guests"
 msgstr "مېھمانلار"
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:606
+#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:609
 msgid "Reminder"
 msgstr "ئەسكەرتكۈچ"
 
@@ -219,7 +219,7 @@ msgstr "تەكرارلىنىشنىڭ ئاخىرلىشىشى"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:590
+#: ../EventRepetition.qml:237 ../NewEvent.qml:593
 msgid "Repeats"
 msgstr "قايتىلىنىش"
 
@@ -269,43 +269,43 @@ msgstr "ساقلا"
 msgid "End time can't be before start time"
 msgstr "ئاخىرلىشىش ۋاقتى باشلىنىش ۋاقتىدىن بۇرۇن بولسا بولمايدۇ"
 
-#: ../NewEvent.qml:306
+#: ../NewEvent.qml:309
 msgid "Error"
 msgstr "خاتالىق"
 
-#: ../NewEvent.qml:308
+#: ../NewEvent.qml:311
 msgid "OK"
 msgstr "تامام"
 
-#: ../NewEvent.qml:361
+#: ../NewEvent.qml:364
 msgid "From"
 msgstr "يوللىغۇچى"
 
-#: ../NewEvent.qml:374
+#: ../NewEvent.qml:377
 msgid "To"
 msgstr "تاپشۇرۇپ ئالغۇچى"
 
-#: ../NewEvent.qml:391
+#: ../NewEvent.qml:394
 msgid "All day event"
 msgstr "پۈتۈن كۈنلۈك ھادىسە"
 
-#: ../NewEvent.qml:420
+#: ../NewEvent.qml:423
 msgid "Event Name"
 msgstr "ھادىسە ئاتى"
 
-#: ../NewEvent.qml:438
+#: ../NewEvent.qml:441
 msgid "Description"
 msgstr "چۈشەندۈرۈلۈشى"
 
-#: ../NewEvent.qml:456
+#: ../NewEvent.qml:459
 msgid "Location"
 msgstr "ئورنى"
 
-#: ../NewEvent.qml:471 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:474 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "يىلنامە"
 
-#: ../NewEvent.qml:513
+#: ../NewEvent.qml:516
 msgid "Add Guest"
 msgstr "مېھمان قوش"
 
