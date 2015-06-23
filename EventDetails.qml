@@ -122,7 +122,12 @@ Page {
                 dateLabel.text = i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
             }
         } else {
-           dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
+            if (e.endDateTime.getDate() !== e.startDateTime.getDate()) {
+                dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "
+                        + e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) +  ", " + endTime;
+            } else {
+                dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
+            }
         }
 
         if( e.itemType === Type.EventOccurrence ){
