@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-16 17:18+0800\n"
+"POT-Creation-Date: 2015-06-21 16:27+0800\n"
 "PO-Revision-Date: 2015-05-02 19:22+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2015-06-20 05:31+0000\n"
+"X-Launchpad-Export-Date: 2015-06-24 05:30+0000\n"
 "X-Generator: Launchpad (build 17572)\n"
 "Language: gd\n"
 
@@ -139,7 +139,7 @@ msgstr "Sguab às an sreath"
 msgid "Delete this"
 msgstr "Sguab às seo"
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:183
+#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:188
 msgid "Delete"
 msgstr "Sguab às"
 
@@ -194,15 +194,15 @@ msgstr "%1 - %2 (Fad an latha)"
 msgid "%1 (All Day)"
 msgstr "%1 (fad an latha)"
 
-#: ../EventDetails.qml:196
+#: ../EventDetails.qml:201
 msgid "Edit"
 msgstr "Deasaich"
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:512
+#: ../EventDetails.qml:352 ../NewEvent.qml:512
 msgid "Guests"
 msgstr "Aoighean"
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:609
+#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:609
 msgid "Reminder"
 msgstr "Cuimhneachan"
 

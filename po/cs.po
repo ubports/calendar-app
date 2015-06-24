@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-16 17:18+0800\n"
+"POT-Creation-Date: 2015-06-21 16:27+0800\n"
 "PO-Revision-Date: 2015-05-06 19:15+0000\n"
 "Last-Translator: Vojtěch Daněk <vdanek@outlook.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-06-20 05:31+0000\n"
+"X-Launchpad-Export-Date: 2015-06-24 05:30+0000\n"
 "X-Generator: Launchpad (build 17572)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
@@ -133,7 +133,7 @@ msgstr "Smazat sérii"
 msgid "Delete this"
 msgstr "Smazat tuto"
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:183
+#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:188
 msgid "Delete"
 msgstr "Smazat"
 
@@ -186,15 +186,15 @@ msgstr "%1–%2 (celý den)"
 msgid "%1 (All Day)"
 msgstr "%1 (Celý den)"
 
-#: ../EventDetails.qml:196
+#: ../EventDetails.qml:201
 msgid "Edit"
 msgstr "Upravit"
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:512
+#: ../EventDetails.qml:352 ../NewEvent.qml:512
 msgid "Guests"
 msgstr "Hosté"
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:609
+#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:609
 msgid "Reminder"
 msgstr "Připomínka"
 

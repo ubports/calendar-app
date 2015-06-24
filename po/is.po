@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: po_com.ubuntu.calendar-is\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-16 17:18+0800\n"
+"POT-Creation-Date: 2015-06-21 16:27+0800\n"
 "PO-Revision-Date: 2015-04-20 21:45+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-20 05:31+0000\n"
+"X-Launchpad-Export-Date: 2015-06-24 05:30+0000\n"
 "X-Generator: Launchpad (build 17572)\n"
 "Language: is\n"
 
@@ -136,7 +136,7 @@ msgstr "Eyða röð"
 msgid "Delete this"
 msgstr "Eyða þessu"
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:183
+#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:188
 msgid "Delete"
 msgstr "Eyða"
 
@@ -190,15 +190,15 @@ msgstr "%1 - %2 (allan daginn)"
 msgid "%1 (All Day)"
 msgstr "%1 (allan daginn)"
 
-#: ../EventDetails.qml:196
+#: ../EventDetails.qml:201
 msgid "Edit"
 msgstr "Breyta"
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:512
+#: ../EventDetails.qml:352 ../NewEvent.qml:512
 msgid "Guests"
 msgstr "Gestir"
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:609
+#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:609
 msgid "Reminder"
 msgstr "Áminning"
 
