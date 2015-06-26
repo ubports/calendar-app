@@ -48,7 +48,14 @@ Page {
 
     onStartDateChanged: {
         startDateTimeInput.dateTime = startDate;
-        adjustEndDateToStartDate()
+
+        // set time forward to one hour
+        var time_forward = 3600000;
+
+        if (isEdit && event !== null) {
+            time_forward = event.endDateTime - event.startDateTime;
+        }
+        adjustEndDateToStartDate(time_forward);
     }
 
     onEndDateChanged: {
@@ -272,9 +279,7 @@ Page {
         return tempDate.setHours(tempDate.getHours() + 1)
     }
 
-    function adjustEndDateToStartDate() {
-        // set time forward to one hour
-        var time_forward = 3600000;
+    function adjustEndDateToStartDate(time_forward) {
         endDate = new Date( startDate.getTime() + time_forward );
     }
 
