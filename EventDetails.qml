@@ -171,6 +171,10 @@ Page {
         pageStack.currentPage.eventAdded.connect( function(event){
             pageStack.pop();
         })
+        //When event deleted from the Edit mode
+        pageStack.currentPage.eventDeleted.connect(function(eventId){
+            pageStack.pop();
+        })
     }
 
     Keys.onEscapePressed: {
@@ -184,19 +188,6 @@ Page {
     }
 
     head.actions: [
-        Action {
-            text: i18n.tr("Delete");
-            objectName: "delete"
-            iconName: "delete"
-            onTriggered: {
-                var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
-                dialog.deleteEvent.connect( function(eventId){
-                    model.removeItem(eventId);
-                    pageStack.pop();
-                });
-            }
-        },
-
         Action {
             text: i18n.tr("Edit");
             objectName: "edit"
