@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-21 16:27+0800\n"
+"POT-Creation-Date: 2015-06-23 23:57+0800\n"
 "PO-Revision-Date: 2014-08-10 03:01+0000\n"
 "Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
 "Language-Team: Arabic <ar@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2015-06-24 05:30+0000\n"
-"X-Generator: Launchpad (build 17572)\n"
+"X-Launchpad-Export-Date: 2015-06-27 05:34+0000\n"
+"X-Generator: Launchpad (build 17578)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -137,7 +137,7 @@ msgstr "حذف ذلك"
 msgid "Delete"
 msgstr "حذف"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:299
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:304
 msgid "Edit Event"
 msgstr "تعديل الحدث"
 
@@ -155,7 +155,7 @@ msgstr "تعديل سلسلة"
 msgid "Edit this"
 msgstr "تعديل ذلك"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:299
+#: ../EventActions.qml:50 ../NewEvent.qml:304
 msgid "New Event"
 msgstr "حدث جديد"
 
@@ -166,7 +166,7 @@ msgstr "حدث جديد"
 msgid "%1 <b>%2</b>"
 msgstr ""
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:410
+#: ../EventDetails.qml:42 ../NewEvent.qml:415
 msgid "Event Details"
 msgstr "تفاصيل الحدث"
 
@@ -190,11 +190,11 @@ msgstr ""
 msgid "Edit"
 msgstr "حرّر"
 
-#: ../EventDetails.qml:352 ../NewEvent.qml:512
+#: ../EventDetails.qml:352 ../NewEvent.qml:517
 msgid "Guests"
 msgstr "الضيوف"
 
-#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:609
+#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:614
 msgid "Reminder"
 msgstr ""
 
@@ -217,7 +217,7 @@ msgstr ""
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:593
+#: ../EventRepetition.qml:237 ../NewEvent.qml:598
 msgid "Repeats"
 msgstr ""
 
@@ -260,51 +260,51 @@ msgstr ""
 msgid "After Date"
 msgstr "بعد تاريخ"
 
-#: ../NewEvent.qml:61
+#: ../NewEvent.qml:68
 msgid "Save"
 msgstr "حفظ"
 
-#: ../NewEvent.qml:170
+#: ../NewEvent.qml:177
 msgid "End time can't be before start time"
 msgstr "وقت النهاية لا يمكن أن يكون قبل وقت البداية"
 
-#: ../NewEvent.qml:309
+#: ../NewEvent.qml:314
 msgid "Error"
 msgstr "خطأ"
 
-#: ../NewEvent.qml:311
+#: ../NewEvent.qml:316
 msgid "OK"
 msgstr "حسنا"
 
-#: ../NewEvent.qml:364
+#: ../NewEvent.qml:369
 msgid "From"
 msgstr ""
 
-#: ../NewEvent.qml:377
+#: ../NewEvent.qml:382
 msgid "To"
 msgstr ""
 
-#: ../NewEvent.qml:394
+#: ../NewEvent.qml:399
 msgid "All day event"
 msgstr ""
 
-#: ../NewEvent.qml:423
+#: ../NewEvent.qml:428
 msgid "Event Name"
 msgstr "اسم الحدث"
 
-#: ../NewEvent.qml:441
+#: ../NewEvent.qml:446
 msgid "Description"
 msgstr "الوصف"
 
-#: ../NewEvent.qml:459
+#: ../NewEvent.qml:464
 msgid "Location"
 msgstr "الموقع"
 
-#: ../NewEvent.qml:474 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:479 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "التقويم"
 
-#: ../NewEvent.qml:516
+#: ../NewEvent.qml:521
 msgid "Add Guest"
 msgstr ""
 

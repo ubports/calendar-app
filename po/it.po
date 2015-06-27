@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-21 16:27+0800\n"
+"POT-Creation-Date: 2015-06-23 23:57+0800\n"
 "PO-Revision-Date: 2015-06-22 17:11+0000\n"
 "Last-Translator: Emanuele <mr.emanueletocco@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-24 05:30+0000\n"
-"X-Generator: Launchpad (build 17572)\n"
+"X-Launchpad-Export-Date: 2015-06-27 05:35+0000\n"
+"X-Generator: Launchpad (build 17578)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -136,7 +136,7 @@ msgstr "Elimina questo"
 msgid "Delete"
 msgstr "Elimina"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:299
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:304
 msgid "Edit Event"
 msgstr "Modifica evento"
 
@@ -154,7 +154,7 @@ msgstr "Modifica serie"
 msgid "Edit this"
 msgstr "Modifica questo"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:299
+#: ../EventActions.qml:50 ../NewEvent.qml:304
 msgid "New Event"
 msgstr "Nuovo evento"
 
@@ -165,7 +165,7 @@ msgstr "Nuovo evento"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:410
+#: ../EventDetails.qml:42 ../NewEvent.qml:415
 msgid "Event Details"
 msgstr "Dettagli evento"
 
@@ -189,11 +189,11 @@ msgstr "%1 (intera giornata)"
 msgid "Edit"
 msgstr "Modifica"
 
-#: ../EventDetails.qml:352 ../NewEvent.qml:512
+#: ../EventDetails.qml:352 ../NewEvent.qml:517
 msgid "Guests"
 msgstr "Invitati"
 
-#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:609
+#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:614
 msgid "Reminder"
 msgstr "Promemoria"
 
@@ -216,7 +216,7 @@ msgstr "L'evento ricorrente termina"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:593
+#: ../EventRepetition.qml:237 ../NewEvent.qml:598
 msgid "Repeats"
 msgstr "Ripeti"
 
@@ -259,52 +259,52 @@ msgstr "Dopo X eventi"
 msgid "After Date"
 msgstr "Dopo la data"
 
-#: ../NewEvent.qml:61
+#: ../NewEvent.qml:68
 msgid "Save"
 msgstr "Salva"
 
-#: ../NewEvent.qml:170
+#: ../NewEvent.qml:177
 msgid "End time can't be before start time"
 msgstr ""
 "L'ora di fine dell'evento non può essere precedente a quella dell'inizio"
 
-#: ../NewEvent.qml:309
+#: ../NewEvent.qml:314
 msgid "Error"
 msgstr "Errore"
 
-#: ../NewEvent.qml:311
+#: ../NewEvent.qml:316
 msgid "OK"
 msgstr "OK"
 
-#: ../NewEvent.qml:364
+#: ../NewEvent.qml:369
 msgid "From"
 msgstr "Da"
 
-#: ../NewEvent.qml:377
+#: ../NewEvent.qml:382
 msgid "To"
 msgstr "A"
 
-#: ../NewEvent.qml:394
+#: ../NewEvent.qml:399
 msgid "All day event"
 msgstr "Intera giornata"
 
-#: ../NewEvent.qml:423
+#: ../NewEvent.qml:428
 msgid "Event Name"
 msgstr "Nome dell'evento"
 
-#: ../NewEvent.qml:441
+#: ../NewEvent.qml:446
 msgid "Description"
 msgstr "Descrizione"
 
-#: ../NewEvent.qml:459
+#: ../NewEvent.qml:464
 msgid "Location"
 msgstr "Località"
 
-#: ../NewEvent.qml:474 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:479 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Calendario"
 
-#: ../NewEvent.qml:516
+#: ../NewEvent.qml:521
 msgid "Add Guest"
 msgstr "Aggiungi invitati"
 

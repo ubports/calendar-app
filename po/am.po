@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-21 16:27+0800\n"
+"POT-Creation-Date: 2015-06-23 23:57+0800\n"
 "PO-Revision-Date: 2015-06-20 12:20+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-06-24 05:30+0000\n"
-"X-Generator: Launchpad (build 17572)\n"
+"X-Launchpad-Export-Date: 2015-06-27 05:34+0000\n"
+"X-Generator: Launchpad (build 17578)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -136,7 +136,7 @@ msgstr "ይህን ማጥፊያ"
 msgid "Delete"
 msgstr "ማጥፊያ"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:299
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:304
 msgid "Edit Event"
 msgstr "ሁኔታዎችን ማረሚያ"
 
@@ -154,7 +154,7 @@ msgstr "ተከታታዮችን ማረሚያ"
 msgid "Edit this"
 msgstr "ይህን ማረሚያ"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:299
+#: ../EventActions.qml:50 ../NewEvent.qml:304
 msgid "New Event"
 msgstr "አዲስ ሁኔታ"
 
@@ -165,7 +165,7 @@ msgstr "አዲስ ሁኔታ"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:410
+#: ../EventDetails.qml:42 ../NewEvent.qml:415
 msgid "Event Details"
 msgstr "የሁኔታዎች ዝርዝር"
 
@@ -189,11 +189,11 @@ msgstr "%1 (የ ሙሉ ቀን)"
 msgid "Edit"
 msgstr "ማረሚያ"
 
-#: ../EventDetails.qml:352 ../NewEvent.qml:512
+#: ../EventDetails.qml:352 ../NewEvent.qml:517
 msgid "Guests"
 msgstr "እንግዶች"
 
-#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:609
+#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:614
 msgid "Reminder"
 msgstr "አስታዋሽ"
 
@@ -216,7 +216,7 @@ msgstr "ድግግሞሽ ሁኔታ ጨርሷል"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:593
+#: ../EventRepetition.qml:237 ../NewEvent.qml:598
 msgid "Repeats"
 msgstr "መድገሚያ"
 
@@ -259,51 +259,51 @@ msgstr "ከሆነ X  በኋላ"
 msgid "After Date"
 msgstr "ከ ቀን በኋላ"
 
-#: ../NewEvent.qml:61
+#: ../NewEvent.qml:68
 msgid "Save"
 msgstr "ማስቀመጫ"
 
-#: ../NewEvent.qml:170
+#: ../NewEvent.qml:177
 msgid "End time can't be before start time"
 msgstr "መጨረሻው ሰአት ከ መጀመሪያው ሰአት በፊት መሆን የለበትም"
 
-#: ../NewEvent.qml:309
+#: ../NewEvent.qml:314
 msgid "Error"
 msgstr "ስህተት"
 
-#: ../NewEvent.qml:311
+#: ../NewEvent.qml:316
 msgid "OK"
 msgstr "እሺ"
 
-#: ../NewEvent.qml:364
+#: ../NewEvent.qml:369
 msgid "From"
 msgstr "ከ"
 
-#: ../NewEvent.qml:377
+#: ../NewEvent.qml:382
 msgid "To"
 msgstr "ለ"
 
-#: ../NewEvent.qml:394
+#: ../NewEvent.qml:399
 msgid "All day event"
 msgstr "የ ሙሉ ቀን ሁኔታ"
 
-#: ../NewEvent.qml:423
+#: ../NewEvent.qml:428
 msgid "Event Name"
 msgstr "የ ሁኔታው ስም"
 
-#: ../NewEvent.qml:441
+#: ../NewEvent.qml:446
 msgid "Description"
 msgstr "መግለጫ"
 
-#: ../NewEvent.qml:459
+#: ../NewEvent.qml:464
 msgid "Location"
 msgstr "አካባቢ"
 
-#: ../NewEvent.qml:474 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:479 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "የቀን መቁጠሪያ"
 
-#: ../NewEvent.qml:516
+#: ../NewEvent.qml:521
 msgid "Add Guest"
 msgstr "እንግዳ መጨመሪያ"
 
