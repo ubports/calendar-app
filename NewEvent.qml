@@ -45,6 +45,7 @@ Page {
     flickable: null
 
     signal eventAdded(var event);
+    signal eventDeleted(var event);
 
     onStartDateChanged: {
         startDateTimeInput.dateTime = startDate;
@@ -62,14 +63,28 @@ Page {
         endDateTimeInput.dateTime = endDate;
     }
 
-    head.actions: Action {
-        iconName: "ok"
-        objectName: "save"
-        text: i18n.tr("Save")
-        enabled: !!titleEdit.text.trim()
-        onTriggered: saveToQtPim();
-    }
-
+    head.actions: [
+        Action {
+            text: i18n.tr("Delete");
+            objectName: "delete"
+            iconName: "delete"
+            visible : isEdit
+            onTriggered: {
+                var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
+                dialog.deleteEvent.connect( function(eventId){
+                    model.removeItem(eventId);
+                    pageStack.pop();
+                    root.eventDeleted(eventId);
+                });
+            }
+        },
+        Action {
+            iconName: "ok"
+            objectName: "save"
+            text: i18n.tr("Save")
+            enabled: !!titleEdit.text.trim()
+            onTriggered: saveToQtPim();
+        }]
     Component.onCompleted: {
         //If current date is setted by an argument we don't have to change it.
         if(typeof(date) === 'undefined'){

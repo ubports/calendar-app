@@ -962,8 +962,9 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         """
         root = self.get_root_instance()
         header = root.select_single(MainView).get_header()
+        header.click_action_button('edit')
+        root.wait_select_single(NewEvent, objectName='newEventPage')
         header.click_action_button('delete')
-
         delete_confirmation_dialog = root.wait_select_single(
             DeleteConfirmationDialog, objectName='deleteConfirmationDialog')
         delete_confirmation_dialog.confirm_deletion()
