@@ -224,6 +224,10 @@ Item {
         var hour = 0;
         var durationMin = 0;
 
+        // skip it in case of endDateTime == dd-MM-yyyy 12:00 AM
+        if (event.endDateTime - day  == 0)
+            return;
+
         if (event.endDateTime.getDate() - day.getDate() == 0 &&
                 event.startDateTime.getDate() - day.getDate() == 0) {
             hour = event.startDateTime.getHours();
@@ -244,8 +248,8 @@ Item {
             yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
             durationMin = (24 - event.startDateTime.getHours()) * 60;
         }
-        if (event.endDateTime - day > Date.msPerDay &&
-                event.startDateTime- day < 0) {
+        if (event.endDateTime - day  >= Date.msPerDay &&
+                event.startDateTime- day <= 0) {
             hour = 0;
             yPos = 0;
             durationMin = 24 * 60;
