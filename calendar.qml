@@ -19,11 +19,15 @@ import QtQuick 2.3
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
+import "OfflineStorage.js" as CalendarStorage
 
 import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
+
+    property bool isWeekNumberShown: true;
+
     useDeprecatedToolbar: false
 
     // Work-around until this branch lands:
@@ -195,7 +199,11 @@ MainView {
             property int starttime: -1;
             property int endtime: -1;
 
-            selectedTabIndex: weekTab.index
+            onSelectedTabIndexChanged: {
+                //Workaround: on u-touch, can't get respond from Component.onDestruction,
+                //which is a common way to record last session tab index
+                CalendarStorage.updateSettings("last_session_tabIndex",selectedTabIndex);
+            }
 
             function newEvent() {
                 var startDate = new Date();
@@ -257,6 +265,8 @@ MainView {
             }
 
             Component.onCompleted: {
+                var lastSessionTabIndex = CalendarStorage.getSettings("last_session_tabIndex", weekTab.index);
+
                 // If an url has been set
                 if (args.defaultArgument.at(0)) {
                     parseArguments(args.defaultArgument.at(0))
@@ -282,11 +292,11 @@ MainView {
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex = weekTab.index;
+                        tabs.selectedTabIndex = lastSessionTabIndex;
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex = weekTab.index;
+                     tabs.selectedTabIndex = lastSessionTabIndex;
                 }
             } // End of Component.onCompleted:
 
@@ -468,5 +478,9 @@ MainView {
                 }
             }
         }
+    }
+
+    Component.onCompleted: {
+        mainView.isWeekNumberShown = CalendarStorage.getSettings("show_week_numbers", true);
     }
 }

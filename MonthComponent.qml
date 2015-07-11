@@ -30,7 +30,7 @@ Item{
 
     property var currentMonth;
     property var isYearView;
-    property bool showWeekNumber:true;
+    property bool isWeekNumberShown:true;
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
@@ -198,10 +198,10 @@ Item{
     Loader {
         id: weekNumLoader;
         anchors.left: parent.left;
-        width: showWeekNumber ? parent.width / 8:0;
+        width: isWeekNumberShown ? parent.width / 7:0;
         height: parent.height;
-        visible: showWeekNumber;
-        sourceComponent: showWeekNumber ? weekNumComp : undefined;
+        visible: isWeekNumberShown;
+        sourceComponent: isWeekNumberShown ? weekNumComp : undefined;
     }
 
     Component {
@@ -212,8 +212,20 @@ Item{
 
             anchors {
                 fill: parent
-                topMargin: monthGrid.y + units.gu(1.5)
+                topMargin: units.gu(2.0)
                 bottomMargin: units.gu(1)
+            }
+
+            Label{
+                id: weekNumLabel;
+                objectName: "weekNumLabel";
+                width: parent.width;
+                height: monthGrid.y - units.gu(0.5);
+                text: isYearView ? "":i18n.tr("Week");
+                horizontalAlignment: Text.AlignHCenter;
+                font.pixelSize: intern.dayFontSize;
+                font.bold: true
+                color: "black"
             }
 
             Repeater {
@@ -223,13 +235,13 @@ Item{
                 Label{
                     id: weekNum
                     objectName: "weekNum" + index
-                    width: height;
-                    height: weekNumColumn.height / 6;
+                    width: parent.width;
+                    height: (weekNumColumn.height - monthGrid.y + units.gu(0.5)) / 6;
                     text: isYearView ? i18n.tr("W") + intern.monthStart.addDays(index * 7).weekNumber(Qt.locale().firstDayOfWeek) :
-                                       i18n.tr("Wk") + intern.monthStart.addDays(index * 7).weekNumber(Qt.locale().firstDayOfWeek)
-                    horizontalAlignment: Text.AlignLeft;
+                                       intern.monthStart.addDays(index * 7).weekNumber(Qt.locale().firstDayOfWeek)
+                    horizontalAlignment: Text.AlignHCenter;
                     verticalAlignment: Text.AlignVCenter;
-                    font.pixelSize: intern.dayFontSize - 3;
+                    font.pixelSize: intern.dayFontSize;
                     font.bold: true
                     color: "black"
 

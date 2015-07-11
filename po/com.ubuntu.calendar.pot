@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-08 21:59+0800\n"
+"POT-Creation-Date: 2015-07-11 10:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,21 +23,21 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: ../AgendaView.qml:92
+#: ../AgendaView.qml:93
 msgid "No upcoming events"
 msgstr ""
 
-#: ../AgendaView.qml:95
+#: ../AgendaView.qml:96
 msgid "You have no calendars enabled"
 msgstr ""
 
-#: ../AgendaView.qml:105
+#: ../AgendaView.qml:106
 msgid "Enable calendars"
 msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:168 ../EventBubble.qml:133
+#: ../AgendaView.qml:169 ../EventBubble.qml:133
 #, qt-format
 msgid "%1 - %2"
 msgstr ""
@@ -59,21 +59,21 @@ msgid_plural "%1 all day events"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:60
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:61
 msgid "Calendars"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:37
+#: ../CalendarChoicePopup.qml:37 ../Settings.qml:33
 msgid "Back"
 msgstr ""
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
 msgid "Sync"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
 msgid "Syncing"
 msgstr ""
 
@@ -101,7 +101,7 @@ msgstr ""
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:59 ../MonthView.qml:58 ../WeekView.qml:61
+#: ../DayView.qml:60 ../MonthView.qml:59 ../WeekView.qml:62
 msgid "MMMM yyyy"
 msgstr ""
 
@@ -154,8 +154,12 @@ msgstr ""
 msgid "Edit this"
 msgstr ""
 
-#: ../EventActions.qml:50 ../NewEvent.qml:319
+#: ../EventActions.qml:51 ../NewEvent.qml:319
 msgid "New Event"
+msgstr ""
+
+#: ../EventActions.qml:72 ../Settings.qml:29
+msgid "Settings"
 msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
@@ -259,12 +263,12 @@ msgstr ""
 msgid "After Date"
 msgstr ""
 
-#: ../MonthComponent.qml:228
-msgid "W"
+#: ../MonthComponent.qml:224 ../calendar.qml:394
+msgid "Week"
 msgstr ""
 
-#: ../MonthComponent.qml:229
-msgid "Wk"
+#: ../MonthComponent.qml:240
+msgid "W"
 msgstr ""
 
 #: ../NewEvent.qml:84
@@ -398,6 +402,10 @@ msgstr ""
 msgid "2 weeks"
 msgstr ""
 
+#: ../Settings.qml:61
+msgid "Show week numbers"
+msgstr ""
+
 #: ../TimeLineBase.qml:80
 msgid "Untitled"
 msgstr ""
@@ -412,35 +420,31 @@ msgstr ""
 msgid "All Day"
 msgstr ""
 
-#: ../YearView.qml:54
+#: ../YearView.qml:55
 #, qt-format
 msgid "Year %1"
 msgstr ""
 
-#: ../calendar.qml:44
+#: ../calendar.qml:48
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
 
-#: ../calendar.qml:322
+#: ../calendar.qml:332
 msgid "Year"
 msgstr ""
 
-#: ../calendar.qml:356
+#: ../calendar.qml:366
 msgid "Month"
 msgstr ""
 
-#: ../calendar.qml:384
-msgid "Week"
-msgstr ""
-
-#: ../calendar.qml:417
+#: ../calendar.qml:427
 msgid "Day"
 msgstr ""
 
-#: ../calendar.qml:449
+#: ../calendar.qml:459
 msgid "Agenda"
 msgstr ""
 

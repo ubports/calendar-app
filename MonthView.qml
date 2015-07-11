@@ -46,7 +46,8 @@ Page {
             commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
-            commonHeaderActions.syncCalendarAction
+            commonHeaderActions.syncCalendarAction,
+            commonHeaderActions.settingsAction
         ]
 
         contents: Label {
@@ -105,6 +106,8 @@ Page {
                     isCurrentItem: index === monthViewPath.currentIndex
 
                     showEvents: true
+
+                    isWeekNumberShown: mainView.isWeekNumberShown;
 
                     anchors.fill: parent
 
