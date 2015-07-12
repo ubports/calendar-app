@@ -40,8 +40,6 @@ Page{
             var repeatCount = 3;
             var repeatDelay = 5 * 60;
 
-            print("reminder time : " + reminderTime);
-
             //reminder on event time
             if( reminderTime === 0 ) {
                 repeatCount = 0;
