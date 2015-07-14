@@ -212,20 +212,36 @@ Item{
 
             anchors {
                 fill: parent
-                topMargin: units.gu(2.0)
-                bottomMargin: units.gu(1)
+                topMargin: units.gu(1.0)
+                bottomMargin: units.gu(1.25)
             }
 
-            Label{
-                id: weekNumLabel;
-                objectName: "weekNumLabel";
+            Item {
+                id: datePlaceHolder;
+                objectName:"datePlaceHolder"
+
                 width: parent.width;
-                height: monthGrid.y - units.gu(0.5);
-                text: isYearView ? "":i18n.tr("Week");
-                horizontalAlignment: Text.AlignHCenter;
-                font.pixelSize: intern.dayFontSize;
-                font.bold: true
-                color: "black"
+                height: isYearView ? units.gu(4.5): units.gu(1.25)
+            }
+
+            Item {
+                id: weekNumLabelItem;
+                objectName: "weekNumLabelItem"
+
+                width: parent.width;
+                height: weekNumLabel.height + units.gu(2.0)
+
+                Label{
+                    id: weekNumLabel;
+                    objectName: "weekNumLabel";
+                    width: parent.width;
+                    text: i18n.tr("Wk");
+                    horizontalAlignment: Text.AlignHCenter;
+                    verticalAlignment: Text.AlignVCenter;
+                    font.pixelSize: intern.dayFontSize;
+                    font.bold: true
+                    color: "black"
+                }
             }
 
             Repeater {
@@ -236,12 +252,11 @@ Item{
                     id: weekNum
                     objectName: "weekNum" + index
                     width: parent.width;
-                    height: (weekNumColumn.height - monthGrid.y + units.gu(0.5)) / 6;
-                    text: isYearView ? i18n.tr("W") + intern.monthStart.addDays(index * 7).weekNumber(Qt.locale().firstDayOfWeek) :
-                                       intern.monthStart.addDays(index * 7).weekNumber(Qt.locale().firstDayOfWeek)
+                    height: (weekNumColumn.height - weekNumLabelItem.height - datePlaceHolder.height) / 6;
+                    text: intern.monthStart.addDays(index * 7).weekNumber(Qt.locale().firstDayOfWeek)
                     horizontalAlignment: Text.AlignHCenter;
                     verticalAlignment: Text.AlignVCenter;
-                    font.pixelSize: intern.dayFontSize;
+                    font.pixelSize: intern.dayFontSize + 1;
                     font.bold: true
                     color: "black"
 
