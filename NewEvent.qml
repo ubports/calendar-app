@@ -136,7 +136,7 @@ Page {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
         //Create fresh Recurrence Object.
         rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml");
-        selectCalendar(model.defaultCollection().collectionId);
+        selectCalendar(model.getDefaultCollection().collectionId);
     }
 
     //Editing Event
@@ -185,6 +185,7 @@ Page {
 
         selectCalendar(e.collectionId);
     }
+
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
@@ -242,6 +243,7 @@ Page {
                 event.setDetail(audibleReminder);
             }
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
+            model.setDefaultCollection(event.collectionId);
 
             var comment = event.detail(Detail.Comment);
             if(comment && comment.comment === "X-CAL-DEFAULT-EVENT") {
