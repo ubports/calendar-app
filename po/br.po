@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-09 18:44+0800\n"
-"PO-Revision-Date: 2015-06-05 06:15+0000\n"
+"POT-Creation-Date: 2015-06-23 23:57+0800\n"
+"PO-Revision-Date: 2015-06-24 11:13+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-06-11 05:36+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-06-27 05:34+0000\n"
+"X-Generator: Launchpad (build 17578)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -46,13 +46,13 @@ msgstr "%1 - %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:122
+#: ../AllDayEventComponent.qml:123
 #, qt-format
 msgid "%1 ev."
 msgstr "%1 da."
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:126
+#: ../AllDayEventComponent.qml:127
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
@@ -77,9 +77,9 @@ msgstr "Sink"
 msgid "Syncing"
 msgstr "O sinkronelaat"
 
-#: ../CalendarChoicePopup.qml:71
-msgid "Add new Calendar"
-msgstr "Ouzhpennañ un deiziadur bevez"
+#: ../CalendarChoicePopup.qml:70
+msgid "Add online Calendar"
+msgstr "Ouzhpennañ un deiziadur enlinenn"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -133,11 +133,11 @@ msgstr "Diverkañ rummadoù"
 msgid "Delete this"
 msgstr "Diverkañ an dra-mañ"
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:183
+#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:188
 msgid "Delete"
 msgstr "Diverkañ"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:296
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:304
 msgid "Edit Event"
 msgstr "Aozañ an darvoud"
 
@@ -155,7 +155,7 @@ msgstr "Aozañ rummadoù"
 msgid "Edit this"
 msgstr "Aozañ an dra-mañ"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:296
+#: ../EventActions.qml:50 ../NewEvent.qml:304
 msgid "New Event"
 msgstr "Darvoud nevez"
 
@@ -166,7 +166,7 @@ msgstr "Darvoud nevez"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:407
+#: ../EventDetails.qml:42 ../NewEvent.qml:415
 msgid "Event Details"
 msgstr "Munudoù an darvoud"
 
@@ -186,15 +186,15 @@ msgstr "%1 - %2 (E-pad an deiz)"
 msgid "%1 (All Day)"
 msgstr "%1 (A-hed an deiz)"
 
-#: ../EventDetails.qml:196
+#: ../EventDetails.qml:201
 msgid "Edit"
 msgstr "Aozañ"
 
-#: ../EventDetails.qml:347 ../NewEvent.qml:509
+#: ../EventDetails.qml:352 ../NewEvent.qml:517
 msgid "Guests"
 msgstr "Kouvidi"
 
-#: ../EventDetails.qml:390 ../EventReminder.qml:35 ../NewEvent.qml:606
+#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:614
 msgid "Reminder"
 msgstr "Degas-da-soñj"
 
@@ -217,7 +217,7 @@ msgstr "fin an darvoud a c'hoarvez ingal"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:590
+#: ../EventRepetition.qml:237 ../NewEvent.qml:598
 msgid "Repeats"
 msgstr "A vez graet en-dro"
 
@@ -260,51 +260,51 @@ msgstr "Goude X gwech"
 msgid "After Date"
 msgstr "Goude an"
 
-#: ../NewEvent.qml:61
+#: ../NewEvent.qml:68
 msgid "Save"
 msgstr "Enrollañ"
 
-#: ../NewEvent.qml:170
+#: ../NewEvent.qml:177
 msgid "End time can't be before start time"
 msgstr "Ne c'hall ket ar fin bezañ a-raok an deroù"
 
-#: ../NewEvent.qml:306
+#: ../NewEvent.qml:314
 msgid "Error"
 msgstr "Fazi"
 
-#: ../NewEvent.qml:308
+#: ../NewEvent.qml:316
 msgid "OK"
 msgstr "Mat eo"
 
-#: ../NewEvent.qml:361
+#: ../NewEvent.qml:369
 msgid "From"
 msgstr "Eus"
 
-#: ../NewEvent.qml:374
+#: ../NewEvent.qml:382
 msgid "To"
 msgstr "Da"
 
-#: ../NewEvent.qml:391
+#: ../NewEvent.qml:399
 msgid "All day event"
 msgstr "Darvoud e-pad an deiz"
 
-#: ../NewEvent.qml:420
+#: ../NewEvent.qml:428
 msgid "Event Name"
 msgstr "Anv an darvoud"
 
-#: ../NewEvent.qml:438
+#: ../NewEvent.qml:446
 msgid "Description"
 msgstr "Deskrivadur"
 
-#: ../NewEvent.qml:456
+#: ../NewEvent.qml:464
 msgid "Location"
 msgstr "Lec'h"
 
-#: ../NewEvent.qml:471 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:479 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Deiziadur"
 
-#: ../NewEvent.qml:513
+#: ../NewEvent.qml:521
 msgid "Add Guest"
 msgstr "Ouzhpennañ ur c'houviad"
 

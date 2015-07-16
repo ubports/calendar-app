@@ -45,24 +45,46 @@ Page {
     flickable: null
 
     signal eventAdded(var event);
+    signal eventDeleted(var event);
 
     onStartDateChanged: {
         startDateTimeInput.dateTime = startDate;
-        adjustEndDateToStartDate()
+
+        // set time forward to one hour
+        var time_forward = 3600000;
+
+        if (isEdit && event !== null) {
+            time_forward = event.endDateTime - event.startDateTime;
+        }
+        adjustEndDateToStartDate(time_forward);
     }
 
     onEndDateChanged: {
         endDateTimeInput.dateTime = endDate;
     }
 
-    head.actions: Action {
-        iconName: "ok"
-        objectName: "save"
-        text: i18n.tr("Save")
-        enabled: !!titleEdit.text.trim()
-        onTriggered: saveToQtPim();
-    }
-
+    head.actions: [
+        Action {
+            text: i18n.tr("Delete");
+            objectName: "delete"
+            iconName: "delete"
+            visible : isEdit
+            onTriggered: {
+                var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
+                dialog.deleteEvent.connect( function(eventId){
+                    model.removeItem(eventId);
+                    pageStack.pop();
+                    root.eventDeleted(eventId);
+                });
+            }
+        },
+        Action {
+            iconName: "ok"
+            objectName: "save"
+            text: i18n.tr("Save")
+            enabled: !!titleEdit.text.trim()
+            onTriggered: saveToQtPim();
+        }]
     Component.onCompleted: {
         //If current date is setted by an argument we don't have to change it.
         if(typeof(date) === 'undefined'){
@@ -179,13 +201,16 @@ Page {
                 event = Qt.createQmlObject("import QtOrganizer 5.0; Event {}", Qt.application,"NewEvent.qml");
             }
 
+            event.allDay = allDayEventCheckbox.checked;
+
             event.startDateTime = startDate;
-            event.endDateTime = endDate;
+            if (event.allDay)
+                event.endDateTime = startDate.addDays(1);
+            else
+                event.endDateTime = endDate;
             event.displayLabel = titleEdit.text;
             event.description = messageEdit.text;
             event.location = locationEdit.text
-
-            event.allDay = allDayEventCheckbox.checked;
 
             if( event.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
@@ -269,9 +294,7 @@ Page {
         return tempDate.setHours(tempDate.getHours() + 1)
     }
 
-    function adjustEndDateToStartDate() {
-        // set time forward to one hour
-        var time_forward = 3600000;
+    function adjustEndDateToStartDate(time_forward) {
         endDate = new Date( startDate.getTime() + time_forward );
     }
 
@@ -616,7 +639,10 @@ Page {
                                 return reminderModel.get(i).label
                             }
                         }
+                    } else {
+                        return reminderModel.get(0).label
                     }
+
                 }
 
                 onClicked: pageStack.push(Qt.resolvedUrl("EventReminder.qml"),
