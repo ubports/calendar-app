@@ -95,6 +95,21 @@ MainView {
     footerColor: "#ECECEC"
     anchorToKeyboard: true
 
+    Connections {
+        target: UriHandler
+        onOpened: {
+            var uri = uris[0]
+            if(uri !== undefined && url != "") {
+                var commands = uri.split("://")[1].split("=");
+                if(commands[0].toLowerCase() === "eventid") {
+                    // calendar://eventid=??
+                    if( eventModel ) {
+                        eventModel.showEventFromId(commands[1]);
+                    }
+                }
+            }
+        }
+    }
 
     PageStack {
         id: pageStack
@@ -168,18 +183,28 @@ MainView {
                 collectionFilter.ids = collectionIds;
             }
 
+            function showEventFromId(eventId) {
+                if(eventId === undefined || eventId === "") {
+                    return;
+                }
+
+                var requestId = "";
+                var callbackFunc = function(id,fetchedItems) {
+                    if( requestId === id && fetchedItems.length > 0 ) {
+                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":fetchedItems[0],"model": eventModel});
+                    }
+                    eventModel.onItemsFetched.disconnect( callbackFunc );
+                }
+
+                eventModel.onItemsFetched.connect( callbackFunc );
+                requestId = eventModel.fetchItems(eventId);
+            }
+
             Component.onCompleted: {
                 delayedApplyFilter();
 
                 if (args.values.eventid) {
-                    var requestId = "";
-                    eventModel.onItemsFetched.connect( function(id,fetchedItems) {
-                        if( requestId === id && fetchedItems.length > 0 ) {
-                            var event = fetchedItems[0];
-                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model": eventModel});
-                        }
-                    });
-                    requestId = eventModel.fetchItems([args.values.eventid]);
+                    showEventFromId(args.values.eventid);
                 }
             }
         }
