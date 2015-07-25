@@ -505,7 +505,7 @@ Page {
                     }
 
                     containerHeight: itemHeight * 4
-                    model: root.model.getCollections();
+                    model: root.model.getWritableCollections();
 
                     delegate: OptionSelectorDelegate{
                         text: modelData.name
