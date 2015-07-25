@@ -37,8 +37,8 @@ Row{
     width: parent.width
     height: units.gu(4)
 
-    onStartDayChanged: {
-        highlightedIndex = 0
+    onIsCurrentItemChanged: {
+        highlightedIndex = -1
     }
 
     Repeater{
