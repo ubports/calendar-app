@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-21 16:27+0800\n"
-"PO-Revision-Date: 2015-06-04 09:50+0000\n"
+"POT-Creation-Date: 2015-06-23 23:57+0800\n"
+"PO-Revision-Date: 2015-06-26 09:51+0000\n"
 "Last-Translator: Víctor R. Ruiz <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-24 05:31+0000\n"
-"X-Generator: Launchpad (build 17572)\n"
+"X-Launchpad-Export-Date: 2015-06-27 05:35+0000\n"
+"X-Generator: Launchpad (build 17578)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -79,7 +79,7 @@ msgstr "Sincronizando"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add online Calendar"
-msgstr ""
+msgstr "Añadir Calendario en línea"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -136,7 +136,7 @@ msgstr "Eliminar esto"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:299
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:304
 msgid "Edit Event"
 msgstr "Editar evento"
 
@@ -154,7 +154,7 @@ msgstr "Editar serie"
 msgid "Edit this"
 msgstr "Editar esto"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:299
+#: ../EventActions.qml:50 ../NewEvent.qml:304
 msgid "New Event"
 msgstr "Evento nuevo"
 
@@ -165,7 +165,7 @@ msgstr "Evento nuevo"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2<b>"
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:410
+#: ../EventDetails.qml:42 ../NewEvent.qml:415
 msgid "Event Details"
 msgstr "Detalles del evento"
 
@@ -189,11 +189,11 @@ msgstr "%1 (Todo el día)"
 msgid "Edit"
 msgstr "Editar"
 
-#: ../EventDetails.qml:352 ../NewEvent.qml:512
+#: ../EventDetails.qml:352 ../NewEvent.qml:517
 msgid "Guests"
 msgstr "Invitados"
 
-#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:609
+#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:614
 msgid "Reminder"
 msgstr "Recordatorio"
 
@@ -216,7 +216,7 @@ msgstr "El evento recurrente termina"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:593
+#: ../EventRepetition.qml:237 ../NewEvent.qml:598
 msgid "Repeats"
 msgstr "Se repite"
 
@@ -259,51 +259,51 @@ msgstr "Tras un número de ocurrencias"
 msgid "After Date"
 msgstr "Tras una fecha"
 
-#: ../NewEvent.qml:61
+#: ../NewEvent.qml:68
 msgid "Save"
 msgstr "Guardar"
 
-#: ../NewEvent.qml:170
+#: ../NewEvent.qml:177
 msgid "End time can't be before start time"
 msgstr "La hora de finalización no puede ser anterior a la hora de inicio"
 
-#: ../NewEvent.qml:309
+#: ../NewEvent.qml:314
 msgid "Error"
 msgstr "Error"
 
-#: ../NewEvent.qml:311
+#: ../NewEvent.qml:316
 msgid "OK"
 msgstr "Aceptar"
 
-#: ../NewEvent.qml:364
+#: ../NewEvent.qml:369
 msgid "From"
 msgstr "Desde"
 
-#: ../NewEvent.qml:377
+#: ../NewEvent.qml:382
 msgid "To"
 msgstr "Hasta"
 
-#: ../NewEvent.qml:394
+#: ../NewEvent.qml:399
 msgid "All day event"
 msgstr "El evento dura todo el día"
 
-#: ../NewEvent.qml:423
+#: ../NewEvent.qml:428
 msgid "Event Name"
 msgstr "Nombre del evento"
 
-#: ../NewEvent.qml:441
+#: ../NewEvent.qml:446
 msgid "Description"
 msgstr "Descripción"
 
-#: ../NewEvent.qml:459
+#: ../NewEvent.qml:464
 msgid "Location"
 msgstr "Ubicación"
 
-#: ../NewEvent.qml:474 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:479 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Calendario"
 
-#: ../NewEvent.qml:516
+#: ../NewEvent.qml:521
 msgid "Add Guest"
 msgstr "Añadir invitado"
 
