@@ -66,12 +66,10 @@ Item {
         var diff = weekDay - Qt.locale().firstDayOfWeek
         diff = diff < 0 ? 6 : diff
 
-        print(diff + ", " + Qt.locale().firstDayOfWeek + "--" + weekDay)
         if( startOfWeek.isSameDay(startDay) && diff > 2) {
             timeLineView.contentX = (diff * timeLineView.delegateWidth);
             if( timeLineView.contentX  > (timeLineView.contentWidth - timeLineView.width) ) {
                 timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
-                print(timeLineView.contentX +"----" + (timeLineView.contentWidth - timeLineView.width) )
             }
         } else {
             timeLineView.contentX = 0;
@@ -140,6 +138,7 @@ Item {
             startDay: root.startDay
             contentX: timeLineView.contentX
             type: root.type
+            isActive: root.isActive
 
             onDateSelected: {
                 root.dateSelected(date);
