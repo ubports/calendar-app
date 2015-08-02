@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-23 23:57+0800\n"
-"PO-Revision-Date: 2015-02-09 12:13+0000\n"
-"Last-Translator: Amed Çeko Jiyan <amedcj@gmail.com>\n"
+"POT-Creation-Date: 2015-07-08 21:32+0800\n"
+"PO-Revision-Date: 2015-07-27 19:54+0000\n"
+"Last-Translator: Bikarhêner <kaya6491@gmail.com>\n"
 "Language-Team: Kurdish <ku@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-06-27 05:35+0000\n"
-"X-Generator: Launchpad (build 17578)\n"
+"X-Launchpad-Export-Date: 2015-07-31 05:37+0000\n"
+"X-Generator: Launchpad (build 17656)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -56,8 +56,8 @@ msgstr "%1 çal."
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 çalakîyê tam rojî"
+msgstr[1] "%1 çalakîyên tam rojî"
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:60
 msgid "Calendars"
@@ -71,15 +71,15 @@ msgstr "Vegere"
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
-msgstr ""
+msgstr "Wekhev bike"
 
 #: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
-msgstr ""
+msgstr "Tê wekhevkirin"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add online Calendar"
-msgstr ""
+msgstr "Salnameya online lê zêde bike"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -88,55 +88,56 @@ msgstr "Rengî hilbijêre"
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
-msgstr ""
+msgstr "Betal bike"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr ""
+msgstr "Têkilî tune ye"
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr ""
+msgstr "Li têkilîyê bigere"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../DayView.qml:59 ../MonthView.qml:58 ../WeekView.qml:61
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "Çalakîya Dubarekirî Jê Bibe"
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
-msgstr ""
+msgstr "Çalakîyê Jê Bibe"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
 msgstr ""
+"Bila tenê ev \"%1\" çalakî bê jêbirin, an hemû çalakîyên di serîyêde jî?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Tu bawerî ko tu dixwazî çalakîya \"%1\" jê bibî?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
-msgstr ""
+msgstr "Serîyê jê bibe"
 
 #: ../DeleteConfirmationDialog.qml:51
 msgid "Delete this"
-msgstr ""
+msgstr "Vê jê bibe"
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:188
+#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:68
 msgid "Delete"
 msgstr ""
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:304
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:322
 msgid "Edit Event"
 msgstr ""
 
@@ -154,7 +155,7 @@ msgstr ""
 msgid "Edit this"
 msgstr ""
 
-#: ../EventActions.qml:50 ../NewEvent.qml:304
+#: ../EventActions.qml:50 ../NewEvent.qml:322
 msgid "New Event"
 msgstr ""
 
@@ -165,35 +166,35 @@ msgstr ""
 msgid "%1 <b>%2</b>"
 msgstr ""
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:415
+#: ../EventDetails.qml:43 ../NewEvent.qml:433
 msgid "Event Details"
 msgstr ""
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
-#: ../EventDetails.qml:66
+#: ../EventDetails.qml:67
 #, qt-format
 msgid "%1 Calendar"
 msgstr ""
 
-#: ../EventDetails.qml:118
+#: ../EventDetails.qml:120
 #, qt-format
 msgid "%1 - %2 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:122
+#: ../EventDetails.qml:124
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (Rojekê Sax)"
 
-#: ../EventDetails.qml:201
+#: ../EventDetails.qml:194
 msgid "Edit"
-msgstr ""
+msgstr "Sererast bike"
 
-#: ../EventDetails.qml:352 ../NewEvent.qml:517
+#: ../EventDetails.qml:345 ../NewEvent.qml:535
 msgid "Guests"
-msgstr ""
+msgstr "Mêvan"
 
-#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:614
+#: ../EventDetails.qml:388 ../EventReminder.qml:35 ../NewEvent.qml:632
 msgid "Reminder"
 msgstr ""
 
@@ -203,20 +204,20 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:41 ../EventRepetition.qml:150
 msgid "Repeat"
-msgstr ""
+msgstr "Dîsa"
 
 #: ../EventRepetition.qml:169
 msgid "Repeats On:"
-msgstr ""
+msgstr "Dubarekirin:"
 
 #: ../EventRepetition.qml:214
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Dawîya çalakîyê dubarekirî:"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:598
+#: ../EventRepetition.qml:237 ../NewEvent.qml:616
 msgid "Repeats"
 msgstr ""
 
@@ -259,51 +260,51 @@ msgstr ""
 msgid "After Date"
 msgstr ""
 
-#: ../NewEvent.qml:68
+#: ../NewEvent.qml:84
 msgid "Save"
 msgstr ""
 
-#: ../NewEvent.qml:177
+#: ../NewEvent.qml:193
 msgid "End time can't be before start time"
 msgstr ""
 
-#: ../NewEvent.qml:314
+#: ../NewEvent.qml:332
 msgid "Error"
 msgstr ""
 
-#: ../NewEvent.qml:316
+#: ../NewEvent.qml:334
 msgid "OK"
 msgstr ""
 
-#: ../NewEvent.qml:369
+#: ../NewEvent.qml:387
 msgid "From"
 msgstr ""
 
-#: ../NewEvent.qml:382
+#: ../NewEvent.qml:400
 msgid "To"
 msgstr ""
 
-#: ../NewEvent.qml:399
+#: ../NewEvent.qml:417
 msgid "All day event"
 msgstr ""
 
-#: ../NewEvent.qml:428
+#: ../NewEvent.qml:446
 msgid "Event Name"
 msgstr ""
 
-#: ../NewEvent.qml:446
+#: ../NewEvent.qml:464
 msgid "Description"
 msgstr ""
 
-#: ../NewEvent.qml:464
+#: ../NewEvent.qml:482
 msgid "Location"
 msgstr ""
 
-#: ../NewEvent.qml:479 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:497 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr ""
 
-#: ../NewEvent.qml:521
+#: ../NewEvent.qml:539
 msgid "Add Guest"
 msgstr ""
 

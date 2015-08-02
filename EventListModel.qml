@@ -76,6 +76,20 @@ OrganizerModel {
         return cals;
 	}
 
+    function getWritableCollections(){
+        var cals = [];
+        var collections = eventModel.collections;
+        for(var i = 0 ; i < collections.length ; ++i) {
+            var cal = collections[i];
+            print(cal.name + " ---- " + cal.extendedMetaData("collection-readonly"));
+            if( cal.extendedMetaData("collection-type") === "Calendar" &&
+                    cal.extendedMetaData("collection-readonly") === false ) {
+                cals.push(cal);
+            }
+        }
+        return cals;
+    }
+
     function getDefaultCollection() {
         var cals = getCollections();
          for(var i = 0 ; i < cals.length ; ++i) {

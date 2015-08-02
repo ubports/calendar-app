@@ -29,6 +29,7 @@ Column {
     property date startDay;
     property double contentX;
     property int firstDayOfWeek: Qt.locale().firstDayOfWeek
+    property bool isActive: false;
 
     signal dateSelected(var date);
 
@@ -153,6 +154,7 @@ Column {
                     type: ViewType.ViewTypeWeek
                     width: parent.width
                     height: units.gu(5)
+                    isCurrentItem: root.isActive
 
                     onDateSelected: {
                         root.dateSelected(date);

@@ -23,6 +23,7 @@ import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
 
 import "Defines.js" as Defines
+import "dateExt.js" as DateExt
 
 Page {
     id: root
@@ -59,11 +60,17 @@ Page {
     }
 
     function updateCollection(event) {
+
         var collection = model.collection( event.collectionId );
         calendarIndicator.color = collection.color
         eventInfo.color=collection.color
         // TRANSLATORS: the first parameter refers to the name of event calendar.
         calendarName.text = i18n.tr("%1 Calendar").arg( collection.name)
+
+        //disable edit in case of read only calendar
+        if( collection.extendedMetaData("collection-readonly") === true ) {
+            editAction.enabled = false
+        }
     }
 
     function updateRecurrence( event ) {
@@ -114,10 +121,11 @@ Page {
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
 
         if( e.allDay ) {
-            if( !e.startDateTime.isSameDay( e.endDateTime) ) {
+            var days = Math.floor((e.endDateTime - e.startDateTime) / Date.msPerDay);
+            if( days !== 1 ) {
                 dateLabel.text = i18n.tr("%1 - %2 (All Day)")
                 .arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
-                .arg( e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                .arg( e.endDateTime.addDays(-1).toLocaleDateString(Qt.locale(), Locale.LongFormat))
             } else {
                 dateLabel.text = i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
             }
