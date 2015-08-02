@@ -14,6 +14,7 @@ Item{
 
     Loader {
         sourceComponent: (isToday && isCurrentMonth) || isSelected ? highLightComp : undefined
+
         onSourceComponentChanged: {
             width = Qt.binding( function() {
                 var width = dateRootItem.height > dateRootItem.width ? dateRootItem.width :dateRootItem.height
@@ -47,12 +48,17 @@ Item{
     }
 
     Loader{
-        width: units.gu(1)
-        height: width
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: dateLabel.bottom
-        anchors.topMargin: dateRootItem.height/4
         sourceComponent: showEvent ? eventIndicatorComp : undefined
+        onSourceComponentChanged: {
+            width = Qt.binding( function() { return units.gu(1) })
+            height = Qt.binding( function() { return width })
+            anchors.horizontalCenter = Qt.binding( function() { return  parent.horizontalCenter })
+            anchors.top = Qt.binding( function() { return  parent.verticalCenter })
+            anchors.topMargin = Qt.binding( function() {
+                var w = (dateRootItem.height > dateRootItem.width ? dateRootItem.width :dateRootItem.height)/1.1
+                return (w/2) + units.gu(0.1)
+            });
+        }
     }
 
     Component{
