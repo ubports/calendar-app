@@ -154,6 +154,7 @@ Page {
         }
         if(e.allDay){
             allDayEventCheckbox.checked =true;
+            endDate = endDate.addDays(-1);
         }
 
         if(e.location) {
@@ -201,12 +202,14 @@ Page {
             }
 
             event.allDay = allDayEventCheckbox.checked;
-
             event.startDateTime = startDate;
-            if (event.allDay)
-                event.endDateTime = startDate.addDays(1);
-            else
+
+            if (event.allDay){
+                event.endDateTime = endDate.addDays(1);
+            } else {
                 event.endDateTime = endDate;
+            }
+
             event.displayLabel = titleEdit.text;
             event.description = messageEdit.text;
             event.location = locationEdit.text
@@ -506,7 +509,7 @@ Page {
                     }
 
                     containerHeight: itemHeight * 4
-                    model: root.model.getCollections();
+                    model: root.model.getWritableCollections();
 
                     delegate: OptionSelectorDelegate{
                         text: modelData.name

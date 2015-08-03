@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-23 23:57+0800\n"
+"POT-Creation-Date: 2015-07-08 21:32+0800\n"
 "PO-Revision-Date: 2015-03-26 15:16+0000\n"
 "Last-Translator: Ante Karamatić <ante.karamatic@canonical.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-06-27 05:35+0000\n"
-"X-Generator: Launchpad (build 17578)\n"
+"X-Launchpad-Export-Date: 2015-07-31 05:37+0000\n"
+"X-Generator: Launchpad (build 17656)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -134,11 +134,11 @@ msgstr "Obriši niz"
 msgid "Delete this"
 msgstr "Obriši ovaj"
 
-#: ../DeleteConfirmationDialog.qml:51 ../EventDetails.qml:188
+#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:68
 msgid "Delete"
 msgstr "Obriši"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:304
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:322
 msgid "Edit Event"
 msgstr "Uredi događaj"
 
@@ -156,7 +156,7 @@ msgstr "Uredi niz"
 msgid "Edit this"
 msgstr "Uredi ovaj"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:304
+#: ../EventActions.qml:50 ../NewEvent.qml:322
 msgid "New Event"
 msgstr "Novi događaj"
 
@@ -167,35 +167,35 @@ msgstr "Novi događaj"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:42 ../NewEvent.qml:415
+#: ../EventDetails.qml:43 ../NewEvent.qml:433
 msgid "Event Details"
 msgstr "Detalji događaja"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
-#: ../EventDetails.qml:66
+#: ../EventDetails.qml:67
 #, qt-format
 msgid "%1 Calendar"
 msgstr "%1 Kalendar"
 
-#: ../EventDetails.qml:118
+#: ../EventDetails.qml:120
 #, qt-format
 msgid "%1 - %2 (All Day)"
 msgstr "%1 - %2 (Cijeli dan)"
 
-#: ../EventDetails.qml:122
+#: ../EventDetails.qml:124
 #, qt-format
 msgid "%1 (All Day)"
 msgstr "%1 (Cijeli dan)"
 
-#: ../EventDetails.qml:201
+#: ../EventDetails.qml:194
 msgid "Edit"
 msgstr "Uredi"
 
-#: ../EventDetails.qml:352 ../NewEvent.qml:517
+#: ../EventDetails.qml:345 ../NewEvent.qml:535
 msgid "Guests"
 msgstr "Gosti"
 
-#: ../EventDetails.qml:395 ../EventReminder.qml:35 ../NewEvent.qml:614
+#: ../EventDetails.qml:388 ../EventReminder.qml:35 ../NewEvent.qml:632
 msgid "Reminder"
 msgstr "Podsjetnik"
 
@@ -218,7 +218,7 @@ msgstr "Ponavljanje završava"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:598
+#: ../EventRepetition.qml:237 ../NewEvent.qml:616
 msgid "Repeats"
 msgstr "Ponavlja se"
 
@@ -262,51 +262,51 @@ msgstr "Nakon X ponavljanja"
 msgid "After Date"
 msgstr "Nakon datuma"
 
-#: ../NewEvent.qml:68
+#: ../NewEvent.qml:84
 msgid "Save"
 msgstr "Spremi"
 
-#: ../NewEvent.qml:177
+#: ../NewEvent.qml:193
 msgid "End time can't be before start time"
 msgstr "Vrijeme završetka ne može biti prije početka"
 
-#: ../NewEvent.qml:314
+#: ../NewEvent.qml:332
 msgid "Error"
 msgstr "Greška"
 
-#: ../NewEvent.qml:316
+#: ../NewEvent.qml:334
 msgid "OK"
 msgstr "U redu"
 
-#: ../NewEvent.qml:369
+#: ../NewEvent.qml:387
 msgid "From"
 msgstr "Od"
 
-#: ../NewEvent.qml:382
+#: ../NewEvent.qml:400
 msgid "To"
 msgstr "Za"
 
-#: ../NewEvent.qml:399
+#: ../NewEvent.qml:417
 msgid "All day event"
 msgstr "Cjelodnevni događaj"
 
-#: ../NewEvent.qml:428
+#: ../NewEvent.qml:446
 msgid "Event Name"
 msgstr "Naziv događaja"
 
-#: ../NewEvent.qml:446
+#: ../NewEvent.qml:464
 msgid "Description"
 msgstr "Opis"
 
-#: ../NewEvent.qml:464
+#: ../NewEvent.qml:482
 msgid "Location"
 msgstr "Lokacija"
 
-#: ../NewEvent.qml:479 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:497 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Kalendar"
 
-#: ../NewEvent.qml:521
+#: ../NewEvent.qml:539
 msgid "Add Guest"
 msgstr "Dodaj gosta"
 

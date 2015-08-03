@@ -69,13 +69,26 @@ OrganizerModel {
         var collections = eventModel.collections;
         for(var i = 0 ; i < collections.length ; ++i) {
             var cal = collections[i];
-            //print(cal.name + " ---- " + cal.extendedMetaData("collection-readonly"));
             if( cal.extendedMetaData("collection-type") === "Calendar" ) {
                 cals.push(cal);
             }
         }
         return cals;
 	}
+
+    function getWritableCollections(){
+        var cals = [];
+        var collections = eventModel.collections;
+        for(var i = 0 ; i < collections.length ; ++i) {
+            var cal = collections[i];
+            print(cal.name + " ---- " + cal.extendedMetaData("collection-readonly"));
+            if( cal.extendedMetaData("collection-type") === "Calendar" &&
+                    cal.extendedMetaData("collection-readonly") === false ) {
+                cals.push(cal);
+            }
+        }
+        return cals;
+    }
 
     onStartPeriodChanged: {
         isLoading = true
