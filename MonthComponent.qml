@@ -30,7 +30,6 @@ Item{
 
     property var currentMonth;
     property var isYearView;
-    property bool showWeekNumber:true;
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
@@ -124,10 +123,7 @@ Item{
         id: column
 
         anchors {
-            left: weekNumLoader.right;
-            right: parent.right;
-            top: parent.top;
-            bottom: parent.bottom;
+            fill: parent
             topMargin: units.gu(1.5)
             bottomMargin: units.gu(1)
         }
@@ -191,60 +187,6 @@ Item{
                 id: dateLabelRepeater
                 model: 42 //monthGrid.rows * monthGrid.columns
                 delegate: defaultDateLabelComponent
-            }
-        }
-    }
-
-    Loader {
-        id: weekNumLoader;
-        anchors.left: parent.left;
-        width: showWeekNumber ? parent.width / 8:0;
-        height: parent.height;
-        visible: showWeekNumber;
-        sourceComponent: showWeekNumber ? weekNumComp : undefined;
-    }
-
-    Component {
-        id: weekNumComp
-
-        Column {
-            id: weekNumColumn;
-
-            anchors {
-                fill: parent
-                topMargin: monthGrid.y + units.gu(1.5)
-                bottomMargin: units.gu(1)
-            }
-
-            Repeater {
-                id: weekNumrepeater;
-                model: 6;
-
-                Label{
-                    id: weekNum
-                    objectName: "weekNum" + index
-                    width: height;
-                    height: weekNumColumn.height / 6;
-                    text: isYearView ? i18n.tr("W") + intern.monthStart.addDays(index * 7).weekNumber(Qt.locale().firstDayOfWeek) :
-                                       i18n.tr("Wk") + intern.monthStart.addDays(index * 7).weekNumber(Qt.locale().firstDayOfWeek)
-                    horizontalAlignment: Text.AlignLeft;
-                    verticalAlignment: Text.AlignVCenter;
-                    font.pixelSize: intern.dayFontSize - 3;
-                    font.bold: true
-                    color: "black"
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            var selectedDate = new Date(intern.monthStart.addDays(index * 7))
-                            if( isYearView ) {
-                                root.monthSelected(selectedDate);
-                            } else {
-                                root.dateSelected(selectedDate);
-                            }
-                        }
-                    }
-                }
             }
         }
     }

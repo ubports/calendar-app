@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-11 19:28+0800\n"
+"POT-Creation-Date: 2015-06-23 23:57+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,14 +257,6 @@ msgstr ""
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
-msgstr ""
-
-#: ../MonthComponent.qml:228
-msgid "W"
-msgstr ""
-
-#: ../MonthComponent.qml:229
-msgid "Wk"
 msgstr ""
 
 #: ../NewEvent.qml:84
