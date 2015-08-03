@@ -90,6 +90,30 @@ OrganizerModel {
         return cals;
     }
 
+    function getDefaultCollection() {
+        var cals = getCollections();
+         for(var i = 0 ; i < cals.length ; ++i) {
+            var cal = cals[i]
+            var val = cal.extendedMetaData("X-CAL-DEFAULT-CALENDAR")
+            if( val ) {
+                return cal;
+            }
+        }
+
+        return defaultCollection();
+    }
+
+    function setDefaultCollection( collectionId ) {
+        var cals = getCollections();
+         for(var i = 0 ; i < cals.length ; ++i) {
+             var cal = cals[i]
+             cal.setExtendedMetaData("X-CAL-DEFAULT-CALENDAR", false);
+             if( cal.collectionId === collectionId) {
+                cal.setExtendedMetaData("X-CAL-DEFAULT-CALENDAR", true);
+             }
+        }
+    }
+
     onStartPeriodChanged: {
         isLoading = true
     }
