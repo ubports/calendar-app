@@ -26,7 +26,7 @@ import "dateExt.js" as DateExt
 MainView {
     id: mainView
 
-    property bool isWeekNumberShown: true;
+    property bool isWeekNumberShown: false;
 
     useDeprecatedToolbar: false
 
@@ -481,6 +481,6 @@ MainView {
     }
 
     Component.onCompleted: {
-        mainView.isWeekNumberShown = CalendarStorage.getSettings("show_week_numbers", true);
+        mainView.isWeekNumberShown = CalendarStorage.getSettings("show_week_numbers", false);
     }
 }

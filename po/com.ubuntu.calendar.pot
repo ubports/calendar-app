@@ -46,13 +46,13 @@ msgstr ""
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:123
+#: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 ev."
 msgstr ""
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:127
+#: ../AllDayEventComponent.qml:130
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"

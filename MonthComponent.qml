@@ -30,7 +30,7 @@ Item{
 
     property var currentMonth;
     property var isYearView;
-    property bool isWeekNumberShown:true;
+    property bool isWeekNumberShown:false;
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
