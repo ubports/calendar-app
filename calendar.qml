@@ -99,12 +99,16 @@ MainView {
         target: UriHandler
         onOpened: {
             var uri = uris[0]
-            if(uri !== undefined && url != "") {
+            if(uri !== undefined && uri !== "") {
                 var commands = uri.split("://")[1].split("=");
                 if(commands[0].toLowerCase() === "eventid") {
                     // calendar://eventid=??
                     if( eventModel ) {
-                        eventModel.showEventFromId(commands[1]);
+                        var prefix = "qtorganizer:eds::system-calendar/";
+                        if (commands[1].indexOf(prefix) !== 0)
+                            eventModel.showEventFromId(prefix + commands[1]);
+                        else
+                            eventModel.showEventFromId(commands[1]);
                     }
                 }
             }
