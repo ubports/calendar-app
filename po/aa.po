@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-08 21:32+0800\n"
+"POT-Creation-Date: 2015-08-04 10:18+0800\n"
 "PO-Revision-Date: 2015-05-16 16:54+0000\n"
 "Last-Translator: Charif AYFARAH <ayfarah@ymail.com>\n"
 "Language-Team: Afar <aa@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-07-31 05:37+0000\n"
+"X-Launchpad-Export-Date: 2015-08-08 06:17+0000\n"
 "X-Generator: Launchpad (build 17656)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
@@ -138,7 +138,7 @@ msgstr "Ah dug"
 msgid "Delete"
 msgstr "Dug"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:322
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:324
 msgid "Edit Event"
 msgstr "Tekko fak"
 
@@ -158,7 +158,7 @@ msgstr "Rorsitte fak"
 msgid "Edit this"
 msgstr "Ah fak"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:322
+#: ../EventActions.qml:50 ../NewEvent.qml:324
 msgid "New Event"
 msgstr "Qusba Tekko"
 
@@ -169,35 +169,35 @@ msgstr "Qusba Tekko"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:43 ../NewEvent.qml:433
+#: ../EventDetails.qml:43 ../NewEvent.qml:435
 msgid "Event Details"
 msgstr "Tekkoh Addaffakootu"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
-#: ../EventDetails.qml:67
+#: ../EventDetails.qml:68
 #, qt-format
 msgid "%1 Calendar"
 msgstr "%1 Aysalu"
 
-#: ../EventDetails.qml:120
+#: ../EventDetails.qml:129
 #, qt-format
 msgid "%1 - %2 (All Day)"
 msgstr "%1 - %2 (Kulli Ayro)"
 
-#: ../EventDetails.qml:124
+#: ../EventDetails.qml:133
 #, qt-format
 msgid "%1 (All Day)"
 msgstr "%1 (Kulli Ayro)"
 
-#: ../EventDetails.qml:194
+#: ../EventDetails.qml:203
 msgid "Edit"
 msgstr "Faku"
 
-#: ../EventDetails.qml:345 ../NewEvent.qml:535
+#: ../EventDetails.qml:354 ../NewEvent.qml:537
 msgid "Guests"
 msgstr "Qibina"
 
-#: ../EventDetails.qml:388 ../EventReminder.qml:35 ../NewEvent.qml:632
+#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:634
 msgid "Reminder"
 msgstr "Kassiise"
 
@@ -205,26 +205,26 @@ msgstr "Kassiise"
 #. and it is shown as the header of the page to choose repetition
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
-#: ../EventRepetition.qml:41 ../EventRepetition.qml:150
+#: ../EventRepetition.qml:40 ../EventRepetition.qml:155
 msgid "Repeat"
 msgstr "Qagis"
 
-#: ../EventRepetition.qml:169
+#: ../EventRepetition.qml:174
 msgid "Repeats On:"
 msgstr "Elle Qigis:"
 
-#: ../EventRepetition.qml:214
+#: ../EventRepetition.qml:219
 msgid "Recurring event ends"
 msgstr "Qagaaqagitta tekkok ellecabo"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:616
+#: ../EventRepetition.qml:242 ../NewEvent.qml:618
 msgid "Repeats"
 msgstr "Qagis"
 
-#: ../EventRepetition.qml:262
+#: ../EventRepetition.qml:267
 msgid "Date"
 msgstr "Taariki"
 
@@ -267,47 +267,47 @@ msgstr "Taarik lakal"
 msgid "Save"
 msgstr "Taagis"
 
-#: ../NewEvent.qml:193
+#: ../NewEvent.qml:192
 msgid "End time can't be before start time"
 msgstr "Ellecabô waqla qimbô waqlak taakumem ma dudda"
 
-#: ../NewEvent.qml:332
+#: ../NewEvent.qml:334
 msgid "Error"
 msgstr "Soka"
 
-#: ../NewEvent.qml:334
+#: ../NewEvent.qml:336
 msgid "OK"
 msgstr "Hayya"
 
-#: ../NewEvent.qml:387
+#: ../NewEvent.qml:389
 msgid "From"
 msgstr "-ik"
 
-#: ../NewEvent.qml:400
+#: ../NewEvent.qml:402
 msgid "To"
 msgstr "Fan"
 
-#: ../NewEvent.qml:417
+#: ../NewEvent.qml:419
 msgid "All day event"
 msgstr "Kulli ayroh tekko"
 
-#: ../NewEvent.qml:446
+#: ../NewEvent.qml:448
 msgid "Event Name"
 msgstr "Tekkô Migaaqa"
 
-#: ../NewEvent.qml:464
+#: ../NewEvent.qml:466
 msgid "Description"
 msgstr "Kinnim-warsa"
 
-#: ../NewEvent.qml:482
+#: ../NewEvent.qml:484
 msgid "Location"
 msgstr "Araca"
 
-#: ../NewEvent.qml:497 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:499 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Aysalu"
 
-#: ../NewEvent.qml:539
+#: ../NewEvent.qml:541
 msgid "Add Guest"
 msgstr "Qibnaytu(o) edde osis"
 
@@ -399,12 +399,12 @@ msgid "Untitled"
 msgstr ""
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:51
+#: ../TimeLineHeader.qml:52
 #, qt-format
 msgid "W%1"
 msgstr "%1 ayyaama"
 
-#: ../TimeLineHeader.qml:63
+#: ../TimeLineHeader.qml:64
 msgid "All Day"
 msgstr "Kulli Ayro"
 
@@ -423,23 +423,23 @@ msgstr ""
 "tekko kee -tekkô-mamaxxaga.  Siira ken makaabanisele. Ahak dudda le maqtura "
 "faxxeenik raceynat boosita."
 
-#: ../calendar.qml:322
+#: ../calendar.qml:347
 msgid "Year"
 msgstr "Liggida"
 
-#: ../calendar.qml:356
+#: ../calendar.qml:381
 msgid "Month"
 msgstr "Alsa"
 
-#: ../calendar.qml:384
+#: ../calendar.qml:409
 msgid "Week"
 msgstr "Ayyaama"
 
-#: ../calendar.qml:417
+#: ../calendar.qml:442
 msgid "Day"
 msgstr "Ayro"
 
-#: ../calendar.qml:449
+#: ../calendar.qml:474
 msgid "Agenda"
 msgstr "Ajenda"
 
