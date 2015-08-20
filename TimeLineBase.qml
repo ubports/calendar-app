@@ -37,13 +37,6 @@ Item {
         anchors.fill: parent
         objectName: "mouseArea"
 
-        onClicked: {
-            var selectedDate = new Date(day);
-            var hour = parseInt(mouseY / hourHeight);
-            selectedDate.setHours(hour)
-            createOrganizerEvent(selectedDate);
-        }
-
         onPressAndHold: {
             var selectedDate = new Date(day);
             var hour = parseInt(mouseY / hourHeight);
