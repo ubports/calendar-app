@@ -221,8 +221,8 @@ Item{
         anchors.fill: parent
         drag.target: isLiveEditing ? infoBubble : null
         drag.axis: Drag.YAxis
-        drag.minimumY: flickable.y
-        drag.maximumY: flickable.contentHeight - infoBubble.height
+        drag.minimumY: flickable === null? 0: flickable.y
+        drag.maximumY: flickable === null? 0 :flickable.contentHeight - infoBubble.height
         onReleased: parent.Drag.drop()
         onClicked: {
             if( isLiveEditing ) {
