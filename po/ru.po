@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-08 21:32+0800\n"
+"POT-Creation-Date: 2015-08-04 10:18+0800\n"
 "PO-Revision-Date: 2015-03-30 10:16+0000\n"
 "Last-Translator: ☠Jay ZDLin☠ <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-07-31 05:37+0000\n"
+"X-Launchpad-Export-Date: 2015-08-08 06:18+0000\n"
 "X-Generator: Launchpad (build 17656)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
@@ -138,7 +138,7 @@ msgstr "Удалить данное"
 msgid "Delete"
 msgstr "Удалить"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:322
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:324
 msgid "Edit Event"
 msgstr "Изменить событие"
 
@@ -156,7 +156,7 @@ msgstr "Редактировать группу"
 msgid "Edit this"
 msgstr "Редактировать данное"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:322
+#: ../EventActions.qml:50 ../NewEvent.qml:324
 msgid "New Event"
 msgstr "Новое событие"
 
@@ -167,35 +167,35 @@ msgstr "Новое событие"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:43 ../NewEvent.qml:433
+#: ../EventDetails.qml:43 ../NewEvent.qml:435
 msgid "Event Details"
 msgstr "Детали события"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
-#: ../EventDetails.qml:67
+#: ../EventDetails.qml:68
 #, qt-format
 msgid "%1 Calendar"
 msgstr "%1 календарь"
 
-#: ../EventDetails.qml:120
+#: ../EventDetails.qml:129
 #, qt-format
 msgid "%1 - %2 (All Day)"
 msgstr "%1 - %2 (Весь день)"
 
-#: ../EventDetails.qml:124
+#: ../EventDetails.qml:133
 #, qt-format
 msgid "%1 (All Day)"
 msgstr "%1 (Весь день)"
 
-#: ../EventDetails.qml:194
+#: ../EventDetails.qml:203
 msgid "Edit"
 msgstr "Изменить"
 
-#: ../EventDetails.qml:345 ../NewEvent.qml:535
+#: ../EventDetails.qml:354 ../NewEvent.qml:537
 msgid "Guests"
 msgstr "Участники"
 
-#: ../EventDetails.qml:388 ../EventReminder.qml:35 ../NewEvent.qml:632
+#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:634
 msgid "Reminder"
 msgstr "Напоминание"
 
@@ -203,26 +203,26 @@ msgstr "Напоминание"
 #. and it is shown as the header of the page to choose repetition
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
-#: ../EventRepetition.qml:41 ../EventRepetition.qml:150
+#: ../EventRepetition.qml:40 ../EventRepetition.qml:155
 msgid "Repeat"
 msgstr "Повторение"
 
-#: ../EventRepetition.qml:169
+#: ../EventRepetition.qml:174
 msgid "Repeats On:"
 msgstr "Повторять:"
 
-#: ../EventRepetition.qml:214
+#: ../EventRepetition.qml:219
 msgid "Recurring event ends"
 msgstr "Повторять событие до"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:616
+#: ../EventRepetition.qml:242 ../NewEvent.qml:618
 msgid "Repeats"
 msgstr "Повторение"
 
-#: ../EventRepetition.qml:262
+#: ../EventRepetition.qml:267
 msgid "Date"
 msgstr "Дата"
 
@@ -266,47 +266,47 @@ msgstr "После даты"
 msgid "Save"
 msgstr "Сохранить"
 
-#: ../NewEvent.qml:193
+#: ../NewEvent.qml:192
 msgid "End time can't be before start time"
 msgstr "Дата окончания не может быть раньше даты начала события"
 
-#: ../NewEvent.qml:332
+#: ../NewEvent.qml:334
 msgid "Error"
 msgstr "Ошибка"
 
-#: ../NewEvent.qml:334
+#: ../NewEvent.qml:336
 msgid "OK"
 msgstr "ОК"
 
-#: ../NewEvent.qml:387
+#: ../NewEvent.qml:389
 msgid "From"
 msgstr "с"
 
-#: ../NewEvent.qml:400
+#: ../NewEvent.qml:402
 msgid "To"
 msgstr "по"
 
-#: ../NewEvent.qml:417
+#: ../NewEvent.qml:419
 msgid "All day event"
 msgstr "Событие на весь день"
 
-#: ../NewEvent.qml:446
+#: ../NewEvent.qml:448
 msgid "Event Name"
 msgstr "Название события"
 
-#: ../NewEvent.qml:464
+#: ../NewEvent.qml:466
 msgid "Description"
 msgstr "Описание"
 
-#: ../NewEvent.qml:482
+#: ../NewEvent.qml:484
 msgid "Location"
 msgstr "Местоположение"
 
-#: ../NewEvent.qml:497 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:499 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Календарь"
 
-#: ../NewEvent.qml:539
+#: ../NewEvent.qml:541
 msgid "Add Guest"
 msgstr "Добавить участника"
 
@@ -398,12 +398,12 @@ msgid "Untitled"
 msgstr ""
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:51
+#: ../TimeLineHeader.qml:52
 #, qt-format
 msgid "W%1"
 msgstr ""
 
-#: ../TimeLineHeader.qml:63
+#: ../TimeLineHeader.qml:64
 msgid "All Day"
 msgstr "Весь день"
 
@@ -421,23 +421,23 @@ msgstr ""
 "Календарь принимает четыре аргумента: --starttime, --endtime, --newevent и --"
 "eventid. Они управляются системой. Подробную информацию см. в исходных данных"
 
-#: ../calendar.qml:322
+#: ../calendar.qml:347
 msgid "Year"
 msgstr "Год"
 
-#: ../calendar.qml:356
+#: ../calendar.qml:381
 msgid "Month"
 msgstr "Месяц"
 
-#: ../calendar.qml:384
+#: ../calendar.qml:409
 msgid "Week"
 msgstr "Неделя"
 
-#: ../calendar.qml:417
+#: ../calendar.qml:442
 msgid "Day"
 msgstr "День"
 
-#: ../calendar.qml:449
+#: ../calendar.qml:474
 msgid "Agenda"
 msgstr "Повестка дня"
 

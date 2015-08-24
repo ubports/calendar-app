@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-07 14:49+0800\n"
+"POT-Creation-Date: 2015-08-24 09:46+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,25 +179,25 @@ msgstr ""
 msgid "%1 Calendar"
 msgstr ""
 
-#: ../EventDetails.qml:126
+#: ../EventDetails.qml:129
 #, qt-format
 msgid "%1 - %2 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:130
+#: ../EventDetails.qml:133
 #, qt-format
 msgid "%1 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:200
+#: ../EventDetails.qml:203
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:351 ../NewEvent.qml:537
+#: ../EventDetails.qml:354 ../NewEvent.qml:537
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:394 ../EventReminder.qml:35 ../NewEvent.qml:634
+#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:634
 msgid "Reminder"
 msgstr ""
 
@@ -205,26 +205,26 @@ msgstr ""
 #. and it is shown as the header of the page to choose repetition
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
-#: ../EventRepetition.qml:41 ../EventRepetition.qml:150
+#: ../EventRepetition.qml:40 ../EventRepetition.qml:155
 msgid "Repeat"
 msgstr ""
 
-#: ../EventRepetition.qml:169
+#: ../EventRepetition.qml:174
 msgid "Repeats On:"
 msgstr ""
 
-#: ../EventRepetition.qml:214
+#: ../EventRepetition.qml:219
 msgid "Recurring event ends"
 msgstr ""
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:618
+#: ../EventRepetition.qml:242 ../NewEvent.qml:618
 msgid "Repeats"
 msgstr ""
 
-#: ../EventRepetition.qml:262
+#: ../EventRepetition.qml:267
 msgid "Date"
 msgstr ""
 
@@ -271,7 +271,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../NewEvent.qml:194
+#: ../NewEvent.qml:192
 msgid "End time can't be before start time"
 msgstr ""
 

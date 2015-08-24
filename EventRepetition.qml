@@ -29,8 +29,7 @@ Page {
     id: repetition
 
     property var weekDays : [];
-    property var rule
-    property var date
+    property var eventRoot;
     property var isEdit
 
     visible: false
@@ -51,6 +50,7 @@ Page {
     Component.onCompleted: {
         //Fill Date & limitcount if any
         var index = 0;
+        var rule = eventRoot.rule;
         if(rule !== null && rule !== undefined){
             index =  rule.frequency ;
             if(index > 0 )
@@ -87,7 +87,6 @@ Page {
                     index = Recurrence.Yearly
                     break;
                 }
-
             }
         }
         recurrenceOption.selectedIndex = index;
@@ -98,7 +97,13 @@ Page {
         iconName: "back"
         onTriggered: {
             var recurrenceRule = Defines.recurrenceValue[ recurrenceOption.selectedIndex ];
+
             if (recurrenceRule !== RecurrenceRule.Invalid) {
+                if (eventRoot.rule === null || eventRoot.rule === undefined ){
+                    eventRoot.rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", eventRoot.event.recurrence,"EventRepetition.qml");
+                }
+
+                var rule = eventRoot.rule;
                 rule.frequency = recurrenceRule;
                 switch(recurrenceOption.selectedIndex){
                 case 1: //daily
@@ -109,11 +114,11 @@ Page {
                     rule.daysOfWeek = eventUtils.getDaysOfWeek(recurrenceOption.selectedIndex, weekDays );
                     break;
                 case 6: //monthly
-                    rule.daysOfMonth = [date.getDate()];
+                    rule.daysOfMonth = [eventRoot.date.getDate()];
                     break;
                 case 7: //yearly
-                    rule.monthsOfYear = [date.getMonth()];
-                    rule.daysOfMonth = [date.getDate()];
+                    rule.monthsOfYear = [eventRoot.date.getMonth()];
+                    rule.daysOfMonth = [eventRoot.date.getDate()];
                     break;
                 case 0: //once
                 default:
@@ -134,7 +139,7 @@ Page {
                 }
             }
             else {
-                rule.frequency = 0
+                eventRoot.rule = null;
             }
             pop()
         }
@@ -202,7 +207,7 @@ Page {
                                 (checked) ? weekDays.push(index) : weekDays.splice(weekDays.indexOf(index),1);
                         }
                         checked:{
-                            (weekDays.length === 0 && index === date.getDay() && isEdit === false) ? true : false;
+                            (weekDays.length === 0 && index === eventRoot.date.getDay() && isEdit === false) ? true : false;
                         }
 
                     }
