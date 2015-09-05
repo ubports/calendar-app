@@ -214,6 +214,7 @@ MainView {
             Keys.forwardTo: [tabs.currentPage.item]
 
             property var currentDay: DateExt.today();
+            property var selectedDay;
 
             // Arguments on startup
             property bool newevent: false;
@@ -385,6 +386,7 @@ MainView {
                     source: tabs.selectedTab == monthTab ? Qt.resolvedUrl("MonthView.qml"):""
                     onLoaded: {
                         item.currentMonth = tabs.currentDay.midnight();
+                        item.selectedDay = tabs.selectedDay;
                     }
 
                     anchors{
@@ -398,6 +400,10 @@ MainView {
                         onDateSelected: {
                             tabs.currentDay = date;
                             tabs.selectedTabIndex = dayTab.index;
+                        }
+
+                        onDateHighlighted:{
+                            tabs.selectedDay = date;
                         }
                     }
                 }
@@ -414,6 +420,7 @@ MainView {
                     onLoaded: {
                         item.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == weekTab })
                         item.dayStart = tabs.currentDay;
+                        item.selectedDay = tabs.selectedDay;
                     }
 
                     anchors{
@@ -431,6 +438,10 @@ MainView {
                         onDateSelected: {
                             tabs.currentDay = date;
                             tabs.selectedTabIndex = dayTab.index;
+                        }
+
+                        onDateHighlighted:{
+                            tabs.selectedDay = date;
                         }
                     }
                 }

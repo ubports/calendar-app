@@ -25,8 +25,10 @@ Page {
     objectName: "monthViewPage"
 
     property var currentMonth: DateExt.today();
+    property var selectedDay;
 
     signal dateSelected(var date);
+    signal dateHighlighted(var date);
 
     Keys.forwardTo: [monthViewPath]
 
@@ -111,10 +113,16 @@ Page {
                     currentMonth: monthViewPath.addMonth(monthViewPath.startMonth,
                                                          monthViewPath.indexType(index));
 
+                    selectedDay: monthViewPage.selectedDay
                     isYearView: false
 
                     onDateSelected: {
+                        print("Date selected ..."+ date);
                         monthViewPage.dateSelected(date);
+                    }
+
+                    onDateHighlighted: {
+                        monthViewPage.dateHighlighted(date);
                     }
                 }
             }

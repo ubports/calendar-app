@@ -28,8 +28,10 @@ Page{
     property var dayStart: new Date();
     property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
+    property var selectedDay;
 
     signal dateSelected(var date);
+    signal dateHighlighted(var date);
 
     Keys.forwardTo: [weekViewPath]
 
@@ -106,6 +108,7 @@ Page{
                     isActive: parent.PathView.isCurrentItem
                     startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
                     keyboardEventProvider: weekViewPath
+                    selectedDay: weekViewPage.selectedDay
 
                     onIsActiveChanged: {
                         timeLineView.scrollTocurrentDate();
@@ -113,6 +116,10 @@ Page{
 
                     onDateSelected: {
                         weekViewPage.dateSelected(date);
+                    }
+
+                    onDateHighlighted:{
+                        weekViewPage.dateHighlighted(date);
                     }
 
                     Connections{
