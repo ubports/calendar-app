@@ -117,7 +117,6 @@ Page {
                     isYearView: false
 
                     onDateSelected: {
-                        print("Date selected ..."+ date);
                         monthViewPage.dateSelected(date);
                     }
 
