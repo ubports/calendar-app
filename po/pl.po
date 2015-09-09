@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-08-04 10:18+0800\n"
-"PO-Revision-Date: 2015-07-04 20:55+0000\n"
-"Last-Translator: Krzysztof Tataradziński <Unknown>\n"
+"PO-Revision-Date: 2015-09-08 09:43+0000\n"
+"Last-Translator: Bartosz Kosiorek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-08-08 06:18+0000\n"
-"X-Generator: Launchpad (build 17656)\n"
+"X-Launchpad-Export-Date: 2015-09-09 05:40+0000\n"
+"X-Generator: Launchpad (build 17706)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -50,16 +50,16 @@ msgstr "%1 – %2"
 #: ../AllDayEventComponent.qml:123
 #, qt-format
 msgid "%1 ev."
-msgstr "%1 not"
+msgstr "%1 wyd."
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:127
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] "%1 notatka w tym dniu"
-msgstr[1] "%1 notatki w tym dniu"
-msgstr[2] "%1 notatek w tym dniu"
+msgstr[0] "%1 wydarzenie całodniowe"
+msgstr[1] "%1 wydarzenia całodniowe"
+msgstr[2] "%1 wydarzeń całodniowych"
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:60
 msgid "Calendars"
@@ -169,7 +169,7 @@ msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:43 ../NewEvent.qml:435
 msgid "Event Details"
-msgstr "Szczegóły notatki"
+msgstr "Szczegóły wydarzenia"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
 #: ../EventDetails.qml:68
@@ -288,11 +288,11 @@ msgstr "Do"
 
 #: ../NewEvent.qml:419
 msgid "All day event"
-msgstr "Wydarzenia całego dnia"
+msgstr "Wydarzenie całodniowe"
 
 #: ../NewEvent.qml:448
 msgid "Event Name"
-msgstr "Nazwa zdarzenia"
+msgstr "Nazwa wydarzenia"
 
 #: ../NewEvent.qml:466
 msgid "Description"
@@ -320,7 +320,7 @@ msgstr "Codziennie"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "W dni określone tygodnia"
+msgstr "W dni robocze"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
