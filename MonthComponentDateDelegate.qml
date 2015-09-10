@@ -114,6 +114,7 @@ Item{
                     root.dateSelected(selectedDate);
                 } else {
                     intern.selectedIndex = index
+                    root.dateHighlighted(selectedDate)
                 }
             }
         }

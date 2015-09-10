@@ -30,6 +30,7 @@ Item{
 
     property var currentMonth;
     property var isYearView;
+    property var selectedDay;
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
@@ -40,7 +41,8 @@ Item{
     property alias dateLabelDelegate : dateLabelRepeater.delegate
 
     signal monthSelected(var date);
-    signal dateSelected(var date)
+    signal dateSelected(var date);
+    signal dateHighlighted(var date);
 
     //creatng timer only if we need to show events in month
     Loader {
@@ -90,6 +92,7 @@ Item{
         property int todayMonth: today.getMonth()
         property int todayYear: today.getFullYear()
 
+
         //date from month will start, this date might be from previous month
         property var monthStart: currentMonth.weekStart( Qt.locale().firstDayOfWeek )
         property int monthStartDate: monthStart.getDate()
@@ -113,10 +116,29 @@ Item{
         property int dayFontSize: FontUtils.sizeToPixels(root.dayLabelFontSize)
 
         property int selectedIndex: -1
+
+        function findSelectedDayIndex(){
+            if(!selectedDay) {
+                return -1;
+            }
+
+            if( todayMonth === selectedDay.getMonth() && selectedDay.getFullYear() === todayYear){
+                return selectedDay.getDate() +
+                       (Date.daysInMonth(monthStartYear, monthStartMonth) - monthStartDate);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    onSelectedDayChanged: {
+        if( isCurrentItem ) {
+            intern.selectedIndex = intern.findSelectedDayIndex();
+        }
     }
 
     onCurrentMonthChanged: {
-        intern.selectedIndex = -1
+        intern.selectedIndex = -1;
     }
 
     Column{
