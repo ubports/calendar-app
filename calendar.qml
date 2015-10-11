@@ -309,11 +309,11 @@ MainView {
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex = settings.defaultViewIndex //weekTab.index;
+                        tabs.selectedTabIndex = settings.defaultViewIndex;
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex = settings.defaultViewIndex //weekTab.index;
+                    tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
             } // End of Component.onCompleted:
 
