@@ -211,7 +211,7 @@ MainView {
 
         Tabs{
             id: tabs
-            Keys.forwardTo: [tabs.currentPage.item]
+            Keys.forwardTo: [tabs.currentPage]
 
             property var currentDay: DateExt.today();
             property var selectedDay;
@@ -342,166 +342,139 @@ MainView {
                 }
             }
 
+            onSelectedTabChanged: {
+                switch (tabs.selectedTab) {
+                case yearTab:{
+                    if (yearTab.page === null) {
+                        var yearViewCom = Qt.createComponent("YearView.qml");
+                        if (yearViewCom.status === Component.Ready) {
+                            var yearViewObj = yearViewCom.createObject(mainView);
+
+                            yearViewObj.monthSelected.connect(function (date){
+                                var now = DateExt.today();
+                                if( date.getMonth() === now.getMonth()
+                                        && date.getFullYear() === now.getFullYear()) {
+                                    tabs.currentDay = now;
+                                } else {
+                                    tabs.currentDay = date.midnight();
+                                }
+                                tabs.selectedTabIndex = monthTab.index;
+                            })
+
+                            yearTab.page = yearViewObj;
+                        }
+                    } else {
+                        yearTab.page.refreshCurrentYear(DateExt.today().getFullYear());
+                    }
+                } break;
+                case monthTab: {
+                    if (monthTab.page === null) {
+                        var monthViewCom = Qt.createComponent("MonthView.qml");
+                        if (monthViewCom.status === Component.Ready) {
+                            var monthViewObj = monthViewCom.createObject(mainView);
+
+                            monthViewObj.dateSelected.connect(function (date) {
+                                tabs.currentDay = date;
+                                tabs.selectedTabIndex = dayTab.index;
+                            })
+
+                            monthTab.page = monthViewObj;
+                        }
+                    } else {
+                        monthTab.page.currentMonth = tabs.currentDay.midnight();
+                    }
+                } break;
+                case weekTab: {
+                    if (weekTab.page === null) {
+                        var weekViewCom = Qt.createComponent("WeekView.qml");
+                        if (weekViewCom.status === Component.Ready) {
+                            var weekViewObj = weekViewCom.createObject(mainView);
+
+                            weekViewObj.isCurrentPage = Qt.binding(function() { return tabs.selectedTab == weekTab })
+                            weekViewObj.onDayStartChanged.connect(function (){
+                                tabs.currentDay = weekViewObj.dayStart;
+                            });
+                            weekViewObj.dateSelected.connect(function (date){
+                                tabs.currentDay = date;
+                                tabs.selectedTabIndex = dayTab.index;
+                            });
+
+                            weekTab.page = weekViewObj;
+                        }
+                    } else {
+                        weekTab.page.dayStart = tabs.currentDay;
+                    }
+                } break;
+                case dayTab: {
+                    if (dayTab.page === null) {
+                        var dayViewCom = Qt.createComponent("DayView.qml");
+                        if (dayViewCom.status === Component.Ready) {
+                            var dayViewObj = dayViewCom.createObject(mainView);
+
+                            dayViewObj.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == dayTab })
+                            dayViewObj.onCurrentDayChanged.connect(function (){
+                                tabs.currentDay = dayViewObj.currentDay;
+                            });
+                            dayViewObj.dateSelected.connect(function (date) {
+                                tabs.currentDay = date;
+                            });
+
+                            dayTab.page  =dayViewObj;
+                        }
+                    } else {
+                        dayTab.page.currentDay = tabs.currentDay;
+                    }
+                } break;
+                case agendaTab: {
+                    var agendaViewCom = Qt.createComponent("AgendaView.qml");
+                    if (agendaViewCom.status === Component.Ready) {
+                        var agendaViewObj = agendaViewCom.createObject(mainView);
+
+                        agendaViewObj.dateSelected.connect(function (date){
+                            tabs.currentDay = date;
+                            tabs.selectedTabIndex = dayTab.index;
+                        })
+                        agendaTab.page = agendaViewObj;
+                    }
+                } break;
+                default:
+                    break;
+                }
+            }
+
             Tab{
                 id: yearTab
                 objectName: "yearTab"
                 title: i18n.tr("Year")
-                page: Loader{
-                    id: yearViewLoader
-                    objectName: "yearViewLoader"
-                    source: tabs.selectedTab == yearTab ? Qt.resolvedUrl("YearView.qml"):""
-                    onLoaded: {
-                        item.currentYear = tabs.currentDay.getFullYear();
-                    }
-
-                    anchors{
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-
-                    Connections{
-                        target: yearViewLoader.item
-                        onMonthSelected: {
-                            var now = DateExt.today();
-                            if( date.getMonth() === now.getMonth()
-                                    && date.getFullYear() === now.getFullYear()) {
-                                tabs.currentDay = now;
-                            } else {
-                                tabs.currentDay = date.midnight();
-                            }
-                            tabs.selectedTabIndex = monthTab.index;
-                        }
-                    }
-                }
+                page: null
             }
 
             Tab{
                 id: monthTab
                 objectName: "monthTab"
                 title: i18n.tr("Month")
-                page: Loader{
-                    id: monthViewLoader
-                    objectName: "monthViewLoader"
-                    source: tabs.selectedTab == monthTab ? Qt.resolvedUrl("MonthView.qml"):""
-                    onLoaded: {
-                        item.currentMonth = tabs.currentDay.midnight();
-                        item.selectedDay = tabs.selectedDay;
-                    }
-
-                    anchors{
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-
-                    Connections{
-                        target: monthViewLoader.item
-                        onDateSelected: {
-                            tabs.currentDay = date;
-                            tabs.selectedTabIndex = dayTab.index;
-                        }
-
-                        onDateHighlighted:{
-                            tabs.selectedDay = date;
-                        }
-                    }
-                }
+                page: null
             }
 
             Tab{
                 id: weekTab
                 objectName: "weekTab"
                 title: i18n.tr("Week")
-                page: Loader{
-                    id: weekViewLoader
-                    objectName: "weekViewLoader"
-                    source: tabs.selectedTab == weekTab ? Qt.resolvedUrl("WeekView.qml"):""
-                    onLoaded: {
-                        item.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == weekTab })
-                        item.dayStart = tabs.currentDay;
-                        item.selectedDay = tabs.selectedDay;
-                    }
-
-                    anchors{
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-
-                    Connections{
-                        target: weekViewLoader.item
-                        onDayStartChanged: {
-                            tabs.currentDay = weekViewLoader.item.dayStart;
-                        }
-
-                        onDateSelected: {
-                            tabs.currentDay = date;
-                            tabs.selectedTabIndex = dayTab.index;
-                        }
-
-                        onDateHighlighted:{
-                            tabs.selectedDay = date;
-                        }
-                    }
-                }
+                page: null
             }
 
             Tab{
                 id: dayTab
                 objectName: "dayTab"
                 title: i18n.tr("Day")
-                page: Loader{
-                    id: dayViewLoader
-                    objectName: "dayViewLoader"
-                    source: tabs.selectedTab == dayTab ? Qt.resolvedUrl("DayView.qml"):""
-                    onLoaded: {
-                        item.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == dayTab })
-                        item.currentDay = tabs.currentDay;
-                    }
-
-                    anchors{
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-
-                    Connections{
-                        target: dayViewLoader.item
-                        onCurrentDayChanged: {
-                            tabs.currentDay = dayViewLoader.item.currentDay;
-                        }
-
-                        onDateSelected: {
-                            tabs.currentDay = date;
-                        }
-                    }
-                }
+                page: null
             }
 
             Tab {
                 id: agendaTab
                 objectName: "agendaTab"
                 title: i18n.tr("Agenda")
-                page: Loader {
-                    id: agendaViewLoader
-                    objectName: "agendaViewLoader"
-                    source: tabs.selectedTab == agendaTab ? Qt.resolvedUrl("AgendaView.qml"):""
-
-                    anchors{
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-
-                    Connections{
-                        target: agendaViewLoader.item
-                        onDateSelected: {
-                            tabs.currentDay = date;
-                            tabs.selectedTabIndex = dayTab.index;
-                        }
-                    }
-                }
+                page: null
             }
         }
     }
