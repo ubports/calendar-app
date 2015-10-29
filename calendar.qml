@@ -19,6 +19,7 @@ import QtQuick 2.3
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
+import Qt.labs.settings 1.0
 
 import "dateExt.js" as DateExt
 
@@ -308,16 +309,21 @@ MainView {
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex = weekTab.index;
+                        tabs.selectedTabIndex = settings.defaultViewIndex;
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex = weekTab.index;
+                    tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
             } // End of Component.onCompleted:
 
             EventActions {
                 id: commonHeaderActions
+            }
+
+            Settings {
+                id: settings
+                property alias defaultViewIndex: tabs.selectedTabIndex
             }
 
             Keys.onTabPressed: {
