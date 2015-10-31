@@ -30,8 +30,10 @@ Column {
     property double contentX;
     property int firstDayOfWeek: Qt.locale().firstDayOfWeek
     property bool isActive: false;
+    property var selectedDay;
 
     signal dateSelected(var date);
+    signal dateHighlighted(var date);
 
     width: parent.width
     height: units.gu(10)
@@ -155,9 +157,21 @@ Column {
                     width: parent.width
                     height: units.gu(5)
                     isCurrentItem: root.isActive
+                    selectedDay: {
+                        if( root.selectedDay && startDay.weekNumber(Qt.locale().firstDayOfWeek)
+                                === root.selectedDay.weekNumber(Qt.locale().firstDayOfWeek)) {
+                        root.selectedDay;
+                        } else {
+                            null;
+                        }
+                    }
 
                     onDateSelected: {
                         root.dateSelected(date);
+                    }
+
+                    onDateHighlighted: {
+                        root.dateHighlighted(date);
                     }
                 }
 

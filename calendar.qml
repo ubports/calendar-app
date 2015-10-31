@@ -19,6 +19,7 @@ import QtQuick 2.3
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
+import Qt.labs.settings 1.0
 
 import "dateExt.js" as DateExt
 
@@ -214,6 +215,7 @@ MainView {
             Keys.forwardTo: [tabs.currentPage.item]
 
             property var currentDay: DateExt.today();
+            property var selectedDay;
 
             // Arguments on startup
             property bool newevent: false;
@@ -307,16 +309,21 @@ MainView {
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex = weekTab.index;
+                        tabs.selectedTabIndex = settings.defaultViewIndex;
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex = weekTab.index;
+                    tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
             } // End of Component.onCompleted:
 
             EventActions {
                 id: commonHeaderActions
+            }
+
+            Settings {
+                id: settings
+                property alias defaultViewIndex: tabs.selectedTabIndex
             }
 
             Keys.onTabPressed: {
@@ -385,6 +392,7 @@ MainView {
                     source: tabs.selectedTab == monthTab ? Qt.resolvedUrl("MonthView.qml"):""
                     onLoaded: {
                         item.currentMonth = tabs.currentDay.midnight();
+                        item.selectedDay = tabs.selectedDay;
                     }
 
                     anchors{
@@ -398,6 +406,10 @@ MainView {
                         onDateSelected: {
                             tabs.currentDay = date;
                             tabs.selectedTabIndex = dayTab.index;
+                        }
+
+                        onDateHighlighted:{
+                            tabs.selectedDay = date;
                         }
                     }
                 }
@@ -414,6 +426,7 @@ MainView {
                     onLoaded: {
                         item.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == weekTab })
                         item.dayStart = tabs.currentDay;
+                        item.selectedDay = tabs.selectedDay;
                     }
 
                     anchors{
@@ -431,6 +444,10 @@ MainView {
                         onDateSelected: {
                             tabs.currentDay = date;
                             tabs.selectedTabIndex = dayTab.index;
+                        }
+
+                        onDateHighlighted:{
+                            tabs.selectedDay = date;
                         }
                     }
                 }

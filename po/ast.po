@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-08-04 10:18+0800\n"
-"PO-Revision-Date: 2015-03-02 18:11+0000\n"
-"Last-Translator: ivarela <ivarela@ubuntu.com>\n"
+"PO-Revision-Date: 2015-10-06 11:57+0000\n"
+"Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
 "Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-08-08 06:17+0000\n"
-"X-Generator: Launchpad (build 17656)\n"
+"X-Launchpad-Export-Date: 2015-10-07 05:57+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
@@ -79,7 +79,7 @@ msgstr "Sincronizando"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add online Calendar"
-msgstr ""
+msgstr "Añadir calendariu en llinia"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -392,13 +392,13 @@ msgstr "2 selmanes"
 
 #: ../TimeLineBase.qml:80
 msgid "Untitled"
-msgstr ""
+msgstr "Ensin títulu"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:52
 #, qt-format
 msgid "W%1"
-msgstr ""
+msgstr "S%1"
 
 #: ../TimeLineHeader.qml:64
 msgid "All Day"

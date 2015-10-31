@@ -35,6 +35,7 @@ Item {
     property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
+    property var selectedDay;
 
     property int type: ViewType.ViewTypeWeek
 
@@ -44,6 +45,7 @@ Item {
     property EventListModel mainModel;
 
     signal dateSelected(var date);
+    signal dateHighlighted(var date);
 
     function scrollToCurrentTime() {
         var currentTime = new Date();
@@ -145,9 +147,14 @@ Item {
             contentX: timeLineView.contentX
             type: root.type
             isActive: root.isActive
+            selectedDay: root.selectedDay
 
             onDateSelected: {
                 root.dateSelected(date);
+            }
+
+            onDateHighlighted: {
+                root.dateHighlighted(date);
             }
         }
 
