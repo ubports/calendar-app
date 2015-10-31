@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-04 10:18+0800\n"
+"POT-Creation-Date: 2015-11-01 04:20+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
-#: ../WeekView.qml:42 ../YearView.qml:36
+#: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
+#: ../WeekView.qml:44 ../YearView.qml:36
 msgid "Today"
 msgstr ""
 
@@ -101,7 +101,7 @@ msgstr ""
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:59 ../MonthView.qml:58 ../WeekView.qml:61
+#: ../DayView.qml:59 ../MonthView.qml:60 ../WeekView.qml:63
 msgid "MMMM yyyy"
 msgstr ""
 
@@ -390,17 +390,17 @@ msgstr ""
 msgid "2 weeks"
 msgstr ""
 
-#: ../TimeLineBase.qml:80
+#: ../TimeLineBase.qml:73
 msgid "Untitled"
 msgstr ""
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:52
+#: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
 msgstr ""
 
-#: ../TimeLineHeader.qml:64
+#: ../TimeLineHeader.qml:66
 msgid "All Day"
 msgstr ""
 
@@ -409,30 +409,30 @@ msgstr ""
 msgid "Year %1"
 msgstr ""
 
-#: ../calendar.qml:44
+#: ../calendar.qml:45
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
 
-#: ../calendar.qml:347
+#: ../calendar.qml:354
 msgid "Year"
 msgstr ""
 
-#: ../calendar.qml:381
+#: ../calendar.qml:388
 msgid "Month"
 msgstr ""
 
-#: ../calendar.qml:409
+#: ../calendar.qml:421
 msgid "Week"
 msgstr ""
 
-#: ../calendar.qml:442
+#: ../calendar.qml:459
 msgid "Day"
 msgstr ""
 
-#: ../calendar.qml:474
+#: ../calendar.qml:491
 msgid "Agenda"
 msgstr ""
 
