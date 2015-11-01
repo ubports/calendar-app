@@ -25,7 +25,6 @@ import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
-    useDeprecatedToolbar: false
 
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
