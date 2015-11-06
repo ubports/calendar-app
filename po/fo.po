@@ -1,40 +1,39 @@
-# Welsh translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Faroese translation for ubuntu-calendar-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-08-04 10:18+0800\n"
-"PO-Revision-Date: 2015-07-14 12:29+0000\n"
-"Last-Translator: Owen Llywelyn <owen.llywelyn@gmail.com>\n"
-"Language-Team: Welsh <cy@li.org>\n"
+"PO-Revision-Date: 2015-11-05 21:21+0000\n"
+"Last-Translator: Angutivik Casper Rúnur Tausen Hansen <Unknown>\n"
+"Language-Team: Faroese <fo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : (n != 8 && n != 11) ? "
-"2 : 3;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2015-11-06 05:35+0000\n"
 "X-Generator: Launchpad (build 17838)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
 #: ../WeekView.qml:42 ../YearView.qml:36
 msgid "Today"
-msgstr "Heddiw"
+msgstr "Í dag"
 
 #: ../AgendaView.qml:92
 msgid "No upcoming events"
-msgstr "Dim digwyddiadau i ddod"
+msgstr "Ongar komandi hendingar"
 
 #: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
-msgstr "Dim calendrau wedi'u galluogi"
+msgstr "Tú hevur ikki nakrar kalendarar í gildi"
 
 #: ../AgendaView.qml:105
 msgid "Enable calendars"
-msgstr "Galluogi calendrau"
+msgstr "Gilda kalendarar"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -50,56 +49,54 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:123
 #, qt-format
 msgid "%1 ev."
-msgstr "%1 di."
+msgstr "%1 he."
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:127
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] "%1 digwyddiad drwy'r dydd"
-msgstr[1] "%1 digwyddiad drwy'r dydd"
-msgstr[2] "%1 digwyddiad drwy'r dydd"
-msgstr[3] "%1digwyddiad drwy'r dydd"
+msgstr[0] "%1 heildagshending"
+msgstr[1] "%1 heildagshendingar"
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:60
 msgid "Calendars"
-msgstr "Calendrau"
+msgstr "Kalendarar"
 
 #: ../CalendarChoicePopup.qml:37
 msgid "Back"
-msgstr "Nôl"
+msgstr "Aftur"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
-msgstr "Cydweddu"
+msgstr "Samstilla"
 
 #: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
-msgstr "Yn cydweddu"
+msgstr "Samstillar"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add online Calendar"
-msgstr "Ychwanegu calendr ar-lein"
+msgstr "Innset álinjukalendari"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
-msgstr "Dewis Lliw"
+msgstr "Vel lit"
 
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
-msgstr "Diddymu"
+msgstr "Angra"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr "Dim cyswllt"
+msgstr "Eingin fólk"
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr "Chwilio am gyswllt"
+msgstr "Leita eftir fólki"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -110,56 +107,56 @@ msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr "Dileu digwyddiad sy'n ailadrodd"
+msgstr "Strika afturvendandi hending"
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
-msgstr "Dileu digwyddiad"
+msgstr "Strika hending"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr "Dileu digwyddiad \"%1\", neu bob digwyddiad yn y gyfres?"
+msgstr "Bara strika hendingina \"%1\", ella allar ið røðina?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "Ydych chi'n siwr eich bod am ddileu digwyddiad \"%1\"?"
+msgstr "Ert tú vísur í at tú vil strika hendingina \"%1\"?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
-msgstr "Dileu cyfres"
+msgstr "Strika røð"
 
 #: ../DeleteConfirmationDialog.qml:51
 msgid "Delete this"
-msgstr "Dileu hwn"
+msgstr "Strika"
 
 #: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:68
 msgid "Delete"
-msgstr "Dileu"
+msgstr "Strika"
 
 #: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:324
 msgid "Edit Event"
-msgstr "Golygu Digwyddiad"
+msgstr "Broyt hending"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "Golygu \"%1\" yn unig, neu pob digwyddiad yn y gyfres?"
+msgstr "Broyt bara hendingina \"%1\", ella allar í røðina?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
-msgstr "Golygu cyfres"
+msgstr "Broyt røð"
 
 #: ../EditEventConfirmationDialog.qml:44
 msgid "Edit this"
-msgstr "Golygu hwn"
+msgstr "Broyt"
 
 #: ../EventActions.qml:50 ../NewEvent.qml:324
 msgid "New Event"
-msgstr "Digwyddiad Newydd"
+msgstr "Nýggj hending"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -170,35 +167,35 @@ msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:43 ../NewEvent.qml:435
 msgid "Event Details"
-msgstr "Manylion y Digwyddiad"
+msgstr "Hendingalýsingar"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
 #: ../EventDetails.qml:68
 #, qt-format
 msgid "%1 Calendar"
-msgstr "Calendr %1"
+msgstr "%1 kalendari"
 
 #: ../EventDetails.qml:129
 #, qt-format
 msgid "%1 - %2 (All Day)"
-msgstr "%1 - %2 (Drwy'r Dydd)"
+msgstr "%1 - %2 (Allur dagurin)"
 
 #: ../EventDetails.qml:133
 #, qt-format
 msgid "%1 (All Day)"
-msgstr "%1 (Drwy'r Dydd)"
+msgstr "%1 (Allur dagurin)"
 
 #: ../EventDetails.qml:203
 msgid "Edit"
-msgstr "Golygu"
+msgstr "Broyt"
 
 #: ../EventDetails.qml:354 ../NewEvent.qml:537
 msgid "Guests"
-msgstr "Gwestai"
+msgstr "Gestir"
 
 #: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:634
 msgid "Reminder"
-msgstr "Atgoffa"
+msgstr "Áminning"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -206,26 +203,26 @@ msgstr "Atgoffa"
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:40 ../EventRepetition.qml:155
 msgid "Repeat"
-msgstr "Ailadrodd"
+msgstr "Endurtak"
 
 #: ../EventRepetition.qml:174
 msgid "Repeats On:"
-msgstr "Ailadrodd ar:"
+msgstr "Endurtekur seg:"
 
 #: ../EventRepetition.qml:219
 msgid "Recurring event ends"
-msgstr "Digwyddiad sy'n ailadrodd yn gorffen"
+msgstr "Afturvendandi hending endar"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
 #: ../EventRepetition.qml:242 ../NewEvent.qml:618
 msgid "Repeats"
-msgstr "Ailadrodd"
+msgstr "Endurtøkur"
 
 #: ../EventRepetition.qml:267
 msgid "Date"
-msgstr "Dyddiad"
+msgstr "Dato"
 
 #. TRANSLATORS: the argument refers to multiple recurrence of event with count .
 #. E.g. "Daily; 5 times."
@@ -233,186 +230,184 @@ msgstr "Dyddiad"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 gwaith"
-msgstr[1] "%1; %2 gwaith"
-msgstr[2] "%1; %2 gwaith"
-msgstr[3] "%1; %2 gwaith"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr "%1; tan %2"
+msgstr "%1; inntil %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr "Yn wythnosol ar %1"
+msgstr "%1 hvørja viku"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
-msgstr "Byth"
+msgstr "Aldrin"
 
 #: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr "Wedi X Achlysur"
+msgstr "Aftaná X hending"
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
-msgstr "Wedi'r dyddiad"
+msgstr "Aftaná dato"
 
 #: ../NewEvent.qml:84
 msgid "Save"
-msgstr "Cadw"
+msgstr "Goym"
 
 #: ../NewEvent.qml:192
 msgid "End time can't be before start time"
-msgstr "Gall amser gorffen ddim bod cyn amser cychwyn"
+msgstr "Endatíðin kann ikki vera áðrenn byrjunartíðin"
 
 #: ../NewEvent.qml:334
 msgid "Error"
-msgstr "Gwall"
+msgstr "Brek"
 
 #: ../NewEvent.qml:336
 msgid "OK"
-msgstr "Iawn"
+msgstr "OK"
 
 #: ../NewEvent.qml:389
 msgid "From"
-msgstr "O"
+msgstr "Frá"
 
 #: ../NewEvent.qml:402
 msgid "To"
-msgstr "I"
+msgstr "Til"
 
 #: ../NewEvent.qml:419
 msgid "All day event"
-msgstr "Digwyddiad drwy'r dydd"
+msgstr "Heildagshending"
 
 #: ../NewEvent.qml:448
 msgid "Event Name"
-msgstr "Enw'r Digwyddiad"
+msgstr "Hendingarheiti"
 
 #: ../NewEvent.qml:466
 msgid "Description"
-msgstr "Disgrifiad"
+msgstr "Frágreiðing"
 
 #: ../NewEvent.qml:484
 msgid "Location"
-msgstr "Lleoliad"
+msgstr "Staður"
 
 #: ../NewEvent.qml:499 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr "Calendr"
+msgstr "Kalendari"
 
 #: ../NewEvent.qml:541
 msgid "Add Guest"
-msgstr "Ychwanegu Gwestai"
+msgstr "Innset gest"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
-msgstr "Unwaith"
+msgstr "Einaferð"
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr "Dyddiol"
+msgstr "Dagliga"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "Ar Ddiwrnodau'r Wythnos"
+msgstr "Gerandisdagar"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr "Ar %1, %2 ,%3"
+msgstr "%1, %2, %3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr "Ar %1 and %2"
+msgstr "%1 og %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
-msgstr "Wythnosol"
+msgstr "Vikuliga"
 
 #: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
-msgstr "Misol"
+msgstr "Mánaðarliga"
 
 #: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
-msgstr "Blynyddol"
+msgstr "Árliga"
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
-msgstr "Dim Atgoffa"
+msgstr "Eingin áminning"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
 #. the event starts, not any time before
 #: ../RemindersModel.qml:30
 msgid "On Event"
-msgstr "Pan mae'n digwydd"
+msgstr "Á hendingina"
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
-msgstr "5 munud"
+msgstr "5 minuttir"
 
 #: ../RemindersModel.qml:32
 msgid "15 minutes"
-msgstr "15 munud"
+msgstr "15 minuttir"
 
 #: ../RemindersModel.qml:33
 msgid "30 minutes"
-msgstr "30 munud"
+msgstr "30 minuttir"
 
 #: ../RemindersModel.qml:34
 msgid "1 hour"
-msgstr "1 awr"
+msgstr "1 tími"
 
 #: ../RemindersModel.qml:35
 msgid "2 hours"
-msgstr "2 awr"
+msgstr "2 tímar"
 
 #: ../RemindersModel.qml:36
 msgid "1 day"
-msgstr "1 diwrnod"
+msgstr "1 dagur"
 
 #: ../RemindersModel.qml:37
 msgid "2 days"
-msgstr "2 ddiwrnod"
+msgstr "2 dagar"
 
 #: ../RemindersModel.qml:38
 msgid "1 week"
-msgstr "1 wythnos"
+msgstr "1 viku"
 
 #: ../RemindersModel.qml:39
 msgid "2 weeks"
-msgstr "2 wythnos"
+msgstr "2 vikur"
 
 #: ../TimeLineBase.qml:80
 msgid "Untitled"
-msgstr "Heb deitl"
+msgstr "Ónevnd"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:52
 #, qt-format
 msgid "W%1"
-msgstr "W%1"
+msgstr "V%1"
 
 #: ../TimeLineHeader.qml:64
 msgid "All Day"
-msgstr "Drwy'r Dydd"
+msgstr "Allan dagin"
 
 #: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
-msgstr "Blwyddyn %1"
+msgstr "Ár %1"
 
 #: ../calendar.qml:44
 msgid ""
@@ -420,34 +415,34 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
-"Mae'r ap Calendr yn derbyn pedwar arg: --starttime, --endtime, --newevent ac "
-"--eventid. Caiff rhain eu rheoli gan y system. Gweler y ffynhonnell am "
-"fanylion pellach am y rhain"
+"Kalendaraforritið góðtekur fýra grundgevingar: --starttime,--endtime,--"
+"neweven og --eventid. Tey verða stýrd av skipanini. Sí kotuna fyri ein fulla "
+"viðmerking um tær."
 
 #: ../calendar.qml:347
 msgid "Year"
-msgstr "Blwyddyn"
+msgstr "Ár"
 
 #: ../calendar.qml:381
 msgid "Month"
-msgstr "Mis"
+msgstr "Mánaði"
 
 #: ../calendar.qml:409
 msgid "Week"
-msgstr "Wythnos"
+msgstr "Vika"
 
 #: ../calendar.qml:442
 msgid "Day"
-msgstr "Diwrnod"
+msgstr "Dagur"
 
 #: ../calendar.qml:474
 msgid "Agenda"
-msgstr "Agenda"
+msgstr "Dagsskrá"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr "Calendr ar gyfer Ubuntu sy'n cydweddu â chyfrifon ar-lein"
+msgstr "Ein kalendari til Ubuntu ið samstillar við álinjukontur."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr "calendr;digwyddiad;diwrnod;wythnos;blwyddyn;apwyntiad;cyfarfod;"
+msgstr "kalendari;hending;dagur;vika;ár;avtala;fundur;"
