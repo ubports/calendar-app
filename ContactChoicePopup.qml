@@ -94,7 +94,7 @@ Popover {
             objectName: "contactPopoverList"
             width: parent.width
             model: contactModel
-            height: units.gu(30)
+            height: units.gu(15)
             clip: true
             delegate: Standard{
                 objectName: "contactPopoverList%1".arg(index)
