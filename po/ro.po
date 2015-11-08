@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-08-04 10:18+0800\n"
+"POT-Creation-Date: 2015-10-28 10:22+0800\n"
 "PO-Revision-Date: 2015-06-23 16:58+0000\n"
 "Last-Translator: Meriuță Cornel <meriutacornel@neacornel.eu>\n"
 "Language-Team: Romanian <ro@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2015-11-06 05:35+0000\n"
+"X-Launchpad-Export-Date: 2015-11-08 05:43+0000\n"
 "X-Generator: Launchpad (build 17838)\n"
 
-#: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
-#: ../WeekView.qml:42 ../YearView.qml:36
+#: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
+#: ../WeekView.qml:44 ../YearView.qml:42
 msgid "Today"
 msgstr "Astăzi"
 
@@ -103,7 +103,7 @@ msgstr "Caută contacte"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:59 ../MonthView.qml:58 ../WeekView.qml:61
+#: ../DayView.qml:59 ../MonthView.qml:60 ../WeekView.qml:63
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -138,7 +138,7 @@ msgstr "Șterge"
 msgid "Delete"
 msgstr "Șterge"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:324
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:325
 msgid "Edit Event"
 msgstr "Editare eveniment"
 
@@ -156,7 +156,7 @@ msgstr "Editare serie"
 msgid "Edit this"
 msgstr "Editare"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:324
+#: ../EventActions.qml:50 ../NewEvent.qml:325
 msgid "New Event"
 msgstr "Eveniment nou"
 
@@ -167,7 +167,7 @@ msgstr "Eveniment nou"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:43 ../NewEvent.qml:435
+#: ../EventDetails.qml:43 ../NewEvent.qml:436
 msgid "Event Details"
 msgstr "Detalii eveniment"
 
@@ -191,11 +191,11 @@ msgstr "%1 (Întreaga zi)"
 msgid "Edit"
 msgstr "Editare"
 
-#: ../EventDetails.qml:354 ../NewEvent.qml:537
+#: ../EventDetails.qml:354 ../NewEvent.qml:538
 msgid "Guests"
 msgstr "Invitați"
 
-#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:634
+#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:635
 msgid "Reminder"
 msgstr "Eveniment"
 
@@ -218,7 +218,7 @@ msgstr "Evenimentul repetitiv se încheie"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:618
+#: ../EventRepetition.qml:242 ../NewEvent.qml:619
 msgid "Repeats"
 msgstr "Se repetă"
 
@@ -270,43 +270,43 @@ msgstr "Salvează"
 msgid "End time can't be before start time"
 msgstr "Timpul de încheiere nu poate fi înaintea celui de început"
 
-#: ../NewEvent.qml:334
+#: ../NewEvent.qml:335
 msgid "Error"
 msgstr "Eroare"
 
-#: ../NewEvent.qml:336
+#: ../NewEvent.qml:337
 msgid "OK"
 msgstr "În regulă"
 
-#: ../NewEvent.qml:389
+#: ../NewEvent.qml:390
 msgid "From"
 msgstr "De la"
 
-#: ../NewEvent.qml:402
+#: ../NewEvent.qml:403
 msgid "To"
 msgstr "Către"
 
-#: ../NewEvent.qml:419
+#: ../NewEvent.qml:420
 msgid "All day event"
 msgstr "Eveniment în derulare pe parcursul întregii zile"
 
-#: ../NewEvent.qml:448
+#: ../NewEvent.qml:449
 msgid "Event Name"
 msgstr "Numele evenimentului"
 
-#: ../NewEvent.qml:466
+#: ../NewEvent.qml:467
 msgid "Description"
 msgstr "Descriere"
 
-#: ../NewEvent.qml:484
+#: ../NewEvent.qml:485
 msgid "Location"
 msgstr "Loc"
 
-#: ../NewEvent.qml:499 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:500 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Calendar"
 
-#: ../NewEvent.qml:541
+#: ../NewEvent.qml:542
 msgid "Add Guest"
 msgstr "Adaugă oaspete"
 
@@ -393,21 +393,21 @@ msgstr "o săptămână"
 msgid "2 weeks"
 msgstr "două săptămâni"
 
-#: ../TimeLineBase.qml:80
+#: ../TimeLineBase.qml:73
 msgid "Untitled"
 msgstr "Fără nume"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:52
+#: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
 msgstr "S%1"
 
-#: ../TimeLineHeader.qml:64
+#: ../TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "Toată ziua"
 
-#: ../YearView.qml:54
+#: ../YearView.qml:60
 #, qt-format
 msgid "Year %1"
 msgstr "Anul %1"
@@ -422,23 +422,23 @@ msgstr ""
 "newevent și --eventid. Acestea vor fi administrate de sistem. Consultați "
 "sursa pentru comentarii complete asupra acestora."
 
-#: ../calendar.qml:347
+#: ../calendar.qml:448
 msgid "Year"
 msgstr "An"
 
-#: ../calendar.qml:381
+#: ../calendar.qml:455
 msgid "Month"
 msgstr "Lună"
 
-#: ../calendar.qml:409
+#: ../calendar.qml:462
 msgid "Week"
 msgstr "Săptămână"
 
-#: ../calendar.qml:442
+#: ../calendar.qml:469
 msgid "Day"
 msgstr "Zi"
 
-#: ../calendar.qml:474
+#: ../calendar.qml:476
 msgid "Agenda"
 msgstr "Agendă"
 

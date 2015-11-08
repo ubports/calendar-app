@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-08-04 10:18+0800\n"
+"POT-Creation-Date: 2015-10-28 10:22+0800\n"
 "PO-Revision-Date: 2015-07-12 22:19+0000\n"
 "Last-Translator: Josef Andersson <Unknown>\n"
 "Language-Team: Swedish\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-11-06 05:35+0000\n"
+"X-Launchpad-Export-Date: 2015-11-08 05:43+0000\n"
 "X-Generator: Launchpad (build 17838)\n"
 "Language: sv\n"
 
-#: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
-#: ../WeekView.qml:42 ../YearView.qml:36
+#: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
+#: ../WeekView.qml:44 ../YearView.qml:42
 msgid "Today"
 msgstr "Idag"
 
@@ -102,7 +102,7 @@ msgstr "Sök kontakter"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:59 ../MonthView.qml:58 ../WeekView.qml:61
+#: ../DayView.qml:59 ../MonthView.qml:60 ../WeekView.qml:63
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -137,7 +137,7 @@ msgstr "Ta bort den här"
 msgid "Delete"
 msgstr "Ta bort"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:324
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:325
 msgid "Edit Event"
 msgstr "Redigera händelse"
 
@@ -155,7 +155,7 @@ msgstr "Redigera serie"
 msgid "Edit this"
 msgstr "Redigera denna"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:324
+#: ../EventActions.qml:50 ../NewEvent.qml:325
 msgid "New Event"
 msgstr "Ny händelse"
 
@@ -166,7 +166,7 @@ msgstr "Ny händelse"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:43 ../NewEvent.qml:435
+#: ../EventDetails.qml:43 ../NewEvent.qml:436
 msgid "Event Details"
 msgstr "Händelsedetaljer"
 
@@ -190,11 +190,11 @@ msgstr "%1 (Hela dagen)"
 msgid "Edit"
 msgstr "Redigera"
 
-#: ../EventDetails.qml:354 ../NewEvent.qml:537
+#: ../EventDetails.qml:354 ../NewEvent.qml:538
 msgid "Guests"
 msgstr "Gäster"
 
-#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:634
+#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:635
 msgid "Reminder"
 msgstr "Påminnelse"
 
@@ -217,7 +217,7 @@ msgstr "Upprepad händelse slutar"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:618
+#: ../EventRepetition.qml:242 ../NewEvent.qml:619
 msgid "Repeats"
 msgstr "Upprepas"
 
@@ -268,43 +268,43 @@ msgstr "Spara"
 msgid "End time can't be before start time"
 msgstr "Sluttiden kan inte vara före starttiden"
 
-#: ../NewEvent.qml:334
+#: ../NewEvent.qml:335
 msgid "Error"
 msgstr "Fel"
 
-#: ../NewEvent.qml:336
+#: ../NewEvent.qml:337
 msgid "OK"
 msgstr "OK"
 
-#: ../NewEvent.qml:389
+#: ../NewEvent.qml:390
 msgid "From"
 msgstr "Från"
 
-#: ../NewEvent.qml:402
+#: ../NewEvent.qml:403
 msgid "To"
 msgstr "Till"
 
-#: ../NewEvent.qml:419
+#: ../NewEvent.qml:420
 msgid "All day event"
 msgstr "Heldagsaktivitet"
 
-#: ../NewEvent.qml:448
+#: ../NewEvent.qml:449
 msgid "Event Name"
 msgstr "Händelsenamn"
 
-#: ../NewEvent.qml:466
+#: ../NewEvent.qml:467
 msgid "Description"
 msgstr "Beskrivning"
 
-#: ../NewEvent.qml:484
+#: ../NewEvent.qml:485
 msgid "Location"
 msgstr "Plats"
 
-#: ../NewEvent.qml:499 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:500 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Kalender"
 
-#: ../NewEvent.qml:541
+#: ../NewEvent.qml:542
 msgid "Add Guest"
 msgstr "Lägg till gäst"
 
@@ -391,21 +391,21 @@ msgstr "En vecka"
 msgid "2 weeks"
 msgstr "Två veckor"
 
-#: ../TimeLineBase.qml:80
+#: ../TimeLineBase.qml:73
 msgid "Untitled"
 msgstr "Namnlös"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:52
+#: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
 msgstr "V%1"
 
-#: ../TimeLineHeader.qml:64
+#: ../TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "Hela dagen"
 
-#: ../YearView.qml:54
+#: ../YearView.qml:60
 #, qt-format
 msgid "Year %1"
 msgstr "År %1"
@@ -420,23 +420,23 @@ msgstr ""
 "--eventid. De hanteras alla av systemet. Se källkoden för utförliga "
 "kommentarer om dem"
 
-#: ../calendar.qml:347
+#: ../calendar.qml:448
 msgid "Year"
 msgstr "År"
 
-#: ../calendar.qml:381
+#: ../calendar.qml:455
 msgid "Month"
 msgstr "Månad"
 
-#: ../calendar.qml:409
+#: ../calendar.qml:462
 msgid "Week"
 msgstr "Vecka"
 
-#: ../calendar.qml:442
+#: ../calendar.qml:469
 msgid "Day"
 msgstr "Dag"
 
-#: ../calendar.qml:474
+#: ../calendar.qml:476
 msgid "Agenda"
 msgstr "Agenda"
 
