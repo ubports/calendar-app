@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-28 10:27+0800\n"
+"POT-Creation-Date: 2015-11-09 14:40+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -416,23 +416,23 @@ msgid ""
 "about them"
 msgstr ""
 
-#: ../calendar.qml:352
+#: ../calendar.qml:365
 msgid "Year"
 msgstr ""
 
-#: ../calendar.qml:386
+#: ../calendar.qml:399
 msgid "Month"
 msgstr ""
 
-#: ../calendar.qml:419
+#: ../calendar.qml:432
 msgid "Week"
 msgstr ""
 
-#: ../calendar.qml:457
+#: ../calendar.qml:470
 msgid "Day"
 msgstr ""
 
-#: ../calendar.qml:489
+#: ../calendar.qml:502
 msgid "Agenda"
 msgstr ""
 

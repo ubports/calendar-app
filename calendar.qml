@@ -104,11 +104,12 @@ MainView {
                 if(commands[0].toLowerCase() === "eventid") {
                     // calendar://eventid=??
                     if( eventModel ) {
+                        var eventId = commands[1];
                         var prefix = "qtorganizer:eds::system-calendar/";
-                        if (commands[1].indexOf(prefix) !== 0)
-                            eventModel.showEventFromId(prefix + commands[1]);
-                        else
-                            eventModel.showEventFromId(commands[1]);
+                        if (eventId.indexOf(prefix) < 0)
+                            eventId  = prefix + eventId;
+
+                        eventModel.showEventFromId(eventId);
                     }
                 }
             }
@@ -224,6 +225,7 @@ MainView {
             property bool newevent: false;
             property int starttime: -1;
             property int endtime: -1;
+            property string eventId;
 
             selectedTabIndex: weekTab.index
 
@@ -276,6 +278,7 @@ MainView {
                 var newevenpattern= new RegExp ("newevent");
                 var starttimepattern = new RegExp ("starttime=\\d+");
                 var endtimepattern = new RegExp ("endtime=\\d+");
+                var eventIdpattern = new RegExp ("eventId=.*")
 
                 newevent = newevenpattern.test(url);
 
@@ -284,6 +287,9 @@ MainView {
 
                 if (endtimepattern.test(url))
                     endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
+
+                if (eventIdpattern.test(url))
+                    eventId = url.match(/eventId=(.*)/)[0].replace("eventId=", '');
             }
 
             Component.onCompleted: {
@@ -309,6 +315,13 @@ MainView {
                             tabs.selectedTabIndex = dayTab.index;
                         }
                     } // End of else if (starttime)
+                    else if (eventId !== "") {
+                        var prefix = "qtorganizer:eds::system-calendar/";
+                        if (eventId.indexOf(prefix) < 0)
+                            eventId  = prefix + eventId;
+
+                        eventModel.showEventFromId(eventId);
+                    }
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
