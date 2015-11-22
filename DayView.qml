@@ -56,7 +56,7 @@ Page{
             id:monthYear
             objectName:"monthYearLabel"
             fontSize: "x-large"
-            text: i18n.tr(currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
+            text: currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
             font.capitalization: Font.Capitalize
         }
     }

@@ -57,7 +57,7 @@ Page {
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
-            text: i18n.tr(currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
+            text: currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
             font.capitalization: Font.Capitalize
         }
     }
