@@ -20,11 +20,13 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
 import Qt.labs.settings 1.0
-
 import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
+
+    property bool displayWeekNumber: false;
+
     useDeprecatedToolbar: false
 
     // Work-around until this branch lands:
@@ -222,8 +224,6 @@ MainView {
             property int starttime: -1;
             property int endtime: -1;
 
-            selectedTabIndex: weekTab.index
-
             function newEvent() {
                 var startDate = new Date();
                 var endDate = new Date();
@@ -324,6 +324,7 @@ MainView {
             Settings {
                 id: settings
                 property alias defaultViewIndex: tabs.selectedTabIndex
+                property alias showWeekNumber: mainView.displayWeekNumber
             }
 
             Keys.onTabPressed: {
