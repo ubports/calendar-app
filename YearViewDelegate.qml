@@ -78,7 +78,7 @@ GridView{
                     objectName: "monthComponent" + index
                     showEvents: false
                     currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
-
+                    displayWeekNumber: mainView.displayWeekNumber;
                     isCurrentItem: yearView.focus
 
                     isYearView: true
