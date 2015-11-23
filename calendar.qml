@@ -26,6 +26,7 @@ MainView {
     id: mainView
 
     property bool displayWeekNumber: false;
+    property bool displayLunarCalendar: false;
 
     useDeprecatedToolbar: false
 
@@ -325,6 +326,7 @@ MainView {
                 id: settings
                 property alias defaultViewIndex: tabs.selectedTabIndex
                 property alias showWeekNumber: mainView.displayWeekNumber
+                property alias showLunarCalendar: mainView.displayLunarCalendar
             }
 
             Keys.onTabPressed: {

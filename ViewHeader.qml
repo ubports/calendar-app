@@ -17,6 +17,7 @@
  */
 import QtQuick 2.3
 import Ubuntu.Components 1.1
+import "./3rd-party/lunar.js" as Lunar
 
 Item{
     id: header
@@ -25,6 +26,7 @@ Item{
 
     property int month;
     property int year;
+    property int daysInMonth;
 
     property string monthLabelFontSize: "x-large"
     property string yearLabelFontSize: "large"
@@ -33,7 +35,6 @@ Item{
         id: monthLabel
         objectName: "monthLabel"
         fontSize: monthLabelFontSize
-        text: Qt.locale().standaloneMonthName(month)
         anchors.leftMargin: units.gu(1)
         anchors.left: parent.left
         color:"black"
@@ -44,10 +45,28 @@ Item{
         id: yearLabel
         objectName: "yearLabel"
         fontSize: yearLabelFontSize
-        text: year
         anchors.right: parent.right
         anchors.rightMargin: units.gu(1)
         color:"black"
         anchors.verticalCenter: parent.verticalCenter
+    }
+
+    Component.onCompleted:  {
+        yearLabel.text = Qt.binding(function(){
+            if (mainView.displayLunarCalendar) {
+                var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
+                return lunarDate.gzYear
+            } else {
+                return  year
+            }
+        })
+        monthLabel.text = Qt.binding(function(){
+            if (mainView.displayLunarCalendar) {
+                var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
+                return lunarDate.IMonthCn
+            } else {
+                return Qt.locale().standaloneMonthName(month)
+            }
+        })
     }
 }

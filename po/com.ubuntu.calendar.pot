@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-23 15:14+0800\n"
+"POT-Creation-Date: 2015-11-23 17:13+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,41 +18,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
-#: ../WeekView.qml:44 ../YearView.qml:42
+#: ../AgendaView.qml:52 ../DayView.qml:41 ../MonthView.qml:40
+#: ../WeekView.qml:45 ../YearView.qml:43
 msgid "Today"
 msgstr ""
 
-#: ../AgendaView.qml:93
+#: ../AgendaView.qml:94
 msgid "No upcoming events"
 msgstr ""
 
-#: ../AgendaView.qml:96
+#: ../AgendaView.qml:97
 msgid "You have no calendars enabled"
 msgstr ""
 
-#: ../AgendaView.qml:106
+#: ../AgendaView.qml:107
 msgid "Enable calendars"
 msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:169 ../EventBubble.qml:133
+#: ../AgendaView.qml:170 ../EventBubble.qml:133
 #, qt-format
 msgid "%1 - %2"
+msgstr ""
+
+#: ../AgendaView.qml:176
+#, qt-format
+msgid "%1 %2 %3 %4 %5"
 msgstr ""
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:126
+#: ../AllDayEventComponent.qml:123
 #, qt-format
 msgid "%1 ev."
 msgstr ""
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:130
+#: ../AllDayEventComponent.qml:127
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
@@ -98,10 +103,15 @@ msgstr ""
 msgid "Search contact"
 msgstr ""
 
+#: ../DayView.qml:147 ../MonthView.qml:139 ../WeekView.qml:170
+#, qt-format
+msgid "%1 %2"
+msgstr ""
+
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:60 ../MonthView.qml:61 ../WeekView.qml:64
+#: ../DayView.qml:149 ../MonthView.qml:144 ../WeekView.qml:172
 msgid "MMMM yyyy"
 msgstr ""
 
@@ -169,35 +179,55 @@ msgstr ""
 msgid "%1 <b>%2</b>"
 msgstr ""
 
-#: ../EventDetails.qml:43 ../NewEvent.qml:436
+#: ../EventDetails.qml:44 ../NewEvent.qml:436
 msgid "Event Details"
 msgstr ""
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
-#: ../EventDetails.qml:68
+#: ../EventDetails.qml:69
 #, qt-format
 msgid "%1 Calendar"
 msgstr ""
 
-#: ../EventDetails.qml:129
+#: ../EventDetails.qml:143
+#, qt-format
+msgid "%1 %2 %3 - %4 %5 %6 (All Day)"
+msgstr ""
+
+#: ../EventDetails.qml:147
 #, qt-format
 msgid "%1 - %2 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:133
+#: ../EventDetails.qml:153
+#, qt-format
+msgid "%1 %2 %3 (All Day)"
+msgstr ""
+
+#: ../EventDetails.qml:156
 #, qt-format
 msgid "%1 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:203
+#: ../EventDetails.qml:162
+#, qt-format
+msgid "%1 %2 %3, %4 - %5 %6 %7, %8"
+msgstr ""
+
+#: ../EventDetails.qml:171
+#, qt-format
+msgid "%1 %2 %3, %4 - %5"
+msgstr ""
+
+#: ../EventDetails.qml:238
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:354 ../NewEvent.qml:538
+#: ../EventDetails.qml:389 ../NewEvent.qml:538
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:635
+#: ../EventDetails.qml:432 ../EventReminder.qml:35 ../NewEvent.qml:635
 msgid "Reminder"
 msgstr ""
 
@@ -251,6 +281,11 @@ msgstr ""
 msgid "Weekly on %1"
 msgstr ""
 
+#: ../HeaderDateComponent.qml:90
+#, qt-format
+msgid "%1 %2 %3"
+msgstr ""
+
 #: ../LimitLabelModel.qml:25
 msgid "Never"
 msgstr ""
@@ -263,7 +298,7 @@ msgstr ""
 msgid "After Date"
 msgstr ""
 
-#: ../MonthComponent.qml:260
+#: ../MonthComponent.qml:262
 msgid "Wk"
 msgstr ""
 
@@ -402,6 +437,10 @@ msgstr ""
 msgid "Show week numbers"
 msgstr ""
 
+#: ../Settings.qml:91
+msgid "Show lunar calendar"
+msgstr ""
+
 #: ../TimeLineBase.qml:73
 msgid "Untitled"
 msgstr ""
@@ -416,35 +455,35 @@ msgstr ""
 msgid "All Day"
 msgstr ""
 
-#: ../YearView.qml:61
+#: ../YearView.qml:109
 #, qt-format
 msgid "Year %1"
 msgstr ""
 
-#: ../calendar.qml:47
+#: ../calendar.qml:48
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
 
-#: ../calendar.qml:455
+#: ../calendar.qml:457
 msgid "Year"
 msgstr ""
 
-#: ../calendar.qml:462
+#: ../calendar.qml:464
 msgid "Month"
 msgstr ""
 
-#: ../calendar.qml:469
+#: ../calendar.qml:471
 msgid "Week"
 msgstr ""
 
-#: ../calendar.qml:476
+#: ../calendar.qml:478
 msgid "Day"
 msgstr ""
 
-#: ../calendar.qml:483
+#: ../calendar.qml:485
 msgid "Agenda"
 msgstr ""
 

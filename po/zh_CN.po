@@ -157,6 +157,10 @@ msgstr "编辑这个"
 msgid "New Event"
 msgstr "新建事件"
 
+#: ../EventActions.qml:72 ../Settings.qml:28
+msgid "Settings"
+msgstr "设置"
+
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
 #: ../EventBubble.qml:144 ../EventBubble.qml:149

@@ -24,6 +24,7 @@ import QtOrganizer 5.0
 
 import "Defines.js" as Defines
 import "dateExt.js" as DateExt
+import "./3rd-party/lunar.js" as Lunar
 
 Page {
     id: root
@@ -123,21 +124,55 @@ Page {
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
 
+        var lunarStartDate = null;
+        var lunarEndDate = null;
+        if (mainView.displayLunarCalendar) {
+            lunarStartDate = Lunar.calendar.solar2lunar(e.startDateTime.getFullYear(),
+                                                   e.startDateTime.getMonth() + 1,
+                                                   e.startDateTime.getDate())
+
+            lunarEndDate = Lunar.calendar.solar2lunar(e.endDateTime.getFullYear(),
+                                                   e.endDateTime.getMonth() + 1,
+                                                   e.endDateTime.getDate())
+        }
+
         if( e.allDay ) {
             var days = Math.floor((e.endDateTime - e.startDateTime) / Date.msPerDay);
             if( days !== 1 ) {
-                dateLabel.text = i18n.tr("%1 - %2 (All Day)")
-                .arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
-                .arg( e.endDateTime.addDays(-1).toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                if (mainView.displayLunarCalendar) {
+                    dateLabel.text = i18n.tr("%1 %2 %3 - %4 %5 %6 (All Day)")
+                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
+                    .arg(lunarEndDate.gzYear).arg(lunarEndDate .IMonthCn).arg(lunarEndDate.IDayCn)
+                } else {
+                    dateLabel.text = i18n.tr("%1 - %2 (All Day)")
+                    .arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                    .arg( e.endDateTime.addDays(-1).toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                }
             } else {
-                dateLabel.text = i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                if (mainView.displayLunarCalendar) {
+                    dateLabel.text = i18n.tr("%1 %2 %3 (All Day)")
+                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
+                } else {
+                    dateLabel.text = i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                }
             }
         } else {
             if (e.endDateTime.getDate() !== e.startDateTime.getDate()) {
-                dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "
-                        + e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) +  ", " + endTime;
+                if (mainView.displayLunarCalendar) {
+                    dateLabel.text = i18n.tr("%1 %2 %3, %4 - %5 %6 %7, %8")
+                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime)
+                    .arg(lunarEndDate.gzYear).arg(lunarEndDate .IMonthCn).arg(lunarEndDate.IDayCn).arg(endTime);
+                } else {
+                    dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "
+                            + e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) +  ", " + endTime;
+                }
             } else {
-                dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
+                if (mainView.displayLunarCalendar) {
+                    dateLabel.text = i18n.tr("%1 %2 %3, %4 - %5")
+                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime).arg(endTime);
+                } else {
+                    dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
+                }
             }
         }
 

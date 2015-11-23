@@ -20,6 +20,7 @@ import QtQuick 2.3
 import Ubuntu.Components 1.1
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
+import "./3rd-party/lunar.js" as Lunar
 
 Page{
     id: dayViewPage
@@ -57,7 +58,6 @@ Page{
             id:monthYear
             objectName:"monthYearLabel"
             fontSize: "x-large"
-            text: currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
             font.capitalization: Font.Capitalize
         }
     }
@@ -136,5 +136,18 @@ Page{
                 }
             }
         }
+    }
+
+    Component.onCompleted: {
+        monthYear.text = Qt.binding(function(){
+            if(mainView.displayLunarCalendar){
+                var lunarDate = Lunar.calendar.solar2lunar(currentDay.getFullYear(),
+                                                           currentDay.getMonth() + 1,
+                                                           currentDay.getDate())
+                return i18n.tr("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
+            } else {
+                return currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+            }
+        })
     }
 }

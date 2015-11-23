@@ -18,8 +18,9 @@
 
 import QtQuick 2.3
 import Ubuntu.Components 1.1
-
 import "dateExt.js" as DateExt
+import "./3rd-party/lunar.js" as Lunar
+
 Page {
     id: yearViewPage
     objectName: "yearViewPage"
@@ -58,7 +59,6 @@ Page {
             id:year
             objectName:"yearLabel"
             fontSize: "x-large"
-            text: i18n.tr("Year %1").arg(currentYear)
         }
     }
 
@@ -98,5 +98,16 @@ Page {
                 }
             }
         }
+    }
+
+    Component.onCompleted: {
+        year.text = Qt.binding(function(){
+            if(mainView.displayLunarCalendar){
+                var lunarDate = Lunar.calendar.solar2lunar(currentYear, 6, 0)
+                return lunarDate.gzYear +" "+ lunarDate.Animal
+            } else {
+                return i18n.tr("Year %1").arg(currentYear)
+            }
+        })
     }
 }
