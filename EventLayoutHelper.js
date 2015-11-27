@@ -37,24 +37,13 @@ WorkerScript.onMessage = function(events) {
     }
 }
 
-
-function getMinutes(time) {
-    return time.getHours() * 60 + time.getMinutes();
-}
-
-function getDuration(event) {
-    var start = getMinutes(event.startDateTime);
-    var end = getMinutes(event.endDateTime);
-    return end - start;
-}
-
 function processEvents(events) {
     var array = [];
     for( var i = 0; i < events.length ; ++i) {
         var event = events[i]
         var sch = {};
-        sch["start"] = getMinutes(event.startDateTime);
-        sch["duration"] = getDuration(event);
+        sch["start"] = event.startDateTime.getTime()
+        sch["duration"] = event.endDateTime - event.startDateTime
         sch["id"] = event.id;
         sch["depth"] = 0;
         sortedInsert(array,sch);
