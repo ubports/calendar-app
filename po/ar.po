@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-11-23 15:14+0800\n"
-"PO-Revision-Date: 2014-08-10 03:01+0000\n"
+"PO-Revision-Date: 2015-11-28 19:17+0000\n"
 "Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2015-11-24 05:32+0000\n"
+"X-Launchpad-Export-Date: 2015-11-29 05:27+0000\n"
 "X-Generator: Launchpad (build 17850)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
@@ -30,11 +30,11 @@ msgstr "لا أحداث قادمة"
 
 #: ../AgendaView.qml:96
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "لا يوجد لديك تقويمات مفعّلة"
 
 #: ../AgendaView.qml:106
 msgid "Enable calendars"
-msgstr ""
+msgstr "تفعيل التقويمات"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -50,7 +50,7 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 حدث"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:130
@@ -97,7 +97,7 @@ msgstr ""
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr ""
+msgstr "البحث في جهات الاتصال"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -161,7 +161,7 @@ msgstr "حدث جديد"
 
 #: ../EventActions.qml:72 ../Settings.qml:28
 msgid "Settings"
-msgstr ""
+msgstr "الإعدادات"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -178,7 +178,7 @@ msgstr "تفاصيل الحدث"
 #: ../EventDetails.qml:68
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "%1 تقويم"
 
 #: ../EventDetails.qml:129
 #, qt-format
