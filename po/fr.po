@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-11-23 15:14+0800\n"
-"PO-Revision-Date: 2015-06-22 19:01+0000\n"
+"PO-Revision-Date: 2015-11-29 18:36+0000\n"
 "Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-11-24 05:33+0000\n"
+"X-Launchpad-Export-Date: 2015-11-30 05:27+0000\n"
 "X-Generator: Launchpad (build 17850)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
@@ -162,7 +162,7 @@ msgstr "Nouvel événement"
 
 #: ../EventActions.qml:72 ../Settings.qml:28
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -267,7 +267,7 @@ msgstr "Après le"
 
 #: ../MonthComponent.qml:260
 msgid "Wk"
-msgstr ""
+msgstr "Sem"
 
 #: ../NewEvent.qml:84
 msgid "Save"
@@ -402,7 +402,7 @@ msgstr "2 semaines"
 
 #: ../Settings.qml:60
 msgid "Show week numbers"
-msgstr ""
+msgstr "Afficher les numéros de semaine"
 
 #: ../TimeLineBase.qml:73
 msgid "Untitled"
