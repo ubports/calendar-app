@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-11-23 15:14+0800\n"
-"PO-Revision-Date: 2015-11-27 12:04+0000\n"
+"PO-Revision-Date: 2015-12-01 21:23+0000\n"
 "Last-Translator: Siamion Šachalevič <semen.shah@gmail.com>\n"
 "Language-Team: Belarusian <be@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Launchpad-Export-Date: 2015-11-28 04:57+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-02 05:34+0000\n"
+"X-Generator: Launchpad (build 17856)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
 #: ../WeekView.qml:44 ../YearView.qml:42
@@ -112,7 +112,7 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
-msgstr ""
+msgstr "Выдаліць падзею"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../DeleteConfirmationDialog.qml:36
@@ -127,19 +127,19 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
-msgstr ""
+msgstr "Выдаліць шэраг"
 
 #: ../DeleteConfirmationDialog.qml:51
 msgid "Delete this"
-msgstr ""
+msgstr "Выдаліць гэта"
 
 #: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:68
 msgid "Delete"
-msgstr ""
+msgstr "Выдаліць"
 
 #: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:325
 msgid "Edit Event"
-msgstr ""
+msgstr "Рэдагаваць падзею"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../EditEventConfirmationDialog.qml:32
@@ -149,11 +149,11 @@ msgstr ""
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
-msgstr ""
+msgstr "Рэдагаваць шэраг"
 
 #: ../EditEventConfirmationDialog.qml:44
 msgid "Edit this"
-msgstr ""
+msgstr "Рэдагаваць гэта"
 
 #: ../EventActions.qml:51 ../NewEvent.qml:325
 msgid "New Event"
@@ -172,7 +172,7 @@ msgstr ""
 
 #: ../EventDetails.qml:43 ../NewEvent.qml:436
 msgid "Event Details"
-msgstr ""
+msgstr "Дэталі падзеі"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
 #: ../EventDetails.qml:68
@@ -212,11 +212,11 @@ msgstr ""
 
 #: ../EventRepetition.qml:174
 msgid "Repeats On:"
-msgstr ""
+msgstr "Паўтор на:"
 
 #: ../EventRepetition.qml:219
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Канец паўтораў"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
@@ -254,15 +254,15 @@ msgstr ""
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
-msgstr ""
+msgstr "Ніколі"
 
 #: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr ""
+msgstr "Пасля здарэння Х"
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
-msgstr ""
+msgstr "Пасля даты"
 
 #: ../MonthComponent.qml:260
 msgid "Wk"
@@ -274,15 +274,15 @@ msgstr "Захаваць"
 
 #: ../NewEvent.qml:192
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "Час заканчэння не можа быць раней часу пачатку"
 
 #: ../NewEvent.qml:335
 msgid "Error"
-msgstr ""
+msgstr "Памылка"
 
 #: ../NewEvent.qml:337
 msgid "OK"
-msgstr ""
+msgstr "Добра"
 
 #: ../NewEvent.qml:390
 msgid "From"
@@ -298,11 +298,11 @@ msgstr ""
 
 #: ../NewEvent.qml:449
 msgid "Event Name"
-msgstr ""
+msgstr "Назва падзеі"
 
 #: ../NewEvent.qml:467
 msgid "Description"
-msgstr ""
+msgstr "Апісанне"
 
 #: ../NewEvent.qml:485
 msgid "Location"
@@ -314,15 +314,15 @@ msgstr "Каляндар"
 
 #: ../NewEvent.qml:542
 msgid "Add Guest"
-msgstr ""
+msgstr "Дадаць госця"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
-msgstr ""
+msgstr "Аднаразова"
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr ""
+msgstr "Штодзённа"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
@@ -342,19 +342,19 @@ msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
-msgstr ""
+msgstr "Штотыднёва"
 
 #: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
-msgstr ""
+msgstr "Штомесяц"
 
 #: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
-msgstr ""
+msgstr "Штогод"
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
-msgstr ""
+msgstr "Без напаміну"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
@@ -365,39 +365,39 @@ msgstr ""
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
-msgstr ""
+msgstr "5 хвілін"
 
 #: ../RemindersModel.qml:32
 msgid "15 minutes"
-msgstr ""
+msgstr "15 хвілін"
 
 #: ../RemindersModel.qml:33
 msgid "30 minutes"
-msgstr ""
+msgstr "30 хвілін"
 
 #: ../RemindersModel.qml:34
 msgid "1 hour"
-msgstr ""
+msgstr "1 гадзіна"
 
 #: ../RemindersModel.qml:35
 msgid "2 hours"
-msgstr ""
+msgstr "2 гадзіны"
 
 #: ../RemindersModel.qml:36
 msgid "1 day"
-msgstr ""
+msgstr "1 дзень"
 
 #: ../RemindersModel.qml:37
 msgid "2 days"
-msgstr ""
+msgstr "2 дні"
 
 #: ../RemindersModel.qml:38
 msgid "1 week"
-msgstr ""
+msgstr "1 тыдзень"
 
 #: ../RemindersModel.qml:39
 msgid "2 weeks"
-msgstr ""
+msgstr "2 тыдні"
 
 #: ../Settings.qml:60
 msgid "Show week numbers"
@@ -428,31 +428,34 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"Каляндар прымае чатыры аргументы:  --starttime, --endtime, --newevent and --"
+"eventid. Яны будуць кіравацца сістэмай. Глядзіце крыніцу для поўнага "
+"каментарыя пра іх"
 
 #: ../calendar.qml:455
 msgid "Year"
-msgstr ""
+msgstr "Год"
 
 #: ../calendar.qml:462
 msgid "Month"
-msgstr ""
+msgstr "Месяц"
 
 #: ../calendar.qml:469
 msgid "Week"
-msgstr ""
+msgstr "Тыдзень"
 
 #: ../calendar.qml:476
 msgid "Day"
-msgstr ""
+msgstr "Дзень"
 
 #: ../calendar.qml:483
 msgid "Agenda"
-msgstr ""
+msgstr "Парадак дня"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "Каляндар для Ubuntu, які сінхранізуецца з сеціўнымі контамі."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "каляндар; падзея; дзень; тыдні; год; прызначэнне; сустрэча;"
