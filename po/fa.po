@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-11-23 15:14+0800\n"
-"PO-Revision-Date: 2015-06-30 19:36+0000\n"
+"PO-Revision-Date: 2015-12-04 17:25+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-11-24 05:33+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-05 05:38+0000\n"
+"X-Generator: Launchpad (build 17862)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
 #: ../WeekView.qml:44 ../YearView.qml:42
@@ -159,7 +159,7 @@ msgstr "رویداد تازه"
 
 #: ../EventActions.qml:72 ../Settings.qml:28
 msgid "Settings"
-msgstr ""
+msgstr "تنظیمات"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -263,7 +263,7 @@ msgstr "بعد از تاریخ"
 
 #: ../MonthComponent.qml:260
 msgid "Wk"
-msgstr ""
+msgstr "هف"
 
 #: ../NewEvent.qml:84
 msgid "Save"
@@ -398,7 +398,7 @@ msgstr "۲ هفته"
 
 #: ../Settings.qml:60
 msgid "Show week numbers"
-msgstr ""
+msgstr "نمایش شمارهٔ هفته"
 
 #: ../TimeLineBase.qml:73
 msgid "Untitled"
