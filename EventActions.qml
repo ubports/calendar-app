@@ -23,7 +23,9 @@ import Ubuntu.SyncMonitor 0.1
 Item {
     id: actionPool
 
-    property alias newEventAction: _newEventAction
+    //removing till following bug is resolved
+    //https://bugs.launchpad.net/ubuntu/+source/ubuntu-ui-toolkit/+bug/1493178
+    //property alias newEventAction: _newEventAction
     property alias showCalendarAction: _showCalendarAction
     property alias syncCalendarAction: _syncCalendarAction
 
