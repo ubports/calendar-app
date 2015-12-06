@@ -59,7 +59,8 @@ Page{
         calendarTodayAction,
         commonHeaderActions.showCalendarAction,
         commonHeaderActions.reloadAction,
-        commonHeaderActions.syncCalendarAction
+        commonHeaderActions.syncCalendarAction,
+        commonHeaderActions.settingsAction
     ]
 
     EventListModel {

@@ -74,7 +74,13 @@ Item {
                 timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
             }
         } else {
-            timeLineView.contentX = 0;
+            //need to check swipe direction
+            //and change startion position as per direction
+            if(weekViewPath.swipeDirection() === -1) {
+                timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
+            } else {
+                timeLineView.contentX = 0;
+            }
         }
     }
 

@@ -255,6 +255,7 @@ Page {
 
             model.saveItem(event);
             pageStack.pop();
+
             root.eventAdded(event);
         }
     }

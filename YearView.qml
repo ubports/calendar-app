@@ -29,6 +29,12 @@ Page {
 
     Keys.forwardTo: [yearPathView]
 
+    function refreshCurrentYear(year) {
+        currentYear = year;
+        var yearViewDelegate = yearPathView.currentItem.item;
+        yearViewDelegate.refresh();
+    }
+
     Action {
         id: calendarTodayAction
         objectName:"todaybutton"
@@ -44,7 +50,8 @@ Page {
             calendarTodayAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
-            commonHeaderActions.syncCalendarAction
+            commonHeaderActions.syncCalendarAction,
+            commonHeaderActions.settingsAction
         ]
         contents: Label {
             id:year
@@ -84,7 +91,7 @@ Page {
 
                     scrollMonth: 0;
                     isCurrentItem: index == yearPathView.currentIndex
-                    year: (yearViewPage.currentYear + yearPathView.indexType(index))
+                    year: (currentYear + yearPathView.indexType(index))
 
                     anchors.fill: parent
                 }
