@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-11-23 15:14+0800\n"
-"PO-Revision-Date: 2015-09-07 20:51+0000\n"
+"PO-Revision-Date: 2015-12-09 19:51+0000\n"
 "Last-Translator: Bojan Bogdanović <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2015-11-24 05:33+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2015-12-11 05:53+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
 #: ../WeekView.qml:44 ../YearView.qml:42
@@ -162,7 +162,7 @@ msgstr "Нови догађај"
 
 #: ../EventActions.qml:72 ../Settings.qml:28
 msgid "Settings"
-msgstr ""
+msgstr "Подешавање"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -268,7 +268,7 @@ msgstr "Након датума"
 
 #: ../MonthComponent.qml:260
 msgid "Wk"
-msgstr ""
+msgstr "Нд"
 
 #: ../NewEvent.qml:84
 msgid "Save"
@@ -403,7 +403,7 @@ msgstr "2 недеље"
 
 #: ../Settings.qml:60
 msgid "Show week numbers"
-msgstr ""
+msgstr "Прикажи број недеља"
 
 #: ../TimeLineBase.qml:73
 msgid "Untitled"
