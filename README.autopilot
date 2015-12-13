@@ -32,7 +32,7 @@ Using terminal:
 
 *  Build the calendar app,
     $ mkdir builddir && cd builddir
-    $ cmake .. && cmake --build . -- -j 3
+    $ cmake ..  && make -j3
     $ cd ..
 
 *  Navigate to the tests/autopilot directory.
@@ -48,7 +48,7 @@ Using terminal:
     $ autopilot3 run -vv ubuntu_calendar_app.tests.test_weekview.TestWeekview.test_change_week_across_year 
 
     Debugging tests using autopilot vis
-    $ autopilot3 launch -i Qt qmlscene ../../app/ubuntu-calendar-app.qml  -I ../../builddir/backend/
+    $ autopilot3 launch -i Qt qmlscene ../../app/ubuntu-calendar-app.qml
     $ autopilot3 vis
 
 
