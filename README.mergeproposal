@@ -29,5 +29,5 @@ Checklist
 The above checklist is more of a guideline to help calendar app trunk stay buildable,
 stable and up to date.
 
-Note: As of vivid 15.04, Autopilot are broken in trunk. As such autopilot failures
-can be excused until they are fixed in trunk.
+Note: As of vivid 15.04, the autopilot tests are broken in trunk As such autopilot failures
+can be excused until they are fixed.

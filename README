@@ -17,7 +17,7 @@ Here are some useful links with regards to the Calendar App development.
 Launch
 ======
 This application is implemented in QML/JS.
-You need Qt5 and the qmlscene viewe to launch this application.
+You need Qt5 and the qmlscene viewer to launch this application.
 
 $ cd ubuntu-calendar-app
 $ qmlscene calendar.qml

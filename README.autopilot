@@ -19,6 +19,9 @@ Prerequisites
 Install the following autopilot packages required to run the tests,
     $ sudo apt-get install python3-autopilot libautopilot-qt ubuntu-ui-toolkit-autopilot python3-autopilot-vis
 
+address-book-service-testability package may also be required if not already installed
+   $ sudo apt-get install address-book-service-testability
+
 Running tests on the desktop
 ============================
 
