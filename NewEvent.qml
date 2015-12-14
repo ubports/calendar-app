@@ -134,19 +134,17 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        //Create fresh Recurrence Object.
-        rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml");
-        selectCalendar(model.getDefaultCollection().collectionId);
+        selectCalendar(model.defaultCollection().collectionId);
     }
 
     //Editing Event
     function editEvent(e) {
         //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
-        if(e.itemType === Type.Event){
-            rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
-                        Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml")
-                      : e.recurrence.recurrenceRules[0];
+        if(e.itemType === Type.Event && e.recurrence.recurrenceRules[0] !== undefined
+                && e.recurrence.recurrenceRules[0] !== null){
+            rule =  e.recurrence.recurrenceRules[0];
         }
+
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
 
@@ -229,6 +227,8 @@ Page {
             //Set the Rule object to an event
             if(rule !== null && rule !== undefined) {
                 event.recurrence.recurrenceRules = [rule]
+            } else {
+                event.recurrence.recurrenceRules = [];
             }
 
             //remove old reminder value
@@ -255,6 +255,7 @@ Page {
 
             model.saveItem(event);
             pageStack.pop();
+
             root.eventAdded(event);
         }
     }
@@ -616,8 +617,8 @@ Page {
                 progression: true
                 visible: event.itemType === Type.Event
                 text: i18n.tr("Repeats")
-                subText: event.itemType === Type.Event ? eventUtils.getRecurrenceString(rule) : ""
-                onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
+                subText: event.itemType === Type.Event ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
+                onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"eventRoot": root,"isEdit":isEdit});
             }
 
             ListItem.ThinDivider {

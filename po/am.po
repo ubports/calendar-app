@@ -7,37 +7,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-08 21:32+0800\n"
-"PO-Revision-Date: 2015-06-20 12:20+0000\n"
+"POT-Creation-Date: 2015-11-23 15:14+0800\n"
+"PO-Revision-Date: 2015-12-01 16:22+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2015-07-31 05:37+0000\n"
-"X-Generator: Launchpad (build 17656)\n"
+"X-Launchpad-Export-Date: 2015-12-02 05:34+0000\n"
+"X-Generator: Launchpad (build 17856)\n"
 
-#: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:37
-#: ../WeekView.qml:42 ../YearView.qml:36
+#: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
+#: ../WeekView.qml:44 ../YearView.qml:42
 msgid "Today"
 msgstr "ዛሬ"
 
-#: ../AgendaView.qml:92
+#: ../AgendaView.qml:93
 msgid "No upcoming events"
 msgstr "ወደፊት የሚመጣ ሁኔታ የለም"
 
-#: ../AgendaView.qml:95
+#: ../AgendaView.qml:96
 msgid "You have no calendars enabled"
 msgstr "ቀን መቁጠሪያ ተሰናክሏል"
 
-#: ../AgendaView.qml:105
+#: ../AgendaView.qml:106
 msgid "Enable calendars"
 msgstr "ቀን መቁጠሪያ ያስችሉ"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:168 ../EventBubble.qml:133
+#: ../AgendaView.qml:169 ../EventBubble.qml:133
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -46,34 +46,34 @@ msgstr "%1 - %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:123
+#: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 ev."
 msgstr "%1 ሁኔታ"
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:127
+#: ../AllDayEventComponent.qml:130
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
 msgstr[0] "%1 የ ሙሉ ቀን ሁኔታ"
 msgstr[1] "%1 የ ሙሉ ቀን ሁኔታዎች"
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:60
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:61
 msgid "Calendars"
 msgstr "ቀን መቁጠሪያዎች"
 
-#: ../CalendarChoicePopup.qml:37
+#: ../CalendarChoicePopup.qml:37 ../Settings.qml:32
 msgid "Back"
 msgstr "ወደ ኋላ"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
 msgid "Sync"
 msgstr "ማስማሚያ"
 
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
 msgid "Syncing"
 msgstr "በ ማስማማት ላይ"
 
@@ -101,7 +101,7 @@ msgstr "ግንኙነት መፈለጊያ"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:59 ../MonthView.qml:58 ../WeekView.qml:61
+#: ../DayView.qml:60 ../MonthView.qml:61 ../WeekView.qml:64
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -136,7 +136,7 @@ msgstr "ይህን ማጥፊያ"
 msgid "Delete"
 msgstr "ማጥፊያ"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:322
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:325
 msgid "Edit Event"
 msgstr "ሁኔታዎችን ማረሚያ"
 
@@ -154,9 +154,13 @@ msgstr "ተከታታዮችን ማረሚያ"
 msgid "Edit this"
 msgstr "ይህን ማረሚያ"
 
-#: ../EventActions.qml:50 ../NewEvent.qml:322
+#: ../EventActions.qml:51 ../NewEvent.qml:325
 msgid "New Event"
 msgstr "አዲስ ሁኔታ"
+
+#: ../EventActions.qml:72 ../Settings.qml:28
+msgid "Settings"
+msgstr "ማሰናጃዎች"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -165,35 +169,35 @@ msgstr "አዲስ ሁኔታ"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:43 ../NewEvent.qml:433
+#: ../EventDetails.qml:43 ../NewEvent.qml:436
 msgid "Event Details"
 msgstr "የሁኔታዎች ዝርዝር"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
-#: ../EventDetails.qml:67
+#: ../EventDetails.qml:68
 #, qt-format
 msgid "%1 Calendar"
 msgstr "%1 ቀን መቁጠሪያ"
 
-#: ../EventDetails.qml:120
+#: ../EventDetails.qml:129
 #, qt-format
 msgid "%1 - %2 (All Day)"
 msgstr "%1 - %2 (በ ሙሉ ቀን)"
 
-#: ../EventDetails.qml:124
+#: ../EventDetails.qml:133
 #, qt-format
 msgid "%1 (All Day)"
 msgstr "%1 (የ ሙሉ ቀን)"
 
-#: ../EventDetails.qml:194
+#: ../EventDetails.qml:203
 msgid "Edit"
 msgstr "ማረሚያ"
 
-#: ../EventDetails.qml:345 ../NewEvent.qml:535
+#: ../EventDetails.qml:354 ../NewEvent.qml:538
 msgid "Guests"
 msgstr "እንግዶች"
 
-#: ../EventDetails.qml:388 ../EventReminder.qml:35 ../NewEvent.qml:632
+#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:635
 msgid "Reminder"
 msgstr "አስታዋሽ"
 
@@ -201,26 +205,26 @@ msgstr "አስታዋሽ"
 #. and it is shown as the header of the page to choose repetition
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
-#: ../EventRepetition.qml:41 ../EventRepetition.qml:150
+#: ../EventRepetition.qml:40 ../EventRepetition.qml:155
 msgid "Repeat"
 msgstr "መድገሚያ"
 
-#: ../EventRepetition.qml:169
+#: ../EventRepetition.qml:174
 msgid "Repeats On:"
 msgstr "ይደገማል:"
 
-#: ../EventRepetition.qml:214
+#: ../EventRepetition.qml:219
 msgid "Recurring event ends"
 msgstr "ድግግሞሽ ሁኔታ ጨርሷል"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:237 ../NewEvent.qml:616
+#: ../EventRepetition.qml:242 ../NewEvent.qml:619
 msgid "Repeats"
 msgstr "መድገሚያ"
 
-#: ../EventRepetition.qml:262
+#: ../EventRepetition.qml:267
 msgid "Date"
 msgstr "ቀን"
 
@@ -259,51 +263,55 @@ msgstr "ከሆነ X  በኋላ"
 msgid "After Date"
 msgstr "ከ ቀን በኋላ"
 
+#: ../MonthComponent.qml:260
+msgid "Wk"
+msgstr "ሳምንት"
+
 #: ../NewEvent.qml:84
 msgid "Save"
 msgstr "ማስቀመጫ"
 
-#: ../NewEvent.qml:193
+#: ../NewEvent.qml:192
 msgid "End time can't be before start time"
 msgstr "መጨረሻው ሰአት ከ መጀመሪያው ሰአት በፊት መሆን የለበትም"
 
-#: ../NewEvent.qml:332
+#: ../NewEvent.qml:335
 msgid "Error"
 msgstr "ስህተት"
 
-#: ../NewEvent.qml:334
+#: ../NewEvent.qml:337
 msgid "OK"
 msgstr "እሺ"
 
-#: ../NewEvent.qml:387
+#: ../NewEvent.qml:390
 msgid "From"
 msgstr "ከ"
 
-#: ../NewEvent.qml:400
+#: ../NewEvent.qml:403
 msgid "To"
 msgstr "ለ"
 
-#: ../NewEvent.qml:417
+#: ../NewEvent.qml:420
 msgid "All day event"
 msgstr "የ ሙሉ ቀን ሁኔታ"
 
-#: ../NewEvent.qml:446
+#: ../NewEvent.qml:449
 msgid "Event Name"
 msgstr "የ ሁኔታው ስም"
 
-#: ../NewEvent.qml:464
+#: ../NewEvent.qml:467
 msgid "Description"
 msgstr "መግለጫ"
 
-#: ../NewEvent.qml:482
+#: ../NewEvent.qml:485
 msgid "Location"
 msgstr "አካባቢ"
 
-#: ../NewEvent.qml:497 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:500 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "የቀን መቁጠሪያ"
 
-#: ../NewEvent.qml:539
+#: ../NewEvent.qml:542
 msgid "Add Guest"
 msgstr "እንግዳ መጨመሪያ"
 
@@ -390,26 +398,30 @@ msgstr "በ 1 ሳምንት ውስጥ"
 msgid "2 weeks"
 msgstr "በ 2 ሳምንቶች ውስጥ"
 
-#: ../TimeLineBase.qml:80
+#: ../Settings.qml:60
+msgid "Show week numbers"
+msgstr "የ ሳምንት ቁጥር ማሳያ"
+
+#: ../TimeLineBase.qml:73
 msgid "Untitled"
 msgstr "ያልተሰየመ"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:51
+#: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
 msgstr "ሳ%1"
 
-#: ../TimeLineHeader.qml:63
+#: ../TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "በ ሙሉ ቀን"
 
-#: ../YearView.qml:54
+#: ../YearView.qml:61
 #, qt-format
 msgid "Year %1"
 msgstr "አመት %1"
 
-#: ../calendar.qml:44
+#: ../calendar.qml:47
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -418,23 +430,23 @@ msgstr ""
 "የ ቀን መቁጠሪያ አራት ክርክሮችን ይደግፋል: --መጀመሪያ ጊዜ, --መጨረሻ ጊዜ, --አዲስ ሁኔታ እና --የሁኔታ መለያ: "
 "አስተዳዳሪው ስርአቱ ነው: በበለጠ ለመረዳት ምንጩን ይመልከቱ"
 
-#: ../calendar.qml:322
+#: ../calendar.qml:455
 msgid "Year"
 msgstr "አመት"
 
-#: ../calendar.qml:356
+#: ../calendar.qml:462
 msgid "Month"
 msgstr "ወር"
 
-#: ../calendar.qml:384
+#: ../calendar.qml:469
 msgid "Week"
 msgstr "ሳምንት"
 
-#: ../calendar.qml:417
+#: ../calendar.qml:476
 msgid "Day"
 msgstr "ቀን"
 
-#: ../calendar.qml:449
+#: ../calendar.qml:483
 msgid "Agenda"
 msgstr "አጄንዳ"
 

@@ -1,39 +1,39 @@
-# Khmer translation for ubuntu-calendar-app
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# Bengali translation for ubuntu-calendar-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the ubuntu-calendar-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-11-23 15:14+0800\n"
-"PO-Revision-Date: 2014-08-20 04:44+0000\n"
-"Last-Translator: Sophea Sok <sksophea@gmail.com>\n"
-"Language-Team: Khmer <km@li.org>\n"
+"PO-Revision-Date: 2015-12-12 07:20+0000\n"
+"Last-Translator: Aniruddha Adhikary <Unknown>\n"
+"Language-Team: Bengali <bn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2015-11-24 05:33+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2015-12-13 05:30+0000\n"
+"X-Generator: Launchpad (build 17865)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
 #: ../WeekView.qml:44 ../YearView.qml:42
 msgid "Today"
-msgstr "ថ្ងៃ​នេះ"
+msgstr "আজ"
 
 #: ../AgendaView.qml:93
 msgid "No upcoming events"
-msgstr "គ្មាន​ព្រឹត្តិការ​នឹង​កើត​ឡើង"
+msgstr "আগামীতে কোন অনুষ্ঠান নেই"
 
 #: ../AgendaView.qml:96
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "কোন ক্যালেন্ডার সক্রিয় নয়"
 
 #: ../AgendaView.qml:106
 msgid "Enable calendars"
-msgstr ""
+msgstr "ক্যালেন্ডার সক্রিয় করুন"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -49,54 +49,54 @@ msgstr "%1 - %2"
 #: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 টি"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:130
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 টি দিনব্যাপি অনুষ্ঠান"
+msgstr[1] "%1 টি দিনব্যাপি অনুষ্ঠান"
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:61
 msgid "Calendars"
-msgstr "ប្រតិទិន"
+msgstr "ক্যালেন্ডার"
 
 #: ../CalendarChoicePopup.qml:37 ../Settings.qml:32
 msgid "Back"
-msgstr "ថយក្រោយ"
+msgstr "পূর্ববর্তী"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
 msgid "Sync"
-msgstr "ធ្វើ​សមកាលកម្ម"
+msgstr "হালনাগাদ"
 
 #: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
 msgid "Syncing"
-msgstr "ធ្វើ​សមកាលកម្ម"
+msgstr "হালনাগাদ হচ্ছে"
 
 #: ../CalendarChoicePopup.qml:70
 msgid "Add online Calendar"
-msgstr ""
+msgstr "অনলাইন ক্যালেন্ডার যোগ করুন"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
-msgstr "ជ្រើស​ពណ៌"
+msgstr "রং নির্বাচন"
 
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
-msgstr "បោះ​បង់"
+msgstr "বাতিল"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr "មិន​មាន​ទំនាក់ទំនង"
+msgstr ""
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr "ស្វែងរក​ទំនាក់ទំនង"
+msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -107,11 +107,11 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr "លុប​ព្រឹត្តិការ​កើតឡើងដដែល"
+msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
-msgstr "លុប​ព្រឹត្តិការណ៍"
+msgstr "অনুষ্ঠান সরিয়ে ফেলুন"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../DeleteConfirmationDialog.qml:36
@@ -122,23 +122,23 @@ msgstr ""
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "আপনি কি \"%1\" অনুষ্ঠানটি সরিয়ে ফেলতে চান?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
-msgstr "លុប​ស៊េរី"
+msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:51
 msgid "Delete this"
-msgstr "លុប​វា"
+msgstr "এটি মুছে ফেলুন"
 
 #: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:68
 msgid "Delete"
-msgstr "លុប"
+msgstr "মুছে ফেলুন"
 
 #: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:325
 msgid "Edit Event"
-msgstr "កែសម្រួល​ព្រឹត្តិការណ៍"
+msgstr "অনুষ্ঠান সম্পাদনা"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../EditEventConfirmationDialog.qml:32
@@ -148,54 +148,54 @@ msgstr ""
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
-msgstr "កែសម្រួល​ស៊េរី"
+msgstr "সিরিজ পরিবর্তন করুন"
 
 #: ../EditEventConfirmationDialog.qml:44
 msgid "Edit this"
-msgstr "កែសម្រួល​វា"
+msgstr "এটি পরিবর্তন করুন"
 
 #: ../EventActions.qml:51 ../NewEvent.qml:325
 msgid "New Event"
-msgstr "ព្រឹត្តិការណ៍​ថ្មី"
+msgstr "নতুন অনুষ্ঠান"
 
 #: ../EventActions.qml:72 ../Settings.qml:28
 msgid "Settings"
-msgstr ""
+msgstr "সেটিংস"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
 #: ../EventBubble.qml:144 ../EventBubble.qml:149
 #, qt-format
 msgid "%1 <b>%2</b>"
-msgstr ""
+msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:43 ../NewEvent.qml:436
 msgid "Event Details"
-msgstr "ព័ត៌មាន​លម្អិត​ព្រឹត្តិការណ៍"
+msgstr "অনুষ্ঠানের বিবরণ"
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
 #: ../EventDetails.qml:68
 #, qt-format
 msgid "%1 Calendar"
-msgstr ""
+msgstr "%1 ক্যালেন্ডার"
 
 #: ../EventDetails.qml:129
 #, qt-format
 msgid "%1 - %2 (All Day)"
-msgstr ""
+msgstr "%1 - %2 (দিনব্যাপি)"
 
 #: ../EventDetails.qml:133
 #, qt-format
 msgid "%1 (All Day)"
-msgstr ""
+msgstr "%1 (দিনব্যাপি)"
 
 #: ../EventDetails.qml:203
 msgid "Edit"
-msgstr "កែសម្រួល"
+msgstr "পরিবর্তন"
 
 #: ../EventDetails.qml:354 ../NewEvent.qml:538
 msgid "Guests"
-msgstr "ភ្ញៀវ"
+msgstr "অতিথি"
 
 #: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:635
 msgid "Reminder"
@@ -211,11 +211,11 @@ msgstr ""
 
 #: ../EventRepetition.qml:174
 msgid "Repeats On:"
-msgstr "ធ្វើ​ម្ដងទៀត​នៅ៖"
+msgstr ""
 
 #: ../EventRepetition.qml:219
 msgid "Recurring event ends"
-msgstr "បញ្ចប់​ព្រឹត្តិការណ៍​កើត​ឡើង​ដដែល"
+msgstr ""
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
@@ -226,7 +226,7 @@ msgstr ""
 
 #: ../EventRepetition.qml:267
 msgid "Date"
-msgstr "កាល​​បរិច្ឆេទ"
+msgstr ""
 
 #. TRANSLATORS: the argument refers to multiple recurrence of event with count .
 #. E.g. "Daily; 5 times."
@@ -253,15 +253,15 @@ msgstr ""
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
-msgstr "មិនដែល"
+msgstr ""
 
 #: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr "បន្ទាប់ពី X ព្រឹត្តិការណ៍"
+msgstr ""
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
-msgstr "បន្ទាប់ពី​កាលបរិច្ឆេទ"
+msgstr ""
 
 #: ../MonthComponent.qml:260
 msgid "Wk"
@@ -269,19 +269,19 @@ msgstr ""
 
 #: ../NewEvent.qml:84
 msgid "Save"
-msgstr "រក្សាទុក"
+msgstr ""
 
 #: ../NewEvent.qml:192
 msgid "End time can't be before start time"
-msgstr "ពេល​វេលា​បញ្ចប់​មិន​អាច​មុន​ពេលវេលា​ចាប់ផ្ដើម"
+msgstr ""
 
 #: ../NewEvent.qml:335
 msgid "Error"
-msgstr "កំហុស"
+msgstr ""
 
 #: ../NewEvent.qml:337
 msgid "OK"
-msgstr "យល់ព្រម"
+msgstr ""
 
 #: ../NewEvent.qml:390
 msgid "From"
@@ -297,31 +297,31 @@ msgstr ""
 
 #: ../NewEvent.qml:449
 msgid "Event Name"
-msgstr "ឈ្មោះ​ព្រឹត្តិការណ៍"
+msgstr ""
 
 #: ../NewEvent.qml:467
 msgid "Description"
-msgstr "ការពិពណ៌នា"
+msgstr ""
 
 #: ../NewEvent.qml:485
 msgid "Location"
-msgstr "ទីតាំង"
+msgstr ""
 
 #: ../NewEvent.qml:500 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr "ប្រតិទិន"
+msgstr ""
 
 #: ../NewEvent.qml:542
 msgid "Add Guest"
-msgstr "បន្ថែម​ភ្ញៀវ"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
-msgstr "ម្ដង"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr "ប្រចាំថ្ងៃ"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
@@ -341,19 +341,19 @@ msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
-msgstr "ប្រចាំ​សប្តាហ៍"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
-msgstr "ប្រចាំខែ"
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
-msgstr "ប្រចាំឆ្នាំ"
+msgstr ""
 
 #: ../RemindersModel.qml:26
 msgid "No Reminder"
-msgstr "កុំ​រំលឹក"
+msgstr ""
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
@@ -364,39 +364,39 @@ msgstr ""
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
-msgstr "៥ នាទី"
+msgstr ""
 
 #: ../RemindersModel.qml:32
 msgid "15 minutes"
-msgstr "១៥ នាទី"
+msgstr ""
 
 #: ../RemindersModel.qml:33
 msgid "30 minutes"
-msgstr "៣០ នាទី"
+msgstr ""
 
 #: ../RemindersModel.qml:34
 msgid "1 hour"
-msgstr "១ ម៉ោង"
+msgstr ""
 
 #: ../RemindersModel.qml:35
 msgid "2 hours"
-msgstr "២ ម៉ោង"
+msgstr ""
 
 #: ../RemindersModel.qml:36
 msgid "1 day"
-msgstr "១ ថ្ងៃ"
+msgstr ""
 
 #: ../RemindersModel.qml:37
 msgid "2 days"
-msgstr "២ ថ្ងៃ"
+msgstr ""
 
 #: ../RemindersModel.qml:38
 msgid "1 week"
-msgstr "១ សប្ដាហ៍"
+msgstr ""
 
 #: ../RemindersModel.qml:39
 msgid "2 weeks"
-msgstr "២ សប្ដាហ៍"
+msgstr ""
 
 #: ../Settings.qml:60
 msgid "Show week numbers"
@@ -427,34 +427,31 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
-"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
-"eventid. They will be managed by system. See the source for a full comment "
-"about them"
 
 #: ../calendar.qml:455
 msgid "Year"
-msgstr "ឆ្នាំ"
+msgstr ""
 
 #: ../calendar.qml:462
 msgid "Month"
-msgstr "ខែ"
+msgstr ""
 
 #: ../calendar.qml:469
 msgid "Week"
-msgstr "សប្ដាហ៍"
+msgstr ""
 
 #: ../calendar.qml:476
 msgid "Day"
-msgstr "ថ្ងៃ"
+msgstr ""
 
 #: ../calendar.qml:483
 msgid "Agenda"
-msgstr "របៀប​វារៈ"
+msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr "ប្រតិទិន​សម្រាប់ Ubuntu ដែល​ធ្វើ​សមកាលកម្ម​ជា​មួយ​គណនី​លើ​បណ្ដាញ។"
+msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr "ប្រតិទិន;ព្រឹត្តិការណ៍;ថ្ងៃ;សប្ដាហ៍;ឆ្នាំ;ការ​ណាត់ជួប;ប្រជុំ;"
+msgstr ""

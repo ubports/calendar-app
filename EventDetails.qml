@@ -79,6 +79,9 @@ Page {
             if(event.recurrence.recurrenceRules[0] !== undefined){
                 var rule =  event.recurrence.recurrenceRules[0];
                 repeatLabel.text = eventUtils.getRecurrenceString(rule)
+            } else {
+                //For event occurs once, event.recurrence.recurrenceRules == []
+                repeatLabel.text = Defines.recurrenceLabel[0];
             }
         }
     }

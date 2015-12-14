@@ -31,14 +31,29 @@ Row{
     property var currentDay
 
     property int highlightedIndex;
+    property var selectedDay;
 
     signal dateSelected(var date);
+    signal dateHighlighted(var date);
 
     width: parent.width
     height: units.gu(4)
 
+    function findSelectedDayIndex() {
+        if(!selectedDay){
+            return -1;
+        }
+        return DateExt.daysBetween(startDay, selectedDay);
+    }
+
     onIsCurrentItemChanged: {
         highlightedIndex = -1
+    }
+
+    onSelectedDayChanged: {
+        if(isCurrentItem){
+            highlightedIndex = findSelectedDayIndex()
+        }
     }
 
     Repeater{
@@ -47,11 +62,11 @@ Row{
         delegate: HeaderDateComponent{
             date: type == ViewType.ViewTypeWeek ? startDay.addDays(index) : startDay
             dayFormat: Locale.ShortFormat
-            highlighted: (type == ViewType.ViewTypeWeek) && (highlightedIndex == index)
+            highlighted: (type == ViewType.ViewTypeWeek) && (highlightedIndex === index)
 
             dayColor: {
                 if( type == ViewType.ViewTypeWeek && date.isSameDay(DateExt.today())){
-                    header.highlightedIndex = index
+                    //header.highlightedIndex = index
                     UbuntuColors.orange
                 } /*else if( type == ViewType.ViewTypeDay && date.isSameDay(currentDay) ) {
                     UbuntuColors.orange
@@ -71,6 +86,7 @@ Row{
                         header.dateSelected(date);
                     } else {
                         header.highlightedIndex = index
+                        header.dateHighlighted(date);
                     }
                 }
             }

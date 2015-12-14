@@ -37,13 +37,6 @@ Item {
         anchors.fill: parent
         objectName: "mouseArea"
 
-        onClicked: {
-            var selectedDate = new Date(day);
-            var hour = parseInt(mouseY / hourHeight);
-            selectedDate.setHours(hour)
-            createOrganizerEvent(selectedDate);
-        }
-
         onPressAndHold: {
             var selectedDate = new Date(day);
             var hour = parseInt(mouseY / hourHeight);
@@ -243,7 +236,7 @@ Item {
             durationMin += event.endDateTime.getMinutes();
         }
         if (event.startDateTime.getDate() - day.getDate() == 0 &&
-                event.endDateTime - day > Date.msPerDay) {
+                event.endDateTime - day >= Date.msPerDay) {
             hour = event.startDateTime.getHours();
             yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
             durationMin = (24 - event.startDateTime.getHours()) * 60;
