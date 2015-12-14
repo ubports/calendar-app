@@ -8,7 +8,7 @@ Ubuntu 15.04 and higher to run on the desktop.
    $ cd branch-name
    $ mkdir builddir && cd builddir
    $ cmake ..  && make -j3
-   $ qmlscene ../app/ubuntu-calendar-app.qml -I backend/
+   $ qmlscene ../app/ubuntu-calendar-app.qml
 
 Submitting a patch upstream
 ===========================
