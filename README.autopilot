@@ -51,6 +51,10 @@ Using terminal:
     $ autopilot3 launch -i Qt qmlscene ../../app/ubuntu-calendar-app.qml
     $ autopilot3 vis
 
+Running tests using Ubuntu SDK
+==============================
+
+https://developer.ubuntu.com/en/start/platform/guides/running-autopilot-tests/
 
 Running tests on device or emulator
 ===================================
