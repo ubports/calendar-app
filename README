@@ -7,7 +7,9 @@ The ubuntu calendaar app follows a test driven development (TDD) where tests are
 Dependencies
 ============
 
-Dependencies for the project are listed in ubuntu-calendar-app/debian/control
+DEPENDENCIES ARE NEEDED TO BE INSTALLED TO BUILD AND RUN THE APP.
+
+A complete list of dependencies for the project can be found in ubuntu-calendar-app/debian/control
 
 Useful Links
 ============
