@@ -4,6 +4,13 @@ ReadMe - Ubuntu Calendar App
 Ubuntu Calendar App is the official calendar app for Ubuntu Touch. We follow an open source model where the code is available to anyone to branch and to hack on. 
 The ubuntu calendaar app follows a test driven development (TDD) where tests are written in parallel to feature implementation to help spot regressions easier.
 
+Dependencies
+============
+
+DEPENDENCIES ARE NEEDED TO BE INSTALLED TO BUILD AND RUN THE APP.
+
+A complete list of dependencies for the project can be found in ubuntu-calendar-app/debian/control
+
 Useful Links
 ============
 

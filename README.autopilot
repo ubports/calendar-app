@@ -17,7 +17,7 @@ Prerequisites
 =============
 
 Install the following autopilot packages required to run the tests,
-    $ sudo apt-get install python3-autopilot libautopilot-qt ubuntu-ui-toolkit-autopilot python3-autopilot-vis
+    $ sudo apt-get install python3-autopilot python3-dateutil libautopilot-qt ubuntu-ui-toolkit-autopilot python3-autopilot-vis
 
 address-book-service-testability package may also be required if not already installed
    $ sudo apt-get install address-book-service-testability
@@ -54,7 +54,7 @@ Using terminal:
 Running tests using Ubuntu SDK
 ==============================
 
-https://developer.ubuntu.com/en/start/platform/guides/running-autopilot-tests/
+Refer this tutorial to run tests on Ubuntu SDK: https://developer.ubuntu.com/en/start/platform/guides/running-autopilot-tests/
 
 Running tests on device or emulator
 ===================================
