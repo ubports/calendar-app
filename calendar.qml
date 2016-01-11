@@ -102,12 +102,17 @@ MainView {
         target: UriHandler
         onOpened: {
             var uri = uris[0]
-            if(uri !== undefined && url != "") {
+            if(uri !== undefined && uri !== "") {
                 var commands = uri.split("://")[1].split("=");
                 if(commands[0].toLowerCase() === "eventid") {
                     // calendar://eventid=??
                     if( eventModel ) {
-                        eventModel.showEventFromId(commands[1]);
+                        var eventId = commands[1];
+                        var prefix = "qtorganizer:eds::system-calendar/";
+                        if (eventId.indexOf(prefix) < 0)
+                            eventId  = prefix + eventId;
+
+                        eventModel.showEventFromId(eventId);
                     }
                 }
             }
@@ -223,6 +228,7 @@ MainView {
             property bool newevent: false;
             property int starttime: -1;
             property int endtime: -1;
+            property string eventId;
 
             function newEvent() {
                 var startDate = new Date();
@@ -273,6 +279,7 @@ MainView {
                 var newevenpattern= new RegExp ("newevent");
                 var starttimepattern = new RegExp ("starttime=\\d+");
                 var endtimepattern = new RegExp ("endtime=\\d+");
+                var eventIdpattern = new RegExp ("eventId=.*")
 
                 newevent = newevenpattern.test(url);
 
@@ -281,6 +288,9 @@ MainView {
 
                 if (endtimepattern.test(url))
                     endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
+
+                if (eventIdpattern.test(url))
+                    eventId = url.match(/eventId=(.*)/)[0].replace("eventId=", '');
             }
 
             Component.onCompleted: {
@@ -306,6 +316,13 @@ MainView {
                             tabs.selectedTabIndex = dayTab.index;
                         }
                     } // End of else if (starttime)
+                    else if (eventId !== "") {
+                        var prefix = "qtorganizer:eds::system-calendar/";
+                        if (eventId.indexOf(prefix) < 0)
+                            eventId  = prefix + eventId;
+
+                        eventModel.showEventFromId(eventId);
+                    }
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
