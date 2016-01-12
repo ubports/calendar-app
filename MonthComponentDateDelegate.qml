@@ -9,9 +9,10 @@ Item{
     property bool isToday;
     property bool showEvent;
     property alias fontSize: dateLabel.font.pixelSize
+    property bool isSelected: false
 
     UbuntuShape{
-        visible: isToday && isCurrentMonth
+        visible: (isToday && isCurrentMonth) || isSelected
         color: isToday && !isSelected ? "#DD4814" : "gray"
 
         Rectangle{
@@ -20,7 +21,7 @@ Item{
             color: isToday ? "#DD4814" : "darkgray"
         }
 
-        width: Math.max(parent.height, parent.width) / 1.3
+        width: Math.min(parent.height, parent.width) / 1.3
         height: width
         anchors.centerIn: dateLabel
     }
@@ -57,8 +58,6 @@ Item{
             top: parent.verticalCenter
             topMargin: ((Math.min(parent.height, dateRootItem.width) / 1.3) / 2) + units.gu(0.1)
         }
-        anchors.top: dateLabel.bottom
-        anchors.topMargin: dateRootItem.height/4
         radius: height/2
         color:"black"
         visible: showEvent

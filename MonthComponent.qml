@@ -58,8 +58,16 @@ Item{
     }
 
     onCurrentMonthChanged: {
+        intern.selectedIndex = -1;
         modelIsDirty.start()
     }
+
+    onSelectedDayChanged: {
+        if( isCurrentItem ) {
+            intern.selectedIndex = intern.findSelectedDayIndex();
+        }
+    }
+
 
     InvalidFilter {
         id: invalidFilter
@@ -133,16 +141,6 @@ Item{
                 return -1;
             }
         }
-    }
-
-    onSelectedDayChanged: {
-        if( isCurrentItem ) {
-            intern.selectedIndex = intern.findSelectedDayIndex();
-        }
-    }
-
-    onCurrentMonthChanged: {
-        intern.selectedIndex = -1;
     }
 
     Column{
