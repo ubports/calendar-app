@@ -80,10 +80,14 @@ Item{
         startPeriod: intern.monthStart.midnight();
         endPeriod: intern.monthStart.addDays((/*monthGrid.rows * cols */ 42 )-1).endOfDay()
         filter: showEvents ? eventModel.filter : invalidFilter
+        fetchHint: FetchHint {
+            detailTypesHint: [ Detail.EventTime,
+                               Detail.JournalTime,
+                               Detail.TodoTime
+                             ]
+        }
 
         onModelChanged: {
-            // do you really need binding it?? Is this really necessary
-            // I do not see use for that
             intern.eventStatus = mainModel.containsItems(mainModel.startPeriod,
                                                          mainModel.endPeriod,
                                                          86400/*24*60*60*/);
