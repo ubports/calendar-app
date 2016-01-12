@@ -25,7 +25,7 @@ class EventTestCase(testtools.TestCase):
         event = data.Event.make_unique(unique_id='test uuid')
 
         self.assertEqual(event.calendar, 'Personal')
-        self.assertEqual(event.name, 'Test event test uuid')
-        self.assertEqual(event.description, 'Test description test uuid.')
-        self.assertEqual(event.location, 'Test location test uuid')
+        self.assertEqual(event.name, 'Test ev test uuid')
+        self.assertEqual(event.description, 'Test desc test uuid.')
+        self.assertEqual(event.location, 'Test loc test uuid')
         self.assertEqual(event.guests, ['UX User'])

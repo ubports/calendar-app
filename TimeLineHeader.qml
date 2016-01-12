@@ -28,8 +28,12 @@ Column {
     property int type: ViewType.ViewTypeWeek
     property date startDay;
     property double contentX;
+    property int firstDayOfWeek: Qt.locale().firstDayOfWeek
+    property bool isActive: false;
+    property var selectedDay;
 
     signal dateSelected(var date);
+    signal dateHighlighted(var date);
 
     width: parent.width
     height: units.gu(10)
@@ -45,7 +49,9 @@ Column {
             Label{
                 id: weekNumLabel
                 objectName: "weeknumber"
-                text: i18n.tr("W") + root.weekNumber
+
+		        // TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+                text: i18n.tr("W%1").arg(startDay.weekNumber(Qt.locale().firstDayOfWeek))
                 fontSize: "small"
                 height: units.gu(5)
                 width: parent.width
@@ -150,9 +156,22 @@ Column {
                     type: ViewType.ViewTypeWeek
                     width: parent.width
                     height: units.gu(5)
+                    isCurrentItem: root.isActive
+                    selectedDay: {
+                        if( root.selectedDay && startDay.weekNumber(Qt.locale().firstDayOfWeek)
+                                === root.selectedDay.weekNumber(Qt.locale().firstDayOfWeek)) {
+                        root.selectedDay;
+                        } else {
+                            null;
+                        }
+                    }
 
                     onDateSelected: {
                         root.dateSelected(date);
+                    }
+
+                    onDateHighlighted: {
+                        root.dateHighlighted(date);
                     }
                 }
 

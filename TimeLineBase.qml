@@ -36,11 +36,11 @@ Item {
     MouseArea {
         anchors.fill: parent
         objectName: "mouseArea"
+
         onPressAndHold: {
             var selectedDate = new Date(day);
             var hour = parseInt(mouseY / hourHeight);
             selectedDate.setHours(hour)
-            //pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
             createOrganizerEvent(selectedDate);
         }
 
@@ -71,6 +71,7 @@ Item {
         event.startDateTime = startDate;
         event.endDateTime = endDate;
         event.displayLabel = i18n.tr("Untitled");
+        event.setDetail(Qt.createQmlObject("import QtOrganizer 5.0; Comment{ comment: 'X-CAL-DEFAULT-EVENT'}", event,"TimeLineBase.qml"));
         model.saveItem(event);
     }
 
@@ -90,7 +91,12 @@ Item {
     }
 
     function showEventDetails(event) {
-        pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":model});
+        var comment = event.detail(Detail.Comment);
+        if(comment && comment.comment === "X-CAL-DEFAULT-EVENT") {
+            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event": event, "model":model});
+        } else {
+            pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":model});
+        }
     }
 
     WorkerScript {
@@ -206,13 +212,44 @@ Item {
     }
 
     function assignBubbleProperties(eventBubble, event, depth, sizeOfRow) {
-        var hour = event.startDateTime.getHours();
-        var yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
-        eventBubble.y = yPos;
+        var yPos = 0;
+        var height = 0;
+        var hour = 0;
+        var durationMin = 0;
 
-        var durationMin = (event.endDateTime.getHours() - event.startDateTime.getHours()) * 60;
-        durationMin += (event.endDateTime.getMinutes() - event.startDateTime.getMinutes());
-        var height = (durationMin * hourHeight )/ 60;
+        // skip it in case of endDateTime == dd-MM-yyyy 12:00 AM
+        if (event.endDateTime - day  == 0)
+            return;
+
+        if (event.endDateTime.getDate() - day.getDate() == 0 &&
+                event.startDateTime.getDate() - day.getDate() == 0) {
+            hour = event.startDateTime.getHours();
+            yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
+            durationMin = (event.endDateTime.getHours() - event.startDateTime.getHours()) * 60;
+            durationMin += (event.endDateTime.getMinutes() - event.startDateTime.getMinutes());
+        }
+        if (event.endDateTime.getDate() - day.getDate() == 0 &&
+                event.startDateTime - day < 0) {
+            hour = 0;
+            yPos = 0;
+            durationMin = event.endDateTime.getHours() * 60;
+            durationMin += event.endDateTime.getMinutes();
+        }
+        if (event.startDateTime.getDate() - day.getDate() == 0 &&
+                event.endDateTime - day >= Date.msPerDay) {
+            hour = event.startDateTime.getHours();
+            yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
+            durationMin = (24 - event.startDateTime.getHours()) * 60;
+        }
+        if (event.endDateTime - day  >= Date.msPerDay &&
+                event.startDateTime- day <= 0) {
+            hour = 0;
+            yPos = 0;
+            durationMin = 24 * 60;
+        }
+
+        eventBubble.y = yPos;
+        height = (durationMin * hourHeight )/ 60;
         eventBubble.height = (height > eventBubble.minimumHeight) ? height:eventBubble.minimumHeight ;
 
         eventBubble.model = bubbleOverLay.model

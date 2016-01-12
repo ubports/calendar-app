@@ -44,7 +44,7 @@ OrganizerModel {
         var newObject = Qt.createQmlObject("import QtQuick 2.3; Timer {interval: 1000; running: true; repeat: false;}",
             eventModel, "EventListMode.qml");
         newObject.onTriggered.connect( function(){
-            var items = getItems(eventModel.startPeriod, eventModel.endPeriod);
+            var items = itemsByTimePeriod(eventModel.startPeriod, eventModel.endPeriod);
             if( isLoading == true && items.length === 0) {
                 isLoading = false;
                 modelChanged();
@@ -52,7 +52,6 @@ OrganizerModel {
             newObject.destroy();
         });
     }
-
 
     onModelChanged: {
         isLoading = false
@@ -75,6 +74,44 @@ OrganizerModel {
         }
         return cals;
 	}
+
+    function getWritableCollections(){
+        var cals = [];
+        var collections = eventModel.collections;
+        for(var i = 0 ; i < collections.length ; ++i) {
+            var cal = collections[i];
+            print(cal.name + " ---- " + cal.extendedMetaData("collection-readonly"));
+            if( cal.extendedMetaData("collection-type") === "Calendar" &&
+                    cal.extendedMetaData("collection-readonly") === false ) {
+                cals.push(cal);
+            }
+        }
+        return cals;
+    }
+
+    function getDefaultCollection() {
+        var cals = getCollections();
+         for(var i = 0 ; i < cals.length ; ++i) {
+            var cal = cals[i]
+            var val = cal.extendedMetaData("X-CAL-DEFAULT-CALENDAR")
+            if( val ) {
+                return cal;
+            }
+        }
+
+        return defaultCollection();
+    }
+
+    function setDefaultCollection( collectionId ) {
+        var cals = getCollections();
+         for(var i = 0 ; i < cals.length ; ++i) {
+             var cal = cals[i]
+             cal.setExtendedMetaData("X-CAL-DEFAULT-CALENDAR", false);
+             if( cal.collectionId === collectionId) {
+                cal.setExtendedMetaData("X-CAL-DEFAULT-CALENDAR", true);
+             }
+        }
+    }
 
     onStartPeriodChanged: {
         isLoading = true

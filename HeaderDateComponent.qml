@@ -34,11 +34,23 @@ Item {
     // Signal fired when pressing on the date
     signal dateSelected(var date)
 
+    property bool highlighted: false
+
     width: dayLabel.paintedWidth
     height: dateContainer.height
 
+    Rectangle{
+        id: background
+        color: "transparent"
+        visible: highlighted
+        anchors.fill: parent
+        border.width: units.gu(0.3)
+        border.color: UbuntuColors.orange
+    }
+
     Column {
         id: dateContainer
+        objectName: "dateContainer"
 
         width: dayLabel.paintedWidth
         spacing: units.gu(0.2)

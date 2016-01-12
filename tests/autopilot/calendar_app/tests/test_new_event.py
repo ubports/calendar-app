@@ -109,7 +109,7 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
         self.assertThat(new_event_page.get_is_all_day_event(), Equals(False))
         self.assertThat(new_event_page.has_guests(), Equals(False))
         self.assertThat(new_event_page.get_this_happens(), Equals('Once'))
-        self.assertThat(new_event_page.get_reminder(), Equals('On Event'))
+        self.assertThat(new_event_page.get_reminder(), Equals('15 minutes'))
 
         expected_start_date = self._expected_start_date()
         expected_end_date = expected_start_date + datetime.timedelta(hours=1)

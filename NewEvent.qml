@@ -42,25 +42,49 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
+    flickable: null
+
     signal eventAdded(var event);
+    signal eventDeleted(var event);
 
     onStartDateChanged: {
         startDateTimeInput.dateTime = startDate;
-        adjustEndDateToStartDate()
+
+        // set time forward to one hour
+        var time_forward = 3600000;
+
+        if (isEdit && event !== null) {
+            time_forward = event.endDateTime - event.startDateTime;
+        }
+        adjustEndDateToStartDate(time_forward);
     }
 
     onEndDateChanged: {
         endDateTimeInput.dateTime = endDate;
     }
 
-    head.actions: Action {
-        iconName: "ok"
-        objectName: "save"
-        text: i18n.tr("Save")
-        enabled: !!titleEdit.text.trim()
-        onTriggered: saveToQtPim();
-    }
-
+    head.actions: [
+        Action {
+            text: i18n.tr("Delete");
+            objectName: "delete"
+            iconName: "delete"
+            visible : isEdit
+            onTriggered: {
+                var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
+                dialog.deleteEvent.connect( function(eventId){
+                    model.removeItem(eventId);
+                    pageStack.pop();
+                    root.eventDeleted(eventId);
+                });
+            }
+        },
+        Action {
+            iconName: "ok"
+            objectName: "save"
+            text: i18n.tr("Save")
+            enabled: !!titleEdit.text.trim()
+            onTriggered: saveToQtPim();
+        }]
     Component.onCompleted: {
         //If current date is setted by an argument we don't have to change it.
         if(typeof(date) === 'undefined'){
@@ -110,19 +134,17 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        //Create fresh Recurrence Object.
-        rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml");
         selectCalendar(model.defaultCollection().collectionId);
     }
 
     //Editing Event
     function editEvent(e) {
         //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
-        if(e.itemType === Type.Event){
-            rule = (e.recurrence.recurrenceRules[0] === undefined || e.recurrence.recurrenceRules[0] === null) ?
-                        Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", event.recurrence,"EventRepetition.qml")
-                      : e.recurrence.recurrenceRules[0];
+        if(e.itemType === Type.Event && e.recurrence.recurrenceRules[0] !== undefined
+                && e.recurrence.recurrenceRules[0] !== null){
+            rule =  e.recurrence.recurrenceRules[0];
         }
+
         startDate =new Date(e.startDateTime);
         endDate = new Date(e.endDateTime);
 
@@ -131,6 +153,7 @@ Page {
         }
         if(e.allDay){
             allDayEventCheckbox.checked =true;
+            endDate = endDate.addDays(-1);
         }
 
         if(e.location) {
@@ -161,6 +184,7 @@ Page {
 
         selectCalendar(e.collectionId);
     }
+
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
@@ -177,13 +201,18 @@ Page {
                 event = Qt.createQmlObject("import QtOrganizer 5.0; Event {}", Qt.application,"NewEvent.qml");
             }
 
+            event.allDay = allDayEventCheckbox.checked;
             event.startDateTime = startDate;
-            event.endDateTime = endDate;
+
+            if (event.allDay){
+                event.endDateTime = endDate.addDays(1);
+            } else {
+                event.endDateTime = endDate;
+            }
+
             event.displayLabel = titleEdit.text;
             event.description = messageEdit.text;
             event.location = locationEdit.text
-
-            event.allDay = allDayEventCheckbox.checked;
 
             if( event.itemType === Type.Event ) {
                 event.attendees = []; // if Edit remove all attendes & add them again if any
@@ -198,6 +227,8 @@ Page {
             //Set the Rule object to an event
             if(rule !== null && rule !== undefined) {
                 event.recurrence.recurrenceRules = [rule]
+            } else {
+                event.recurrence.recurrenceRules = [];
             }
 
             //remove old reminder value
@@ -215,17 +246,29 @@ Page {
                 event.setDetail(audibleReminder);
             }
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
+            model.setDefaultCollection(event.collectionId);
+
+            var comment = event.detail(Detail.Comment);
+            if(comment && comment.comment === "X-CAL-DEFAULT-EVENT") {
+                event.removeDetail(comment);
+            }
+
             model.saveItem(event);
             pageStack.pop();
+
             root.eventAdded(event);
         }
     }
 
     VisualReminder{
-        id:visualReminder
+        id: visualReminder
+        //default reminder time = 15 min
+        secondsBeforeStart: 900
     }
     AudibleReminder{
-        id:audibleReminder
+        id: audibleReminder
+        //default reminder time = 15 min
+        secondsBeforeStart: 900
     }
 
     function getDaysOfWeek(){
@@ -257,9 +300,7 @@ Page {
         return tempDate.setHours(tempDate.getHours() + 1)
     }
 
-    function adjustEndDateToStartDate() {
-        // set time forward to one hour
-        var time_forward = 3600000;
+    function adjustEndDateToStartDate(time_forward) {
         endDate = new Date( startDate.getTime() + time_forward );
     }
 
@@ -280,9 +321,6 @@ Page {
         scrollAnimation.to = Container.height-height - v
         scrollAnimation.start()
     }
-
-    width: parent.width
-    height: parent.height
 
     title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
 
@@ -308,6 +346,7 @@ Page {
 
     Flickable{
         id: flickable
+        clip: true
 
         property var activeItem: null
 
@@ -408,6 +447,11 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Event Name")
+                    onFocusChanged: {
+                        if(titleEdit.focus) {
+                            flickable.makeMeVisible(titleEdit);
+                        }
+                    }
                 }
 
                 TextArea{
@@ -421,6 +465,11 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Description")
+                    onFocusChanged: {
+                        if(messageEdit.focus) {
+                            flickable.makeMeVisible(messageEdit);
+                        }
+                    }
                 }
 
                 TextField {
@@ -434,6 +483,12 @@ Page {
                     }
 
                     placeholderText: i18n.tr("Location")
+
+                    onFocusChanged: {
+                        if(locationEdit.focus) {
+                            flickable.makeMeVisible(locationEdit);
+                        }
+                    }
                 }
             }
 
@@ -456,7 +511,7 @@ Page {
                     }
 
                     containerHeight: itemHeight * 4
-                    model: root.model.getCollections();
+                    model: root.model.getWritableCollections();
 
                     delegate: OptionSelectorDelegate{
                         text: modelData.name
@@ -562,8 +617,8 @@ Page {
                 progression: true
                 visible: event.itemType === Type.Event
                 text: i18n.tr("Repeats")
-                subText: event.itemType === Type.Event ? eventUtils.getRecurrenceString(rule) : ""
-                onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"rule": rule,"date":date,"isEdit":isEdit});
+                subText: event.itemType === Type.Event ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
+                onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"eventRoot": root,"isEdit":isEdit});
             }
 
             ListItem.ThinDivider {
@@ -574,9 +629,7 @@ Page {
                 id:eventReminder
                 objectName  : "eventReminder"
 
-                anchors{
-                    left:parent.left
-                }
+                anchors.left:parent.left
                 showDivider: false
                 progression: true
                 text: i18n.tr("Reminder")
@@ -587,13 +640,15 @@ Page {
 
                 subText:{
                     if(visualReminder.secondsBeforeStart !== -1) {
-                        for(var i=0; i<reminderModel.count; i++) {
-                            if(visualReminder.secondsBeforeStart === reminderModel.get(i).value)
+                        for( var i=0; i<reminderModel.count; i++ ) {
+                            if(visualReminder.secondsBeforeStart === reminderModel.get(i).value) {
                                 return reminderModel.get(i).label
+                            }
                         }
                     } else {
-                        reminderModel.get(0).label
+                        return reminderModel.get(0).label
                     }
+
                 }
 
                 onClicked: pageStack.push(Qt.resolvedUrl("EventReminder.qml"),

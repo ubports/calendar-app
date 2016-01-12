@@ -51,6 +51,23 @@ PathView {
         return 1;
     }
 
+    function swipeDirection() {
+
+        if( intern.previousIndex == 0 && currentIndex == count - 1) {
+            return -1;
+        }
+
+        if( intern.previousIndex == count-1 && currentIndex == 0) {
+            return 1;
+        }
+
+        if(currentIndex > intern.previousIndex ){
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
     Keys.onLeftPressed:{
         root.decrementCurrentIndex();
     }

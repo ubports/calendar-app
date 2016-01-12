@@ -31,10 +31,11 @@ Item {
     property var keyboardEventProvider;
 
     property date startDay: DateExt.today();
-    property int weekNumber: startDay.weekNumber();
+    property int weekNumber: startDay.weekNumber(Qt.locale().firstDayOfWeek);
     property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
+    property var selectedDay;
 
     property int type: ViewType.ViewTypeWeek
 
@@ -44,6 +45,7 @@ Item {
     property EventListModel mainModel;
 
     signal dateSelected(var date);
+    signal dateHighlighted(var date);
 
     function scrollToCurrentTime() {
         var currentTime = new Date();
@@ -63,13 +65,22 @@ Item {
         var today = DateExt.today();
         var startOfWeek = today.weekStart(Qt.locale().firstDayOfWeek);
         var weekDay = today.getDay();
-        if( startOfWeek.isSameDay(startDay) && weekDay > 2) {
-            timeLineView.contentX = (weekDay * timeLineView.delegateWidth);
+        var diff = weekDay - Qt.locale().firstDayOfWeek
+        diff = diff < 0 ? 6 : diff
+
+        if( startOfWeek.isSameDay(startDay) && diff > 2) {
+            timeLineView.contentX = (diff * timeLineView.delegateWidth);
             if( timeLineView.contentX  > (timeLineView.contentWidth - timeLineView.width) ) {
                 timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
             }
         } else {
-            timeLineView.contentX = 0;
+            //need to check swipe direction
+            //and change startion position as per direction
+            if(weekViewPath.swipeDirection() === -1) {
+                timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
+            } else {
+                timeLineView.contentX = 0;
+            }
         }
     }
 
@@ -135,9 +146,15 @@ Item {
             startDay: root.startDay
             contentX: timeLineView.contentX
             type: root.type
+            isActive: root.isActive
+            selectedDay: root.selectedDay
 
             onDateSelected: {
                 root.dateSelected(date);
+            }
+
+            onDateHighlighted: {
+                root.dateHighlighted(date);
             }
         }
 
@@ -180,6 +197,11 @@ Item {
                     } else {
                         width
                     }
+                }
+
+                onContentWidthChanged: {
+                    scrollToCurrentTime();
+                    scrollTocurrentDate();
                 }
 
                 clip: true

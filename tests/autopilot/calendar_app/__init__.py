@@ -28,6 +28,7 @@ import math
 from testtools.matchers import GreaterThan
 
 from calendar_app import data
+from datetime import date
 
 
 logger = logging.getLogger(__name__)
@@ -141,6 +142,18 @@ class MainView(ubuntuuitoolkit.MainView):
         header.click_action_button('neweventbutton')
         return self.wait_select_single(NewEvent, objectName='newEventPage')
 
+    @autopilot.logging.log_action(logger.info)
+    def go_to_calendar_choice_popup(self):
+        """Open the calendar chioce popup.
+
+        :return: CalendaChoicePopup.
+
+        """
+        header = self.get_header()
+        header.click_action_button('calendarsbutton')
+        return self.wait_select_single(
+            CalendarChoicePopup, objectName="calendarchoicepopup")
+
     def set_picker(self, field, mode, value):
         # open picker
         self.pointing_device.click_object(field)
@@ -161,39 +174,43 @@ class MainView(ubuntuuitoolkit.MainView):
     def get_event_view(self, parent_object=None):
         if parent_object is None:
             parent_object = self
-        return parent_object.select_single("EventView")
+        return parent_object.wait_select_single("EventView")
 
     def get_event_details(self, parent_object=None):
         if parent_object is None:
             parent_object = self
-        return parent_object.select_single(EventDetails,
-                                           objectName='eventDetails')
+        return parent_object.wait_select_single(EventDetails,
+                                                objectName='eventDetails')
 
     def get_month_view(self, parent_object=None):
         if parent_object is None:
             parent_object = self
-        return parent_object.select_single(MonthView,
-                                           objectName='monthViewPage')
+        return parent_object.wait_select_single(MonthView,
+                                                objectName='monthViewPage')
 
     def get_year_view(self, parent_object=None):
         if parent_object is None:
             parent_object = self
-        return parent_object.select_single(YearView, objectName='yearViewPage')
+        return parent_object.wait_select_single(YearView,
+                                                objectName='yearViewPage')
 
     def get_day_view(self, parent_object=None):
         if parent_object is None:
             parent_object = self
-        return parent_object.select_single(DayView, objectName='dayViewPage')
+        return parent_object.wait_select_single(DayView,
+                                                objectName='dayViewPage')
 
     def get_week_view(self, parent_object=None):
         if parent_object is None:
             parent_object = self
-        return parent_object.select_single(WeekView, objectName='weekViewPage')
+        return parent_object.wait_select_single(WeekView,
+                                                objectName='weekViewPage')
 
     def get_agenda_view(self, parent_object=None):
         if parent_object is None:
             parent_object = self
-        return parent_object.select_single(AgendaView, objectName='AgendaView')
+        return parent_object.wait_select_single(AgendaView,
+                                                objectName='AgendaView')
 
     def get_label_with_text(self, text, root=None):
         if root is None:
@@ -218,7 +235,7 @@ class MainView(ubuntuuitoolkit.MainView):
 
     def safe_swipe_view(self, direction, view, date):
         """
-        direction: direction to swip
+        direction: direction to swipe
         view: the view you are swiping against
         date: a function object of the view
         """
@@ -274,6 +291,25 @@ class MainView(ubuntuuitoolkit.MainView):
         utc = date.replace(tzinfo=tz.tzutc())
         local = utc.astimezone(tz.tzlocal())
         return local
+
+    @autopilot.logging.log_action(logger.info)
+    def get_header(self):
+        return self.wait_select_single(
+            "AppHeader", objectName="MainView_Header")
+
+    def press_header_todaybutton(self):
+        header = self.get_header()
+        header.click_action_button('todaybutton')
+
+    @autopilot.logging.log_action(logger.info)
+    def get_color_picker_dialog(self):
+        return self.wait_select_single(
+            "ColorPickerDialog", objectName="colorPickerDialog")
+
+    @autopilot.logging.log_action(logger.info)
+    def press_header_custombackbutton(self):
+        header = self.get_header()
+        header.click_custom_back_button()
 
 
 class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
@@ -426,6 +462,17 @@ class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
             if inserted == 0:
                 sorteddays.insert(0, day)
         return sorteddays
+
+    @autopilot.logging.log_action(logger.info)
+    def get_current_headerdatecomponent(self, now):
+        today = datetime.date(now.year, now.month, now.day)
+        header_date_components = self.select_many('HeaderDateComponent')
+        for header in header_date_components:
+            header_date = datetime.date(header.date.datetime.year,
+                                        header.date.datetime.month,
+                                        header.date.datetime.day)
+            if header_date == today:
+                return header
 
 
 class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
@@ -583,27 +630,86 @@ class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return event_details_page.edit()
 
     @autopilot.logging.log_action(logger.info)
-    def get_day_header(self, day=None):
+    def get_timeline_header_component(self, day):
         """Return the dayheader for a given day. If no day is given,
         return the current day.
 
-        :param day: A datetime object matching the header
+        :param day:  day in date(year, month, day) format
         :return: The day header object
         """
         if day:
             headers = self.select_many('TimeLineHeaderComponent')
             for header in headers:
-                if header.startDay.datetime == day:
-                    day_header = header
-                    break
-        else:
-            # just grab the current day
-            day_header = self.wait_select_single(
-                'TimeLineHeaderComponent', isCurrentItem=True)
+                header_date = date(header.startDay.datetime.year,
+                                   header.startDay.datetime.month,
+                                   header.startDay.datetime.day)
+                if header_date == day:
+                    return header
 
-        if not(day_header):
+        else:
             raise CalendarException('Day Header not found for %s' % day)
-        return day_header
+
+    @autopilot.logging.log_action(logger.info)
+    def get_timeline_header(self, day):
+        """Return the dayheader for a given day.
+
+        :param day:  day in date(year, month, day) format
+        :return: The day header object
+        """
+        if day:
+            headers = self.select_many('TimeLineHeader')
+            for header in headers:
+                header_date = date(header.startDay.datetime.year,
+                                   header.startDay.datetime.month,
+                                   header.startDay.datetime.day)
+                if header_date == day:
+                    return header
+
+        else:
+            raise CalendarException('Day Header not found for %s' % day)
+
+    @autopilot.logging.log_action(logger.info)
+    def get_daylabel(self, today):
+        current_day_header = self.get_timeline_header_component(today)
+        return current_day_header.wait_select_single(
+            'Label', objectName='dayLabel')
+
+    @autopilot.logging.log_action(logger.info)
+    def get_datelabel(self, today):
+        current_day_header = self.get_timeline_header_component(today)
+        return current_day_header.wait_select_single(
+            'Label', objectName='dateLabel')
+
+    @autopilot.logging.log_action(logger.info)
+    def get_weeknumer(self, today):
+        current_day_header = self.get_timeline_header(today)
+        return current_day_header.wait_select_single(
+            'Label', objectName='weeknumber')
+
+    @autopilot.logging.log_action(logger.info)
+    def get_scrollHour(self):
+        return self.wait_select_single(
+            'TimeLineBaseComponent', objectName='DayComponent-0').scrollHour
+
+    @autopilot.logging.log_action(logger.info)
+    def get_weeknumber(self):
+        return self._get_timeline_base().weekNumber
+
+    def check_loading_spinnger(self):
+        timelinebasecomponent = self.get_active_timelinebasecomponent()
+        loading_spinner = timelinebasecomponent.wait_select_single(
+            "ActivityIndicator")
+        loading_spinner.running.wait_for(False)
+
+    def _get_timeline_base(self):
+        return self.select_single("TimeLineBaseComponent", isActive=True)
+
+    @autopilot.logging.log_action(logger.info)
+    def get_active_timelinebasecomponent(self):
+        timelinebase_components = self.select_many(("TimeLineBaseComponent"))
+        for component in timelinebase_components:
+            if component.isActive:
+                return component
 
 
 class AgendaView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
@@ -856,8 +962,9 @@ class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         """
         root = self.get_root_instance()
         header = root.select_single(MainView).get_header()
+        header.click_action_button('edit')
+        root.wait_select_single(NewEvent, objectName='newEventPage')
         header.click_action_button('delete')
-
         delete_confirmation_dialog = root.wait_select_single(
             DeleteConfirmationDialog, objectName='deleteConfirmationDialog')
         delete_confirmation_dialog.confirm_deletion()
@@ -922,3 +1029,57 @@ class DeleteConfirmationDialog(
         delete_button = self.select_single(
             'Button', objectName='deleteEventButton')
         self.pointing_device.click_object(delete_button)
+
+
+class CalendarChoicePopup(
+        ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+
+    """Autopilot helper for the Calendar Choice Popup."""
+
+    @autopilot.logging.log_action(logger.debug)
+    def press_check_box_button(self):
+        """ press check box button to select or unselect it """
+        calendar = self._get_calendar()
+        check_box = calendar.wait_select_single(
+            "CheckBox", objectName="checkBox")
+        self.pointing_device.click_object(check_box)
+        check_box.checked.wait_for(False)
+
+    def _get_calendar(self):
+        calendarItems = self.select_many("Standard", objectName="calendarItem")
+        for item in calendarItems:
+            if item.select_single(
+                    "Label", objectName="calendarName").text == "Personal":
+                    return item
+
+    @autopilot.logging.log_action(logger.debug)
+    def get_checkbox_status(self):
+        """ press check box button to select or unselect it """
+        calendar = self._get_calendar()
+        return calendar.wait_select_single(
+            "CheckBox", objectName="checkBox").checked
+
+    @autopilot.logging.log_action(logger.debug)
+    def get_calendar_color(self):
+        """ get calendar color """
+        calendar = self._get_calendar()
+        return calendar.select_single(
+            "QQuickRectangle", objectName="calendarColorCode").color
+
+    @autopilot.logging.log_action(logger.debug)
+    def open_color_picker_dialog(self):
+        """ press color rectangle to open calendar color picker"""
+        calendar = self._get_calendar()
+        color_rectangle = calendar.wait_select_single(
+            "QQuickRectangle", objectName="calendarColorCode")
+        self.pointing_device.click_object(color_rectangle)
+
+
+class ColorPickerDialog(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+    """Autopilot helper for the Color Picker Dialog."""
+
+    @autopilot.logging.log_action(logger.debug)
+    def change_calendar_color(self, new_color):
+        new_color_circle = self.wait_select_single(
+            "QQuickRectangle", objectName=new_color)
+        self.pointing_device.click_object(new_color_circle)

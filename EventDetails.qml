@@ -23,6 +23,7 @@ import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
 
 import "Defines.js" as Defines
+import "dateExt.js" as DateExt
 
 Page {
     id: root
@@ -59,11 +60,17 @@ Page {
     }
 
     function updateCollection(event) {
+
         var collection = model.collection( event.collectionId );
         calendarIndicator.color = collection.color
         eventInfo.color=collection.color
         // TRANSLATORS: the first parameter refers to the name of event calendar.
         calendarName.text = i18n.tr("%1 Calendar").arg( collection.name)
+
+        //disable edit in case of read only calendar
+        if( collection.extendedMetaData("collection-readonly") === true ) {
+            editAction.enabled = false
+        }
     }
 
     function updateRecurrence( event ) {
@@ -72,6 +79,9 @@ Page {
             if(event.recurrence.recurrenceRules[0] !== undefined){
                 var rule =  event.recurrence.recurrenceRules[0];
                 repeatLabel.text = eventUtils.getRecurrenceString(rule)
+            } else {
+                //For event occurs once, event.recurrence.recurrenceRules == []
+                repeatLabel.text = Defines.recurrenceLabel[0];
             }
         }
     }
@@ -114,15 +124,21 @@ Page {
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
 
         if( e.allDay ) {
-            if( !e.startDateTime.isSameDay( e.endDateTime) ) {
+            var days = Math.floor((e.endDateTime - e.startDateTime) / Date.msPerDay);
+            if( days !== 1 ) {
                 dateLabel.text = i18n.tr("%1 - %2 (All Day)")
                 .arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
-                .arg( e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                .arg( e.endDateTime.addDays(-1).toLocaleDateString(Qt.locale(), Locale.LongFormat))
             } else {
                 dateLabel.text = i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
             }
         } else {
-           dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
+            if (e.endDateTime.getDate() !== e.startDateTime.getDate()) {
+                dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "
+                        + e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) +  ", " + endTime;
+            } else {
+                dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
+            }
         }
 
         if( e.itemType === Type.EventOccurrence ){
@@ -166,6 +182,10 @@ Page {
         pageStack.currentPage.eventAdded.connect( function(event){
             pageStack.pop();
         })
+        //When event deleted from the Edit mode
+        pageStack.currentPage.eventDeleted.connect(function(eventId){
+            pageStack.pop();
+        })
     }
 
     Keys.onEscapePressed: {
@@ -179,19 +199,6 @@ Page {
     }
 
     head.actions: [
-        Action {
-            text: i18n.tr("Delete");
-            objectName: "delete"
-            iconName: "delete"
-            onTriggered: {
-                var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
-                dialog.deleteEvent.connect( function(eventId){
-                    model.removeItem(eventId);
-                    pageStack.pop();
-                });
-            }
-        },
-
         Action {
             text: i18n.tr("Edit");
             objectName: "edit"

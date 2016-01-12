@@ -29,6 +29,12 @@ Page {
 
     Keys.forwardTo: [yearPathView]
 
+    function refreshCurrentYear(year) {
+        currentYear = year;
+        var yearViewDelegate = yearPathView.currentItem.item;
+        yearViewDelegate.refresh();
+    }
+
     Action {
         id: calendarTodayAction
         objectName:"todaybutton"
@@ -47,7 +53,8 @@ Page {
             commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
-            commonHeaderActions.syncCalendarAction
+            commonHeaderActions.syncCalendarAction,
+            commonHeaderActions.settingsAction
         ]
     }
 

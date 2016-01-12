@@ -19,11 +19,14 @@ import QtQuick 2.3
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
-
+import Qt.labs.settings 1.0
 import "dateExt.js" as DateExt
 
 MainView {
     id: mainView
+
+    property bool displayWeekNumber: false;
+
     useDeprecatedToolbar: false
 
     // Work-around until this branch lands:
@@ -95,6 +98,21 @@ MainView {
     footerColor: "#ECECEC"
     anchorToKeyboard: true
 
+    Connections {
+        target: UriHandler
+        onOpened: {
+            var uri = uris[0]
+            if(uri !== undefined && url != "") {
+                var commands = uri.split("://")[1].split("=");
+                if(commands[0].toLowerCase() === "eventid") {
+                    // calendar://eventid=??
+                    if( eventModel ) {
+                        eventModel.showEventFromId(commands[1]);
+                    }
+                }
+            }
+        }
+    }
 
     PageStack {
         id: pageStack
@@ -168,34 +186,43 @@ MainView {
                 collectionFilter.ids = collectionIds;
             }
 
+            function showEventFromId(eventId) {
+                if(eventId === undefined || eventId === "") {
+                    return;
+                }
+
+                var requestId = "";
+                var callbackFunc = function(id,fetchedItems) {
+                    if( requestId === id && fetchedItems.length > 0 ) {
+                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":fetchedItems[0],"model": eventModel});
+                    }
+                    eventModel.onItemsFetched.disconnect( callbackFunc );
+                }
+
+                eventModel.onItemsFetched.connect( callbackFunc );
+                requestId = eventModel.fetchItems(eventId);
+            }
+
             Component.onCompleted: {
                 delayedApplyFilter();
 
                 if (args.values.eventid) {
-                    var requestId = "";
-                    eventModel.onItemsFetched.connect( function(id,fetchedItems) {
-                        if( requestId === id && fetchedItems.length > 0 ) {
-                            var event = fetchedItems[0];
-                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model": eventModel});
-                        }
-                    });
-                    requestId = eventModel.fetchItems([args.values.eventid]);
+                    showEventFromId(args.values.eventid);
                 }
             }
         }
 
         Tabs{
             id: tabs
-            Keys.forwardTo: [tabs.currentPage.item]
+            Keys.forwardTo: [tabs.currentPage]
 
             property var currentDay: DateExt.today();
+            property var selectedDay;
 
             // Arguments on startup
             property bool newevent: false;
             property int starttime: -1;
             property int endtime: -1;
-
-            selectedTabIndex: weekTab.index
 
             function newEvent() {
                 var startDate = new Date();
@@ -282,16 +309,22 @@ MainView {
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex = weekTab.index;
+                        tabs.selectedTabIndex = settings.defaultViewIndex;
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex = weekTab.index;
+                    tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
             } // End of Component.onCompleted:
 
             EventActions {
                 id: commonHeaderActions
+            }
+
+            Settings {
+                id: settings
+                property alias defaultViewIndex: tabs.selectedTabIndex
+                property alias showWeekNumber: mainView.displayWeekNumber
             }
 
             Keys.onTabPressed: {
@@ -316,156 +349,139 @@ MainView {
                 }
             }
 
+            onSelectedTabChanged: {
+                switch (tabs.selectedTab) {
+                case yearTab:{
+                    if (yearTab.page === null) {
+                        var yearViewCom = Qt.createComponent("YearView.qml");
+                        if (yearViewCom.status === Component.Ready) {
+                            var yearViewObj = yearViewCom.createObject(mainView);
+
+                            yearViewObj.monthSelected.connect(function (date){
+                                var now = DateExt.today();
+                                if( date.getMonth() === now.getMonth()
+                                        && date.getFullYear() === now.getFullYear()) {
+                                    tabs.currentDay = now;
+                                } else {
+                                    tabs.currentDay = date.midnight();
+                                }
+                                tabs.selectedTabIndex = monthTab.index;
+                            })
+
+                            yearTab.page = yearViewObj;
+                        }
+                    } else {
+                        yearTab.page.refreshCurrentYear(DateExt.today().getFullYear());
+                    }
+                } break;
+                case monthTab: {
+                    if (monthTab.page === null) {
+                        var monthViewCom = Qt.createComponent("MonthView.qml");
+                        if (monthViewCom.status === Component.Ready) {
+                            var monthViewObj = monthViewCom.createObject(mainView);
+
+                            monthViewObj.dateSelected.connect(function (date) {
+                                tabs.currentDay = date;
+                                tabs.selectedTabIndex = dayTab.index;
+                            })
+
+                            monthTab.page = monthViewObj;
+                        }
+                    } else {
+                        monthTab.page.currentMonth = tabs.currentDay.midnight();
+                    }
+                } break;
+                case weekTab: {
+                    if (weekTab.page === null) {
+                        var weekViewCom = Qt.createComponent("WeekView.qml");
+                        if (weekViewCom.status === Component.Ready) {
+                            var weekViewObj = weekViewCom.createObject(mainView);
+
+                            weekViewObj.isCurrentPage = Qt.binding(function() { return tabs.selectedTab == weekTab })
+                            weekViewObj.onDayStartChanged.connect(function (){
+                                tabs.currentDay = weekViewObj.dayStart;
+                            });
+                            weekViewObj.dateSelected.connect(function (date){
+                                tabs.currentDay = date;
+                                tabs.selectedTabIndex = dayTab.index;
+                            });
+
+                            weekTab.page = weekViewObj;
+                        }
+                    } else {
+                        weekTab.page.dayStart = tabs.currentDay;
+                    }
+                } break;
+                case dayTab: {
+                    if (dayTab.page === null) {
+                        var dayViewCom = Qt.createComponent("DayView.qml");
+                        if (dayViewCom.status === Component.Ready) {
+                            var dayViewObj = dayViewCom.createObject(mainView);
+
+                            dayViewObj.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == dayTab })
+                            dayViewObj.onCurrentDayChanged.connect(function (){
+                                tabs.currentDay = dayViewObj.currentDay;
+                            });
+                            dayViewObj.dateSelected.connect(function (date) {
+                                tabs.currentDay = date;
+                            });
+
+                            dayTab.page  =dayViewObj;
+                        }
+                    } else {
+                        dayTab.page.currentDay = tabs.currentDay;
+                    }
+                } break;
+                case agendaTab: {
+                    var agendaViewCom = Qt.createComponent("AgendaView.qml");
+                    if (agendaViewCom.status === Component.Ready) {
+                        var agendaViewObj = agendaViewCom.createObject(mainView);
+
+                        agendaViewObj.dateSelected.connect(function (date){
+                            tabs.currentDay = date;
+                            tabs.selectedTabIndex = dayTab.index;
+                        })
+                        agendaTab.page = agendaViewObj;
+                    }
+                } break;
+                default:
+                    break;
+                }
+            }
+
             Tab{
                 id: yearTab
                 objectName: "yearTab"
                 title: i18n.tr("Year")
-                page: Loader{
-                    id: yearViewLoader
-                    objectName: "yearViewLoader"
-                    source: tabs.selectedTab == yearTab ? Qt.resolvedUrl("YearView.qml"):""
-                    onLoaded: {
-                        item.currentYear = tabs.currentDay.getFullYear();
-                    }
-
-                    anchors{
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-
-                    Connections{
-                        target: yearViewLoader.item
-                        onMonthSelected: {
-                            var now = DateExt.today();
-                            if( date.getMonth() === now.getMonth()
-                                    && date.getFullYear() === now.getFullYear()) {
-                                tabs.currentDay = now;
-                            } else {
-                                tabs.currentDay = date.midnight();
-                            }
-                            tabs.selectedTabIndex = monthTab.index;
-                        }
-                    }
-                }
+                page: null
             }
 
             Tab{
                 id: monthTab
                 objectName: "monthTab"
                 title: i18n.tr("Month")
-                page: Loader{
-                    id: monthViewLoader
-                    objectName: "monthViewLoader"
-                    source: tabs.selectedTab == monthTab ? Qt.resolvedUrl("MonthView.qml"):""
-                    onLoaded: {
-                        item.currentMonth = tabs.currentDay.midnight();
-                    }
-
-                    anchors{
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-
-                    Connections{
-                        target: monthViewLoader.item
-                        onDateSelected: {
-                            tabs.currentDay = date;
-                            tabs.selectedTabIndex = dayTab.index;
-                        }
-                    }
-                }
+                page: null
             }
 
             Tab{
                 id: weekTab
                 objectName: "weekTab"
                 title: i18n.tr("Week")
-                page: Loader{
-                    id: weekViewLoader
-                    objectName: "weekViewLoader"
-                    source: tabs.selectedTab == weekTab ? Qt.resolvedUrl("WeekView.qml"):""
-                    onLoaded: {
-                        item.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == weekTab })
-                        item.dayStart = tabs.currentDay;
-                    }
-
-                    anchors{
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-
-                    Connections{
-                        target: weekViewLoader.item
-                        onDayStartChanged: {
-                            tabs.currentDay = weekViewLoader.item.dayStart;
-                        }
-
-                        onDateSelected: {
-                            tabs.currentDay = date;
-                            tabs.selectedTabIndex = dayTab.index;
-                        }
-                    }
-                }
+                page: null
             }
 
             Tab{
                 id: dayTab
                 objectName: "dayTab"
                 title: i18n.tr("Day")
-                page: Loader{
-                    id: dayViewLoader
-                    objectName: "dayViewLoader"
-                    source: tabs.selectedTab == dayTab ? Qt.resolvedUrl("DayView.qml"):""
-                    onLoaded: {
-                        item.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == dayTab })
-                        item.currentDay = tabs.currentDay;
-                    }
-
-                    anchors{
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-
-                    Connections{
-                        target: dayViewLoader.item
-                        onCurrentDayChanged: {
-                            tabs.currentDay = dayViewLoader.item.currentDay;
-                        }
-
-                        onDateSelected: {
-                            tabs.currentDay = date;
-                        }
-                    }
-                }
+                page: null
             }
 
             Tab {
                 id: agendaTab
                 objectName: "agendaTab"
                 title: i18n.tr("Agenda")
-                page: Loader {
-                    id: agendaViewLoader
-                    objectName: "agendaViewLoader"
-                    source: tabs.selectedTab == agendaTab ? Qt.resolvedUrl("AgendaView.qml"):""
-
-                    anchors{
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-
-                    Connections{
-                        target: agendaViewLoader.item
-                        onDateSelected: {
-                            tabs.currentDay = date;
-                            tabs.selectedTabIndex = dayTab.index;
-                        }
-                    }
-                }
+                page: null
             }
         }
     }

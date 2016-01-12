@@ -22,11 +22,7 @@ GridView{
     model: 12 /* months in a year */
 
     onYearChanged: {
-        scrollMonth = 0;
-        if(year == currentYear) {
-            scrollMonth = currentMonth
-        }
-        yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
+        refresh();
     }
 
     //scroll in case content height changed
@@ -35,6 +31,14 @@ GridView{
     }
 
     Component.onCompleted: {
+        yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
+    }
+
+    function refresh() {
+        scrollMonth = 0;
+        if(year == currentYear) {
+            scrollMonth = currentMonth
+        }
         yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
     }
 
@@ -73,7 +77,11 @@ GridView{
                 id: monthComponent
                 objectName: "monthComponent" + index
 
-                anchors.fill: parent
+                anchors {
+                    margins: units.gu(0.5)
+                    fill: parent
+                }
+
                 showEvents: false
                 currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
                 isCurrentItem: yearView.focus

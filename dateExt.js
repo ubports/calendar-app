@@ -85,16 +85,10 @@ Date.prototype.monthStart = function() {
     return this.midnight().addDays(1 - this.getDate())
 }
 
-Date.prototype.weekNumber = function() {
-    var date = this.weekStart(1).addDays(3) // Thursday midnight
-    var newYear = new Date(date.getFullYear(), 0 /*Jan*/, 1 /*the 1st*/)
-    var n = 0
-    var tx = date.getTime(), tn = newYear.getTime()
-    while (tn < tx) {
-        tx = tx - Date.msPerWeek
-        n = n + 1
-    }
-    return n
+Date.prototype.weekNumber = function(weekStartDay) {
+    var date = this.weekStart(weekStartDay).addDays(3) // Thursday midnight
+    var onejan = new Date(this.getFullYear(), 0, 3);
+    return Math.ceil((((date - onejan) / 86400000) + onejan.getDay()+1)/7);
 }
 
 Date.prototype.weeksInMonth = function(weekday) {
@@ -137,4 +131,19 @@ function today() {
 function isSameMonth(date1, date2) {
     return ( date1.getFullYear() === date2.getFullYear()
             && date1.getMonth() === date2.getMonth() )
+}
+
+function daysBetween( date1, date2 ) {
+  //Get 1 day in milliseconds
+  var one_day=1000*60*60*24;
+
+  // Convert both dates to milliseconds
+  var date1_ms = date1.getTime();
+  var date2_ms = date2.getTime();
+
+  // Calculate the difference in milliseconds
+  var difference_ms = date2_ms - date1_ms;
+
+  // Convert back to days and return
+  return Math.round(difference_ms/one_day);
 }

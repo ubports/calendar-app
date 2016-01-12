@@ -26,6 +26,7 @@ Item {
     property alias newEventAction: _newEventAction
     property alias showCalendarAction: _showCalendarAction
     property alias syncCalendarAction: _syncCalendarAction
+    property alias settingsAction: _settingsAction
 
     Action {
         id: _syncCalendarAction
@@ -55,11 +56,22 @@ Item {
 
     Action{
         id: _showCalendarAction
-        iconName: "new-event"
+        objectName: "calendarsbutton"
+        iconName: "calendar"
         text: i18n.tr("Calendars")
         onTriggered: {
             pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
             pageStack.currentPage.collectionUpdated.connect(eventModel.delayedApplyFilter);
+        }
+    }
+
+    Action{
+        id: _settingsAction
+        objectName: "settingsbutton"
+        iconName: "settings"
+        text: i18n.tr("Settings")
+        onTriggered: {
+            pageStack.push(Qt.resolvedUrl("Settings.qml"));
         }
     }
 }

@@ -31,6 +31,8 @@ Item{
 
     property var currentMonth;
     property var isYearView;
+    property var selectedDay;
+    property bool displayWeekNumber:false;
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
@@ -41,7 +43,8 @@ Item{
     property alias dateLabelDelegate : dateLabelRepeater.delegate
 
     signal monthSelected(var date);
-    signal dateSelected(var date)
+    signal dateSelected(var date);
+    signal dateHighlighted(var date);
 
     // optimize painter
     layer.enabled: true
@@ -93,6 +96,7 @@ Item{
         property int todayMonth: today.getMonth()
         property int todayYear: today.getFullYear()
 
+
         //date from month will start, this date might be from previous month
         property var monthStart: currentMonth.weekStart( Qt.locale().firstDayOfWeek )
         property int monthStartDate: monthStart.getDate()
@@ -114,13 +118,41 @@ Item{
 
         property int dateFontSize: FontUtils.sizeToPixels(root.dateLabelFontSize)
         property int dayFontSize: FontUtils.sizeToPixels(root.dayLabelFontSize)
+
+        property int selectedIndex: -1
+
+        function findSelectedDayIndex(){
+            if(!selectedDay) {
+                return -1;
+            }
+
+            if( todayMonth === selectedDay.getMonth() && selectedDay.getFullYear() === todayYear){
+                return selectedDay.getDate() +
+                       (Date.daysInMonth(monthStartYear, monthStartMonth) - monthStartDate);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    onSelectedDayChanged: {
+        if( isCurrentItem ) {
+            intern.selectedIndex = intern.findSelectedDayIndex();
+        }
+    }
+
+    onCurrentMonthChanged: {
+        intern.selectedIndex = -1;
     }
 
     Column{
         id: column
 
         anchors {
-            fill: parent
+            left: weekNumLoader.right;
+            right: parent.right;
+            top: parent.top;
+            bottom: parent.bottom;
             topMargin: units.gu(1.5)
             bottomMargin: units.gu(1)
         }
@@ -188,6 +220,87 @@ Item{
         }
     }
 
+    Loader {
+        id: weekNumLoader;
+        anchors.left: parent.left;
+        width: displayWeekNumber ? parent.width / 7:0;
+        height: parent.height;
+        visible: displayWeekNumber;
+        sourceComponent: displayWeekNumber ? weekNumComp : undefined;
+    }
+
+    Component {
+        id: weekNumComp
+
+        Column {
+            id: weekNumColumn;
+
+            anchors {
+                fill: parent
+                topMargin: units.gu(1.0)
+                bottomMargin: units.gu(1.25)
+            }
+
+            Item {
+                id: datePlaceHolder;
+                objectName:"datePlaceHolder"
+
+                width: parent.width;
+                height: isYearView ? units.gu(4.5): units.gu(1.25)
+            }
+
+            Item {
+                id: weekNumLabelItem;
+                objectName: "weekNumLabelItem"
+
+                width: parent.width;
+                height: weekNumLabel.height + units.gu(2.0)
+
+                Label{
+                    id: weekNumLabel;
+                    objectName: "weekNumLabel";
+                    width: parent.width;
+                    text: i18n.tr("Wk");
+                    horizontalAlignment: Text.AlignHCenter;
+                    verticalAlignment: Text.AlignVCenter;
+                    font.pixelSize: intern.dayFontSize;
+                    font.bold: true
+                    color: "black"
+                }
+            }
+
+            Repeater {
+                id: weekNumrepeater;
+                model: 6;
+
+                Label{
+                    id: weekNum
+                    objectName: "weekNum" + index
+                    width: parent.width;
+                    height: (weekNumColumn.height - weekNumLabelItem.height - datePlaceHolder.height) / 6;
+                    text: intern.monthStart.addDays(index * 7).weekNumber(Qt.locale().firstDayOfWeek)
+                    horizontalAlignment: Text.AlignHCenter;
+                    verticalAlignment: Text.AlignVCenter;
+                    font.pixelSize: intern.dayFontSize + 1;
+                    font.bold: true
+                    color: "black"
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            var selectedDate = new Date(intern.monthStart.addDays(index * 7))
+                            if( isYearView ) {
+                                root.monthSelected(selectedDate);
+                            } else {
+                                root.dateSelected(selectedDate);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     Component{
         id: defaultDateLabelComponent
         MonthComponentDateDelegate{
@@ -219,12 +332,12 @@ Item{
 
             isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
 
+            isSelected: showEvents && intern.selectedIndex == index
+
             width: parent.dayWidth
             height: parent.dayHeight
             fontSize: intern.dateFontSize
-
-            // is this used outside this file ??
-            showEvent : showEvents
+            showEvent: showEvents
                         && intern.eventStatus !== undefined
                         && intern.eventStatus[index] !== undefined
                         && intern.eventStatus[index]
@@ -238,8 +351,8 @@ Item{
             id: weekDay
             objectName: "weekDay" + index
             width: parent.dayWidth
-            property var day :Qt.locale().standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat)
-            text: isYearView ? day.charAt(0) : day;
+            property var day : Qt.locale(Qt.locale().name).standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat);
+            text: isYearView ? Qt.locale(Qt.locale().name).standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.NarrowFormat) : day
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: intern.dayFontSize
             font.bold: true
