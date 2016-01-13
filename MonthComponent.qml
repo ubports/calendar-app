@@ -147,6 +147,43 @@ Item{
         }
     }
 
+    UbuntuShape{
+        id: todayShape
+
+        visible: monthGrid.todayItem != null
+        color: (monthGrid.selectedItem == monthGrid.todayItem) ? UbuntuColors.darkGrey : UbuntuColors.orange
+        width: parent ? Math.min(parent.height, parent.width) / 1.3 : 0
+        height: width
+        parent: monthGrid.todayItem
+        anchors.centerIn: parent
+        z: -1
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: units.gu(0.5)
+            color: UbuntuColors.orange
+            radius: 5
+        }
+
+    }
+
+    UbuntuShape{
+        id: selectedShape
+
+        visible: (monthGrid.selectedItem != null) && (monthGrid.selectedItem != monthGrid.todayItem)
+        color: UbuntuColors.darkGrey
+        width: parent ? Math.min(parent.height, parent.width) / 1.3 : 0
+        height: width
+        parent: monthGrid.selectedItem
+        anchors.centerIn: parent
+        z: -1
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: units.gu(0.5)
+            color: UbuntuColors.lightGrey
+            radius: 5
+        }
+    }
+
     Column{
         id: column
 
@@ -205,15 +242,18 @@ Item{
             id: monthGrid
             objectName: "monthGrid"
 
-            width: parent.width
-            height: parent.height - monthGrid.y
-
             property int dayWidth: width / 7 /*cols*/;
             property int dayHeight: height / 6/*rows*/;
+            readonly property var todayItem: intern.isCurMonthTodayMonth &&
+                                             (intern.todayDate > 0) &&
+                                             (dateLabelRepeater.count >= (intern.todayDate + intern.offset)) ?
+                                                 dateLabelRepeater.itemAt(intern.todayDate + intern.offset) : null
+            readonly property var selectedItem: intern.selectedIndex != -1 ? dateLabelRepeater.itemAt(intern.selectedIndex) : null
 
+            width: parent.width
+            height: parent.height - monthGrid.y
             rows: 6
             columns: 7
-
             Repeater{
                 id: dateLabelRepeater
                 model: 42 //monthGrid.rows * monthGrid.columns

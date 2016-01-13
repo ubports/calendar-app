@@ -11,21 +11,6 @@ Item{
     property alias fontSize: dateLabel.font.pixelSize
     property bool isSelected: false
 
-    UbuntuShape{
-        visible: (isToday && isCurrentMonth) || isSelected
-        color: isToday && !isSelected ? "#DD4814" : "gray"
-
-        Rectangle{
-            anchors.fill: parent
-            anchors.margins: units.gu(0.5)
-            color: isToday ? "#DD4814" : "darkgray"
-        }
-
-        width: Math.min(parent.height, parent.width) / 1.3
-        height: width
-        anchors.centerIn: dateLabel
-    }
-
     Label {
         id: dateLabel
         anchors.centerIn: parent
