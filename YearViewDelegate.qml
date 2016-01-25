@@ -12,6 +12,8 @@ GridView{
     readonly property int currentMonth: currentDate.getMonth()
     readonly property int minCellWidth: units.gu(30)
 
+    signal monthSelected(var date);
+
     function refresh() {
         scrollMonth = 0;
         if(year == currentYear) {
@@ -68,7 +70,7 @@ GridView{
                 monthLabelFontSize: "medium"
                 yearLabelFontSize: "medium"
                 onMonthSelected: {
-                    yearViewPage.monthSelected(date);
+                    yearView.monthSelected(date);
                 }
             }
         }

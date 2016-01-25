@@ -26,13 +26,13 @@ Page {
 
     property int anchorYear: new Date().getFullYear()
     readonly property int currentYear: yearPathView.currentItem.year
+
     signal monthSelected(var date);
 
-    Keys.forwardTo: [yearPathView]
-
-    function refreshCurrentYear(year) {
-        currentYear = year;
-        var yearViewDelegate = yearPathView.currentItem.item;
+    function refreshCurrentYear(year)
+    {
+        anchorYear = year;
+        var yearViewDelegate = yearPathView.currentItem;
         yearViewDelegate.refresh();
     }
 
@@ -47,6 +47,7 @@ Page {
         }
     }
 
+    Keys.forwardTo: [yearPathView]
     title: i18n.tr("Year %1").arg(currentYear)
 
     head {
@@ -77,6 +78,9 @@ Page {
             scrollMonth: 0;
             isCurrentItem: (index == yearPathView.currentIndex)
             year: (anchorYear + yearPathView.loopCurrentIndex + yearPathView.indexType(index))
+            onMonthSelected: {
+                yearViewPage.monthSelected(date)
+            }
         }
     }
 }

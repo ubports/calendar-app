@@ -358,8 +358,15 @@ MainView {
                     id: yearViewLoader
 
                     asynchronous: true
-                    active: tabs.isReady && (tabs.selectedTab == yearTab)
                     sourceComponent: yearViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == yearTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
+                    }
                 }
             }
 
@@ -372,8 +379,15 @@ MainView {
                     id: monthTabLoader
 
                     asynchronous: true
-                    active: tabs.isReady && (tabs.selectedTab == monthTab)
                     sourceComponent: monthViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == monthTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
+                    }
                 }
             }
 
@@ -386,8 +400,15 @@ MainView {
                     id: weekTabLoader
 
                     asynchronous: true
-                    active: tabs.isReady && (tabs.selectedTab == weekTab)
                     sourceComponent: weekViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == weekTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
+                    }
                 }
             }
 
@@ -400,8 +421,15 @@ MainView {
                     id: dayTabLoader
 
                     asynchronous: true
-                    active: tabs.isReady && (tabs.selectedTab == dayTab)
                     sourceComponent: dayViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == dayTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
+                    }
                 }
             }
 
@@ -414,8 +442,14 @@ MainView {
                     id: agendaTabLoader
 
                     asynchronous: true
-                    active: tabs.isReady && (tabs.selectedTab == agendaTab)
                     sourceComponent: agendaViewComp
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == agendaTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
+                    }
                 }
             }
         }
@@ -424,7 +458,6 @@ MainView {
             id: yearViewComp
 
             YearView {
-                anchorYear: tabs.currentDay.getFullYear()
                 onMonthSelected: {
                     var now = DateExt.today();
                     if ((date.getMonth() === now.getMonth()) &&
@@ -435,6 +468,11 @@ MainView {
                     }
                     tabs.selectedTabIndex = monthTab.index;
                 }
+                onActiveChanged: {
+                    if (active) {
+                        refreshCurrentYear(tabs.currentDay.getFullYear())
+                    }
+                }
             }
         }
 
@@ -442,10 +480,14 @@ MainView {
             id: monthViewComp
 
             MonthView {
-                anchorDate: tabs.currentDay.midnight()
                 onDateSelected: {
                     tabs.currentDay = date
                     tabs.selectedTabIndex = dayTab.index
+                }
+                onActiveChanged: {
+                    if (active) {
+                        anchorDate = tabs.currentDay.midnight()
+                    }
                 }
             }
         }
@@ -462,8 +504,9 @@ MainView {
                     tabs.selectedTabIndex = dayTab.index;
                 }
                 onActiveChanged: {
-                    if (active)
+                    if (active) {
                         anchorDate = tabs.currentDay.midnight()
+                    }
                 }
             }
         }
@@ -476,10 +519,14 @@ MainView {
                     tabs.currentDay = currentDate;
                 }
 
-                onDateSelected: tabs.currentDay = date;
+                onDateSelected: {
+                    tabs.currentDay = date
+                }
+
                 onActiveChanged: {
-                    if (active)
+                    if (active) {
                         anchorDate = tabs.currentDay
+                    }
                 }
             }
         }
