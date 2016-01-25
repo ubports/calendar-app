@@ -443,6 +443,7 @@ MainView {
 
                     asynchronous: true
                     sourceComponent: agendaViewComp
+                    active : false
                     // Load page on demand and keep it on memory until the application is closed
                     enabled: tabs.isReady && (tabs.selectedTab == agendaTab)
                     onEnabledChanged: {
@@ -453,92 +454,92 @@ MainView {
                 }
             }
         }
+    }
 
-        Component {
-            id: yearViewComp
+    Component {
+        id: yearViewComp
 
-            YearView {
-                onMonthSelected: {
-                    var now = DateExt.today();
-                    if ((date.getMonth() === now.getMonth()) &&
-                        (date.getFullYear() === now.getFullYear())) {
-                        tabs.currentDay = now;
-                    } else {
-                        tabs.currentDay = date.midnight();
-                    }
-                    tabs.selectedTabIndex = monthTab.index;
+        YearView {
+            onMonthSelected: {
+                var now = DateExt.today();
+                if ((date.getMonth() === now.getMonth()) &&
+                    (date.getFullYear() === now.getFullYear())) {
+                    tabs.currentDay = now;
+                } else {
+                    tabs.currentDay = date.midnight();
                 }
-                onActiveChanged: {
-                    if (active) {
-                        refreshCurrentYear(tabs.currentDay.getFullYear())
-                    }
+                tabs.selectedTabIndex = monthTab.index;
+            }
+            onActiveChanged: {
+                if (active) {
+                    refreshCurrentYear(tabs.currentDay.getFullYear())
                 }
             }
         }
+    }
 
-        Component {
-            id: monthViewComp
+    Component {
+        id: monthViewComp
 
-            MonthView {
-                onDateSelected: {
-                    tabs.currentDay = date
-                    tabs.selectedTabIndex = dayTab.index
-                }
-                onActiveChanged: {
-                    if (active) {
-                        anchorDate = tabs.currentDay.midnight()
-                    }
+        MonthView {
+            onDateSelected: {
+                tabs.currentDay = date
+                tabs.selectedTabIndex = dayTab.index
+            }
+            onActiveChanged: {
+                if (active) {
+                    anchorDate = tabs.currentDay.midnight()
                 }
             }
         }
+    }
 
-        Component {
-            id: weekViewComp
+    Component {
+        id: weekViewComp
 
-            WeekView {
-                onCurrentDateChanged: {
-                    tabs.currentDay = currentDate
-                }
-                onDateSelected: {
-                    tabs.currentDay = date;
-                    tabs.selectedTabIndex = dayTab.index;
-                }
-                onActiveChanged: {
-                    if (active) {
-                        anchorDate = tabs.currentDay.midnight()
-                    }
+        WeekView {
+            onCurrentDateChanged: {
+                tabs.currentDay = currentDate
+            }
+            onDateSelected: {
+                tabs.currentDay = date;
+                tabs.selectedTabIndex = dayTab.index;
+            }
+            onActiveChanged: {
+                if (active) {
+                    anchorDate = tabs.currentDay.midnight()
                 }
             }
         }
+    }
 
-        Component {
-            id: dayViewComp
+    Component {
+        id: dayViewComp
 
-            DayView {
-                onCurrentDateChanged: {
-                    tabs.currentDay = currentDate;
-                }
+        DayView {
+            onCurrentDateChanged: {
+                tabs.currentDay = currentDate;
+            }
 
-                onDateSelected: {
-                    tabs.currentDay = date
-                }
+            onDateSelected: {
+                tabs.currentDay = date
+            }
 
-                onActiveChanged: {
-                    if (active) {
-                        anchorDate = tabs.currentDay
-                    }
+            onActiveChanged: {
+                if (active) {
+                    anchorDate = tabs.currentDay
                 }
             }
         }
+    }
 
-        Component {
-            id: agendaViewComp
+    Component {
+        id: agendaViewComp
 
-            AgendaView {
-                onDateSelected: {
-                    tabs.currentDay = date;
-                    tabs.selectedTabIndex = dayTab.index;
-                }
+        AgendaView {
+            onDateSelected: {
+                tabs.currentDay = date;
+                tabs.selectedTabIndex = dayTab.index;
             }
         }
     }
