@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.3
+import QtQuick 2.4
 import QtOrganizer 5.0
 
 OrganizerModel {
@@ -41,7 +41,7 @@ OrganizerModel {
     }
 
     function startLoadingTimer() {
-        var newObject = Qt.createQmlObject("import QtQuick 2.3; Timer {interval: 1000; running: true; repeat: false;}",
+        var newObject = Qt.createQmlObject("import QtQuick 2.4; Timer {interval: 1000; running: true; repeat: false;}",
             eventModel, "EventListMode.qml");
         newObject.onTriggered.connect( function(){
             var items = itemsByTimePeriod(eventModel.startPeriod, eventModel.endPeriod);
@@ -73,7 +73,7 @@ OrganizerModel {
             }
         }
         return cals;
-	}
+    }
 
     function getWritableCollections(){
         var cals = [];
