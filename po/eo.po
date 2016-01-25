@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-11-23 15:14+0800\n"
-"PO-Revision-Date: 2013-05-18 17:00+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-01-17 17:40+0000\n"
+"Last-Translator: Robin van der Vliet <info@robinvandervliet.com>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2015-11-24 05:33+0000\n"
-"X-Generator: Launchpad (build 17850)\n"
+"X-Launchpad-Export-Date: 2016-01-18 05:47+0000\n"
+"X-Generator: Launchpad (build 17886)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
 #: ../WeekView.qml:44 ../YearView.qml:42
 msgid "Today"
-msgstr ""
+msgstr "Hodiaŭ"
 
 #: ../AgendaView.qml:93
 msgid "No upcoming events"
@@ -40,7 +40,7 @@ msgstr ""
 #: ../AgendaView.qml:169 ../EventBubble.qml:133
 #, qt-format
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -49,7 +49,7 @@ msgstr ""
 #: ../AllDayEventComponent.qml:126
 #, qt-format
 msgid "%1 ev."
-msgstr ""
+msgstr "%1 ev."
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:130
@@ -61,11 +61,11 @@ msgstr[1] ""
 
 #: ../CalendarChoicePopup.qml:33 ../EventActions.qml:61
 msgid "Calendars"
-msgstr ""
+msgstr "Kalendaroj"
 
 #: ../CalendarChoicePopup.qml:37 ../Settings.qml:32
 msgid "Back"
-msgstr ""
+msgstr "Reen"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
@@ -83,12 +83,12 @@ msgstr ""
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
-msgstr ""
+msgstr "Elekti koloron"
 
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
 #: ../EditEventConfirmationDialog.qml:53
 msgid "Cancel"
-msgstr ""
+msgstr "Nuligi"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
@@ -96,14 +96,14 @@ msgstr ""
 
 #: ../ContactChoicePopup.qml:83
 msgid "Search contact"
-msgstr ""
+msgstr "Serĉi kontakton"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../DayView.qml:60 ../MonthView.qml:61 ../WeekView.qml:64
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -111,7 +111,7 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
-msgstr ""
+msgstr "Forigi eventon"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../DeleteConfirmationDialog.qml:36
@@ -134,11 +134,11 @@ msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:68
 msgid "Delete"
-msgstr ""
+msgstr "Forigi"
 
 #: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:325
 msgid "Edit Event"
-msgstr ""
+msgstr "Redakti eventon"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../EditEventConfirmationDialog.qml:32
@@ -156,18 +156,18 @@ msgstr ""
 
 #: ../EventActions.qml:51 ../NewEvent.qml:325
 msgid "New Event"
-msgstr ""
+msgstr "Nova evento"
 
 #: ../EventActions.qml:72 ../Settings.qml:28
 msgid "Settings"
-msgstr ""
+msgstr "Agordoj"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
 #: ../EventBubble.qml:144 ../EventBubble.qml:149
 #, qt-format
 msgid "%1 <b>%2</b>"
-msgstr ""
+msgstr "%1 <b>%2</b>"
 
 #: ../EventDetails.qml:43 ../NewEvent.qml:436
 msgid "Event Details"
@@ -191,11 +191,11 @@ msgstr ""
 
 #: ../EventDetails.qml:203
 msgid "Edit"
-msgstr ""
+msgstr "Redakti"
 
 #: ../EventDetails.qml:354 ../NewEvent.qml:538
 msgid "Guests"
-msgstr ""
+msgstr "Gastoj"
 
 #: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:635
 msgid "Reminder"
@@ -207,7 +207,7 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:40 ../EventRepetition.qml:155
 msgid "Repeat"
-msgstr ""
+msgstr "Ripeti"
 
 #: ../EventRepetition.qml:174
 msgid "Repeats On:"
@@ -226,7 +226,7 @@ msgstr ""
 
 #: ../EventRepetition.qml:267
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #. TRANSLATORS: the argument refers to multiple recurrence of event with count .
 #. E.g. "Daily; 5 times."
@@ -234,15 +234,15 @@ msgstr ""
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 fojo"
+msgstr[1] "%1; %2 fojoj"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; ĝis %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
@@ -253,7 +253,7 @@ msgstr ""
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
-msgstr ""
+msgstr "Neniam"
 
 #: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
@@ -269,7 +269,7 @@ msgstr ""
 
 #: ../NewEvent.qml:84
 msgid "Save"
-msgstr ""
+msgstr "Konservi"
 
 #: ../NewEvent.qml:192
 msgid "End time can't be before start time"
@@ -277,19 +277,19 @@ msgstr ""
 
 #: ../NewEvent.qml:335
 msgid "Error"
-msgstr ""
+msgstr "Eraro"
 
 #: ../NewEvent.qml:337
 msgid "OK"
-msgstr ""
+msgstr "Bone"
 
 #: ../NewEvent.qml:390
 msgid "From"
-msgstr ""
+msgstr "El"
 
 #: ../NewEvent.qml:403
 msgid "To"
-msgstr ""
+msgstr "Al"
 
 #: ../NewEvent.qml:420
 msgid "All day event"
@@ -297,23 +297,23 @@ msgstr ""
 
 #: ../NewEvent.qml:449
 msgid "Event Name"
-msgstr ""
+msgstr "Nomo de evento"
 
 #: ../NewEvent.qml:467
 msgid "Description"
-msgstr ""
+msgstr "Priksribo"
 
 #: ../NewEvent.qml:485
 msgid "Location"
-msgstr ""
+msgstr "Loko"
 
 #: ../NewEvent.qml:500 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
-msgstr ""
+msgstr "Kalendaro"
 
 #: ../NewEvent.qml:542
 msgid "Add Guest"
-msgstr ""
+msgstr "Aldoni gaston"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -364,39 +364,39 @@ msgstr ""
 
 #: ../RemindersModel.qml:31
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minutoj"
 
 #: ../RemindersModel.qml:32
 msgid "15 minutes"
-msgstr ""
+msgstr "15 minutoj"
 
 #: ../RemindersModel.qml:33
 msgid "30 minutes"
-msgstr ""
+msgstr "30 minutoj"
 
 #: ../RemindersModel.qml:34
 msgid "1 hour"
-msgstr ""
+msgstr "1 horo"
 
 #: ../RemindersModel.qml:35
 msgid "2 hours"
-msgstr ""
+msgstr "2 horoj"
 
 #: ../RemindersModel.qml:36
 msgid "1 day"
-msgstr ""
+msgstr "1 tago"
 
 #: ../RemindersModel.qml:37
 msgid "2 days"
-msgstr ""
+msgstr "2 tagoj"
 
 #: ../RemindersModel.qml:38
 msgid "1 week"
-msgstr ""
+msgstr "1 semajno"
 
 #: ../RemindersModel.qml:39
 msgid "2 weeks"
-msgstr ""
+msgstr "2 semajnoj"
 
 #: ../Settings.qml:60
 msgid "Show week numbers"
@@ -410,7 +410,7 @@ msgstr ""
 #: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
-msgstr ""
+msgstr "S%1"
 
 #: ../TimeLineHeader.qml:66
 msgid "All Day"
@@ -419,7 +419,7 @@ msgstr ""
 #: ../YearView.qml:61
 #, qt-format
 msgid "Year %1"
-msgstr ""
+msgstr "Jaro %1"
 
 #: ../calendar.qml:47
 msgid ""
@@ -430,19 +430,19 @@ msgstr ""
 
 #: ../calendar.qml:455
 msgid "Year"
-msgstr ""
+msgstr "Jaro"
 
 #: ../calendar.qml:462
 msgid "Month"
-msgstr ""
+msgstr "Monato"
 
 #: ../calendar.qml:469
 msgid "Week"
-msgstr ""
+msgstr "Semajno"
 
 #: ../calendar.qml:476
 msgid "Day"
-msgstr ""
+msgstr "Tago"
 
 #: ../calendar.qml:483
 msgid "Agenda"
