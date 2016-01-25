@@ -126,6 +126,7 @@ MainView {
             }
         }
 
+        // Load events after the app startup
         Timer {
             id: applyFilterTimer
             interval: 200; running: false; repeat: false
@@ -157,6 +158,16 @@ MainView {
             id: collectionFilter
         }
 
+        InvalidFilter {
+            id: invalidFilter
+        }
+
+        IntersectionFilter {
+            id: mainFilter
+
+            filters: [ collectionFilter, itemTypeFilter]
+        }
+
         EventListModel{
             id: eventModel
 
@@ -164,9 +175,7 @@ MainView {
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
 
-            filter: IntersectionFilter {
-                filters: [ collectionFilter, itemTypeFilter]
-            }
+            filter: invalidFilter
 
             function delayedApplyFilter() {
                 applyFilterTimer.restart();
@@ -182,6 +191,7 @@ MainView {
                     }
                 }
                 collectionFilter.ids = collectionIds;
+                filter = mainFilter
             }
 
             function showEventFromId(eventId) {
