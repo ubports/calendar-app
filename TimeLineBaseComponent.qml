@@ -17,7 +17,6 @@
  */
 
 import QtQuick 2.4
-import QtQuick.Layouts 1.2
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
