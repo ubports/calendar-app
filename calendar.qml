@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.3
-import Ubuntu.Components 1.1
+import QtQuick 2.4
+import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
 import Qt.labs.settings 1.0
@@ -26,8 +26,6 @@ MainView {
     id: mainView
 
     property bool displayWeekNumber: false;
-
-    useDeprecatedToolbar: false
 
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
@@ -216,6 +214,7 @@ MainView {
             id: tabs
             Keys.forwardTo: [tabs.currentPage]
 
+            property bool isReady: false
             property var currentDay: DateExt.today();
             property var selectedDay;
 
@@ -315,6 +314,7 @@ MainView {
                 else {
                     tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
+                tabs.isReady = true
             } // End of Component.onCompleted:
 
             EventActions {
@@ -349,139 +349,149 @@ MainView {
                 }
             }
 
-            onSelectedTabChanged: {
-                switch (tabs.selectedTab) {
-                case yearTab:{
-                    if (yearTab.page === null) {
-                        var yearViewCom = Qt.createComponent("YearView.qml");
-                        if (yearViewCom.status === Component.Ready) {
-                            var yearViewObj = yearViewCom.createObject(mainView);
-
-                            yearViewObj.monthSelected.connect(function (date){
-                                var now = DateExt.today();
-                                if( date.getMonth() === now.getMonth()
-                                        && date.getFullYear() === now.getFullYear()) {
-                                    tabs.currentDay = now;
-                                } else {
-                                    tabs.currentDay = date.midnight();
-                                }
-                                tabs.selectedTabIndex = monthTab.index;
-                            })
-
-                            yearTab.page = yearViewObj;
-                        }
-                    } else {
-                        yearTab.page.refreshCurrentYear(DateExt.today().getFullYear());
-                    }
-                } break;
-                case monthTab: {
-                    if (monthTab.page === null) {
-                        var monthViewCom = Qt.createComponent("MonthView.qml");
-                        if (monthViewCom.status === Component.Ready) {
-                            var monthViewObj = monthViewCom.createObject(mainView);
-
-                            monthViewObj.dateSelected.connect(function (date) {
-                                tabs.currentDay = date;
-                                tabs.selectedTabIndex = dayTab.index;
-                            })
-
-                            monthTab.page = monthViewObj;
-                        }
-                    } else {
-                        monthTab.page.currentMonth = tabs.currentDay.midnight();
-                    }
-                } break;
-                case weekTab: {
-                    if (weekTab.page === null) {
-                        var weekViewCom = Qt.createComponent("WeekView.qml");
-                        if (weekViewCom.status === Component.Ready) {
-                            var weekViewObj = weekViewCom.createObject(mainView);
-
-                            weekViewObj.isCurrentPage = Qt.binding(function() { return tabs.selectedTab == weekTab })
-                            weekViewObj.onDayStartChanged.connect(function (){
-                                tabs.currentDay = weekViewObj.dayStart;
-                            });
-                            weekViewObj.dateSelected.connect(function (date){
-                                tabs.currentDay = date;
-                                tabs.selectedTabIndex = dayTab.index;
-                            });
-
-                            weekTab.page = weekViewObj;
-                        }
-                    } else {
-                        weekTab.page.dayStart = tabs.currentDay;
-                    }
-                } break;
-                case dayTab: {
-                    if (dayTab.page === null) {
-                        var dayViewCom = Qt.createComponent("DayView.qml");
-                        if (dayViewCom.status === Component.Ready) {
-                            var dayViewObj = dayViewCom.createObject(mainView);
-
-                            dayViewObj.isCurrentPage= Qt.binding(function() { return tabs.selectedTab == dayTab })
-                            dayViewObj.onCurrentDayChanged.connect(function (){
-                                tabs.currentDay = dayViewObj.currentDay;
-                            });
-                            dayViewObj.dateSelected.connect(function (date) {
-                                tabs.currentDay = date;
-                            });
-
-                            dayTab.page  =dayViewObj;
-                        }
-                    } else {
-                        dayTab.page.currentDay = tabs.currentDay;
-                    }
-                } break;
-                case agendaTab: {
-                    var agendaViewCom = Qt.createComponent("AgendaView.qml");
-                    if (agendaViewCom.status === Component.Ready) {
-                        var agendaViewObj = agendaViewCom.createObject(mainView);
-
-                        agendaViewObj.dateSelected.connect(function (date){
-                            tabs.currentDay = date;
-                            tabs.selectedTabIndex = dayTab.index;
-                        })
-                        agendaTab.page = agendaViewObj;
-                    }
-                } break;
-                default:
-                    break;
-                }
-            }
-
             Tab{
                 id: yearTab
                 objectName: "yearTab"
                 title: i18n.tr("Year")
-                page: null
+
+                page: Loader {
+                    id: yearViewLoader
+
+                    asynchronous: true
+                    active: tabs.isReady && (tabs.selectedTab == yearTab)
+                    sourceComponent: yearViewComp
+                }
             }
 
             Tab{
                 id: monthTab
                 objectName: "monthTab"
                 title: i18n.tr("Month")
-                page: null
+
+                page: Loader {
+                    id: monthTabLoader
+
+                    asynchronous: true
+                    active: tabs.isReady && (tabs.selectedTab == monthTab)
+                    sourceComponent: monthViewComp
+                }
             }
 
             Tab{
                 id: weekTab
                 objectName: "weekTab"
                 title: i18n.tr("Week")
-                page: null
+
+                page: Loader {
+                    id: weekTabLoader
+
+                    asynchronous: true
+                    active: tabs.isReady && (tabs.selectedTab == weekTab)
+                    sourceComponent: weekViewComp
+                }
             }
 
             Tab{
                 id: dayTab
                 objectName: "dayTab"
                 title: i18n.tr("Day")
-                page: null
+
+                page:Loader {
+                    id: dayTabLoader
+
+                    asynchronous: true
+                    active: tabs.isReady && (tabs.selectedTab == dayTab)
+                    sourceComponent: dayViewComp
+                }
             }
 
             Tab {
                 id: agendaTab
                 objectName: "agendaTab"
                 title: i18n.tr("Agenda")
-                page: null
+
+                page: Loader {
+                    id: agendaTabLoader
+
+                    asynchronous: true
+                    active: tabs.isReady && (tabs.selectedTab == agendaTab)
+                    sourceComponent: agendaViewComp
+                }
+            }
+        }
+
+        Component {
+            id: yearViewComp
+
+            YearView {
+                anchorYear: tabs.currentDay.getFullYear()
+                onMonthSelected: {
+                    var now = DateExt.today();
+                    if ((date.getMonth() === now.getMonth()) &&
+                        (date.getFullYear() === now.getFullYear())) {
+                        tabs.currentDay = now;
+                    } else {
+                        tabs.currentDay = date.midnight();
+                    }
+                    tabs.selectedTabIndex = monthTab.index;
+                }
+            }
+        }
+
+        Component {
+            id: monthViewComp
+
+            MonthView {
+                anchorDate: tabs.currentDay.midnight()
+                onDateSelected: {
+                    tabs.currentDay = date
+                    tabs.selectedTabIndex = dayTab.index
+                }
+            }
+        }
+
+        Component {
+            id: weekViewComp
+
+            WeekView {
+                onCurrentDateChanged: {
+                    tabs.currentDay = currentDate
+                }
+                onDateSelected: {
+                    tabs.currentDay = date;
+                    tabs.selectedTabIndex = dayTab.index;
+                }
+                onActiveChanged: {
+                    if (active)
+                        anchorDate = tabs.currentDay.midnight()
+                }
+            }
+        }
+
+        Component {
+            id: dayViewComp
+
+            DayView {
+                onCurrentDateChanged: {
+                    tabs.currentDay = currentDate;
+                }
+
+                onDateSelected: tabs.currentDay = date;
+                onActiveChanged: {
+                    if (active)
+                        anchorDate = tabs.currentDay
+                }
+            }
+        }
+
+        Component {
+            id: agendaViewComp
+
+            AgendaView {
+                onDateSelected: {
+                    tabs.currentDay = date;
+                    tabs.selectedTabIndex = dayTab.index;
+                }
             }
         }
     }

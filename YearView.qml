@@ -16,15 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.3
-import Ubuntu.Components 1.1
+import QtQuick 2.4
+import Ubuntu.Components 1.3
 
 import "dateExt.js" as DateExt
 Page {
     id: yearViewPage
     objectName: "yearViewPage"
 
-    property int currentYear: DateExt.today().getFullYear();
+    property int anchorYear: new Date().getFullYear()
+    readonly property int currentYear: yearPathView.currentItem.year
     signal monthSelected(var date);
 
     Keys.forwardTo: [yearPathView]
@@ -41,7 +42,8 @@ Page {
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            currentYear = new Date().getFullYear()
+            yearPathView.scrollToBegginer()
+            anchorYear = new Date().getFullYear()
         }
     }
 
@@ -65,30 +67,16 @@ Page {
         objectName: "yearPathView"
 
         anchors.fill: parent
+        snapMode: PathView.NoSnap
 
-        onNextItemHighlighted: {
-            currentYear = currentYear + 1;
+        delegate: YearViewDelegate{
+            width: PathView.view.width
+            height: PathView.view.height
+            focus: index == yearPathView.currentIndex
+
+            scrollMonth: 0;
+            isCurrentItem: (index == yearPathView.currentIndex)
+            year: (anchorYear + yearPathView.loopCurrentIndex + yearPathView.indexType(index))
         }
-
-        onPreviousItemHighlighted: {
-            currentYear = currentYear - 1;
-        }
-
-        delegate: Loader {
-             width: parent.width
-             height: parent.height
-             anchors.top: parent.top
-
-             asynchronous: index !== yearPathView.currentIndex
-             sourceComponent: YearViewDelegate{
-                 focus: index == yearPathView.currentIndex
-
-                 scrollMonth: 0;
-                 isCurrentItem: index == yearPathView.currentIndex
-                 year: (yearViewPage.currentYear + yearPathView.indexType(index))
-
-                 anchors.fill: parent
-             }
-         }
     }
 }

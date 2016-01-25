@@ -1,5 +1,5 @@
-import QtQuick 2.0
-import Ubuntu.Components 1.1
+import QtQuick 2.4
+import Ubuntu.Components 1.3
 
 Item{
     id: dateRootItem
@@ -11,11 +11,10 @@ Item{
     property alias fontSize: dateLabel.font.pixelSize
     property bool isSelected: false
 
-    Label {
+    Text {
         id: dateLabel
         anchors.centerIn: parent
         text: date
-        fontSize: root.dateLabelFontSize
         color: {
             if( isCurrentMonth ) {
                 if( isToday || isSelected ) {
@@ -72,7 +71,6 @@ Item{
                     //If monthView is clicked then open selected DayView
                     root.dateSelected(selectedDate);
                 } else {
-                    intern.selectedIndex = index
                     root.dateHighlighted(selectedDate)
                 }
             }

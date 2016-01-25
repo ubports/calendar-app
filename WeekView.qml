@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.3
-import Ubuntu.Components 1.1
+import QtQuick 2.4
+import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
@@ -25,8 +25,10 @@ Page{
     id: weekViewPage
     objectName: "weekViewPage"
 
-    property var dayStart: new Date();
-    property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
+    property var anchorDate: new Date();
+    readonly property var currentDate: weekViewPath.currentItem.item.startDay
+
+    property var firstDayOfWeek: currentDate.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
     property var selectedDay;
 
@@ -61,7 +63,7 @@ Page{
             id:monthYear
             objectName:"monthYearLabel"
             fontSize: "x-large"
-            text: i18n.tr(dayStart.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
+            text: i18n.tr(currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
             font.capitalization: Font.Capitalize
         }
     }
@@ -74,22 +76,6 @@ Page{
 
         //This is used to scroll all view together when currentItem scrolls
         property var childContentY;
-
-        onNextItemHighlighted: {
-            nextWeek();
-        }
-
-        onPreviousItemHighlighted: {
-            previousWeek();
-        }
-
-        function nextWeek() {
-            dayStart = firstDay.addDays(7);
-        }
-
-        function previousWeek(){
-            dayStart = firstDay.addDays(-7);
-        }
 
         delegate: Loader {
             id: timelineLoader
@@ -104,10 +90,10 @@ Page{
                 TimeLineBaseComponent {
                     id: timeLineView
 
-                    type: ViewType.ViewTypeWeek
                     anchors.fill: parent
+                    type: ViewType.ViewTypeWeek
+                    startDay: anchorDate.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
                     isActive: parent.PathView.isCurrentItem
-                    startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
                     keyboardEventProvider: weekViewPath
                     selectedDay: weekViewPage.selectedDay
 
@@ -128,7 +114,7 @@ Page{
                         onTriggered:{
                             if( isActive )
                                 timeLineView.scrollTocurrentDate();
-                        }
+                            }
                     }
 
                     Connections{

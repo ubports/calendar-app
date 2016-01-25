@@ -112,28 +112,33 @@ Item {
     }
 
     Timer{
-       interval: 200; running: true; repeat: false
-       onTriggered: {
-           mainModel = modelComponent.createObject();
-           activityLoader.running = Qt.binding( function (){ return mainModel.isLoading;});
-       }
+        interval: 200
+        running: true
+        repeat: false
+        onTriggered: {
+            mainModel.filter = eventModel.filter
+        }
     }
 
-    Component {
-        id: modelComponent
-        EventListModel {
-            id: mainModel
-            startPeriod: startDay.midnight();
-            endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
-            filter: eventModel.filter
-        }
+    InvalidFilter {
+        id: invalidFilter
+    }
+
+    EventListModel {
+        id: mainModel
+
+        filter: invalidFilter // delay event filter in case the user is scrolling too fast
+        startPeriod: startDay.midnight();
+        endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
     }
 
     ActivityIndicator {
         id: activityLoader
-        visible: running
         objectName : "activityIndicator"
+
+        visible: running
         anchors.centerIn: parent
+        running: mainModel.isLoading
         z:2
     }
 
@@ -184,7 +189,7 @@ Item {
 
                 property int delegateWidth: {
                     if( type == ViewType.ViewTypeWeek ) {
-                        width/3 - units.gu(1) /*partial visible area*/
+                        width/3 - units.gu(1) // partial visible area
                     } else {
                         width
                     }

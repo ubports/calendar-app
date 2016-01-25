@@ -15,9 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.3
-import Ubuntu.Components 1.1
-import QtOrganizer 5.0
+import QtQuick 2.4
+import Ubuntu.Components 1.3
+import QtQuick.Layouts 1.1
+
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
@@ -26,12 +27,11 @@ Item{
     objectName: "MonthComponent"
 
     property bool isCurrentItem;
+    property int currentYear;
+    property int currentMonth;
 
-    property bool showEvents: false
-
-    property var currentMonth;
     property var isYearView;
-    property var selectedDay;
+    property var highlightedDate;
     property bool displayWeekNumber:false;
 
     property string dayLabelFontSize: "medium"
@@ -41,105 +41,59 @@ Item{
 
     property alias dayLabelDelegate : dayLabelRepeater.delegate
     property alias dateLabelDelegate : dateLabelRepeater.delegate
+    readonly property alias monthStartDate: intern.monthStart
 
     signal monthSelected(var date);
     signal dateSelected(var date);
     signal dateHighlighted(var date);
 
-    // optimize painter
-    layer.enabled: true
-
-    Timer {
-        id: modelIsDirty
-
-        interval: 500
-        repeat: false
-        onTriggered: if(showEvents) mainModel.update()
-    }
-
-    onCurrentMonthChanged: {
-        intern.selectedIndex = -1;
-        modelIsDirty.start()
-    }
-
-    onSelectedDayChanged: {
-        if( isCurrentItem ) {
-            intern.selectedIndex = intern.findSelectedDayIndex();
-        }
-    }
-
-
-    InvalidFilter {
-        id: invalidFilter
-    }
-
-    EventListModel {
-        id: mainModel
-
-        autoUpdate: false
-        startPeriod: intern.monthStart.midnight();
-        endPeriod: intern.monthStart.addDays((/*monthGrid.rows * cols */ 42 )-1).endOfDay()
-        filter: showEvents ? eventModel.filter : invalidFilter
-        fetchHint: FetchHint {
-            detailTypesHint: [ Detail.EventTime,
-                               Detail.JournalTime,
-                               Detail.TodoTime
-                             ]
-        }
-
-        onModelChanged: {
-            intern.eventStatus = mainModel.containsItems(mainModel.startPeriod,
-                                                         mainModel.endPeriod,
-                                                         86400/*24*60*60*/);
-        }
+    function updateEvents(events) {
+        intern.eventStatus = events
     }
 
     QtObject{
         id: intern
 
-        property var eventStatus;
-
-        property int curMonthDate: currentMonth.getDate()
-        property int curMonth: currentMonth.getMonth()
-        property int curMonthYear: currentMonth.getFullYear()
+        property var eventStatus: new Array(42)
 
         property var today: DateExt.today()
         property int todayDate: today.getDate()
         property int todayMonth: today.getMonth()
         property int todayYear: today.getFullYear()
 
-
         //date from month will start, this date might be from previous month
-        property var monthStart: currentMonth.weekStart( Qt.locale().firstDayOfWeek )
+        property var currentDate: new Date(root.currentYear, root.currentMonth, 1, 0, 0, 0, 0)
+        property var monthStart: currentDate.weekStart( Qt.locale().firstDayOfWeek )
         property int monthStartDate: monthStart.getDate()
         property int monthStartMonth: monthStart.getMonth()
         property int monthStartYear: monthStart.getFullYear()
-
         property int daysInStartMonth: Date.daysInMonth(monthStartYear, monthStartMonth)
-        property int daysInCurMonth:  Date.daysInMonth(curMonthYear,curMonth)
 
         //check if current month is start month
-        property bool isCurMonthStartMonth: curMonthDate === monthStartDate
-                                            && curMonth === monthStartMonth
-                                            && curMonthYear === monthStartYear
+        property bool isCurMonthStartMonth: root.currentMonth === monthStartMonth &&
+                                            root.currentYear === monthStartYear
 
         //check current month is same as today's month
-        property bool isCurMonthTodayMonth: todayYear === curMonthYear && todayMonth == curMonth
+        property bool isCurMonthTodayMonth: todayYear === root.currentYear &&
+                                            todayMonth == root.currentMonth
         //offset from current month's first date to start date of current month
         property int offset: isCurMonthStartMonth ? -1 : (daysInStartMonth - monthStartDate)
 
         property int dateFontSize: FontUtils.sizeToPixels(root.dateLabelFontSize)
         property int dayFontSize: FontUtils.sizeToPixels(root.dayLabelFontSize)
 
-        property int selectedIndex: -1
-
-        function findSelectedDayIndex(){
-            if(!selectedDay) {
+        property int highlightedIndex: root.isCurrentItem &&
+                                       root.highlightedDate ?
+                                           intern.indexByDate(root.highlightedDate) : -1
+        function indexByDate(date){
+            if (!date) {
                 return -1;
             }
 
-            if( todayMonth === selectedDay.getMonth() && selectedDay.getFullYear() === todayYear){
-                return selectedDay.getDate() +
+            if ((root.currentMonth === date.getMonth()) &&
+                (root.currentYear === date.getFullYear())) {
+
+                return date.getDate() +
                        (Date.daysInMonth(monthStartYear, monthStartMonth) - monthStartDate);
             } else {
                 return -1;
@@ -150,8 +104,8 @@ Item{
     UbuntuShape{
         id: todayShape
 
-        visible: monthGrid.todayItem != null
-        color: (monthGrid.selectedItem == monthGrid.todayItem) ? UbuntuColors.darkGrey : UbuntuColors.orange
+        visible: root.isCurrentItem && intern.isCurMonthTodayMonth && monthGrid.todayItem != null
+        color: (monthGrid.highlightedItem === monthGrid.todayItem) ? UbuntuColors.darkGrey : UbuntuColors.orange
         width: parent ? Math.min(parent.height, parent.width) / 1.3 : 0
         height: width
         parent: monthGrid.todayItem
@@ -163,17 +117,16 @@ Item{
             color: UbuntuColors.orange
             radius: 5
         }
-
     }
 
     UbuntuShape{
-        id: selectedShape
+        id: highlightedShape
 
-        visible: (monthGrid.selectedItem != null) && (monthGrid.selectedItem != monthGrid.todayItem)
+        visible: monthGrid.highlightedItem && (monthGrid.highlightedItem != monthGrid.todayItem)
         color: UbuntuColors.darkGrey
         width: parent ? Math.min(parent.height, parent.width) / 1.3 : 0
         height: width
-        parent: monthGrid.selectedItem
+        parent: monthGrid.highlightedItem
         anchors.centerIn: parent
         z: -1
         Rectangle {
@@ -207,8 +160,8 @@ Item{
                 ViewHeader{
                     id: monthHeader
                     anchors.fill: parent
-                    month: intern.curMonth
-                    year: intern.curMonthYear
+                    month: root.currentMonth
+                    year: root.currentYear
 
                     monthLabelFontSize: root.monthLabelFontSize
                     yearLabelFontSize: root.yearLabelFontSize
@@ -226,9 +179,11 @@ Item{
 
                 property int dayWidth: width / 7;
 
-                width: parent.width
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
+                anchors{
+                    left: parent.left
+                    right: parent.right
+                    verticalCenter: parent.verticalCenter
+                }
 
                 Repeater{
                     id: dayLabelRepeater
@@ -238,26 +193,43 @@ Item{
             }
         }
 
-        Grid{
+        Grid {
             id: monthGrid
             objectName: "monthGrid"
 
             property int dayWidth: width / 7 /*cols*/;
             property int dayHeight: height / 6/*rows*/;
-            readonly property var todayItem: intern.isCurMonthTodayMonth &&
-                                             (intern.todayDate > 0) &&
-                                             (dateLabelRepeater.count >= (intern.todayDate + intern.offset)) ?
-                                                 dateLabelRepeater.itemAt(intern.todayDate + intern.offset) : null
-            readonly property var selectedItem: intern.selectedIndex != -1 ? dateLabelRepeater.itemAt(intern.selectedIndex) : null
-
-            width: parent.width
+            property var todayItem: null
+            readonly property var highlightedItem: intern.highlightedIndex != -1 ?
+                                                       dateLabelRepeater.itemAt(intern.highlightedIndex) : null
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
             height: parent.height - monthGrid.y
-            rows: 6
             columns: 7
+
             Repeater{
                 id: dateLabelRepeater
-                model: 42 //monthGrid.rows * monthGrid.columns
-                delegate: defaultDateLabelComponent
+                model: 42
+                delegate: MonthComponentDateDelegate {
+                    property var delegateDate: intern.monthStart.addDays(index)
+
+                    date: delegateDate.getDate()
+                    isCurrentMonth: delegateDate.getMonth() === root.currentMonth
+                    showEvent: intern.eventStatus[index] === true
+
+                    isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
+                    isSelected: intern.highlightedIndex == index
+                    width: monthGrid.dayWidth
+                    height: monthGrid.dayHeight
+
+                    onIsTodayChanged: {
+                        if (isToday) {
+                            monthGrid.todayItem = this
+                        }
+                    }
+                }
             }
         }
     }
@@ -344,52 +316,9 @@ Item{
     }
 
     Component{
-        id: defaultDateLabelComponent
-        MonthComponentDateDelegate{
-            date: {
-                //try to find date from index and month's first week's first date
-                var temp = intern.daysInStartMonth - intern.offset + index
-                //date exceeds days in startMonth,
-                //this means previous month is over and we are now in current month
-                //to get actual date we need to remove number of days in startMonth
-                if( temp > intern.daysInStartMonth ) {
-                    temp = temp - intern.daysInStartMonth
-                    //date exceeds days in current month
-                    // this means date is from next month
-                    //to get actual date we need to remove number of days in current month
-                    if( temp > intern.daysInCurMonth ) {
-                        temp = temp - intern.daysInCurMonth
-                    }
-                }
-                return temp;
-            }
-
-            isCurrentMonth: {
-                //remove offset from index
-                //if index falls in 1 to no of days in current month
-                //then date is inside current month
-                var temp = index - intern.offset
-                return (temp >= 1 && temp <= intern.daysInCurMonth)
-            }
-
-            isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
-
-            isSelected: showEvents && intern.selectedIndex == index
-
-            width: parent.dayWidth
-            height: parent.dayHeight
-            fontSize: intern.dateFontSize
-            showEvent: showEvents
-                        && intern.eventStatus !== undefined
-                        && intern.eventStatus[index] !== undefined
-                        && intern.eventStatus[index]
-        }
-    }
-
-    Component{
         id: dafaultDayLabelComponent
 
-        Label{
+        Text {
             id: weekDay
             objectName: "weekDay" + index
             width: parent.dayWidth

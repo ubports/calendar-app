@@ -1,5 +1,5 @@
-import QtQuick 2.0
-import Ubuntu.Components 1.1
+import QtQuick 2.4
+import Ubuntu.Components 1.3
 
 GridView{
     id: yearView
@@ -12,28 +12,6 @@ GridView{
     readonly property int currentMonth: currentDate.getMonth()
     readonly property int minCellWidth: units.gu(30)
 
-    cellWidth: Math.floor(Math.min.apply(Math, [3, 4].map(function(n)
-    { return ((width / n >= minCellWidth) ? width / n : width / 2) })))
-
-    cellHeight: cellWidth * 1.4
-    clip: true
-    cacheBuffer: 6 * cellHeight
-
-    model: 12 /* months in a year */
-
-    onYearChanged: {
-        refresh();
-    }
-
-    //scroll in case content height changed
-    onHeightChanged: {
-        yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
-    }
-
-    Component.onCompleted: {
-        yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
-    }
-
     function refresh() {
         scrollMonth = 0;
         if(year == currentYear) {
@@ -42,24 +20,23 @@ GridView{
         yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
     }
 
-    Connections{
-        target: yearPathView
-        onScrollUp: {
-            scrollMonth -= 2;
-            if(scrollMonth < 0) {
-                scrollMonth = 0;
-            }
-            yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
-        }
+    // Does not increase cash buffer if user is scolling
+    cacheBuffer: PathView.view.flicking || PathView.view.dragging || !isCurrentItem ? 0 : 6 * cellHeight
 
-        onScrollDown: {
-            scrollMonth += 2;
-            var visibleMonths = yearView.height / cellHeight;
-            if( scrollMonth >= (11 - visibleMonths)) {
-                scrollMonth = (11 - visibleMonths);
-            }
-            yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
-        }
+    cellWidth: Math.floor(Math.min.apply(Math, [3, 4].map(function(n)
+    { return ((width / n >= minCellWidth) ? width / n : width / 2) })))
+    cellHeight: cellWidth * 1.4
+
+    clip: true
+    model: 12 /* months in a year */
+
+    //scroll in case content height changed
+    onHeightChanged: {
+        yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
+    }
+
+    Component.onCompleted: {
+        yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
     }
 
     delegate: Item {
@@ -82,15 +59,14 @@ GridView{
                     fill: parent
                 }
 
-                showEvents: false
-                currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
+                currentYear: yearView.year
+                currentMonth: index
                 isCurrentItem: yearView.focus
                 isYearView: true
                 dayLabelFontSize:"x-small"
                 dateLabelFontSize: "medium"
                 monthLabelFontSize: "medium"
                 yearLabelFontSize: "medium"
-
                 onMonthSelected: {
                     yearViewPage.monthSelected(date);
                 }
