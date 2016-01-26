@@ -63,6 +63,22 @@ Page {
         ]
     }
 
+    ActivityIndicator {
+        property var startDate: new Date()
+
+        visible: running
+        running: (yearPathView.currentItem.status !== Loader.Ready)
+        anchors.centerIn: parent
+        z:2
+
+        onRunningChanged: {
+            if (!running) {
+                var current  = new Date()
+                console.debug("Elapsed:" + (current.getTime() - startDate.getTime()))
+            }
+        }
+    }
+
     flickable: null
 
     PathViewBase {
@@ -73,14 +89,17 @@ Page {
         snapMode: PathView.NoSnap
 
         delegate: Loader {
-            asynchronous: index !== yearPathView.currentIndex
+            id: delegateLoader
+
+            asynchronous: true
             width: PathView.view.width
             height: PathView.view.height
 
-            YearViewDelegate{
+            sourceComponent: YearViewDelegate {
+                visible: delegateLoader.status === Loader.Ready
                 anchors.fill: parent
                 scrollMonth: 0;
-                isCurrentItem: (index == yearPathView.currentIndex)
+                isCurrentItem: (index === yearPathView.currentIndex)
                 focus: isCurrentItem
                 year: (anchorYear + yearPathView.loopCurrentIndex + yearPathView.indexType(index))
                 onMonthSelected: {

@@ -90,6 +90,7 @@ Page {
                 monthViewPage.dateSelected(date);
             }
             onDateHighlighted: {
+                console.debug("Date highlight:" + date)
                 monthViewPage.highlightedDate = date
                 monthViewPage.dateHighlighted(date);
             }

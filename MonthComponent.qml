@@ -211,23 +211,51 @@ Item{
             Repeater{
                 id: dateLabelRepeater
                 model: 42
-                delegate: MonthComponentDateDelegate {
-                    property var delegateDate: intern.monthStart.addDays(index)
+                delegate: isYearView ? monthWithoutEventsDelegate : monthWithEventsDelegate
+            }
+        }
+    }
 
-                    date: delegateDate.getDate()
-                    isCurrentMonth: delegateDate.getMonth() === root.currentMonth
-                    showEvent: intern.eventStatus[index] === true
+    MouseArea {
+        id: mouseArea
 
-                    isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
-                    isSelected: intern.highlightedIndex == index
-                    width: monthGrid.dayWidth
-                    height: monthGrid.dayHeight
+        function getItemAt(x, y)
+        {
+            var clickPosition = mouseArea.mapToItem(monthGrid, x, y)
+            return monthGrid.childAt(clickPosition.x, clickPosition.y)
+        }
 
-                    onIsTodayChanged: {
-                        if (isToday) {
-                            monthGrid.todayItem = this
-                        }
-                    }
+        anchors {
+            fill: column
+            topMargin: monthGrid.y
+        }
+
+        onPressAndHold: {
+            var dayItem = getItemAt(mouse.x, mouse.y)
+
+            if( dayItem.isSelected ) {
+                var selectedDate = new Date();
+                selectedDate.setFullYear(intern.monthStartYear)
+                selectedDate.setMonth(intern.monthStartMonth + 1)
+                selectedDate.setDate(dayItem.date)
+                selectedDate.setMinutes(60, 0, 0)
+                pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
+            }
+        }
+        onClicked: {
+            var dayItem = getItemAt(mouse.x, mouse.y)
+            var selectedDate = new Date(intern.monthStartYear,
+                                        intern.monthStartMonth + 1,
+                                        dayItem.date, 0, 0, 0, 0)
+            if (root.isYearView) {
+                //If yearView is clicked then open selected MonthView
+                root.monthSelected(selectedDate);
+            } else {
+                if (dayItem.isSelected) {
+                    //If monthView is clicked then open selected DayView
+                    root.dateSelected(selectedDate);
+                } else {
+                    root.dateHighlighted(selectedDate)
                 }
             }
         }
@@ -327,6 +355,50 @@ Item{
             font.pixelSize: intern.dayFontSize
             font.bold: true
             color: "black"
+        }
+    }
+    Component {
+        id: monthWithEventsDelegate
+
+        MonthComponentWithEventsDateDelegate {
+            property var delegateDate: intern.monthStart.addDays(index)
+
+            date: delegateDate.getDate()
+            isCurrentMonth: delegateDate.getMonth() === root.currentMonth
+            showEvent: intern.eventStatus[index] === true
+
+            isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
+            isSelected: intern.highlightedIndex == index
+            width: monthGrid.dayWidth
+            height: monthGrid.dayHeight
+
+            onIsTodayChanged: {
+                if (isToday) {
+                    monthGrid.todayItem = this
+                }
+            }
+        }
+    }
+
+    Component {
+        id: monthWithoutEventsDelegate
+
+        MonthComponentDateDelegate {
+            property var delegateDate: intern.monthStart.addDays(index)
+
+            date: delegateDate.getDate()
+            isCurrentMonth: delegateDate.getMonth() === root.currentMonth
+
+            isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
+            isSelected: intern.highlightedIndex == index
+            width: monthGrid.dayWidth
+            height: monthGrid.dayHeight
+
+            onIsTodayChanged: {
+                if (isToday) {
+                    monthGrid.todayItem = this
+                }
+            }
         }
     }
 }
