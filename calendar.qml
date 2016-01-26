@@ -469,6 +469,10 @@ MainView {
         id: yearViewComp
 
         YearView {
+            onCurrentYearChanged: {
+                tabs.currentDay = new Date(currentYear, 0, 1, 0, 0, 0)
+            }
+
             onMonthSelected: {
                 var now = DateExt.today();
                 if ((date.getMonth() === now.getMonth()) &&
@@ -491,10 +495,19 @@ MainView {
         id: monthViewComp
 
         MonthView {
+            onCurrentDateChanged: {
+                tabs.currentDay = currentDate
+            }
+
+            onDateHighlighted: {
+                tabs.currentDay = date;
+            }
+
             onDateSelected: {
                 tabs.currentDay = date
                 tabs.selectedTabIndex = dayTab.index
             }
+
             onActiveChanged: {
                 if (active) {
                     anchorDate = tabs.currentDay.midnight()
@@ -510,10 +523,16 @@ MainView {
             onCurrentDateChanged: {
                 tabs.currentDay = currentDate
             }
+
+            onDateHighlighted: {
+                tabs.currentDay = date
+            }
+
             onDateSelected: {
                 tabs.currentDay = date;
                 tabs.selectedTabIndex = dayTab.index;
             }
+
             onActiveChanged: {
                 if (active) {
                     anchorDate = tabs.currentDay.midnight()
