@@ -27,8 +27,7 @@ Page{
 
     property var anchorDate: new Date();
     readonly property var currentDate: weekViewPath.currentItem.item.startDay
-
-    property var firstDayOfWeek: currentDate.weekStart(Qt.locale().firstDayOfWeek);
+    readonly property var firstDayOfWeek: anchorDate.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
     property var selectedDay;
 
@@ -92,7 +91,7 @@ Page{
 
                     anchors.fill: parent
                     type: ViewType.ViewTypeWeek
-                    startDay: anchorDate.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
+                    startDay: firstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
                     isActive: parent.PathView.isCurrentItem
                     keyboardEventProvider: weekViewPath
                     selectedDay: weekViewPage.selectedDay
