@@ -25,7 +25,7 @@ Page {
     objectName: "yearViewPage"
 
     property int anchorYear: new Date().getFullYear()
-    readonly property int currentYear: yearPathView.currentItem.year
+    readonly property int currentYear: yearPathView.currentItem.item ? yearPathView.currentItem.item.year : anchorYear
 
     signal monthSelected(var date);
 
@@ -33,7 +33,9 @@ Page {
     {
         anchorYear = year;
         var yearViewDelegate = yearPathView.currentItem;
-        yearViewDelegate.refresh();
+        if (yearViewDelegate && yearViewDelegate.item) {
+            yearViewDelegate.item.refresh();
+        }
     }
 
     Action {
@@ -70,16 +72,20 @@ Page {
         anchors.fill: parent
         snapMode: PathView.NoSnap
 
-        delegate: YearViewDelegate{
+        delegate: Loader {
+            asynchronous: index !== yearPathView.currentIndex
             width: PathView.view.width
             height: PathView.view.height
-            focus: index == yearPathView.currentIndex
 
-            scrollMonth: 0;
-            isCurrentItem: (index == yearPathView.currentIndex)
-            year: (anchorYear + yearPathView.loopCurrentIndex + yearPathView.indexType(index))
-            onMonthSelected: {
-                yearViewPage.monthSelected(date)
+            YearViewDelegate{
+                anchors.fill: parent
+                scrollMonth: 0;
+                isCurrentItem: (index == yearPathView.currentIndex)
+                focus: isCurrentItem
+                year: (anchorYear + yearPathView.loopCurrentIndex + yearPathView.indexType(index))
+                onMonthSelected: {
+                    yearViewPage.monthSelected(date)
+                }
             }
         }
     }

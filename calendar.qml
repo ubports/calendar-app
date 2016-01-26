@@ -157,6 +157,16 @@ MainView {
             id: collectionFilter
         }
 
+        InvalidFilter {
+            id: invalidFilter
+        }
+
+        IntersectionFilter {
+            id: mainFilter
+
+            filters: [ collectionFilter, itemTypeFilter]
+        }
+
         EventListModel{
             id: eventModel
 
@@ -164,9 +174,7 @@ MainView {
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
 
-            filter: IntersectionFilter {
-                filters: [ collectionFilter, itemTypeFilter]
-            }
+            filter: invalidFilter
 
             function delayedApplyFilter() {
                 applyFilterTimer.restart();
@@ -182,6 +190,7 @@ MainView {
                     }
                 }
                 collectionFilter.ids = collectionIds;
+                filter = mainFilter
             }
 
             function showEventFromId(eventId) {
@@ -443,7 +452,7 @@ MainView {
 
                     asynchronous: true
                     sourceComponent: agendaViewComp
-                    active : false
+                    active: false
                     // Load page on demand and keep it on memory until the application is closed
                     enabled: tabs.isReady && (tabs.selectedTab == agendaTab)
                     onEnabledChanged: {

@@ -23,7 +23,7 @@ GridView{
     }
 
     // Does not increase cash buffer if user is scolling
-    cacheBuffer: PathView.view.flicking || PathView.view.dragging || !isCurrentItem ? 0 : 6 * cellHeight
+    cacheBuffer: parent.PathView.view.flicking || parent.PathView.view.dragging || !isCurrentItem ? 0 : 6 * cellHeight
 
     cellWidth: Math.floor(Math.min.apply(Math, [3, 4].map(function(n)
     { return ((width / n >= minCellWidth) ? width / n : width / 2) })))
@@ -41,38 +41,25 @@ GridView{
         yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
     }
 
-    delegate: Item {
-        width: yearView.cellWidth
-        height: yearView.cellHeight
+    delegate: MonthComponent {
+            id: monthComponent
+            objectName: "monthComponent" + index
 
-        UbuntuShape {
-            radius: "medium"
-            anchors {
-                fill: parent
-                margins: units.gu(0.5)
+            width: yearView.cellWidth - units.gu(1)
+            height: yearView.cellHeight - units.gu(1)
+            y: units.gu(0.5)
+            x: units.gu(0.5)
+
+            currentYear: yearView.year
+            currentMonth: index
+            isCurrentItem: yearView.focus
+            isYearView: true
+            dayLabelFontSize:"x-small"
+            dateLabelFontSize: "medium"
+            monthLabelFontSize: "medium"
+            yearLabelFontSize: "medium"
+            onMonthSelected: {
+                yearView.monthSelected(date);
             }
-
-            MonthComponent {
-                id: monthComponent
-                objectName: "monthComponent" + index
-
-                anchors {
-                    margins: units.gu(0.5)
-                    fill: parent
-                }
-
-                currentYear: yearView.year
-                currentMonth: index
-                isCurrentItem: yearView.focus
-                isYearView: true
-                dayLabelFontSize:"x-small"
-                dateLabelFontSize: "medium"
-                monthLabelFontSize: "medium"
-                yearLabelFontSize: "medium"
-                onMonthSelected: {
-                    yearView.monthSelected(date);
-                }
-            }
-        }
     }
 }
