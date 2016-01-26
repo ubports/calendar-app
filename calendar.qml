@@ -496,11 +496,22 @@ MainView {
 
         MonthView {
             onCurrentDateChanged: {
-                tabs.currentDay = currentDate
+                var cDate = currentDate
+                if (highlightedDate) {
+                    // highlighted date has priority over current date
+                    cDate = new Date(highlightedDate.fullYear(),
+                                     highlightedDate.getMonth(),
+                                     highlightedDate.getDate(),
+                                     cDate.getHours(),
+                                     cDate.getMinutes(),
+                                     0)
+                }
+
+                tabs.currentDay = cDate
             }
 
             onDateHighlighted: {
-                tabs.currentDay = date;
+                tabs.currentDay = date
             }
 
             onDateSelected: {
@@ -520,12 +531,28 @@ MainView {
         id: weekViewComp
 
         WeekView {
+            property var highlightedDate
+
+
             onCurrentDateChanged: {
-                tabs.currentDay = currentDate
+                var cDate = currentDate
+                if (highlightedDate) {
+                    // highlighted date has priority over current date
+                    cDate = new Date(highlightedDate.getFullYear(),
+                                     highlightedDate.getMonth(),
+                                     highlightedDate.getDate(),
+                                     cDate.getHours(),
+                                     cDate.getMinutes(),
+                                     0)
+                }
+
+                tabs.currentDay = cDate
             }
 
             onDateHighlighted: {
-                tabs.currentDay = date
+                highlightedDate = date
+                if (date)
+                    tabs.currentDay = date
             }
 
             onDateSelected: {

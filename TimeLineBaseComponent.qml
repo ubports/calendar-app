@@ -36,6 +36,11 @@ Item {
     property alias contentInteractive: timeLineView.interactive
     property var selectedDay;
 
+    readonly property real hourItemHeight: units.gu(8)
+    readonly property int currentHour: timeLineView.contentY > hourItemHeight ?
+                                           Math.round(timeLineView.contentY / hourItemHeight) : 1
+    readonly property int currentDayOfWeek: timeLineView.contentX > timeLineView.delegateWidth ?
+                                                Math.floor(timeLineView.contentX / timeLineView.delegateWidth) : 0
     property int type: ViewType.ViewTypeWeek
 
     //visible hour
@@ -50,10 +55,9 @@ Item {
         var currentTime = new Date();
         scrollHour = currentTime.getHours();
 
-        timeLineView.contentY = scrollHour * units.gu(8);
-        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
-            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
-        }
+        var newY = scrollHour * hourItemHeight
+        timeLineView.contentY = Math.min(timeLineView.contentHeight - timeLineView.height, newY)
+        timeLineView.returnToBounds()
     }
 
     function scrollTocurrentDate() {
@@ -62,25 +66,27 @@ Item {
         }
 
         var today = DateExt.today();
+        var todayWeekNumber = today.weekNumber(Qt.locale().firstDayOfWeek);
         var startOfWeek = today.weekStart(Qt.locale().firstDayOfWeek);
         var weekDay = today.getDay();
         var diff = weekDay - Qt.locale().firstDayOfWeek
-        diff = diff < 0 ? 6 : diff
+        diff = diff < 0 ? 0 : diff
 
-        if( startOfWeek.isSameDay(startDay) && diff > 2) {
-            timeLineView.contentX = (diff * timeLineView.delegateWidth);
-            if( timeLineView.contentX  > (timeLineView.contentWidth - timeLineView.width) ) {
-                timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
-            }
-        } else {
-            //need to check swipe direction
-            //and change startion position as per direction
-            if(weekViewPath.swipeDirection() === -1) {
-                timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
-            } else {
-                timeLineView.contentX = 0;
-            }
-        }
+        var newX = timeLineView.delegateWidth * diff
+        timeLineView.contentX = Math.min(timeLineView.contentWidth - timeLineView.width, newX)
+        timeLineView.returnToBounds()
+    }
+
+    function scrollToEnd()
+    {
+        timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
+        timeLineView.returnToBounds()
+    }
+
+    function scrollToBegin()
+    {
+        timeLineView.contentX = 0
+        timeLineView.returnToBounds()
     }
 
     Connections{
@@ -154,11 +160,17 @@ Item {
             selectedDay: root.selectedDay
 
             onDateSelected: {
-                root.dateSelected(date);
+                root.dateSelected(date.getFullYear(),
+                                  date.getMonth(),
+                                  date.getDate(),
+                                  root.currentHour, 0, 0)
             }
 
             onDateHighlighted: {
-                root.dateHighlighted(date);
+                root.dateHighlighted(date.getFullYear(),
+                                     date.getMonth(),
+                                     date.getDate(),
+                                     root.currentHour, 0, 0)
             }
         }
 
@@ -201,11 +213,6 @@ Item {
                     } else {
                         width
                     }
-                }
-
-                onContentWidthChanged: {
-                    scrollToCurrentTime();
-                    scrollTocurrentDate();
                 }
 
                 clip: true

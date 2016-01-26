@@ -26,7 +26,7 @@ Page{
     objectName: "weekViewPage"
 
     property var anchorDate: new Date();
-    readonly property var currentDate: weekViewPath.currentItem.item.startDay
+    readonly property var currentDate: weekViewPath.currentItem.item.currentDate
     readonly property var firstDayOfWeek: anchorDate.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
     property var selectedDay;
@@ -73,6 +73,8 @@ Page{
 
         anchors.fill: parent
 
+        onCurrentIndexChanged: weekViewPage.dateHighlighted(null)
+
         //This is used to scroll all view together when currentItem scrolls
         property var childContentY;
 
@@ -89,6 +91,11 @@ Page{
                 TimeLineBaseComponent {
                     id: timeLineView
 
+                    property var currentDate: new Date(startDay.getFullYear(),
+                                                       startDay.getMonth(),
+                                                       startDay.getDate(),
+                                                       currentHour, 0, 0).addDays(currentDayOfWeek)
+
                     anchors.fill: parent
                     type: ViewType.ViewTypeWeek
                     startDay: firstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
@@ -96,16 +103,26 @@ Page{
                     keyboardEventProvider: weekViewPath
                     selectedDay: weekViewPage.selectedDay
 
-                    onIsActiveChanged: {
-                        timeLineView.scrollTocurrentDate();
-                    }
-
                     onDateSelected: {
                         weekViewPage.dateSelected(date);
                     }
 
                     onDateHighlighted:{
                         weekViewPage.dateHighlighted(date);
+                    }
+
+                    Component.onCompleted: {
+                        var iType = weekViewPath.indexType(index)
+                        if (iType === 0) {
+                            scrollToCurrentTime();
+                            scrollTocurrentDate();
+                        } else if (iType < 0) {
+                            scrollToEnd()
+                        }
+                    }
+                    onIsActiveChanged: {
+                        if (!isActive) {
+                        }
                     }
 
                     Connections{
@@ -116,12 +133,14 @@ Page{
                             }
                     }
 
-                    Connections{
-                        target: weekViewPage
-                        onIsCurrentPageChanged:{
-                            if(weekViewPage.isCurrentPage){
-                                timeLineView.scrollToCurrentTime();
-                                timeLineView.scrollTocurrentDate();
+                    Connections {
+                        target: weekViewPath
+                        onLoopCurrentIndexChanged: {
+                            var iType = weekViewPath.indexType(index)
+                            if (iType < 0) {
+                                scrollToEnd()
+                            } else if (iType > 0) {
+                                scrollToBegin()
                             }
                         }
                     }
