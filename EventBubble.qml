@@ -219,10 +219,12 @@ Item{
     MouseArea {
         id: dragArea
         anchors.fill: parent
-        drag.target: isLiveEditing ? infoBubble : null
-        drag.axis: Drag.YAxis
-        drag.minimumY: flickable ? flickable.y : 0
-        drag.maximumY: flickable ? flickable.contentHeight - infoBubble.height : infoBubble.height
+        drag {
+            target: isLiveEditing ? infoBubble : null
+            axis: Drag.YAxis
+            minimumY: flickable ? flickable.y : 0
+            maximumY: flickable ? flickable.contentHeight - infoBubble.height : infoBubble.height
+        }
         onReleased: parent.Drag.drop()
         onClicked: {
             if( isLiveEditing ) {

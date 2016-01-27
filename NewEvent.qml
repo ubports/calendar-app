@@ -294,10 +294,15 @@ Page {
     function roundDate(date) {
         var tempDate = new Date(date)
         tempDate.setHours(date.getHours(), date.getMinutes(), 0, 0);
-        if(tempDate.getMinutes() < 30)
+        var tempMinutes = tempDate.getMinutes()
+        if (tempMinutes === 0) {
+            return tempDate
+        } else if(tempMinutes < 30) {
             return tempDate.setMinutes(30)
-        tempDate.setMinutes(0)
-        return tempDate.setHours(tempDate.getHours() + 1)
+        } else {
+            tempDate.setMinutes(0)
+            return tempDate.setHours(tempDate.getHours() + 1)
+        }
     }
 
     function adjustEndDateToStartDate(time_forward) {
