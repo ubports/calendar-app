@@ -518,6 +518,10 @@ MainView {
                 if (active)
                     dayStart = tabs.currentDay
             }
+            onPressAndHoldAt: {
+                tabs.currentDay = date;
+                commonHeaderActions.newEventAction.trigger()
+            }
         }
     }
 
@@ -536,6 +540,11 @@ MainView {
             onActiveChanged: {
                 if (active)
                     currentDay = tabs.currentDay;
+            }
+
+            onPressAndHoldAt: {
+                tabs.currentDay = date;
+                commonHeaderActions.newEventAction.trigger()
             }
         }
     }

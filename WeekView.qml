@@ -32,6 +32,7 @@ Page{
 
     signal dateSelected(var date);
     signal dateHighlighted(var date);
+    signal pressAndHoldAt(var date)
 
     Keys.forwardTo: [weekViewPath]
 
@@ -121,6 +122,10 @@ Page{
 
                     onDateHighlighted:{
                         weekViewPage.dateHighlighted(date);
+                    }
+
+                    onPressAndHoldAt: {
+                        weekViewPage.pressAndHoldAt(date)
                     }
 
                     Connections{
