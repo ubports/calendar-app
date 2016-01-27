@@ -539,6 +539,7 @@ Page {
                 }
 
                 Button{
+                    id: addGuestButton
                     text: i18n.tr("Add Guest")
                     objectName: "addGuestButton"
 
@@ -548,15 +549,22 @@ Page {
                         margins: units.gu(2)
                     }
 
+                    enabled: !showContactPopup.running
                     onClicked: {
-                        var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
+                        keyboard.forceVisible = true
+                        flickable.makeMeVisible(addGuestButton)
+                        var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), addGuestButton);
                         popup.contactSelected.connect( function(contact) {
                             var t = internal.contactToAttendee(contact);
                             if( !internal.isContactAlreadyAdded(contact) ) {
                                 contactModel.append(t);
                                 contactList.array.push(t);
                             }
+
                         });
+                        popup.Component.onDestruction.connect( function() {
+                            keyboard.forceVisible = false
+                        })
                     }
                 }
 
