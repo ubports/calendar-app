@@ -26,7 +26,7 @@ Item{
     property int month;
     property int year;
 
-    property string monthLabelFontSize: "x-large"
+    property string monthLabelFontSize: "large"
     property string yearLabelFontSize: "large"
 
     Label{

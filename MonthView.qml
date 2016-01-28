@@ -53,7 +53,7 @@ Page {
 
         contents: Label {
             objectName:"monthYearLabel"
-            fontSize: "x-large"
+            fontSize: "large"
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
