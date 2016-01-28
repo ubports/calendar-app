@@ -50,6 +50,7 @@ Item {
 
     signal dateSelected(var date);
     signal dateHighlighted(var date);
+    signal pressAndHoldAt(var date);
 
     function scrollToCurrentTime() {
         var currentTime = new Date();
@@ -239,6 +240,10 @@ Item {
                             delegate: comp
                             day: startDay.addDays(index)
                             model: mainModel
+
+                            onPressAndHoldAt: {
+                                root.pressAndHoldAt(date)
+                            }
 
                             Connections{
                                 target: mainModel

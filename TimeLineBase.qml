@@ -29,19 +29,54 @@ Item {
     property int hourHeight: units.gu(8)
     property var model;
 
+    signal pressAndHoldAt(var date)
+
     Component.onCompleted: {
         bubbleOverLay.createEvents();
     }
 
     MouseArea {
+        id: overlayMouseArea
+
+        property bool creatingEvent: false
+
         anchors.fill: parent
         objectName: "mouseArea"
+        drag {
+            target: creatingEvent ? temporaryEvent : null
+            axis: Drag.YAxis
+            minimumY: 0
+            maximumY: height - temporaryEvent.height
+        }
+
+        EventBubble {
+            id: temporaryEvent
+
+             Drag.active: overlayMouseArea.drag.active
+             isLiveEditing: overlayMouseArea.creatingEvent
+             visible: overlayMouseArea.creatingEvent
+             z: visible ? 100 : 0
+        }
+
+        Binding {
+            target: temporaryEvent
+            property: "visible"
+            value: overlayMouseArea.creatingEvent
+        }
 
         onPressAndHold: {
             var selectedDate = new Date(day);
-            var hour = parseInt(mouseY / hourHeight);
+            var hour = Math.round(mouse.y / hourHeight);
             selectedDate.setHours(hour)
-            createOrganizerEvent(selectedDate);
+            var event = createOrganizerEvent(selectedDate)
+
+            assignBubbleProperties(temporaryEvent, event, 100, 1000);
+            creatingEvent = true
+        }
+
+        onReleased: {
+            bubbleOverLay.pressAndHoldAt(temporaryEvent.event.startDateTime)
+            creatingEvent = false
         }
 
         onPressed: {
@@ -50,6 +85,17 @@ Item {
                 bubbleOverLay.showSeparator();
             }
         }
+    }
+
+    function createOrganizerEvent( startDate ) {
+        var event = Qt.createQmlObject("import QtOrganizer 5.0; Event {}", Qt.application,"TimeLineBase.qml");
+        event.collectionId = (model.defaultCollection().collectionId);
+        var endDate = new Date( startDate.getTime() + 3600000 );
+        event.startDateTime = startDate;
+        event.endDateTime = endDate;
+        event.displayLabel = i18n.tr("New event");
+        event.setDetail(Qt.createQmlObject("import QtOrganizer 5.0; Comment{ comment: 'X-CAL-DEFAULT-EVENT'}", event,"TimeLineBase.qml"));
+        return event
     }
 
     function getTimeFromYPos(y, day) {
@@ -62,17 +108,6 @@ Item {
         date.setHours(hour);
         date.setMinutes(minutes);
         return date;
-    }
-
-    function createOrganizerEvent( startDate ) {
-        var event = Qt.createQmlObject("import QtOrganizer 5.0; Event {}", Qt.application,"TimeLineBase.qml");
-        event.collectionId = (model.defaultCollection().collectionId);
-        var endDate = new Date( startDate.getTime() + 3600000 );
-        event.startDateTime = startDate;
-        event.endDateTime = endDate;
-        event.displayLabel = i18n.tr("Untitled");
-        event.setDetail(Qt.createQmlObject("import QtOrganizer 5.0; Comment{ comment: 'X-CAL-DEFAULT-EVENT'}", event,"TimeLineBase.qml"));
-        model.saveItem(event);
     }
 
     TimeSeparator {

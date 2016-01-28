@@ -126,6 +126,7 @@ MainView {
             }
         }
 
+        // Load events after the app startup
         Timer {
             id: applyFilterTimer
             interval: 200; running: false; repeat: false
@@ -565,6 +566,10 @@ MainView {
                     anchorDate = tabs.currentDay.midnight()
                 }
             }
+            onPressAndHoldAt: {
+                tabs.currentDay = date;
+                commonHeaderActions.newEventAction.trigger()
+            }
         }
     }
 
@@ -584,6 +589,11 @@ MainView {
                 if (active) {
                     anchorDate = tabs.currentDay
                 }
+            }
+
+            onPressAndHoldAt: {
+                tabs.currentDay = date;
+                commonHeaderActions.newEventAction.trigger()
             }
         }
     }

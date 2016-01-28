@@ -29,6 +29,7 @@ Page{
     readonly property var currentDate: dayViewPath.currentItem.startDay
 
     signal dateSelected(var date);
+    signal pressAndHoldAt(var date)
 
     Keys.forwardTo: [dayViewPath]
     flickable: null
@@ -84,6 +85,10 @@ Page{
             contentInteractive: PathView.isCurrentItem
             startDay: anchorDate.addDays(dayViewPath.loopCurrentIndex + dayViewPath.indexType(index))
             keyboardEventProvider: dayViewPath
+
+            onPressAndHoldAt: {
+                dayViewPage.pressAndHoldAt(date)
+            }
 
             Component.onCompleted: {
                 if(dayViewPage.active){
