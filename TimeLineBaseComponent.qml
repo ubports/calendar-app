@@ -122,7 +122,7 @@ Item {
         running: true
         repeat: false
         onTriggered: {
-            mainModel.filter = eventModel.filter
+            mainModel.filter = Qt.binding(function() { return eventModel.filter; })
         }
     }
 
