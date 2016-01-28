@@ -35,6 +35,15 @@ Item {
         bubbleOverLay.createEvents();
     }
 
+    EventBubble {
+        id: temporaryEvent
+
+         Drag.active: overlayMouseArea.drag.active
+         isLiveEditing: overlayMouseArea.creatingEvent
+         visible: overlayMouseArea.creatingEvent
+         depthInRow: -10000
+    }
+
     MouseArea {
         id: overlayMouseArea
 
@@ -49,14 +58,6 @@ Item {
             maximumY: height - temporaryEvent.height
         }
 
-        EventBubble {
-            id: temporaryEvent
-
-             Drag.active: overlayMouseArea.drag.active
-             isLiveEditing: overlayMouseArea.creatingEvent
-             visible: overlayMouseArea.creatingEvent
-             z: visible ? 100 : 0
-        }
 
         Binding {
             target: temporaryEvent
@@ -66,11 +67,12 @@ Item {
 
         onPressAndHold: {
             var selectedDate = new Date(day);
-            var hour = Math.round(mouse.y / hourHeight);
-            selectedDate.setHours(hour)
+            var pointY = mouse.y - (hourHeight / 2);
+            selectedDate.setHours(Math.floor(pointY / hourHeight))
+            selectedDate.setMinutes(Math.min(pointY % hourHeight, 60))
             var event = createOrganizerEvent(selectedDate)
 
-            assignBubbleProperties(temporaryEvent, event, 100, 1000);
+            assignBubbleProperties(temporaryEvent, event, 1, overlayMouseArea.width);
             creatingEvent = true
         }
 
