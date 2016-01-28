@@ -45,7 +45,8 @@ Page{
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            dayStart = new Date()
+            weekViewPath.scrollToBegginer()
+            anchorDate = new Date()
         }
     }
 
