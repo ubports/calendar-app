@@ -35,6 +35,15 @@ Item {
         bubbleOverLay.createEvents();
     }
 
+    EventBubble {
+        id: temporaryEvent
+
+         Drag.active: overlayMouseArea.drag.active
+         isLiveEditing: overlayMouseArea.creatingEvent
+         visible: overlayMouseArea.creatingEvent
+         depthInRow: -10000
+    }
+
     MouseArea {
         id: overlayMouseArea
 
@@ -49,14 +58,6 @@ Item {
             maximumY: height - temporaryEvent.height
         }
 
-        EventBubble {
-            id: temporaryEvent
-
-             Drag.active: overlayMouseArea.drag.active
-             isLiveEditing: overlayMouseArea.creatingEvent
-             visible: overlayMouseArea.creatingEvent
-             z: visible ? 100 : 0
-        }
 
         Binding {
             target: temporaryEvent
@@ -70,7 +71,7 @@ Item {
             selectedDate.setHours(hour)
             var event = createOrganizerEvent(selectedDate)
 
-            assignBubbleProperties(temporaryEvent, event, 100, 1000);
+            assignBubbleProperties(temporaryEvent, event, 1, overlayMouseArea.width);
             creatingEvent = true
         }
 
