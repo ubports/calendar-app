@@ -20,7 +20,7 @@ import QtQuick 2.4
 import QtOrganizer 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
-import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.ListItems 1.0 as ListItems
 import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
@@ -416,7 +416,7 @@ Page {
                 }
             }
 
-            ListItem.Standard {
+            ListItems.Standard {
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -431,13 +431,13 @@ Page {
                 }
             }
 
-            ListItem.ThinDivider {}
+            ListItems.ThinDivider {}
 
             Column {
                 width: parent.width
                 spacing: units.gu(1)
 
-                ListItem.Header{
+                ListItems.Header{
                     text: i18n.tr("Event Details")
                 }
 
@@ -501,7 +501,7 @@ Page {
                 width: parent.width
                 spacing: units.gu(1)
 
-                ListItem.Header {
+                ListItems.Header {
                     text: i18n.tr("Calendar")
                 }
 
@@ -539,11 +539,12 @@ Page {
                 width: parent.width
                 spacing: units.gu(1)
 
-                ListItem.Header {
+                ListItems.Header {
                     text: i18n.tr("Guests")
                 }
 
                 Button{
+                    id: addGuestButton
                     text: i18n.tr("Add Guest")
                     objectName: "addGuestButton"
 
@@ -554,14 +555,20 @@ Page {
                     }
 
                     onClicked: {
-                        var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
+                        keyboard.forceVisible = true
+                        flickable.makeMeVisible(addGuestButton)
+                        var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), addGuestButton);
                         popup.contactSelected.connect( function(contact) {
                             var t = internal.contactToAttendee(contact);
                             if( !internal.isContactAlreadyAdded(contact) ) {
                                 contactModel.append(t);
                                 contactList.array.push(t);
                             }
+
                         });
+                        popup.Component.onDestruction.connect( function() {
+                            keyboard.forceVisible = false
+                        })
                     }
                 }
 
@@ -590,27 +597,35 @@ Page {
 
                         Repeater{
                             model: contactModel
-                            delegate: ListItem.Standard {
+                            delegate: ListItem {
                                 objectName: "eventGuest%1".arg(index)
-                                height: units.gu(4)
-                                text: name
-                                removable: true
-                                onItemRemoved: {
-                                    contactList.array.splice(index, 1)
-                                    contactModel.remove(index)
+
+                                ListItemLayout {
+                                    title.text: name
+                                    subtitle.text: emailAddress
+                                }
+
+                                leadingActions: ListItemActions {
+                                    actions: Action {
+                                        iconName: "delete"
+                                        onTriggered: {
+                                            contactList.array.splice(index, 1)
+                                            contactModel.remove(index)
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
 
-                ListItem.ThinDivider {
+                ListItems.ThinDivider {
                     visible: event.itemType === Type.Event
                 }
 
             }
 
-            ListItem.Subtitled{
+            ListItems.Subtitled{
                 id:thisHappens
                 objectName :"thisHappens"
 
@@ -626,11 +641,11 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"eventRoot": root,"isEdit":isEdit});
             }
 
-            ListItem.ThinDivider {
+            ListItems.ThinDivider {
                 visible: event.itemType === Type.Event
             }
 
-            ListItem.Subtitled{
+            ListItems.Subtitled{
                 id:eventReminder
                 objectName  : "eventReminder"
 
@@ -663,7 +678,7 @@ Page {
                                               "eventTitle": titleEdit.text})
             }
 
-            ListItem.ThinDivider {}
+            ListItems.ThinDivider {}
         }
     }
     // used to keep the field visible when the keyboard appear or dismiss

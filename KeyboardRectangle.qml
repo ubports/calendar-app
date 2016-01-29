@@ -20,10 +20,13 @@ import QtQuick 2.4
 
 Item {
     id: keyboardRect
+
+    property bool forceVisible: false
+
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.bottom: parent.bottom
-    height: Qt.inputMethod.visible ? Qt.inputMethod.keyboardRectangle.height : 0
+    height: Qt.inputMethod.visible || forceVisible ? Qt.inputMethod.keyboardRectangle.height : 0
 
     Behavior on height {
         NumberAnimation {
