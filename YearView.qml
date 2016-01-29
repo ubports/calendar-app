@@ -51,6 +51,7 @@ Page {
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
+            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
