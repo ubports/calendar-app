@@ -42,14 +42,24 @@ Page {
         }
     }
 
-    head {
-        actions: [
+    header: PageHeader {
+        id: pageHeader
+
+        leadingActionBar.actions: tabs.tabsAction
+        trailingActionBar.actions: [
             calendarTodayAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
             commonHeaderActions.settingsAction
         ]
+        title: {
+            // TRANSLATORS: this is a time formatting string,
+            // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+            // It's used in the header of the month and week views
+            var monthName = currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+            return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+        }
 
         contents: Label {
             objectName:"monthYearLabel"
@@ -59,7 +69,12 @@ Page {
             // It's used in the header of the month and week views
             text: currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
             font.capitalization: Font.Capitalize
+            anchors {
+                verticalCenter: parent.verticalCenter
+            }
         }
+
+        flickable: null
     }
 
     PathViewBase{
@@ -68,7 +83,10 @@ Page {
 
         property var startMonth: currentMonth;
 
-        anchors.top:parent.top
+        anchors {
+            top: parent.top
+            topMargin: header.height
+        }
 
         width:parent.width
         height: parent.height

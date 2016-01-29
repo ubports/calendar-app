@@ -45,27 +45,29 @@ Page {
         }
     }
 
-    head {
-        actions: [
+    header: PageHeader {
+        id: pageHeader
+
+        leadingActionBar.actions: tabs.tabsAction
+        trailingActionBar.actions: [
             calendarTodayAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
             commonHeaderActions.settingsAction
         ]
-        contents: Label {
-            id:year
-            objectName:"yearLabel"
-            fontSize: "large"
-            text: i18n.tr("Year %1").arg(currentYear)
-        }
+        title: i18n.tr("Year %1").arg(currentYear)
+        flickable: null
     }
 
     PathViewBase {
         id: yearPathView
         objectName: "yearPathView"
 
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            topMargin: header.height
+        }
 
         onNextItemHighlighted: {
             currentYear = currentYear + 1;

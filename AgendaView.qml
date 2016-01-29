@@ -55,13 +55,20 @@ Page{
         }
     }
 
-    head.actions: [
-        calendarTodayAction,
-        commonHeaderActions.showCalendarAction,
-        commonHeaderActions.reloadAction,
-        commonHeaderActions.syncCalendarAction,
-        commonHeaderActions.settingsAction
-    ]
+    header: PageHeader {
+        id: pageHeader
+
+        title: i18n.tr("Agenda")
+        leadingActionBar.actions: tabs.tabsAction
+        trailingActionBar.actions: [
+            calendarTodayAction,
+            commonHeaderActions.showCalendarAction,
+            commonHeaderActions.reloadAction,
+            commonHeaderActions.syncCalendarAction,
+            commonHeaderActions.settingsAction
+        ]
+        flickable: eventList
+    }
 
     EventListModel {
         id: eventListModel
@@ -97,7 +104,7 @@ Page{
 
             return default_title;
         }
-        visible: (!root.hasEnabledCalendars() || !eventListModel.itemCount) && !eventListModel.isLoading
+        visible: (eventListModel.count === 0) && !eventListModel.isLoading
         anchors.centerIn: parent
     }
 
