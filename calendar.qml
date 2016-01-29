@@ -567,8 +567,7 @@ MainView {
                 }
             }
             onPressAndHoldAt: {
-                tabs.currentDay = date;
-                commonHeaderActions.newEventAction.trigger()
+                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":date, "model":eventModel});
             }
         }
     }
@@ -592,8 +591,7 @@ MainView {
             }
 
             onPressAndHoldAt: {
-                tabs.currentDay = date;
-                commonHeaderActions.newEventAction.trigger()
+                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date": date, "model": eventModel});
             }
         }
     }
