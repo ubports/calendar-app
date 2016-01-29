@@ -545,20 +545,35 @@ Page {
 
                 Button{
                     id: addGuestButton
-                    text: i18n.tr("Add Guest")
                     objectName: "addGuestButton"
 
+                    property var contactsPopup: null
+
+                    text: i18n.tr("Add Guest")
                     anchors {
                         left: parent.left
                         right: parent.right
                         margins: units.gu(2)
                     }
 
+                    // WORKAROUND: causes the popover to follow the buttom position when keyboard appears
+                    Connections {
+                        target: keyboard
+                        onHeightChanged: {
+                            if (addGuestButton.contactsPopup) {
+                                addGuestButton.contactsPopup.caller = null
+                                addGuestButton.contactsPopup.caller = addGuestButton
+                            }
+                        }
+                    }
+
                     onClicked: {
-                        keyboard.forceVisible = true
+                        if (contactsPopup)
+                            return
+
                         flickable.makeMeVisible(addGuestButton)
-                        var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), addGuestButton);
-                        popup.contactSelected.connect( function(contact) {
+                        contactsPopup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), addGuestButton);
+                        contactsPopup.contactSelected.connect( function(contact) {
                             var t = internal.contactToAttendee(contact);
                             if( !internal.isContactAlreadyAdded(contact) ) {
                                 contactModel.append(t);
@@ -566,8 +581,8 @@ Page {
                             }
 
                         });
-                        popup.Component.onDestruction.connect( function() {
-                            keyboard.forceVisible = false
+                        contactsPopup.Component.onDestruction.connect( function() {
+                            addGuestButton.contactsPopup = null
                         })
                     }
                 }
