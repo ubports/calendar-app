@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.3
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
@@ -35,7 +35,7 @@ Item{
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
-    property string monthLabelFontSize: "x-large"
+    property string monthLabelFontSize: "large"
     property string yearLabelFontSize: "large"
 
     property alias dayLabelDelegate : dayLabelRepeater.delegate

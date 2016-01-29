@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.3
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
@@ -50,7 +50,6 @@ Page{
     head {
         actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
@@ -60,7 +59,7 @@ Page{
         contents: Label {
             id:monthYear
             objectName:"monthYearLabel"
-            fontSize: "x-large"
+            fontSize: "large"
             text: i18n.tr(dayStart.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
             font.capitalization: Font.Capitalize
         }

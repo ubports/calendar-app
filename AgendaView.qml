@@ -18,7 +18,7 @@
 
 import QtQuick 2.3
 import QtOrganizer 5.0
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import "dateExt.js" as DateExt
 
@@ -57,7 +57,6 @@ Page{
 
     head.actions: [
         calendarTodayAction,
-        commonHeaderActions.newEventAction,
         commonHeaderActions.showCalendarAction,
         commonHeaderActions.reloadAction,
         commonHeaderActions.syncCalendarAction,

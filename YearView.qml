@@ -17,7 +17,7 @@
  */
 
 import QtQuick 2.3
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 
 import "dateExt.js" as DateExt
 Page {
@@ -48,7 +48,6 @@ Page {
     head {
         actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
@@ -57,7 +56,7 @@ Page {
         contents: Label {
             id:year
             objectName:"yearLabel"
-            fontSize: "x-large"
+            fontSize: "large"
             text: i18n.tr("Year %1").arg(currentYear)
         }
     }

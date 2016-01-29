@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.3
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
@@ -45,7 +45,6 @@ Page {
     head {
         actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
@@ -54,7 +53,7 @@ Page {
 
         contents: Label {
             objectName:"monthYearLabel"
-            fontSize: "x-large"
+            fontSize: "large"
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
