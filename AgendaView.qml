@@ -57,7 +57,6 @@ Page{
 
     head.actions: [
         calendarTodayAction,
-        commonHeaderActions.newEventAction,
         commonHeaderActions.showCalendarAction,
         commonHeaderActions.reloadAction,
         commonHeaderActions.syncCalendarAction,
