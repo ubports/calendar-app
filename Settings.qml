@@ -25,9 +25,9 @@ Page {
     objectName: "settings"
 
     visible: false
-    title: i18n.tr("Settings")
 
     head {
+        title: i18n.tr("Settings")
         backAction: Action {
             text: i18n.tr("Back")
             iconName: "back"

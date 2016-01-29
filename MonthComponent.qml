@@ -35,7 +35,7 @@ Item{
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
-    property string monthLabelFontSize: "x-large"
+    property string monthLabelFontSize: "large"
     property string yearLabelFontSize: "large"
 
     property alias dayLabelDelegate : dayLabelRepeater.delegate

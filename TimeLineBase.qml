@@ -77,8 +77,10 @@ Item {
         }
 
         onReleased: {
-            bubbleOverLay.pressAndHoldAt(temporaryEvent.event.startDateTime)
-            creatingEvent = false
+            if (creatingEvent) {
+                bubbleOverLay.pressAndHoldAt(temporaryEvent.event.startDateTime)
+                creatingEvent = false
+            }
         }
 
         onPressed: {

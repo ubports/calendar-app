@@ -20,6 +20,7 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 
 import "dateExt.js" as DateExt
+
 Page {
     id: yearViewPage
     objectName: "yearViewPage"
@@ -50,17 +51,21 @@ Page {
     }
 
     Keys.forwardTo: [yearPathView]
-    title: i18n.tr("Year %1").arg(currentYear)
 
     head {
         actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
             commonHeaderActions.settingsAction
         ]
+        contents: Label {
+            id:year
+            objectName:"yearLabel"
+            fontSize: "large"
+            text: i18n.tr("Year %1").arg(currentYear)
+        }
     }
 
     ActivityIndicator {
