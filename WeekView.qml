@@ -50,7 +50,6 @@ Page{
     head {
         actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
@@ -60,7 +59,7 @@ Page{
         contents: Label {
             id:monthYear
             objectName:"monthYearLabel"
-            fontSize: "x-large"
+            fontSize: "large"
             text: i18n.tr(dayStart.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
             font.capitalization: Font.Capitalize
         }

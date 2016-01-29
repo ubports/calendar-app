@@ -271,7 +271,7 @@ Page {
                 Label{
                     id: titleLabel
                     objectName: "titleLabel"
-                    fontSize: "x-large"
+                    fontSize: "large"
                     width: parent.width
                     wrapMode: Text.WordWrap
                     color: "white"
