@@ -112,373 +112,380 @@ MainView {
         }
     }
 
-    // This is for wait that the app is load when newEvent is invoked by argument
-    Timer {
-        id: timer
-        interval: 200; running: false; repeat: false
-        onTriggered: {
-            tabs.newEvent();
-        }
-    }
+    PageStack {
+        id: pageStack
 
-    // Load events after the app startup
-    Timer {
-        id: applyFilterTimer
-        interval: 200; running: false; repeat: false
-        onTriggered: {
-            eventModel.applyFilterFinal();
-        }
-    }
+        Component.onCompleted: push(tabs)
 
-    UnionFilter {
-        id: itemTypeFilter
-        DetailFieldFilter{
-            id: eventFilter
-            detail: Detail.ItemType;
-            field: Type.FieldType
-            value: Type.Event
-            matchFlags: Filter.MatchExactly
-        }
-
-        DetailFieldFilter{
-            id: eventOccurenceFilter
-            detail: Detail.ItemType;
-            field: Type.FieldType
-            value: Type.EventOccurrence
-            matchFlags: Filter.MatchExactly
-        }
-    }
-
-    CollectionFilter{
-        id: collectionFilter
-    }
-
-    InvalidFilter {
-        id: invalidFilter
-    }
-
-    IntersectionFilter {
-        id: mainFilter
-
-        filters: [ collectionFilter, itemTypeFilter]
-    }
-
-    EventListModel{
-        id: eventModel
-
-        autoUpdate: true
-        startPeriod: tabs.currentDay
-        endPeriod: tabs.currentDay
-
-        filter: invalidFilter
-
-        function delayedApplyFilter() {
-            applyFilterTimer.restart();
-        }
-
-        function applyFilterFinal() {
-            var collectionIds = [];
-            var collections = eventModel.getCollections();
-            for(var i=0; i < collections.length ; ++i) {
-                var collection = collections[i]
-                if(collection.extendedMetaData("collection-selected") === true) {
-                    collectionIds.push(collection.collectionId);
-                }
-            }
-            collectionFilter.ids = collectionIds;
-            filter = mainFilter
-        }
-
-        function showEventFromId(eventId) {
-            if(eventId === undefined || eventId === "") {
-                return;
-            }
-
-            var requestId = "";
-            var callbackFunc = function(id,fetchedItems) {
-                if( requestId === id && fetchedItems.length > 0 ) {
-                    pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":fetchedItems[0],"model": eventModel});
-                }
-                eventModel.onItemsFetched.disconnect( callbackFunc );
-            }
-
-            eventModel.onItemsFetched.connect( callbackFunc );
-            requestId = eventModel.fetchItems(eventId);
-        }
-
-        Component.onCompleted: {
-            delayedApplyFilter();
-
-            if (args.values.eventid) {
-                showEventFromId(args.values.eventid);
+        // This is for wait that the app is load when newEvent is invoked by argument
+        Timer {
+            id: timer
+            interval: 200; running: false; repeat: false
+            onTriggered: {
+                tabs.newEvent();
             }
         }
-    }
 
-    EventActions {
-        id: commonHeaderActions
-    }
-
-    Settings {
-        id: settings
-        property alias defaultViewIndex: tabs.selectedTabIndex
-        property alias showWeekNumber: mainView.displayWeekNumber
-    }
-
-    Tabs{
-        id: tabs
-        Keys.forwardTo: [tabs.currentPage]
-
-        property bool isReady: false
-        property var currentDay: DateExt.today();
-        property var selectedDay;
-
-        // Arguments on startup
-        property bool newevent: false;
-        property int starttime: -1;
-        property int endtime: -1;
-
-        function newEvent() {
-            var startDate = new Date();
-            var endDate = new Date();
-            var startTime;
-            var endTime;
-
-            if (starttime === 0) { // startime 0 means now
-                if (endtime !== -1) { // If also endtime has been invoked
-                    endTime = parseInt(endtime);
-                    if (endTime > startDate) // If endtime is after startime
-                        endDate = new Date(endTime);
-                }
+        // Load events after the app startup
+        Timer {
+            id: applyFilterTimer
+            interval: 200; running: false; repeat: false
+            onTriggered: {
+                eventModel.applyFilterFinal();
             }
-            else if (starttime !== -1) { // If starttime has been invoked
-                startTime = parseInt(starttime);
-                startDate = new Date(startTime);
-                if (endtime !== -1) { // If --endtime has been invoked
-                    endTime = parseInt(endtime);
-                    if (endTime > startDate)
-                        endDate = new Date(endTime);
-                }
+        }
+
+        UnionFilter {
+            id: itemTypeFilter
+            DetailFieldFilter{
+                id: eventFilter
+                detail: Detail.ItemType;
+                field: Type.FieldType
+                value: Type.Event
+                matchFlags: Filter.MatchExactly
             }
-            //pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"startDate": startDate, "endDate": endDate, //"model":eventModel});
-        }
 
-        // This function calculate the difference between --endtime and --starttime and choose the better view
-        function calculateDifferenceStarttimeEndtime(startTime, endTime) {
-            var minute = 60 * 1000;
-            var hour = 60 * minute;
-            var day = 24 * hour;
-            var month = 30 * day;
-
-            var difference = endTime - startTime;
-
-            if (difference > month)
-                return yearTab.index;   // Year view
-            else if (difference > 7 * day)
-                return monthTab.index;   // Month view}
-            else if (difference > day)
-                return weekTab.index;   // Week view
-            else
-                return dayTab.index;   // Day view
-        }
-
-        // This function parse the argument
-        function parseArguments(url) {
-            var newevenpattern= new RegExp ("newevent");
-            var starttimepattern = new RegExp ("starttime=\\d+");
-            var endtimepattern = new RegExp ("endtime=\\d+");
-
-            newevent = newevenpattern.test(url);
-
-            if (starttimepattern.test(url))
-                starttime = url.match(/starttime=(\d+)/)[0].replace("starttime=", '');
-
-            if (endtimepattern.test(url))
-                endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
-        }
-
-        //WORKAROUND: The new header api does not work with tabs check bug: #1539759
-        property var tabsAction: []
-
-        function createTabAction(index, title)
-        {
-            var actionQml = "import Ubuntu.Components 1.3; Action { visible: (tabs.selectedTabIndex != %2); text: i18n.tr(\"%1\"); onTriggered: { tabs.selectedTabIndex = %2; }}"
-            return Qt.createQmlObject(actionQml.arg(title).arg(index), tabs, "tabs.qml")
-        }
-
-        function reloadTabActions()
-        {
-            var acts = []
-            for(var i=0; i< tabs.tabChildren.length; i++) {
-                acts.push(createTabAction(i, tabs.tabChildren[i].title))
+            DetailFieldFilter{
+                id: eventOccurenceFilter
+                detail: Detail.ItemType;
+                field: Type.FieldType
+                value: Type.EventOccurrence
+                matchFlags: Filter.MatchExactly
             }
-            tabsAction = acts
         }
 
-        Component.onCompleted: {
-            // If an url has been set
-            if (args.defaultArgument.at(0)) {
-                parseArguments(args.defaultArgument.at(0))
-                tabs.currentDay = new Date()
-                // If newevent has been called on startup
-                if (newevent) {
-                    timer.running = true;
-                }
-                else if (starttime !== -1) { // If no newevent has been setted, but starttime
-                    var startTime = parseInt(starttime);
-                    tabs.currentDay = new Date(startTime);
+        CollectionFilter{
+            id: collectionFilter
+        }
 
-                    // If also endtime has been settend
-                    if (endtime !== -1) {
-                        var endTime = parseInt(endtime);
-                        tabs.selectedTabIndex = calculateDifferenceStarttimeEndtime(startTime, endTime);
+        InvalidFilter {
+            id: invalidFilter
+        }
+
+        IntersectionFilter {
+            id: mainFilter
+
+            filters: [ collectionFilter, itemTypeFilter]
+        }
+
+        EventListModel{
+            id: eventModel
+
+            autoUpdate: true
+            startPeriod: tabs.currentDay
+            endPeriod: tabs.currentDay
+
+            filter: invalidFilter
+
+            function delayedApplyFilter() {
+                applyFilterTimer.restart();
+            }
+
+            function applyFilterFinal() {
+                var collectionIds = [];
+                var collections = eventModel.getCollections();
+                for(var i=0; i < collections.length ; ++i) {
+                    var collection = collections[i]
+                    if(collection.extendedMetaData("collection-selected") === true) {
+                        collectionIds.push(collection.collectionId);
                     }
+                }
+                collectionFilter.ids = collectionIds;
+                filter = mainFilter
+            }
+
+            function showEventFromId(eventId) {
+                if(eventId === undefined || eventId === "") {
+                    return;
+                }
+
+                var requestId = "";
+                var callbackFunc = function(id,fetchedItems) {
+                    if( requestId === id && fetchedItems.length > 0 ) {
+                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":fetchedItems[0],"model": eventModel});
+                    }
+                    eventModel.onItemsFetched.disconnect( callbackFunc );
+                }
+
+                eventModel.onItemsFetched.connect( callbackFunc );
+                requestId = eventModel.fetchItems(eventId);
+            }
+
+            Component.onCompleted: {
+                delayedApplyFilter();
+
+                if (args.values.eventid) {
+                    showEventFromId(args.values.eventid);
+                }
+            }
+        }
+
+
+        EventActions {
+            id: commonHeaderActions
+        }
+
+        Settings {
+            id: settings
+            property alias defaultViewIndex: tabs.selectedTabIndex
+            property alias showWeekNumber: mainView.displayWeekNumber
+        }
+
+        Tabs{
+            id: tabs
+            Keys.forwardTo: [tabs.currentPage]
+
+            property bool isReady: false
+            property var currentDay: DateExt.today();
+            property var selectedDay;
+
+            // Arguments on startup
+            property bool newevent: false;
+            property int starttime: -1;
+            property int endtime: -1;
+
+            function newEvent() {
+                var startDate = new Date();
+                var endDate = new Date();
+                var startTime;
+                var endTime;
+
+                if (starttime === 0) { // startime 0 means now
+                    if (endtime !== -1) { // If also endtime has been invoked
+                        endTime = parseInt(endtime);
+                        if (endTime > startDate) // If endtime is after startime
+                            endDate = new Date(endTime);
+                    }
+                }
+                else if (starttime !== -1) { // If starttime has been invoked
+                    startTime = parseInt(starttime);
+                    startDate = new Date(startTime);
+                    if (endtime !== -1) { // If --endtime has been invoked
+                        endTime = parseInt(endtime);
+                        if (endTime > startDate)
+                            endDate = new Date(endTime);
+                    }
+                }
+                //pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"startDate": startDate, "endDate": endDate, //"model":eventModel});
+            }
+
+            // This function calculate the difference between --endtime and --starttime and choose the better view
+            function calculateDifferenceStarttimeEndtime(startTime, endTime) {
+                var minute = 60 * 1000;
+                var hour = 60 * minute;
+                var day = 24 * hour;
+                var month = 30 * day;
+
+                var difference = endTime - startTime;
+
+                if (difference > month)
+                    return yearTab.index;   // Year view
+                else if (difference > 7 * day)
+                    return monthTab.index;   // Month view}
+                else if (difference > day)
+                    return weekTab.index;   // Week view
+                else
+                    return dayTab.index;   // Day view
+            }
+
+            // This function parse the argument
+            function parseArguments(url) {
+                var newevenpattern= new RegExp ("newevent");
+                var starttimepattern = new RegExp ("starttime=\\d+");
+                var endtimepattern = new RegExp ("endtime=\\d+");
+
+                newevent = newevenpattern.test(url);
+
+                if (starttimepattern.test(url))
+                    starttime = url.match(/starttime=(\d+)/)[0].replace("starttime=", '');
+
+                if (endtimepattern.test(url))
+                    endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
+            }
+
+            //WORKAROUND: The new header api does not work with tabs check bug: #1539759
+            property var tabsAction: []
+
+            function createTabAction(index, title)
+            {
+                var actionQml = "import Ubuntu.Components 1.3; Action { visible: (tabs.selectedTabIndex != %2); text: i18n.tr(\"%1\"); onTriggered: { tabs.selectedTabIndex = %2; }}"
+                return Qt.createQmlObject(actionQml.arg(title).arg(index), tabs, "tabs.qml")
+            }
+
+            function reloadTabActions()
+            {
+                var acts = []
+                for(var i=0; i< tabs.tabChildren.length; i++) {
+                    acts.push(createTabAction(i, tabs.tabChildren[i].title))
+                }
+                tabsAction = acts
+            }
+
+            Component.onCompleted: {
+                // If an url has been set
+                if (args.defaultArgument.at(0)) {
+                    parseArguments(args.defaultArgument.at(0))
+                    tabs.currentDay = new Date()
+                    // If newevent has been called on startup
+                    if (newevent) {
+                        timer.running = true;
+                    }
+                    else if (starttime !== -1) { // If no newevent has been setted, but starttime
+                        var startTime = parseInt(starttime);
+                        tabs.currentDay = new Date(startTime);
+
+                        // If also endtime has been settend
+                        if (endtime !== -1) {
+                            var endTime = parseInt(endtime);
+                            tabs.selectedTabIndex = calculateDifferenceStarttimeEndtime(startTime, endTime);
+                        }
+                        else {
+                            // If no endtime has been setted, open the starttime date in day view
+                            tabs.selectedTabIndex = dayTab.index;
+                        }
+                    } // End of else if (starttime)
                     else {
-                        // If no endtime has been setted, open the starttime date in day view
-                        tabs.selectedTabIndex = dayTab.index;
+                        // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
+                        // After the fix we can delete this else
+                        tabs.selectedTabIndex = settings.defaultViewIndex;
                     }
-                } // End of else if (starttime)
+                } // End of if about args.values
                 else {
-                    // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
-                    // After the fix we can delete this else
                     tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
-            } // End of if about args.values
-            else {
-                tabs.selectedTabIndex = settings.defaultViewIndex;
-            }
-            reloadTabActions()
-            tabs.isReady = true
-            // WORKAROUND: Due the missing feature on SDK, they can not detect if
-            // there is a mouse attached to device or not. And this will cause the
-            // bootom edge component to not work correct on desktop.
-            // We will consider that  a mouse is always attached until it get implement on SDK.
-            QuickUtils.mouseAttached = true
-        } // End of Component.onCompleted:
+                reloadTabActions()
+                tabs.isReady = true
+                // WORKAROUND: Due the missing feature on SDK, they can not detect if
+                // there is a mouse attached to device or not. And this will cause the
+                // bootom edge component to not work correct on desktop.
+                // We will consider that  a mouse is always attached until it get implement on SDK.
+                QuickUtils.mouseAttached = true
+            } // End of Component.onCompleted:
 
 
-        Keys.onTabPressed: {
-            if( event.modifiers & Qt.ControlModifier) {
-                var currentTab = tabs.selectedTabIndex;
-                currentTab ++;
-                if( currentTab >= tabs.tabChildren.length){
-                    currentTab = 0;
+            Keys.onTabPressed: {
+                if( event.modifiers & Qt.ControlModifier) {
+                    var currentTab = tabs.selectedTabIndex;
+                    currentTab ++;
+                    if( currentTab >= tabs.tabChildren.length){
+                        currentTab = 0;
+                    }
+                    tabs.selectedTabIndex = currentTab;
                 }
-                tabs.selectedTabIndex = currentTab;
             }
-        }
 
-        Keys.onBacktabPressed: {
-            if( event.modifiers & Qt.ControlModifier) {
-                var currentTab = tabs.selectedTabIndex;
-                currentTab --;
-                if( currentTab < 0){
-                    currentTab = tabs.tabChildren.length -1;
+            Keys.onBacktabPressed: {
+                if( event.modifiers & Qt.ControlModifier) {
+                    var currentTab = tabs.selectedTabIndex;
+                    currentTab --;
+                    if( currentTab < 0){
+                        currentTab = tabs.tabChildren.length -1;
+                    }
+                    tabs.selectedTabIndex = currentTab;
                 }
-                tabs.selectedTabIndex = currentTab;
             }
-        }
 
-        Tab{
-            id: yearTab
-            objectName: "yearTab"
-            title: i18n.tr("Year")
+            Tab{
+                id: yearTab
+                objectName: "yearTab"
+                title: i18n.tr("Year")
 
-            page: Loader {
-                id: yearViewLoader
+                page: Loader {
+                    id: yearViewLoader
 
-                asynchronous: true
-                sourceComponent: yearViewComp
-                active: false
-                // Load page on demand and keep it on memory until the application is closed
-                enabled: tabs.isReady && (tabs.selectedTab == yearTab)
-                onEnabledChanged: {
-                    if (enabled && !active) {
-                        active = true
+                    asynchronous: true
+                    sourceComponent: yearViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == yearTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
                     }
                 }
             }
-        }
 
-        Tab{
-            id: monthTab
-            objectName: "monthTab"
-            title: i18n.tr("Month")
+            Tab{
+                id: monthTab
+                objectName: "monthTab"
+                title: i18n.tr("Month")
 
-            page: Loader {
-                id: monthTabLoader
+                page: Loader {
+                    id: monthTabLoader
 
-                asynchronous: true
-                sourceComponent: monthViewComp
-                active: false
-                // Load page on demand and keep it on memory until the application is closed
-                enabled: tabs.isReady && (tabs.selectedTab == monthTab)
-                onEnabledChanged: {
-                    if (enabled && !active) {
-                        active = true
+                    asynchronous: true
+                    sourceComponent: monthViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == monthTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
                     }
                 }
             }
-        }
 
-        Tab{
-            id: weekTab
-            objectName: "weekTab"
-            title: i18n.tr("Week")
+            Tab{
+                id: weekTab
+                objectName: "weekTab"
+                title: i18n.tr("Week")
 
-            page: Loader {
-                id: weekTabLoader
+                page: Loader {
+                    id: weekTabLoader
 
-                asynchronous: true
-                sourceComponent: weekViewComp
-                active: false
-                // Load page on demand and keep it on memory until the application is closed
-                enabled: tabs.isReady && (tabs.selectedTab == weekTab)
-                onEnabledChanged: {
-                    if (enabled && !active) {
-                        active = true
+                    asynchronous: true
+                    sourceComponent: weekViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == weekTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
                     }
                 }
             }
-        }
 
-        Tab{
-            id: dayTab
-            objectName: "dayTab"
-            title: i18n.tr("Day")
+            Tab{
+                id: dayTab
+                objectName: "dayTab"
+                title: i18n.tr("Day")
 
-            page:Loader {
-                id: dayTabLoader
+                page:Loader {
+                    id: dayTabLoader
 
-                asynchronous: true
-                sourceComponent: dayViewComp
-                active: false
-                // Load page on demand and keep it on memory until the application is closed
-                enabled: tabs.isReady && (tabs.selectedTab == dayTab)
-                onEnabledChanged: {
-                    if (enabled && !active) {
-                        active = true
+                    asynchronous: true
+                    sourceComponent: dayViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == dayTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
                     }
                 }
             }
-        }
 
-        Tab {
-            id: agendaTab
-            objectName: "agendaTab"
-            title: i18n.tr("Agenda")
+            Tab {
+                id: agendaTab
+                objectName: "agendaTab"
+                title: i18n.tr("Agenda")
 
-            page: Loader {
-                id: agendaTabLoader
+                page: Loader {
+                    id: agendaTabLoader
 
-                asynchronous: true
-                sourceComponent: agendaViewComp
-                active: false
-                // Load page on demand and keep it on memory until the application is closed
-                enabled: tabs.isReady && (tabs.selectedTab == agendaTab)
-                onEnabledChanged: {
-                    if (enabled && !active) {
-                        active = true
+                    asynchronous: true
+                    sourceComponent: agendaViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == agendaTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
                     }
                 }
             }
