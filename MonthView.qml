@@ -62,19 +62,6 @@ Page {
             return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
         }
 
-        contents: Label {
-            objectName:"monthYearLabel"
-            fontSize: "large"
-            // TRANSLATORS: this is a time formatting string,
-            // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-            // It's used in the header of the month and week views
-            text: currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-            font.capitalization: Font.Capitalize
-            anchors {
-                verticalCenter: parent.verticalCenter
-            }
-        }
-
         flickable: null
     }
 
@@ -85,12 +72,9 @@ Page {
         property var startMonth: currentMonth;
 
         anchors {
-            top: parent.top
+            fill: parent
             topMargin: header.height
         }
-
-        width:parent.width
-        height: parent.height
 
         onNextItemHighlighted: {
             nextMonth();
