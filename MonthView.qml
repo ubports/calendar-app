@@ -20,11 +20,10 @@ import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
-Page {
+PageWithBottomEdge {
     id: monthViewPage
     objectName: "monthViewPage"
 
-    property var currentMonth: DateExt.today();
     property var selectedDay;
 
     signal dateSelected(var date);
@@ -38,17 +37,17 @@ Page {
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            currentMonth = new Date().midnight()
+            currentDate = new Date().midnight()
         }
     }
 
+    currentDate: DateExt.today();
     header: PageHeader {
         id: pageHeader
 
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
@@ -58,21 +57,8 @@ Page {
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
-            var monthName = currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+            var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
             return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
-        }
-
-        contents: Label {
-            objectName:"monthYearLabel"
-            fontSize: "large"
-            // TRANSLATORS: this is a time formatting string,
-            // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-            // It's used in the header of the month and week views
-            text: currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-            font.capitalization: Font.Capitalize
-            anchors {
-                verticalCenter: parent.verticalCenter
-            }
         }
 
         flickable: null
@@ -82,15 +68,12 @@ Page {
         id: monthViewPath
         objectName: "monthViewPath"
 
-        property var startMonth: currentMonth;
+        property var startMonth: currentDate;
 
         anchors {
-            top: parent.top
+            fill: parent
             topMargin: header.height
         }
-
-        width:parent.width
-        height: parent.height
 
         onNextItemHighlighted: {
             nextMonth();
@@ -101,11 +84,11 @@ Page {
         }
 
         function nextMonth() {
-            currentMonth = addMonth(currentMonth, 1);
+            currentDate = addMonth(currentDate, 1);
         }
 
         function previousMonth() {
-            currentMonth = addMonth(currentMonth, -1);
+            currentDate = addMonth(currentDate, -1);
         }
 
         function addMonth(date,month) {

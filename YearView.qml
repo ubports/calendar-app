@@ -20,20 +20,22 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 
 import "dateExt.js" as DateExt
-Page {
+
+PageWithBottomEdge {
     id: yearViewPage
     objectName: "yearViewPage"
 
     property int currentYear: DateExt.today().getFullYear();
     signal monthSelected(var date);
 
-    Keys.forwardTo: [yearPathView]
-
     function refreshCurrentYear(year) {
         currentYear = year;
         var yearViewDelegate = yearPathView.currentItem.item;
         yearViewDelegate.refresh();
     }
+
+    currentDate: new Date(currentYear, 0, 1, 0, 0, 0)
+    Keys.forwardTo: [yearPathView]
 
     Action {
         id: calendarTodayAction
@@ -51,7 +53,6 @@ Page {
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,

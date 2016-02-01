@@ -21,17 +21,16 @@ import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
-Page{
+PageWithBottomEdge {
     id: dayViewPage
     objectName: "dayViewPage"
 
-    property var currentDay: new Date()
     property bool isCurrentPage: false
 
     signal dateSelected(var date);
 
+    currentDate: new Date()
     Keys.forwardTo: [dayViewPath]
-    flickable: null
 
     Action {
         id: calendarTodayAction
@@ -39,17 +38,17 @@ Page{
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            currentDay = new Date()
+            currentDate = new Date()
         }
     }
 
     header: PageHeader {
         id: pageHeader
 
+        flickable: null
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
@@ -60,17 +59,16 @@ Page{
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
-            var monthName = currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+            var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
             return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
         }
-
     }
 
     PathViewBase{
         id: dayViewPath
         objectName: "dayViewPath"
 
-        property var startDay: currentDay
+        property var startDay: currentDate
         //This is used to scroll all view together when currentItem scrolls
         property var childContentY;
 
@@ -81,12 +79,12 @@ Page{
 
         onNextItemHighlighted: {
             //next day
-            currentDay = currentDay.addDays(1);
+            currentDate = currentDate.addDays(1);
         }
 
         onPreviousItemHighlighted: {
             //previous day
-            currentDay = currentDay.addDays(-1);
+            currentDate = currentDate.addDays(-1);
         }
 
         delegate: Loader {
