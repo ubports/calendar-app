@@ -303,9 +303,17 @@ MainView {
 
             function reloadTabActions()
             {
+                var allPages = [
+                            {index: 0, title: yearTab.title},
+                            {index: 1, title: monthTab.title},
+                            {index: 2, title: weekTab.title},
+                            {index: 3, title: dayTab.title},
+                            {index: 4, title: agendaTab.title},
+                        ]
                 var acts = []
-                for(var i=0; i< tabs.tabChildren.length; i++) {
-                    acts.push(createTabAction(i, tabs.tabChildren[i].title))
+                for(var i=0; i< allPages.length; i++) {
+                    var pageInfo = allPages[i]
+                    acts.push(createTabAction(pageInfo.index, pageInfo.title))
                 }
                 tabsAction = acts
             }
