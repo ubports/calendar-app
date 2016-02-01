@@ -47,6 +47,7 @@ Item {
     Action {
         id: _newEventAction
         objectName: "neweventbutton"
+        name: "neweventbutton"
         iconName: "new-event"
         text: i18n.tr("New Event")
         onTriggered: {
@@ -57,6 +58,7 @@ Item {
     Action{
         id: _showCalendarAction
         objectName: "calendarsbutton"
+        name: "calendarsbutton"
         iconName: "calendar"
         text: i18n.tr("Calendars")
         onTriggered: {
@@ -68,6 +70,7 @@ Item {
     Action{
         id: _settingsAction
         objectName: "settingsbutton"
+        name: "calendarsbutton"
         iconName: "settings"
         text: i18n.tr("Settings")
         onTriggered: {
