@@ -45,31 +45,37 @@ Page {
         }
     }
 
-    head {
-        actions: [
+    header: PageHeader {
+        id: pageHeader
+
+        leadingActionBar.actions: tabs.tabsAction
+        trailingActionBar.actions: [
             calendarTodayAction,
+            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
             commonHeaderActions.settingsAction
         ]
-
-        contents: Label {
-            objectName:"monthYearLabel"
-            fontSize: "large"
+        title: {
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
-            text: currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-            font.capitalization: Font.Capitalize
+            var monthName = currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+            return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
         }
+
+        flickable: null
     }
 
     PathViewBase{
         id: monthViewPath
         objectName: "monthViewPath"
 
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            topMargin: header.height
+        }
 
         delegate: MonthWithEventsComponent {
             property var indexDate: monthViewPath.loopCurrentIndex === 0 ?
@@ -89,7 +95,6 @@ Page {
                 monthViewPage.dateSelected(date);
             }
             onDateHighlighted: {
-                console.debug("Date highlight:" + date)
                 monthViewPage.highlightedDate = date
                 monthViewPage.dateHighlighted(date);
             }

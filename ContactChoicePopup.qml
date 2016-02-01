@@ -29,7 +29,7 @@ Popover {
     id: root
     objectName: "contactPopover"
 
-    signal contactSelected(var contact);
+    signal contactSelected(var contact, string emailAddress);
 
     Label {
         id: noContact
@@ -113,15 +113,33 @@ Popover {
             model: contactModel
             height: units.gu(15)
             clip: true
-            delegate: Standard{
-                objectName: "contactPopoverList%1".arg(index)
-                property var item: contactModel.contacts[index]
-                height: units.gu(4)
-                text: item ? item.displayLabel.label : ""
+            delegate: Column {
+                width: contactList.width
+                Repeater {
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                    }
+                    height: childrenRect.height
 
-                onClicked: {
-                    root.contactSelected(item);
-                    onClicked: PopupUtils.close(root)
+                    model: Math.max(1, contact.emails.length)
+                    delegate: ListItem {
+                        property string emailAddress: contact.emails.length > index ? contact.emails[index].emailAddress : ""
+
+                        opacity: emailAddress.length > 0 ? 1.0 : 0.3
+                        width: contactList.width
+                        objectName: "contactPopoverList%1".arg(index)
+                        ListItemLayout {
+                            title.text: contact.displayLabel.label
+                            subtitle.text: emailAddress
+                        }
+                        onClicked: {
+                            if (emailAddress.length > 0) {
+                                root.contactSelected(contact, emailAddress);
+                                onClicked: PopupUtils.close(root)
+                            }
+                        }
+                    }
                 }
             }
         }

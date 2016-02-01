@@ -62,6 +62,23 @@ class MainView(ubuntuuitoolkit.MainView):
         self.visible.wait_for(True, 30)
 
     @autopilot.logging.log_action(logger.info)
+    def switch_to_tab(self, tabName):
+        # open tab switcher menu
+        current_tab = self.select_single('Tab', visible=True)
+        overflow_tabs = current_tab.wait_select_single(objectName='overflow_action_button')
+        self.pointing_device.click_object(overflow_tabs)
+
+        # click on tab action
+        tab_button = self.wait_select_single(objectName='tab_%s_button'%tabName)
+        self.pointing_device.click_object(tab_button)   
+
+    @autopilot.logging.log_action(logger.info)
+    def click_action_button(self, action):
+        current_tab = self.select_single('Tab', visible=True)
+        button = current_tab.wait_select_single(objectName='%s_button'%action)
+        self.pointing_device.click_object(button)   
+
+    @autopilot.logging.log_action(logger.info)
     def go_to_month_view(self):
         """Open the month view.
 
@@ -138,8 +155,7 @@ class MainView(ubuntuuitoolkit.MainView):
         :return: The New Event page.
 
         """
-        header = self.get_header()
-        header.click_action_button('neweventbutton')
+        self.click_action_button('neweventbutton')
         return self.wait_select_single(NewEvent, objectName='newEventPage')
 
     @autopilot.logging.log_action(logger.info)
@@ -149,8 +165,7 @@ class MainView(ubuntuuitoolkit.MainView):
         :return: CalendaChoicePopup.
 
         """
-        header = self.get_header()
-        header.click_action_button('calendarsbutton')
+        self.click_action_button('calendarsbutton')
         return self.wait_select_single(
             CalendarChoicePopup, objectName="calendarchoicepopup")
 
@@ -292,14 +307,8 @@ class MainView(ubuntuuitoolkit.MainView):
         local = utc.astimezone(tz.tzlocal())
         return local
 
-    @autopilot.logging.log_action(logger.info)
-    def get_header(self):
-        return self.wait_select_single(
-            "AppHeader", objectName="MainView_Header")
-
     def press_header_todaybutton(self):
-        header = self.get_header()
-        header.click_action_button('todaybutton')
+        self.click_action_button('todaybutton')
 
     @autopilot.logging.log_action(logger.info)
     def get_color_picker_dialog(self):
@@ -308,8 +317,7 @@ class MainView(ubuntuuitoolkit.MainView):
 
     @autopilot.logging.log_action(logger.info)
     def press_header_custombackbutton(self):
-        header = self.get_header()
-        header.click_custom_back_button()
+        self.click_custom_back_button()
 
 
 class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):

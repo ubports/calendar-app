@@ -50,29 +50,37 @@ Page{
         }
     }
 
-    head {
-        actions: [
+    header: PageHeader {
+        id: pageHeader
+
+        leadingActionBar.actions: tabs.tabsAction
+        trailingActionBar.actions: [
             calendarTodayAction,
+            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
             commonHeaderActions.settingsAction
         ]
 
-        contents: Label {
-            id:monthYear
-            objectName:"monthYearLabel"
-            fontSize: "large"
-            text: i18n.tr(currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy")))
-            font.capitalization: Font.Capitalize
+        title: {
+            // TRANSLATORS: this is a time formatting string,
+            // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+            // It's used in the header of the month and week views
+            var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+            return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
         }
+        flickable: null
     }
 
     PathViewBase{
         id: weekViewPath
         objectName: "weekviewpathbase"
 
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            topMargin: header.height
+        }
 
         onCurrentIndexChanged: weekViewPage.dateHighlighted(null)
 

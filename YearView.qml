@@ -51,21 +51,19 @@ Page {
     }
 
     Keys.forwardTo: [yearPathView]
-
-    head {
-        actions: [
+    header: PageHeader {
+        id: pageHeader
+        leadingActionBar.actions: tabs.tabsAction
+        trailingActionBar.actions: [
             calendarTodayAction,
+            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
             commonHeaderActions.settingsAction
         ]
-        contents: Label {
-            id:year
-            objectName:"yearLabel"
-            fontSize: "large"
-            text: i18n.tr("Year %1").arg(currentYear)
-        }
+        title: i18n.tr("Year %1").arg(currentYear)
+        flickable: null
     }
 
     ActivityIndicator {
@@ -90,8 +88,10 @@ Page {
         id: yearPathView
         objectName: "yearPathView"
 
-        anchors.fill: parent
-        snapMode: PathView.NoSnap
+        anchors {
+            fill: parent
+            topMargin: header.height
+        }
 
         delegate: Loader {
             id: delegateLoader
