@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-11-01 10:45+0900\n"
-"PO-Revision-Date: 2016-01-02 13:37+0000\n"
+"PO-Revision-Date: 2016-01-31 21:50+0000\n"
 "Last-Translator: Bernard Banko <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2016-01-30 05:41+0000\n"
+"X-Launchpad-Export-Date: 2016-02-01 05:32+0000\n"
 "X-Generator: Launchpad (build 17908)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
@@ -322,7 +322,7 @@ msgstr "Dnevno"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "Ob delovnih dnevih"
+msgstr "Ob delavnikih"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
