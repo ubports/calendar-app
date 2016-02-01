@@ -73,6 +73,7 @@ Item {
             selectedDate.setMinutes(Math.min(pointY % hourHeight, 60))
             var event = createOrganizerEvent(selectedDate)
 
+            Haptics.play()
             assignBubbleProperties(temporaryEvent, event, 1, overlayMouseArea.width);
             creatingEvent = true
         }
