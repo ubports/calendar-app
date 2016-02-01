@@ -306,25 +306,25 @@ MainView {
             //WORKAROUND: The new header api does not work with tabs check bug: #1539759
             property var tabsAction: []
 
-            function createTabAction(index, title)
+            function createTabAction(index, title, name)
             {
-                var actionQml = "import Ubuntu.Components 1.3; Action { visible: (tabs.selectedTabIndex != %2); text: i18n.tr(\"%1\"); onTriggered: { tabs.selectedTabIndex = %2; }}"
-                return Qt.createQmlObject(actionQml.arg(title).arg(index), tabs, "tabs.qml")
+                var actionQml = "import Ubuntu.Components 1.3; Action { objectName: \"tab_%3\"; name: \"tab_%3\"; visible: (tabs.selectedTabIndex != %2); text: i18n.tr(\"%1\"); onTriggered: { tabs.selectedTabIndex = %2; }}"
+                return Qt.createQmlObject(actionQml.arg(title).arg(index).arg(name), tabs, "tabs.qml")
             }
 
             function reloadTabActions()
             {
                 var allPages = [
-                            {index: 0, title: yearTab.title},
-                            {index: 1, title: monthTab.title},
-                            {index: 2, title: weekTab.title},
-                            {index: 3, title: dayTab.title},
-                            {index: 4, title: agendaTab.title},
+                            {index: 0, name: yearTab.objectName, title: yearTab.title},
+                            {index: 1, name: monthTab.objectName, title: monthTab.title},
+                            {index: 2, name: weekTab.objectName, title: weekTab.title},
+                            {index: 3, name: dayTab.objectName, title: dayTab.title},
+                            {index: 4, name: agendaTab.objectName, title: agendaTab.title},
                         ]
                 var acts = []
                 for(var i=0; i< allPages.length; i++) {
                     var pageInfo = allPages[i]
-                    acts.push(createTabAction(pageInfo.index, pageInfo.title))
+                    acts.push(createTabAction(pageInfo.index, pageInfo.title, pageInfo.name))
                 }
                 tabsAction = acts
             }
