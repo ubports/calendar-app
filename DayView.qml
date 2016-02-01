@@ -43,22 +43,27 @@ Page{
         }
     }
 
-    head {
-        actions: [
+    header: PageHeader {
+        id: pageHeader
+
+        leadingActionBar.actions: tabs.tabsAction
+        trailingActionBar.actions: [
             calendarTodayAction,
+            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
             commonHeaderActions.settingsAction
         ]
 
-        contents: Label {
-            id:monthYear
-            objectName:"monthYearLabel"
-            fontSize: "large"
-            text: currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-            font.capitalization: Font.Capitalize
+        title: {
+            // TRANSLATORS: this is a time formatting string,
+            // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+            // It's used in the header of the month and week views
+            var monthName = currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+            return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
         }
+
     }
 
     PathViewBase{
@@ -69,7 +74,10 @@ Page{
         //This is used to scroll all view together when currentItem scrolls
         property var childContentY;
 
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            topMargin: header.height
+        }
 
         onNextItemHighlighted: {
             //next day

@@ -210,6 +210,17 @@ MainView {
             }
         }
 
+
+        EventActions {
+            id: commonHeaderActions
+        }
+
+        Settings {
+            id: settings
+            property alias defaultViewIndex: tabs.selectedTabIndex
+            property alias showWeekNumber: mainView.displayWeekNumber
+        }
+
         Tabs{
             id: tabs
             Keys.forwardTo: [tabs.currentPage]
@@ -281,6 +292,32 @@ MainView {
                     endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
             }
 
+            //WORKAROUND: The new header api does not work with tabs check bug: #1539759
+            property var tabsAction: []
+
+            function createTabAction(index, title, name)
+            {
+                var actionQml = "import Ubuntu.Components 1.3; Action { objectName: \"tab_%3\"; name: \"tab_%3\"; visible: (tabs.selectedTabIndex != %2); text: i18n.tr(\"%1\"); onTriggered: { tabs.selectedTabIndex = %2; }}"
+                return Qt.createQmlObject(actionQml.arg(title).arg(index).arg(name), tabs, "tabs.qml")
+            }
+
+            function reloadTabActions()
+            {
+                var allPages = [
+                            {index: 0, name: yearTab.objectName, title: yearTab.title},
+                            {index: 1, name: monthTab.objectName, title: monthTab.title},
+                            {index: 2, name: weekTab.objectName, title: weekTab.title},
+                            {index: 3, name: dayTab.objectName, title: dayTab.title},
+                            {index: 4, name: agendaTab.objectName, title: agendaTab.title},
+                        ]
+                var acts = []
+                for(var i=0; i< allPages.length; i++) {
+                    var pageInfo = allPages[i]
+                    acts.push(createTabAction(pageInfo.index, pageInfo.title, pageInfo.name))
+                }
+                tabsAction = acts
+            }
+
             Component.onCompleted: {
                 // If an url has been set
                 if (args.defaultArgument.at(0)) {
@@ -313,17 +350,10 @@ MainView {
                 else {
                     tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
+
+                reloadTabActions()
             } // End of Component.onCompleted:
 
-            EventActions {
-                id: commonHeaderActions
-            }
-
-            Settings {
-                id: settings
-                property alias defaultViewIndex: tabs.selectedTabIndex
-                property alias showWeekNumber: mainView.displayWeekNumber
-            }
 
             Keys.onTabPressed: {
                 if( event.modifiers & Qt.ControlModifier) {
