@@ -568,9 +568,9 @@ Page {
 
                         flickable.makeMeVisible(addGuestButton)
                         contactsPopup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), addGuestButton);
-                        contactsPopup.contactSelected.connect( function(contact) {
-                            var t = internal.contactToAttendee(contact);
-                            if( !internal.isContactAlreadyAdded(contact) ) {
+                        contactsPopup.contactSelected.connect( function(contact, emailAddress) {
+                            if(!internal.isContactAlreadyAdded(contact, emailAddress) ) {
+                                var t = internal.contactToAttendee(contact, emailAddress);
                                 contactModel.append(t);
                                 contactList.array.push(t);
                             }
@@ -715,20 +715,26 @@ Page {
             messageEdit.focus = false
         }
 
-        function isContactAlreadyAdded(contact) {
+        function isContactAlreadyAdded(contact, emailAddress) {
             for(var i=0; i < contactList.array.length ; ++i) {
                 var attendee = contactList.array[i];
-                if( attendee.attendeeId === contact.contactId) {
-                    return true;
+                if (emailAddress.length > 0) {
+                    if (attendee.emailAddress === emailAddress) {
+                        return true;
+                    }
+                } else {
+                    if (attendee.attendeeId === contact.contactId) {
+                        return true
+                    }
                 }
             }
             return false;
         }
 
-        function contactToAttendee(contact) {
+        function contactToAttendee(contact, emailAddress) {
             var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
             attendee.name = contact.displayLabel.label
-            attendee.emailAddress = contact.email.emailAddress;
+            attendee.emailAddress = emailAddress;
             attendee.attendeeId = contact.contactId;
             return attendee;
         }
