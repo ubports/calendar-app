@@ -23,7 +23,6 @@ import Ubuntu.SyncMonitor 0.1
 Item {
     id: actionPool
 
-    property alias newEventAction: _newEventAction
     property alias showCalendarAction: _showCalendarAction
     property alias syncCalendarAction: _syncCalendarAction
     property alias settingsAction: _settingsAction
@@ -42,17 +41,6 @@ Item {
 
     SyncMonitor {
         id: syncMonitor
-    }
-
-    Action {
-        id: _newEventAction
-        objectName: "neweventbutton"
-        name: "neweventbutton"
-        iconName: "new-event"
-        text: i18n.tr("New Event")
-        onTriggered: {
-            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabs.currentDay,"model":eventModel});
-        }
     }
 
     Action{

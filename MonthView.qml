@@ -20,12 +20,13 @@ import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
-Page {
+PageWithBottomEdge {
     id: monthViewPage
     objectName: "monthViewPage"
 
     property var anchorDate: DateExt.today();
     readonly property var currentDate: monthViewPath.currentItem.indexDate
+
     property var selectedDay;
     property var highlightedDate;
 
@@ -33,6 +34,7 @@ Page {
     signal dateHighlighted(var date);
 
     Keys.forwardTo: [monthViewPath]
+    createEventAt: currentDate
 
     Action {
         id: calendarTodayAction
@@ -51,7 +53,6 @@ Page {
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
@@ -61,7 +62,7 @@ Page {
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
-            var monthName = currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+            var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
             return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
         }
 

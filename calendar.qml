@@ -89,7 +89,7 @@ MainView {
     width: units.gu(100)
     height: units.gu(80)
     focus: true
-    Keys.forwardTo: [pageStack.currentPage]
+    Keys.forwardTo: [tabs.currentPage]
 
     headerColor: "#E8E8E8"
     backgroundColor: "#f5f5f5"
@@ -363,6 +363,11 @@ MainView {
                 }
                 reloadTabActions()
                 tabs.isReady = true
+                // WORKAROUND: Due the missing feature on SDK, they can not detect if
+                // there is a mouse attached to device or not. And this will cause the
+                // bootom edge component to not work correct on desktop.
+                // We will consider that  a mouse is always attached until it get implement on SDK.
+                QuickUtils.mouseAttached = true
             } // End of Component.onCompleted:
 
 
@@ -499,6 +504,8 @@ MainView {
         id: yearViewComp
 
         YearView {
+            model: eventModel
+
             onCurrentYearChanged: {
                 tabs.currentDay = new Date(currentYear, 0, 1, 0, 0, 0)
             }
@@ -513,6 +520,7 @@ MainView {
                 }
                 tabs.selectedTabIndex = monthTab.index;
             }
+
             onActiveChanged: {
                 if (active) {
                     refreshCurrentYear(DateExt.today().getFullYear())
@@ -525,6 +533,7 @@ MainView {
         id: monthViewComp
 
         MonthView {
+            model: eventModel
             onCurrentDateChanged: {
                 var cDate = currentDate
                 if (highlightedDate) {
@@ -563,6 +572,7 @@ MainView {
         WeekView {
             property var highlightedDate
 
+            model: eventModel
             onCurrentDateChanged: {
                 var cDate = currentDate
                 if (highlightedDate) {
@@ -605,8 +615,10 @@ MainView {
         id: dayViewComp
 
         DayView {
+            model: eventModel
+
             onCurrentDateChanged: {
-                tabs.currentDay = currentDate;
+                tabs.currentDay = currentDate
             }
 
             onDateSelected: {
@@ -629,6 +641,8 @@ MainView {
         id: agendaViewComp
 
         AgendaView {
+            model: eventModel
+
             onDateSelected: {
                 tabs.currentDay = date;
                 tabs.selectedTabIndex = dayTab.index

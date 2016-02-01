@@ -21,7 +21,7 @@ import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
-Page{
+PageWithBottomEdge {
     id: weekViewPage
     objectName: "weekViewPage"
 
@@ -36,8 +36,7 @@ Page{
     signal pressAndHoldAt(var date)
 
     Keys.forwardTo: [weekViewPath]
-
-    flickable: null
+    createEventAt: currentDate
 
     Action {
         id: calendarTodayAction
@@ -56,7 +55,6 @@ Page{
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,

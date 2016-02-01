@@ -21,7 +21,7 @@ import Ubuntu.Components 1.3
 
 import "dateExt.js" as DateExt
 
-Page {
+PageWithBottomEdge {
     id: yearViewPage
     objectName: "yearViewPage"
 
@@ -39,6 +39,9 @@ Page {
         }
     }
 
+    createEventAt: new Date(currentYear, 0, 1, 0, 0, 0)
+    Keys.forwardTo: [yearPathView]
+
     Action {
         id: calendarTodayAction
         objectName:"todaybutton"
@@ -50,13 +53,11 @@ Page {
         }
     }
 
-    Keys.forwardTo: [yearPathView]
     header: PageHeader {
         id: pageHeader
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,

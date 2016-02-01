@@ -42,49 +42,9 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
-    flickable: null
-
     signal eventAdded(var event);
     signal eventDeleted(var event);
 
-    onStartDateChanged: {
-        startDateTimeInput.dateTime = startDate;
-
-        // set time forward to one hour
-        var time_forward = 3600000;
-
-        if (isEdit && event !== null) {
-            time_forward = event.endDateTime - event.startDateTime;
-        }
-        adjustEndDateToStartDate(time_forward);
-    }
-
-    onEndDateChanged: {
-        endDateTimeInput.dateTime = endDate;
-    }
-
-    head.actions: [
-        Action {
-            text: i18n.tr("Delete");
-            objectName: "delete"
-            iconName: "delete"
-            visible : isEdit
-            onTriggered: {
-                var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
-                dialog.deleteEvent.connect( function(eventId){
-                    model.removeItem(eventId);
-                    pageStack.pop();
-                    root.eventDeleted(eventId);
-                });
-            }
-        },
-        Action {
-            iconName: "ok"
-            objectName: "save"
-            text: i18n.tr("Save")
-            enabled: !!titleEdit.text.trim()
-            onTriggered: saveToQtPim();
-        }]
     Component.onCompleted: {
         //If current date is setted by an argument we don't have to change it.
         if(typeof(date) === 'undefined'){
@@ -327,10 +287,54 @@ Page {
         scrollAnimation.start()
     }
 
-    title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
-
     Keys.onEscapePressed: {
         pageStack.pop();
+    }
+
+    onStartDateChanged: {
+        startDateTimeInput.dateTime = startDate;
+
+        // set time forward to one hour
+        var time_forward = 3600000;
+
+        if (isEdit && event !== null) {
+            time_forward = event.endDateTime - event.startDateTime;
+        }
+        adjustEndDateToStartDate(time_forward);
+    }
+
+    onEndDateChanged: {
+        endDateTimeInput.dateTime = endDate;
+    }
+
+    header: PageHeader {
+        id: pageHeader
+
+        flickable: null
+        title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
+        trailingActionBar.actions: [
+            Action {
+                text: i18n.tr("Delete");
+                objectName: "delete"
+                iconName: "delete"
+                visible : isEdit
+                onTriggered: {
+                    var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
+                    dialog.deleteEvent.connect( function(eventId){
+                        model.removeItem(eventId);
+                        pageStack.pop();
+                        root.eventDeleted(eventId);
+                    });
+                }
+            },
+            Action {
+                iconName: "ok"
+                objectName: "save"
+                text: i18n.tr("Save")
+                enabled: !!titleEdit.text.trim()
+                onTriggered: saveToQtPim();
+            }
+        ]
     }
 
     Component{
@@ -381,7 +385,10 @@ Page {
             flickable.returnToBounds()
         }
 
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            topMargin: header.height
+        }
         contentWidth: width
         contentHeight: column.height + units.gu(10)
 

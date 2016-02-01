@@ -22,9 +22,10 @@ import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
-Page{
+PageWithBottomEdge {
     id: dayViewPage
     objectName: "dayViewPage"
+
 
     property var anchorDate: new Date()
     readonly property var currentDate: dayViewPath.currentItem.startDay
@@ -33,7 +34,7 @@ Page{
     signal pressAndHoldAt(var date)
 
     Keys.forwardTo: [dayViewPath]
-
+    createEventAt: currentDate
 
     Action {
         id: calendarTodayAction
@@ -53,7 +54,6 @@ Page{
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
@@ -64,16 +64,16 @@ Page{
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
-            var monthName = currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+            var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
             return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
         }
-
     }
 
     PathViewBase{
         id: dayViewPath
         objectName: "dayViewPath"
 
+        property var startDay: currentDate
         //This is used to scroll all view together when currentItem scrolls
         property var childContentY;
 
