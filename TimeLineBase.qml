@@ -28,6 +28,7 @@ Item {
     property var day;
     property int hourHeight: units.gu(8)
     property var model;
+    readonly property alias creatingEvent: overlayMouseArea.creatingEvent
 
     signal pressAndHoldAt(var date)
 
@@ -72,6 +73,7 @@ Item {
             selectedDate.setMinutes(Math.min(pointY % hourHeight, 60))
             var event = createOrganizerEvent(selectedDate)
 
+            Haptics.play()
             assignBubbleProperties(temporaryEvent, event, 1, overlayMouseArea.width);
             creatingEvent = true
         }
@@ -79,6 +81,12 @@ Item {
         onReleased: {
             if (creatingEvent) {
                 bubbleOverLay.pressAndHoldAt(temporaryEvent.event.startDateTime)
+                creatingEvent = false
+            }
+        }
+
+        onCanceled: {
+            if (creatingEvent) {
                 creatingEvent = false
             }
         }

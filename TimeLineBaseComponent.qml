@@ -227,6 +227,8 @@ Item {
                         model: type == ViewType.ViewTypeWeek ? 7 : 1
 
                         delegate: TimeLineBase {
+                            id: delegate
+
                             property int idx: index
                             anchors.top: parent.top
                             width: {
@@ -243,6 +245,12 @@ Item {
 
                             onPressAndHoldAt: {
                                 root.pressAndHoldAt(date)
+                            }
+
+                            Binding {
+                                target: timeLineView
+                                property: "interactive"
+                                value: !delegate.creatingEvent
                             }
 
                             Connections{

@@ -361,8 +361,8 @@ MainView {
                 else {
                     tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
-                tabs.isReady = true
                 reloadTabActions()
+                tabs.isReady = true
             } // End of Component.onCompleted:
 
 
@@ -515,7 +515,7 @@ MainView {
             }
             onActiveChanged: {
                 if (active) {
-                    refreshCurrentYear(tabs.currentDay.getFullYear())
+                    refreshCurrentYear(DateExt.today().getFullYear())
                 }
             }
         }
@@ -563,7 +563,6 @@ MainView {
         WeekView {
             property var highlightedDate
 
-
             onCurrentDateChanged: {
                 var cDate = currentDate
                 if (highlightedDate) {
@@ -587,7 +586,7 @@ MainView {
 
             onDateSelected: {
                 tabs.currentDay = date;
-                tabs.selectedTabIndex = dayTab.index;
+                tabs.selectedTabIndex = dayTab.index
             }
 
             onActiveChanged: {
@@ -595,6 +594,7 @@ MainView {
                     anchorDate = tabs.currentDay.midnight()
                 }
             }
+
             onPressAndHoldAt: {
                 pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":date, "model":eventModel});
             }
@@ -631,7 +631,7 @@ MainView {
         AgendaView {
             onDateSelected: {
                 tabs.currentDay = date;
-                tabs.selectedTabIndex = dayTab.index;
+                tabs.selectedTabIndex = dayTab.index
             }
         }
     }

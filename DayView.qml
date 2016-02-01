@@ -18,6 +18,7 @@
 
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 
@@ -32,7 +33,7 @@ Page{
     signal pressAndHoldAt(var date)
 
     Keys.forwardTo: [dayViewPath]
-    flickable: null
+
 
     Action {
         id: calendarTodayAction
@@ -48,6 +49,7 @@ Page{
     header: PageHeader {
         id: pageHeader
 
+        flickable: null
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,

@@ -169,6 +169,11 @@ Page{
                         value: contentY
                         when: parent.PathView.isCurrentItem
                     }
+                    Binding {
+                        target: weekViewPath
+                        property: "interactive"
+                        value: timeLineView.contentInteractive
+                    }
                 }
             }
         }
