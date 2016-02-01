@@ -28,6 +28,7 @@ Item {
     property var day;
     property int hourHeight: units.gu(8)
     property var model;
+    readonly property alias creatingEvent: overlayMouseArea.creatingEvent
 
     signal pressAndHoldAt(var date)
 
@@ -79,6 +80,12 @@ Item {
         onReleased: {
             if (creatingEvent) {
                 bubbleOverLay.pressAndHoldAt(temporaryEvent.event.startDateTime)
+                creatingEvent = false
+            }
+        }
+
+        onCanceled: {
+            if (creatingEvent) {
                 creatingEvent = false
             }
         }
