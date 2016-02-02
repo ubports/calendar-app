@@ -379,7 +379,6 @@ MainView {
                 else {
                     tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
-                reloadTabActions()
                 tabs.isReady = true
             } // End of Component.onCompleted:
 
