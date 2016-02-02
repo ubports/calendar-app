@@ -17,6 +17,7 @@
  */
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
 
@@ -25,6 +26,10 @@ PageWithBottomEdge {
     objectName: "monthViewPage"
 
     property var anchorDate: DateExt.today();
+    readonly property var firstDayOfAnchorDate: new Date(anchorDate.getFullYear(),
+                                                         anchorDate.getMonth(),
+                                                         1,
+                                                         0, 0, 0)
     readonly property var currentDate: monthViewPath.currentItem.indexDate
 
     property var selectedDay;
@@ -79,8 +84,7 @@ PageWithBottomEdge {
         }
 
         delegate: MonthWithEventsComponent {
-            property var indexDate: monthViewPath.loopCurrentIndex === 0 ?
-                                        anchorDate : anchorDate.addMonths(monthViewPath.loopCurrentIndex + monthViewPath.indexType(index))
+            property var indexDate: firstDayOfAnchorDate.addMonths(monthViewPath.loopCurrentIndex + monthViewPath.indexType(index))
 
             currentMonth: indexDate.getMonth()
             currentYear: indexDate.getFullYear()

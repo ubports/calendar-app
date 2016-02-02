@@ -505,11 +505,6 @@ MainView {
 
         YearView {
             model: eventModel
-
-            onCurrentYearChanged: {
-                tabs.currentDay = new Date(currentYear, 0, 1, 0, 0, 0)
-            }
-
             onMonthSelected: {
                 var now = DateExt.today();
                 if ((date.getMonth() === now.getMonth()) &&
@@ -534,21 +529,6 @@ MainView {
 
         MonthView {
             model: eventModel
-            onCurrentDateChanged: {
-                var cDate = currentDate
-                if (highlightedDate) {
-                    // highlighted date has priority over current date
-                    cDate = new Date(highlightedDate.fullYear(),
-                                     highlightedDate.getMonth(),
-                                     highlightedDate.getDate(),
-                                     cDate.getHours(),
-                                     cDate.getMinutes(),
-                                     0)
-                }
-
-                tabs.currentDay = cDate
-            }
-
             onDateHighlighted: {
                 tabs.currentDay = date
             }
@@ -573,21 +553,6 @@ MainView {
             property var highlightedDate
 
             model: eventModel
-            onCurrentDateChanged: {
-                var cDate = currentDate
-                if (highlightedDate) {
-                    // highlighted date has priority over current date
-                    cDate = new Date(highlightedDate.getFullYear(),
-                                     highlightedDate.getMonth(),
-                                     highlightedDate.getDate(),
-                                     cDate.getHours(),
-                                     cDate.getMinutes(),
-                                     0)
-                }
-
-                tabs.currentDay = cDate
-            }
-
             onDateHighlighted: {
                 highlightedDate = date
                 if (date)
@@ -599,14 +564,14 @@ MainView {
                 tabs.selectedTabIndex = dayTab.index
             }
 
-            onActiveChanged: {
-                if (active) {
-                    anchorDate = tabs.currentDay.midnight()
-                }
-            }
-
             onPressAndHoldAt: {
                 pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":date, "model":eventModel});
+            }
+
+            onActiveChanged: {
+                if (active) {
+                    anchorDate = tabs.currentDay
+                }
             }
         }
     }
@@ -617,22 +582,19 @@ MainView {
         DayView {
             model: eventModel
 
-            onCurrentDateChanged: {
-                tabs.currentDay = currentDate
-            }
-
             onDateSelected: {
                 tabs.currentDay = date
+            }
+
+            onPressAndHoldAt: {
+                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),
+                               {"date": date, "model": eventModel});
             }
 
             onActiveChanged: {
                 if (active) {
                     anchorDate = tabs.currentDay
                 }
-            }
-
-            onPressAndHoldAt: {
-                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date": date, "model": eventModel});
             }
         }
     }

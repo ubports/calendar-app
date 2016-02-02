@@ -84,6 +84,10 @@ Item{
         property int highlightedIndex: root.isCurrentItem &&
                                        root.highlightedDate ?
                                            intern.indexByDate(root.highlightedDate) : -1
+        property int todayIndex: root.isCurrentItem &&
+                                 isCurMonthTodayMonth ?
+                                     intern.indexByDate(intern.today) : -1
+
         function indexByDate(date){
             if (!date) {
                 return -1;
@@ -103,7 +107,7 @@ Item{
     UbuntuShape{
         id: todayShape
 
-        visible: root.isCurrentItem && intern.isCurMonthTodayMonth && monthGrid.todayItem != null
+        visible: (monthGrid.todayItem != null)
         color: (monthGrid.highlightedItem === monthGrid.todayItem) ? UbuntuColors.darkGrey : UbuntuColors.orange
         width: parent ? Math.min(parent.height, parent.width) / 1.3 : 0
         height: width
@@ -198,8 +202,11 @@ Item{
 
             property int dayWidth: width / 7 /*cols*/;
             property int dayHeight: height / 6/*rows*/;
-            property var todayItem: null
-            readonly property var highlightedItem: intern.highlightedIndex != -1 ?
+            readonly property var todayItem: (intern.todayIndex != -1) &&
+                                             (dateLabelRepeater.count > intern.todayIndex) ?
+                                               dateLabelRepeater.itemAt(intern.todayIndex) : null
+            readonly property var highlightedItem: (intern.highlightedIndex != -1) &&
+                                                   (dateLabelRepeater.count > intern.highlightedIndex) ?
                                                        dateLabelRepeater.itemAt(intern.highlightedIndex) : null
             anchors {
                 left: parent.left
@@ -371,12 +378,6 @@ Item{
             isSelected: intern.highlightedIndex == index
             width: monthGrid.dayWidth
             height: monthGrid.dayHeight
-
-            onIsTodayChanged: {
-                if (isToday) {
-                    monthGrid.todayItem = this
-                }
-            }
         }
     }
 
@@ -393,12 +394,6 @@ Item{
             isSelected: intern.highlightedIndex == index
             width: monthGrid.dayWidth
             height: monthGrid.dayHeight
-
-            onIsTodayChanged: {
-                if (isToday) {
-                    monthGrid.todayItem = this
-                }
-            }
         }
     }
 }
