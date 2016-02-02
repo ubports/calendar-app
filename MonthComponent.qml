@@ -203,11 +203,12 @@ Item{
             property int dayWidth: width / 7 /*cols*/;
             property int dayHeight: height / 6/*rows*/;
             readonly property var todayItem: (intern.todayIndex != -1) &&
-                                             (dateLabelRepeater.count > intern.todayIndex) ?
+                                             (monthGrid.children.length > intern.todayIndex) ?
                                                dateLabelRepeater.itemAt(intern.todayIndex) : null
             readonly property var highlightedItem: (intern.highlightedIndex != -1) &&
-                                                   (dateLabelRepeater.count > intern.highlightedIndex) ?
+                                                   (monthGrid.children.length > intern.highlightedIndex) ?
                                                        dateLabelRepeater.itemAt(intern.highlightedIndex) : null
+
             anchors {
                 left: parent.left
                 right: parent.right
