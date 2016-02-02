@@ -34,6 +34,8 @@ BottomEdge {
     property var _realPage: null
 
     hint {
+        visible: bottomEdge.enabled
+        enabled: visible
         action: Action {
             objectName: "neweventbutton"
             name: "neweventbutton"
@@ -53,19 +55,20 @@ BottomEdge {
         implicitHeight: bottomEdge.height
         children: bottomEdge._realPage
         Component.onDestruction: {
+            bottomEdge._realPage.destroy()
             bottomEdge._realPage = null
-            _realPage = editorPageBottomEdge.createObject(bottomEdge)
+            _realPage = editorPageBottomEdge.createObject(null)
         }
     }
 
     Component.onCompleted:  {
         if (eventModel)
-            _realPage = editorPageBottomEdge.createObject(bottomEdge)
+            _realPage = editorPageBottomEdge.createObject(null)
     }
 
     onEventModelChanged: {
         if (eventModel)
-            _realPage = editorPageBottomEdge.createObject(bottomEdge)
+            _realPage = editorPageBottomEdge.createObject(null)
     }
 
     Component {
@@ -77,7 +80,7 @@ BottomEdge {
             date: bottomEdge.date
             enabled: bottomEdge.status === BottomEdge.Committed
             active: bottomEdge.status === BottomEdge.Committed
-            visible: bottomEdge.status !== BottomEdge.Hidden
+            visible: (bottomEdge.status !== BottomEdge.Hidden)
             onCanceled: bottomEdge.collapse()
             onEventAdded: bottomEdge.collapse()
         }

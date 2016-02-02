@@ -525,6 +525,7 @@ MainView {
 
         YearView {
             model: eventModel.isReady ? eventModel : null
+            bootomEdgeEnabled: tabs.selectedTabIndex === yearTab.index
 
             onMonthSelected: {
                 var now = DateExt.today();
@@ -550,6 +551,7 @@ MainView {
 
         MonthView {
             model: eventModel.isReady ? eventModel : null
+            bootomEdgeEnabled: tabs.selectedTabIndex === monthTab.index
 
             onHighlightedDateChanged: {
                 if (highlightedDate)
@@ -576,6 +578,8 @@ MainView {
 
         WeekView {
             model: eventModel.isReady ? eventModel : null
+            bootomEdgeEnabled: tabs.selectedTab === weekTab
+
             onHighlightedDayChanged: {
                 if (highlightedDate)
                     tabs.currentDay = date
@@ -605,6 +609,7 @@ MainView {
 
         DayView {
             model: eventModel.isReady ? eventModel : null
+            bootomEdgeEnabled: tabs.selectedTabIndex === dayTab.index
 
             onCurrentDateChanged: {
                 tabs.currentDay = currentDate
@@ -632,6 +637,7 @@ MainView {
 
         AgendaView {
             model: eventModel.isReady ? eventModel : null
+            bootomEdgeEnabled: tabs.selectedTabIndex === agendaTab.index
 
             onDateSelected: {
                 tabs.currentDay = date;

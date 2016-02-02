@@ -23,11 +23,11 @@ Page {
 
     property alias model: bottomEdge.eventModel
     property alias createEventAt: bottomEdge.date
+    property bool bootomEdgeEnabled: bottomEdge.enabled
 
     NewEventBottomEdge {
         id: bottomEdge
 
         pageStack: tabs
-        enabled: root.active
     }
 }
