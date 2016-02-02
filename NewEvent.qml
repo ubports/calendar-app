@@ -134,7 +134,7 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        selectCalendar(model.defaultCollection().collectionId);
+        selectCalendar(model.getDefaultCollection().collectionId);
     }
 
     //Editing Event
