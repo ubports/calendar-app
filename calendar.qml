@@ -244,6 +244,50 @@ MainView {
             property int starttime: -1;
             property int endtime: -1;
 
+            //WORKAROUND: The new header api does not work with tabs check bug: #1539759
+            property list<Action> tabsAction: [
+               Action {
+                   objectName: "tab_yearTab"
+                   name: "tab_yearTab"
+                   text: i18n.tr("Year")
+                   iconName: !enabled ? "tick" : ""
+                   enabled: (tabs.selectedTabIndex != 0)
+                   onTriggered: tabs.selectedTabIndex = 0
+               },
+               Action {
+                   objectName: "tab_monthTab"
+                   name: "tab_monthTab"
+                   text: i18n.tr("Month")
+                   iconName: !enabled ? "tick" : ""
+                   enabled: (tabs.selectedTabIndex != 1)
+                   onTriggered: tabs.selectedTabIndex = 1
+               },
+               Action {
+                   objectName: "tab_weekTab"
+                   name: "tab_weekTab"
+                   text: i18n.tr("Week")
+                   iconName: !enabled ? "tick" : ""
+                   enabled: (tabs.selectedTabIndex != 2)
+                   onTriggered: tabs.selectedTabIndex = 2
+               },
+               Action {
+                   objectName: "tab_dayTab"
+                   name: "tab_dayTab"
+                   text: i18n.tr("Day")
+                   iconName: !enabled ? "tick" : ""
+                   enabled: (tabs.selectedTabIndex != 3)
+                   onTriggered: tabs.selectedTabIndex = 3
+               },
+               Action {
+                   objectName: "tab_agendaTab"
+                   name: "tab_agendaTab"
+                   text: i18n.tr("Agenda")
+                   iconName: !enabled ? "tick" : ""
+                   enabled: (tabs.selectedTabIndex != 4)
+                   onTriggered: tabs.selectedTabIndex = 4
+               }
+            ]
+
             function newEvent() {
                 var startDate = new Date();
                 var endDate = new Date();
@@ -303,32 +347,6 @@ MainView {
                     endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
             }
 
-            //WORKAROUND: The new header api does not work with tabs check bug: #1539759
-            property var tabsAction: []
-
-            function createTabAction(index, title, name)
-            {
-                var actionQml = "import Ubuntu.Components 1.3; Action { objectName: \"tab_%3\"; name: \"tab_%3\"; visible: (tabs.selectedTabIndex != %2); text: i18n.tr(\"%1\"); onTriggered: { tabs.selectedTabIndex = %2; }}"
-                return Qt.createQmlObject(actionQml.arg(title).arg(index).arg(name), tabs, "tabs.qml")
-            }
-
-            function reloadTabActions()
-            {
-                var allPages = [
-                            {index: 0, name: yearTab.objectName, title: yearTab.title},
-                            {index: 1, name: monthTab.objectName, title: monthTab.title},
-                            {index: 2, name: weekTab.objectName, title: weekTab.title},
-                            {index: 3, name: dayTab.objectName, title: dayTab.title},
-                            {index: 4, name: agendaTab.objectName, title: agendaTab.title},
-                        ]
-                var acts = []
-                for(var i=0; i< allPages.length; i++) {
-                    var pageInfo = allPages[i]
-                    acts.push(createTabAction(pageInfo.index, pageInfo.title, pageInfo.name))
-                }
-                tabsAction = acts
-            }
-
             Component.onCompleted: {
                 // If an url has been set
                 if (args.defaultArgument.at(0)) {
@@ -361,7 +379,6 @@ MainView {
                 else {
                     tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
-                reloadTabActions()
                 tabs.isReady = true
                 // WORKAROUND: Due the missing feature on SDK, they can not detect if
                 // there is a mouse attached to device or not. And this will cause the
