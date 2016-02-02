@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-11-23 15:14+0800\n"
-"PO-Revision-Date: 2016-01-02 13:37+0000\n"
+"POT-Creation-Date: 2015-11-01 10:45+0900\n"
+"PO-Revision-Date: 2016-01-31 21:50+0000\n"
 "Last-Translator: Bernard Banko <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,29 +16,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2016-01-03 05:28+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-02-01 05:32+0000\n"
+"X-Generator: Launchpad (build 17908)\n"
 
 #: ../AgendaView.qml:51 ../DayView.qml:40 ../MonthView.qml:39
-#: ../WeekView.qml:44 ../YearView.qml:42
+#: ../WeekView.qml:44 ../YearView.qml:36
 msgid "Today"
 msgstr "Danes"
 
-#: ../AgendaView.qml:93
+#: ../AgendaView.qml:92
 msgid "No upcoming events"
 msgstr "Ni prihajajočih dogodkov"
 
-#: ../AgendaView.qml:96
+#: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
 msgstr "Nimate omogočenih koledarjev"
 
-#: ../AgendaView.qml:106
+#: ../AgendaView.qml:105
 msgid "Enable calendars"
 msgstr "Omogoči koledarje"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:169 ../EventBubble.qml:133
+#: ../AgendaView.qml:168 ../EventBubble.qml:133
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
@@ -47,13 +47,13 @@ msgstr "%1 - %2"
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:126
+#: ../AllDayEventComponent.qml:123
 #, qt-format
 msgid "%1 ev."
 msgstr "%1 dog."
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:130
+#: ../AllDayEventComponent.qml:127
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
@@ -62,21 +62,21 @@ msgstr[1] "%1 celodnevni dogodek"
 msgstr[2] "%1 celodnevna dogodka"
 msgstr[3] "%1 celodnevni dogodki"
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:61
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:60
 msgid "Calendars"
 msgstr "Koledarji"
 
-#: ../CalendarChoicePopup.qml:37 ../Settings.qml:32
+#: ../CalendarChoicePopup.qml:37
 msgid "Back"
 msgstr "Nazaj"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Sync"
 msgstr "Uskladi"
 
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
 msgid "Syncing"
 msgstr "Usklajevanje"
 
@@ -104,7 +104,7 @@ msgstr "Iskanje stika"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:60 ../MonthView.qml:61 ../WeekView.qml:64
+#: ../DayView.qml:59 ../MonthView.qml:60 ../WeekView.qml:63
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -139,7 +139,7 @@ msgstr "Izbriši to"
 msgid "Delete"
 msgstr "Izbriši"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:325
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:324
 msgid "Edit Event"
 msgstr "Uredi dogodek"
 
@@ -157,13 +157,9 @@ msgstr "Uredi zaporedja"
 msgid "Edit this"
 msgstr "Uredi to"
 
-#: ../EventActions.qml:51 ../NewEvent.qml:325
+#: ../EventActions.qml:50 ../NewEvent.qml:324
 msgid "New Event"
 msgstr "Nov dogodek"
-
-#: ../EventActions.qml:72 ../Settings.qml:28
-msgid "Settings"
-msgstr "Nastavitve"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -172,7 +168,7 @@ msgstr "Nastavitve"
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:43 ../NewEvent.qml:436
+#: ../EventDetails.qml:43 ../NewEvent.qml:435
 msgid "Event Details"
 msgstr "Podrobnosti dogodka"
 
@@ -196,11 +192,11 @@ msgstr "%1 (Cel dan)"
 msgid "Edit"
 msgstr "Uredi"
 
-#: ../EventDetails.qml:354 ../NewEvent.qml:538
+#: ../EventDetails.qml:354 ../NewEvent.qml:537
 msgid "Guests"
 msgstr "Gosti"
 
-#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:635
+#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:634
 msgid "Reminder"
 msgstr "Opomnik"
 
@@ -223,7 +219,7 @@ msgstr "Ponavljajoči se dogodek se konča"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:619
+#: ../EventRepetition.qml:242 ../NewEvent.qml:618
 msgid "Repeats"
 msgstr "Ponavljanja"
 
@@ -268,10 +264,6 @@ msgstr "Po X. pojavitvi"
 msgid "After Date"
 msgstr "Po datumu"
 
-#: ../MonthComponent.qml:260
-msgid "Wk"
-msgstr "T"
-
 #: ../NewEvent.qml:84
 msgid "Save"
 msgstr "Shrani"
@@ -280,43 +272,43 @@ msgstr "Shrani"
 msgid "End time can't be before start time"
 msgstr "Končni čas ne more biti pred začetnim časom"
 
-#: ../NewEvent.qml:335
+#: ../NewEvent.qml:334
 msgid "Error"
 msgstr "Napaka"
 
-#: ../NewEvent.qml:337
+#: ../NewEvent.qml:336
 msgid "OK"
 msgstr "V redu"
 
-#: ../NewEvent.qml:390
+#: ../NewEvent.qml:389
 msgid "From"
 msgstr "Od"
 
-#: ../NewEvent.qml:403
+#: ../NewEvent.qml:402
 msgid "To"
 msgstr "Do"
 
-#: ../NewEvent.qml:420
+#: ../NewEvent.qml:419
 msgid "All day event"
 msgstr "Celodnevni dogodek"
 
-#: ../NewEvent.qml:449
+#: ../NewEvent.qml:448
 msgid "Event Name"
 msgstr "Ime dogodka"
 
-#: ../NewEvent.qml:467
+#: ../NewEvent.qml:466
 msgid "Description"
 msgstr "Opis"
 
-#: ../NewEvent.qml:485
+#: ../NewEvent.qml:484
 msgid "Location"
 msgstr "Položaj"
 
-#: ../NewEvent.qml:500 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:499 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Koledar"
 
-#: ../NewEvent.qml:542
+#: ../NewEvent.qml:541
 msgid "Add Guest"
 msgstr "Dodaj gosta"
 
@@ -330,7 +322,7 @@ msgstr "Dnevno"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "Ob delovnih dnevih"
+msgstr "Ob delavnikih"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
@@ -403,10 +395,6 @@ msgstr "1 teden"
 msgid "2 weeks"
 msgstr "2 tedna"
 
-#: ../Settings.qml:60
-msgid "Show week numbers"
-msgstr "Prikaži številke tedna"
-
 #: ../TimeLineBase.qml:73
 msgid "Untitled"
 msgstr "Neimenovano"
@@ -421,12 +409,12 @@ msgstr "T%1"
 msgid "All Day"
 msgstr "Cel dan"
 
-#: ../YearView.qml:61
+#: ../YearView.qml:54
 #, qt-format
 msgid "Year %1"
 msgstr "Leto %1"
 
-#: ../calendar.qml:47
+#: ../calendar.qml:45
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -436,23 +424,23 @@ msgstr ""
 "in --eventid. Z njimi upravlja sistem. Za celotni opis teh argumentov si "
 "oglejte vir."
 
-#: ../calendar.qml:455
+#: ../calendar.qml:354
 msgid "Year"
 msgstr "Leto"
 
-#: ../calendar.qml:462
+#: ../calendar.qml:388
 msgid "Month"
 msgstr "Mesec"
 
-#: ../calendar.qml:469
+#: ../calendar.qml:421
 msgid "Week"
 msgstr "Teden"
 
-#: ../calendar.qml:476
+#: ../calendar.qml:459
 msgid "Day"
 msgstr "Dan"
 
-#: ../calendar.qml:483
+#: ../calendar.qml:491
 msgid "Agenda"
 msgstr "Dnevni red"
 
