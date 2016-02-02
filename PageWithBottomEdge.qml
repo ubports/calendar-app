@@ -28,5 +28,6 @@ Page {
         id: bottomEdge
 
         pageStack: tabs
+        enabled: root.active
     }
 }
