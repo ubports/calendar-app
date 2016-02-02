@@ -27,6 +27,12 @@ BottomEdge {
     property var eventModel: null
     property var date: null
 
+    // WORKAROUND: BottomEdge component loads the page async while draging it
+    // this cause a very bad visual.
+    // To avoid that we create it as soon as the component is ready and keep
+    // it invisible until the user start to drag it.
+    property var _realPage: null
+
     hint {
         action: Action {
             objectName: "neweventbutton"
@@ -40,13 +46,40 @@ BottomEdge {
         }
     }
 
-    contentComponent: NewEvent {
+    contentComponent: Item {
+        id: pageContent
+
         implicitWidth: bottomEdge.width
         implicitHeight: bottomEdge.height
-        model: bottomEdge.eventModel
-        date: bottomEdge.date
-        enabled: bottomEdge.status === BottomEdge.Committed
-        active: bottomEdge.status === BottomEdge.Committed
-        visible: bottomEdge.status !== BottomEdge.Hidden
+        children: bottomEdge._realPage
+        Component.onDestruction: {
+            bottomEdge._realPage = null
+            _realPage = editorPageBottomEdge.createObject(bottomEdge)
+        }
+    }
+
+    Component.onCompleted:  {
+        if (eventModel)
+            _realPage = editorPageBottomEdge.createObject(bottomEdge)
+    }
+
+    onEventModelChanged: {
+        if (eventModel)
+            _realPage = editorPageBottomEdge.createObject(bottomEdge)
+    }
+
+    Component {
+        id: editorPageBottomEdge
+        NewEvent {
+            implicitWidth: bottomEdge.width
+            implicitHeight: bottomEdge.height
+            model: bottomEdge.eventModel
+            date: bottomEdge.date
+            enabled: bottomEdge.status === BottomEdge.Committed
+            active: bottomEdge.status === BottomEdge.Committed
+            visible: bottomEdge.status !== BottomEdge.Hidden
+            onCanceled: bottomEdge.collapse()
+            onEventAdded: bottomEdge.collapse()
+        }
     }
 }

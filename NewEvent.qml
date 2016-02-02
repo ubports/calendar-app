@@ -44,6 +44,7 @@ Page {
 
     signal eventAdded(var event);
     signal eventDeleted(var event);
+    signal canceled()
 
     Component.onCompleted: {
         //If current date is setted by an argument we don't have to change it.
@@ -214,7 +215,8 @@ Page {
             }
 
             model.saveItem(event);
-            pageStack.pop();
+            if (pageStack)
+                pageStack.pop();
 
             root.eventAdded(event);
         }
@@ -312,6 +314,19 @@ Page {
 
         flickable: null
         title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
+        leadingActionBar.actions: Action {
+            id: backAction
+
+            name: "cancel"
+            text: i18n.tr("Cancel")
+            iconName: isEdit ? "back" : "down"
+            onTriggered: {
+                if (pageStack)
+                    pageStack.pop();
+                root.canceled()
+            }
+        }
+
         trailingActionBar.actions: [
             Action {
                 text: i18n.tr("Delete");
@@ -322,7 +337,8 @@ Page {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
                     dialog.deleteEvent.connect( function(eventId){
                         model.removeItem(eventId);
-                        pageStack.pop();
+                        if (pageStack)
+                            pageStack.pop();
                         root.eventDeleted(eventId);
                     });
                 }

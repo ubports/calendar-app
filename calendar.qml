@@ -171,6 +171,8 @@ MainView {
         EventListModel{
             id: eventModel
 
+            property bool isReady: false
+
             autoUpdate: true
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
@@ -192,6 +194,7 @@ MainView {
                 }
                 collectionFilter.ids = collectionIds;
                 filter = mainFilter
+                isReady = true
             }
 
             function showEventFromId(eventId) {
@@ -521,7 +524,8 @@ MainView {
         id: yearViewComp
 
         YearView {
-            model: eventModel
+            model: eventModel.isReady ? eventModel : null
+
             onMonthSelected: {
                 var now = DateExt.today();
                 if ((date.getMonth() === now.getMonth()) &&
@@ -545,7 +549,7 @@ MainView {
         id: monthViewComp
 
         MonthView {
-            model: eventModel
+            model: eventModel.isReady ? eventModel : null
 
             onHighlightedDateChanged: {
                 if (highlightedDate)
@@ -571,9 +575,7 @@ MainView {
         id: weekViewComp
 
         WeekView {
-
-
-            model: eventModel
+            model: eventModel.isReady ? eventModel : null
             onHighlightedDayChanged: {
                 if (highlightedDate)
                     tabs.currentDay = date
@@ -602,7 +604,11 @@ MainView {
         id: dayViewComp
 
         DayView {
-            model: eventModel
+            model: eventModel.isReady ? eventModel : null
+
+            onCurrentDateChanged: {
+                tabs.currentDay = currentDate
+            }
 
             onDateSelected: {
                 tabs.currentDay = date
@@ -625,7 +631,7 @@ MainView {
         id: agendaViewComp
 
         AgendaView {
-            model: eventModel
+            model: eventModel.isReady ? eventModel : null
 
             onDateSelected: {
                 tabs.currentDay = date;
