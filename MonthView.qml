@@ -36,10 +36,9 @@ PageWithBottomEdge {
     property var highlightedDate;
 
     signal dateSelected(var date);
-    signal dateHighlighted(var date);
 
     Keys.forwardTo: [monthViewPath]
-    createEventAt: currentDate
+    createEventAt: highlightedDate ? highlightedDate : currentDate
 
     Action {
         id: calendarTodayAction
@@ -101,7 +100,6 @@ PageWithBottomEdge {
             }
             onDateHighlighted: {
                 monthViewPage.highlightedDate = date
-                monthViewPage.dateHighlighted(date);
             }
         }
     }

@@ -30,13 +30,13 @@ PageWithBottomEdge {
     readonly property var firstDayOfWeek: anchorDate.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
     property var selectedDay;
+    property var highlightedDay;
 
     signal dateSelected(var date);
-    signal dateHighlighted(var date);
     signal pressAndHoldAt(var date)
 
     Keys.forwardTo: [weekViewPath]
-    createEventAt: currentDate
+    createEventAt: highlightedDay ? highlightedDay : currentDate
 
     Action {
         id: calendarTodayAction
@@ -80,7 +80,9 @@ PageWithBottomEdge {
             topMargin: header.height
         }
 
-        onCurrentIndexChanged: weekViewPage.dateHighlighted(null)
+        onCurrentIndexChanged: {
+            weekViewPage.highlightedDay = null
+        }
 
         //This is used to scroll all view together when currentItem scrolls
         property var childContentY;
@@ -115,7 +117,7 @@ PageWithBottomEdge {
                     }
 
                     onDateHighlighted:{
-                        weekViewPage.dateHighlighted(date);
+                        weekViewPage.highlightedDay = date
                     }
 
                     Component.onCompleted: {

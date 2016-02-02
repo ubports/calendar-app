@@ -546,8 +546,12 @@ MainView {
 
         MonthView {
             model: eventModel
-            onDateHighlighted: {
-                tabs.currentDay = date
+
+            onHighlightedDateChanged: {
+                if (highlightedDate)
+                    tabs.currentDay = highlightedDate
+                else
+                    tabs.currentDay = currentDate
             }
 
             onDateSelected: {
@@ -567,13 +571,14 @@ MainView {
         id: weekViewComp
 
         WeekView {
-            property var highlightedDate
+
 
             model: eventModel
-            onDateHighlighted: {
-                highlightedDate = date
-                if (date)
+            onHighlightedDayChanged: {
+                if (highlightedDate)
                     tabs.currentDay = date
+                else
+                    tabs.currentDay = currentDate
             }
 
             onDateSelected: {
