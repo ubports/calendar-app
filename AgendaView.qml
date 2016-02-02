@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.3
+import QtQuick 2.4
 import QtOrganizer 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.0 as ListItem
@@ -55,13 +55,21 @@ Page{
         }
     }
 
-    head.actions: [
-        calendarTodayAction,
-        commonHeaderActions.showCalendarAction,
-        commonHeaderActions.reloadAction,
-        commonHeaderActions.syncCalendarAction,
-        commonHeaderActions.settingsAction
-    ]
+    header: PageHeader {
+        id: pageHeader
+
+        title: i18n.tr("Agenda")
+        leadingActionBar.actions: tabs.tabsAction
+        trailingActionBar.actions: [
+            calendarTodayAction,
+            commonHeaderActions.newEventAction,
+            commonHeaderActions.showCalendarAction,
+            commonHeaderActions.reloadAction,
+            commonHeaderActions.syncCalendarAction,
+            commonHeaderActions.settingsAction
+        ]
+        flickable: eventList
+    }
 
     EventListModel {
         id: eventListModel
@@ -97,7 +105,7 @@ Page{
 
             return default_title;
         }
-        visible: (!root.hasEnabledCalendars() || !eventListModel.itemCount) && !eventListModel.isLoading
+        visible: (eventListModel.count === 0) && !eventListModel.isLoading
         anchors.centerIn: parent
     }
 

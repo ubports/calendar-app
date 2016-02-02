@@ -43,7 +43,7 @@ function getRecurrenceLabels() {
 
 function getWeekLabels(){
     var object = Qt.createQmlObject('\
-        import QtQuick 2.3;\
+        import QtQuick 2.4;\
         import Ubuntu.Components 1.3;\
         QtObject {\
             property var weekLabel:[Qt.locale().dayName(7,Locale.NarrowFormat),\

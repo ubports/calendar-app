@@ -16,9 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.4
 import Ubuntu.Components 1.3
-import QtQuick.Layouts 1.1
 
 import "ViewType.js" as ViewType
 
@@ -50,7 +49,7 @@ Column {
                 id: weekNumLabel
                 objectName: "weeknumber"
 
-		        // TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+                // TRANSLATORS: W refers to Week, followed by the actual week number (%1)
                 text: i18n.tr("W%1").arg(startDay.weekNumber(Qt.locale().firstDayOfWeek))
                 fontSize: "small"
                 height: units.gu(5)

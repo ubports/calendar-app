@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.3
+import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
@@ -210,6 +210,17 @@ MainView {
             }
         }
 
+
+        EventActions {
+            id: commonHeaderActions
+        }
+
+        Settings {
+            id: settings
+            property alias defaultViewIndex: tabs.selectedTabIndex
+            property alias showWeekNumber: mainView.displayWeekNumber
+        }
+
         Tabs{
             id: tabs
             Keys.forwardTo: [tabs.currentPage]
@@ -221,6 +232,50 @@ MainView {
             property bool newevent: false;
             property int starttime: -1;
             property int endtime: -1;
+
+            //WORKAROUND: The new header api does not work with tabs check bug: #1539759
+            property list<Action> tabsAction: [
+               Action {
+                   objectName: "tab_yearTab"
+                   name: "tab_yearTab"
+                   text: i18n.tr("Year")
+                   iconName: !enabled ? "tick" : ""
+                   enabled: (tabs.selectedTabIndex != 0)
+                   onTriggered: tabs.selectedTabIndex = 0
+               },
+               Action {
+                   objectName: "tab_monthTab"
+                   name: "tab_monthTab"
+                   text: i18n.tr("Month")
+                   iconName: !enabled ? "tick" : ""
+                   enabled: (tabs.selectedTabIndex != 1)
+                   onTriggered: tabs.selectedTabIndex = 1
+               },
+               Action {
+                   objectName: "tab_weekTab"
+                   name: "tab_weekTab"
+                   text: i18n.tr("Week")
+                   iconName: !enabled ? "tick" : ""
+                   enabled: (tabs.selectedTabIndex != 2)
+                   onTriggered: tabs.selectedTabIndex = 2
+               },
+               Action {
+                   objectName: "tab_dayTab"
+                   name: "tab_dayTab"
+                   text: i18n.tr("Day")
+                   iconName: !enabled ? "tick" : ""
+                   enabled: (tabs.selectedTabIndex != 3)
+                   onTriggered: tabs.selectedTabIndex = 3
+               },
+               Action {
+                   objectName: "tab_agendaTab"
+                   name: "tab_agendaTab"
+                   text: i18n.tr("Agenda")
+                   iconName: !enabled ? "tick" : ""
+                   enabled: (tabs.selectedTabIndex != 4)
+                   onTriggered: tabs.selectedTabIndex = 4
+               }
+            ]
 
             function newEvent() {
                 var startDate = new Date();
@@ -315,15 +370,6 @@ MainView {
                 }
             } // End of Component.onCompleted:
 
-            EventActions {
-                id: commonHeaderActions
-            }
-
-            Settings {
-                id: settings
-                property alias defaultViewIndex: tabs.selectedTabIndex
-                property alias showWeekNumber: mainView.displayWeekNumber
-            }
 
             Keys.onTabPressed: {
                 if( event.modifiers & Qt.ControlModifier) {

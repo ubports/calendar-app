@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.3
+import QtQuick 2.4
 import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
@@ -42,24 +42,27 @@ Page {
         }
     }
 
-    head {
-        actions: [
+    header: PageHeader {
+        id: pageHeader
+
+        leadingActionBar.actions: tabs.tabsAction
+        trailingActionBar.actions: [
             calendarTodayAction,
+            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
             commonHeaderActions.settingsAction
         ]
-
-        contents: Label {
-            objectName:"monthYearLabel"
-            fontSize: "large"
+        title: {
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
-            text: currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-            font.capitalization: Font.Capitalize
+            var monthName = currentMonth.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+            return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
         }
+
+        flickable: null
     }
 
     PathViewBase{
@@ -68,10 +71,10 @@ Page {
 
         property var startMonth: currentMonth;
 
-        anchors.top:parent.top
-
-        width:parent.width
-        height: parent.height
+        anchors {
+            fill: parent
+            topMargin: header.height
+        }
 
         onNextItemHighlighted: {
             nextMonth();
