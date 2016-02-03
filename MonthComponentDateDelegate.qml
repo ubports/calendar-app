@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import "./3rd-party/lunar.js" as Lunar
 
 Item{
     id: dateRootItem
@@ -8,6 +9,7 @@ Item{
     property bool isCurrentMonth;
     property bool isToday;
     property bool showEvent;
+    property bool showLunarCalendar;
     property alias fontSize: dateLabel.font.pixelSize
 
     property bool isSelected: false
@@ -48,6 +50,50 @@ Item{
     }
 
     Loader{
+        sourceComponent: showLunarCalendar ? reservedFiled : undefined
+        onSourceComponentChanged: {
+            if (item != undefined) {
+                item.reservedData = Qt.binding(function(){
+                    var lunarDate = Lunar.calendar.solar2lunar(intern.monthStartYear,
+                                                               intern.monthStartMonth + 1,
+                                                               intern.monthStartDate + index)
+                    if (lunarDate.isTerm) {
+                        return {"lunarText": lunarDate.Term, "isTerm" :lunarDate.isTerm};
+                    } else {
+                        return {"lunarText": lunarDate.IDayCn, "isTerm" :lunarDate.isTerm};
+                    }
+                })
+            }
+
+            width = Qt.binding( function() { return units.gu(0.8)})
+            height = Qt.binding( function() { return width })
+            anchors.horizontalCenter = Qt.binding( function() { return  parent.horizontalCenter })
+            anchors.top = Qt.binding( function() { return parent.verticalCenter })
+            anchors.topMargin = Qt.binding( function() {
+                return (dateRootItem.height > dateRootItem.width ? dateRootItem.width :dateRootItem.height)/ 4.0 + units.gu(0.25)
+            });
+        }
+    }
+
+    //this component is reserved for extra information display
+    Component {
+        id: reservedFiled
+        Label {
+            id: reservedLabel
+            property var reservedData
+            onReservedDataChanged: {
+                text = reservedData.lunarText
+                if (reservedData.isTerm)
+                    color = "red";
+            }
+
+            horizontalAlignment: Text.AlignHCenter
+            fontSize: root.subLabelFontSize
+            color: "#5D5D5D"
+        }
+    }
+
+    Loader{        
         sourceComponent: showEvent ? eventIndicatorComp : undefined
         onSourceComponentChanged: {
             width = Qt.binding( function() { return units.gu(0.8)})
@@ -55,8 +101,12 @@ Item{
             anchors.horizontalCenter = Qt.binding( function() { return  parent.horizontalCenter })
             anchors.top = Qt.binding( function() { return parent.verticalCenter })
             anchors.topMargin = Qt.binding( function() {
-                var w = (dateRootItem.height > dateRootItem.width ? dateRootItem.width :dateRootItem.height)/1.3
-                return (w/2) + units.gu(0.1)
+                if (showLunarCalendar) {
+                    return (dateRootItem.height > dateRootItem.width ? dateRootItem.width :dateRootItem.height) / 2 + units.gu(1.5)
+                } else {
+                    var w = (dateRootItem.height > dateRootItem.width ? dateRootItem.width :dateRootItem.height)/1.3
+                    return (w/2) + units.gu(0.1)
+                }
             });
         }
     }

@@ -52,29 +52,60 @@ Page {
 
         Item{
             width: parent.width;
-            height: Math.max(weekNumber.height, weekCheckBox.height)
+            height: Math.max(weekNumber.height, weekCheckbox.height)
 
             Label{
                 id: weekNumber;
                 objectName: "weekNumber"
                 text: i18n.tr("Show week numbers");
                 elide: Text.ElideRight
-                opacity: weekCheckBox.checked ? 1.0 : 0.8
+                opacity: weekCheckbox.checked ? 1.0 : 0.8
                 color: UbuntuColors.midAubergine
                 anchors {
                     left: parent.left
-                    right: weekCheckBox.left;
+                    right: weekCheckbox.left;
                     margins: units.gu(2)
                     verticalCenter: parent.verticalCenter
                 }
             }
 
             CheckBox {
-                id: weekCheckBox
+                id: weekCheckbox
                 objectName: "weekCheckBox"
                 anchors.right:parent.right;
                 onCheckedChanged: {
-                    mainView.displayWeekNumber = weekCheckBox.checked;
+                    mainView.displayWeekNumber = weekCheckbox.checked;
+                }
+            }
+        }
+
+        ListItem.ThinDivider {}
+
+        Item{
+            width: parent.width;
+            height: Math.max(lunarCal.height, lunarCalCheckbox.height)
+
+            Label{
+                id: lunarCal;
+                objectName: "lunarCalendar"
+                text: i18n.tr("Show lunar calendar");
+                elide: Text.ElideRight
+                opacity: lunarCalCheckbox.checked ? 1.0 : 0.8
+                color: UbuntuColors.midAubergine
+                anchors {
+                    left: parent.left
+                    right: lunarCalCheckbox.left;
+                    margins: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+            }
+
+            CheckBox {
+                id: lunarCalCheckbox
+                objectName: "lunarCalCheckbox"
+                anchors.right:parent.right;
+                onCheckedChanged: {
+                    mainView.displayLunarCalendar = lunarCalCheckbox.checked
                 }
             }
         }
@@ -83,7 +114,7 @@ Page {
     }
 
     Component.onCompleted: {
-        weekCheckBox.checked = mainView.displayWeekNumber;
+        weekCheckbox.checked = mainView.displayWeekNumber
+        lunarCalCheckbox.checked = mainView.displayLunarCalendar
     }
 }
-
