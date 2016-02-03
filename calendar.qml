@@ -94,7 +94,7 @@ MainView {
     headerColor: "#E8E8E8"
     backgroundColor: "#f5f5f5"
     footerColor: "#ECECEC"
-    anchorToKeyboard: true
+    anchorToKeyboard: false
 
     Connections {
         target: UriHandler

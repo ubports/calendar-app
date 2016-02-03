@@ -401,12 +401,16 @@ Page {
             flickable.returnToBounds()
         }
 
-        anchors {
-            fill: parent
-            topMargin: header.height
+        flickableDirection: Flickable.VerticalFlick
+        anchors{
+            left: parent.left
+            top: parent.top
+            topMargin: pageHeader.height
+            right: parent.right
+            bottom: keyboardRectangle.top
         }
         contentWidth: width
-        contentHeight: column.height + units.gu(10)
+        contentHeight: column.height
 
         Column {
             id: column
@@ -549,9 +553,11 @@ Page {
                             width: height
                             height: parent.height - units.gu(2)
                             color: modelData.color
-                            anchors.right: parent.right
-                            anchors.rightMargin: units.gu(2)
-                            anchors.verticalCenter: parent.verticalCenter
+                            anchors {
+                                right: parent.right
+                                rightMargin: units.gu(4)
+                                verticalCenter: parent.verticalCenter
+                            }
                         }
                     }
                     onExpandedChanged: Qt.inputMethod.hide();
@@ -581,7 +587,7 @@ Page {
 
                     // WORKAROUND: causes the popover to follow the buttom position when keyboard appears
                     Connections {
-                        target: keyboard
+                        target: keyboardRectangle
                         onHeightChanged: {
                             if (addGuestButton.contactsPopup) {
                                 addGuestButton.contactsPopup.caller = null
@@ -719,13 +725,23 @@ Page {
             ListItems.ThinDivider {}
         }
     }
+
     // used to keep the field visible when the keyboard appear or dismiss
     KeyboardRectangle {
-        id: keyboard
+        id: keyboardRectangle
 
-        onHeightChanged: {
-            if (flickable.activeItem) {
-                flickable.makeMeVisible(flickable.activeItem)
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+
+        Behavior on height {
+            SequentialAnimation {
+                PauseAnimation { duration: 200 }
+                ScriptAction {
+                    script: flickable.makeMeVisible(flickable.activeItem)
+                }
             }
         }
     }
