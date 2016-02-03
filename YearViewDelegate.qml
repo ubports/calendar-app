@@ -79,6 +79,7 @@ GridView{
                     showEvents: false
                     currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
                     displayWeekNumber: mainView.displayWeekNumber;
+                    displayLunarCalendar: false; //we disable lunar calendar display in yeaer view due to space
                     isCurrentItem: yearView.focus
 
                     isYearView: true

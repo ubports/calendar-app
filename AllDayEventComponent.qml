@@ -40,9 +40,6 @@ Row {
         for(var i = 0 ; i < items.length ; ++i) {
             var event = items[(i)];
             if( event && event.allDay ) {
-
-                console.log("event.startDateTime", event.startDateTime,"    event.endDateTime",event.endDateTime);
-
                 for(var d = event.startDateTime; d < event.endDateTime; d = d.addDays(1)) {
                     var key = Qt.formatDateTime(d, "dd-MMM-yyyy");
                     if( !(key in map)) {

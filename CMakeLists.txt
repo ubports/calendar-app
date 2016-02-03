@@ -75,6 +75,8 @@ install(FILES ${URLS_FILE} DESTINATION ${URLS_DIR})
 
 install(FILES ${APPLICATION_FILE} DESTINATION ${APPLICATION_DIR})
 
+install(DIRECTORY "3rd-party" DESTINATION ${DATA_DIR})
+
 # Tests
 enable_testing()
 

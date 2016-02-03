@@ -26,6 +26,7 @@ MainView {
     id: mainView
 
     property bool displayWeekNumber: false;
+    property bool displayLunarCalendar: false;
 
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
@@ -381,7 +382,6 @@ MainView {
                 }
                 tabs.isReady = true
             } // End of Component.onCompleted:
-
 
             Keys.onTabPressed: {
                 if( event.modifiers & Qt.ControlModifier) {

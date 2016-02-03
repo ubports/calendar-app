@@ -32,7 +32,9 @@ Item{
     property var isYearView;
     property var selectedDay;
     property bool displayWeekNumber:false;
+    property bool displayLunarCalendar: false;
 
+    property string subLabelFontSize: "small"
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
     property string monthLabelFontSize: "large"
@@ -92,7 +94,6 @@ Item{
         property int todayDate: today.getDate()
         property int todayMonth: today.getMonth()
         property int todayYear: today.getFullYear()
-
 
         //date from month will start, this date might be from previous month
         property var monthStart: currentMonth.weekStart( Qt.locale().firstDayOfWeek )
@@ -167,6 +168,7 @@ Item{
                     anchors.fill: parent
                     month: intern.curMonth
                     year: intern.curMonthYear
+                    daysInMonth: intern.daysInCurMonth
 
                     monthLabelFontSize: root.monthLabelFontSize
                     yearLabelFontSize: root.yearLabelFontSize
@@ -334,6 +336,7 @@ Item{
             width: parent.dayWidth
             height: parent.dayHeight
             fontSize: intern.dateFontSize
+            showLunarCalendar:  displayLunarCalendar
             showEvent: showEvents
                         && intern.eventStatus !== undefined
                         && intern.eventStatus[index] !== undefined
