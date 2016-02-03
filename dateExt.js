@@ -17,6 +17,7 @@
  */
 .pragma library
 
+Date.msPerMin = 60000
 Date.msPerDay = 86400e3
 Date.msPerWeek = Date.msPerDay * 7
 
