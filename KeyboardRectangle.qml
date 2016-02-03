@@ -26,13 +26,6 @@ Item {
     anchors.bottom: parent.bottom
     height: Qt.inputMethod.visible ? Qt.inputMethod.keyboardRectangle.height : 0
 
-    Behavior on height {
-        NumberAnimation {
-            duration: 300
-            easing.type: Easing.InOutQuad
-        }
-    }
-
     states: [
         State {
             name: "hidden"
