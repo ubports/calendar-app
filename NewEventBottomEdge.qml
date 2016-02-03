@@ -55,9 +55,11 @@ BottomEdge {
         implicitHeight: bottomEdge.height
         children: bottomEdge._realPage
         Component.onDestruction: {
-            bottomEdge._realPage.destroy()
-            bottomEdge._realPage = null
-            _realPage = editorPageBottomEdge.createObject(null)
+            if (bottomEdge._realPage) {
+                bottomEdge._realPage.destroy()
+                bottomEdge._realPage = null
+                _realPage = editorPageBottomEdge.createObject(null)
+            }
         }
     }
 
@@ -83,6 +85,13 @@ BottomEdge {
             visible: (bottomEdge.status !== BottomEdge.Hidden)
             onCanceled: bottomEdge.collapse()
             onEventAdded: bottomEdge.collapse()
+        }
+    }
+
+    Component.onDestruction: {
+        if (bottomEdge._realPage) {
+            bottomEdge._realPage.destroy()
+            bottomEdge._realPage = null
         }
     }
 }
