@@ -585,17 +585,6 @@ Page {
                         margins: units.gu(2)
                     }
 
-                    // WORKAROUND: causes the popover to follow the buttom position when keyboard appears
-                    Connections {
-                        target: keyboardRectangle
-                        onHeightChanged: {
-                            if (addGuestButton.contactsPopup) {
-                                addGuestButton.contactsPopup.caller = null
-                                addGuestButton.contactsPopup.caller = addGuestButton
-                            }
-                        }
-                    }
-
                     onClicked: {
                         if (contactsPopup)
                             return
@@ -740,7 +729,16 @@ Page {
             SequentialAnimation {
                 PauseAnimation { duration: 200 }
                 ScriptAction {
-                    script: flickable.makeMeVisible(flickable.activeItem)
+                    script: {
+                        if (addGuestButton.contactsPopup) {
+                            // WORKAROUND: causes the popover to follow the buttom position when keyboard appears
+                            flickable.makeMeVisible(addGuestButton)
+                            addGuestButton.contactsPopup.caller = null
+                            addGuestButton.contactsPopup.caller = addGuestButton
+                        } else {
+                            flickable.makeMeVisible(flickable.activeItem)
+                        }
+                    }
                 }
             }
         }

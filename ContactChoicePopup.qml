@@ -17,7 +17,7 @@
  */
 import QtQuick 2.4
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Themes.Ambiance 1.0
 import QtOrganizer 5.0
@@ -113,6 +113,7 @@ Popover {
             model: contactModel
             height: units.gu(15)
             clip: true
+            focus: false
             delegate: Column {
                 width: contactList.width
                 Repeater {
@@ -126,6 +127,7 @@ Popover {
                     delegate: ListItem {
                         property string emailAddress: contact.emails.length > index ? contact.emails[index].emailAddress : ""
 
+                        activeFocusOnPress: false
                         opacity: emailAddress.length > 0 ? 1.0 : 0.3
                         width: contactList.width
                         objectName: "contactPopoverList%1".arg(index)
@@ -133,10 +135,13 @@ Popover {
                             title.text: contact.displayLabel.label
                             subtitle.text: emailAddress
                         }
-                        onClicked: {
-                            if (emailAddress.length > 0) {
-                                root.contactSelected(contact, emailAddress);
-                                onClicked: PopupUtils.close(root)
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                if (emailAddress.length > 0) {
+                                    root.contactSelected(contact, emailAddress);
+                                    PopupUtils.close(root)
+                                }
                             }
                         }
                     }

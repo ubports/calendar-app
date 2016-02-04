@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-29 11:46-0300\n"
+"POT-Creation-Date: 2016-02-02 17:47-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,29 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../AgendaView.qml:51 ../DayView.qml:41 ../MonthView.qml:41
-#: ../WeekView.qml:46 ../YearView.qml:46 ../build/pkg/AgendaView.qml:51
-#: ../build/pkg/DayView.qml:41 ../build/pkg/MonthView.qml:41
-#: ../build/pkg/WeekView.qml:46 ../build/pkg/YearView.qml:45
+#: ../AgendaView.qml:53 ../DayView.qml:43 ../MonthView.qml:47
+#: ../WeekView.qml:45 ../YearView.qml:49 ../build/pkg/AgendaView.qml:53
+#: ../build/pkg/DayView.qml:43 ../build/pkg/MonthView.qml:47
+#: ../build/pkg/WeekView.qml:45 ../build/pkg/YearView.qml:49
 msgid "Today"
 msgstr ""
 
-#: ../AgendaView.qml:92 ../build/pkg/AgendaView.qml:93
+#: ../AgendaView.qml:63 ../build/pkg/AgendaView.qml:63
+#: ../build/pkg/calendar.qml:287 ../build/pkg/calendar.qml:503
+#: ../calendar.qml:287 ../calendar.qml:503
+msgid "Agenda"
+msgstr ""
+
+#: ../AgendaView.qml:101 ../build/pkg/AgendaView.qml:101
 msgid "No upcoming events"
 msgstr ""
 
-#: ../AgendaView.qml:95 ../build/pkg/AgendaView.qml:96
+#: ../AgendaView.qml:104 ../build/pkg/AgendaView.qml:104
 msgid "You have no calendars enabled"
 msgstr ""
 
-#: ../AgendaView.qml:105 ../build/pkg/AgendaView.qml:106
+#: ../AgendaView.qml:114 ../build/pkg/AgendaView.qml:114
 msgid "Enable calendars"
 msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:168 ../EventBubble.qml:133
-#: ../build/pkg/AgendaView.qml:169 ../build/pkg/EventBubble.qml:133
+#: ../AgendaView.qml:177 ../EventBubble.qml:133
+#: ../build/pkg/AgendaView.qml:177 ../build/pkg/EventBubble.qml:133
 #, qt-format
 msgid "%1 - %2"
 msgstr ""
@@ -62,8 +68,8 @@ msgid_plural "%1 all day events"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:63
-#: ../build/pkg/CalendarChoicePopup.qml:33 ../build/pkg/EventActions.qml:61
+#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:51
+#: ../build/pkg/CalendarChoicePopup.qml:33 ../build/pkg/EventActions.qml:51
 msgid "Calendars"
 msgstr ""
 
@@ -74,13 +80,13 @@ msgstr ""
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:39
-#: ../build/pkg/CalendarChoicePopup.qml:51 ../build/pkg/EventActions.qml:37
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
+#: ../build/pkg/CalendarChoicePopup.qml:51 ../build/pkg/EventActions.qml:36
 msgid "Sync"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:39
-#: ../build/pkg/CalendarChoicePopup.qml:51 ../build/pkg/EventActions.qml:37
+#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
+#: ../build/pkg/CalendarChoicePopup.qml:51 ../build/pkg/EventActions.qml:36
 msgid "Syncing"
 msgstr ""
 
@@ -93,28 +99,29 @@ msgid "Select Color"
 msgstr ""
 
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
-#: ../EditEventConfirmationDialog.qml:53 ../build/pkg/ColorPickerDialog.qml:55
+#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:321
+#: ../build/pkg/ColorPickerDialog.qml:55
 #: ../build/pkg/DeleteConfirmationDialog.qml:60
 #: ../build/pkg/EditEventConfirmationDialog.qml:53
+#: ../build/pkg/NewEvent.qml:321
 msgid "Cancel"
-msgstr ""
-
-#: ../ContactChoicePage.qml:50 ../ContactChoicePopup.qml:83
-#: ../build/pkg/ContactChoicePage.qml:50
-#: ../build/pkg/ContactChoicePopup.qml:83
-msgid "Search contact"
 msgstr ""
 
 #: ../ContactChoicePopup.qml:37 ../build/pkg/ContactChoicePopup.qml:37
 msgid "No contact"
 msgstr ""
 
+#: ../ContactChoicePopup.qml:96 ../build/pkg/ContactChoicePage.qml:50
+#: ../build/pkg/ContactChoicePopup.qml:96
+msgid "Search contact"
+msgstr ""
+
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:61 ../MonthView.qml:63 ../WeekView.qml:66
-#: ../build/pkg/DayView.qml:62 ../build/pkg/MonthView.qml:64
-#: ../build/pkg/WeekView.qml:66
+#: ../DayView.qml:67 ../MonthView.qml:69 ../WeekView.qml:68
+#: ../build/pkg/DayView.qml:67 ../build/pkg/MonthView.qml:69
+#: ../build/pkg/WeekView.qml:68
 msgid "MMMM yyyy"
 msgstr ""
 
@@ -151,14 +158,14 @@ msgstr ""
 msgid "Delete this"
 msgstr ""
 
-#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:68
-#: ../build/pkg/DeleteConfirmationDialog.qml:51 ../build/pkg/NewEvent.qml:68
+#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:332
+#: ../build/pkg/DeleteConfirmationDialog.qml:51 ../build/pkg/NewEvent.qml:332
 msgid "Delete"
 msgstr ""
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:330
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:316
 #: ../build/pkg/EditEventConfirmationDialog.qml:29
-#: ../build/pkg/NewEvent.qml:330
+#: ../build/pkg/NewEvent.qml:316
 msgid "Edit Event"
 msgstr ""
 
@@ -179,13 +186,8 @@ msgstr ""
 msgid "Edit this"
 msgstr ""
 
-#: ../EventActions.qml:53 ../NewEvent.qml:330 ../build/pkg/EventActions.qml:51
-#: ../build/pkg/NewEvent.qml:330
-msgid "New Event"
-msgstr ""
-
-#: ../EventActions.qml:74 ../Settings.qml:30 ../build/pkg/EventActions.qml:72
-#: ../build/pkg/Settings.qml:28
+#: ../EventActions.qml:63 ../Settings.qml:30 ../build/pkg/EventActions.qml:63
+#: ../build/pkg/Settings.qml:30
 msgid "Settings"
 msgstr ""
 
@@ -197,8 +199,8 @@ msgstr ""
 msgid "%1 <b>%2</b>"
 msgstr ""
 
-#: ../EventDetails.qml:43 ../NewEvent.qml:441 ../build/pkg/EventDetails.qml:43
-#: ../build/pkg/NewEvent.qml:441
+#: ../EventDetails.qml:43 ../NewEvent.qml:464 ../build/pkg/EventDetails.qml:43
+#: ../build/pkg/NewEvent.qml:464
 msgid "Event Details"
 msgstr ""
 
@@ -222,14 +224,14 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:354 ../NewEvent.qml:543
-#: ../build/pkg/EventDetails.qml:354 ../build/pkg/NewEvent.qml:543
+#: ../EventDetails.qml:354 ../NewEvent.qml:566
+#: ../build/pkg/EventDetails.qml:354 ../build/pkg/NewEvent.qml:566
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:640
+#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:693
 #: ../build/pkg/EventDetails.qml:397 ../build/pkg/EventReminder.qml:35
-#: ../build/pkg/NewEvent.qml:640
+#: ../build/pkg/NewEvent.qml:693
 msgid "Reminder"
 msgstr ""
 
@@ -253,8 +255,8 @@ msgstr ""
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:624
-#: ../build/pkg/EventRepetition.qml:242 ../build/pkg/NewEvent.qml:624
+#: ../EventRepetition.qml:242 ../NewEvent.qml:677
+#: ../build/pkg/EventRepetition.qml:242 ../build/pkg/NewEvent.qml:677
 msgid "Repeats"
 msgstr ""
 
@@ -297,56 +299,61 @@ msgstr ""
 msgid "After Date"
 msgstr ""
 
-#: ../MonthComponent.qml:304 ../build/pkg/MonthComponent.qml:304
+#: ../MonthComponent.qml:312 ../build/pkg/MonthComponent.qml:312
 msgid "Wk"
 msgstr ""
 
-#: ../NewEvent.qml:84 ../build/pkg/NewEvent.qml:84
-msgid "Save"
-msgstr ""
-
-#: ../NewEvent.qml:192 ../build/pkg/NewEvent.qml:192
+#: ../NewEvent.qml:153 ../build/pkg/NewEvent.qml:153
 msgid "End time can't be before start time"
 msgstr ""
 
-#: ../NewEvent.qml:340 ../build/pkg/NewEvent.qml:340
+#: ../NewEvent.qml:316 ../NewEventBottomEdge.qml:44
+#: ../build/pkg/NewEvent.qml:316 ../build/pkg/NewEventBottomEdge.qml:42
+msgid "New Event"
+msgstr ""
+
+#: ../NewEvent.qml:349 ../build/pkg/NewEvent.qml:349
+msgid "Save"
+msgstr ""
+
+#: ../NewEvent.qml:360 ../build/pkg/NewEvent.qml:360
 msgid "Error"
 msgstr ""
 
-#: ../NewEvent.qml:342 ../build/pkg/NewEvent.qml:342
+#: ../NewEvent.qml:362 ../build/pkg/NewEvent.qml:362
 msgid "OK"
 msgstr ""
 
-#: ../NewEvent.qml:395 ../build/pkg/NewEvent.qml:395
+#: ../NewEvent.qml:418 ../build/pkg/NewEvent.qml:418
 msgid "From"
 msgstr ""
 
-#: ../NewEvent.qml:408 ../build/pkg/NewEvent.qml:408
+#: ../NewEvent.qml:431 ../build/pkg/NewEvent.qml:431
 msgid "To"
 msgstr ""
 
-#: ../NewEvent.qml:425 ../build/pkg/NewEvent.qml:425
+#: ../NewEvent.qml:448 ../build/pkg/NewEvent.qml:448
 msgid "All day event"
 msgstr ""
 
-#: ../NewEvent.qml:454 ../build/pkg/NewEvent.qml:454
+#: ../NewEvent.qml:477 ../build/pkg/NewEvent.qml:477
 msgid "Event Name"
 msgstr ""
 
-#: ../NewEvent.qml:472 ../build/pkg/NewEvent.qml:472
+#: ../NewEvent.qml:495 ../build/pkg/NewEvent.qml:495
 msgid "Description"
 msgstr ""
 
-#: ../NewEvent.qml:490 ../build/pkg/NewEvent.qml:490
+#: ../NewEvent.qml:513 ../build/pkg/NewEvent.qml:513
 msgid "Location"
 msgstr ""
 
-#: ../NewEvent.qml:505 ../build/pkg/NewEvent.qml:505
+#: ../NewEvent.qml:528 ../build/pkg/NewEvent.qml:528
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr ""
 
-#: ../NewEvent.qml:547 ../build/pkg/NewEvent.qml:547
+#: ../NewEvent.qml:575 ../build/pkg/NewEvent.qml:575
 msgid "Add Guest"
 msgstr ""
 
@@ -437,7 +444,7 @@ msgstr ""
 msgid "Show week numbers"
 msgstr ""
 
-#: ../TimeLineBase.qml:100 ../build/pkg/TimeLineBase.qml:98
+#: ../TimeLineBase.qml:108 ../build/pkg/TimeLineBase.qml:108
 msgid "New event"
 msgstr ""
 
@@ -451,7 +458,7 @@ msgstr ""
 msgid "All Day"
 msgstr ""
 
-#: ../YearView.qml:67 ../build/pkg/YearView.qml:53
+#: ../YearView.qml:66 ../build/pkg/YearView.qml:66
 #, qt-format
 msgid "Year %1"
 msgstr ""
@@ -463,24 +470,24 @@ msgid ""
 "about them"
 msgstr ""
 
-#: ../build/pkg/calendar.qml:365 ../calendar.qml:365
+#: ../build/pkg/calendar.qml:255 ../build/pkg/calendar.qml:419
+#: ../calendar.qml:255 ../calendar.qml:419
 msgid "Year"
 msgstr ""
 
-#: ../build/pkg/calendar.qml:386 ../calendar.qml:386
+#: ../build/pkg/calendar.qml:263 ../build/pkg/calendar.qml:440
+#: ../calendar.qml:263 ../calendar.qml:440
 msgid "Month"
 msgstr ""
 
-#: ../build/pkg/calendar.qml:407 ../calendar.qml:407
+#: ../build/pkg/calendar.qml:271 ../build/pkg/calendar.qml:461
+#: ../calendar.qml:271 ../calendar.qml:461
 msgid "Week"
 msgstr ""
 
-#: ../build/pkg/calendar.qml:428 ../calendar.qml:428
+#: ../build/pkg/calendar.qml:279 ../build/pkg/calendar.qml:482
+#: ../calendar.qml:279 ../calendar.qml:482
 msgid "Day"
-msgstr ""
-
-#: ../build/pkg/calendar.qml:449 ../calendar.qml:449
-msgid "Agenda"
 msgstr ""
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
