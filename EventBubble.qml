@@ -40,6 +40,7 @@ Item{
     readonly property int minimumHeight: type == wideType
                                          ? detailsItems.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
                                          : units.gu(2)
+    readonly property bool isEventBubble: true
 
     z: depthInRow
 
@@ -225,7 +226,13 @@ Item{
             minimumY: flickable ? flickable.y : 0
             maximumY: flickable ? flickable.contentHeight - infoBubble.height : infoBubble.height
         }
-        onReleased: parent.Drag.drop()
+        onReleased: {
+            if (isLiveEditing) {
+                isLiveEditing = false;
+                infoBubble.z -= 1;
+            }
+            parent.Drag.drop()
+        }
         onClicked: {
             if( isLiveEditing ) {
                 isLiveEditing = false;

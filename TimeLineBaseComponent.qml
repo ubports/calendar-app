@@ -230,6 +230,7 @@ Item {
                             id: delegate
 
                             property int idx: index
+                            flickable: timeLineView
                             anchors.top: parent.top
                             width: {
                                 if( type == ViewType.ViewTypeWeek ) {
@@ -257,7 +258,7 @@ Item {
                                 target: mainModel
 
                                 onModelChanged: {
-                                    createEvents();
+                                    idleCreateEvents();
                                 }
                             }
 
@@ -276,7 +277,7 @@ Item {
                                     event.startDateTime = startDate;
                                     event.endDateTime = endDate;
 
-                                     return event;
+                                    return event;
                                 }
 
                                 onDropped: {
@@ -344,6 +345,7 @@ Item {
             type: root.type == ViewType.ViewTypeWeek ? narrowType : wideType
             flickable: root.isActive ? timeLineView : null
             clip: true
+            opacity: parent.enabled ? 1.0 : 0.3
         }
     }
 }

@@ -1,4 +1,4 @@
-/*
+    /*
  * Copyright (C) 2013-2014 Canonical Ltd
  *
  * This file is part of Ubuntu Calendar App
@@ -28,13 +28,16 @@ Item {
     property var day;
     property int hourHeight: units.gu(8)
     property var model;
+    property var flickable: null
     readonly property alias creatingEvent: overlayMouseArea.creatingEvent
 
     signal pressAndHoldAt(var date)
 
     Component.onCompleted: {
-        bubbleOverLay.createEvents();
+        bubbleOverLay.idleCreateEvents();
     }
+
+    enabled: !intern.busy
 
     EventBubble {
         id: temporaryEvent
@@ -43,6 +46,20 @@ Item {
          isLiveEditing: overlayMouseArea.creatingEvent
          visible: overlayMouseArea.creatingEvent
          depthInRow: -10000
+    }
+
+    Item {
+        anchors {
+            topMargin: flickable ? flickable.contentY : 0
+            bottomMargin: flickable ? bubbleOverLay.height - flickable.contentY - flickable.height : bubbleOverLay.height
+            fill: parent
+        }
+
+        ActivityIndicator {
+            visible: intern.busy
+            running: visible
+            anchors.centerIn: parent
+        }
     }
 
     MouseArea {
@@ -135,6 +152,7 @@ Item {
         property var now : new Date();
         property var eventMap;
         property var unUsedEvents: new Object();
+        property bool busy: false
     }
 
     function showEventDetails(event) {
@@ -148,10 +166,11 @@ Item {
 
     WorkerScript {
         id: eventLayoutHelper
-        source: "EventLayoutHelper.js"
 
+        source: "EventLayoutHelper.js"
         onMessage: {
             layoutEvents(messageObject.schedules,messageObject.maxDepth);
+            intern.busy = false
         }
     }
 
@@ -163,8 +182,14 @@ Item {
         }
     }
 
+    function idleCreateEvents() {
+        intern.busy = true
+        createEventsTimer.restart()
+    }
+
     function createEvents() {
         if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined || model === null) {
+            intern.busy = false
             return;
         }
 
@@ -189,7 +214,10 @@ Item {
         }
 
         intern.eventMap = eventMap;
-        eventLayoutHelper.sendMessage(allSchs);
+        if (allSchs.length > 0)
+            eventLayoutHelper.sendMessage(allSchs);
+        else
+            intern.busy = false
 
         if( intern.now.isSameDay( bubbleOverLay.day ) ) {
             bubbleOverLay.showSeparator();
@@ -197,18 +225,16 @@ Item {
     }
 
     function destroyAllChildren() {
+        separator.visible = false
         for( var i = children.length - 1; i >= 0; --i ) {
-            if( children[i].objectName === "mouseArea" ||
-                    children[i].objectName === "weekdevider") {
+            if (!children[i].isEventBubble) {
                 continue;
             }
             children[i].visible = false;
-            if( children[i].objectName !== "separator") {
-                children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
-                var key = children[i].objectName;
-                if (intern.unUsedEvents[key] === "undefined") {
-                    intern.unUsedEvents[key] = children[i];
-                }
+            children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
+            var key = children[i].objectName;
+            if (intern.unUsedEvents[key] === "undefined") {
+                intern.unUsedEvents[key] = children[i];
             }
         }
     }
@@ -311,5 +337,14 @@ Item {
         var y = ((intern.now.getMinutes() * hourHeight) / 60) + intern.now.getHours() * hourHeight;
         separator.y = y;
         separator.visible = true;
+    }
+
+    Timer {
+        id: createEventsTimer
+
+        interval: 300
+        running: false
+        repeat: false
+        onTriggered: createEvents()
     }
 }
