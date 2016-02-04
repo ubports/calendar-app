@@ -50,7 +50,7 @@ Item {
 
     signal dateSelected(var date);
     signal dateHighlighted(var date);
-    signal pressAndHoldAt(var date);
+    signal pressAndHoldAt(var date, bool allDay);
 
     function scrollToCurrentTime() {
         var currentTime = new Date();
@@ -173,6 +173,10 @@ Item {
                                      date.getDate(),
                                      root.currentHour, 0, 0)
             }
+
+            onAllDayPressAndHold: {
+                root.pressAndHoldAt(date, true)
+            }
         }
 
         SimpleDivider{}
@@ -245,7 +249,7 @@ Item {
                             model: mainModel
 
                             onPressAndHoldAt: {
-                                root.pressAndHoldAt(date)
+                                root.pressAndHoldAt(date, false)
                             }
 
                             Binding {

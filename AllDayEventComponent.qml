@@ -31,6 +31,8 @@ Row {
     property var allDayEvents;
     property var model;
 
+    signal pressAndHold(var date)
+
     width: parent.width
     height: units.gu(5)
 
@@ -91,6 +93,7 @@ Row {
                         }
                     }
                 }
+                onPressAndHold: root.pressAndHold(startDay.midnight().addDays(index))
             }
 
             Loader {

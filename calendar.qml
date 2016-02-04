@@ -593,7 +593,10 @@ MainView {
             }
 
             onPressAndHoldAt: {
-                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":date, "model":eventModel});
+                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),
+                               {"date": date,
+                                "allDay": allDay,
+                                "model": eventModel});
             }
 
             onActiveChanged: {
@@ -621,7 +624,9 @@ MainView {
 
             onPressAndHoldAt: {
                 pageStack.push(Qt.resolvedUrl("NewEvent.qml"),
-                               {"date": date, "model": eventModel});
+                               {"date": date,
+                                "allDay": allDay,
+                                "model": eventModel});
             }
 
             onActiveChanged: {

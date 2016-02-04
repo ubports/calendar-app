@@ -31,6 +31,7 @@ Page {
     objectName: 'newEventPage'
 
     property var date;
+    property alias allDay: allDayEventCheckbox.checked
 
     property var event:null;
     property var rule :null;

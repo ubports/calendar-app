@@ -31,7 +31,7 @@ PageWithBottomEdge {
     readonly property var currentDate: dayViewPath.currentItem.startDay
 
     signal dateSelected(var date);
-    signal pressAndHoldAt(var date)
+    signal pressAndHoldAt(var date, bool allDay)
 
     Keys.forwardTo: [dayViewPath]
     createEventAt: currentDate
@@ -96,7 +96,7 @@ PageWithBottomEdge {
             keyboardEventProvider: dayViewPath
 
             onPressAndHoldAt: {
-                dayViewPage.pressAndHoldAt(date)
+                dayViewPage.pressAndHoldAt(date, allDay)
             }
 
             Component.onCompleted: {

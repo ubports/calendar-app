@@ -33,7 +33,7 @@ PageWithBottomEdge {
     property var highlightedDay;
 
     signal dateSelected(var date);
-    signal pressAndHoldAt(var date)
+    signal pressAndHoldAt(var date, bool allDay)
 
     Keys.forwardTo: [weekViewPath]
     createEventAt: highlightedDay ? highlightedDay : currentDate
@@ -131,7 +131,7 @@ PageWithBottomEdge {
                     }
 
                     onPressAndHoldAt: {
-                        weekViewPage.pressAndHoldAt(date)
+                        weekViewPage.pressAndHoldAt(date, allDay)
                     }
 
                     Connections{
