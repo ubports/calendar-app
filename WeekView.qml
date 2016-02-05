@@ -111,6 +111,7 @@ PageWithBottomEdge {
                     isActive: parent.PathView.isCurrentItem
                     keyboardEventProvider: weekViewPath
                     selectedDay: weekViewPage.selectedDay
+                    modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
 
                     onDateSelected: {
                         weekViewPage.dateSelected(date);

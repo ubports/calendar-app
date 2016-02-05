@@ -34,6 +34,7 @@ Item {
     property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
+    property alias modelFilter: mainModel.filter
     property var selectedDay;
 
     readonly property real hourItemHeight: units.gu(8)
@@ -45,8 +46,6 @@ Item {
 
     //visible hour
     property int scrollHour;
-
-    property EventListModel mainModel;
 
     signal dateSelected(var date);
     signal dateHighlighted(var date);
@@ -117,25 +116,12 @@ Item {
         }
     }
 
-    Timer{
-        interval: 200
-        running: true
-        repeat: false
-        onTriggered: {
-            mainModel.filter = Qt.binding(function() { return eventModel.filter; })
-        }
-    }
-
-    InvalidFilter {
-        id: invalidFilter
-    }
-
     EventListModel {
         id: mainModel
 
-        filter: invalidFilter // delay event filter in case the user is scrolling too fast
         startPeriod: startDay.midnight();
         endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
+        onModelChanged: console.debug("Model changeeeeeeee")
     }
 
     ActivityIndicator {
@@ -258,14 +244,6 @@ Item {
                                 value: !delegate.creatingEvent
                             }
 
-                            Connections{
-                                target: mainModel
-
-                                onModelChanged: {
-                                    idleCreateEvents();
-                                }
-                            }
-
                             DropArea {
                                 id: dropArea
                                 objectName: "mouseArea"
@@ -327,13 +305,6 @@ Item {
                                 id: weekDividerComponent
                                 SimpleDivider{
                                     anchors.fill: parent
-                                }
-                            }
-
-                            Connections{
-                                target: mainModel
-                                onStartPeriodChanged:{
-                                    destroyAllChildren();
                                 }
                             }
                         }

@@ -27,7 +27,7 @@ Item {
     property var delegate;
     property var day;
     property int hourHeight: units.gu(8)
-    property var model;
+    property alias model: modelConnections.target
     property var flickable: null
     readonly property alias creatingEvent: overlayMouseArea.creatingEvent
 
@@ -346,5 +346,11 @@ Item {
         running: false
         repeat: false
         onTriggered: createEvents()
+    }
+
+    Connections {
+        id: modelConnections
+        onModelChanged: bubbleOverLay.idleCreateEvents()
+        onStartPeriodChanged: bubbleOverLay.destroyAllChildren();
     }
 }
