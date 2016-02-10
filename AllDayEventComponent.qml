@@ -77,6 +77,11 @@ Row {
             width: parent.width / (type == ViewType.ViewTypeWeek ? 7 : 1)
 
             MouseArea {
+                id: mouseArea
+
+                property bool mouseHold: false
+
+                preventStealing: mouseHold
                 anchors.fill: parent
                 onClicked: {
                     if(!allDayButton.events || allDayButton.events.length === 0) {
@@ -93,7 +98,31 @@ Row {
                         }
                     }
                 }
-                onPressAndHold: root.pressAndHold(startDay.midnight().addDays(index))
+                Rectangle {
+                    id: temporaryEvent
+
+                    anchors.fill: parent
+                    visible: mouseArea.mouseHold
+                    Label {
+                        anchors.fill: parent
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        text:  i18n.tr("New event")
+                    }
+                }
+
+                onReleased: {
+                    mouseHold = false
+                    if (containsMouse) {
+                        root.pressAndHold(startDay.midnight().addDays(index))
+                    }
+                }
+
+
+                onPressAndHold: {
+                    mouseHold = true
+                    Haptics.play()
+                }
             }
 
             Loader {
