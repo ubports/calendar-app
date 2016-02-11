@@ -321,7 +321,7 @@ Page {
     }
 
     onEndDateChanged: {
-        if (!endDate)
+        if (endDate)
             endDateTimeInput.dateTime = endDate;
     }
 
