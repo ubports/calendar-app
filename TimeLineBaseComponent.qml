@@ -121,7 +121,6 @@ Item {
 
         startPeriod: startDay.midnight();
         endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
-        onModelChanged: console.debug("Model changeeeeeeee")
     }
 
     ActivityIndicator {
