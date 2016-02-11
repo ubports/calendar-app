@@ -306,6 +306,9 @@ Page {
     }
 
     onStartDateChanged: {
+        if (!startDate)
+            return
+
         startDateTimeInput.dateTime = startDate;
 
         // set time forward to one hour
@@ -318,7 +321,8 @@ Page {
     }
 
     onEndDateChanged: {
-        endDateTimeInput.dateTime = endDate;
+        if (!endDate)
+            endDateTimeInput.dateTime = endDate;
     }
 
     header: PageHeader {
