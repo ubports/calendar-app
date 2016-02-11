@@ -490,6 +490,7 @@ Page {
                         margins: units.gu(2)
                     }
 
+                    inputMethodHints: Qt.ImhNoPredictiveText
                     placeholderText: i18n.tr("Event Name")
                     onFocusChanged: {
                         if(titleEdit.focus) {
@@ -526,6 +527,7 @@ Page {
                         margins: units.gu(2)
                     }
 
+                    inputMethodHints: Qt.ImhNoPredictiveText
                     placeholderText: i18n.tr("Location")
 
                     onFocusChanged: {
