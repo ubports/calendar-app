@@ -297,33 +297,36 @@ Item {
         var height = 0;
         var hour = 0;
         var durationMin = 0;
+        var dayMidnight = day.midnight()
 
         // skip it in case of endDateTime == dd-MM-yyyy 12:00 AM
-        if (event.endDateTime - day  == 0)
+        if (event.endDateTime - dayMidnight  == 0) {
             return;
+        }
 
-        if (event.endDateTime.getDate() - day.getDate() == 0 &&
-                event.startDateTime.getDate() - day.getDate() == 0) {
+        if ((event.endDateTime.getDate() - day.getDate() == 0) &&
+            (event.startDateTime.getDate() - day.getDate() == 0)) {
+            // event start and end in this day
             hour = event.startDateTime.getHours();
             yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
             durationMin = (event.endDateTime.getHours() - event.startDateTime.getHours()) * 60;
             durationMin += (event.endDateTime.getMinutes() - event.startDateTime.getMinutes());
-        }
-        if (event.endDateTime.getDate() - day.getDate() == 0 &&
-                event.startDateTime - day < 0) {
+        } else if ((event.endDateTime.getDate() - day.getDate() == 0) &&
+                   (event.startDateTime - dayMidnight < 0)) {
+            // event start in the previous date
             hour = 0;
             yPos = 0;
             durationMin = event.endDateTime.getHours() * 60;
             durationMin += event.endDateTime.getMinutes();
-        }
-        if (event.startDateTime.getDate() - day.getDate() == 0 &&
-                event.endDateTime - day >= Date.msPerDay) {
+        } else if ((event.startDateTime.getDate() - day.getDate() == 0) &&
+                   (event.endDateTime - dayMidnight >= Date.msPerDay)) {
+            // event start on this day and end in the next day
             hour = event.startDateTime.getHours();
             yPos = (( event.startDateTime.getMinutes() * hourHeight) / 60) + hour * hourHeight
             durationMin = (24 - event.startDateTime.getHours()) * 60;
-        }
-        if (event.endDateTime - day  >= Date.msPerDay &&
-                event.startDateTime- day <= 0) {
+        } else if ((event.endDateTime - dayMidnight  >= Date.msPerDay) &&
+                   (event.startDateTime - dayMidnight <= 0)) {
+            // event start in the previous date and end in the future date
             hour = 0;
             yPos = 0;
             durationMin = 24 * 60;
