@@ -593,10 +593,7 @@ MainView {
             }
 
             onPressAndHoldAt: {
-                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),
-                               {"date": date,
-                                "allDay": allDay,
-                                "model": eventModel});
+                bottomEdgeCommit(date, allDay)
             }
 
             onActiveChanged: {
@@ -614,19 +611,12 @@ MainView {
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabs.selectedTabIndex === dayTab.index
 
-            onCurrentDateChanged: {
-                tabs.currentDay = currentDate
-            }
-
             onDateSelected: {
                 tabs.currentDay = date
             }
 
             onPressAndHoldAt: {
-                pageStack.push(Qt.resolvedUrl("NewEvent.qml"),
-                               {"date": date,
-                                "allDay": allDay,
-                                "model": eventModel});
+                bottomEdgeCommit(date, allDay)
             }
 
             onActiveChanged: {

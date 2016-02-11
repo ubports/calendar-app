@@ -48,12 +48,32 @@ Page {
     signal canceled()
 
     Component.onCompleted: {
-        //If current date is setted by an argument we don't have to change it.
+        setDate(root.date)
+
+        if(event === null){
+            isEdit = false;
+            addEvent();
+        }
+
+        else{
+            isEdit = true;
+            editEvent(event);
+        }
+    }
+
+    function updateEventDate(date, allDay) {
+        root.startDate = undefined
+        root.endDate = undefined
+        setDate(date)
+        root.allDay = allDay
+    }
+
+    function setDate(date) {
         if(typeof(date) === 'undefined'){
             date = new Date();
         }
 
-        if( typeof(date) == 'undefined' || (date.getHours() == 0 && date.getMinutes() == 0) ) {
+        if(date.getHours() === 0 && date.getMinutes() === 0)  {
             var newDate = new Date();
             date.setHours(newDate.getHours(), newDate.getMinutes());
         }
@@ -70,15 +90,6 @@ Page {
             endTimeInput.text = Qt.formatDateTime(endDate, Qt.locale().timeFormat(Locale.ShortFormat));
         }
 
-        if(event === null){
-            isEdit = false;
-            addEvent();
-        }
-
-        else{
-            isEdit = true;
-            editEvent(event);
-        }
     }
 
     function selectCalendar(collectionId) {

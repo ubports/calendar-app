@@ -25,6 +25,11 @@ Page {
     property alias createEventAt: bottomEdge.date
     property bool bootomEdgeEnabled: bottomEdge.enabled
 
+    function bottomEdgeCommit(date, allDay) {
+        bottomEdge.commit()
+        bottomEdge.updateNewEventDate(date, allDay)
+    }
+
     NewEventBottomEdge {
         id: bottomEdge
 

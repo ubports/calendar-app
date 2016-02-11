@@ -29,12 +29,18 @@ Item {
     property int hourHeight: units.gu(8)
     property alias model: modelConnections.target
     property var flickable: null
+    property bool autoUpdate: true
     readonly property alias creatingEvent: overlayMouseArea.creatingEvent
 
     signal pressAndHoldAt(var date)
 
     Component.onCompleted: {
         bubbleOverLay.idleCreateEvents();
+    }
+    onAutoUpdateChanged: {
+        if (autoUpdate && intern.dirty) {
+            idleCreateEvents()
+        }
     }
 
     enabled: !intern.busy
@@ -153,6 +159,7 @@ Item {
         property var eventMap;
         property var unUsedEvents: new Object();
         property bool busy: false
+        property bool dirty: false
     }
 
     function showEventDetails(event) {
@@ -171,6 +178,7 @@ Item {
         onMessage: {
             layoutEvents(messageObject.schedules,messageObject.maxDepth);
             intern.busy = false
+            intern.dirty = false
         }
     }
 
@@ -350,7 +358,11 @@ Item {
 
     Connections {
         id: modelConnections
-        onModelChanged: bubbleOverLay.idleCreateEvents()
+        onModelChanged: {
+            intern.dirty = true
+            if (bubbleOverLay.autoUpdate)
+                bubbleOverLay.idleCreateEvents()
+        }
         onStartPeriodChanged: bubbleOverLay.destroyAllChildren();
     }
 }

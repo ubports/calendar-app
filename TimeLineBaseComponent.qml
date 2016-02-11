@@ -233,6 +233,7 @@ Item {
                             delegate: comp
                             day: startDay.addDays(index)
                             model: mainModel
+                            autoUpdate: root.isActive
 
                             onPressAndHoldAt: {
                                 root.pressAndHoldAt(date, false)

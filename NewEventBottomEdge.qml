@@ -33,6 +33,11 @@ BottomEdge {
     // it invisible until the user start to drag it.
     property var _realPage: null
 
+    function updateNewEventDate(date, allDay)
+    {
+        _realPage.updateEventDate(date, allDay)
+    }
+
     hint {
         visible: bottomEdge.enabled
         enabled: visible
@@ -63,6 +68,8 @@ BottomEdge {
         }
     }
 
+    onCommitStarted: updateNewEventDate(bottomEdge.date, false)
+
     Component.onCompleted:  {
         if (eventModel)
             _realPage = editorPageBottomEdge.createObject(null)
@@ -76,6 +83,8 @@ BottomEdge {
     Component {
         id: editorPageBottomEdge
         NewEvent {
+            id: newEventPage
+
             implicitWidth: bottomEdge.width
             implicitHeight: bottomEdge.height
             model: bottomEdge.eventModel
