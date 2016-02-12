@@ -35,7 +35,7 @@ Page {
 
     property var event:null;
     property var rule :null;
-    property var model;
+    property var model:null;
 
     property var startDate;
     property var endDate;
@@ -47,18 +47,26 @@ Page {
     signal eventDeleted(var event);
     signal canceled()
 
+    enabled: !internal.saving
     Component.onCompleted: {
         setDate(root.date)
 
-        if(event === null){
+        if (event === undefined) {
+            return
+        } else if(event === null){
             isEdit = false;
             addEvent();
-        }
-
-        else{
+        } else{
             isEdit = true;
             editEvent(event);
         }
+    }
+
+    function cancel()
+    {
+        if (pageStack)
+            pageStack.pop();
+        root.canceled()
     }
 
     function updateEventDate(date, allDay) {
@@ -226,11 +234,8 @@ Page {
                 event.removeDetail(comment);
             }
 
-            model.saveItem(event);
-            if (pageStack)
-                pageStack.pop();
-
-            root.eventAdded(event);
+            internal.savingModelListener = modelListenerComponent.createObject(root, {'eventToSave': event})
+            //wait for model change signal
         }
     }
 
@@ -302,7 +307,9 @@ Page {
     }
 
     Keys.onEscapePressed: {
-        pageStack.pop();
+        if (!internal.saving) {
+            root.cancel()
+        }
     }
 
     onStartDateChanged: {
@@ -336,11 +343,8 @@ Page {
             name: "cancel"
             text: i18n.tr("Cancel")
             iconName: isEdit ? "back" : "down"
-            onTriggered: {
-                if (pageStack)
-                    pageStack.pop();
-                root.canceled()
-            }
+            enabled: !internal.saving
+            onTriggered: root.cancel()
         }
 
         trailingActionBar.actions: [
@@ -349,6 +353,7 @@ Page {
                 objectName: "delete"
                 iconName: "delete"
                 visible : isEdit
+                enabled: !internal.saving
                 onTriggered: {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
                     dialog.deleteEvent.connect( function(eventId){
@@ -363,7 +368,7 @@ Page {
                 iconName: "ok"
                 objectName: "save"
                 text: i18n.tr("Save")
-                enabled: !!titleEdit.text.trim()
+                enabled: !internal.saving && !!titleEdit.text.trim()
                 onTriggered: saveToQtPim();
             }
         ]
@@ -671,7 +676,7 @@ Page {
                 }
 
                 ListItems.ThinDivider {
-                    visible: event.itemType === Type.Event
+                    visible: (event != undefined) && (event.itemType === Type.Event)
                 }
 
             }
@@ -686,14 +691,14 @@ Page {
 
                 showDivider: false
                 progression: true
-                visible: event.itemType === Type.Event
+                visible: (event != undefined) && (event.itemType === Type.Event)
                 text: i18n.tr("Repeats")
-                subText: event.itemType === Type.Event ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
+                subText: (event != undefined) && (event.itemType === Type.Event) ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
                 onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"eventRoot": root,"isEdit":isEdit});
             }
 
             ListItems.ThinDivider {
-                visible: event.itemType === Type.Event
+                visible: (event != undefined) && (event.itemType === Type.Event)
             }
 
             ListItems.Subtitled{
@@ -764,7 +769,10 @@ Page {
 
     QtObject {
         id: internal
+
         property var collectionId;
+        property var savingModelListener: null
+        readonly property bool saving: savingModelListener != null
 
         function clearFocus() {
             Qt.inputMethod.hide()
@@ -797,6 +805,60 @@ Page {
             attendee.emailAddress = emailAddress;
             attendee.attendeeId = contact.contactId;
             return attendee;
+        }
+    }
+
+    Rectangle {
+        anchors.fill: parent
+        opacity: 0.3
+        visible: internal.saving
+
+        ActivityIndicator {
+            id: activityLoader
+
+            running: internal.saving
+            anchors.centerIn: parent
+        }
+    }
+
+    Component {
+        id: modelListenerComponent
+
+        EventListModel {
+            property var eventToSave: null
+            property bool isReady: false
+            manager: "eds"
+            startPeriod: eventToSave ? eventToSave.startDateTime.midnight() : undefined
+            endPeriod: eventToSave ? eventToSave.endDateTime.endOfDay() : undefined
+
+            onModelChanged: {
+                // the model will fire a modelChanged after component creation
+                // we will ignore the first signal
+                if (!isReady) {
+                    console.debug("Model is ready saving item")
+                    isReady = true
+                    saveItem(eventToSave)
+                    return
+                }
+
+                console.debug("Event Saved")
+                internal.savingModelListener.destroy(1)
+                internal.savingModelListener = null
+
+                // event saved
+                if (pageStack)
+                    pageStack.pop();
+                root.eventAdded(event);
+            }
+
+            onErrorChanged: {
+                 if (internal.saving) {
+                     internal.savingModelListener.destroy(1)
+                     internal.savingModelListener = null
+                     // fail to save event
+                     console.error("Fail to save event:" + error)
+                 }
+            }
         }
     }
 }
