@@ -1,0 +1,4 @@
+#!/usr/lib/initramfs-tools/bin/busybox static-sh
+cp $1 $2
+
+# This is just a temporary hack!
