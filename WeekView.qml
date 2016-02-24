@@ -36,7 +36,6 @@ PageWithBottomEdge {
     signal pressAndHoldAt(var date, bool allDay)
 
     Keys.forwardTo: [weekViewPath]
-    createEventAt: highlightedDay ? highlightedDay : currentDate
 
     Action {
         id: calendarTodayAction

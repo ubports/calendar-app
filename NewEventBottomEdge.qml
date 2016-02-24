@@ -68,7 +68,7 @@ BottomEdge {
         }
     }
 
-    onCommitStarted: updateNewEventDate(bottomEdge.date, false)
+    onCommitStarted: updateNewEventDate(bottomEdge.date ? bottomEdge.date : new Date() , false)
 
     Component.onCompleted:  {
         if (eventModel)
