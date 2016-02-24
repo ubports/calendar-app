@@ -76,6 +76,20 @@ Row {
             height: units.gu(5)
             width: parent.width / (type == ViewType.ViewTypeWeek ? 7 : 1)
 
+            Rectangle {
+                id: temporaryEvent
+
+                anchors.fill: parent
+                visible: mouseArea.mouseHold
+                Label {
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    text:  i18n.tr("New event")
+                }
+                z: 100
+            }
+
             MouseArea {
                 id: mouseArea
 
@@ -93,19 +107,9 @@ Row {
                     } else {
                         if( allDayButton.events.length > 1 ) {
                             PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
+                        } else {
+                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayButton.events[0],"model": root.model});
                         }
-                    }
-                }
-                Rectangle {
-                    id: temporaryEvent
-
-                    anchors.fill: parent
-                    visible: mouseArea.mouseHold
-                    Label {
-                        anchors.fill: parent
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        text:  i18n.tr("New event")
                     }
                 }
 
