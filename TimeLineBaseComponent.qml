@@ -218,6 +218,8 @@ Item {
                         delegate: TimeLineBase {
                             id: delegate
 
+                            objectName: "TimeLineBase_" + root.objectName
+
                             property int idx: index
                             flickable: timeLineView
                             anchors.top: parent.top

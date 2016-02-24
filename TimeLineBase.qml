@@ -176,9 +176,25 @@ Item {
 
         source: "EventLayoutHelper.js"
         onMessage: {
-            layoutEvents(messageObject.schedules,messageObject.maxDepth);
-            intern.busy = false
-            intern.dirty = false
+            // check if anything changed during the process
+            if (intern.dirty) {
+                console.debug("Something has changed while work script was running, ignore message")
+                // if something changed ignore new layout and re-create the bubbles
+            } else {
+                console.debug("Work script message received Nothin changed.")
+                // nothing changed we can draw the events now
+                layoutEvents(messageObject.schedules,messageObject.maxDepth);
+
+            }
+
+            if (!messageObject.hasMore) {
+                console.debug("Work script done.")
+                intern.busy = false
+                if (intern.dirty) {
+                    console.debug("Model dirty, recreate events")
+                    idleCreateEvents()
+                }
+            }
         }
     }
 
@@ -191,16 +207,25 @@ Item {
     }
 
     function idleCreateEvents() {
-        intern.busy = true
         createEventsTimer.restart()
     }
 
     function createEvents() {
+        console.debug("Draw requested:" + bubbleOverLay)
         if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined || model === null) {
-            intern.busy = false
             return;
         }
 
+        // check if there is any update in progress
+        if (intern.busy) {
+            console.debug("Work script still busy, mark model as dirty")
+            // mark as dirty and wait for the current process to finish
+            intern.dirty = true
+            return;
+        }
+
+        intern.busy = true
+        intern.dirty = false
         destroyAllChildren();
 
         var eventMap = {};
@@ -224,10 +249,11 @@ Item {
         intern.eventMap = eventMap;
         if (allSchs.length > 0)
             eventLayoutHelper.sendMessage(allSchs);
-        else
+        else {
             intern.busy = false
+        }
 
-        if( intern.now.isSameDay( bubbleOverLay.day ) ) {
+        if(intern.now.isSameDay( bubbleOverLay.day )) {
             bubbleOverLay.showSeparator();
         }
     }

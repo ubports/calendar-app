@@ -33,7 +33,7 @@ WorkerScript.onMessage = function(events) {
         //assign position to schedules with respest to their duration and  start time
         var array = [];
         var maxDepth = assignDepth(schs, array);
-        WorkerScript.sendMessage({ 'schedules': array,"maxDepth":maxDepth});
+        WorkerScript.sendMessage({ 'schedules': array,"maxDepth":maxDepth, "hasMore": (allSchs.length > 0)});
     }
 }
 
