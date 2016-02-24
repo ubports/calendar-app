@@ -88,7 +88,6 @@ PageWithBottomEdge {
         property var startDay: currentDate
         //This is used to scroll all view together when currentItem scrolls
         property real childContentY;
-        onChildContentYChanged: console.debug("Child y changed:" + childContentY)
 
         anchors {
             fill: parent
