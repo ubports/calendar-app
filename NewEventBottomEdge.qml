@@ -25,13 +25,15 @@ BottomEdge {
 
     property var pageStack: null
     property var eventModel: null
-    property var date: null
+    property var date: new Date()
 
     // WORKAROUND: BottomEdge component loads the page async while draging it
     // this cause a very bad visual.
     // To avoid that we create it as soon as the component is ready and keep
     // it invisible until the user start to drag it.
     property var _realPage: null
+
+    signal opened()
 
     function updateNewEventDate(date, allDay)
     {
@@ -68,7 +70,10 @@ BottomEdge {
         }
     }
 
-    onCommitStarted: updateNewEventDate(bottomEdge.date ? bottomEdge.date : new Date() , false)
+    onCommitStarted: {
+        bottomEdge.opened()
+        updateNewEventDate(bottomEdge.date , false)
+    }
 
     Component.onCompleted:  {
         if (eventModel)
