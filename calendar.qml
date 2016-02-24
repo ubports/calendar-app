@@ -581,8 +581,8 @@ MainView {
             bootomEdgeEnabled: tabs.selectedTab === weekTab
 
             onHighlightedDayChanged: {
-                if (highlightedDate)
-                    tabs.currentDay = date
+                if (highlightedDay)
+                    tabs.currentDay = highlightedDay
                 else
                     tabs.currentDay = currentDate
             }

@@ -55,8 +55,20 @@ PageWithBottomEdge {
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            weekViewPath.scrollToBegginer()
             anchorDate = new Date()
+            weekViewPath.scrollToBegginer()
+            idleScroll.restart()
+        }
+    }
+
+    Timer {
+        id: idleScroll
+
+        interval: 200
+        repeat:false
+        onTriggered: {
+            weekViewPath.currentItem.item.scrollToCurrentTime();
+            weekViewPath.currentItem.item.scrollTocurrentDate();
         }
     }
 
@@ -135,8 +147,7 @@ PageWithBottomEdge {
                     Component.onCompleted: {
                         var iType = weekViewPath.indexType(index)
                         if (iType === 0) {
-                            scrollToCurrentTime();
-                            scrollTocurrentDate();
+                            idleScroll.restart()
                         } else if (iType < 0) {
                             scrollToEnd()
                         }
