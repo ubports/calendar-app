@@ -87,7 +87,8 @@ PageWithBottomEdge {
 
         property var startDay: currentDate
         //This is used to scroll all view together when currentItem scrolls
-        property var childContentY;
+        property real childContentY;
+        onChildContentYChanged: console.debug("Child y changed:" + childContentY)
 
         anchors {
             fill: parent
@@ -102,7 +103,8 @@ PageWithBottomEdge {
             height: parent.height
 
             type: ViewType.ViewTypeDay
-            isActive: PathView.isCurrentItem
+            isCurrentItem: PathView.isCurrentItem
+            isActive: !dayViewPath.moving && !dayViewPath.flicking
             contentInteractive: PathView.isCurrentItem
             startDay: anchorDate.addDays(dayViewPath.loopCurrentIndex + dayViewPath.indexType(index))
             keyboardEventProvider: dayViewPath
@@ -132,15 +134,15 @@ PageWithBottomEdge {
                 target: timeLineView
                 property: "contentY"
                 value: dayViewPath.childContentY;
-                when: !parent.PathView.isCurrentItem
+                when: !timeLineView.isCurrentItem
             }
 
             //set PathView's contentY property, if its current item
             Binding{
                 target: dayViewPath
                 property: "childContentY"
-                value: contentY
-                when: parent.PathView.isCurrentItem
+                value: timeLineView.contentY
+                when: timeLineView.isCurrentItem
             }
         }
     }
