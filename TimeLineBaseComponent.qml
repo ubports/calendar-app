@@ -34,7 +34,7 @@ Item {
     property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
-    property alias modelFilter: mainModel.filter
+    property var modelFilter: invalidFilter
     property var selectedDay;
 
     readonly property real hourItemHeight: units.gu(8)
@@ -116,12 +116,35 @@ Item {
         }
     }
 
+    Timer {
+        id: idleRefresh
+
+        function reset()
+        {
+            mainModel.filter = invalidFilter
+            restart()
+        }
+
+        interval: 1000
+        repeat: false
+        onTriggered: {
+            mainModel.filter = Qt.binding(function() { return root.modelFilter} )
+        }
+    }
+
+    InvalidFilter {
+        id: invalidFilter
+    }
+
     EventListModel {
         id: mainModel
 
         startPeriod: startDay.midnight();
         endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
-    }
+        filter: invalidFilter
+        onStartPeriodChanged: idleRefresh.reset()
+        onEndPeriodChanged: idleRefresh.reset()
+   }
 
     ActivityIndicator {
         id: activityLoader
