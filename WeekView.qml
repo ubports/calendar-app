@@ -36,18 +36,7 @@ PageWithBottomEdge {
     signal pressAndHoldAt(var date, bool allDay)
 
     Keys.forwardTo: [weekViewPath]
-
-    onBottomEdgeCommitStarted: {
-        var eventAt = new Date()
-        if (weekViewPath.currentItem.item) {
-            eventAt.setHours(weekViewPath.currentItem.item.currentHour)
-            eventAt.setMinutes(0)
-            eventAt.setSeconds(0)
-        }
-        createEventAt = eventAt
-    }
-
-    createEventAt: highlightedDay ? highlightedDay : currentDate
+    createEventAt: null
 
     Action {
         id: calendarTodayAction

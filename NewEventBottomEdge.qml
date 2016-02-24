@@ -72,7 +72,7 @@ BottomEdge {
 
     onCommitStarted: {
         bottomEdge.opened()
-        updateNewEventDate(bottomEdge.date , false)
+        updateNewEventDate(bottomEdge.date ? bottomEdge.date : new Date(), false)
     }
 
     Component.onCompleted:  {

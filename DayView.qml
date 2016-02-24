@@ -74,9 +74,9 @@ PageWithBottomEdge {
     onBottomEdgeCommitStarted: {
         var eventAt = new Date()
         if (dayViewPath.currentItem) {
-            eventAt.setHours(dayViewPath.currentItem.currentHour)
-            eventAt.setMinutes(0)
-            eventAt.setSeconds(0)
+            eventAt.setDate(currentDate.getDate())
+            eventAt.setMonth(currentDate.getMoth())
+            eventAt.setYear(currentDate.getYear())
         }
         createEventAt = eventAt
     }
