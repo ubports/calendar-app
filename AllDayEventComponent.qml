@@ -93,8 +93,6 @@ Row {
                     } else {
                         if( allDayButton.events.length > 1 ) {
                             PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
-                        } else {
-                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayButton.events[0],"model": root.model});
                         }
                     }
                 }
@@ -112,10 +110,10 @@ Row {
                 }
 
                 onReleased: {
-                    mouseHold = false
-                    if (containsMouse) {
+                    if (mouseHold && containsMouse) {
                         root.pressAndHold(startDay.midnight().addDays(index))
                     }
+                    mouseHold = false
                 }
 
 
