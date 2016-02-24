@@ -34,6 +34,8 @@ PageWithBottomEdge {
     signal pressAndHoldAt(var date, bool allDay)
 
     Keys.forwardTo: [dayViewPath]
+
+
     createEventAt: currentDate
 
     Action {
@@ -67,6 +69,16 @@ PageWithBottomEdge {
             var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
             return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
         }
+    }
+
+    onBottomEdgeCommitStarted: {
+        var eventAt = new Date()
+        if (dayViewPath.currentItem) {
+            eventAt.setHours(dayViewPath.currentItem.currentHour)
+            eventAt.setMinutes(0)
+            eventAt.setSeconds(0)
+        }
+        createEventAt = eventAt
     }
 
     PathViewBase{
