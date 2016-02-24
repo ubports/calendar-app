@@ -177,8 +177,12 @@ Item {
         source: "EventLayoutHelper.js"
         onMessage: {
             // check if anything changed during the process
-            if (intern.dirty) {
-                console.debug("Something has changed while work script was running, ignore message")
+            if (intern.dirty || !autoUpdate) {
+                if (intern.dirty) {
+                    console.debug("Something has changed while work script was running, ignore message")
+                } else {
+                    console.debug("Layout canceled")
+                }
                 // if something changed ignore new layout and re-create the bubbles
             } else {
                 console.debug("Work script message received Nothin changed.")
@@ -211,7 +215,6 @@ Item {
     }
 
     function createEvents() {
-        console.debug("Draw requested:" + bubbleOverLay)
         if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined || model === null) {
             return;
         }

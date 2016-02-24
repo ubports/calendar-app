@@ -29,9 +29,11 @@ Item {
 
     property var keyboardEventProvider;
 
+    property bool isCurrentItem: false
+    property bool isActive: false
+
     property date startDay: DateExt.today();
     property int weekNumber: startDay.weekNumber(Qt.locale().firstDayOfWeek);
-    property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
     property var modelFilter: invalidFilter
@@ -116,11 +118,19 @@ Item {
         }
     }
 
+    onIsActiveChanged: {
+        if (isActive && (mainModel.filter === invalidFilter)) {
+            console.debug("Will refresh")
+            idleRefresh.reset()
+        }
+    }
+
     Timer {
         id: idleRefresh
 
         function reset()
         {
+            console.debug("RELOAD EVENTS:" + root)
             mainModel.filter = invalidFilter
             restart()
         }
@@ -142,6 +152,7 @@ Item {
         startPeriod: startDay.midnight();
         endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
         filter: invalidFilter
+
         onStartPeriodChanged: idleRefresh.reset()
         onEndPeriodChanged: idleRefresh.reset()
    }
@@ -257,7 +268,7 @@ Item {
                             delegate: comp
                             day: startDay.addDays(index)
                             model: mainModel
-                            autoUpdate: root.isActive
+                            autoUpdate: root.isCurrentItem
 
                             onPressAndHoldAt: {
                                 root.pressAndHoldAt(date, false)
@@ -343,7 +354,7 @@ Item {
         id: comp
         EventBubble {
             type: root.type == ViewType.ViewTypeWeek ? narrowType : wideType
-            flickable: root.isActive ? timeLineView : null
+            flickable: root.isCurrentItem ? timeLineView : null
             clip: true
             opacity: parent.enabled ? 1.0 : 0.3
         }

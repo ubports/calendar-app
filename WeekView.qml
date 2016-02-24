@@ -120,7 +120,8 @@ PageWithBottomEdge {
                     anchors.fill: parent
                     type: ViewType.ViewTypeWeek
                     startDay: firstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
-                    isActive: parent.PathView.isCurrentItem
+                    isCurrentItem: parent.PathView.isCurrentItem
+                    isActive: !weekViewPath.moving && !weekViewPath.flicking
                     keyboardEventProvider: weekViewPath
                     selectedDay: weekViewPage.selectedDay
                     modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
