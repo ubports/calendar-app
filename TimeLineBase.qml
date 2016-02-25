@@ -185,7 +185,7 @@ Item {
                 }
                 // if something changed ignore new layout and re-create the bubbles
             } else {
-                console.debug("Work script message received Nothin changed.")
+                console.debug("Work script message received Nothing changed.")
                 // nothing changed we can draw the events now
                 layoutEvents(messageObject.schedules,messageObject.maxDepth);
 

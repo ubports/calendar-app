@@ -25,17 +25,30 @@ MonthComponent {
     id: root
     objectName: "MonthComponent"
 
-    property bool active: false
+    property bool isActive: false
+    property var modelFilter: invalidFilter
 
-    Timer {
-        id: delayActive
-
-        interval: 200
-        repeat: false
-        onTriggered: root.active = true
+    onIsActiveChanged: {
+        if (isActive && (mainModel.filter === invalidFilter)) {
+            idleRefresh.reset()
+        }
     }
 
-    onMonthStartDateChanged: delayActive.restart()
+    Timer {
+        id: idleRefresh
+
+        function reset()
+        {
+            mainModel.filter = invalidFilter
+            restart()
+        }
+
+        interval: root.isCurrentItem ? 1000 : 2000
+        repeat: false
+        onTriggered: {
+            mainModel.filter = Qt.binding(function() { return root.modelFilter } )
+        }
+    }
 
     InvalidFilter {
         id: invalidFilter
@@ -44,15 +57,9 @@ MonthComponent {
     EventListModel {
         id: mainModel
 
-        autoUpdate: root.active
-        onAutoUpdateChanged: {
-            if (autoUpdate)
-                mainModel.update()
-        }
-
         startPeriod: root.monthStartDate.midnight();
         endPeriod: root.monthStartDate.addDays((/*monthGrid.rows * cols */ 42 )-1).endOfDay()
-        filter: eventModel ? eventModel.filter : undefined
+        filter: invalidFilter
         fetchHint: FetchHint {
             detailTypesHint: [ Detail.EventTime,
                                Detail.JournalTime,
@@ -66,5 +73,8 @@ MonthComponent {
                                                       86400/*24*60*60*/);
             root.updateEvents(eventStatus)
         }
+
+        onStartPeriodChanged: idleRefresh.reset()
+        onEndPeriodChanged: idleRefresh.reset()
     }
 }

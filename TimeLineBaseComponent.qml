@@ -130,12 +130,11 @@ Item {
 
         function reset()
         {
-            console.debug("RELOAD EVENTS:" + root)
             mainModel.filter = invalidFilter
             restart()
         }
 
-        interval: 1000
+        interval: isCurrentItem ? 1000 : 2000
         repeat: false
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter} )

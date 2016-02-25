@@ -88,9 +88,11 @@ PageWithBottomEdge {
             currentMonth: indexDate.getMonth()
             currentYear: indexDate.getFullYear()
 
+            modelFilter: eventModel.filter
             width: parent.width - units.gu(4)
             height: parent.height
-            isCurrentItem: (index === monthViewPath.currentIndex)
+            isCurrentItem: PathView.isCurrentItem
+            isActive: !monthViewPath.moving && !monthViewPath.flicking
             displayWeekNumber: mainView.displayWeekNumber
             highlightedDate: monthViewPage.highlightedDate
             isYearView: false
