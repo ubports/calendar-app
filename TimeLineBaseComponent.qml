@@ -307,7 +307,8 @@ Item {
 
                                 onDropped: {
                                     var event = dropArea.modifyEventForDrag(drop);
-                                    model.saveItem(event);
+                                    delegate.waitForModelChange()
+                                    delegate.model.saveItem(event);
                                 }
 
                                 onPositionChanged: {

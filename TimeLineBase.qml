@@ -34,7 +34,12 @@ Item {
     signal pressAndHoldAt(var date)
 
     Component.onCompleted: bubbleOverLay.idleCreateEvents();
-    enabled: !intern.busy
+    enabled: !intern.busy && !intern.waitingForModelChange
+
+    function waitForModelChange()
+    {
+        intern.waitingForModelChange = true
+    }
 
     EventBubble {
         id: temporaryEvent
@@ -53,10 +58,12 @@ Item {
         }
 
         ActivityIndicator {
-            visible: intern.busy
+            visible: intern.busy || intern.waitingForModelChange
             running: visible
             anchors.centerIn: parent
         }
+
+        z: 100
     }
 
     MouseArea {
@@ -146,11 +153,13 @@ Item {
 
     QtObject {
         id: intern
+
         property var now : new Date();
         property var eventMap;
         property var unUsedEvents: new Object();
         property bool busy: false
         property bool dirty: false
+        property bool waitingForModelChange: false
     }
 
     function showEventDetails(event) {
@@ -381,6 +390,7 @@ Item {
         onModelChanged: {
             console.debug("Model changed with start date:" + modelConnections.target.startPeriod)
             intern.dirty = true
+            intern.waitingForModelChange = false
             bubbleOverLay.idleCreateEvents()
         }
         onStartPeriodChanged: bubbleOverLay.destroyAllChildren();
