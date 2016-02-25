@@ -77,7 +77,7 @@ Page {
     }
 
     function setDate(date) {
-        if(typeof(date) === 'undefined'){
+        if ((typeof(date) === 'undefined') || (date === null)) {
             date = new Date();
         }
 

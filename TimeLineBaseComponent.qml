@@ -57,8 +57,8 @@ Item {
         var currentTime = new Date();
         scrollHour = currentTime.getHours();
 
-        var newY = scrollHour * hourItemHeight
-        timeLineView.contentY = Math.min(timeLineView.contentHeight - timeLineView.height, newY)
+        var currentTimeY = (scrollHour * hourItemHeight) - (timeLineView.height / 2)
+        timeLineView.contentY = Math.min(timeLineView.contentHeight - timeLineView.height, currentTimeY > 0 ? currentTimeY : 0)
         timeLineView.returnToBounds()
     }
 
@@ -69,13 +69,18 @@ Item {
 
         var today = DateExt.today();
         var todayWeekNumber = today.weekNumber(Qt.locale().firstDayOfWeek);
-        var startOfWeek = today.weekStart(Qt.locale().firstDayOfWeek);
-        var weekDay = today.getDay();
-        var diff = weekDay - Qt.locale().firstDayOfWeek
-        diff = diff < 0 ? 0 : diff
 
-        var newX = timeLineView.delegateWidth * diff
-        timeLineView.contentX = Math.min(timeLineView.contentWidth - timeLineView.width, newX)
+        if (todayWeekNumber === root.weekNumber) {
+            var startOfWeek = today.weekStart(Qt.locale().firstDayOfWeek);
+            var weekDay = today.getDay();
+            var diff = weekDay - Qt.locale().firstDayOfWeek
+            diff = diff < 0 ? 0 : diff
+
+            var newX = timeLineView.delegateWidth * diff
+            timeLineView.contentX = Math.min(timeLineView.contentWidth - timeLineView.width, newX)
+        } else {
+            timeLineView.contentX = 0
+        }
         timeLineView.returnToBounds()
     }
 
@@ -120,7 +125,6 @@ Item {
 
     onIsActiveChanged: {
         if (isActive && (mainModel.filter === invalidFilter)) {
-            console.debug("Will refresh")
             idleRefresh.reset()
         }
     }
@@ -134,7 +138,7 @@ Item {
             restart()
         }
 
-        interval: isCurrentItem ? 1000 : 2000
+        interval: root.isCurrentItem ? 500 : 1000
         repeat: false
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter} )
@@ -267,7 +271,6 @@ Item {
                             delegate: comp
                             day: startDay.addDays(index)
                             model: mainModel
-                            autoUpdate: root.isCurrentItem
 
                             onPressAndHoldAt: {
                                 root.pressAndHoldAt(date, false)

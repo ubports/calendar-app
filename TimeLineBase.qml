@@ -29,20 +29,11 @@ Item {
     property int hourHeight: units.gu(8)
     property alias model: modelConnections.target
     property var flickable: null
-    property bool autoUpdate: true
     readonly property alias creatingEvent: overlayMouseArea.creatingEvent
 
     signal pressAndHoldAt(var date)
 
-    Component.onCompleted: {
-        bubbleOverLay.idleCreateEvents();
-    }
-    onAutoUpdateChanged: {
-        if (autoUpdate && intern.dirty) {
-            idleCreateEvents()
-        }
-    }
-
+    Component.onCompleted: bubbleOverLay.idleCreateEvents();
     enabled: !intern.busy
 
     EventBubble {
@@ -177,25 +168,17 @@ Item {
         source: "EventLayoutHelper.js"
         onMessage: {
             // check if anything changed during the process
-            if (intern.dirty || !autoUpdate) {
-                if (intern.dirty) {
-                    console.debug("Something has changed while work script was running, ignore message")
-                } else {
-                    console.debug("Layout canceled")
-                }
-                // if something changed ignore new layout and re-create the bubbles
+            if (intern.dirty) {
+                console.debug("Something has changed while work script was running, ignore message")
             } else {
-                console.debug("Work script message received Nothing changed.")
                 // nothing changed we can draw the events now
                 layoutEvents(messageObject.schedules,messageObject.maxDepth);
-
             }
 
             if (!messageObject.hasMore) {
-                console.debug("Work script done.")
+                var currentDate = new Date()
                 intern.busy = false
                 if (intern.dirty) {
-                    console.debug("Model dirty, recreate events")
                     idleCreateEvents()
                 }
             }
@@ -250,9 +233,9 @@ Item {
         }
 
         intern.eventMap = eventMap;
-        if (allSchs.length > 0)
+        if (allSchs.length > 0) {
             eventLayoutHelper.sendMessage(allSchs);
-        else {
+        } else {
             intern.busy = false
         }
 
@@ -382,7 +365,7 @@ Item {
     Timer {
         id: createEventsTimer
 
-        interval: 300
+        interval: 100
         running: false
         repeat: false
         onTriggered: createEvents()
@@ -392,8 +375,7 @@ Item {
         id: modelConnections
         onModelChanged: {
             intern.dirty = true
-            if (bubbleOverLay.autoUpdate)
-                bubbleOverLay.idleCreateEvents()
+            bubbleOverLay.idleCreateEvents()
         }
         onStartPeriodChanged: bubbleOverLay.destroyAllChildren();
     }
