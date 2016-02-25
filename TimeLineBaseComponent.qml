@@ -53,26 +53,25 @@ Item {
     signal dateHighlighted(var date);
     signal pressAndHoldAt(var date, bool allDay);
 
-    function scrollToCurrentTime() {
-        var currentTime = new Date();
-        scrollHour = currentTime.getHours();
+    function scrollToTime(date) {
+        scrollHour = date.getHours();
 
         var currentTimeY = (scrollHour * hourItemHeight) - (timeLineView.height / 2)
         timeLineView.contentY = Math.min(timeLineView.contentHeight - timeLineView.height, currentTimeY > 0 ? currentTimeY : 0)
+
         timeLineView.returnToBounds()
     }
 
-    function scrollTocurrentDate() {
-        if ( type != ViewType.ViewTypeWeek ){
+    function scrollToDate(date) {
+        if (type != ViewType.ViewTypeWeek) {
             return;
         }
 
-        var today = DateExt.today();
-        var todayWeekNumber = today.weekNumber(Qt.locale().firstDayOfWeek);
+        var todayWeekNumber = date.weekNumber(Qt.locale().firstDayOfWeek);
 
         if (todayWeekNumber === root.weekNumber) {
-            var startOfWeek = today.weekStart(Qt.locale().firstDayOfWeek);
-            var weekDay = today.getDay();
+            var startOfWeek = date.weekStart(Qt.locale().firstDayOfWeek);
+            var weekDay = date.getDay();
             var diff = weekDay - Qt.locale().firstDayOfWeek
             diff = diff < 0 ? 0 : diff
 
@@ -81,7 +80,13 @@ Item {
         } else {
             timeLineView.contentX = 0
         }
+
         timeLineView.returnToBounds()
+    }
+
+    function scrollToDateAndTime(date) {
+        scrollToTime(date)
+        scrollToDate(date)
     }
 
     function scrollToEnd()

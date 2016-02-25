@@ -26,6 +26,7 @@ Page {
     property bool bootomEdgeEnabled: bottomEdge.enabled
 
     signal bottomEdgeCommitStarted()
+    signal eventCreated(var event)
 
     function bottomEdgeCommit(date, allDay)
     {
@@ -38,5 +39,6 @@ Page {
 
         pageStack: tabs
         onOpened: root.bottomEdgeCommitStarted()
+        onEventCreated: root.eventCreated(event)
     }
 }

@@ -614,6 +614,7 @@ MainView {
             onActiveChanged: {
                 if (active) {
                     anchorDate = tabs.currentDay.weekStart(Qt.locale().firstDayOfWeek)
+                    delayScrollToDate(new Date())
                 }
             }
         }

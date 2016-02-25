@@ -198,7 +198,9 @@ Item {
     }
 
     function createEvents() {
+        console.debug("createEvents():" + bubbleOverLay.model.startPeriod)
         if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined || model === null) {
+            console.debug("\tabort.")
             return;
         }
 
@@ -220,6 +222,7 @@ Item {
         var startDate = new Date(day).midnight();
         var endDate = new Date(day).endOfDay();
         var items = model.getItems(startDate,endDate);
+        console.debug("\tSize of events:" + items.length)
         for(var i = 0; i < items.length; ++i) {
             var event = items[i];
 
@@ -234,8 +237,10 @@ Item {
 
         intern.eventMap = eventMap;
         if (allSchs.length > 0) {
+            console.debug("\twill send message with:" + allSchs.length)
             eventLayoutHelper.sendMessage(allSchs);
         } else {
+            console.debug("\nEmpty list of events")
             intern.busy = false
         }
 
@@ -374,6 +379,7 @@ Item {
     Connections {
         id: modelConnections
         onModelChanged: {
+            console.debug("Model changed with start date:" + modelConnections.target.startPeriod)
             intern.dirty = true
             bubbleOverLay.idleCreateEvents()
         }

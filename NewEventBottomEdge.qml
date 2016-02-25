@@ -34,6 +34,7 @@ BottomEdge {
     property var _realPage: null
 
     signal opened()
+    signal eventCreated(var event)
 
     function updateNewEventDate(date, allDay)
     {
@@ -98,7 +99,10 @@ BottomEdge {
             active: bottomEdge.status === BottomEdge.Committed
             visible: (bottomEdge.status !== BottomEdge.Hidden)
             onCanceled: bottomEdge.collapse()
-            onEventAdded: bottomEdge.collapse()
+            onEventAdded: {
+                bottomEdge.collapse()
+                bottomEdge.eventCreated(event)
+            }
         }
     }
 

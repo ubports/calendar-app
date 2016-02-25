@@ -33,10 +33,23 @@ PageWithBottomEdge {
     signal dateSelected(var date);
     signal pressAndHoldAt(var date, bool allDay)
 
+    function delayScrollToDate(date) {
+        idleScroll.scrollToDate = date
+        idleScroll.restart()
+    }
+
     Keys.forwardTo: [dayViewPath]
 
-
     createEventAt: currentDate
+
+    onAnchorDateChanged: {
+        dayViewPath.scrollToBegginer()
+    }
+
+    onEventCreated: {
+        anchorDate = event.startDateTime
+        delayScrollToDate(event.startDateTime)
+    }
 
     Action {
         id: calendarTodayAction
@@ -44,8 +57,26 @@ PageWithBottomEdge {
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            dayViewPath.scrollToBegginer()
             anchorDate = new Date()
+            delayScrollToDate(anchorDate)
+        }
+    }
+
+
+    Timer {
+        id: idleScroll
+
+        property var scrollToDate: null
+
+        interval: 200
+        repeat:false
+        onTriggered: {
+            if (scrollToDate) {
+                dayViewPath.currentItem.scrollToTime(scrollToDate)
+                scrollToDate = null
+            } else {
+                dayViewPath.currentItem.scrollToBegin()
+            }
         }
     }
 
@@ -115,7 +146,7 @@ PageWithBottomEdge {
 
             Component.onCompleted: {
                 if(dayViewPage.active){
-                    timeLineView.scrollToCurrentTime();
+                    timeLineView.scrollToTime(new Date());
                 }
             }
 
@@ -123,7 +154,7 @@ PageWithBottomEdge {
                 target: dayViewPage
                 onActiveChanged: {
                     if(dayViewPage.active){
-                        timeLineView.scrollToCurrentTime();
+                        timeLineView.scrollToTime(new Date());
                     }
                 }
             }

@@ -35,6 +35,11 @@ PageWithBottomEdge {
     signal dateSelected(var date);
     signal pressAndHoldAt(var date, bool allDay)
 
+    function delayScrollToDate(date) {
+        idleScroll.scrollToDate = date
+        idleScroll.restart()
+    }
+
     Keys.forwardTo: [weekViewPath]
     createEventAt: null
 
@@ -45,24 +50,34 @@ PageWithBottomEdge {
         text: i18n.tr("Today")
         onTriggered: {
             anchorDate = new Date()
-            weekViewPath.scrollToBegginer()
-            idleScroll.restart()
+            delayScrollToDate(anchorDate)
         }
     }
 
     onAnchorDateChanged: {
         weekViewPath.scrollToBegginer()
-        idleScroll.restart()
+    }
+
+    onEventCreated: {
+        anchorDate = event.startDateTime
+        delayScrollToDate(event.startDateTime)
     }
 
     Timer {
         id: idleScroll
 
+        property var scrollToDate: null
+
         interval: 200
         repeat:false
         onTriggered: {
-            weekViewPath.currentItem.item.scrollToCurrentTime();
-            weekViewPath.currentItem.item.scrollTocurrentDate();
+            if (scrollToDate) {
+                console.debug("Week scroll to:" + scrollToDate)
+                weekViewPath.currentItem.item.scrollToDateAndTime(scrollToDate);
+                scrollToDate = null
+            } else {
+                weekViewPath.currentItem.item.scrollToBegin()
+            }
         }
     }
 
@@ -151,7 +166,7 @@ PageWithBottomEdge {
                         target: calendarTodayAction
                         onTriggered:{
                             if (isActive)
-                                timeLineView.scrollTocurrentDate();
+                                timeLineView.scrollToDate(new Date());
                             }
                     }
 
