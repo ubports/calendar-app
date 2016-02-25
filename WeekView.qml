@@ -26,7 +26,7 @@ PageWithBottomEdge {
     objectName: "weekViewPage"
 
     property var anchorDate: new Date();
-    readonly property var currentDate: weekViewPath.currentItem.item.currentDate
+    readonly property var currentDate: weekViewPath.currentItem.item.startDay
     readonly property var firstDayOfWeek: anchorDate.weekStart(Qt.locale().firstDayOfWeek);
     property bool isCurrentPage: false
     property var selectedDay;
@@ -48,6 +48,11 @@ PageWithBottomEdge {
             weekViewPath.scrollToBegginer()
             idleScroll.restart()
         }
+    }
+
+    onAnchorDateChanged: {
+        weekViewPath.scrollToBegginer()
+        idleScroll.restart()
     }
 
     Timer {
@@ -112,14 +117,9 @@ PageWithBottomEdge {
                 TimeLineBaseComponent {
                     id: timeLineView
 
-                    property var currentDate: new Date(startDay.getFullYear(),
-                                                       startDay.getMonth(),
-                                                       startDay.getDate(),
-                                                       currentHour, 0, 0).addDays(currentDayOfWeek)
-
+                    startDay: firstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
                     anchors.fill: parent
                     type: ViewType.ViewTypeWeek
-                    startDay: firstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
                     isCurrentItem: parent.PathView.isCurrentItem
                     isActive: !weekViewPath.moving && !weekViewPath.flicking
                     keyboardEventProvider: weekViewPath
@@ -150,7 +150,7 @@ PageWithBottomEdge {
                     Connections{
                         target: calendarTodayAction
                         onTriggered:{
-                            if( isActive )
+                            if (isActive)
                                 timeLineView.scrollTocurrentDate();
                             }
                     }

@@ -59,6 +59,9 @@ Date.prototype.endOfDay = function() {
 }
 
 Date.prototype.addDays = function(days) {
+    if (days === 0)
+        return this
+
     var date = new Date(this)
     date.setDate(date.getDate() + days);
     return date

@@ -527,6 +527,10 @@ MainView {
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabs.selectedTabIndex === yearTab.index
 
+            onCurrentYearChanged: {
+                tabs.currentDay = new Date(currentYear, 1, 1)
+            }
+
             onMonthSelected: {
                 var now = DateExt.today();
                 if ((date.getMonth() === now.getMonth()) &&
@@ -553,6 +557,10 @@ MainView {
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabs.selectedTabIndex === monthTab.index
 
+            onCurrentDateChanged: {
+                tabs.currentDay = currentDate
+            }
+
             onHighlightedDateChanged: {
                 if (highlightedDate)
                     tabs.currentDay = highlightedDate
@@ -567,7 +575,10 @@ MainView {
 
             onActiveChanged: {
                 if (active) {
-                    anchorDate = tabs.currentDay.midnight()
+                    anchorDate = new Date(tabs.currentDay.getFullYear(),
+                                          tabs.currentDay.getMonth(),
+                                          1,
+                                          0, 0, 0)
                 }
             }
         }
@@ -587,6 +598,10 @@ MainView {
                     tabs.currentDay = currentDate
             }
 
+            onCurrentDateChanged: {
+                tabs.currentDay = currentDate.weekStart(Qt.locale().firstDayOfWeek)
+            }
+
             onDateSelected: {
                 tabs.currentDay = date;
                 tabs.selectedTabIndex = dayTab.index
@@ -598,7 +613,7 @@ MainView {
 
             onActiveChanged: {
                 if (active) {
-                    anchorDate = tabs.currentDay
+                    anchorDate = tabs.currentDay.weekStart(Qt.locale().firstDayOfWeek)
                 }
             }
         }
@@ -617,6 +632,10 @@ MainView {
 
             onPressAndHoldAt: {
                 bottomEdgeCommit(date, allDay)
+            }
+
+            onCurrentDateChanged: {
+                tabs.currentDay = currentDate
             }
 
             onActiveChanged: {
