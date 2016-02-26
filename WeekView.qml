@@ -35,8 +35,8 @@ PageWithBottomEdge {
     signal dateSelected(var date);
     signal pressAndHoldAt(var date, bool allDay)
 
-    function delayScrollToDate(date) {
-        idleScroll.scrollToDate = date
+    function delayScrollToDate(scrollDate) {
+        idleScroll.scrollToDate = new Date(scrollDate)
         idleScroll.restart()
     }
 
@@ -49,8 +49,9 @@ PageWithBottomEdge {
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            anchorDate = new Date()
-            delayScrollToDate(anchorDate)
+            var today = new Date()
+            delayScrollToDate(today)
+            anchorDate = today
         }
     }
 
@@ -59,7 +60,12 @@ PageWithBottomEdge {
     }
 
     onEventCreated: {
-        anchorDate = event.startDateTime
+        var currentWeekNumber = currentDate.weekNumber(Qt.locale().firstDayOfWeek)
+        var eventWeekNumber = event.startDateTime.weekNumber(Qt.locale().firstDayOfWeek)
+
+        if (currentWeekNumber !== eventWeekNumber)
+            anchorDate = event.startDateTime
+
         delayScrollToDate(event.startDateTime)
     }
 
@@ -72,7 +78,6 @@ PageWithBottomEdge {
         repeat:false
         onTriggered: {
             if (scrollToDate) {
-                console.debug("Week scroll to:" + scrollToDate)
                 weekViewPath.currentItem.item.scrollToDateAndTime(scrollToDate);
                 scrollToDate = null
             } else {

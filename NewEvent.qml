@@ -234,7 +234,7 @@ Page {
                 event.removeDetail(comment);
             }
 
-            internal.savingModelListener = modelListenerComponent.createObject(root, {'eventToSave': event})
+            modelListener.saveEvent(event)
             //wait for model change signal
         }
     }
@@ -771,8 +771,7 @@ Page {
         id: internal
 
         property var collectionId;
-        property var savingModelListener: null
-        readonly property bool saving: savingModelListener != null
+        readonly property bool saving: modelListener.eventToSave != null
 
         function clearFocus() {
             Qt.inputMethod.hide()
@@ -821,44 +820,47 @@ Page {
         }
     }
 
-    Component {
-        id: modelListenerComponent
+    OrganizerModel {
+        id: modelListener
 
-        EventListModel {
-            property var eventToSave: null
-            property bool isReady: false
-            manager: "eds"
-            startPeriod: eventToSave ? eventToSave.startDateTime.midnight() : undefined
-            endPeriod: eventToSave ? eventToSave.endDateTime.endOfDay() : undefined
+        property var eventToSave: null
+        property bool isReady: false
 
-            onModelChanged: {
-                // the model will fire a modelChanged after component creation
-                // we will ignore the first signal
-                if (!isReady) {
-                    console.debug("Model is ready saving item")
-                    isReady = true
-                    saveItem(eventToSave)
-                    return
-                }
+        function saveEvent(event)
+        {
+            eventToSave = event
+            autoUpdate = true
+            saveItem(event)
+        }
 
-                console.debug("Event Saved")
-                internal.savingModelListener.destroy(1)
-                internal.savingModelListener = null
+        manager: "eds"
+        startPeriod: eventToSave ? eventToSave.startDateTime.midnight() : undefined
+        endPeriod: eventToSave ? eventToSave.endDateTime.endOfDay() : undefined
+        autoUpdate: false
 
-                // event saved
-                if (pageStack)
-                    pageStack.pop();
-                root.eventAdded(event);
+        onModelChanged: {
+            // the model will fire a modelChanged after component creation
+            // we will ignore the first signal
+            if (!isReady) {
+                console.debug("Model is ready saving item")
+                isReady = true
+                saveItem(eventToSave)
+                return
             }
 
-            onErrorChanged: {
-                 if (internal.saving) {
-                     internal.savingModelListener.destroy(1)
-                     internal.savingModelListener = null
-                     // fail to save event
-                     console.error("Fail to save event:" + error)
-                 }
-            }
+            console.debug("Event Saved:" + eventToSave.itemId)
+
+            // event saved
+            if (pageStack)
+                pageStack.pop();
+            root.eventAdded(event);
+        }
+
+        onErrorChanged: {
+             if (internal.saving) {
+                 // fail to save event
+                 console.error("Fail to save event:" + error)
+             }
         }
     }
 }

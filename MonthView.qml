@@ -39,6 +39,7 @@ PageWithBottomEdge {
 
     Keys.forwardTo: [monthViewPath]
     createEventAt: highlightedDate ? highlightedDate : currentDate
+    onAnchorDateChanged: monthViewPath.scrollToBegginer()
 
     Action {
         id: calendarTodayAction
@@ -46,7 +47,6 @@ PageWithBottomEdge {
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            monthViewPath.scrollToBegginer()
             anchorDate = new Date().midnight()
         }
     }

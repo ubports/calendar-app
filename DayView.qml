@@ -34,7 +34,7 @@ PageWithBottomEdge {
     signal pressAndHoldAt(var date, bool allDay)
 
     function delayScrollToDate(date) {
-        idleScroll.scrollToDate = date
+        idleScroll.scrollToDate = new Date(date)
         idleScroll.restart()
     }
 
@@ -47,7 +47,12 @@ PageWithBottomEdge {
     }
 
     onEventCreated: {
-        anchorDate = event.startDateTime
+        var eventDate = event.startDateTime
+        if ((currentDate.getFullYear() !== eventDate.getFullYear()) ||
+            (currentDate.getMonth() !== eventDate.getMonth()) ||
+            (currentDate.getDate() !== eventDate.getDate())) {
+            anchorDate = event.startDateTime
+        }
         delayScrollToDate(event.startDateTime)
     }
 

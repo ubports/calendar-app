@@ -176,12 +176,13 @@ Item {
 
         source: "EventLayoutHelper.js"
         onMessage: {
+            console.debug("\tMessage received: " + bubbleOverLay.day + " Items:" + messageObject.schedules.length + " hasMore:" + messageObject.hasMore)
             // check if anything changed during the process
             if (intern.dirty) {
                 console.debug("Something has changed while work script was running, ignore message")
             } else {
                 // nothing changed we can draw the events now
-                layoutEvents(messageObject.schedules,messageObject.maxDepth);
+                layoutEvents(messageObject.schedules, messageObject.maxDepth);
             }
 
             if (!messageObject.hasMore) {
@@ -207,7 +208,7 @@ Item {
     }
 
     function createEvents() {
-        console.debug("createEvents():" + bubbleOverLay.model.startPeriod)
+        console.debug("createEvents():" + bubbleOverLay.day)
         if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined || model === null) {
             console.debug("\tabort.")
             return;
@@ -388,7 +389,7 @@ Item {
     Connections {
         id: modelConnections
         onModelChanged: {
-            console.debug("Model changed with start date:" + modelConnections.target.startPeriod)
+            console.debug("Model changed with start date:" + bubbleOverLay.day)
             intern.dirty = true
             intern.waitingForModelChange = false
             bubbleOverLay.idleCreateEvents()
