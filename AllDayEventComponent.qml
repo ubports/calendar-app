@@ -38,7 +38,7 @@ Row {
 
     function getAllDayEvents(startDate, endDate) {
         var map = {};
-        var items = model.getItems(startDate,endDate);
+        var items = model.itemsByTimePeriod(startDate,endDate);
         for(var i = 0 ; i < items.length ; ++i) {
             var event = items[(i)];
             if( event && event.allDay ) {

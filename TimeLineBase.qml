@@ -44,10 +44,11 @@ Item {
     EventBubble {
         id: temporaryEvent
 
-         Drag.active: overlayMouseArea.drag.active
-         isLiveEditing: overlayMouseArea.creatingEvent
-         visible: overlayMouseArea.creatingEvent
-         depthInRow: -10000
+        isEventBubble: false
+        Drag.active: overlayMouseArea.drag.active
+        isLiveEditing: overlayMouseArea.creatingEvent
+        visible: overlayMouseArea.creatingEvent
+        depthInRow: -10000
     }
 
     Item {
@@ -232,7 +233,7 @@ Item {
 
         var startDate = new Date(day).midnight();
         var endDate = new Date(day).endOfDay();
-        var items = model.getItems(startDate,endDate);
+        var items = model.itemsByTimePeriod(startDate,endDate);
         console.debug("\tSize of events:" + items.length)
         for(var i = 0; i < items.length; ++i) {
             var event = items[i];
@@ -357,7 +358,7 @@ Item {
     Timer {
         id: createEventsTimer
 
-        interval: 100
+        interval: 1
         running: false
         repeat: false
         onTriggered: createEvents()

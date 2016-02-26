@@ -149,7 +149,7 @@ Item {
             restart()
         }
 
-        interval: root.isCurrentItem ? 500 : 1000
+        interval: 1 //root.isCurrentItem ? 500 : 1000
         repeat: false
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter} )
@@ -160,12 +160,14 @@ Item {
         id: invalidFilter
     }
 
-    EventListModel {
+    OrganizerModel {
         id: mainModel
 
+        manager:"eds"
         startPeriod: startDay.midnight();
         endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
         filter: invalidFilter
+        autoUpdate: true
 
         onStartPeriodChanged: idleRefresh.reset()
         onEndPeriodChanged: idleRefresh.reset()
@@ -177,7 +179,7 @@ Item {
 
         visible: running
         anchors.centerIn: parent
-        running: mainModel.isLoading
+        //running: mainModel.isLoading
         z:2
     }
 

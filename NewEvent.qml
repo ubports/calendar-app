@@ -234,8 +234,11 @@ Page {
                 event.removeDetail(comment);
             }
 
-            modelListener.saveEvent(event)
-            //wait for model change signal
+            model.saveItem(event)
+            // event saved
+            if (pageStack)
+                pageStack.pop();
+            root.eventAdded(event);
         }
     }
 
@@ -771,7 +774,6 @@ Page {
         id: internal
 
         property var collectionId;
-        readonly property bool saving: modelListener.eventToSave != null
 
         function clearFocus() {
             Qt.inputMethod.hide()
@@ -804,63 +806,6 @@ Page {
             attendee.emailAddress = emailAddress;
             attendee.attendeeId = contact.contactId;
             return attendee;
-        }
-    }
-
-    Rectangle {
-        anchors.fill: parent
-        opacity: 0.3
-        visible: internal.saving
-
-        ActivityIndicator {
-            id: activityLoader
-
-            running: internal.saving
-            anchors.centerIn: parent
-        }
-    }
-
-    OrganizerModel {
-        id: modelListener
-
-        property var eventToSave: null
-        property bool isReady: false
-
-        function saveEvent(event)
-        {
-            eventToSave = event
-            autoUpdate = true
-            saveItem(event)
-        }
-
-        manager: "eds"
-        startPeriod: eventToSave ? eventToSave.startDateTime.midnight() : undefined
-        endPeriod: eventToSave ? eventToSave.endDateTime.endOfDay() : undefined
-        autoUpdate: false
-
-        onModelChanged: {
-            // the model will fire a modelChanged after component creation
-            // we will ignore the first signal
-            if (!isReady) {
-                console.debug("Model is ready saving item")
-                isReady = true
-                saveItem(eventToSave)
-                return
-            }
-
-            console.debug("Event Saved:" + eventToSave.itemId)
-
-            // event saved
-            if (pageStack)
-                pageStack.pop();
-            root.eventAdded(event);
-        }
-
-        onErrorChanged: {
-             if (internal.saving) {
-                 // fail to save event
-                 console.error("Fail to save event:" + error)
-             }
         }
     }
 }

@@ -40,7 +40,7 @@ Item{
     readonly property int minimumHeight: type == wideType
                                          ? detailsItems.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
                                          : units.gu(2)
-    readonly property bool isEventBubble: true
+    property bool isEventBubble: true
 
     z: depthInRow
 
