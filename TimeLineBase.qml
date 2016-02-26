@@ -156,7 +156,7 @@ Item {
 
         property var now : new Date();
         property var eventMap;
-        property var unUsedEvents: new Object();
+        property var unUsedEvents: []
         property bool busy: false
         property bool dirty: false
         property bool waitingForModelChange: false
@@ -176,7 +176,7 @@ Item {
 
         source: "EventLayoutHelper.js"
         onMessage: {
-            console.debug("\tMessage received: " + bubbleOverLay.day + " Items:" + messageObject.schedules.length + " hasMore:" + messageObject.hasMore)
+            console.debug("\tMessage received*: " + bubbleOverLay.day + " Items:" + messageObject.schedules.length + " hasMore:" + messageObject.hasMore)
             // check if anything changed during the process
             if (intern.dirty) {
                 console.debug("Something has changed while work script was running, ignore message")
@@ -196,6 +196,7 @@ Item {
     }
 
     function layoutEvents(array, depth) {
+        console.debug("\t\tWill arrange events:" + array.length)
         for(var i=0; i < array.length ; ++i) {
             var schedule = array[i];
             var event = intern.eventMap[schedule.id];
@@ -261,58 +262,37 @@ Item {
 
     function destroyAllChildren() {
         separator.visible = false
-        for( var i = children.length - 1; i >= 0; --i ) {
-            if (!children[i].isEventBubble) {
+        for(var i=0; i < children.length; i++) {
+            var child = children[i]
+            if (!child.isEventBubble) {
                 continue;
             }
-            children[i].visible = false;
-            children[i].clicked.disconnect( bubbleOverLay.showEventDetails );
-            var key = children[i].objectName;
-            if (intern.unUsedEvents[key] === "undefined") {
-                intern.unUsedEvents[key] = children[i];
+            if (intern.unUsedEvents.indexOf(child) === -1) {
+                child.visible = false;
+                child.clicked.disconnect( bubbleOverLay.showEventDetails );
+                intern.unUsedEvents.push(child)
             }
         }
-    }
-
-    function isHashEmpty(hash) {
-        for (var prop in hash) {
-            if (prop)
-                return false;
-        }
-        return true;
-    }
-
-    function getAKeyFromHash(hash) {
-        for (var prop in hash) {
-            return prop;
-        }
-        return "undefined";
     }
 
     function getUnusedEventBubble() {
-        /* Recycle an item from unUsedEvents, and remove from hash */
-        var key = getAKeyFromHash(intern.unUsedEvents);
-        var unUsedBubble = intern.unUsedEvents[key];
-        delete intern.unUsedEvents[key];
-
-        return unUsedBubble;
+        var unusedEvent = null
+        if (intern.unUsedEvents.length > 0) {
+            unusedEvent = intern.unUsedEvents[0]
+            intern.unUsedEvents.splice(0, 1);
+        }
+        return unusedEvent
     }
 
     function createEvent( event, depth, sizeOfRow ) {
         var eventBubble;
-        if( isHashEmpty(intern.unUsedEvents) ) {
+        if(intern.unUsedEvents.length === 0) {
             var incubator = delegate.incubateObject(bubbleOverLay);
             if (incubator.status !== Component.Ready) {
-                incubator.onStatusChanged = function(status) {
-                    if (status === Component.Ready) {
-                        incubator.object.objectName = children.length;
-                        assignBubbleProperties(incubator.object, event, depth, sizeOfRow);
-                    }
-                }
-            } else {
-                incubator.object.objectName = children.length;
-                assignBubbleProperties(incubator.object, event, depth, sizeOfRow);
+                incubator.forceCompletion()
             }
+
+            assignBubbleProperties(incubator.object, event, depth, sizeOfRow);
         } else {
             eventBubble = getUnusedEventBubble();
             assignBubbleProperties(eventBubble, event, depth, sizeOfRow);
@@ -394,6 +374,5 @@ Item {
             intern.waitingForModelChange = false
             bubbleOverLay.idleCreateEvents()
         }
-        onStartPeriodChanged: bubbleOverLay.destroyAllChildren();
     }
 }

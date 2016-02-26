@@ -192,8 +192,9 @@ MainView {
                         collectionIds.push(collection.collectionId);
                     }
                 }
+                console.debug("Selected collections:" + collectionIds)
                 collectionFilter.ids = collectionIds;
-                filter = mainFilter
+                filter = Qt.binding(function() { return mainFilter; })
                 isReady = true
             }
 
