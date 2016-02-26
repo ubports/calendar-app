@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2014 Canonical Ltd
+ * Copyright (C) 2013-2016 Canonical Ltd
  *
  * This file is part of Ubuntu Calendar App
  *
@@ -15,106 +15,71 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 import QtQuick 2.4
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.0
-import Ubuntu.Components.ListItems 1.0 as ListItem
 
 Page {
-    id: root
+    id: settingsPage
     objectName: "settings"
 
     visible: false
 
-    head {
+    header: PageHeader {
         title: i18n.tr("Settings")
-        backAction: Action {
-            text: i18n.tr("Back")
-            iconName: "back"
-            onTriggered: {
-                pop();
-            }
-        }
-    }
-
-    ListModel{
-        id: model;
-    }
-
-    Column {
-        id: settingsColumn
-        objectName: "settingsColumn"
-        spacing: units.gu(0.5)
-        anchors {
-            margins: units.gu(2)
-            fill: parent
-        }
-
-        Item{
-            width: parent.width;
-            height: Math.max(weekNumber.height, weekCheckbox.height)
-
-            Label{
-                id: weekNumber;
-                objectName: "weekNumber"
-                text: i18n.tr("Show week numbers");
-                elide: Text.ElideRight
-                opacity: weekCheckbox.checked ? 1.0 : 0.8
-                color: UbuntuColors.midAubergine
-                anchors {
-                    left: parent.left
-                    right: weekCheckbox.left;
-                    margins: units.gu(2)
-                    verticalCenter: parent.verticalCenter
+        leadingActionBar.actions: [
+            Action {
+                text: i18n.tr("Back")
+                iconName: "back"
+                onTriggered: {
+                    pop()
                 }
             }
-
-            CheckBox {
-                id: weekCheckbox
-                objectName: "weekCheckBox"
-                anchors.right:parent.right;
-                onCheckedChanged: {
-                    mainView.displayWeekNumber = weekCheckbox.checked;
-                }
-            }
-        }
-
-        ListItem.ThinDivider {}
-
-        Item{
-            width: parent.width;
-            height: Math.max(lunarCal.height, lunarCalCheckbox.height)
-
-            Label{
-                id: lunarCal;
-                objectName: "lunarCalendar"
-                text: i18n.tr("Show lunar calendar");
-                elide: Text.ElideRight
-                opacity: lunarCalCheckbox.checked ? 1.0 : 0.8
-                color: UbuntuColors.midAubergine
-                anchors {
-                    left: parent.left
-                    right: lunarCalCheckbox.left;
-                    margins: units.gu(2)
-                    verticalCenter: parent.verticalCenter
-                }
-            }
-
-            CheckBox {
-                id: lunarCalCheckbox
-                objectName: "lunarCalCheckbox"
-                anchors.right:parent.right;
-                onCheckedChanged: {
-                    mainView.displayLunarCalendar = lunarCalCheckbox.checked
-                }
-            }
-        }
-
-        ListItem.ThinDivider {}
+        ]
     }
 
     Component.onCompleted: {
         weekCheckbox.checked = mainView.displayWeekNumber
         lunarCalCheckbox.checked = mainView.displayLunarCalendar
+    }
+
+    Column {
+        id: settingsColumn
+        objectName: "settingsColumn"
+
+        spacing: units.gu(0.5)
+        anchors { top: settingsPage.header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+
+        ListItem {
+            height: weekNumberLayout.height + divider.height
+            ListItemLayout {
+                id: weekNumberLayout
+                title.text: i18n.tr("Show week numbers")
+                CheckBox {
+                    id: weekCheckBox
+                    objectName: "weekCheckBox"
+                    SlotsLayout.position: SlotsLayout.Last
+                    onCheckedChanged: {
+                        mainView.displayWeekNumber = weekCheckbox.checked
+                    }
+                }
+            }
+        }
+
+        ListItem {
+            height: lunarCalLayout.height + divider.height
+            ListItemLayout {
+                id: lunarCalLayout
+                title.text: i18n.tr("Show lunar calendar")
+                CheckBox {
+                    id: lunarCalCheckbox
+                    objectName: "lunarCalCheckbox"
+                    SlotsLayout.position: SlotsLayout.Last
+                    onCheckedChanged: {
+                        mainView.displayLunarCalendar = lunarCalCheckbox.checked
+                    }
+                }
+            }
+        }
     }
 }
