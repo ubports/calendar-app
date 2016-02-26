@@ -67,6 +67,15 @@ Date.prototype.addDays = function(days) {
     return date
 }
 
+Date.prototype.addMinutes = function(minutes) {
+    if (minutes === 0)
+        return this
+
+    var date = new Date(this)
+    date.setMinutes(date.getMinutes() + minutes);
+    return date
+}
+
 Date.prototype.addMonths = function(months) {
     var date = new Date(this)
     date.setMonth(date.getMonth() + months)
@@ -89,8 +98,9 @@ Date.prototype.monthStart = function() {
 }
 
 Date.prototype.weekNumber = function(weekStartDay) {
-    var date = this.weekStart(weekStartDay).addDays(3) // Thursday midnight
-    var onejan = new Date(this.getFullYear(), 0, 3);
+    var date = new Date(this)
+    date = date.weekStart(weekStartDay).addDays(3) // Thursday midnight
+    var onejan = new Date(date.getFullYear(), 0, 3);
     return Math.ceil((((date - onejan) / 86400000) + onejan.getDay()+1)/7);
 }
 

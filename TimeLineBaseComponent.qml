@@ -53,6 +53,33 @@ Item {
     signal dateHighlighted(var date);
     signal pressAndHoldAt(var date, bool allDay);
 
+    function timeIsVisible(date) {
+
+        var hour = date.getHours();
+        var currentTimeY = (hour * hourItemHeight)
+        return ((currentTimeY >= timeLineView.contentY) &&
+                (currentTimeY <= (timeLineView.contentY + timeLineView.height)));
+    }
+
+    function dateIsVisible(date) {
+        if (date.getFullYear() !== startDay.getFullYear()) {
+            return false;
+        }
+
+        if (type != ViewType.ViewTypeWeek) {
+            return ((date.getMonth() === startDay.getMonth) &&
+                    (date.getDate() === startDay.getDate()))
+        }
+
+        var dateDayOfWeekX = date.getDay() * timeLineView.delegateWidth
+        return ((dateDayOfWeekX >= timeLineView.contentX) &&
+                (dateDayOfWeekX <= (timeLineView.contentX + timeLineView.width)))
+    }
+
+    function dateTimeIsVisible(date) {
+        return dateIsVisible(date) && timeIsVisible(date);
+    }
+
     function scrollToTime(date) {
         scrollHour = date.getHours();
 
@@ -149,7 +176,7 @@ Item {
             restart()
         }
 
-        interval: 1 //root.isCurrentItem ? 500 : 1000
+        interval: root.isCurrentItem ? 500 : 1000
         repeat: false
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter} )

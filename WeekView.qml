@@ -60,13 +60,21 @@ PageWithBottomEdge {
     }
 
     onEventCreated: {
+        var eventDate = new Date(event.startDateTime)
         var currentWeekNumber = currentDate.weekNumber(Qt.locale().firstDayOfWeek)
-        var eventWeekNumber = event.startDateTime.weekNumber(Qt.locale().firstDayOfWeek)
+        var eventWeekNumber = eventDate.weekNumber(Qt.locale().firstDayOfWeek)
+        var needScroll = false
+        if ((eventDate.getFullYear() !== currentDate.getFullYear()) ||
+            (currentWeekNumber !== eventWeekNumber)) {
+            anchorDate = new Date(eventDate)
+            needScroll = true
+        } else if (!weekViewPath.currentItem.item.dateTimeIsVisible(eventDate)) {
+            needScroll = true
+        }
 
-        if (currentWeekNumber !== eventWeekNumber)
-            anchorDate = event.startDateTime
-
-        delayScrollToDate(event.startDateTime)
+        if (needScroll) {
+            delayScrollToDate(eventDate)
+        }
     }
 
     Timer {

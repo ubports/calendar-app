@@ -48,12 +48,18 @@ PageWithBottomEdge {
 
     onEventCreated: {
         var eventDate = event.startDateTime
+        var needScroll = false
         if ((currentDate.getFullYear() !== eventDate.getFullYear()) ||
             (currentDate.getMonth() !== eventDate.getMonth()) ||
             (currentDate.getDate() !== eventDate.getDate())) {
             anchorDate = event.startDateTime
+            needScroll = true
+        } else if (!dayViewPath.currentItem.timeIsVisible(eventDate)) {
+            needScroll = true
         }
-        delayScrollToDate(event.startDateTime)
+
+        if (needScroll)
+            delayScrollToDate(event.startDateTime)
     }
 
     Action {
@@ -111,7 +117,7 @@ PageWithBottomEdge {
         var eventAt = new Date()
         if (dayViewPath.currentItem) {
             eventAt.setDate(currentDate.getDate())
-            eventAt.setMonth(currentDate.getMoth())
+            eventAt.setMonth(currentDate.getMonth())
             eventAt.setYear(currentDate.getYear())
         }
         createEventAt = eventAt
