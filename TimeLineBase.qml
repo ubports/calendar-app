@@ -287,16 +287,13 @@ Item {
     function createEvent( event, depth, sizeOfRow ) {
         var eventBubble;
         if(intern.unUsedEvents.length === 0) {
-            var incubator = delegate.incubateObject(bubbleOverLay);
-            if (incubator.status !== Component.Ready) {
-                incubator.forceCompletion()
-            }
-
-            assignBubbleProperties(incubator.object, event, depth, sizeOfRow);
+            var incubator = delegate.incubateObject(bubbleOverLay)
+            incubator.forceCompletion()
+            eventBubble = incubator.object
         } else {
             eventBubble = getUnusedEventBubble();
-            assignBubbleProperties(eventBubble, event, depth, sizeOfRow);
         }
+        assignBubbleProperties(eventBubble, event, depth, sizeOfRow);
     }
 
     function assignBubbleProperties(eventBubble, event, depth, sizeOfRow) {
