@@ -39,8 +39,8 @@ Page {
     }
 
     Component.onCompleted: {
-        weekCheckbox.checked = mainView.displayWeekNumber
-        lunarCalCheckbox.checked = mainView.displayLunarCalendar
+        weekCheckBox.checked = mainView.displayWeekNumber
+        lunarCalCheckBox.checked = mainView.displayLunarCalendar
     }
 
     Column {
@@ -60,7 +60,7 @@ Page {
                     objectName: "weekCheckBox"
                     SlotsLayout.position: SlotsLayout.Last
                     onCheckedChanged: {
-                        mainView.displayWeekNumber = weekCheckbox.checked
+                        mainView.displayWeekNumber = weekCheckBox.checked
                     }
                 }
             }
@@ -72,11 +72,11 @@ Page {
                 id: lunarCalLayout
                 title.text: i18n.tr("Show lunar calendar")
                 CheckBox {
-                    id: lunarCalCheckbox
+                    id: lunarCalCheckBox
                     objectName: "lunarCalCheckbox"
                     SlotsLayout.position: SlotsLayout.Last
                     onCheckedChanged: {
-                        mainView.displayLunarCalendar = lunarCalCheckbox.checked
+                        mainView.displayLunarCalendar = lunarCalCheckBox.checked
                     }
                 }
             }

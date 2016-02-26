@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 17:33+0530\n"
+"POT-Creation-Date: 2016-02-26 18:15+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,21 +72,21 @@ msgstr[1] ""
 msgid "Calendars"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:37 ../Settings.qml:32
+#: ../CalendarChoicePopup.qml:36 ../Settings.qml:32
 msgid "Back"
 msgstr ""
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
+#: ../CalendarChoicePopup.qml:50 ../EventActions.qml:37
 msgid "Sync"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
+#: ../CalendarChoicePopup.qml:50 ../EventActions.qml:37
 msgid "Syncing"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:70
+#: ../CalendarChoicePopup.qml:75
 msgid "Add online Calendar"
 msgstr ""
 
