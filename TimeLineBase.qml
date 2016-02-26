@@ -177,7 +177,6 @@ Item {
 
         source: "EventLayoutHelper.js"
         onMessage: {
-            console.debug("\tMessage received*: " + bubbleOverLay.day + " Items:" + messageObject.schedules.length + " hasMore:" + messageObject.hasMore)
             // check if anything changed during the process
             if (intern.dirty) {
                 console.debug("Something has changed while work script was running, ignore message")
@@ -197,7 +196,6 @@ Item {
     }
 
     function layoutEvents(array, depth) {
-        console.debug("\t\tWill arrange events:" + array.length)
         for(var i=0; i < array.length ; ++i) {
             var schedule = array[i];
             var event = intern.eventMap[schedule.id];
@@ -210,7 +208,6 @@ Item {
     }
 
     function createEvents() {
-        console.debug("createEvents():" + bubbleOverLay.day)
         if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined || model === null) {
             console.debug("\tabort.")
             return;
@@ -234,7 +231,6 @@ Item {
         var startDate = new Date(day).midnight();
         var endDate = new Date(day).endOfDay();
         var items = model.itemsByTimePeriod(startDate,endDate);
-        console.debug("\tSize of events:" + items.length)
         for(var i = 0; i < items.length; ++i) {
             var event = items[i];
 
@@ -249,10 +245,8 @@ Item {
 
         intern.eventMap = eventMap;
         if (allSchs.length > 0) {
-            console.debug("\twill send message with:" + allSchs.length)
             eventLayoutHelper.sendMessage(allSchs);
         } else {
-            console.debug("\nEmpty list of events")
             intern.busy = false
         }
 
@@ -367,7 +361,6 @@ Item {
     Connections {
         id: modelConnections
         onModelChanged: {
-            console.debug("Model changed with start date:" + bubbleOverLay.day)
             intern.dirty = true
             intern.waitingForModelChange = false
             bubbleOverLay.idleCreateEvents()
