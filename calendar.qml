@@ -525,8 +525,10 @@ MainView {
         id: yearViewComp
 
         YearView {
+            readonly property bool tabSelected: tabs.selectedTabIndex === monthTab.index
+
             model: eventModel.isReady ? eventModel : null
-            bootomEdgeEnabled: tabs.selectedTabIndex === yearTab.index
+            bootomEdgeEnabled: tabSelected
 
             onCurrentYearChanged: {
                 tabs.currentDay = new Date(currentYear, 1, 1)
@@ -543,8 +545,8 @@ MainView {
                 tabs.selectedTabIndex = monthTab.index;
             }
 
-            onActiveChanged: {
-                if (active) {
+            onTabSelectedChanged: {
+                if (tabSelected) {
                     refreshCurrentYear(DateExt.today().getFullYear())
                 }
             }
@@ -555,8 +557,10 @@ MainView {
         id: monthViewComp
 
         MonthView {
+            readonly property bool tabSelected: tabs.selectedTabIndex === monthTab.index
+
             model: eventModel.isReady ? eventModel : null
-            bootomEdgeEnabled: tabs.selectedTabIndex === monthTab.index
+            bootomEdgeEnabled: tabSelected
 
             onCurrentDateChanged: {
                 tabs.currentDay = currentDate
@@ -574,8 +578,8 @@ MainView {
                 tabs.selectedTabIndex = dayTab.index
             }
 
-            onActiveChanged: {
-                if (active) {
+            onTabSelectedChanged: {
+                if (tabSelected) {
                     anchorDate = new Date(tabs.currentDay.getFullYear(),
                                           tabs.currentDay.getMonth(),
                                           1,
@@ -589,8 +593,10 @@ MainView {
         id: weekViewComp
 
         WeekView {
+            readonly property bool tabSelected: tabs.selectedTab === weekTab
+
             model: eventModel.isReady ? eventModel : null
-            bootomEdgeEnabled: tabs.selectedTab === weekTab
+            bootomEdgeEnabled: tabSelected
 
             onHighlightedDayChanged: {
                 if (highlightedDay)
@@ -612,8 +618,8 @@ MainView {
                 bottomEdgeCommit(date, allDay)
             }
 
-            onActiveChanged: {
-                if (active) {
+            onTabSelectedChanged: {
+                if (tabSelected) {
                     anchorDate = tabs.currentDay.weekStart(Qt.locale().firstDayOfWeek)
                     delayScrollToDate(new Date())
                 }
@@ -625,8 +631,10 @@ MainView {
         id: dayViewComp
 
         DayView {
+            readonly property bool tabSelected: tabs.selectedTabIndex === dayTab.index
+
             model: eventModel.isReady ? eventModel : null
-            bootomEdgeEnabled: tabs.selectedTabIndex === dayTab.index
+            bootomEdgeEnabled: tabSelected
 
             onDateSelected: {
                 tabs.currentDay = date
@@ -640,8 +648,8 @@ MainView {
                 tabs.currentDay = currentDate
             }
 
-            onActiveChanged: {
-                if (active) {
+            onTabSelectedChanged: {
+                if (tabSelected) {
                     anchorDate = tabs.currentDay
                 }
             }
