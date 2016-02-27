@@ -84,7 +84,7 @@ Item {
         scrollHour = date.getHours();
 
         var currentTimeY = (scrollHour * hourItemHeight)
-        var margin = (timeLineView.height / 2) * 1.2
+        var margin = (timeLineView.height / 2)
 
         // Try to centralize the event time, if it is in the end of the view does not try it
         if (currentTimeY < (timeLineView.contentHeight - margin)) {
@@ -108,8 +108,14 @@ Item {
             var diff = weekDay - Qt.locale().firstDayOfWeek
             diff = diff < 0 ? 0 : diff
 
-            var newX = timeLineView.delegateWidth * diff
-            timeLineView.contentX = Math.min(timeLineView.contentWidth - timeLineView.width, newX)
+            var currentDayY = timeLineView.delegateWidth * diff
+            var margin = timeLineView.width / 2
+
+            if (currentDayY < (timeLineView.contentWidth - margin)) {
+                currentDayY -= margin
+            }
+
+            timeLineView.contentX = Math.min(timeLineView.contentWidth - timeLineView.width, currentDayY > 0 ? currentDayY : 0)
         } else {
             timeLineView.contentX = 0
         }
