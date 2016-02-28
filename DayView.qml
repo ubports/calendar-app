@@ -156,15 +156,15 @@ PageWithBottomEdge {
             }
 
             Component.onCompleted: {
-                if(dayViewPage.active){
+                if(dayViewPage.tabSelected){
                     timeLineView.scrollToTime(new Date());
                 }
             }
 
             Connections{
                 target: dayViewPage
-                onActiveChanged: {
-                    if(dayViewPage.active){
+                onTabSelectedChanged: {
+                    if(tabSelected){
                         timeLineView.scrollToTime(new Date());
                     }
                 }

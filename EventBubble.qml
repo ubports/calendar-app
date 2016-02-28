@@ -25,51 +25,20 @@ Item{
 
     property var event;
     property var model;
-
+    property int depthInRow: 0
+    property real sizeOfRow:0.0
     property int type: narrowType
     property int wideType: 1;
     property int narrowType: 2;
-
-    property int depthInRow: 0;
-    property int sizeOfRow:0
-
     property bool isLiveEditing: false
-
     property Flickable flickable;
+    property bool isEventBubble: true
 
     readonly property int minimumHeight: type == wideType
                                          ? detailsItems.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
                                          : units.gu(2)
-    property bool isEventBubble: true
-
-    z: depthInRow
 
     signal clicked(var event);
-
-    Rectangle{
-        id: bg
-        anchors.fill: parent
-        border.color: isLiveEditing ? "red" : "white"
-    }
-
-    function resize() {
-        var offset = parent.width/sizeOfRow;
-        x = (depthInRow) * offset;
-        width = parent.width - x;
-    }
-
-    Connections{
-        target: parent
-        onWidthChanged:{
-            resize();
-        }
-    }
-
-    onEventChanged: {
-        resize();
-        assingnBgColor();
-        setDetails();
-    }
 
     function assingnBgColor() {
         if (model && event ) {
@@ -156,6 +125,20 @@ Item{
         }
 
         layoutBubbleDetails();
+    }
+
+    x: depthInRow * width
+    z: depthInRow
+    width: parent ? parent.width * sizeOfRow : 0
+    onEventChanged: {
+        assingnBgColor();
+        setDetails();
+    }
+
+    Rectangle{
+        id: bg
+        anchors.fill: parent
+        border.color: isLiveEditing ? "red" : "white"
     }
 
     Item {
