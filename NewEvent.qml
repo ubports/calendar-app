@@ -47,7 +47,6 @@ Page {
     signal eventDeleted(var event);
     signal canceled()
 
-    enabled: !internal.saving
     Component.onCompleted: {
         setDate(root.date)
 
@@ -235,7 +234,6 @@ Page {
             }
 
             model.saveItem(event)
-            // event saved
             if (pageStack)
                 pageStack.pop();
             root.eventAdded(event);
@@ -309,12 +307,7 @@ Page {
         scrollAnimation.start()
     }
 
-    Keys.onEscapePressed: {
-        if (!internal.saving) {
-            root.cancel()
-        }
-    }
-
+    Keys.onEscapePressed: root.cancel()
     onStartDateChanged: {
         if (!startDate)
             return
@@ -346,7 +339,6 @@ Page {
             name: "cancel"
             text: i18n.tr("Cancel")
             iconName: isEdit ? "back" : "down"
-            enabled: !internal.saving
             onTriggered: root.cancel()
         }
 
@@ -356,7 +348,6 @@ Page {
                 objectName: "delete"
                 iconName: "delete"
                 visible : isEdit
-                enabled: !internal.saving
                 onTriggered: {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
                     dialog.deleteEvent.connect( function(eventId){
@@ -371,7 +362,7 @@ Page {
                 iconName: "ok"
                 objectName: "save"
                 text: i18n.tr("Save")
-                enabled: !internal.saving && !!titleEdit.text.trim()
+                enabled: !!titleEdit.text.trim()
                 onTriggered: saveToQtPim();
             }
         ]
