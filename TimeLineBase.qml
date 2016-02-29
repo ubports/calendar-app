@@ -73,35 +73,25 @@ Item {
         }
     }
 
-//    WorkerScript {
-//        id: eventLayoutHelper
+    WorkerScript {
+        id: eventLayoutHelper
 
-//        source: "EventLayoutHelper.js"
-//        onMessage: {
-//            // check if anything changed during the process
-//            if (intern.dirty) {
-//                console.debug("Something has changed while work script was running, ignore message")
-//            } else {
-//                // nothing changed we can draw the events now
-//                layoutEvents(messageObject.schedules, messageObject.maxDepth);
-//            }
-
-//            if (!messageObject.hasMore) {
-//                var currentDate = new Date()
-//                intern.busy = false
-//                if (intern.dirty) {
-//                    idleCreateEvents()
-//                }
-//            }
-//        }
-//    }
-
-    function drawEvents() {
-        destroyAllChildren();
-
-        var eventMap = CanlendarCanvas.dayEventsMap(model, day)
-        for (var i=0; i < eventMap.length; i++) {
-            createVisual(eventMap[i])
+        source: "calendar_canvas_worker.js"
+        onMessage: {
+            // check if anything changed during the process
+            if (intern.dirty) {
+                console.debug("Something has changed while work script was running, ignore message")
+            } else {
+                var events = messageObject.reply
+                for (var i=0; i < events.length; i++) {
+                    createVisual(events[i])
+                }
+            }
+            intern.busy = false
+            intern.eventsById = []
+            if (intern.dirty) {
+                idleCreateEvents()
+            }
         }
     }
 
@@ -120,19 +110,13 @@ Item {
 
         eventBubble.sizeOfRow = eventInfo.width
         eventBubble.depthInRow = eventInfo.y
-
-        //eventBubble.x = (eventWidth * eventInfo.y)
-        //eventBubble.width = eventWidth
-
         eventBubble.y = eventInfo.startTime * bubbleOverLay.minuteHeight
         eventBubble.z = eventInfo.y
-
         eventBubble.height = (eventInfo.endTime - eventInfo.startTime) * bubbleOverLay.minuteHeight
         eventBubble.model = bubbleOverLay.model
-        eventBubble.event = eventInfo.event
+        eventBubble.event = intern.eventsById[eventInfo.eventId]
         eventBubble.visible = true
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
-
     }
 
      function idleCreateEvents() {
@@ -156,17 +140,22 @@ Item {
         intern.busy = true
         intern.dirty = false
         destroyAllChildren();
+        intern.eventsById = []
 
-        var eventMap = CanlendarCanvas.dayEventsMap(model, day)
-        for (var i=0; i < eventMap.length; i++) {
-            createVisual(eventMap[i])
+        var startDate = day.midnight()
+        var itemsOfTheDay = model.itemsByTimePeriod(startDate, startDate.endOfDay())
+        for(var i=0; i < itemsOfTheDay.length; i++) {
+            var e = itemsOfTheDay[i]
+            intern.eventsById[e.itemId] = e
         }
-
-        intern.busy = false
+        var eventInfo = CanlendarCanvas.parseDayEvents(startDate, itemsOfTheDay)
+        eventLayoutHelper.sendMessage({'events': eventInfo})
 
         if(intern.now.isSameDay( bubbleOverLay.day )) {
             bubbleOverLay.showSeparator();
         }
+
+        intern.busy = false
     }
 
     function destroyAllChildren() {
@@ -193,18 +182,6 @@ Item {
         return unusedEvent
     }
 
-    function createEvent( event, depth, sizeOfRow ) {
-        var eventBubble;
-        if(intern.unUsedEvents.length === 0) {
-            var incubator = delegate.incubateObject(bubbleOverLay)
-            incubator.forceCompletion()
-            eventBubble = incubator.object
-        } else {
-            eventBubble = getUnusedEventBubble();
-        }
-        assignBubbleProperties(eventBubble, event, depth, sizeOfRow);
-    }
-
     function showSeparator() {
         var y = ((intern.now.getMinutes() * hourHeight) / 60) + intern.now.getHours() * hourHeight;
         separator.y = y;
@@ -219,9 +196,9 @@ Item {
 
         isEventBubble: false
         Drag.active: overlayMouseArea.drag.active
-        isLiveEditing: overlayMouseArea.creatingEvent
+        //isLiveEditing: overlayMouseArea.creatingEvent
         visible: overlayMouseArea.creatingEvent
-        depthInRow: -10000
+        y: event ? CanlendarCanvas.minutesSince(bubbleOverLay.day, event.startDateTime) * bubbleOverLay.minuteHeight : 0
     }
 
     Item {
@@ -269,7 +246,14 @@ Item {
             var event = createOrganizerEvent(selectedDate)
 
             Haptics.play()
-            assignBubbleProperties(temporaryEvent, event, 1, overlayMouseArea.width);
+
+            temporaryEvent.sizeOfRow = 1.0
+            temporaryEvent.depthInRow = 0
+            temporaryEvent.z = 1000
+            temporaryEvent.height = 60 * bubbleOverLay.minuteHeight
+            temporaryEvent.model = bubbleOverLay.model
+            temporaryEvent.event = event
+            temporaryEvent.visible = true
             creatingEvent = true
         }
 
@@ -306,7 +290,7 @@ Item {
         id: intern
 
         property var now : new Date();
-        property var eventMap;
+        property var eventsById: []
         property var unUsedEvents: []
         property bool busy: false
         property bool dirty: false

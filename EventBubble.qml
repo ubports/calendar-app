@@ -72,20 +72,6 @@ Item{
         }
     }
 
-    function layoutBubbleDetails() {
-        if( !flickable || flickable === undefined ) {
-            return;
-        }
-
-        if( infoBubble.y < flickable.contentY && infoBubble.height > flickable.height) {
-            var y = (flickable.contentY - infoBubble.y) * 1.2;
-            if( ( y + detailsItems.height + units.gu(2)) > infoBubble.height) {
-                y = infoBubble.height - detailsItems.height - units.gu(2);
-            }
-            detailsItems.y = y;
-        }
-    }
-
     function setDetails() {
         if(event === null || event === undefined) {
             return;
@@ -123,8 +109,6 @@ Item{
             timeLabel.horizontalAlignment = Text.AlignHCenter
             timeLabel.wrapMode = Text.WrapAtWordBoundaryOrAnywhere
         }
-
-        layoutBubbleDetails();
     }
 
     x: depthInRow * width
@@ -175,25 +159,6 @@ Item{
                 fontSize: "small"
                 width: parent.width
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            }
-        }
-
-        onHeightChanged: {
-            layoutBubbleDetails();
-        }
-
-        Connections {
-            target: infoBubble
-            onFlickableChanged: {
-                if (flickable && infoBubble.height > flickable.height) {
-                    flickable.onContentYChanged.connect(layoutBubbleDetails);
-                }
-            }
-
-            onHeightChanged: {
-                if(flickable && infoBubble.height > flickable.height) {
-                    flickable.onContentYChanged.connect(layoutBubbleDetails);
-                }
             }
         }
     }
