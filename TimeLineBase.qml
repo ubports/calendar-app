@@ -283,7 +283,8 @@ Item {
         objectName: "separator"
         width:  bubbleOverLay.width
         visible: false
-        z:1
+        // make sure that the object is aways visible
+        z: 1000
     }
 
     QtObject {
