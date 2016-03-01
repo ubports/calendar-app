@@ -41,7 +41,6 @@ PageWithBottomEdge {
     Keys.forwardTo: [dayViewPath]
 
     createEventAt: currentDate
-
     onAnchorDateChanged: {
         dayViewPath.scrollToBegginer()
     }
@@ -116,9 +115,9 @@ PageWithBottomEdge {
     onBottomEdgeCommitStarted: {
         var eventAt = new Date()
         if (dayViewPath.currentItem) {
-            eventAt.setDate(currentDate.getDate())
+            eventAt.setFullYear(currentDate.getFullYear())
             eventAt.setMonth(currentDate.getMonth())
-            eventAt.setYear(currentDate.getYear())
+            eventAt.setDate(currentDate.getDate())
         }
         createEventAt = eventAt
     }
