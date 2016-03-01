@@ -406,6 +406,13 @@ Item {
             flickable: root.isCurrentItem ? timeLineView : null
             clip: true
             opacity: parent.enabled ? 1.0 : 0.3
+
+            // send a signal to update application current date
+            onClicked: root.dateHighlighted(event.startDateTime)
+            onIsLiveEditingChanged: {
+                if (isLiveEditing)
+                    root.dateHighlighted(event.startDateTime)
+            }
         }
     }
 }
