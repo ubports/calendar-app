@@ -32,7 +32,9 @@ function sortEventsBySize(eventA, eventB)
     return 0
 }
 
-
+/*
+ * look for the minumum available 'y' on a list of events
+ */
 function findOptimalY(intersections)
 {
     if (intersections.length === 0)
@@ -60,6 +62,8 @@ function dayEventsMap(eventsInfo)
     eventsInfo.sort(sortByStartAndSize)
 
     // intersections
+    // =============
+    // calculate the intersection of each event
     var lines = []
     for(var i=0; i < eventsInfo.length; i++) {
         var eventA = eventsInfo[i]
@@ -77,7 +81,11 @@ function dayEventsMap(eventsInfo)
         lines.push(line)
     }
 
-    // calculate y
+    // calculate 'y' position
+    // ======================
+    // based on the intersections calculate the y position of each event
+    // the order will be based on start and duration, events that start earlier will be first
+    // for events with the same start time, the event with big duration will be first
     for (var l=0; l < lines.length; l++) {
         var time = -1
 
@@ -95,6 +103,10 @@ function dayEventsMap(eventsInfo)
         }
     }
 
+    // calculate the 'width' of event
+    // ==============================
+    // the number of events in the same line will determine the proportion used
+    // to draw the event. The 'width' value will be something btw 1.0 and 0.1
     for (var l=0; l < lines.length; l++) {
         var line = lines[l]
         var eventA = line[0]
