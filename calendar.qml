@@ -91,10 +91,7 @@ MainView {
     height: units.gu(80)
     focus: true
     Keys.forwardTo: [pageStack.currentPage]
-
-    headerColor: "#E8E8E8"
-    backgroundColor: "#f5f5f5"
-    footerColor: "#ECECEC"
+    backgroundColor: "#ffffff"
     anchorToKeyboard: true
 
     Connections {

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2014 Canonical Ltd
+ * Copyright (C) 2013-2016 Canonical Ltd
  *
  * This file is part of Ubuntu Calendar App
  *
@@ -15,43 +15,41 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 import QtQuick 2.4
-import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.0
-import Ubuntu.Components.ListItems 1.0 as ListItem
 import QtOrganizer 5.0
+import Ubuntu.Components 1.3
 import Ubuntu.SyncMonitor 0.1
+import Ubuntu.Components.Popups 1.3
 
 Page {
-    id: root
+    id: calendarChoicePage
     objectName: "calendarchoicepopup"
-    property var model;
 
-    signal collectionUpdated();
+    property var model
+    signal collectionUpdated()
 
     visible: false
-    title: i18n.tr("Calendars")
-
-    head {
-        backAction: Action {
+    header: PageHeader {
+        title: i18n.tr("Calendars")
+        leadingActionBar.actions: Action {
             text: i18n.tr("Back")
             iconName: "back"
             onTriggered: {
-                root.collectionUpdated();
+                calendarChoicePage.collectionUpdated();
                 pop();
             }
         }
-    }
-
-    head.actions:  Action {
-        objectName: "syncbutton"
-        iconName: "reload"
-        // TRANSLATORS: Please translate this string  to 15 characters only.
-        // Currently ,there is no way we can increase width of action menu currently.
-        text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
-        onTriggered: syncMonitor.sync(["calendar"])
-        enabled: (syncMonitor.state !== "syncing")
-        visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
+        trailingActionBar.actions: Action {
+            objectName: "syncbutton"
+            iconName: "reload"
+            // TRANSLATORS: Please translate this string  to 15 characters only.
+            // Currently ,there is no way we can increase width of action menu currently.
+            text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
+            onTriggered: syncMonitor.sync(["calendar"])
+            enabled: (syncMonitor.state !== "syncing")
+            visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
+        }
     }
 
     SyncMonitor {
@@ -60,80 +58,84 @@ Page {
 
     ListView {
         id: calendarsList
-        anchors.fill: parent
 
-        footer: CalendarListButtonDelegate {
+        anchors { top: calendarChoicePage.header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+
+        header: ListItem {
             id: importFromGoogleButton
 
             visible: (onlineAccountHelper.status === Loader.Ready)
-            iconSource: "image://theme/google"
-            labelText: i18n.tr("Add online Calendar")
+            height: onlineCalendarLayout.height + divider.height
+
+            ListItemLayout {
+                id: onlineCalendarLayout
+                title.text: i18n.tr("Add online Calendar")
+
+                Image {
+                    SlotsLayout.position: SlotsLayout.First
+                    source: "image://theme/google"
+                    width: units.gu(5)
+                    height: width
+                }
+            }
+
             onClicked: {
                 onlineAccountHelper.item.setupExec()
             }
         }
 
-        model : root.model.getCollections();
-        delegate: ListItem.Standard {
+        model : calendarChoicePage.model.getCollections()
+        currentIndex: -1
+
+        delegate: ListItem {
             id: delegateComp
             objectName: "calendarItem"
 
-            Rectangle {
-                id: calendarColorCode
-                objectName: "calendarColorCode"
+            height: calendarsListLayout.height + divider.height
 
-                width: parent.height - units.gu(2)
-                height: width
+            ListItemLayout {
+                id: calendarsListLayout
 
-                anchors {
-                    left: parent.left
-                    leftMargin: units.gu(2)
-                    verticalCenter: parent.verticalCenter
+                title.text: modelData.name
+                title.objectName: "calendarName"
+
+                CheckBox {
+                    id: checkBox
+                    objectName: "checkBox"
+                    SlotsLayout.position: SlotsLayout.Last
+                    checked: modelData.extendedMetaData("collection-selected")
+                    enabled: !calendarChoicePage.isInEditMode
+                    onCheckedChanged: {
+                        modelData.setExtendedMetaData("collection-selected",checkBox.checked)
+                        var collection = calendarChoicePage.model.collection(modelData.collectionId);
+                        calendarChoicePage.model.saveCollection(collection);
+                    }
                 }
 
-                color: modelData.color
-                opacity: checkBox.checked ? 1.0 : 0.8
+                Rectangle {
+                    id: calendarColorCode
+                    objectName: "calendarColorCode"
 
-                MouseArea{
-                    anchors.fill: parent
-                    onClicked: {
-                        //popup dialog
-                        var dialog = PopupUtils.open(Qt.resolvedUrl("ColorPickerDialog.qml"),root);
-                        dialog.accepted.connect(function(color) {
-                            var collection = root.model.collection(modelData.collectionId);
-                            collection.color = color;
-                            root.model.saveCollection(collection);
-                        })
+                    SlotsLayout.position: SlotsLayout.First
+                    width: units.gu(5)
+                    height: width
+                    color: modelData.color
+                    opacity: checkBox.checked ? 1.0 : 0.8
+
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            //popup dialog
+                            var dialog = PopupUtils.open(Qt.resolvedUrl("ColorPickerDialog.qml"),calendarChoicePage);
+                            dialog.accepted.connect(function(color) {
+                                var collection = calendarChoicePage.model.collection(modelData.collectionId);
+                                collection.color = color;
+                                calendarChoicePage.model.saveCollection(collection);
+                            })
+                        }
                     }
                 }
             }
-
-            Label{
-                objectName: "calendarName"
-                text: modelData.name
-                elide: Text.ElideRight
-                opacity: checkBox.checked ? 1.0 : 0.8
-                color: UbuntuColors.midAubergine
-                width: parent.width - calendarColorCode.width - checkBox.width - units.gu(6) /*margins*/
-                anchors {
-                    left: calendarColorCode.right
-                    margins: units.gu(2)
-                    verticalCenter: parent.verticalCenter
-                }
-            }
-
-            control: CheckBox {
-                id: checkBox
-                objectName: "checkBox"
-                checked: modelData.extendedMetaData("collection-selected")
-                enabled:  !root.isInEditMode
-                onCheckedChanged: {
-                    modelData.setExtendedMetaData("collection-selected",checkBox.checked)
-                    var collection = root.model.collection(modelData.collectionId);
-                    root.model.saveCollection(collection);
-                }
-            }
-
         }
     }
 
