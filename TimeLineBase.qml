@@ -151,10 +151,7 @@ Item {
         var eventInfo = CanlendarCanvas.parseDayEvents(startDate, itemsOfTheDay)
         eventLayoutHelper.sendMessage({'events': eventInfo})
 
-        if(intern.now.isSameDay( bubbleOverLay.day )) {
-            bubbleOverLay.showSeparator();
-        }
-
+        bubbleOverLay.showSeparator();
         intern.busy = false
     }
 
@@ -183,9 +180,14 @@ Item {
     }
 
     function showSeparator() {
-        var y = ((intern.now.getMinutes() * hourHeight) / 60) + intern.now.getHours() * hourHeight;
-        separator.y = y;
-        separator.visible = true;
+        intern.now = new Date();
+        if (intern.now.isSameDay(bubbleOverLay.day) ) {
+            var y = ((intern.now.getMinutes() * hourHeight) / 60) + intern.now.getHours() * hourHeight;
+            separator.y = y;
+            separator.visible = true;
+        } else {
+            separator.visible = false;
+        }
     }
 
     Component.onCompleted: bubbleOverLay.idleCreateEvents();
@@ -269,13 +271,6 @@ Item {
                 creatingEvent = false
             }
         }
-
-        onPressed: {
-            intern.now = new Date();
-            if( intern.now.isSameDay( bubbleOverLay.day ) ) {
-                bubbleOverLay.showSeparator();
-            }
-        }
     }
 
     TimeSeparator {
@@ -285,6 +280,14 @@ Item {
         visible: false
         // make sure that the object is aways visible
         z: 1000
+    }
+
+    Timer {
+        id: separtorUpdateTimer
+        interval: 300000 // every 5 minutes
+        running: true
+        repeat: true
+        onTriggered: showSeparator()
     }
 
     QtObject {
