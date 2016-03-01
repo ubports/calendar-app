@@ -525,7 +525,7 @@ MainView {
         id: yearViewComp
 
         YearView {
-            readonly property bool tabSelected: tabs.selectedTabIndex === monthTab.index
+            readonly property bool tabSelected: tabs.selectedTabIndex === yearTab.index
 
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
@@ -547,7 +547,7 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
-                    refreshCurrentYear(DateExt.today().getFullYear())
+                    refreshCurrentYear(tabs.currentDay.getFullYear())
                 }
             }
         }

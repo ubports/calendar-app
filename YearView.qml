@@ -32,7 +32,10 @@ PageWithBottomEdge {
 
     function refreshCurrentYear(year)
     {
-        anchorYear = year;
+        if (currentYear !== year) {
+            anchorYear = year;
+            yearPathView.scrollToBegginer()
+        }
         var yearViewDelegate = yearPathView.currentItem;
         if (yearViewDelegate && yearViewDelegate.item) {
             yearViewDelegate.item.refresh();
@@ -41,6 +44,9 @@ PageWithBottomEdge {
 
     createEventAt: null
     Keys.forwardTo: [yearPathView]
+    onAnchorYearChanged: {
+        yearPathView.scrollToBegginer()
+    }
 
     Action {
         id: calendarTodayAction
@@ -48,8 +54,8 @@ PageWithBottomEdge {
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            yearPathView.scrollToBegginer()
-            anchorYear = new Date().getFullYear()
+            var todayYear = new Date().getFullYear()
+            yearViewPage.refreshCurrentYear(todayYear)
         }
     }
 
@@ -107,7 +113,7 @@ PageWithBottomEdge {
                 scrollMonth: 0;
                 isCurrentItem: (index === yearPathView.currentIndex)
                 focus: isCurrentItem
-                year: (anchorYear + yearPathView.loopCurrentIndex + yearPathView.indexType(index))
+                year: (yearViewPage.anchorYear + yearPathView.loopCurrentIndex + yearPathView.indexType(index))
                 onMonthSelected: {
                     yearViewPage.monthSelected(date)
                 }
