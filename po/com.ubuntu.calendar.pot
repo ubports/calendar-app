@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 18:25+0530\n"
+"POT-Creation-Date: 2016-03-01 16:35+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: ../AgendaView.qml:62 ../calendar.qml:291 ../calendar.qml:512
+#: ../AgendaView.qml:62 ../calendar.qml:288 ../calendar.qml:509
 msgid "Agenda"
 msgstr ""
 
@@ -72,21 +72,21 @@ msgstr[1] ""
 msgid "Calendars"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:37 ../Settings.qml:32
+#: ../CalendarChoicePopup.qml:36 ../Settings.qml:31
 msgid "Back"
 msgstr ""
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
+#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:37
 msgid "Sync"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:37
+#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:37
 msgid "Syncing"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:76
+#: ../CalendarChoicePopup.qml:72
 msgid "Add online Calendar"
 msgstr ""
 
@@ -438,11 +438,11 @@ msgstr ""
 msgid "2 weeks"
 msgstr ""
 
-#: ../Settings.qml:57
+#: ../Settings.qml:55
 msgid "Show week numbers"
 msgstr ""
 
-#: ../Settings.qml:73
+#: ../Settings.qml:71
 msgid "Show lunar calendar"
 msgstr ""
 
@@ -472,19 +472,19 @@ msgid ""
 "about them"
 msgstr ""
 
-#: ../calendar.qml:259 ../calendar.qml:428
+#: ../calendar.qml:256 ../calendar.qml:425
 msgid "Year"
 msgstr ""
 
-#: ../calendar.qml:267 ../calendar.qml:449
+#: ../calendar.qml:264 ../calendar.qml:446
 msgid "Month"
 msgstr ""
 
-#: ../calendar.qml:275 ../calendar.qml:470
+#: ../calendar.qml:272 ../calendar.qml:467
 msgid "Week"
 msgstr ""
 
-#: ../calendar.qml:283 ../calendar.qml:491
+#: ../calendar.qml:280 ../calendar.qml:488
 msgid "Day"
 msgstr ""
 

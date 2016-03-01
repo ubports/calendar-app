@@ -27,15 +27,13 @@ Page {
 
     header: PageHeader {
         title: i18n.tr("Settings")
-        leadingActionBar.actions: [
-            Action {
-                text: i18n.tr("Back")
-                iconName: "back"
-                onTriggered: {
-                    pop()
-                }
+        leadingActionBar.actions: Action {
+            text: i18n.tr("Back")
+            iconName: "back"
+            onTriggered: {
+                pop()
             }
-        ]
+        }
     }
 
     Component.onCompleted: {

@@ -32,35 +32,31 @@ Page {
     visible: false
     header: PageHeader {
         title: i18n.tr("Calendars")
-        leadingActionBar.actions: [
-            Action {
-                text: i18n.tr("Back")
-                iconName: "back"
-                onTriggered: {
-                    calendarChoicePage.collectionUpdated();
-                    pop();
-                }
+        leadingActionBar.actions: Action {
+            text: i18n.tr("Back")
+            iconName: "back"
+            onTriggered: {
+                calendarChoicePage.collectionUpdated();
+                pop();
             }
-        ]
-        trailingActionBar.actions: [
-            Action {
-                objectName: "syncbutton"
-                iconName: "reload"
-                // TRANSLATORS: Please translate this string  to 15 characters only.
-                // Currently ,there is no way we can increase width of action menu currently.
-                text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
-                onTriggered: syncMonitor.sync(["calendar"])
-                enabled: (syncMonitor.state !== "syncing")
-                visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
-            }
-        ]
+        }
+        trailingActionBar.actions: Action {
+            objectName: "syncbutton"
+            iconName: "reload"
+            // TRANSLATORS: Please translate this string  to 15 characters only.
+            // Currently ,there is no way we can increase width of action menu currently.
+            text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
+            onTriggered: syncMonitor.sync(["calendar"])
+            enabled: (syncMonitor.state !== "syncing")
+            visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
+        }
     }
 
     SyncMonitor {
         id: syncMonitor
     }
 
-    UbuntuListView {
+    ListView {
         id: calendarsList
 
         anchors { top: calendarChoicePage.header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
