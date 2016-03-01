@@ -39,7 +39,7 @@ PageWithBottomEdge {
         }
     }
 
-    createEventAt: new Date(currentYear, 0, 1, 0, 0, 0)
+    createEventAt: null
     Keys.forwardTo: [yearPathView]
 
     Action {
