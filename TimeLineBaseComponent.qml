@@ -193,7 +193,7 @@ Item {
         id: invalidFilter
     }
 
-    OrganizerModel {
+    EventListModel {
         id: mainModel
 
         manager:"eds"

@@ -152,7 +152,6 @@ Item {
         eventLayoutHelper.sendMessage({'events': eventInfo})
 
         bubbleOverLay.showSeparator();
-        intern.busy = false
     }
 
     function destroyAllChildren() {
@@ -163,6 +162,7 @@ Item {
                 continue;
             }
             if (intern.unUsedEvents.indexOf(child) === -1) {
+                child.event = null
                 child.visible = false;
                 child.clicked.disconnect( bubbleOverLay.showEventDetails );
                 intern.unUsedEvents.push(child)
@@ -304,7 +304,7 @@ Item {
     Timer {
         id: createEventsTimer
 
-        interval: 1
+        interval: 100
         running: false
         repeat: false
         onTriggered: createEvents()
