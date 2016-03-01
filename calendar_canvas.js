@@ -34,6 +34,11 @@ function parseDayEvents(date, itemsOfTheDay)
 
         var eventStartTimeInMinutes = minutesSince(date, event.startDateTime)
         var eventEndTimeInMinutes = minutesSince(date, event.endDateTime)
+
+        // avoid to draw events too small
+        if ((eventEndTimeInMinutes - eventStartTimeInMinutes) < 20)
+            eventEndTimeInMinutes = eventStartTimeInMinutes + 20
+
         eventsInfo.push({'eventId': event.itemId,
                          'startTime': eventStartTimeInMinutes,
                          'endTime': eventEndTimeInMinutes,
