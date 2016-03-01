@@ -26,8 +26,10 @@ PageWithBottomEdge {
     objectName: "weekViewPage"
 
     property var anchorDate: new Date();
+    readonly property var anchorFirstDayOfWeek: anchorDate.weekStart(Qt.locale().firstDayOfWeek)
     readonly property var currentDate: weekViewPath.currentItem.item.startDay
-    readonly property var firstDayOfWeek: anchorDate.weekStart(Qt.locale().firstDayOfWeek);
+    readonly property var currentFirstDayOfWeek: currentDate.weekStart(Qt.locale().firstDayOfWeek)
+
     property bool isCurrentPage: false
     property var selectedDay;
     property var highlightedDay;
@@ -61,6 +63,7 @@ PageWithBottomEdge {
 
     onEventCreated: {
         var eventDate = new Date(event.startDateTime)
+        highlightedDay = eventDate
         var currentWeekNumber = currentDate.weekNumber(Qt.locale().firstDayOfWeek)
         var eventWeekNumber = eventDate.weekNumber(Qt.locale().firstDayOfWeek)
         var needScroll = false
@@ -145,7 +148,7 @@ PageWithBottomEdge {
                 TimeLineBaseComponent {
                     id: timeLineView
 
-                    startDay: firstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
+                    startDay: anchorFirstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
                     anchors.fill: parent
                     type: ViewType.ViewTypeWeek
                     isCurrentItem: parent.PathView.isCurrentItem

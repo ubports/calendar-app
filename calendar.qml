@@ -602,11 +602,11 @@ MainView {
                 if (highlightedDay)
                     tabs.currentDay = highlightedDay
                 else
-                    tabs.currentDay = currentDate
+                    tabs.currentDay = currentFirstDayOfWeek
             }
 
-            onCurrentDateChanged: {
-                tabs.currentDay = currentDate.weekStart(Qt.locale().firstDayOfWeek)
+            onCurrentFirstDayOfWeekChanged: {
+                tabs.currentDay = currentFirstDayOfWeek
             }
 
             onDateSelected: {

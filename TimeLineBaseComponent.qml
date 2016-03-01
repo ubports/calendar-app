@@ -406,6 +406,7 @@ Item {
             flickable: root.isCurrentItem ? timeLineView : null
             clip: true
             opacity: parent.enabled ? 1.0 : 0.3
+            onClicked: root.dateHighlighted(event.startDateTime)
         }
     }
 }
