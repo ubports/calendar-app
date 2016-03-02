@@ -1,5 +1,4 @@
 WorkerScript.onMessage = function(message) {
-    console.debug("UIIIIIIIIIII	")
     var processedEvents =  dayEventsMap(message.events)
     WorkerScript.sendMessage({'reply': processedEvents})
 }
@@ -33,6 +32,15 @@ function sortEventsBySize(eventA, eventB)
     return 0
 }
 
+function yArrayCount(yArray, time)
+{
+    var maxY = yArray.length - 1
+    for(var i=yArray.length - 1; i >= 0; i--) {
+        if (!yArray[i] || (yArray[i].endTime <= time))
+           maxY = i
+    }
+}
+
 /*
  * look for the minumum available 'y' on a list of events
  */
@@ -43,19 +51,27 @@ function findOptimalY(intersections)
 
     var eventWidth = 1.0 / intersections.length
     var yArray = new Array(intersections.length)
+    var maxY = 0
 
     for (var i = 0; i < intersections.length; i++) {
         var intersection = intersections[i]
         for (var y=0; y < yArray.length; y++) {
             if (!yArray[y] || (yArray[y].endTime <= intersection.startTime)) {
+                if (y > maxY)
+                    maxY = y
                 intersection.y = y
-                intersection.width = eventWidth
                 intersection.intersectionCount = intersections.length
                 yArray[y] = intersection
                 break
             }
         }
     }
+
+
+    for (var i = 0; i < intersections.length; i++) {
+        intersections[i].width = (1.0 / (maxY  + 1))
+    }
+
 }
 
 function dayEventsMap(eventsInfo)
