@@ -101,10 +101,10 @@ Row {
                     }
 
                     if(type == ViewType.ViewTypeWeek) {
-                        PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
+                        PopupUtils.open(popoverComponent, allDayButton,{"events": allDayButton.events})
                     } else {
                         if( allDayButton.events.length > 1 ) {
-                            PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
+                            PopupUtils.open(popoverComponent, allDayButton,{"events": allDayButton.events})
                         } else {
                             pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayButton.events[0],"model": root.model});
                         }

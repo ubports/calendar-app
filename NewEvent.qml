@@ -114,7 +114,7 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        selectCalendar(model.defaultCollection().collectionId);
+        selectCalendar(model.getDefaultCollection().collectionId);
     }
 
     //Editing Event
@@ -181,11 +181,11 @@ Page {
             }
 
             event.allDay = allDayEventCheckbox.checked;
-            event.startDateTime = startDate;
-
             if (event.allDay){
-                event.endDateTime = endDate.addDays(1);
+                event.startDateTime = startDate.midnight()
+                event.endDateTime = startDate.addDays(1).midnight()
             } else {
+                event.startDateTime = startDate;
                 event.endDateTime = endDate;
             }
 
