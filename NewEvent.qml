@@ -150,8 +150,7 @@ Page {
         if( e.itemType === Type.Event ) {
             if(e.attendees){
                 for( var j = 0 ; j < e.attendees.length ; ++j ) {
-                    contactList.array.push(e.attendees[j]);
-                    contactModel.append(e.attendees[j]);
+                    contactModel.append({"contact": e.attendees[j]});
                 }
             }
         }
@@ -195,13 +194,14 @@ Page {
             event.location = locationEdit.text
 
             if( event.itemType === Type.Event ) {
-                event.attendees = []; // if Edit remove all attendes & add them again if any
-                var contacts = [];
-                for(var i=0; i < contactList.array.length ; ++i) {
-                    var contact = contactList.array[i]
-                    contacts.push(contact);
+                var newContacts = []
+                for(var i=0; i < contactModel.count ; ++i) {
+                    var contact = contactModel.get(i).contact
+                    if (contact) {
+                        newContacts.push(internal.attendeeFromData(contact.attendeeId, contact.name, contact.emailAddress));
+                    }
                 }
-                event.attendees = contacts;
+                event.attendees = newContacts;
             }
 
             //Set the Rule object to an event
@@ -611,8 +611,7 @@ Page {
                         contactsPopup.contactSelected.connect( function(contact, emailAddress) {
                             if(!internal.isContactAlreadyAdded(contact, emailAddress) ) {
                                 var t = internal.contactToAttendee(contact, emailAddress);
-                                contactModel.append(t);
-                                contactList.array.push(t);
+                                contactModel.append({"contact": t});
                             }
 
                         });
@@ -639,8 +638,6 @@ Page {
                         width: parent.width
                         clip: true
 
-                        property var array: []
-
                         ListModel{
                             id: contactModel
                         }
@@ -651,15 +648,14 @@ Page {
                                 objectName: "eventGuest%1".arg(index)
 
                                 ListItemLayout {
-                                    title.text: name
-                                    subtitle.text: emailAddress
+                                    title.text: contact.name
+                                    subtitle.text: contact.emailAddress
                                 }
 
                                 leadingActions: ListItemActions {
                                     actions: Action {
                                         iconName: "delete"
                                         onTriggered: {
-                                            contactList.array.splice(index, 1)
                                             contactModel.remove(index)
                                         }
                                     }
@@ -776,9 +772,9 @@ Page {
         }
 
         function isContactAlreadyAdded(contact, emailAddress) {
-            for(var i=0; i < contactList.array.length ; ++i) {
-                var attendee = contactList.array[i];
-                if (emailAddress.length > 0) {
+            for(var i=0; i < contactModel.count; i++) {
+                var attendee = contactModel.get(i).contact;
+                if (attendee && (emailAddress.length > 0)) {
                     if (attendee.emailAddress === emailAddress) {
                         return true;
                     }
@@ -791,12 +787,17 @@ Page {
             return false;
         }
 
-        function contactToAttendee(contact, emailAddress) {
-            var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
-            attendee.name = contact.displayLabel.label
-            attendee.emailAddress = emailAddress;
-            attendee.attendeeId = contact.contactId;
+        function attendeeFromData(id, name, emailAddress)
+        {
+            var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", internal, "NewEvent.qml");
+            attendee.name = name
+            attendee.emailAddress = emailAddress
+            attendee.attendeeId = id
             return attendee;
+        }
+
+        function contactToAttendee(contact, emailAddress) {
+            return attendeeFromData(contact.contactId, contact.displayLabel.label, emailAddress)
         }
     }
 }
