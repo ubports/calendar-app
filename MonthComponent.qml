@@ -20,6 +20,7 @@ import Ubuntu.Components 1.3
 
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
+import "./3rd-party/lunar.js" as Lunar
 
 Item{
     id: root
@@ -31,16 +32,17 @@ Item{
 
     property var isYearView;
     property var highlightedDate;
-    property bool displayWeekNumber:false;
+    property bool displayWeekNumber:false
+    property bool displayLunarCalendar: false
+
+    property alias dayLabelDelegate : dayLabelRepeater.delegate
+    property alias dateLabelDelegate : dateLabelRepeater.delegate
+    readonly property alias monthStartDate: intern.monthStart
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
     property string monthLabelFontSize: "large"
     property string yearLabelFontSize: "large"
-
-    property alias dayLabelDelegate : dayLabelRepeater.delegate
-    property alias dateLabelDelegate : dateLabelRepeater.delegate
-    readonly property alias monthStartDate: intern.monthStart
 
     signal monthSelected(var date);
     signal dateSelected(var date);
@@ -66,7 +68,7 @@ Item{
         property int monthStartDate: monthStart.getDate()
         property int monthStartMonth: monthStart.getMonth()
         property int monthStartYear: monthStart.getFullYear()
-        property int daysInStartMonth: Date.daysInMonth(monthStartYear, monthStartMonth)
+        readonly property int daysInStartMonth: Date.daysInMonth(monthStartYear, monthStartMonth)
 
         //check if current month is start month
         property bool isCurMonthStartMonth: root.currentMonth === monthStartMonth &&
@@ -165,6 +167,7 @@ Item{
                     anchors.fill: parent
                     month: root.currentMonth
                     year: root.currentYear
+                    daysInMonth: intern.daysInStartMonth
 
                     monthLabelFontSize: root.monthLabelFontSize
                     yearLabelFontSize: root.yearLabelFontSize
@@ -374,7 +377,19 @@ Item{
             date: delegateDate.getDate()
             isCurrentMonth: delegateDate.getMonth() === root.currentMonth
             showEvent: intern.eventStatus[index] === true
+            lunarData: {
+                if (!root.displayLunarCalendar)
+                    return null
 
+                var lunar = Lunar.calendar.solar2lunar(intern.monthStartYear,
+                                                       intern.monthStartMonth + 1,
+                                                       intern.monthStartDate + index)
+                if (lunar.isTerm) {
+                    return {"lunarText": lunar.Term, "isTerm" :lunar.isTerm};
+                } else {
+                    return {"lunarText": lunar.IDayCn, "isTerm" :lunar.isTerm};
+                }
+            }
             isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
             isSelected: intern.highlightedIndex == index
             width: monthGrid.dayWidth

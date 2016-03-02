@@ -26,6 +26,7 @@ MainView {
     id: mainView
 
     property bool displayWeekNumber: false;
+    property bool displayLunarCalendar: false;
 
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
@@ -89,23 +90,25 @@ MainView {
     width: units.gu(100)
     height: units.gu(80)
     focus: true
-    Keys.forwardTo: [tabs.currentPage]
-
-    headerColor: "#E8E8E8"
-    backgroundColor: "#f5f5f5"
-    footerColor: "#ECECEC"
+    Keys.forwardTo: [pageStack.currentPage]
+    backgroundColor: "#ffffff"
     anchorToKeyboard: false
 
     Connections {
         target: UriHandler
         onOpened: {
             var uri = uris[0]
-            if(uri !== undefined && url != "") {
+            if(uri !== undefined && uri !== "") {
                 var commands = uri.split("://")[1].split("=");
                 if(commands[0].toLowerCase() === "eventid") {
                     // calendar://eventid=??
                     if( eventModel ) {
-                        eventModel.showEventFromId(commands[1]);
+                        var eventId = commands[1];
+                        var prefix = "qtorganizer:eds::system-calendar/";
+                        if (eventId.indexOf(prefix) < 0)
+                            eventId  = prefix + eventId;
+
+                        eventModel.showEventFromId(eventId);
                     }
                 }
             }
@@ -247,6 +250,7 @@ MainView {
             property bool newevent: false;
             property int starttime: -1;
             property int endtime: -1;
+            property string eventId;
 
             //WORKAROUND: The new header api does not work with tabs check bug: #1539759
             property list<Action> tabsAction: [
@@ -341,14 +345,18 @@ MainView {
                 var newevenpattern= new RegExp ("newevent");
                 var starttimepattern = new RegExp ("starttime=\\d+");
                 var endtimepattern = new RegExp ("endtime=\\d+");
+                var eventIdpattern = new RegExp ("eventId=.*")
 
                 newevent = newevenpattern.test(url);
 
                 if (starttimepattern.test(url))
-                    starttime = url.match(/starttime=(\d+)/)[0].replace("starttime=", '');
+                    starttime = url.match(/starttime=(\d+)/)[1];
 
                 if (endtimepattern.test(url))
-                    endtime = url.match(/endtime=(\d+)/)[0].replace("endtime=", '');
+                    endtime = url.match(/endtime=(\d+)/)[1];
+
+                if (eventIdpattern.test(url))
+                    eventId = url.match(/eventId=(.*)/)[1];
             }
 
             Component.onCompleted: {
@@ -374,6 +382,13 @@ MainView {
                             tabs.selectedTabIndex = dayTab.index;
                         }
                     } // End of else if (starttime)
+                    else if (eventId !== "") {
+                        var prefix = "qtorganizer:eds::system-calendar/";
+                        if (eventId.indexOf(prefix) < 0)
+                            eventId  = prefix + eventId;
+
+                        eventModel.showEventFromId(eventId);
+                    }
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
@@ -390,7 +405,6 @@ MainView {
                 // We will consider that  a mouse is always attached until it get implement on SDK.
                 QuickUtils.mouseAttached = true
             } // End of Component.onCompleted:
-
 
             Keys.onTabPressed: {
                 if( event.modifiers & Qt.ControlModifier) {
@@ -561,6 +575,7 @@ MainView {
 
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
 
             onCurrentDateChanged: {
                 tabs.currentDay = currentDate

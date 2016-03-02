@@ -3,7 +3,7 @@ if(CLICK_MODE)
         set(BZR_REVNO "latest")
     endif(NOT BZR_REVNO)
     configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json calendar.apparmor
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json calendar.apparmor push-helper push-helper.json calendar-helper-apparmor.json
             DESTINATION ${CMAKE_INSTALL_PREFIX})
 
     # make the click files visible in qtcreator
