@@ -38,6 +38,8 @@ function parseDayEvents(date, itemsOfTheDay)
             eventEndTimeInMinutes = eventStartTimeInMinutes + 20
 
         eventsInfo.push({'eventId': event.itemId,
+                         'eventStartTime': event.startDateTime.getTime(),
+                         'eventEndTime': event.endDateTime.getTime(),
                          'startTime': eventStartTimeInMinutes,
                          'endTime': eventEndTimeInMinutes,
                          'endTimeInSecs': event.endDateTime.getTime(),

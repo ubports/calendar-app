@@ -83,14 +83,36 @@ Item {
                 console.debug("Something has changed while work script was running, ignore message")
             } else {
                 var events = messageObject.reply
+                var dirty = false
                 for (var i=0; i < events.length; i++) {
+                    var e = intern.eventsById[events[i].eventId]
+
+                    if (e.eventId != events[i].itemId) {
+                        console.warn("Event does not match id:", i)
+                        dirty = true
+                    }
+                    if (e.startDateTime.getTime() != events[i].eventStartTime) {
+                        console.warn("Event does not match start time")
+                        dirty = true
+                    }
+                    if (e.endDateTime.getTime() != events[i].eventEndTime) {
+                        console.warn("Event does not match end time")
+                        dirty = true
+                    }
+
+                    if (dirty) {
+                        console.warn("Mark as dirty")
+                        intern.dirty = true
+                        break
+                    }
+
                     createVisual(events[i])
                 }
             }
             intern.busy = false
-            intern.eventsById = []
+            intern.eventsById = {}
             if (intern.dirty) {
-                idleCreateEvents()
+                bubbleOverLay.idleCreateEvents()
             }
         }
     }
@@ -116,6 +138,7 @@ Item {
         eventBubble.event = intern.eventsById[eventInfo.eventId]
         eventBubble.visible = true
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
+        eventBubble.resize()
     }
 
      function idleCreateEvents() {
@@ -139,7 +162,7 @@ Item {
         intern.busy = true
         intern.dirty = false
         destroyAllChildren();
-        intern.eventsById = []
+        intern.eventsById = {}
 
         var startDate = day.midnight()
         var itemsOfTheDay = model.itemsByTimePeriod(startDate, startDate.endOfDay())
@@ -195,6 +218,7 @@ Item {
         }
     }
 
+    onDayChanged: bubbleOverLay.idleCreateEvents();
     Component.onCompleted: bubbleOverLay.idleCreateEvents();
     enabled: !intern.busy && !intern.waitingForModelChange
 
@@ -304,7 +328,7 @@ Item {
         id: intern
 
         property var now : new Date();
-        property var eventsById: []
+        property var eventsById: ({})
         property var unUsedEvents: []
         property bool busy: false
         property bool dirty: false
@@ -314,7 +338,7 @@ Item {
     Timer {
         id: createEventsTimer
 
-        interval: 100
+        interval: 300
         running: false
         repeat: false
         onTriggered: createEvents()
