@@ -104,11 +104,8 @@ TestCase{
     function debug_map(map)
     {
         for(var k in map) {
-            var events = map[k]
-            console.debug("Time:" + k)
-            for (var v = 0; v < events.length; v++) {
-                console.debug("\t" + (events[v].event ? events[v].event.displayLabel : "null") + " z:" + events[v].z)
-            }
+            var info = map[k]
+            console.debug("\t" + (info.event ? info.event.displayLabel : "null") + " y:" + info.y)
         }
     }
 
@@ -155,7 +152,6 @@ TestCase{
         var eventsAtTenTen = eventMap[0]
         compare(eventsAtTenTen.event.displayLabel, "Event at 10:10 until 11:00")
         compare(eventsAtTenTen.y, 0)
-
 
         //"Event at 13:00 until 13:30"
         var eventsAtOnePm = eventMap[1]
@@ -642,35 +638,35 @@ TestCase{
         var eventsA = eventMap[0]
         compare(eventsA.event.displayLabel, "Event at 14:15 until 15:15")
         compare(eventsA.y, 0)
-        compare(eventsA.intersectionCount, 2)
-        fuzzyCompare(eventsA.width, 0.3, 0.1)
+        compare(eventsA.intersectionCount, 5)
+        fuzzyCompare(eventsA.width, 0.2, 0.1)
 
         //"Event at 14:30 until 15:00"
         var eventsB = eventMap[1]
         compare(eventsB.event.displayLabel, "Event at 14:30 until 15:00")
         compare(eventsB.y, 1)
-        compare(eventsB.intersectionCount, 2)
-        fuzzyCompare(eventsB.width, 0.3, 0.1)
+        compare(eventsB.intersectionCount, 5)
+        fuzzyCompare(eventsB.width, 0.2, 0.1)
 
         //"Event at 14:45 until 15:45"
         var eventsC = eventMap[2]
         compare(eventsC.event.displayLabel, "Event at 14:45 until 15:45")
         compare(eventsC.y, 2)
-        compare(eventsC.intersectionCount, 4)
-        fuzzyCompare(eventsC.width, 0.3, 0.1)
+        compare(eventsC.intersectionCount, 5)
+        fuzzyCompare(eventsC.width, 0.2, 0.1)
 
         //"Event at 15:30 until 16:30"
         var eventsD = eventMap[3]
         compare(eventsD.event.displayLabel, "Event at 15:30 until 16:30")
         compare(eventsD.y, 0)
-        compare(eventsD.intersectionCount, 2)
-        fuzzyCompare(eventsD.width, 0.3, 0.1)
+        compare(eventsD.intersectionCount, 5)
+        fuzzyCompare(eventsD.width, 0.2, 0.1)
 
         //"Event at 15:30 until 16:30 (1)"
         var eventsE = eventMap[4]
         compare(eventsE.event.displayLabel, "Event at 15:30 until 16:30 (1)")
         compare(eventsE.y, 1)
-        compare(eventsE.intersectionCount, 2)
-        fuzzyCompare(eventsE.width, 0.3, 0.1)
+        compare(eventsE.intersectionCount, 5)
+        fuzzyCompare(eventsE.width, 0.2, 0.1)
     }
 }
