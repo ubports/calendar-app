@@ -122,7 +122,7 @@ Item{
     x: depthInRow * width
     z: depthInRow
     width: parent ? parent.width * sizeOfRow : 0
-    height: (durationInMinutes * parent.minuteHeight)
+    height: Math.max(30, (durationInMinutes * parent.minuteHeight))
     onEventChanged: {
         assingnBgColor();
         setDetails();
