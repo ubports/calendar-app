@@ -86,7 +86,6 @@ Item {
                 var dirty = false
                 for (var i=0; i < events.length; i++) {
                     var e = intern.eventsById[events[i].eventId]
-
                     if (e.eventId != events[i].itemId) {
                         console.warn("Event does not match id:", i)
                         dirty = true
@@ -136,9 +135,9 @@ Item {
         eventBubble.depthInRow = eventInfo.y
         eventBubble.model = bubbleOverLay.model
         eventBubble.event = intern.eventsById[eventInfo.eventId]
+        eventBubble.resize()
         eventBubble.visible = true
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
-        eventBubble.resize()
     }
 
      function idleCreateEvents() {
@@ -192,7 +191,7 @@ Item {
             if (intern.unUsedEvents.indexOf(child) === -1) {
                 child.event = null
                 child.visible = false;
-                child.clicked.disconnect( bubbleOverLay.showEventDetails );
+                child.clicked.disconnect(bubbleOverLay.showEventDetails);
                 intern.unUsedEvents.push(child)
             }
         }

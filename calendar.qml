@@ -651,7 +651,11 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
-                    anchorDate = tabs.currentDay
+                    if ((tabs.currentDay.getFullYear() != anchorDate.getFullYear()) ||
+                        (tabs.currentDay.getMonth() != anchorDate.getMonth()) ||
+                        (tabs.currentDay.getDate() != anchorDate.getDate())) {
+                        anchorDate = tabs.currentDay
+                    }
                 }
             }
         }
