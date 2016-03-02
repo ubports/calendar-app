@@ -620,8 +620,9 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
+                    var tabDay = new Date(tabs.currentDay)
                     anchorDate = tabs.currentDay.weekStart(Qt.locale().firstDayOfWeek)
-                    delayScrollToDate(new Date())
+                    delayScrollToDate(tabDay)
                 }
             }
         }
