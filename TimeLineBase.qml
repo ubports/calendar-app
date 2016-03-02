@@ -229,7 +229,7 @@ Item {
         isLiveEditing: overlayMouseArea.creatingEvent
         visible: overlayMouseArea.creatingEvent
         sizeOfRow: 1.0
-        height: 60 * bubbleOverLay.minuteHeight
+        z: 100
         onVisibleChanged: {
             if (visible)
                 y = event ? CanlendarCanvas.minutesSince(bubbleOverLay.day, event.startDateTime) * bubbleOverLay.minuteHeight : 0
@@ -282,13 +282,12 @@ Item {
 
             Haptics.play()
 
-            temporaryEvent.sizeOfRow = 1.0
+            temporaryEvent.anchorDate = bubbleOverLay.day
+            temporaryEvent.minuteHeight = bubbleOverLay.minuteHeight
             temporaryEvent.depthInRow = 0
-            temporaryEvent.z = 1000
-            temporaryEvent.height = 60 * bubbleOverLay.minuteHeight
             temporaryEvent.model = bubbleOverLay.model
             temporaryEvent.event = event
-            temporaryEvent.visible = true
+            temporaryEvent.resize()
             creatingEvent = true
         }
 
