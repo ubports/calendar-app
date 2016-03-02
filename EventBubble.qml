@@ -20,13 +20,17 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import QtOrganizer 5.0
 
+import "calendar_canvas.js" as CanlendarCanvas
+
 Item{
     id: infoBubble
 
+    property var anchorDate;
     property var event;
     property var model;
     property int depthInRow: 0
     property real sizeOfRow:0.0
+    property real minuteHeight: 1.0
     property int type: narrowType
     property int wideType: 1;
     property int narrowType: 2;
@@ -37,6 +41,10 @@ Item{
     readonly property int minimumHeight: type == wideType
                                          ? detailsItems.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
                                          : units.gu(2)
+
+    readonly property real startTimeInMinutes: event ? CanlendarCanvas.minutesSince(infoBubble.anchorDate, event.startDateTime) : 0.0
+    readonly property real endTimeInMinutes: event ? CanlendarCanvas.minutesSince(infoBubble.anchorDate, event.endDateTime) : 0.0
+    readonly property real durationInMinutes: endTimeInMinutes - startTimeInMinutes
 
     signal clicked(var event);
 
@@ -114,9 +122,17 @@ Item{
     x: depthInRow * width
     z: depthInRow
     width: parent ? parent.width * sizeOfRow : 0
+    height: (durationInMinutes * parent.minuteHeight)
     onEventChanged: {
         assingnBgColor();
         setDetails();
+    }
+
+    Binding {
+        target: infoBubble
+        property: "y"
+        value: (startTimeInMinutes * parent.minuteHeight)
+        when: !infoBubble.isLiveEditing
     }
 
     Rectangle{

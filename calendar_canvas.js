@@ -25,8 +25,6 @@ function minutesSince(since, until)
 function parseDayEvents(date, itemsOfTheDay)
 {
     var eventsInfo = []
-
-    // put events with the same start time together
     for(var c=0; c < itemsOfTheDay.length; c++) {
         var event = itemsOfTheDay[c]
         if (event.allDay)

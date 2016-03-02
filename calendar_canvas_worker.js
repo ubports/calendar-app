@@ -42,7 +42,7 @@ function yArrayCount(yArray, time)
 }
 
 /*
- * look for the minumum available 'y' on a list of events
+ * Find item 'y' position on the intersection list
  */
 function findOptimalY(intersections)
 {
@@ -66,7 +66,6 @@ function findOptimalY(intersections)
             }
         }
     }
-
 
     for (var i = 0; i < intersections.length; i++) {
         intersections[i].width = (1.0 / (maxY  + 1))

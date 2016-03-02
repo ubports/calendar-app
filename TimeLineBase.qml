@@ -31,7 +31,7 @@ Item {
     property alias model: modelConnections.target
     property var flickable: null
     readonly property alias creatingEvent: overlayMouseArea.creatingEvent
-    readonly property int hourHeight: units.gu(8)
+    readonly property real hourHeight: units.gu(8)
     readonly property real minuteHeight: (hourHeight / 60)
 
     signal pressAndHoldAt(var date)
@@ -108,11 +108,10 @@ Item {
 
         var eventWidth =  (bubbleOverLay.width * eventInfo.width)
 
+        eventBubble.anchorDate = bubbleOverLay.day
+        eventBubble.minuteHeight = bubbleOverLay.minuteHeight
         eventBubble.sizeOfRow = eventInfo.width
         eventBubble.depthInRow = eventInfo.y
-        eventBubble.y = eventInfo.startTime * bubbleOverLay.minuteHeight
-        eventBubble.z = eventInfo.y
-        eventBubble.height = (eventInfo.endTime - eventInfo.startTime) * bubbleOverLay.minuteHeight
         eventBubble.model = bubbleOverLay.model
         eventBubble.event = intern.eventsById[eventInfo.eventId]
         eventBubble.visible = true
@@ -131,8 +130,8 @@ Item {
 
         // check if there is any update in progress
         if (intern.busy) {
-            console.debug("Work script still busy, mark model as dirty")
-            // mark as dirty and wait for the current process to finish
+            console.debug("Work script still busy, postpone update")
+            // mark as dirsty to triggere a new update after the message arrives
             intern.dirty = true
             return;
         }
@@ -144,13 +143,19 @@ Item {
 
         var startDate = day.midnight()
         var itemsOfTheDay = model.itemsByTimePeriod(startDate, startDate.endOfDay())
+        if (itemsOfTheDay.length === 0) {
+            bubbleOverLay.showSeparator();
+            intern.busy = false
+            return
+        }
+
         for(var i=0; i < itemsOfTheDay.length; i++) {
             var e = itemsOfTheDay[i]
             intern.eventsById[e.itemId] = e
         }
+
         var eventInfo = CanlendarCanvas.parseDayEvents(startDate, itemsOfTheDay)
         eventLayoutHelper.sendMessage({'events': eventInfo})
-
         bubbleOverLay.showSeparator();
     }
 
@@ -198,9 +203,14 @@ Item {
 
         isEventBubble: false
         Drag.active: overlayMouseArea.drag.active
-        //isLiveEditing: overlayMouseArea.creatingEvent
+        isLiveEditing: overlayMouseArea.creatingEvent
         visible: overlayMouseArea.creatingEvent
-        y: event ? CanlendarCanvas.minutesSince(bubbleOverLay.day, event.startDateTime) * bubbleOverLay.minuteHeight : 0
+        sizeOfRow: 1.0
+        height: 60 * bubbleOverLay.minuteHeight
+        onVisibleChanged: {
+            if (visible)
+                y = event ? CanlendarCanvas.minutesSince(bubbleOverLay.day, event.startDateTime) * bubbleOverLay.minuteHeight : 0
+        }
     }
 
     Item {
