@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-01 16:35+0530\n"
-"PO-Revision-Date: 2015-12-04 17:25+0000\n"
+"PO-Revision-Date: 2016-03-03 01:01+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-03-02 05:40+0000\n"
+"X-Launchpad-Export-Date: 2016-03-03 06:08+0000\n"
 "X-Generator: Launchpad (build 17925)\n"
 
 #: ../AgendaView.qml:52 ../DayView.qml:41 ../MonthView.qml:40
@@ -49,7 +49,7 @@ msgstr "%1 تا %2"
 #: ../AgendaView.qml:183
 #, qt-format
 msgid "%1 %2 %3 %4 %5"
-msgstr ""
+msgstr "%1 %2 %3 %4 %5"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -117,7 +117,7 @@ msgstr "MMMM yyyy"
 #: ../DayView.qml:155 ../MonthView.qml:144 ../WeekView.qml:178
 #, qt-format
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -174,7 +174,7 @@ msgstr "رویداد تازه"
 
 #: ../EventActions.qml:75 ../Settings.qml:29
 msgid "Settings"
-msgstr ""
+msgstr "تنظیمات"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -196,7 +196,7 @@ msgstr "گاه‌شمار %1"
 #: ../EventDetails.qml:143
 #, qt-format
 msgid "%1 %2 %3 - %4 %5 %6 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 - %4 %5 %6 (تمام روز)"
 
 #: ../EventDetails.qml:147
 #, qt-format
@@ -206,7 +206,7 @@ msgstr "%1 - %2 (تمام روز)"
 #: ../EventDetails.qml:153
 #, qt-format
 msgid "%1 %2 %3 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 (تمام روز)"
 
 #: ../EventDetails.qml:156
 #, qt-format
@@ -216,12 +216,12 @@ msgstr "%1 تمام روز"
 #: ../EventDetails.qml:162
 #, qt-format
 msgid "%1 %2 %3, %4 - %5 %6 %7, %8"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5 %6 %7, %8"
 
 #: ../EventDetails.qml:171
 #, qt-format
 msgid "%1 %2 %3, %4 - %5"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5"
 
 #: ../EventDetails.qml:238
 msgid "Edit"
@@ -287,7 +287,7 @@ msgstr "هر هفته در %1"
 #: ../HeaderDateComponent.qml:90
 #, qt-format
 msgid "%1 %2 %3"
-msgstr ""
+msgstr "%1 %2 %3"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -303,7 +303,7 @@ msgstr "بعد از تاریخ"
 
 #: ../MonthComponent.qml:262
 msgid "Wk"
-msgstr ""
+msgstr "هف"
 
 #: ../NewEvent.qml:84
 msgid "Save"
@@ -438,11 +438,11 @@ msgstr "۲ هفته"
 
 #: ../Settings.qml:55
 msgid "Show week numbers"
-msgstr ""
+msgstr "نمایش عدد هفته"
 
 #: ../Settings.qml:71
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "نمایش تقویم قمری"
 
 #: ../TimeLineBase.qml:73
 msgid "Untitled"
