@@ -84,8 +84,8 @@ Item {
         scrollHour = date.getHours();
 
         var currentTimeY = (scrollHour * hourItemHeight)
-        var margin = (timeLineView.height / 2) * 0.8
-        currentTimeY -= margin
+        var margin = (timeLineView.height / 2.0) - units.gu(5)
+        currentTimeY =  currentTimeY - margin
         timeLineView.contentY = Math.min(timeLineView.contentHeight - timeLineView.height, currentTimeY > 0 ? currentTimeY : 0)
         timeLineView.returnToBounds()
     }
@@ -104,12 +104,8 @@ Item {
             diff = diff < 0 ? 0 : diff
 
             var currentDayY = timeLineView.delegateWidth * diff
-            var margin = timeLineView.width / 2
-
-            if (currentDayY < (timeLineView.contentWidth - margin)) {
-                currentDayY -= margin
-            }
-
+            var margin = (timeLineView.width - timeLineView.delegateWidth) / 2
+            currentDayY = currentDayY - margin
             timeLineView.contentX = Math.min(timeLineView.contentWidth - timeLineView.width, currentDayY > 0 ? currentDayY : 0)
         } else {
             timeLineView.contentX = 0

@@ -62,21 +62,28 @@ PageWithBottomEdge {
     }
 
     onEventCreated: {
-        var eventDate = new Date(event.startDateTime)
-        highlightedDay = eventDate
+        var scrollDate = new Date(event.startDateTime)
         var currentWeekNumber = currentDate.weekNumber(Qt.locale().firstDayOfWeek)
-        var eventWeekNumber = eventDate.weekNumber(Qt.locale().firstDayOfWeek)
+        var eventWeekNumber = scrollDate.weekNumber(Qt.locale().firstDayOfWeek)
         var needScroll = false
-        if ((eventDate.getFullYear() !== currentDate.getFullYear()) ||
+
+        // do not scroll time for all day events
+        if (event.allDay) {
+            scrollDate.setHours(currentDate.getHours())
+            scrollDate.setMinutes(currentDate.getMinutes())
+        }
+
+        if ((scrollDate.getFullYear() !== currentDate.getFullYear()) ||
             (currentWeekNumber !== eventWeekNumber)) {
-            anchorDate = new Date(eventDate)
+            anchorDate = new Date(scrollDate)
             needScroll = true
-        } else if (!weekViewPath.currentItem.item.dateTimeIsVisible(eventDate)) {
+        } else if (!weekViewPath.currentItem.item.timeIsVisible(scrollDate)) {
             needScroll = true
         }
 
+        highlightedDay = scrollDate
         if (needScroll) {
-            delayScrollToDate(eventDate)
+            delayScrollToDate(scrollDate)
         }
     }
 

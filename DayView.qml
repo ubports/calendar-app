@@ -46,19 +46,26 @@ PageWithBottomEdge {
     }
 
     onEventCreated: {
-        var eventDate = event.startDateTime
+        var scrollDate = new Date(event.startDateTime)
+        // do not scroll time for all day events
+        if (event.allDay) {
+            scrollDate.setHours(currentDate.getHours())
+            scrollDate.setMinutes(currentDate.getMinutes())
+        }
+
         var needScroll = false
-        if ((currentDate.getFullYear() !== eventDate.getFullYear()) ||
-            (currentDate.getMonth() !== eventDate.getMonth()) ||
-            (currentDate.getDate() !== eventDate.getDate())) {
-            anchorDate = event.startDateTime
+        if ((currentDate.getFullYear() !== scrollDate.getFullYear()) ||
+            (currentDate.getMonth() !== scrollDate.getMonth()) ||
+            (currentDate.getDate() !== scrollDate.getDate())) {
+            anchorDate = new Date(scrollDate)
             needScroll = true
-        } else if (!dayViewPath.currentItem.timeIsVisible(eventDate)) {
+        } else if (!dayViewPath.currentItem.timeIsVisible(scrollDate)) {
             needScroll = true
         }
 
-        if (needScroll)
-            delayScrollToDate(event.startDateTime)
+        if (needScroll) {
+            delayScrollToDate(scrollDate)
+        }
     }
 
     Action {
