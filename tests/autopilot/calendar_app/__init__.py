@@ -47,9 +47,6 @@ class CalendarApp(object):
         self.app = app_proxy
         self.test_type = test_type
         self.main_view = self.app.select_single(MainView)
-        #self.main_view.print_tree()
-        #import sys
-        #sys.exit()
 
     @property
     def pointing_device(self):
@@ -80,48 +77,6 @@ class MainView(ubuntuuitoolkit.MainView):
         current_tab = self.select_single('Tab', visible=True)
         button = current_tab.wait_select_single(objectName='%s_button'%action)
         self.pointing_device.click_object(button)
-
-    @autopilot.logging.log_action(logger.info)
-    def go_to_month_view(self):
-        """Open the month view.
-
-        :return: The Month View page.
-
-        """
-        month_tab = self.select_single('Tab', objectName='monthTab')
-        if not month_tab.visible:
-            self.switch_to_tab('monthTab')
-        else:
-            logger.debug('The month View page is already opened.')
-        return self.get_month_view(month_tab)
-
-    @autopilot.logging.log_action(logger.info)
-    def go_to_week_view(self):
-        """Open the week view.
-
-        :return: The Week View page.
-
-        """
-        week_tab = self.select_single('Tab', objectName='weekTab')
-        if not week_tab.visible:
-            self.switch_to_tab('weekTab')
-        else:
-            logger.debug('The week View page is already opened.')
-        return self.get_week_view(week_tab)
-
-    @autopilot.logging.log_action(logger.info)
-    def go_to_year_view(self):
-        """Open the year view.
-
-        :return: The Year View page.
-
-        """
-        year_tab = self.select_single('Tab', objectName='yearTab')
-        if not year_tab.visible:
-            self.switch_to_tab('yearTab')
-        else:
-            logger.debug('The Year View page is already opened.')
-        return self.get_year_view(year_tab)
 
     @autopilot.logging.log_action(logger.info)
     def go_to_day_view(self):
@@ -172,57 +127,16 @@ class MainView(ubuntuuitoolkit.MainView):
         return self.wait_select_single(
             CalendarChoicePopup, objectName="calendarchoicepopup")
 
-    def set_picker(self, field, mode, value):
-        # open picker
-        self.pointing_device.click_object(field)
-        # valid options are date or time; assume date if invalid/no option
-        if mode == 'time':
-            mode_value = 'Hours|Minutes'
-        else:
-            mode_value = 'Years|Months|Days'
-        picker = self.wait_select_single(
-            ubuntuuitoolkit.pickers.DatePicker, mode=mode_value, visible=True)
-        if mode_value == 'Hours|Minutes':
-            picker.pick_time(value)
-        else:
-            picker.pick_date(value)
-        # close picker
-        self.pointing_device.click_object(field)
-
-    def get_event_view(self, parent_object=None):
-        if parent_object is None:
-            parent_object = self
-        return parent_object.wait_select_single("EventView")
-
     def get_event_details(self, parent_object=None):
         if parent_object is None:
             parent_object = self
         return parent_object.wait_select_single(EventDetails,
                                                 objectName='eventDetails')
-
-    def get_month_view(self, parent_object=None):
-        if parent_object is None:
-            parent_object = self
-        return parent_object.wait_select_single(MonthView,
-                                                objectName='monthViewPage')
-
-    def get_year_view(self, parent_object=None):
-        if parent_object is None:
-            parent_object = self
-        return parent_object.wait_select_single(YearView,
-                                                objectName='yearViewPage')
-
     def get_day_view(self, parent_object=None):
         if parent_object is None:
             parent_object = self
         return parent_object.wait_select_single(DayView,
                                                 objectName='dayViewPage')
-
-    def get_week_view(self, parent_object=None):
-        if parent_object is None:
-            parent_object = self
-        return parent_object.wait_select_single(WeekView,
-                                                objectName='weekViewPage')
 
     def get_agenda_view(self, parent_object=None):
         if parent_object is None:
@@ -230,63 +144,9 @@ class MainView(ubuntuuitoolkit.MainView):
         return parent_object.wait_select_single(AgendaView,
                                                 objectName='AgendaView')
 
-    def get_label_with_text(self, text, root=None):
-        if root is None:
-            root = self
-        labels = root.select_many("Label", text=text)
-        if (len(labels) > 0):
-            return labels[0]
-        else:
-            return None
-
-    def get_month_year(self, component):
-        return self.wait_select_single(
-            "Label", objectName="monthYearLabel").text
-
-    def get_year(self, component):
-        return int(component.wait_select_single(
-            "Label", objectName="yearLabel").text)
-
-    def get_month_name(self, component):
-        return component.wait_select_single(
-            "Label", objectName="monthLabel").text
-
-    def safe_swipe_view(self, direction, view, date):
-        """
-        direction: direction to swipe
-        view: the view you are swiping against
-        date: a function object of the view
-        """
-        timeout = 0
-        before = date
-        # try up to 3 times to swipe
-        while timeout < 3 and date == before:
-            self._swipe(direction, view)
-            # check for up to 3 seconds after swipe for view
-            # to have changed before trying again
-            for x in range(0, 3):
-                if date != before:
-                    break
-                sleep(1)
-            timeout += 1
-
-    def swipe_view(self, direction, view, x_pad=0.08):
-        """Swipe the given view to left or right.
-
-        Args:
-            direction: if 1 it swipes from right to left, if -1 from
-                left right.
-
-        """
-
-        start = (-direction * x_pad) % 1
-        stop = (direction * x_pad) % 1
-
-        y_line = view.globalRect[1] + view.globalRect[3] / 2
-        x_start = view.globalRect[0] + view.globalRect[2] * start
-        x_stop = view.globalRect[0] + view.globalRect[2] * stop
-
-        self.pointing_device.drag(x_start, y_line, x_stop, y_line)
+    @autopilot.logging.log_action(logger.info)
+    def press_header_custombackbutton(self):
+        self.click_custom_back_button()
 
     def swipe_view_vertical(self, direction, view, y_pad=0.08):
         """Swipe the given view to up or down.
@@ -304,215 +164,6 @@ class MainView(ubuntuuitoolkit.MainView):
 
         self.pointing_device.drag(x_line, y_start, x_line, y_stop)
         sleep(1)
-
-    def to_local_date(self, date):
-        utc = date.replace(tzinfo=tz.tzutc())
-        local = utc.astimezone(tz.tzlocal())
-        return local
-
-    def press_header_todaybutton(self):
-        self.click_action_button('todaybutton')
-
-    @autopilot.logging.log_action(logger.info)
-    def get_color_picker_dialog(self):
-        return self.wait_select_single(
-            "ColorPickerDialog", objectName="colorPickerDialog")
-
-    @autopilot.logging.log_action(logger.info)
-    def press_header_custombackbutton(self):
-        self.click_custom_back_button()
-
-
-class YearView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
-
-    """Autopilot helper for the Year View page."""
-
-    def get_selected_day(self):
-        """Return the selected day.
-
-        :returns: A today calendar object
-
-        """
-        month = self.get_selected_month()
-        try:
-            today = month.select_single(
-                'MonthComponentDateDelegate',
-                isCurrentMonth=True, isToday=True)
-        except exceptions.StateNotFoundError:
-            raise CalendarException('No day is selected on the visible year.')
-        else:
-            return today
-
-    def get_selected_month(self):
-        """Return the selected month.
-
-        :returns: A month calendar object
-
-        """
-        current_year_grid = self._get_current_year_grid()
-        return self._get_month_component(current_year_grid,
-                                         current_year_grid.scrollMonth)
-
-    def get_day(self, monthNumber, dayNumber):
-        """Return the day object.
-        :param monthNumber the numeric month to get
-        :param dayNumber the numeric day to get
-        :returns: A month calendar object
-
-        """
-        month = self.get_month(monthNumber)
-
-        try:
-            day = month.select_single('MonthComponentDateDelegate',
-                                      date=dayNumber)
-        except exceptions.StateNotFoundError:
-            raise CalendarException('%s not found in %s' % (
-                dayNumber, monthNumber))
-        else:
-            return day
-
-    def get_month(self, monthNumber):
-        """Return the month object.
-        :param monthNumber the numeric month to get
-        :returns: A month calendar object
-
-        """
-        current_year_grid = self._get_current_year_grid()
-        # the monthcomponents start at zero, thus subtract 1 to get month
-        return self._find_month_component(current_year_grid, monthNumber - 1)
-
-    def _get_current_year_grid(self):
-        path_view_base = self.select_single(
-            'PathViewBase', objectName='yearPathView')
-        return path_view_base.select_single(
-            "YearViewDelegate", isCurrentItem=True)
-
-    def _find_month_component(self, grid, index):
-        try:
-            month = self._get_month_component(grid, index)
-        except exceptions.StateNotFoundError:
-            month = self._swipe_to_find_month_component(grid, index)
-        if month is None:
-            raise CalendarException('Month {} not found.'.format(index))
-        else:
-            return month
-
-    def _get_month_component(self, grid, index):
-        return grid.select_single(
-            'MonthComponent',
-            objectName='monthComponent{}'.format(index))
-
-    def _swipe_to_find_month_component(self, grid, index):
-        month = None
-        grid.swipe_to_top()
-        while not grid.atYEnd:
-            try:
-                month = self._get_month_component(grid, index)
-            except exceptions.StateNotFoundError:
-                # FIXME do not call the private _get_containers.
-                # Reported as bug http://pad.lv/1365674
-                # --elopio - 2014-09-04
-                grid.swipe_to_show_more_below(grid._get_containers())
-            else:
-                break
-        return month
-
-
-class WeekView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
-
-    """Autopilot helper for the Week View page."""
-
-    def get_current_weeknumber(self):
-        return self._get_timeline_base().weekNumber
-
-    def _get_timeline_base(self):
-        return self.select_single("TimeLineBaseComponent", isActive=True)
-
-    def _get_timeline_header(self):
-        return self._get_timeline_base().select_single(objectName="viewHeader")
-
-    def _get_date_label_headers(self):
-        return self._get_timeline_header().select_many("Label",
-                                                       objectName="dateLabel")
-
-    def _get_pathview_base(self):
-        # return self.select_single('PathViewBase',
-        #                           objectname='weekviewpathbase')
-        # why do you hate me autopilot? ^^
-        return self.select_single('PathViewBase')
-
-    def change_week(self, delta):
-        direction = int(math.copysign(1, delta))
-        main_view = self.get_root_instance().select_single(MainView)
-
-        pathview_base = self._get_pathview_base()
-
-        for _ in range(abs(delta)):
-            timeline_header = self._get_timeline_header()
-
-            main_view.swipe_view(direction, timeline_header)
-            # prevent timing issues with swiping
-            pathview_base.moving.wait_for(False)
-
-    def get_days_of_week(self):
-        # sort based on text value of the day
-        days = sorted(self._get_date_label_headers(),
-                      key=lambda label: label.text)
-        days = [int(item.text) for item in days]
-
-        # resort so beginning of next month comes after the end
-        # need to support overlapping months 28,30,31 -> 1
-        sorteddays = []
-        for day in days:
-            inserted = 0
-            for index, sortday in enumerate(sorteddays):
-                if day - sorteddays[index] == 1:
-                    sorteddays.insert(index + 1, day)
-                    inserted = 1
-                    break
-            if inserted == 0:
-                sorteddays.insert(0, day)
-        return sorteddays
-
-    @autopilot.logging.log_action(logger.info)
-    def get_current_headerdatecomponent(self, now):
-        today = datetime.date(now.year, now.month, now.day)
-        header_date_components = self.select_many('HeaderDateComponent')
-        for header in header_date_components:
-            header_date = datetime.date(header.date.datetime.year,
-                                        header.date.datetime.month,
-                                        header.date.datetime.day)
-            if header_date == today:
-                return header
-
-
-class MonthView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
-
-    """Autopilot helper for the Month View page."""
-
-    def get_current_month(self):
-        return self.select_single('MonthComponent', isCurrentItem=True)
-
-    @autopilot.logging.log_action(logger.info)
-    def get_current_month_name(self):
-        month = self.get_current_month()
-        return month.currentMonth.datetime.strftime("%B")
-
-    @autopilot.logging.log_action(logger.info)
-    def get_current_selected_day(self):
-        today_days = self.select_many(
-            'MonthComponentDateDelegate', isToday=True)
-        for item in today_days:
-            if item.isCurrentMonth:
-                return item
-
-    @autopilot.logging.log_action(logger.info)
-    def get_day_label(self, day):
-        days_row = self.select_single(
-            'QQuickRow', objectName='dayLabelRow0')
-        return days_row.select_single(
-            'Label', objectName='weekDay{}'.format(day))
-
 
 class DayView(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
@@ -787,17 +438,6 @@ class EventBubble(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         return self.get_root_instance().wait_select_single(
             EventDetails, objectName='eventDetails')
 
-
-# override toolkit helper to
-# workaround bug https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1343916
-class QQuickFlickable(ubuntuuitoolkit.QQuickFlickable):
-
-    def _slow_drag(self, start_x, stop_x, start_y, stop_y):
-        rate = (self.flickDeceleration + 250) / 350
-        self.pointing_device.drag(start_x, start_y, stop_x, stop_y, rate=rate)
-        self.pointing_device.click()
-
-
 class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     """Autopilot helper for the New Event page."""
@@ -961,18 +601,8 @@ class NewEventEntryField(ubuntuuitoolkit.TextField):
 
 
 #for https://bugs.launchpad.net/ubuntu/+source/ubuntu-ui-toolkit/+bug/1552773
-class OptionSelector(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+class OptionSelector(ubuntuuitoolkit.OptionSelector):
     """OptionSelector Autopilot custom proxy object"""
-
-    def get_option_count(self):
-        """Gets the number of items in the option selector"""
-        self.list_view = self.select_single("QQuickListView")
-        return self.list_view.count
-
-    def get_selected_index(self):
-        """Gets the current selected index of the QQuickListView"""
-        self.list_view = self.select_single("QQuickListView")
-        return self.list_view.currentIndex
 
     def get_selected_text(self):
         """gets the text of the currently selected item"""
@@ -989,58 +619,6 @@ class OptionSelector(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         current_label = option_selector_delegate.select_single(
             'UCLabel', visible='True')
         return current_label
-
-    def _expand(self):
-        """Expand an optionselector if it's collapsed"""
-        # if just collapsed it can think that the item is expanded
-        #  https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1240288
-        sleep(1)
-        if not self.expanded and not self.currentlyExpanded:
-            self.pointing_device.click_object(self.get_current_label())
-            self.currentlyExpanded.wait_for(True)
-            # selecting the same item too quickly after expand
-            # causes the wrong item to be selected
-            # https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1231939
-            sleep(1)
-
-    def select_option(self, *args, **kwargs):
-        """Select delegate in option selector
-
-        Example usage::
-            select_option(objectName="myOptionSelectorDelegate")
-            select_option('Label', text="some_text_here")
-
-        :parameter kwargs: keywords used to find property(s) of delegate in
-            option selector
-
-        """
-
-        if args:
-            try:
-                select_object = self.select_single(
-                    *args,
-                    **kwargs
-                )
-            except dbus.StateNotFoundError:
-                raise _common.ToolkitException(
-                    'OptionSelectorDelegate with args {} and kwargs {} not '
-                    'found'.format(args, kwargs)
-                )
-
-        else:
-            try:
-                select_object = self.select_single(
-                    'OptionSelectorDelegate',
-                    **kwargs
-                )
-            except dbus.StateNotFoundError:
-                raise _common.ToolkitException(
-                    'OptionSelectorDelegate with kwargs {} not found'.format(
-                        kwargs)
-                )
-
-        self._expand()
-        self.pointing_device.click_object(select_object)
 
 class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
