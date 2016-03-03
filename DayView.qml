@@ -21,6 +21,7 @@ import Ubuntu.Components 1.3
 
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
+import "./3rd-party/lunar.js" as Lunar
 
 PageWithBottomEdge {
     id: dayViewPage
@@ -33,7 +34,8 @@ PageWithBottomEdge {
     signal dateSelected(var date);
     signal pressAndHoldAt(var date, bool allDay)
 
-    function delayScrollToDate(date) {
+    function delayScrollToDate(date, scrollTime) {
+        idleScroll.scrollToTime = scrollTime != undefined ? scrollTime : true
         idleScroll.scrollToDate = new Date(date)
         idleScroll.restart()
     }
@@ -46,19 +48,20 @@ PageWithBottomEdge {
     }
 
     onEventCreated: {
-        var eventDate = event.startDateTime
+        var scrollDate = new Date(event.startDateTime)
         var needScroll = false
-        if ((currentDate.getFullYear() !== eventDate.getFullYear()) ||
-            (currentDate.getMonth() !== eventDate.getMonth()) ||
-            (currentDate.getDate() !== eventDate.getDate())) {
-            anchorDate = event.startDateTime
+        if ((currentDate.getFullYear() !== scrollDate.getFullYear()) ||
+            (currentDate.getMonth() !== scrollDate.getMonth()) ||
+            (currentDate.getDate() !== scrollDate.getDate())) {
+            anchorDate = new Date(scrollDate)
             needScroll = true
-        } else if (!dayViewPath.currentItem.timeIsVisible(eventDate)) {
+        } else if (!dayViewPath.currentItem.timeIsVisible(scrollDate)) {
             needScroll = true
         }
 
-        if (needScroll)
-            delayScrollToDate(event.startDateTime)
+        if (needScroll) {
+            delayScrollToDate(scrollDate, !event.allDay)
+        }
     }
 
     Action {
@@ -77,16 +80,18 @@ PageWithBottomEdge {
         id: idleScroll
 
         property var scrollToDate: null
+        property bool scrollToTime: true
 
         interval: 200
         repeat:false
         onTriggered: {
-            if (scrollToDate) {
+            if (scrollToDate && scrollToTime) {
                 dayViewPath.currentItem.scrollToTime(scrollToDate)
-                scrollToDate = null
             } else {
                 dayViewPath.currentItem.scrollToBegin()
             }
+            scrollToDate = null
+            scrollToTime = true
         }
     }
 
@@ -156,7 +161,7 @@ PageWithBottomEdge {
 
             Component.onCompleted: {
                 if(dayViewPage.tabSelected){
-                    timeLineView.scrollToTime(new Date());
+                    idleScroll.restart()
                 }
             }
 
@@ -185,5 +190,19 @@ PageWithBottomEdge {
                 when: timeLineView.isCurrentItem
             }
         }
+    }
+
+    Component.onCompleted: {
+        pageHeader.title = Qt.binding(function(){
+            if(mainView.displayLunarCalendar){
+                var lunarDate = Lunar.calendar.solar2lunar(currentDay.getFullYear(),
+                                                           currentDay.getMonth() + 1,
+                                                           currentDay.getDate())
+                return i18n.tr("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
+            } else {
+                var monthName = currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            }
+        })
     }
 }

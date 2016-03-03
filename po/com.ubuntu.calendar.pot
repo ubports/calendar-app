@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-02 17:47-0300\n"
+"POT-Creation-Date: 2016-03-04 04:02+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,220 +18,228 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../AgendaView.qml:53 ../DayView.qml:43 ../MonthView.qml:47
-#: ../WeekView.qml:45 ../YearView.qml:49 ../build/pkg/AgendaView.qml:53
-#: ../build/pkg/DayView.qml:43 ../build/pkg/MonthView.qml:47
-#: ../build/pkg/WeekView.qml:45 ../build/pkg/YearView.qml:49
-msgid "Today"
-msgstr ""
-
-#: ../AgendaView.qml:63 ../build/pkg/AgendaView.qml:63
-#: ../build/pkg/calendar.qml:287 ../build/pkg/calendar.qml:503
-#: ../calendar.qml:287 ../calendar.qml:503
+#: ../AgendaView.qml:50 ../calendar.qml:292 ../calendar.qml:518
 msgid "Agenda"
 msgstr ""
 
-#: ../AgendaView.qml:101 ../build/pkg/AgendaView.qml:101
-msgid "No upcoming events"
-msgstr ""
-
-#: ../AgendaView.qml:104 ../build/pkg/AgendaView.qml:104
+#: ../AgendaView.qml:90
 msgid "You have no calendars enabled"
 msgstr ""
 
-#: ../AgendaView.qml:114 ../build/pkg/AgendaView.qml:114
+#: ../AgendaView.qml:90
+msgid "No upcoming events"
+msgstr ""
+
+#: ../AgendaView.qml:102
 msgid "Enable calendars"
 msgstr ""
 
-#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
-#. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:177 ../EventBubble.qml:133
-#: ../build/pkg/AgendaView.qml:177 ../build/pkg/EventBubble.qml:133
+#: ../AgendaView.qml:164
 #, qt-format
-msgid "%1 - %2"
+msgid "%1 %2 %3 %4 %5"
+msgstr ""
+
+#: ../AgendaView.qml:191
+msgid "no event name set"
+msgstr ""
+
+#: ../AgendaView.qml:193
+msgid "no location"
+msgstr ""
+
+#: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
+msgid "New event"
 msgstr ""
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:126 ../build/pkg/AllDayEventComponent.qml:126
+#: ../AllDayEventComponent.qml:150
 #, qt-format
 msgid "%1 ev."
 msgstr ""
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:130 ../build/pkg/AllDayEventComponent.qml:130
+#: ../AllDayEventComponent.qml:154
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../CalendarChoicePopup.qml:33 ../EventActions.qml:51
-#: ../build/pkg/CalendarChoicePopup.qml:33 ../build/pkg/EventActions.qml:51
+#: ../CalendarChoicePopup.qml:34 ../EventActions.qml:51
 msgid "Calendars"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:37 ../Settings.qml:32
-#: ../build/pkg/CalendarChoicePopup.qml:37 ../build/pkg/Settings.qml:32
+#: ../CalendarChoicePopup.qml:36 ../Settings.qml:31
 msgid "Back"
 msgstr ""
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
-#: ../build/pkg/CalendarChoicePopup.qml:51 ../build/pkg/EventActions.qml:36
+#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:36
 msgid "Sync"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:51 ../EventActions.qml:36
-#: ../build/pkg/CalendarChoicePopup.qml:51 ../build/pkg/EventActions.qml:36
+#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:36
 msgid "Syncing"
 msgstr ""
 
-#: ../CalendarChoicePopup.qml:70 ../build/pkg/CalendarChoicePopup.qml:70
+#: ../CalendarChoicePopup.qml:72
 msgid "Add online Calendar"
 msgstr ""
 
-#: ../ColorPickerDialog.qml:25 ../build/pkg/ColorPickerDialog.qml:25
+#: ../ColorPickerDialog.qml:25
 msgid "Select Color"
 msgstr ""
 
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
-#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:321
-#: ../build/pkg/ColorPickerDialog.qml:55
-#: ../build/pkg/DeleteConfirmationDialog.qml:60
-#: ../build/pkg/EditEventConfirmationDialog.qml:53
-#: ../build/pkg/NewEvent.qml:321
+#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:340
 msgid "Cancel"
 msgstr ""
 
-#: ../ContactChoicePopup.qml:37 ../build/pkg/ContactChoicePopup.qml:37
+#: ../ContactChoicePopup.qml:37
 msgid "No contact"
 msgstr ""
 
-#: ../ContactChoicePopup.qml:96 ../build/pkg/ContactChoicePage.qml:50
-#: ../build/pkg/ContactChoicePopup.qml:96
+#: ../ContactChoicePopup.qml:96
 msgid "Search contact"
+msgstr ""
+
+#: ../DayView.qml:71 ../MonthView.qml:50 ../WeekView.qml:54 ../YearView.qml:57
+msgid "Today"
 msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:67 ../MonthView.qml:69 ../WeekView.qml:68
-#: ../build/pkg/DayView.qml:67 ../build/pkg/MonthView.qml:69
-#: ../build/pkg/WeekView.qml:68
+#: ../DayView.qml:115 ../DayView.qml:203 ../MonthView.qml:78
+#: ../WeekView.qml:137 ../WeekView.qml:256
 msgid "MMMM yyyy"
 msgstr ""
 
+#: ../DayView.qml:201 ../MonthView.qml:73 ../WeekView.qml:254
+#, qt-format
+msgid "%1 %2"
+msgstr ""
+
 #: ../DeleteConfirmationDialog.qml:31
-#: ../build/pkg/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
 msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:32
-#: ../build/pkg/DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
 msgstr ""
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../DeleteConfirmationDialog.qml:36
-#: ../build/pkg/DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
 msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:37
-#: ../build/pkg/DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
 msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:40
-#: ../build/pkg/DeleteConfirmationDialog.qml:40
 msgid "Delete series"
 msgstr ""
 
 #: ../DeleteConfirmationDialog.qml:51
-#: ../build/pkg/DeleteConfirmationDialog.qml:51
 msgid "Delete this"
 msgstr ""
 
-#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:332
-#: ../build/pkg/DeleteConfirmationDialog.qml:51 ../build/pkg/NewEvent.qml:332
+#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:347
 msgid "Delete"
 msgstr ""
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:316
-#: ../build/pkg/EditEventConfirmationDialog.qml:29
-#: ../build/pkg/NewEvent.qml:316
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:335
 msgid "Edit Event"
 msgstr ""
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../EditEventConfirmationDialog.qml:32
-#: ../build/pkg/EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
 msgstr ""
 
 #: ../EditEventConfirmationDialog.qml:35
-#: ../build/pkg/EditEventConfirmationDialog.qml:35
 msgid "Edit series"
 msgstr ""
 
 #: ../EditEventConfirmationDialog.qml:44
-#: ../build/pkg/EditEventConfirmationDialog.qml:44
 msgid "Edit this"
 msgstr ""
 
-#: ../EventActions.qml:63 ../Settings.qml:30 ../build/pkg/EventActions.qml:63
-#: ../build/pkg/Settings.qml:30
+#: ../EventActions.qml:63 ../Settings.qml:29
 msgid "Settings"
+msgstr ""
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../EventBubble.qml:97
+#, qt-format
+msgid "%1 - %2"
 msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
-#: ../EventBubble.qml:144 ../EventBubble.qml:149
-#: ../build/pkg/EventBubble.qml:144 ../build/pkg/EventBubble.qml:149
+#: ../EventBubble.qml:108 ../EventBubble.qml:113
 #, qt-format
 msgid "%1 <b>%2</b>"
 msgstr ""
 
-#: ../EventDetails.qml:43 ../NewEvent.qml:464 ../build/pkg/EventDetails.qml:43
-#: ../build/pkg/NewEvent.qml:464
+#: ../EventDetails.qml:44 ../NewEvent.qml:483
 msgid "Event Details"
 msgstr ""
 
 #. TRANSLATORS: the first parameter refers to the name of event calendar.
-#: ../EventDetails.qml:68 ../build/pkg/EventDetails.qml:68
+#: ../EventDetails.qml:69
 #, qt-format
 msgid "%1 Calendar"
 msgstr ""
 
-#: ../EventDetails.qml:129 ../build/pkg/EventDetails.qml:129
+#: ../EventDetails.qml:143
+#, qt-format
+msgid "%1 %2 %3 - %4 %5 %6 (All Day)"
+msgstr ""
+
+#: ../EventDetails.qml:147
 #, qt-format
 msgid "%1 - %2 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:133 ../build/pkg/EventDetails.qml:133
+#: ../EventDetails.qml:153
+#, qt-format
+msgid "%1 %2 %3 (All Day)"
+msgstr ""
+
+#: ../EventDetails.qml:156
 #, qt-format
 msgid "%1 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:203 ../build/pkg/EventDetails.qml:203
+#: ../EventDetails.qml:162
+#, qt-format
+msgid "%1 %2 %3, %4 - %5 %6 %7, %8"
+msgstr ""
+
+#: ../EventDetails.qml:171
+#, qt-format
+msgid "%1 %2 %3, %4 - %5"
+msgstr ""
+
+#: ../EventDetails.qml:238
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:354 ../NewEvent.qml:566
-#: ../build/pkg/EventDetails.qml:354 ../build/pkg/NewEvent.qml:566
+#: ../EventDetails.qml:389 ../NewEvent.qml:589
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:397 ../EventReminder.qml:35 ../NewEvent.qml:693
-#: ../build/pkg/EventDetails.qml:397 ../build/pkg/EventReminder.qml:35
-#: ../build/pkg/NewEvent.qml:693
+#: ../EventDetails.qml:432 ../EventReminder.qml:35 ../NewEvent.qml:701
 msgid "Reminder"
 msgstr ""
 
@@ -240,33 +248,31 @@ msgstr ""
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:40 ../EventRepetition.qml:155
-#: ../build/pkg/EventRepetition.qml:40 ../build/pkg/EventRepetition.qml:155
 msgid "Repeat"
 msgstr ""
 
-#: ../EventRepetition.qml:174 ../build/pkg/EventRepetition.qml:174
+#: ../EventRepetition.qml:174
 msgid "Repeats On:"
 msgstr ""
 
-#: ../EventRepetition.qml:219 ../build/pkg/EventRepetition.qml:219
+#: ../EventRepetition.qml:219
 msgid "Recurring event ends"
 msgstr ""
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:677
-#: ../build/pkg/EventRepetition.qml:242 ../build/pkg/NewEvent.qml:677
+#: ../EventRepetition.qml:242 ../NewEvent.qml:685
 msgid "Repeats"
 msgstr ""
 
-#: ../EventRepetition.qml:267 ../build/pkg/EventRepetition.qml:267
+#: ../EventRepetition.qml:267
 msgid "Date"
 msgstr ""
 
 #. TRANSLATORS: the argument refers to multiple recurrence of event with count .
 #. E.g. "Daily; 5 times."
-#: ../EventUtils.qml:75 ../build/pkg/EventUtils.qml:75
+#: ../EventUtils.qml:75
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
@@ -275,218 +281,221 @@ msgstr[1] ""
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
-#: ../EventUtils.qml:79 ../build/pkg/EventUtils.qml:79
+#: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
 msgstr ""
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
-#: ../EventUtils.qml:102 ../build/pkg/EventUtils.qml:102
+#: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
 msgstr ""
 
-#: ../LimitLabelModel.qml:25 ../build/pkg/LimitLabelModel.qml:25
+#: ../HeaderDateComponent.qml:90
+#, qt-format
+msgid "%1 %2 %3"
+msgstr ""
+
+#: ../LimitLabelModel.qml:25
 msgid "Never"
 msgstr ""
 
-#: ../LimitLabelModel.qml:26 ../build/pkg/LimitLabelModel.qml:26
+#: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
 msgstr ""
 
-#: ../LimitLabelModel.qml:27 ../build/pkg/LimitLabelModel.qml:27
+#: ../LimitLabelModel.qml:27
 msgid "After Date"
 msgstr ""
 
-#: ../MonthComponent.qml:312 ../build/pkg/MonthComponent.qml:312
+#: ../MonthComponent.qml:315
 msgid "Wk"
 msgstr ""
 
-#: ../NewEvent.qml:153 ../build/pkg/NewEvent.qml:153
+#: ../NewEvent.qml:171
 msgid "End time can't be before start time"
 msgstr ""
 
-#: ../NewEvent.qml:316 ../NewEventBottomEdge.qml:44
-#: ../build/pkg/NewEvent.qml:316 ../build/pkg/NewEventBottomEdge.qml:42
+#: ../NewEvent.qml:335 ../NewEventBottomEdge.qml:52
 msgid "New Event"
 msgstr ""
 
-#: ../NewEvent.qml:349 ../build/pkg/NewEvent.qml:349
+#: ../NewEvent.qml:364
 msgid "Save"
 msgstr ""
 
-#: ../NewEvent.qml:360 ../build/pkg/NewEvent.qml:360
+#: ../NewEvent.qml:375
 msgid "Error"
 msgstr ""
 
-#: ../NewEvent.qml:362 ../build/pkg/NewEvent.qml:362
+#: ../NewEvent.qml:377
 msgid "OK"
 msgstr ""
 
-#: ../NewEvent.qml:418 ../build/pkg/NewEvent.qml:418
+#: ../NewEvent.qml:437
 msgid "From"
 msgstr ""
 
-#: ../NewEvent.qml:431 ../build/pkg/NewEvent.qml:431
+#: ../NewEvent.qml:450
 msgid "To"
 msgstr ""
 
-#: ../NewEvent.qml:448 ../build/pkg/NewEvent.qml:448
+#: ../NewEvent.qml:467
 msgid "All day event"
 msgstr ""
 
-#: ../NewEvent.qml:477 ../build/pkg/NewEvent.qml:477
+#: ../NewEvent.qml:497
 msgid "Event Name"
 msgstr ""
 
-#: ../NewEvent.qml:495 ../build/pkg/NewEvent.qml:495
+#: ../NewEvent.qml:515
 msgid "Description"
 msgstr ""
 
-#: ../NewEvent.qml:513 ../build/pkg/NewEvent.qml:513
+#: ../NewEvent.qml:534
 msgid "Location"
 msgstr ""
 
-#: ../NewEvent.qml:528 ../build/pkg/NewEvent.qml:528
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:549 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr ""
 
-#: ../NewEvent.qml:575 ../build/pkg/NewEvent.qml:575
+#: ../NewEvent.qml:598
 msgid "Add Guest"
 msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:23 ../build/pkg/RecurrenceLabelDefines.qml:23
+#: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:24 ../build/pkg/RecurrenceLabelDefines.qml:24
+#: ../RecurrenceLabelDefines.qml:24
 msgid "Daily"
 msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:25 ../build/pkg/RecurrenceLabelDefines.qml:25
+#: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
 msgstr ""
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
-#: ../RecurrenceLabelDefines.qml:27 ../build/pkg/RecurrenceLabelDefines.qml:27
+#: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
 msgstr ""
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
-#: ../RecurrenceLabelDefines.qml:29 ../build/pkg/RecurrenceLabelDefines.qml:29
+#: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
 msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:30 ../build/pkg/RecurrenceLabelDefines.qml:30
+#: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
 msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:31 ../build/pkg/RecurrenceLabelDefines.qml:31
+#: ../RecurrenceLabelDefines.qml:31
 msgid "Monthly"
 msgstr ""
 
-#: ../RecurrenceLabelDefines.qml:32 ../build/pkg/RecurrenceLabelDefines.qml:32
+#: ../RecurrenceLabelDefines.qml:32
 msgid "Yearly"
 msgstr ""
 
-#: ../RemindersModel.qml:26 ../build/pkg/RemindersModel.qml:26
+#: ../RemindersModel.qml:26
 msgid "No Reminder"
 msgstr ""
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
 #. the event starts, not any time before
-#: ../RemindersModel.qml:30 ../build/pkg/RemindersModel.qml:30
+#: ../RemindersModel.qml:30
 msgid "On Event"
 msgstr ""
 
-#: ../RemindersModel.qml:31 ../build/pkg/RemindersModel.qml:31
+#: ../RemindersModel.qml:31
 msgid "5 minutes"
 msgstr ""
 
-#: ../RemindersModel.qml:32 ../build/pkg/RemindersModel.qml:32
+#: ../RemindersModel.qml:32
 msgid "15 minutes"
 msgstr ""
 
-#: ../RemindersModel.qml:33 ../build/pkg/RemindersModel.qml:33
+#: ../RemindersModel.qml:33
 msgid "30 minutes"
 msgstr ""
 
-#: ../RemindersModel.qml:34 ../build/pkg/RemindersModel.qml:34
+#: ../RemindersModel.qml:34
 msgid "1 hour"
 msgstr ""
 
-#: ../RemindersModel.qml:35 ../build/pkg/RemindersModel.qml:35
+#: ../RemindersModel.qml:35
 msgid "2 hours"
 msgstr ""
 
-#: ../RemindersModel.qml:36 ../build/pkg/RemindersModel.qml:36
+#: ../RemindersModel.qml:36
 msgid "1 day"
 msgstr ""
 
-#: ../RemindersModel.qml:37 ../build/pkg/RemindersModel.qml:37
+#: ../RemindersModel.qml:37
 msgid "2 days"
 msgstr ""
 
-#: ../RemindersModel.qml:38 ../build/pkg/RemindersModel.qml:38
+#: ../RemindersModel.qml:38
 msgid "1 week"
 msgstr ""
 
-#: ../RemindersModel.qml:39 ../build/pkg/RemindersModel.qml:39
+#: ../RemindersModel.qml:39
 msgid "2 weeks"
 msgstr ""
 
-#: ../Settings.qml:60 ../build/pkg/Settings.qml:60
+#: ../Settings.qml:55
 msgid "Show week numbers"
 msgstr ""
 
-#: ../TimeLineBase.qml:108 ../build/pkg/TimeLineBase.qml:108
-msgid "New event"
+#: ../Settings.qml:71
+msgid "Show lunar calendar"
 msgstr ""
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:53 ../build/pkg/TimeLineHeader.qml:53
+#: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
 msgstr ""
 
-#: ../TimeLineHeader.qml:65 ../build/pkg/TimeLineHeader.qml:65
+#: ../TimeLineHeader.qml:66
 msgid "All Day"
 msgstr ""
 
-#: ../YearView.qml:66 ../build/pkg/YearView.qml:66
+#: ../WeekView.qml:131 ../WeekView.qml:132
+msgid "MMM"
+msgstr ""
+
+#: ../YearView.qml:79
 #, qt-format
 msgid "Year %1"
 msgstr ""
 
-#: ../build/pkg/calendar.qml:45 ../calendar.qml:45
+#: ../calendar.qml:46
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
 
-#: ../build/pkg/calendar.qml:255 ../build/pkg/calendar.qml:419
-#: ../calendar.qml:255 ../calendar.qml:419
+#: ../calendar.qml:260 ../calendar.qml:434
 msgid "Year"
 msgstr ""
 
-#: ../build/pkg/calendar.qml:263 ../build/pkg/calendar.qml:440
-#: ../calendar.qml:263 ../calendar.qml:440
+#: ../calendar.qml:268 ../calendar.qml:455
 msgid "Month"
 msgstr ""
 
-#: ../build/pkg/calendar.qml:271 ../build/pkg/calendar.qml:461
-#: ../calendar.qml:271 ../calendar.qml:461
+#: ../calendar.qml:276 ../calendar.qml:476
 msgid "Week"
 msgstr ""
 
-#: ../build/pkg/calendar.qml:279 ../build/pkg/calendar.qml:482
-#: ../calendar.qml:279 ../calendar.qml:482
+#: ../calendar.qml:284 ../calendar.qml:497
 msgid "Day"
 msgstr ""
 

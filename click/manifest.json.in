@@ -1,13 +1,17 @@
 {
     "architecture": "all",
     "description": "A calendar for Ubuntu which syncs with online accounts",
-    "framework": "ubuntu-sdk-14.10-qml",
+    "framework": "ubuntu-sdk-15.04.4",
     "hooks": {
         "calendar": {
             "account-application": "@PROJECT_NAME@_@APP_NAME@.application",
             "apparmor": "calendar.apparmor",
             "desktop": "@DESKTOP_FILE@",
             "urls": "@URLS_FILE@"
+        },
+        "calendar-helper": {
+            "apparmor": "calendar-helper-apparmor.json",
+            "push-helper": "push-helper.json"
         }
     },
     "icon": "@ICON@",

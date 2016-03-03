@@ -83,14 +83,35 @@ Item {
                 console.debug("Something has changed while work script was running, ignore message")
             } else {
                 var events = messageObject.reply
+                var dirty = false
                 for (var i=0; i < events.length; i++) {
+                    var e = intern.eventsById[events[i].eventId]
+                    if (e.eventId != events[i].itemId) {
+                        console.warn("Event does not match id:", i)
+                        dirty = true
+                    }
+                    if (e.startDateTime.getTime() != events[i].eventStartTime) {
+                        console.warn("Event does not match start time")
+                        dirty = true
+                    }
+                    if (e.endDateTime.getTime() != events[i].eventEndTime) {
+                        console.warn("Event does not match end time")
+                        dirty = true
+                    }
+
+                    if (dirty) {
+                        console.warn("Mark as dirty")
+                        intern.dirty = true
+                        break
+                    }
+
                     createVisual(events[i])
                 }
             }
             intern.busy = false
-            intern.eventsById = []
+            intern.eventsById = {}
             if (intern.dirty) {
-                idleCreateEvents()
+                bubbleOverLay.idleCreateEvents()
             }
         }
     }
@@ -114,6 +135,7 @@ Item {
         eventBubble.depthInRow = eventInfo.y
         eventBubble.model = bubbleOverLay.model
         eventBubble.event = intern.eventsById[eventInfo.eventId]
+        eventBubble.resize()
         eventBubble.visible = true
         eventBubble.clicked.connect( bubbleOverLay.showEventDetails );
     }
@@ -139,7 +161,7 @@ Item {
         intern.busy = true
         intern.dirty = false
         destroyAllChildren();
-        intern.eventsById = []
+        intern.eventsById = {}
 
         var startDate = day.midnight()
         var itemsOfTheDay = model.itemsByTimePeriod(startDate, startDate.endOfDay())
@@ -169,7 +191,7 @@ Item {
             if (intern.unUsedEvents.indexOf(child) === -1) {
                 child.event = null
                 child.visible = false;
-                child.clicked.disconnect( bubbleOverLay.showEventDetails );
+                child.clicked.disconnect(bubbleOverLay.showEventDetails);
                 intern.unUsedEvents.push(child)
             }
         }
@@ -195,6 +217,7 @@ Item {
         }
     }
 
+    onDayChanged: bubbleOverLay.idleCreateEvents();
     Component.onCompleted: bubbleOverLay.idleCreateEvents();
     enabled: !intern.busy && !intern.waitingForModelChange
 
@@ -206,7 +229,7 @@ Item {
         isLiveEditing: overlayMouseArea.creatingEvent
         visible: overlayMouseArea.creatingEvent
         sizeOfRow: 1.0
-        height: 60 * bubbleOverLay.minuteHeight
+        z: 100
         onVisibleChanged: {
             if (visible)
                 y = event ? CanlendarCanvas.minutesSince(bubbleOverLay.day, event.startDateTime) * bubbleOverLay.minuteHeight : 0
@@ -259,13 +282,12 @@ Item {
 
             Haptics.play()
 
-            temporaryEvent.sizeOfRow = 1.0
+            temporaryEvent.anchorDate = bubbleOverLay.day
+            temporaryEvent.minuteHeight = bubbleOverLay.minuteHeight
             temporaryEvent.depthInRow = 0
-            temporaryEvent.z = 1000
-            temporaryEvent.height = 60 * bubbleOverLay.minuteHeight
             temporaryEvent.model = bubbleOverLay.model
             temporaryEvent.event = event
-            temporaryEvent.visible = true
+            temporaryEvent.resize()
             creatingEvent = true
         }
 
@@ -304,7 +326,7 @@ Item {
         id: intern
 
         property var now : new Date();
-        property var eventsById: []
+        property var eventsById: ({})
         property var unUsedEvents: []
         property bool busy: false
         property bool dirty: false
@@ -314,7 +336,7 @@ Item {
     Timer {
         id: createEventsTimer
 
-        interval: 100
+        interval: 300
         running: false
         repeat: false
         onTriggered: createEvents()

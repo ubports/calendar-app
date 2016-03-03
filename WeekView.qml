@@ -20,6 +20,7 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
+import "./3rd-party/lunar.js" as Lunar
 
 PageWithBottomEdge {
     id: weekViewPage
@@ -37,7 +38,8 @@ PageWithBottomEdge {
     signal dateSelected(var date);
     signal pressAndHoldAt(var date, bool allDay)
 
-    function delayScrollToDate(scrollDate) {
+    function delayScrollToDate(scrollDate, scrollTime) {
+        idleScroll.scrollToTime = scrollTime != undefined ? scrollTime : true
         idleScroll.scrollToDate = new Date(scrollDate)
         idleScroll.restart()
     }
@@ -62,21 +64,26 @@ PageWithBottomEdge {
     }
 
     onEventCreated: {
-        var eventDate = new Date(event.startDateTime)
-        highlightedDay = eventDate
+        var scrollDate = new Date(event.startDateTime)
         var currentWeekNumber = currentDate.weekNumber(Qt.locale().firstDayOfWeek)
-        var eventWeekNumber = eventDate.weekNumber(Qt.locale().firstDayOfWeek)
+        var eventWeekNumber = scrollDate.weekNumber(Qt.locale().firstDayOfWeek)
         var needScroll = false
-        if ((eventDate.getFullYear() !== currentDate.getFullYear()) ||
+
+        if ((scrollDate.getFullYear() !== currentDate.getFullYear()) ||
             (currentWeekNumber !== eventWeekNumber)) {
-            anchorDate = new Date(eventDate)
+            anchorDate = new Date(scrollDate)
             needScroll = true
-        } else if (!weekViewPath.currentItem.item.dateTimeIsVisible(eventDate)) {
-            needScroll = true
+        } else {
+            if (event.allDay) {
+                needScroll = !weekViewPath.currentItem.item.dateIsVisible(scrollDate)
+            } else {
+                needScroll = !weekViewPath.currentItem.item.timeIsVisible(scrollDate)
+            }
         }
 
+        highlightedDay = scrollDate
         if (needScroll) {
-            delayScrollToDate(eventDate)
+            delayScrollToDate(scrollDate, !event.allDay)
         }
     }
 
@@ -84,16 +91,22 @@ PageWithBottomEdge {
         id: idleScroll
 
         property var scrollToDate: null
+        property bool scrollToTime: true
 
         interval: 200
         repeat:false
         onTriggered: {
             if (scrollToDate) {
-                weekViewPath.currentItem.item.scrollToDateAndTime(scrollToDate);
-                scrollToDate = null
+                if (scrollToTime)
+                    weekViewPath.currentItem.item.scrollToDateAndTime(scrollToDate);
+                else
+                    weekViewPath.currentItem.item.scrollToDate(scrollToDate);
             } else {
                 weekViewPath.currentItem.item.scrollToBegin()
             }
+
+            scrollToDate = null
+            scrollToTime = true
         }
     }
 
@@ -113,8 +126,17 @@ PageWithBottomEdge {
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
-            var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-            return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            var currentLastDayOfWeek = currentFirstDayOfWeek.addDays(7)
+            if (currentLastDayOfWeek.getMonth() !== currentFirstDayOfWeek.getMonth()) {
+                var firstMonthName = currentFirstDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
+                var lastMonthName = currentLastDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
+                return (firstMonthName[0].toUpperCase() + firstMonthName.substr(1, 2) + "/" +
+                        lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2) + " " +
+                        currentLastDayOfWeek.getFullYear())
+            } else {
+                var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            }
         }
         flickable: null
     }
@@ -221,5 +243,19 @@ PageWithBottomEdge {
                 }
             }
         }
+    }
+
+    Component.onCompleted: {
+        pageHeader.title = Qt.binding(function(){
+            if(mainView.displayLunarCalendar){
+                var lunarDate = Lunar.calendar.solar2lunar(dayStart.getFullYear(),
+                                                           dayStart.getMonth() + 1,
+                                                           dayStart.getDate())
+                return i18n.tr("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
+            } else {
+                var monthName = dayStart.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            }
+        })
     }
 }

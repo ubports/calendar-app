@@ -3,7 +3,8 @@
         "calendar",
         "networking",
         "contacts",
-        "accounts"
+        "accounts",
+        "push-notification-client"
     ],
-    "policy_version": 1.2
+    "policy_version": 1.3
 }

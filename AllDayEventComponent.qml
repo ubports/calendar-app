@@ -42,7 +42,6 @@ Row {
         for(var i = 0 ; i < items.length ; ++i) {
             var event = items[(i)];
             if( event && event.allDay ) {
-
                 for(var d = event.startDateTime; d < event.endDateTime; d = d.addDays(1)) {
                     var key = Qt.formatDateTime(d, "dd-MMM-yyyy");
                     if( !(key in map)) {
@@ -65,6 +64,10 @@ Row {
     }
 
     Repeater{
+        id: repeater
+
+        readonly property bool compactView: (root.width  / repeater.count) < units.gu(15)
+
         model: type == ViewType.ViewTypeWeek ? 7 : 1
         delegate: Item {
             id: allDayButton
@@ -100,11 +103,11 @@ Row {
                         return;
                     }
 
-                    if(type == ViewType.ViewTypeWeek) {
-                        PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
+                    if(repeater.compactView) {
+                        PopupUtils.open(popoverComponent, allDayButton,{"events": allDayButton.events})
                     } else {
                         if( allDayButton.events.length > 1 ) {
-                            PopupUtils.open(popoverComponent, root,{"events": allDayButton.events})
+                            PopupUtils.open(popoverComponent, allDayButton,{"events": allDayButton.events})
                         } else {
                             pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":allDayButton.events[0],"model": root.model});
                         }
@@ -125,10 +128,35 @@ Row {
                 }
             }
 
-            Loader {
-                id: eventLabelLoader
-                anchors.fill: parent
-                sourceComponent : !allDayButton.events || allDayButton.events.length === 0 ? undefined : eventComponent
+            Label {
+                id: eventLabel
+                anchors {
+                    fill: parent
+                    margins: units.gu(0.5)
+                }
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                elide: Text.ElideRight
+                text: {
+                    if(!events || events.length === 0) {
+                        return "";
+                    }
+
+                    if(repeater.compactView) {
+                        // TRANSLATORS: the first parameter refers to the number of all-day events
+                        // on a given day. "Ev." is short form for "Events".
+                        // Please keep the translation of "Ev." to 3 characters only, as the week view
+                        // where it's shown has limited space
+                        return i18n.tr("%1 ev.").arg(events.length)
+                    } else {
+                        if( events.length > 1) {
+                           // TRANSLATORS: the argument refers to the number of all day events
+                           return i18n.tr("%1 all day event", "%1 all day events", events.length).arg(events.length)
+                        } else {
+                            return events[0].displayLabel;
+                        }
+                    }
+                }
             }
 
             Loader{
@@ -145,36 +173,8 @@ Row {
                     sd = sd.addDays(index);
                     var key  = Qt.formatDateTime(sd, "dd-MMM-yyyy");
                     events = allDayEvents[key];
-
-                    if(!events || events.length === 0) {
-                        return;
-                    }
-
-                    if(type == ViewType.ViewTypeWeek) {
-                        // TRANSLATORS: the first parameter refers to the number of all-day events
-                        // on a given day. "Ev." is short form for "Events".
-                        // Please keep the translation of "Ev." to 3 characters only, as the week view
-                        // where it's shown has limited space
-                        eventLabelLoader.item.text =  i18n.tr("%1 ev.").arg(events.length)
-                    } else {
-                        if( events.length > 1) {
-                           // TRANSLATORS: the argument refers to the number of all day events
-                           eventLabelLoader.item.text = i18n.tr("%1 all day event", "%1 all day events", events.length).arg(events.length)
-                        } else {
-                            eventLabelLoader.item.text = events[0].displayLabel;
-                        }
-                    }
                 }
             }
-        }
-    }
-
-
-    Component{
-        id: eventComponent
-        Label {
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
         }
     }
 

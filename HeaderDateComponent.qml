@@ -18,6 +18,7 @@
 
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import "./3rd-party/lunar.js" as Lunar
 
 Item {
     id: root
@@ -78,5 +79,18 @@ Item {
         onClicked: {
             root.dateSelected(date);
         }
+    }
+
+    Component.onCompleted: {
+        dateLabel.text = Qt.binding(function(){
+            if(mainView.displayLunarCalendar){
+                var lunarDate = Lunar.calendar.solar2lunar(date.getFullYear(),
+                                                           date.getMonth() + 1,
+                                                           date.getDate())
+                return i18n.tr("%1 %2 %3").arg(lunarDate.IDayCn).arg(lunarDate.gzDay).arg(lunarDate.isTerm ? lunarDate.Term : "")
+            } else {
+                return date.getDate();
+            }
+        })
     }
 }

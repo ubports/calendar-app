@@ -19,6 +19,8 @@
 import QtQuick 2.4
 import QtOrganizer 5.0
 import Ubuntu.Components 1.3
+import "dateExt.js" as DateExt
+import "./3rd-party/lunar.js" as Lunar
 
 PageWithBottomEdge {
     id: root
@@ -133,6 +135,9 @@ PageWithBottomEdge {
             property var date: event.startDateTime.toLocaleDateString()
             property var startTime: event.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
             property var endTime: event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+            property var lunarDate: Lunar.calendar.solar2lunar(event.startDateTime.getFullYear(),
+                                                               event.startDateTime.getMonth() + 1,
+                                                               event.startDateTime.getDate())
 
             width: parent.width
             height: eventContainer.height
@@ -156,7 +161,9 @@ PageWithBottomEdge {
                     ListItemLayout {
                         id: listitemlayout
                         padding.top: units.gu(1)
-                        title.text: date
+                        title.text: mainView.displayLunarCalendar ? i18n.tr("%1 %2 %3 %4 %5").arg(lunarDate.gzYear).arg(lunarDate .IMonthCn).arg(lunarDate.IDayCn)
+                                                                                             .arg(lunarDate.gzDay).arg(lunarDate.isTerm ? lunarDate.Term : "")
+                                                                  : date
                         title.color: event.startDateTime.toLocaleDateString() === new Date().toLocaleDateString() ? UbuntuColors.orange : UbuntuColors.darkGrey
                     }
 
@@ -165,7 +172,6 @@ PageWithBottomEdge {
                         Haptics.play()
                         dateSelected(event.startDateTime);
                     }
-
                 }
 
                 // Main ListItem to hold details about event eg. ( 19:30 -   Beer with the team )
@@ -238,7 +244,6 @@ PageWithBottomEdge {
                         pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
                     }
                 }
-
             }
         }
     }

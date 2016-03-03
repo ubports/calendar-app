@@ -10,6 +10,7 @@ Item{
     property bool showEvent;
     property alias fontSize: dateLabel.font.pixelSize
     property bool isSelected: false
+    property alias lunarData: lunarLabel.lunarData
 
     Text {
         id: dateLabel
@@ -29,6 +30,35 @@ Item{
                     "#AEA79F"
                 }
             }
+        }
+    }
+
+    Label {
+        id: lunarLabel
+
+        property var lunarData: null
+
+        text: lunarData ? lunarData.lunarText : ""
+        color: {
+            if (lunarData && lunarData.isTerm) {
+                if (isCurrentMonth && isToday)
+                    return "black"
+                else
+                    return UbuntuColors.red
+            } else {
+                if (isSelected)
+                    return "white"
+                else
+                    return "#5D5D5D"
+            }
+        }
+        fontSize: "small"
+        visible: (lunarData != null)
+        horizontalAlignment: Text.AlignHCenter
+        width: parent.width
+        anchors {
+            top: dateLabel.bottom
+            topMargin: units.gu(0.5)
         }
     }
 
