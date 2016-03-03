@@ -126,14 +126,14 @@ Page {
         }
 
         startDate =new Date(e.startDateTime);
-        endDate = new Date(e.endDateTime);
 
         if(e.displayLabel) {
             titleEdit.text = e.displayLabel;
         }
-        if(e.allDay){
-            allDayEventCheckbox.checked =true;
-            endDate = endDate.addDays(-1);
+
+        if (e.allDay) {
+            allDayEventCheckbox.checked = true
+            endDate = new Date(e.endDateTime).addDays(-1);
         }
 
         if(e.location) {
@@ -182,8 +182,8 @@ Page {
 
             event.allDay = allDayEventCheckbox.checked;
             if (event.allDay){
-                event.startDateTime = startDate.midnight()
-                event.endDateTime = startDate.addDays(1).midnight()
+                event.startDateTime = new Date(startDate).midnight()
+                event.endDateTime = new Date(endDate).addDays(1).midnight()
             } else {
                 event.startDateTime = startDate;
                 event.endDateTime = endDate;
