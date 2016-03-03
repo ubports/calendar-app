@@ -20,6 +20,7 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
+import "./3rd-party/lunar.js" as Lunar
 
 PageWithBottomEdge {
     id: weekViewPage
@@ -242,5 +243,19 @@ PageWithBottomEdge {
                 }
             }
         }
+    }
+
+    Component.onCompleted: {
+        pageHeader.title = Qt.binding(function(){
+            if(mainView.displayLunarCalendar){
+                var lunarDate = Lunar.calendar.solar2lunar(dayStart.getFullYear(),
+                                                           dayStart.getMonth() + 1,
+                                                           dayStart.getDate())
+                return i18n.tr("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
+            } else {
+                var monthName = dayStart.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            }
+        })
     }
 }

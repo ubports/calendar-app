@@ -8,6 +8,10 @@
             "apparmor": "calendar.apparmor",
             "desktop": "@DESKTOP_FILE@",
             "urls": "@URLS_FILE@"
+        },
+        "calendar-helper": {
+            "apparmor": "calendar-helper-apparmor.json",
+            "push-helper": "push-helper.json"
         }
     },
     "icon": "@ICON@",

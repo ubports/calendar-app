@@ -20,12 +20,14 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 
 import "dateExt.js" as DateExt
+import "./3rd-party/lunar.js" as Lunar
 
 PageWithBottomEdge {
     id: yearViewPage
     objectName: "yearViewPage"
 
     property int anchorYear: new Date().getFullYear()
+    property bool displayLunarCalendar: false
     readonly property int currentYear: yearPathView.currentItem.item ? yearPathView.currentItem.item.year : anchorYear
 
     signal monthSelected(var date);
@@ -69,7 +71,14 @@ PageWithBottomEdge {
             commonHeaderActions.syncCalendarAction,
             commonHeaderActions.settingsAction
         ]
-        title: i18n.tr("Year %1").arg(currentYear)
+        title: {
+            if (displayLunarCalendar) {
+                var lunarDate = Lunar.calendar.solar2lunar(currentYear, 6, 0)
+                return lunarDate.gzYear +" "+ lunarDate.Animal
+            } else {
+                return i18n.tr("Year %1").arg(currentYear)
+            }
+        }
         flickable: null
     }
 

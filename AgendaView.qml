@@ -21,6 +21,7 @@ import QtOrganizer 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import "dateExt.js" as DateExt
+import "./3rd-party/lunar.js" as Lunar
 
 PageWithBottomEdge {
     id: root
@@ -176,7 +177,16 @@ PageWithBottomEdge {
                 // while the second one (%2) refers to the end time
                 var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
 
-                header.text = date
+                if (mainView.displayLunarCalendar) {
+                    var lunarDate = Lunar.calendar.solar2lunar(event.startDateTime.getFullYear(),
+                                                               event.startDateTime.getMonth() + 1,
+                                                               event.startDateTime.getDate())
+                    header.text = i18n.tr("%1 %2 %3 %4 %5").arg(lunarDate.gzYear).arg(lunarDate .IMonthCn).arg(lunarDate.IDayCn)
+                                                            .arg(lunarDate.gzDay).arg(lunarDate.isTerm ? lunarDate.Term : "")
+                } else {
+                    header.text = date
+                }
+
                 timeLabel.text = timeString
                 header.color = event.startDateTime.toLocaleDateString() === new Date().toLocaleDateString() ? UbuntuColors.orange : UbuntuColors.darkGrey
                 detailsContainer.color = eventListModel.collection(event.collectionId).color
@@ -229,8 +239,6 @@ PageWithBottomEdge {
                     height: detailsColumn.height + units.gu(1)
 
                     ListItem.Standard{
-
-
                         showDivider:false
                         Column{
                             id: detailsColumn

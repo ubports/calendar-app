@@ -20,6 +20,7 @@ import Ubuntu.Components 1.3
 
 import "dateExt.js" as DateExt
 import "colorUtils.js" as Color
+import "./3rd-party/lunar.js" as Lunar
 
 PageWithBottomEdge {
     id: monthViewPage
@@ -34,6 +35,7 @@ PageWithBottomEdge {
 
     property var selectedDay;
     property var highlightedDate;
+    property bool displayLunarCalendar: false
 
     signal dateSelected(var date);
 
@@ -63,13 +65,20 @@ PageWithBottomEdge {
             commonHeaderActions.settingsAction
         ]
         title: {
-            // TRANSLATORS: this is a time formatting string,
-            // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-            // It's used in the header of the month and week views
-            var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-            return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            if (displayLunarCalendar) {
+                var year = currentDate.getFullYear()
+                var month = currentDate.getMonth()
+                var day = Math.floor(Date.daysInMonth(year, month) / 2.0)
+                var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, day)
+                return i18n.tr("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
+            } else {
+                // TRANSLATORS: this is a time formatting string,
+                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+                // It's used in the header of the month and week views
+                var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            }
         }
-
         flickable: null
     }
 
@@ -87,6 +96,7 @@ PageWithBottomEdge {
 
             currentMonth: indexDate.getMonth()
             currentYear: indexDate.getFullYear()
+            displayLunarCalendar: monthViewPage.displayLunarCalendar
 
             modelFilter: eventModel.filter
             width: parent.width - units.gu(4)
