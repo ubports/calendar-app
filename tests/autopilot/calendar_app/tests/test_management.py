@@ -76,7 +76,7 @@ class TestManagement(CalendarAppTestCaseWithVcard):
     def _event_exists(self, event_name):
         try:
             day_view = self.app.main_view.go_to_day_view()
-            day_view.get_event(event_name, True)
+            day_view.get_event(event_name, False)
         except Exception:
             return False
         return True

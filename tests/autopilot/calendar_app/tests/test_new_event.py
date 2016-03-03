@@ -86,39 +86,6 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
                                            now.day, now.hour, 0)
             return start_date + datetime.timedelta(hours=1)
 
-    def test_new_event_must_start_with_default_values(self):
-        """Test adding a new event default values
-
-           Start Date: today Start Time: next half hour increment
-           End Date: today End Time: 1 hour after start time
-           Calendar: Personal
-           All Day Event: unchecked
-           Event Name: blank, selected
-           Description: blank
-           Location: none
-           Guests: none
-           This happens: Once
-           Remind me: On Event
-        """
-
-        new_event_page = self.app.main_view.go_to_new_event()
-        self.assertThat(new_event_page.get_calendar_name(), Equals('Personal'))
-        self.assertThat(new_event_page.get_event_name(), Equals(''))
-        self.assertThat(new_event_page.get_description_text(), Equals(''))
-        self.assertThat(new_event_page.get_location_name(), Equals(''))
-        self.assertThat(new_event_page.get_is_all_day_event(), Equals(False))
-        self.assertThat(new_event_page.has_guests(), Equals(False))
-        self.assertThat(new_event_page.get_this_happens(), Equals('Once'))
-        self.assertThat(new_event_page.get_reminder(), Equals('15 minutes'))
-
-        expected_start_date = self._expected_start_date()
-        expected_end_date = expected_start_date + datetime.timedelta(hours=1)
-
-        self.assertThat(new_event_page.get_start_date(),
-                        Equals(expected_start_date))
-        self.assertThat(new_event_page.get_end_date(),
-                        Equals(expected_end_date))
-
     def test_add_new_event_with_default_values(self):
         """Test adding a new event with the default values.
 

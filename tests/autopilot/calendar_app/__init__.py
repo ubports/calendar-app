@@ -47,6 +47,9 @@ class CalendarApp(object):
         self.app = app_proxy
         self.test_type = test_type
         self.main_view = self.app.select_single(MainView)
+        #self.main_view.print_tree()
+        #import sys
+        #sys.exit()
 
     @property
     def pointing_device(self):
@@ -70,13 +73,13 @@ class MainView(ubuntuuitoolkit.MainView):
 
         # click on tab action
         tab_button = self.wait_select_single(objectName='tab_%s_button'%tabName)
-        self.pointing_device.click_object(tab_button)   
+        self.pointing_device.click_object(tab_button)
 
     @autopilot.logging.log_action(logger.info)
     def click_action_button(self, action):
         current_tab = self.select_single('Tab', visible=True)
         button = current_tab.wait_select_single(objectName='%s_button'%action)
-        self.pointing_device.click_object(button)   
+        self.pointing_device.click_object(button)
 
     @autopilot.logging.log_action(logger.info)
     def go_to_month_view(self):
@@ -881,7 +884,7 @@ class NewEvent(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
                 raise CalendarException('No guest found with name %s' % guest)
 
     def _select_calendar(self, calendar):
-        self._get_calendar().select_option('Label', text=calendar)
+        self._get_calendar().select_option('UCLabel', text=calendar)
 
     def _get_calendar(self):
         return self.wait_select_single(ubuntuuitoolkit.OptionSelector,
@@ -956,6 +959,88 @@ class NewEventEntryField(ubuntuuitoolkit.TextField):
 
     """Autopilot helper for the NewEventEntryField component."""
 
+
+#for https://bugs.launchpad.net/ubuntu/+source/ubuntu-ui-toolkit/+bug/1552773
+class OptionSelector(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+    """OptionSelector Autopilot custom proxy object"""
+
+    def get_option_count(self):
+        """Gets the number of items in the option selector"""
+        self.list_view = self.select_single("QQuickListView")
+        return self.list_view.count
+
+    def get_selected_index(self):
+        """Gets the current selected index of the QQuickListView"""
+        self.list_view = self.select_single("QQuickListView")
+        return self.list_view.currentIndex
+
+    def get_selected_text(self):
+        """gets the text of the currently selected item"""
+        option_selector_delegate = self.select_single(
+            'OptionSelectorDelegate', focus='True')
+        current_label = option_selector_delegate.select_single(
+            'UCLabel', visible='True')
+        return current_label.text
+
+    def get_current_label(self):
+        """gets the text of the currently selected item"""
+        option_selector_delegate = self.select_single(
+            'OptionSelectorDelegate', focus='True')
+        current_label = option_selector_delegate.select_single(
+            'UCLabel', visible='True')
+        return current_label
+
+    def _expand(self):
+        """Expand an optionselector if it's collapsed"""
+        # if just collapsed it can think that the item is expanded
+        #  https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1240288
+        sleep(1)
+        if not self.expanded and not self.currentlyExpanded:
+            self.pointing_device.click_object(self.get_current_label())
+            self.currentlyExpanded.wait_for(True)
+            # selecting the same item too quickly after expand
+            # causes the wrong item to be selected
+            # https://bugs.launchpad.net/ubuntu-ui-toolkit/+bug/1231939
+            sleep(1)
+
+    def select_option(self, *args, **kwargs):
+        """Select delegate in option selector
+
+        Example usage::
+            select_option(objectName="myOptionSelectorDelegate")
+            select_option('Label', text="some_text_here")
+
+        :parameter kwargs: keywords used to find property(s) of delegate in
+            option selector
+
+        """
+
+        if args:
+            try:
+                select_object = self.select_single(
+                    *args,
+                    **kwargs
+                )
+            except dbus.StateNotFoundError:
+                raise _common.ToolkitException(
+                    'OptionSelectorDelegate with args {} and kwargs {} not '
+                    'found'.format(args, kwargs)
+                )
+
+        else:
+            try:
+                select_object = self.select_single(
+                    'OptionSelectorDelegate',
+                    **kwargs
+                )
+            except dbus.StateNotFoundError:
+                raise _common.ToolkitException(
+                    'OptionSelectorDelegate with kwargs {} not found'.format(
+                        kwargs)
+                )
+
+        self._expand()
+        self.pointing_device.click_object(select_object)
 
 class EventDetails(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
