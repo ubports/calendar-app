@@ -91,7 +91,6 @@ Item {
             currentTimeY -= margin
         }
         timeLineView.contentY = Math.min(timeLineView.contentHeight - timeLineView.height, currentTimeY > 0 ? currentTimeY : 0)
-        console.debug()
         timeLineView.returnToBounds()
     }
 

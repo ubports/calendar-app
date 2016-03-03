@@ -113,8 +113,17 @@ PageWithBottomEdge {
             // TRANSLATORS: this is a time formatting string,
             // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
             // It's used in the header of the month and week views
-            var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-            return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            var currentLastDayOfWeek = currentFirstDayOfWeek.addDays(7)
+            if (currentLastDayOfWeek.getMonth() !== currentFirstDayOfWeek.getMonth()) {
+                var firstMonthName = currentFirstDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
+                var lastMonthName = currentLastDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
+                return (firstMonthName[0].toUpperCase() + firstMonthName.substr(1, 2) + "/" +
+                        lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2) + " " +
+                        currentLastDayOfWeek.getFullYear())
+            } else {
+                var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            }
         }
         flickable: null
     }
