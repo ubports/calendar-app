@@ -35,9 +35,6 @@ class NewEventTestCase(CalendarAppTestCaseWithVcard):
     # TODO add tests for events in the future and in the past, all day event,
     # event with recurrence and event with reminders.
     # also add tests for saving to different calendars
-    # We currently can't change the date of the new event because of bug
-    # http://pad.lv/1328600 on Autopilot.
-    # --elopio - 2014-06-26
 
     def _try_delete_event(self, event_name):
         try:
