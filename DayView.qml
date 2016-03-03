@@ -156,7 +156,7 @@ PageWithBottomEdge {
 
             Component.onCompleted: {
                 if(dayViewPage.tabSelected){
-                    dayViewPage.delayScrollToDate(new Date());
+                    idleScroll.restart()
                 }
             }
 

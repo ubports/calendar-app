@@ -579,12 +579,12 @@ MainView {
             }
 
             onTabSelectedChanged: {
-                if (tabSelected) {
-                    anchorDate = new Date(tabs.currentDay.getFullYear(),
-                                          tabs.currentDay.getMonth(),
-                                          1,
-                                          0, 0, 0)
-                }
+                    if (tabSelected) {
+                        anchorDate = new Date(tabs.currentDay.getFullYear(),
+                                              tabs.currentDay.getMonth(),
+                                              1,
+                                              0, 0, 0)
+                    }
             }
         }
     }
@@ -620,9 +620,16 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
-                    var tabDay = new Date(tabs.currentDay)
-                    anchorDate = tabs.currentDay.weekStart(Qt.locale().firstDayOfWeek)
-                    delayScrollToDate(tabDay)
+                    // 'tabs.currntDay' can change after set 'anchorDate' to avoid that
+                    // create a copy of the current value
+                    var tabDate = new Date(tabs.currentDay)
+                    if (!anchorDate ||
+                        (tabs.currentDay.getFullYear() != anchorDate.getFullYear()) ||
+                        (tabs.currentDay.getMonth() != anchorDate.getMonth()) ||
+                        (tabs.currentDay.getDate() != anchorDate.getDate())) {
+                        anchorDate = new Date(tabDate)
+                    }
+                    delayScrollToDate(tabDate)
                 }
             }
         }
@@ -651,11 +658,16 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
-                    if ((tabs.currentDay.getFullYear() != anchorDate.getFullYear()) ||
+                    // 'tabs.currntDay' can change after set 'anchorDate' to avoid that
+                    // create a copy of the current value
+                    var tabDate = new Date(tabs.currentDay)
+                    if (!anchorDate ||
+                        (tabs.currentDay.getFullYear() != anchorDate.getFullYear()) ||
                         (tabs.currentDay.getMonth() != anchorDate.getMonth()) ||
                         (tabs.currentDay.getDate() != anchorDate.getDate())) {
-                        anchorDate = tabs.currentDay
+                        anchorDate = new Date(tabDate)
                     }
+                    delayScrollToDate(tabDate)
                 }
             }
         }
