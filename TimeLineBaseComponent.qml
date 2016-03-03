@@ -85,11 +85,7 @@ Item {
 
         var currentTimeY = (scrollHour * hourItemHeight)
         var margin = (timeLineView.height / 2) * 0.8
-
-        // Try to centralize the event time, if it is in the end of the view does not try it
-        if (currentTimeY < (timeLineView.contentHeight - margin)) {
-            currentTimeY -= margin
-        }
+        currentTimeY -= margin
         timeLineView.contentY = Math.min(timeLineView.contentHeight - timeLineView.height, currentTimeY > 0 ? currentTimeY : 0)
         timeLineView.returnToBounds()
     }
