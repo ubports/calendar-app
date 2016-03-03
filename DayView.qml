@@ -33,7 +33,8 @@ PageWithBottomEdge {
     signal dateSelected(var date);
     signal pressAndHoldAt(var date, bool allDay)
 
-    function delayScrollToDate(date) {
+    function delayScrollToDate(date, scrollTime) {
+        idleScroll.scrollToTime = scrollTime != undefined ? scrollTime : true
         idleScroll.scrollToDate = new Date(date)
         idleScroll.restart()
     }
@@ -47,12 +48,6 @@ PageWithBottomEdge {
 
     onEventCreated: {
         var scrollDate = new Date(event.startDateTime)
-        // do not scroll time for all day events
-        if (event.allDay) {
-            scrollDate.setHours(currentDate.getHours())
-            scrollDate.setMinutes(currentDate.getMinutes())
-        }
-
         var needScroll = false
         if ((currentDate.getFullYear() !== scrollDate.getFullYear()) ||
             (currentDate.getMonth() !== scrollDate.getMonth()) ||
@@ -64,7 +59,7 @@ PageWithBottomEdge {
         }
 
         if (needScroll) {
-            delayScrollToDate(scrollDate)
+            delayScrollToDate(scrollDate, !event.allDay)
         }
     }
 
@@ -84,16 +79,18 @@ PageWithBottomEdge {
         id: idleScroll
 
         property var scrollToDate: null
+        property bool scrollToTime: true
 
         interval: 200
         repeat:false
         onTriggered: {
-            if (scrollToDate) {
+            if (scrollToDate && scrollToTime) {
                 dayViewPath.currentItem.scrollToTime(scrollToDate)
-                scrollToDate = null
             } else {
                 dayViewPath.currentItem.scrollToBegin()
             }
+            scrollToDate = null
+            scrollToTime = true
         }
     }
 

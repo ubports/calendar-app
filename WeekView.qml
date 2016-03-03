@@ -37,7 +37,8 @@ PageWithBottomEdge {
     signal dateSelected(var date);
     signal pressAndHoldAt(var date, bool allDay)
 
-    function delayScrollToDate(scrollDate) {
+    function delayScrollToDate(scrollDate, scrollTime) {
+        idleScroll.scrollToTime = scrollTime != undefined ? scrollTime : true
         idleScroll.scrollToDate = new Date(scrollDate)
         idleScroll.restart()
     }
@@ -67,23 +68,21 @@ PageWithBottomEdge {
         var eventWeekNumber = scrollDate.weekNumber(Qt.locale().firstDayOfWeek)
         var needScroll = false
 
-        // do not scroll time for all day events
-        if (event.allDay) {
-            scrollDate.setHours(currentDate.getHours())
-            scrollDate.setMinutes(currentDate.getMinutes())
-        }
-
         if ((scrollDate.getFullYear() !== currentDate.getFullYear()) ||
             (currentWeekNumber !== eventWeekNumber)) {
             anchorDate = new Date(scrollDate)
             needScroll = true
-        } else if (!weekViewPath.currentItem.item.timeIsVisible(scrollDate)) {
-            needScroll = true
+        } else {
+            if (event.allDay) {
+                needScroll = !weekViewPath.currentItem.item.dateIsVisible(scrollDate)
+            } else {
+                needScroll = !weekViewPath.currentItem.item.timeIsVisible(scrollDate)
+            }
         }
 
         highlightedDay = scrollDate
         if (needScroll) {
-            delayScrollToDate(scrollDate)
+            delayScrollToDate(scrollDate, !event.allDay)
         }
     }
 
@@ -91,16 +90,22 @@ PageWithBottomEdge {
         id: idleScroll
 
         property var scrollToDate: null
+        property bool scrollToTime: true
 
         interval: 200
         repeat:false
         onTriggered: {
             if (scrollToDate) {
-                weekViewPath.currentItem.item.scrollToDateAndTime(scrollToDate);
-                scrollToDate = null
+                if (scrollToTime)
+                    weekViewPath.currentItem.item.scrollToDateAndTime(scrollToDate);
+                else
+                    weekViewPath.currentItem.item.scrollToDate(scrollToDate);
             } else {
                 weekViewPath.currentItem.item.scrollToBegin()
             }
+
+            scrollToDate = null
+            scrollToTime = true
         }
     }
 
