@@ -182,11 +182,30 @@ MainView {
 
             filter: invalidFilter
 
-            function delayedApplyFilter() {
-                applyFilterTimer.restart();
+            onCollectionsChanged: {
+                if (!isReady)
+                    return
+
+                var collectionIds = enabledColections()
+                var oldCollections = collectionFilter.ids
+                var needsUpdate = false
+                if (collectionIds.length != oldCollections.length) {
+                    needsUpdate = true
+                } else {
+                    for(var i=oldCollections.length - 1; i >=0 ; i--) {
+                        if (collectionIds.indexOf(oldCollections[i]) === -1) {
+                            needsUpdate = true
+                            break;
+                        }
+                    }
+                }
+
+                if (needsUpdate)
+                    collectionFilter.ids = collectionIds;
             }
 
-            function applyFilterFinal() {
+            function enabledColections()
+            {
                 var collectionIds = [];
                 var collections = eventModel.getCollections();
                 for(var i=0; i < collections.length ; ++i) {
@@ -195,6 +214,15 @@ MainView {
                         collectionIds.push(collection.collectionId);
                     }
                 }
+                return collectionIds
+            }
+
+            function delayedApplyFilter() {
+                applyFilterTimer.restart();
+            }
+
+            function applyFilterFinal() {
+                var collectionIds = enabledColections()
                 console.debug("Selected collections:" + collectionIds)
                 collectionFilter.ids = collectionIds;
                 filter = Qt.binding(function() { return mainFilter; })
