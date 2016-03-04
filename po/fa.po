@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-03-03 06:08+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-04 06:07+0000\n"
+"X-Generator: Launchpad (build 17936)\n"
 
 #: ../AgendaView.qml:52 ../DayView.qml:41 ../MonthView.qml:40
 #: ../WeekView.qml:45 ../YearView.qml:43
