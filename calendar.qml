@@ -20,6 +20,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
 import Qt.labs.settings 1.0
+
 import "dateExt.js" as DateExt
 
 MainView {
@@ -27,6 +28,7 @@ MainView {
 
     property bool displayWeekNumber: false;
     property bool displayLunarCalendar: false;
+    readonly property bool syncInProgress: commonHeaderActions.syncInProgress
 
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
@@ -176,7 +178,6 @@ MainView {
 
             property bool isReady: false
 
-            autoUpdate: true
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
 
@@ -640,6 +641,7 @@ MainView {
 
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
 
             onHighlightedDayChanged: {
                 if (highlightedDay)

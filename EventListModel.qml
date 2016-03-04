@@ -126,4 +126,12 @@ OrganizerModel {
             startLoadingTimer();
         }
     }
+
+    // disable update while syncing to avoid tons of unecessary update
+    autoUpdate: !mainView.syncInProgress
+    onAutoUpdateChanged: {
+        if (autoUpdate) {
+            eventModel.update()
+        }
+    }
 }
