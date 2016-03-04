@@ -147,7 +147,7 @@ Row {
                         // on a given day. "Ev." is short form for "Events".
                         // Please keep the translation of "Ev." to 3 characters only, as the week view
                         // where it's shown has limited space
-                        return i18n.tr("%1 ev.").arg(events.length)
+                        return i18n.tr("%1 event", "%1 events", events.length).arg(events.length)
                     } else {
                         if( events.length > 1) {
                            // TRANSLATORS: the argument refers to the number of all day events
