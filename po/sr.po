@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-01 16:35+0530\n"
-"PO-Revision-Date: 2015-12-09 19:51+0000\n"
-"Last-Translator: Bojan Bogdanović <Unknown>\n"
+"PO-Revision-Date: 2016-03-04 15:34+0000\n"
+"Last-Translator: Данило Шеган <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-03-02 05:40+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-05 06:14+0000\n"
+"X-Generator: Launchpad (build 17936)\n"
 
 #: ../AgendaView.qml:52 ../DayView.qml:41 ../MonthView.qml:40
 #: ../WeekView.qml:45 ../YearView.qml:43
@@ -177,7 +177,7 @@ msgstr "Нови догађај"
 
 #: ../EventActions.qml:75 ../Settings.qml:29
 msgid "Settings"
-msgstr ""
+msgstr "Подешавања"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -209,7 +209,7 @@ msgstr "од %1 до %2 (Цео дан)"
 #: ../EventDetails.qml:153
 #, qt-format
 msgid "%1 %2 %3 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 (цео дан"
 
 #: ../EventDetails.qml:156
 #, qt-format
@@ -308,7 +308,7 @@ msgstr "Након датума"
 
 #: ../MonthComponent.qml:262
 msgid "Wk"
-msgstr ""
+msgstr "Нд"
 
 #: ../NewEvent.qml:84
 msgid "Save"
@@ -443,11 +443,11 @@ msgstr "2 недеље"
 
 #: ../Settings.qml:55
 msgid "Show week numbers"
-msgstr ""
+msgstr "Прикажи бројеве недеља"
 
 #: ../Settings.qml:71
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Прикажи лунарни календар"
 
 #: ../TimeLineBase.qml:73
 msgid "Untitled"
