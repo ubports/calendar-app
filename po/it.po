@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-01 16:35+0530\n"
-"PO-Revision-Date: 2015-11-20 16:57+0000\n"
-"Last-Translator: Ugo Riboni <ugo.riboni@canonical.com>\n"
+"PO-Revision-Date: 2016-03-05 09:36+0000\n"
+"Last-Translator: Claudio Arseni <claudio.arseni@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-02 05:40+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-06 05:40+0000\n"
+"X-Generator: Launchpad (build 17936)\n"
 
 #: ../AgendaView.qml:52 ../DayView.qml:41 ../MonthView.qml:40
 #: ../WeekView.qml:45 ../YearView.qml:43
@@ -175,7 +175,7 @@ msgstr "Nuovo evento"
 
 #: ../EventActions.qml:75 ../Settings.qml:29
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -441,11 +441,11 @@ msgstr "2 settimane"
 
 #: ../Settings.qml:55
 msgid "Show week numbers"
-msgstr ""
+msgstr "Mostra numero settimana"
 
 #: ../Settings.qml:71
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Mostra calendario lunare"
 
 #: ../TimeLineBase.qml:73
 msgid "Untitled"
