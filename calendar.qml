@@ -224,7 +224,6 @@ MainView {
 
             function applyFilterFinal() {
                 var collectionIds = enabledColections()
-                console.debug("Selected collections:" + collectionIds)
                 collectionFilter.ids = collectionIds;
                 filter = Qt.binding(function() { return mainFilter; })
                 isReady = true
@@ -572,6 +571,7 @@ MainView {
 
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
 
             onCurrentYearChanged: {
                 tabs.currentDay = new Date(currentYear, 1, 1)
@@ -688,6 +688,7 @@ MainView {
 
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
 
             onDateSelected: {
                 tabs.currentDay = date
