@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-01 16:35+0530\n"
-"PO-Revision-Date: 2016-01-26 22:35+0000\n"
-"Last-Translator: Akerbeltz <fios@akerbeltz.org>\n"
+"PO-Revision-Date: 2016-03-03 13:12+0000\n"
+"Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2016-03-02 05:40+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-04 06:07+0000\n"
+"X-Generator: Launchpad (build 17936)\n"
 "Language: gd\n"
 
 #: ../AgendaView.qml:52 ../DayView.qml:41 ../MonthView.qml:40
@@ -184,7 +184,7 @@ msgstr "Tachartas ùr"
 
 #: ../EventActions.qml:75 ../Settings.qml:29
 msgid "Settings"
-msgstr ""
+msgstr "Roghainnean"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
@@ -451,11 +451,11 @@ msgstr "2 sheachdain"
 
 #: ../Settings.qml:55
 msgid "Show week numbers"
-msgstr ""
+msgstr "Seall àireamhan nan seachdainean"
 
 #: ../Settings.qml:71
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Seall mìosachan na gealaich"
 
 #: ../TimeLineBase.qml:73
 msgid "Untitled"
