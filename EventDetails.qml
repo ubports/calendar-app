@@ -17,9 +17,8 @@
  */
 import QtQuick 2.4
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Components.Themes.Ambiance 1.0
-import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components.ListItems 1.0 as ListItems
+import Ubuntu.Components.Popups 1.3
 import QtOrganizer 5.0
 
 import "Defines.js" as Defines
@@ -33,15 +32,29 @@ Page {
     property var event
     property var model
 
-    anchors{
-        left: parent.left
-        right: parent.right
-        bottom: parent.bottom
+    header: PageHeader {
+        title: i18n.tr("Event Details")
+        flickable: flicable
+        trailingActionBar.actions: Action {
+            text: i18n.tr("Edit");
+            objectName: "edit"
+            iconName: "edit";
+            onTriggered: {
+                if( event.itemType === Type.EventOccurrence ) {
+                    var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
+                    dialog.editEvent.connect( function(eventId){
+                        if( eventId === event.parentId ) {
+                            showEditEventPage(internal.parentEvent, model)
+                        } else {
+                            showEditEventPage(event, model)
+                        }
+                    });
+                } else {
+                    showEditEventPage(event, model)
+                }
+            }
+        }
     }
-
-    flickable: null
-
-    title: i18n.tr("Event Details")
 
     Component.onCompleted: {
         showEvent(event)
@@ -233,28 +246,6 @@ Page {
         }
     }
 
-    head.actions: [
-        Action {
-            text: i18n.tr("Edit");
-            objectName: "edit"
-            iconName: "edit";
-            onTriggered: {
-                if( event.itemType === Type.EventOccurrence ) {
-                    var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
-                    dialog.editEvent.connect( function(eventId){
-                        if( eventId === event.parentId ) {
-                            showEditEventPage(internal.parentEvent, model)
-                        } else {
-                            showEditEventPage(event, model)
-                        }
-                    });
-                } else {
-                    showEditEventPage(event, model)
-                }
-            }
-        }
-    ]
-
     EventUtils{
         id:eventUtils
     }
@@ -385,7 +376,7 @@ Page {
                     margins: units.gu(-2)
                 }
 
-                ListItem.Header {
+                ListItems.Header {
                     text: i18n.tr("Guests")
                     visible: contactModel.count !== 0
                 }
@@ -406,7 +397,7 @@ Page {
 
                     Repeater{
                         model: contactModel
-                        delegate: ListItem.Standard {
+                        delegate: ListItems.Standard {
                             Label {
                                 text: name
                                 objectName: "eventGuest%1".arg(index)
@@ -427,7 +418,7 @@ Page {
                 }
                 //Guest Entries ends
 
-                ListItem.Subtitled {
+                ListItems.Subtitled {
                     id: reminderHeader
                     text: i18n.tr("Reminder")
                 }
