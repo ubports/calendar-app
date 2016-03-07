@@ -207,7 +207,7 @@ Page {
                                 (checked) ? weekDays.push(index) : weekDays.splice(weekDays.indexOf(index),1);
                         }
                         checked:{
-                            (weekDays.length === 0 && index === eventRoot.date.getDay() && isEdit === false) ? true : false;
+                            (weekDays.length === 0 && eventRoot.date && (index === eventRoot.date.getDay()) && !isEdit) ? true : false;
                         }
 
                     }
