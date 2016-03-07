@@ -105,8 +105,9 @@ MainView {
                 if(commands[0].toLowerCase() === "eventid") {
                     // calendar://eventid=??
                     if( eventModel ) {
+                        // qtorganizer:eds::<event-id>
                         var eventId = commands[1];
-                        var prefix = "qtorganizer:eds::system-calendar/";
+                        var prefix = "qtorganizer:eds::";
                         if (eventId.indexOf(prefix) < 0)
                             eventId  = prefix + eventId;
 
@@ -411,7 +412,7 @@ MainView {
                         }
                     } // End of else if (starttime)
                     else if (eventId !== "") {
-                        var prefix = "qtorganizer:eds::system-calendar/";
+                        var prefix = "qtorganizer:eds::";
                         if (eventId.indexOf(prefix) < 0)
                             eventId  = prefix + eventId;
 
