@@ -131,8 +131,8 @@ Item{
         width = parent ? parent.width * sizeOfRow : 0
         x = depthInRow * width
         z = depthInRow
-        // avoid events to be draw too small, the minimumHeight will be 30 min
-        height = Math.max(30, durationInMinutes) * parent.minuteHeight
+        // avoid events to be draw too small, use the font height for timeLabel plus a gu(1) as margin
+        height = Math.max(timeLabel.implicitHeight + units.gu(1), durationInMinutes * parent.minuteHeight)
     }
 
     onEventChanged: {
