@@ -34,6 +34,7 @@ PageWithBottomEdge {
     property bool isCurrentPage: false
     property var selectedDay;
     property var highlightedDay;
+    property bool displayLunarCalendar: false
 
     signal dateSelected(var date);
     signal pressAndHoldAt(var date, bool allDay)
@@ -123,19 +124,26 @@ PageWithBottomEdge {
         ]
 
         title: {
-            // TRANSLATORS: this is a time formatting string,
-            // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-            // It's used in the header of the month and week views
-            var currentLastDayOfWeek = currentFirstDayOfWeek.addDays(7)
-            if (currentLastDayOfWeek.getMonth() !== currentFirstDayOfWeek.getMonth()) {
-                var firstMonthName = currentFirstDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
-                var lastMonthName = currentLastDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
-                return (firstMonthName[0].toUpperCase() + firstMonthName.substr(1, 2) + "/" +
-                        lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2) + " " +
-                        currentLastDayOfWeek.getFullYear())
+            if(weekViewPage.displayLunarCalendar){
+                var lunarDate = Lunar.calendar.solar2lunar(currentDate.getFullYear(),
+                                                           currentDate.getMonth() + 1,
+                                                           currentDate.getDate())
+                return i18n.tr("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
             } else {
-                var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+                // TRANSLATORS: this is a time formatting string,
+                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+                // It's used in the header of the month and week views
+                var currentLastDayOfWeek = currentFirstDayOfWeek.addDays(7)
+                if (currentLastDayOfWeek.getMonth() !== currentFirstDayOfWeek.getMonth()) {
+                    var firstMonthName = currentFirstDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
+                    var lastMonthName = currentLastDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
+                    return (firstMonthName[0].toUpperCase() + firstMonthName.substr(1, 2) + "/" +
+                            lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2) + " " +
+                            currentLastDayOfWeek.getFullYear())
+                } else {
+                    var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+                    return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+                }
             }
         }
         flickable: null
@@ -243,19 +251,5 @@ PageWithBottomEdge {
                 }
             }
         }
-    }
-
-    Component.onCompleted: {
-        pageHeader.title = Qt.binding(function(){
-            if(mainView.displayLunarCalendar){
-                var lunarDate = Lunar.calendar.solar2lunar(dayStart.getFullYear(),
-                                                           dayStart.getMonth() + 1,
-                                                           dayStart.getDate())
-                return i18n.tr("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
-            } else {
-                var monthName = dayStart.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
-            }
-        })
     }
 }

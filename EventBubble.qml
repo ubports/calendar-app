@@ -27,7 +27,7 @@ Item{
 
     property var anchorDate;
     property var event;
-    property var model;
+    property var model: null
     property int depthInRow: 0
     property real sizeOfRow:0.0
     property real minuteHeight: 1.0
@@ -47,6 +47,13 @@ Item{
     readonly property real durationInMinutes: endTimeInMinutes - startTimeInMinutes
 
     signal clicked(var event);
+
+    // keep color up-to-date
+    Connections {
+        target: model
+        ignoreUnknownSignals: true
+        onCollectionsChanged: assingnBgColor()
+    }
 
     function assingnBgColor() {
         if (model && event ) {

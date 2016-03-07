@@ -28,6 +28,7 @@ PageWithBottomEdge {
     objectName: "dayViewPage"
 
 
+    property bool displayLunarCalendar: false
     property var anchorDate: new Date()
     readonly property var currentDate: dayViewPath.currentItem.startDay
 
@@ -109,11 +110,18 @@ PageWithBottomEdge {
         ]
 
         title: {
-            // TRANSLATORS: this is a time formatting string,
-            // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-            // It's used in the header of the month and week views
-            var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-            return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            if(dayViewPage.displayLunarCalendar){
+                var lunarDate = Lunar.calendar.solar2lunar(currentDate.getFullYear(),
+                                                           currentDate.getMonth() + 1,
+                                                           currentDate.getDate())
+                return ("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
+            } else {
+                // TRANSLATORS: this is a time formatting string,
+                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+                // It's used in the header of the month and week views
+                var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            }
         }
     }
 
@@ -190,19 +198,5 @@ PageWithBottomEdge {
                 when: timeLineView.isCurrentItem
             }
         }
-    }
-
-    Component.onCompleted: {
-        pageHeader.title = Qt.binding(function(){
-            if(mainView.displayLunarCalendar){
-                var lunarDate = Lunar.calendar.solar2lunar(currentDay.getFullYear(),
-                                                           currentDay.getMonth() + 1,
-                                                           currentDay.getDate())
-                return i18n.tr("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
-            } else {
-                var monthName = currentDay.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
-            }
-        })
     }
 }

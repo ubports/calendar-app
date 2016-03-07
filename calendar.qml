@@ -20,6 +20,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
 import Qt.labs.settings 1.0
+
 import "dateExt.js" as DateExt
 
 MainView {
@@ -27,6 +28,7 @@ MainView {
 
     property bool displayWeekNumber: false;
     property bool displayLunarCalendar: false;
+    readonly property bool syncInProgress: commonHeaderActions.syncInProgress
 
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
@@ -103,8 +105,9 @@ MainView {
                 if(commands[0].toLowerCase() === "eventid") {
                     // calendar://eventid=??
                     if( eventModel ) {
+                        // qtorganizer:eds::<event-id>
                         var eventId = commands[1];
-                        var prefix = "qtorganizer:eds::system-calendar/";
+                        var prefix = "qtorganizer:eds::";
                         if (eventId.indexOf(prefix) < 0)
                             eventId  = prefix + eventId;
 
@@ -176,7 +179,6 @@ MainView {
 
             property bool isReady: false
 
-            autoUpdate: true
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
 
@@ -223,7 +225,6 @@ MainView {
 
             function applyFilterFinal() {
                 var collectionIds = enabledColections()
-                console.debug("Selected collections:" + collectionIds)
                 collectionFilter.ids = collectionIds;
                 filter = Qt.binding(function() { return mainFilter; })
                 isReady = true
@@ -411,7 +412,7 @@ MainView {
                         }
                     } // End of else if (starttime)
                     else if (eventId !== "") {
-                        var prefix = "qtorganizer:eds::system-calendar/";
+                        var prefix = "qtorganizer:eds::";
                         if (eventId.indexOf(prefix) < 0)
                             eventId  = prefix + eventId;
 
@@ -571,6 +572,7 @@ MainView {
 
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
 
             onCurrentYearChanged: {
                 tabs.currentDay = new Date(currentYear, 1, 1)
@@ -640,6 +642,7 @@ MainView {
 
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
 
             onHighlightedDayChanged: {
                 if (highlightedDay)
@@ -686,6 +689,7 @@ MainView {
 
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
 
             onDateSelected: {
                 tabs.currentDay = date
