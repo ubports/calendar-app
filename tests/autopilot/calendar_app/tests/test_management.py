@@ -29,22 +29,6 @@ from calendar_app.tests import CalendarAppTestCaseWithVcard
 
 class TestManagement(CalendarAppTestCaseWithVcard):
 
-    def test_change_calendar_color(self):
-        """ Test changing calendar color   """
-        calendar_choice_popup = \
-            self.app.main_view.go_to_calendar_choice_popup()
-        original_calendar_color = \
-            calendar_choice_popup.get_calendar_color()
-        calendar_choice_popup.open_color_picker_dialog()
-        colorPickerDialog = self.app.main_view.get_color_picker_dialog()
-        colorPickerDialog.change_calendar_color("color6")
-
-        final_calendar_color = \
-            calendar_choice_popup.get_calendar_color()
-
-        self.assertThat(
-            original_calendar_color, NotEquals(final_calendar_color))
-
     def test_unselect_calendar(self):
         """ Test unselecting calendar
 
@@ -76,7 +60,7 @@ class TestManagement(CalendarAppTestCaseWithVcard):
     def _event_exists(self, event_name):
         try:
             day_view = self.app.main_view.go_to_day_view()
-            day_view.get_event(event_name, True)
+            day_view.get_event(event_name, False)
         except Exception:
             return False
         return True
