@@ -37,7 +37,7 @@ Page {
     NewEventBottomEdge {
         id: bottomEdge
 
-        pageStack: tabs
+        pageStack: root.pageStack
         onOpened: root.bottomEdgeCommitStarted()
         onEventCreated: root.eventCreated(event)
     }
