@@ -30,6 +30,9 @@ Page {
     id: root
     objectName: 'newEventPage'
 
+    // WORKAROUND: allow us to push pages over bottom edge element
+    property var bottomEdgePageStack: null
+
     property var date;
     property alias allDay: allDayEventCheckbox.checked
 
@@ -684,7 +687,13 @@ Page {
                 visible: (event != undefined) && (event.itemType === Type.Event)
                 text: i18n.tr("Repeats")
                 subText: (event != undefined) && (event.itemType === Type.Event) ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
-                onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"eventRoot": root,"isEdit":isEdit});
+                onClicked: {
+                    var stack = pageStack
+                    if (!stack)
+                        stack = bottomEdgePageStack
+
+                    stack.push(Qt.resolvedUrl("EventRepetition.qml"),{"eventRoot": root,"isEdit":isEdit});
+                }
             }
 
             ListItems.ThinDivider {
@@ -717,11 +726,17 @@ Page {
 
                 }
 
-                onClicked: pageStack.push(Qt.resolvedUrl("EventReminder.qml"),
-                                          {"visualReminder": visualReminder,
-                                              "audibleReminder": audibleReminder,
-                                              "reminderModel": reminderModel,
-                                              "eventTitle": titleEdit.text})
+                onClicked:{
+                    var stack = pageStack
+                    if (!stack)
+                        stack = bottomEdgePageStack
+
+                    stack.push(Qt.resolvedUrl("EventReminder.qml"),
+                                              {"visualReminder": visualReminder,
+                                               "audibleReminder": audibleReminder,
+                                               "reminderModel": reminderModel,
+                                               "eventTitle": titleEdit.text})
+                }
             }
 
             ListItems.ThinDivider {}

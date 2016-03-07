@@ -99,6 +99,7 @@ BottomEdge {
             active: bottomEdge.status === BottomEdge.Committed
             visible: (bottomEdge.status !== BottomEdge.Hidden)
             onCanceled: bottomEdge.collapse()
+            bottomEdgePageStack: bottomEdge.pageStack
             onEventAdded: {
                 bottomEdge.collapse()
                 bottomEdge.eventCreated(event)
