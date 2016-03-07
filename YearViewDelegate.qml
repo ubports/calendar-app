@@ -1,25 +1,36 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
 
-GridView{
+    GridView{
     id: yearView
-    clip: true
 
     property int scrollMonth;
     property bool isCurrentItem;
     property int year;
-
+    readonly property var currentDate: new Date()
+    readonly property int currentYear: currentDate.getFullYear()
+    readonly property int currentMonth: currentDate.getMonth()
     readonly property int minCellWidth: units.gu(30)
+
+    signal monthSelected(var date);
+
+    function refresh() {
+        scrollMonth = 0;
+        if(year == currentYear) {
+            scrollMonth = currentMonth
+        }
+        yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
+    }
+
+    // Does not increase cash buffer if user is scolling
+    cacheBuffer: parent.PathView.view.flicking || parent.PathView.view.dragging || !isCurrentItem ? 0 : 6 * cellHeight
+
     cellWidth: Math.floor(Math.min.apply(Math, [3, 4].map(function(n)
     { return ((width / n >= minCellWidth) ? width / n : width / 2) })))
-
     cellHeight: cellWidth * 1.4
 
+    clip: true
     model: 12 /* months in a year */
-
-    onYearChanged: {
-        refresh();
-    }
 
     //scroll in case content height changed
     onHeightChanged: {
@@ -30,71 +41,25 @@ GridView{
         yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
     }
 
-    function refresh() {
-        scrollMonth = 0;
-        var today = new Date();
-        if(year == today.getFullYear()) {
-            scrollMonth = today.getMonth();
-        }
-        yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
-    }
+    delegate: MonthComponent {
+            id: monthComponent
+            objectName: "monthComponent" + index
 
-    Connections{
-        target: yearPathView
-        onScrollUp: {
-            scrollMonth -= 2;
-            if(scrollMonth < 0) {
-                scrollMonth = 0;
+            width: yearView.cellWidth - units.gu(1)
+            height: yearView.cellHeight - units.gu(1)
+            y: units.gu(0.5)
+            x: units.gu(0.5)
+
+            currentYear: yearView.year
+            currentMonth: index
+            isCurrentItem: yearView.focus
+            isYearView: true
+            dayLabelFontSize:"x-small"
+            dateLabelFontSize: "medium"
+            monthLabelFontSize: "medium"
+            yearLabelFontSize: "medium"
+            onMonthSelected: {
+                yearView.monthSelected(date);
             }
-            yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
-        }
-
-        onScrollDown: {
-            scrollMonth += 2;
-            var visibleMonths = yearView.height / cellHeight;
-            if( scrollMonth >= (11 - visibleMonths)) {
-                scrollMonth = (11 - visibleMonths);
-            }
-            yearView.positionViewAtIndex(scrollMonth, GridView.Beginning);
-        }
-    }
-
-    delegate: Loader {
-        width: yearView.cellWidth
-        height: yearView.cellHeight
-
-        sourceComponent: delegateComponent
-        asynchronous: !yearView.focus
-
-        Component {
-            id: delegateComponent
-
-            Item {
-                anchors.fill: parent
-                anchors.margins: units.gu(0.5)
-
-                MonthComponent {
-                    id: monthComponent
-                    objectName: "monthComponent" + index
-                    showEvents: false
-                    currentMonth: new Date(yearView.year, index, 1, 0, 0, 0, 0)
-                    displayWeekNumber: mainView.displayWeekNumber;
-                    displayLunarCalendar: false; //we disable lunar calendar display in yeaer view due to space
-                    isCurrentItem: yearView.focus
-
-                    isYearView: true
-                    anchors.fill: parent
-
-                    dayLabelFontSize:"x-small"
-                    dateLabelFontSize: "medium"
-                    monthLabelFontSize: "medium"
-                    yearLabelFontSize: "medium"
-
-                    onMonthSelected: {
-                        yearViewPage.monthSelected(date);
-                    }
-                }
-            }
-        }
     }
 }

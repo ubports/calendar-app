@@ -20,54 +20,39 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import QtOrganizer 5.0
 
+import "calendar_canvas.js" as CanlendarCanvas
+
 Item{
     id: infoBubble
 
+    property var anchorDate;
     property var event;
-    property var model;
-
+    property var model: null
+    property int depthInRow: 0
+    property real sizeOfRow:0.0
+    property real minuteHeight: 1.0
     property int type: narrowType
     property int wideType: 1;
     property int narrowType: 2;
-
-    property int depthInRow: 0;
-    property int sizeOfRow:0
-
     property bool isLiveEditing: false
-
     property Flickable flickable;
+    property bool isEventBubble: true
 
     readonly property int minimumHeight: type == wideType
                                          ? detailsItems.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
                                          : units.gu(2)
 
-    z: depthInRow
+    readonly property real startTimeInMinutes: event ? CanlendarCanvas.minutesSince(infoBubble.anchorDate, event.startDateTime) : 0.0
+    readonly property real endTimeInMinutes: event ? CanlendarCanvas.minutesSince(infoBubble.anchorDate, event.endDateTime) : 0.0
+    readonly property real durationInMinutes: endTimeInMinutes - startTimeInMinutes
 
     signal clicked(var event);
 
-    Rectangle{
-        id: bg
-        anchors.fill: parent
-        border.color: isLiveEditing ? "red" : "white"
-    }
-
-    function resize() {
-        var offset = parent.width/sizeOfRow;
-        x = (depthInRow) * offset;
-        width = parent.width - x;
-    }
-
-    Connections{
-        target: parent
-        onWidthChanged:{
-            resize();
-        }
-    }
-
-    onEventChanged: {
-        resize();
-        assingnBgColor();
-        setDetails();
+    // keep color up-to-date
+    Connections {
+        target: model
+        ignoreUnknownSignals: true
+        onCollectionsChanged: assingnBgColor()
     }
 
     function assingnBgColor() {
@@ -99,20 +84,6 @@ Item{
                     return contact.participationStatus;
                 }
             }
-        }
-    }
-
-    function layoutBubbleDetails() {
-        if( !flickable || flickable === undefined ) {
-            return;
-        }
-
-        if( infoBubble.y < flickable.contentY && infoBubble.height > flickable.height) {
-            var y = (flickable.contentY - infoBubble.y) * 1.2;
-            if( ( y + detailsItems.height + units.gu(2)) > infoBubble.height) {
-                y = infoBubble.height - detailsItems.height - units.gu(2);
-            }
-            detailsItems.y = y;
         }
     }
 
@@ -153,8 +124,38 @@ Item{
             timeLabel.horizontalAlignment = Text.AlignHCenter
             timeLabel.wrapMode = Text.WrapAtWordBoundaryOrAnywhere
         }
+    }
 
-        layoutBubbleDetails();
+    function resize()
+    {
+        width = parent ? parent.width * sizeOfRow : 0
+        x = depthInRow * width
+        z = depthInRow
+        height = Math.max(30, (durationInMinutes * parent.minuteHeight))
+    }
+
+    onEventChanged: {
+        assingnBgColor();
+        setDetails();
+        resize()
+    }
+
+    Connections {
+        target: parent
+        onWidthChanged: resize()
+    }
+
+    Binding {
+        target: infoBubble
+        property: "y"
+        value: (startTimeInMinutes * parent.minuteHeight)
+        when: !infoBubble.isLiveEditing
+    }
+
+    Rectangle{
+        id: bg
+        anchors.fill: parent
+        border.color: isLiveEditing ? "red" : "white"
     }
 
     Item {
@@ -193,25 +194,6 @@ Item{
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
         }
-
-        onHeightChanged: {
-            layoutBubbleDetails();
-        }
-
-        Connections {
-            target: infoBubble
-            onFlickableChanged: {
-                if (flickable && infoBubble.height > flickable.height) {
-                    flickable.onContentYChanged.connect(layoutBubbleDetails);
-                }
-            }
-
-            onHeightChanged: {
-                if(flickable && infoBubble.height > flickable.height) {
-                    flickable.onContentYChanged.connect(layoutBubbleDetails);
-                }
-            }
-        }
     }
 
     Drag.active: dragArea.drag.active
@@ -219,11 +201,19 @@ Item{
     MouseArea {
         id: dragArea
         anchors.fill: parent
-        drag.target: isLiveEditing ? infoBubble : null
-        drag.axis: Drag.YAxis
-        drag.minimumY: flickable ? flickable.y : 0
-        drag.maximumY: flickable ? flickable.contentHeight - infoBubble.height : infoBubble.height
-        onReleased: parent.Drag.drop()
+        drag {
+            target: isLiveEditing ? infoBubble : null
+            axis: Drag.YAxis
+            minimumY: flickable ? flickable.y : 0
+            maximumY: flickable ? flickable.contentHeight - infoBubble.height : infoBubble.height
+        }
+        onReleased: {
+            if (isLiveEditing) {
+                isLiveEditing = false;
+                infoBubble.z -= 1;
+            }
+            parent.Drag.drop()
+        }
         onClicked: {
             if( isLiveEditing ) {
                 isLiveEditing = false;

@@ -23,10 +23,10 @@ import Ubuntu.SyncMonitor 0.1
 Item {
     id: actionPool
 
-    property alias newEventAction: _newEventAction
     property alias showCalendarAction: _showCalendarAction
     property alias syncCalendarAction: _syncCalendarAction
     property alias settingsAction: _settingsAction
+    readonly property bool syncInProgress: (syncMonitor.state === "syncing")
 
     Action {
         id: _syncCalendarAction
@@ -36,23 +36,12 @@ Item {
         // Currently ,there is no way we can increase width of action menu currently.
         text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
         onTriggered: syncMonitor.sync(["calendar"])
-        enabled: (syncMonitor.state !== "syncing")
+        enabled: !syncInProgress
         visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
     }
 
     SyncMonitor {
         id: syncMonitor
-    }
-
-    Action {
-        id: _newEventAction
-        objectName: "neweventbutton"
-        name: "neweventbutton"
-        iconName: "new-event"
-        text: i18n.tr("New Event")
-        onTriggered: {
-            pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"date":tabs.currentDay,"model":eventModel});
-        }
     }
 
     Action{

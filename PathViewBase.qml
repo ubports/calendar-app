@@ -20,8 +20,7 @@ import QtQuick 2.4
 PathView {
     id: root
 
-    model: 3
-    snapMode: PathView.SnapOneItem
+    readonly property alias loopCurrentIndex: intern.loopCurrentIndex
 
     signal nextItemHighlighted();
     signal previousItemHighlighted();
@@ -29,6 +28,8 @@ PathView {
     signal scrollUp();
     signal scrollDown();
 
+    model: 3
+    snapMode: PathView.SnapOneItem
     preferredHighlightBegin: 0.5
     preferredHighlightEnd: 0.5
 
@@ -68,6 +69,11 @@ PathView {
         }
     }
 
+    function scrollToBegginer()
+    {
+        intern.loopCurrentIndex = intern.previousIndex = currentIndex = 0
+    }
+
     Keys.onLeftPressed:{
         root.decrementCurrentIndex();
     }
@@ -98,15 +104,17 @@ PathView {
         intern.previousIndex = currentIndex
 
         if ( diff > 0 ) {
-            root.nextItemHighlighted();
+            intern.loopCurrentIndex++
         }
         else {
-            root.previousItemHighlighted();
+            intern.loopCurrentIndex--
         }
     }
 
     QtObject{
         id: intern
+
+        property int loopCurrentIndex: 0
         property int previousIndex: root.currentIndex
     }
 }

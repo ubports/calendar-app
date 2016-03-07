@@ -33,6 +33,7 @@ Column {
 
     signal dateSelected(var date);
     signal dateHighlighted(var date);
+    signal allDayPressAndHold(var date);
 
     width: parent.width
     height: units.gu(10)
@@ -118,6 +119,9 @@ Column {
                 width: parent.width
                 height: units.gu(5)
 
+                onPressAndHold: headerRoot.allDayPressAndHold(date)
+
+
                 Connections{
                     target: mainModel
                     onModelChanged : {
@@ -183,6 +187,8 @@ Column {
                     width: parent.width
                     height: units.gu(5)
                     model: mainModel
+
+                    onPressAndHold: headerRoot.allDayPressAndHold(date)
 
                     Connections{
                         target: mainModel

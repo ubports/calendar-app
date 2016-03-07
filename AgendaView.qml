@@ -23,15 +23,13 @@ import Ubuntu.Components.ListItems 1.0 as ListItem
 import "dateExt.js" as DateExt
 import "./3rd-party/lunar.js" as Lunar
 
-Page{
+PageWithBottomEdge {
     id: root
     objectName: "AgendaView"
 
-    property var currentDay: new Date()
+    property var anchorDate: new Date()
 
     signal dateSelected(var date);
-
-    Keys.forwardTo: [eventList]
 
     function goToBeginning() {
         eventList.positionViewAtBeginning();
@@ -45,13 +43,17 @@ Page{
         return !!enabled_calendars.length;
     }
 
+
+    Keys.forwardTo: [eventList]
+    createEventAt: anchorDate
+
     Action {
         id: calendarTodayAction
         objectName:"todaybutton"
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            currentDay = new Date()
+            anchorDate = new Date()
             goToBeginning()
         }
     }
@@ -63,7 +65,6 @@ Page{
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
@@ -74,9 +75,9 @@ Page{
 
     EventListModel {
         id: eventListModel
-        startPeriod: currentDay.midnight();
-        endPeriod: currentDay.addDays(7).endOfDay()
-        filter: eventModel.filter
+        startPeriod: anchorDate.midnight();
+        endPeriod: anchorDate.addDays(7).endOfDay()
+        filter: model.filter
 
         sortOrders: [
             SortOrder{
@@ -106,7 +107,7 @@ Page{
 
             return default_title;
         }
-        visible: (eventListModel.count === 0) && !eventListModel.isLoading
+        visible: (eventList.count === 0) && !eventListModel.isLoading
         anchors.centerIn: parent
     }
 
@@ -119,12 +120,12 @@ Page{
         color: UbuntuColors.orange
 
         onClicked: {
-            pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model":eventModel});
-            pageStack.currentPage.collectionUpdated.connect(eventModel.delayedApplyFilter);
+            pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model": model});
+            pageStack.currentPage.collectionUpdated.connect(model.delayedApplyFilter);
         }
     }
 
-    ListView{
+    ListView {
         id: eventList
         objectName: "eventList"
         model: eventListModel

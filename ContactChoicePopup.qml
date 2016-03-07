@@ -17,7 +17,7 @@
  */
 import QtQuick 2.4
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Themes.Ambiance 1.0
 import QtOrganizer 5.0
@@ -29,7 +29,7 @@ Popover {
     id: root
     objectName: "contactPopover"
 
-    signal contactSelected(var contact);
+    signal contactSelected(var contact, string emailAddress);
 
     Label {
         id: noContact
@@ -40,24 +40,27 @@ Popover {
 
     UnionFilter {
         id: filter
+
+        property string searchString: ""
+
         filters: [
             DetailFilter{
                 detail: ContactDetail.Name
                 field: Name.FirstName
                 matchFlags: Filter.MatchContains
-                value: searchBox.text
+                value: filter.searchString
             },
             DetailFilter{
                 detail: ContactDetail.Name
                 field: Name.LastName
                 matchFlags: Filter.MatchContains
-                value: searchBox.text
+                value: filter.searchString
             },
             DetailFilter{
                 detail: ContactDetail.DisplayLabel
                 field: DisplayLabel.Label
                 matchFlags: Filter.MatchContains
-                value: searchBox.text
+                value: filter.searchString
             }
         ]
     }
@@ -67,6 +70,16 @@ Popover {
         manager: "galera"
         filter: filter
         autoUpdate: true
+    }
+
+    Timer {
+        id: idleSearch
+
+        interval: 500
+        repeat: false
+        onTriggered: {
+            filter.searchString = searchBox.text
+        }
     }
 
     Column {
@@ -81,12 +94,16 @@ Popover {
             focus: true
             width: parent.width
             placeholderText: i18n.tr("Search contact")
+            inputMethodHints: Qt.ImhNoPredictiveText
             primaryItem: Icon {
                  height: parent.height*0.5
                  width: parent.height*0.5
                  anchors.verticalCenter: parent.verticalCenter
                  name:"find"
-             }
+            }
+            onTextChanged: {
+                idleSearch.restart()
+            }
         }
 
         ListView {
@@ -96,17 +113,42 @@ Popover {
             model: contactModel
             height: units.gu(15)
             clip: true
-            delegate: Standard{
-                objectName: "contactPopoverList%1".arg(index)
-                property var item: contactModel.contacts[index]
-                height: units.gu(4)
-                text: item ? item.displayLabel.label : ""
+            focus: false
+            delegate: Column {
+                width: contactList.width
+                Repeater {
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                    }
+                    height: childrenRect.height
 
-                onClicked: {
-                    root.contactSelected(item);
-                    onClicked: PopupUtils.close(root)
+                    model: Math.max(1, contact.emails.length)
+                    delegate: ListItem {
+                        property string emailAddress: contact.emails.length > index ? contact.emails[index].emailAddress : ""
+
+                        activeFocusOnPress: false
+                        opacity: emailAddress.length > 0 ? 1.0 : 0.3
+                        width: contactList.width
+                        objectName: "contactPopoverList%1".arg(index)
+                        ListItemLayout {
+                            title.text: contact.displayLabel.label
+                            subtitle.text: emailAddress
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                if (emailAddress.length > 0) {
+                                    root.contactSelected(contact, emailAddress);
+                                    PopupUtils.close(root)
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+
+    Component.onCompleted: searchBox.forceActiveFocus()
 }

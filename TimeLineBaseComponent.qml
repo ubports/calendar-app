@@ -29,58 +29,106 @@ Item {
 
     property var keyboardEventProvider;
 
+    property bool isCurrentItem: false
+    property bool isActive: false
+
     property date startDay: DateExt.today();
     property int weekNumber: startDay.weekNumber(Qt.locale().firstDayOfWeek);
-    property bool isActive: false
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
+    property var modelFilter: invalidFilter
     property var selectedDay;
 
+    readonly property real hourItemHeight: units.gu(8)
+    readonly property int currentHour: timeLineView.contentY > hourItemHeight ?
+                                           Math.round(timeLineView.contentY / hourItemHeight) : 1
+    readonly property int currentDayOfWeek: timeLineView.contentX > timeLineView.delegateWidth ?
+                                                Math.floor(timeLineView.contentX / timeLineView.delegateWidth) : 0
     property int type: ViewType.ViewTypeWeek
 
     //visible hour
     property int scrollHour;
 
-    property EventListModel mainModel;
-
     signal dateSelected(var date);
     signal dateHighlighted(var date);
+    signal pressAndHoldAt(var date, bool allDay);
 
-    function scrollToCurrentTime() {
-        var currentTime = new Date();
-        scrollHour = currentTime.getHours();
+    function timeIsVisible(date) {
 
-        timeLineView.contentY = scrollHour * units.gu(8);
-        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
-            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
-        }
+        var hour = date.getHours();
+        var currentTimeY = (hour * hourItemHeight)
+        return ((currentTimeY >= timeLineView.contentY) &&
+                (currentTimeY <= (timeLineView.contentY + timeLineView.height)));
     }
 
-    function scrollTocurrentDate() {
-        if ( type != ViewType.ViewTypeWeek ){
+    function dateIsVisible(date) {
+        if (date.getFullYear() !== startDay.getFullYear()) {
+            return false;
+        }
+
+        if (type != ViewType.ViewTypeWeek) {
+            return ((date.getMonth() === startDay.getMonth) &&
+                    (date.getDate() === startDay.getDate()))
+        }
+
+        var dateDayOfWeekX = date.getDay() * timeLineView.delegateWidth
+        return ((dateDayOfWeekX >= timeLineView.contentX) &&
+                (dateDayOfWeekX <= (timeLineView.contentX + timeLineView.width)))
+    }
+
+    function dateTimeIsVisible(date) {
+        return dateIsVisible(date) && timeIsVisible(date);
+    }
+
+    function scrollToTime(date) {
+        scrollHour = date.getHours();
+
+        var currentTimeY = (scrollHour * hourItemHeight)
+        var margin = (timeLineView.height / 2.0) - units.gu(5)
+        currentTimeY =  currentTimeY - margin
+        timeLineView.contentY = Math.min(timeLineView.contentHeight - timeLineView.height, currentTimeY > 0 ? currentTimeY : 0)
+        timeLineView.returnToBounds()
+    }
+
+    function scrollToDate(date) {
+        if (type != ViewType.ViewTypeWeek) {
             return;
         }
 
-        var today = DateExt.today();
-        var startOfWeek = today.weekStart(Qt.locale().firstDayOfWeek);
-        var weekDay = today.getDay();
-        var diff = weekDay - Qt.locale().firstDayOfWeek
-        diff = diff < 0 ? 6 : diff
+        var todayWeekNumber = date.weekNumber(Qt.locale().firstDayOfWeek);
 
-        if( startOfWeek.isSameDay(startDay) && diff > 2) {
-            timeLineView.contentX = (diff * timeLineView.delegateWidth);
-            if( timeLineView.contentX  > (timeLineView.contentWidth - timeLineView.width) ) {
-                timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
-            }
+        if (todayWeekNumber === root.weekNumber) {
+            var startOfWeek = date.weekStart(Qt.locale().firstDayOfWeek);
+            var weekDay = date.getDay();
+            var diff = weekDay - Qt.locale().firstDayOfWeek
+            diff = diff < 0 ? 0 : diff
+
+            var currentDayY = timeLineView.delegateWidth * diff
+            var margin = (timeLineView.width - timeLineView.delegateWidth) / 2
+            currentDayY = currentDayY - margin
+            timeLineView.contentX = Math.min(timeLineView.contentWidth - timeLineView.width, currentDayY > 0 ? currentDayY : 0)
         } else {
-            //need to check swipe direction
-            //and change startion position as per direction
-            if(weekViewPath.swipeDirection() === -1) {
-                timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
-            } else {
-                timeLineView.contentX = 0;
-            }
+            timeLineView.contentX = 0
         }
+
+        timeLineView.returnToBounds()
+    }
+
+    function scrollToDateAndTime(date) {
+        scrollToTime(date)
+        scrollToDate(date)
+    }
+
+    function scrollToEnd()
+    {
+        timeLineView.contentX = timeLineView.contentWidth - timeLineView.width
+        timeLineView.returnToBounds()
+    }
+
+    function scrollToBegin()
+    {
+        timeLineView.contentX = 0
+        timeLineView.returnToBounds()
     }
 
     Connections{
@@ -110,29 +158,51 @@ Item {
         }
     }
 
-    Timer{
-       interval: 200; running: true; repeat: false
-       onTriggered: {
-           mainModel = modelComponent.createObject();
-           activityLoader.running = Qt.binding( function (){ return mainModel.isLoading;});
-       }
-    }
-
-    Component {
-        id: modelComponent
-        EventListModel {
-            id: mainModel
-            startPeriod: startDay.midnight();
-            endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
-            filter: eventModel.filter
+    onIsActiveChanged: {
+        if (isActive && (mainModel.filter === invalidFilter)) {
+            idleRefresh.reset()
         }
     }
 
+    Timer {
+        id: idleRefresh
+
+        function reset()
+        {
+            mainModel.filter = invalidFilter
+            restart()
+        }
+
+        interval: root.isCurrentItem ? 500 : 1000
+        repeat: false
+        onTriggered: {
+            mainModel.filter = Qt.binding(function() { return root.modelFilter} )
+        }
+    }
+
+    InvalidFilter {
+        id: invalidFilter
+    }
+
+    EventListModel {
+        id: mainModel
+
+        manager:"eds"
+        startPeriod: startDay.midnight();
+        endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
+        filter: invalidFilter
+
+        onStartPeriodChanged: idleRefresh.reset()
+        onEndPeriodChanged: idleRefresh.reset()
+   }
+
     ActivityIndicator {
         id: activityLoader
-        visible: running
         objectName : "activityIndicator"
+
+        visible: running
         anchors.centerIn: parent
+        //running: mainModel.isLoading
         z:2
     }
 
@@ -149,11 +219,21 @@ Item {
             selectedDay: root.selectedDay
 
             onDateSelected: {
-                root.dateSelected(date);
+                root.dateSelected(date.getFullYear(),
+                                  date.getMonth(),
+                                  date.getDate(),
+                                  root.currentHour, 0, 0)
             }
 
             onDateHighlighted: {
-                root.dateHighlighted(date);
+                root.dateHighlighted(date.getFullYear(),
+                                     date.getMonth(),
+                                     date.getDate(),
+                                     root.currentHour, 0, 0)
+            }
+
+            onAllDayPressAndHold: {
+                root.pressAndHoldAt(date, true)
             }
         }
 
@@ -183,7 +263,7 @@ Item {
 
                 property int delegateWidth: {
                     if( type == ViewType.ViewTypeWeek ) {
-                        width/3 - units.gu(1) /*partial visible area*/
+                        width/3 - units.gu(1) // partial visible area
                     } else {
                         width
                     }
@@ -198,11 +278,6 @@ Item {
                     }
                 }
 
-                onContentWidthChanged: {
-                    scrollToCurrentTime();
-                    scrollTocurrentDate();
-                }
-
                 clip: true
 
                 TimeLineBackground{}
@@ -214,7 +289,12 @@ Item {
                         model: type == ViewType.ViewTypeWeek ? 7 : 1
 
                         delegate: TimeLineBase {
+                            id: delegate
+
+                            objectName: "TimeLineBase_" + root.objectName
+
                             property int idx: index
+                            flickable: timeLineView
                             anchors.top: parent.top
                             width: {
                                 if( type == ViewType.ViewTypeWeek ) {
@@ -228,12 +308,14 @@ Item {
                             day: startDay.addDays(index)
                             model: mainModel
 
-                            Connections{
-                                target: mainModel
+                            onPressAndHoldAt: {
+                                root.pressAndHoldAt(date, false)
+                            }
 
-                                onModelChanged: {
-                                    createEvents();
-                                }
+                            Binding {
+                                target: timeLineView
+                                property: "interactive"
+                                value: !delegate.creatingEvent
                             }
 
                             DropArea {
@@ -251,12 +333,13 @@ Item {
                                     event.startDateTime = startDate;
                                     event.endDateTime = endDate;
 
-                                     return event;
+                                    return event;
                                 }
 
                                 onDropped: {
                                     var event = dropArea.modifyEventForDrag(drop);
-                                    model.saveItem(event);
+                                    delegate.waitForModelChange()
+                                    delegate.model.saveItem(event);
                                 }
 
                                 onPositionChanged: {
@@ -299,13 +382,6 @@ Item {
                                     anchors.fill: parent
                                 }
                             }
-
-                            Connections{
-                                target: mainModel
-                                onStartPeriodChanged:{
-                                    destroyAllChildren();
-                                }
-                            }
                         }
                     }
                 }
@@ -317,8 +393,16 @@ Item {
         id: comp
         EventBubble {
             type: root.type == ViewType.ViewTypeWeek ? narrowType : wideType
-            flickable: root.isActive ? timeLineView : null
+            flickable: root.isCurrentItem ? timeLineView : null
             clip: true
+            opacity: parent.enabled ? 1.0 : 0.3
+
+            // send a signal to update application current date
+            onClicked: root.dateHighlighted(event.startDateTime)
+            onIsLiveEditingChanged: {
+                if (isLiveEditing)
+                    root.dateHighlighted(event.startDateTime)
+            }
         }
     }
 }

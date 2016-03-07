@@ -22,21 +22,31 @@ import "dateExt.js" as DateExt
 import "ViewType.js" as ViewType
 import "./3rd-party/lunar.js" as Lunar
 
-Page{
+PageWithBottomEdge {
     id: weekViewPage
     objectName: "weekViewPage"
 
-    property var dayStart: new Date();
-    property var firstDay: dayStart.weekStart(Qt.locale().firstDayOfWeek);
+    property var anchorDate: new Date();
+    readonly property var anchorFirstDayOfWeek: anchorDate.weekStart(Qt.locale().firstDayOfWeek)
+    readonly property var currentDate: weekViewPath.currentItem.item.startDay
+    readonly property var currentFirstDayOfWeek: currentDate.weekStart(Qt.locale().firstDayOfWeek)
+
     property bool isCurrentPage: false
     property var selectedDay;
+    property var highlightedDay;
+    property bool displayLunarCalendar: false
 
     signal dateSelected(var date);
-    signal dateHighlighted(var date);
+    signal pressAndHoldAt(var date, bool allDay)
+
+    function delayScrollToDate(scrollDate, scrollTime) {
+        idleScroll.scrollToTime = scrollTime != undefined ? scrollTime : true
+        idleScroll.scrollToDate = new Date(scrollDate)
+        idleScroll.restart()
+    }
 
     Keys.forwardTo: [weekViewPath]
-
-    flickable: null
+    createEventAt: null
 
     Action {
         id: calendarTodayAction
@@ -44,7 +54,60 @@ Page{
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            dayStart = new Date()
+            var today = new Date()
+            delayScrollToDate(today)
+            anchorDate = today
+        }
+    }
+
+    onAnchorDateChanged: {
+        weekViewPath.scrollToBegginer()
+    }
+
+    onEventCreated: {
+        var scrollDate = new Date(event.startDateTime)
+        var currentWeekNumber = currentDate.weekNumber(Qt.locale().firstDayOfWeek)
+        var eventWeekNumber = scrollDate.weekNumber(Qt.locale().firstDayOfWeek)
+        var needScroll = false
+
+        if ((scrollDate.getFullYear() !== currentDate.getFullYear()) ||
+            (currentWeekNumber !== eventWeekNumber)) {
+            anchorDate = new Date(scrollDate)
+            needScroll = true
+        } else {
+            if (event.allDay) {
+                needScroll = !weekViewPath.currentItem.item.dateIsVisible(scrollDate)
+            } else {
+                needScroll = !weekViewPath.currentItem.item.timeIsVisible(scrollDate)
+            }
+        }
+
+        highlightedDay = scrollDate
+        if (needScroll) {
+            delayScrollToDate(scrollDate, !event.allDay)
+        }
+    }
+
+    Timer {
+        id: idleScroll
+
+        property var scrollToDate: null
+        property bool scrollToTime: true
+
+        interval: 200
+        repeat:false
+        onTriggered: {
+            if (scrollToDate) {
+                if (scrollToTime)
+                    weekViewPath.currentItem.item.scrollToDateAndTime(scrollToDate);
+                else
+                    weekViewPath.currentItem.item.scrollToDate(scrollToDate);
+            } else {
+                weekViewPath.currentItem.item.scrollToBegin()
+            }
+
+            scrollToDate = null
+            scrollToTime = true
         }
     }
 
@@ -54,7 +117,6 @@ Page{
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
@@ -62,11 +124,27 @@ Page{
         ]
 
         title: {
-            // TRANSLATORS: this is a time formatting string,
-            // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-            // It's used in the header of the month and week views
-            var monthName = dayStart.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-            return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+            if(weekViewPage.displayLunarCalendar){
+                var lunarDate = Lunar.calendar.solar2lunar(currentDate.getFullYear(),
+                                                           currentDate.getMonth() + 1,
+                                                           currentDate.getDate())
+                return i18n.tr("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
+            } else {
+                // TRANSLATORS: this is a time formatting string,
+                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+                // It's used in the header of the month and week views
+                var currentLastDayOfWeek = currentFirstDayOfWeek.addDays(7)
+                if (currentLastDayOfWeek.getMonth() !== currentFirstDayOfWeek.getMonth()) {
+                    var firstMonthName = currentFirstDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
+                    var lastMonthName = currentLastDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
+                    return (firstMonthName[0].toUpperCase() + firstMonthName.substr(1, 2) + "/" +
+                            lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2) + " " +
+                            currentLastDayOfWeek.getFullYear())
+                } else {
+                    var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
+                    return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
+                }
+            }
         }
         flickable: null
     }
@@ -80,24 +158,12 @@ Page{
             topMargin: header.height
         }
 
+        onCurrentIndexChanged: {
+            weekViewPage.highlightedDay = null
+        }
+
         //This is used to scroll all view together when currentItem scrolls
         property var childContentY;
-
-        onNextItemHighlighted: {
-            nextWeek();
-        }
-
-        onPreviousItemHighlighted: {
-            previousWeek();
-        }
-
-        function nextWeek() {
-            dayStart = firstDay.addDays(7);
-        }
-
-        function previousWeek(){
-            dayStart = firstDay.addDays(-7);
-        }
 
         delegate: Loader {
             id: timelineLoader
@@ -112,39 +178,52 @@ Page{
                 TimeLineBaseComponent {
                     id: timeLineView
 
-                    type: ViewType.ViewTypeWeek
+                    startDay: anchorFirstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
                     anchors.fill: parent
-                    isActive: parent.PathView.isCurrentItem
-                    startDay: firstDay.addDays( weekViewPath.indexType(index) * 7)
+                    type: ViewType.ViewTypeWeek
+                    isCurrentItem: parent.PathView.isCurrentItem
+                    isActive: !weekViewPath.moving && !weekViewPath.flicking
                     keyboardEventProvider: weekViewPath
                     selectedDay: weekViewPage.selectedDay
-
-                    onIsActiveChanged: {
-                        timeLineView.scrollTocurrentDate();
-                    }
+                    modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
 
                     onDateSelected: {
                         weekViewPage.dateSelected(date);
                     }
 
                     onDateHighlighted:{
-                        weekViewPage.dateHighlighted(date);
+                        weekViewPage.highlightedDay = date
+                    }
+
+                    Component.onCompleted: {
+                        var iType = weekViewPath.indexType(index)
+                        if (iType === 0) {
+                            idleScroll.restart()
+                        } else if (iType < 0) {
+                            scrollToEnd()
+                        }
+                    }
+
+                    onPressAndHoldAt: {
+                        weekViewPage.pressAndHoldAt(date, allDay)
                     }
 
                     Connections{
                         target: calendarTodayAction
                         onTriggered:{
-                            if( isActive )
-                                timeLineView.scrollTocurrentDate();
-                        }
+                            if (isActive)
+                                timeLineView.scrollToDate(new Date());
+                            }
                     }
 
-                    Connections{
-                        target: weekViewPage
-                        onIsCurrentPageChanged:{
-                            if(weekViewPage.isCurrentPage){
-                                timeLineView.scrollToCurrentTime();
-                                timeLineView.scrollTocurrentDate();
+                    Connections {
+                        target: weekViewPath
+                        onLoopCurrentIndexChanged: {
+                            var iType = weekViewPath.indexType(index)
+                            if (iType < 0) {
+                                scrollToEnd()
+                            } else if (iType > 0) {
+                                scrollToBegin()
                             }
                         }
                     }
@@ -164,22 +243,13 @@ Page{
                         value: contentY
                         when: parent.PathView.isCurrentItem
                     }
+                    Binding {
+                        target: weekViewPath
+                        property: "interactive"
+                        value: timeLineView.contentInteractive
+                    }
                 }
             }
         }
-    }
-
-    Component.onCompleted: {
-        pageHeader.title = Qt.binding(function(){
-            if(mainView.displayLunarCalendar){
-                var lunarDate = Lunar.calendar.solar2lunar(dayStart.getFullYear(),
-                                                           dayStart.getMonth() + 1,
-                                                           dayStart.getDate())
-                return i18n.tr("%1 %2").arg(lunarDate .IMonthCn).arg(lunarDate.gzYear)
-            } else {
-                var monthName = dayStart.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
-                return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
-            }
-        })
     }
 }

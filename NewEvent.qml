@@ -20,7 +20,7 @@ import QtQuick 2.4
 import QtOrganizer 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
-import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.ListItems 1.0 as ListItems
 import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
@@ -31,10 +31,11 @@ Page {
     objectName: 'newEventPage'
 
     property var date;
+    property alias allDay: allDayEventCheckbox.checked
 
     property var event:null;
     property var rule :null;
-    property var model;
+    property var model:null;
 
     property var startDate;
     property var endDate;
@@ -42,56 +43,44 @@ Page {
     property alias scrollY: flickable.contentY
     property bool isEdit: false
 
-    flickable: null
-
     signal eventAdded(var event);
     signal eventDeleted(var event);
+    signal canceled()
 
-    onStartDateChanged: {
-        startDateTimeInput.dateTime = startDate;
-
-        // set time forward to one hour
-        var time_forward = 3600000;
-
-        if (isEdit && event !== null) {
-            time_forward = event.endDateTime - event.startDateTime;
-        }
-        adjustEndDateToStartDate(time_forward);
-    }
-
-    onEndDateChanged: {
-        endDateTimeInput.dateTime = endDate;
-    }
-
-    head.actions: [
-        Action {
-            text: i18n.tr("Delete");
-            objectName: "delete"
-            iconName: "delete"
-            visible : isEdit
-            onTriggered: {
-                var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
-                dialog.deleteEvent.connect( function(eventId){
-                    model.removeItem(eventId);
-                    pageStack.pop();
-                    root.eventDeleted(eventId);
-                });
-            }
-        },
-        Action {
-            iconName: "ok"
-            objectName: "save"
-            text: i18n.tr("Save")
-            enabled: !!titleEdit.text.trim()
-            onTriggered: saveToQtPim();
-        }]
     Component.onCompleted: {
-        //If current date is setted by an argument we don't have to change it.
-        if(typeof(date) === 'undefined'){
+        setDate(root.date)
+
+        if (event === undefined) {
+            return
+        } else if(event === null){
+            isEdit = false;
+            addEvent();
+        } else{
+            isEdit = true;
+            editEvent(event);
+        }
+    }
+
+    function cancel()
+    {
+        if (pageStack)
+            pageStack.pop();
+        root.canceled()
+    }
+
+    function updateEventDate(date, allDay) {
+        root.startDate = undefined
+        root.endDate = undefined
+        setDate(date)
+        root.allDay = allDay
+    }
+
+    function setDate(date) {
+        if ((typeof(date) === 'undefined') || (date === null)) {
             date = new Date();
         }
 
-        if( typeof(date) == 'undefined' || (date.getHours() == 0 && date.getMinutes() == 0) ) {
+        if(date.getHours() === 0 && date.getMinutes() === 0)  {
             var newDate = new Date();
             date.setHours(newDate.getHours(), newDate.getMinutes());
         }
@@ -108,15 +97,6 @@ Page {
             endTimeInput.text = Qt.formatDateTime(endDate, Qt.locale().timeFormat(Locale.ShortFormat));
         }
 
-        if(event === null){
-            isEdit = false;
-            addEvent();
-        }
-
-        else{
-            isEdit = true;
-            editEvent(event);
-        }
     }
 
     function selectCalendar(collectionId) {
@@ -146,14 +126,14 @@ Page {
         }
 
         startDate =new Date(e.startDateTime);
-        endDate = new Date(e.endDateTime);
 
         if(e.displayLabel) {
             titleEdit.text = e.displayLabel;
         }
-        if(e.allDay){
-            allDayEventCheckbox.checked =true;
-            endDate = endDate.addDays(-1);
+
+        if (e.allDay) {
+            allDayEventCheckbox.checked = true
+            endDate = new Date(e.endDateTime).addDays(-1);
         }
 
         if(e.location) {
@@ -170,8 +150,7 @@ Page {
         if( e.itemType === Type.Event ) {
             if(e.attendees){
                 for( var j = 0 ; j < e.attendees.length ; ++j ) {
-                    contactList.array.push(e.attendees[j]);
-                    contactModel.append(e.attendees[j]);
+                    contactModel.append({"contact": e.attendees[j]});
                 }
             }
         }
@@ -202,11 +181,11 @@ Page {
             }
 
             event.allDay = allDayEventCheckbox.checked;
-            event.startDateTime = startDate;
-
             if (event.allDay){
-                event.endDateTime = endDate.addDays(1);
+                event.startDateTime = new Date(startDate).midnight()
+                event.endDateTime = new Date(endDate).addDays(1).midnight()
             } else {
+                event.startDateTime = startDate;
                 event.endDateTime = endDate;
             }
 
@@ -215,13 +194,14 @@ Page {
             event.location = locationEdit.text
 
             if( event.itemType === Type.Event ) {
-                event.attendees = []; // if Edit remove all attendes & add them again if any
-                var contacts = [];
-                for(var i=0; i < contactList.array.length ; ++i) {
-                    var contact = contactList.array[i]
-                    contacts.push(contact);
+                var newContacts = []
+                for(var i=0; i < contactModel.count ; ++i) {
+                    var contact = contactModel.get(i).contact
+                    if (contact) {
+                        newContacts.push(internal.attendeeFromData(contact.attendeeId, contact.name, contact.emailAddress));
+                    }
                 }
-                event.attendees = contacts;
+                event.attendees = newContacts;
             }
 
             //Set the Rule object to an event
@@ -253,9 +233,9 @@ Page {
                 event.removeDetail(comment);
             }
 
-            model.saveItem(event);
-            pageStack.pop();
-
+            model.saveItem(event)
+            if (pageStack)
+                pageStack.pop();
             root.eventAdded(event);
         }
     }
@@ -294,10 +274,15 @@ Page {
     function roundDate(date) {
         var tempDate = new Date(date)
         tempDate.setHours(date.getHours(), date.getMinutes(), 0, 0);
-        if(tempDate.getMinutes() < 30)
+        var tempMinutes = tempDate.getMinutes()
+        if (tempMinutes === 0) {
+            return tempDate
+        } else if(tempMinutes < 30) {
             return tempDate.setMinutes(30)
-        tempDate.setMinutes(0)
-        return tempDate.setHours(tempDate.getHours() + 1)
+        } else {
+            tempDate.setMinutes(0)
+            return tempDate.setHours(tempDate.getHours() + 1)
+        }
     }
 
     function adjustEndDateToStartDate(time_forward) {
@@ -322,10 +307,65 @@ Page {
         scrollAnimation.start()
     }
 
-    title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
+    Keys.onEscapePressed: root.cancel()
+    onStartDateChanged: {
+        if (!startDate)
+            return
 
-    Keys.onEscapePressed: {
-        pageStack.pop();
+        startDateTimeInput.dateTime = startDate;
+
+        // set time forward to one hour
+        var time_forward = 3600000;
+
+        if (isEdit && event !== null) {
+            time_forward = event.endDateTime - event.startDateTime;
+        }
+        adjustEndDateToStartDate(time_forward);
+    }
+
+    onEndDateChanged: {
+        if (endDate)
+            endDateTimeInput.dateTime = endDate;
+    }
+
+    header: PageHeader {
+        id: pageHeader
+
+        flickable: null
+        title: isEdit ? i18n.tr("Edit Event"):i18n.tr("New Event")
+        leadingActionBar.actions: Action {
+            id: backAction
+
+            name: "cancel"
+            text: i18n.tr("Cancel")
+            iconName: isEdit ? "back" : "down"
+            onTriggered: root.cancel()
+        }
+
+        trailingActionBar.actions: [
+            Action {
+                text: i18n.tr("Delete");
+                objectName: "delete"
+                iconName: "delete"
+                visible : isEdit
+                onTriggered: {
+                    var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
+                    dialog.deleteEvent.connect( function(eventId){
+                        model.removeItem(eventId);
+                        if (pageStack)
+                            pageStack.pop();
+                        root.eventDeleted(eventId);
+                    });
+                }
+            },
+            Action {
+                iconName: "ok"
+                objectName: "save"
+                text: i18n.tr("Save")
+                enabled: !!titleEdit.text.trim()
+                onTriggered: saveToQtPim();
+            }
+        ]
     }
 
     Component{
@@ -376,9 +416,16 @@ Page {
             flickable.returnToBounds()
         }
 
-        anchors.fill: parent
+        flickableDirection: Flickable.VerticalFlick
+        anchors{
+            left: parent.left
+            top: parent.top
+            topMargin: pageHeader.height
+            right: parent.right
+            bottom: keyboardRectangle.top
+        }
         contentWidth: width
-        contentHeight: column.height + units.gu(10)
+        contentHeight: column.height
 
         Column {
             id: column
@@ -411,7 +458,7 @@ Page {
                 }
             }
 
-            ListItem.Standard {
+            ListItems.Standard {
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -426,13 +473,13 @@ Page {
                 }
             }
 
-            ListItem.ThinDivider {}
+            ListItems.ThinDivider {}
 
             Column {
                 width: parent.width
                 spacing: units.gu(1)
 
-                ListItem.Header{
+                ListItems.Header{
                     text: i18n.tr("Event Details")
                 }
 
@@ -446,6 +493,7 @@ Page {
                         margins: units.gu(2)
                     }
 
+                    inputMethodHints: Qt.ImhNoPredictiveText
                     placeholderText: i18n.tr("Event Name")
                     onFocusChanged: {
                         if(titleEdit.focus) {
@@ -482,6 +530,7 @@ Page {
                         margins: units.gu(2)
                     }
 
+                    inputMethodHints: Qt.ImhNoPredictiveText
                     placeholderText: i18n.tr("Location")
 
                     onFocusChanged: {
@@ -496,7 +545,7 @@ Page {
                 width: parent.width
                 spacing: units.gu(1)
 
-                ListItem.Header {
+                ListItems.Header {
                     text: i18n.tr("Calendar")
                 }
 
@@ -521,9 +570,11 @@ Page {
                             width: height
                             height: parent.height - units.gu(2)
                             color: modelData.color
-                            anchors.right: parent.right
-                            anchors.rightMargin: units.gu(2)
-                            anchors.verticalCenter: parent.verticalCenter
+                            anchors {
+                                right: parent.right
+                                rightMargin: units.gu(4)
+                                verticalCenter: parent.verticalCenter
+                            }
                         }
                     }
                     onExpandedChanged: Qt.inputMethod.hide();
@@ -534,14 +585,17 @@ Page {
                 width: parent.width
                 spacing: units.gu(1)
 
-                ListItem.Header {
+                ListItems.Header {
                     text: i18n.tr("Guests")
                 }
 
                 Button{
-                    text: i18n.tr("Add Guest")
+                    id: addGuestButton
                     objectName: "addGuestButton"
 
+                    property var contactsPopup: null
+
+                    text: i18n.tr("Add Guest")
                     anchors {
                         left: parent.left
                         right: parent.right
@@ -549,14 +603,21 @@ Page {
                     }
 
                     onClicked: {
-                        var popup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), contactList);
-                        popup.contactSelected.connect( function(contact) {
-                            var t = internal.contactToAttendee(contact);
-                            if( !internal.isContactAlreadyAdded(contact) ) {
-                                contactModel.append(t);
-                                contactList.array.push(t);
+                        if (contactsPopup)
+                            return
+
+                        flickable.makeMeVisible(addGuestButton)
+                        contactsPopup = PopupUtils.open(Qt.resolvedUrl("ContactChoicePopup.qml"), addGuestButton);
+                        contactsPopup.contactSelected.connect( function(contact, emailAddress) {
+                            if(!internal.isContactAlreadyAdded(contact, emailAddress) ) {
+                                var t = internal.contactToAttendee(contact, emailAddress);
+                                contactModel.append({"contact": t});
                             }
+
                         });
+                        contactsPopup.Component.onDestruction.connect( function() {
+                            addGuestButton.contactsPopup = null
+                        })
                     }
                 }
 
@@ -577,35 +638,40 @@ Page {
                         width: parent.width
                         clip: true
 
-                        property var array: []
-
                         ListModel{
                             id: contactModel
                         }
 
                         Repeater{
                             model: contactModel
-                            delegate: ListItem.Standard {
+                            delegate: ListItem {
                                 objectName: "eventGuest%1".arg(index)
-                                height: units.gu(4)
-                                text: name
-                                removable: true
-                                onItemRemoved: {
-                                    contactList.array.splice(index, 1)
-                                    contactModel.remove(index)
+
+                                ListItemLayout {
+                                    title.text: contact.name
+                                    subtitle.text: contact.emailAddress
+                                }
+
+                                leadingActions: ListItemActions {
+                                    actions: Action {
+                                        iconName: "delete"
+                                        onTriggered: {
+                                            contactModel.remove(index)
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
 
-                ListItem.ThinDivider {
-                    visible: event.itemType === Type.Event
+                ListItems.ThinDivider {
+                    visible: (event != undefined) && (event.itemType === Type.Event)
                 }
 
             }
 
-            ListItem.Subtitled{
+            ListItems.Subtitled{
                 id:thisHappens
                 objectName :"thisHappens"
 
@@ -615,17 +681,17 @@ Page {
 
                 showDivider: false
                 progression: true
-                visible: event.itemType === Type.Event
+                visible: (event != undefined) && (event.itemType === Type.Event)
                 text: i18n.tr("Repeats")
-                subText: event.itemType === Type.Event ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
+                subText: (event != undefined) && (event.itemType === Type.Event) ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
                 onClicked: pageStack.push(Qt.resolvedUrl("EventRepetition.qml"),{"eventRoot": root,"isEdit":isEdit});
             }
 
-            ListItem.ThinDivider {
-                visible: event.itemType === Type.Event
+            ListItems.ThinDivider {
+                visible: (event != undefined) && (event.itemType === Type.Event)
             }
 
-            ListItem.Subtitled{
+            ListItems.Subtitled{
                 id:eventReminder
                 objectName  : "eventReminder"
 
@@ -658,22 +724,42 @@ Page {
                                               "eventTitle": titleEdit.text})
             }
 
-            ListItem.ThinDivider {}
+            ListItems.ThinDivider {}
         }
     }
+
     // used to keep the field visible when the keyboard appear or dismiss
     KeyboardRectangle {
-        id: keyboard
+        id: keyboardRectangle
 
-        onHeightChanged: {
-            if (flickable.activeItem) {
-                flickable.makeMeVisible(flickable.activeItem)
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+
+        Behavior on height {
+            SequentialAnimation {
+                PauseAnimation { duration: 200 }
+                ScriptAction {
+                    script: {
+                        if (addGuestButton.contactsPopup) {
+                            // WORKAROUND: causes the popover to follow the buttom position when keyboard appears
+                            flickable.makeMeVisible(addGuestButton)
+                            addGuestButton.contactsPopup.caller = null
+                            addGuestButton.contactsPopup.caller = addGuestButton
+                        } else {
+                            flickable.makeMeVisible(flickable.activeItem)
+                        }
+                    }
+                }
             }
         }
     }
 
     QtObject {
         id: internal
+
         property var collectionId;
 
         function clearFocus() {
@@ -685,22 +771,33 @@ Page {
             messageEdit.focus = false
         }
 
-        function isContactAlreadyAdded(contact) {
-            for(var i=0; i < contactList.array.length ; ++i) {
-                var attendee = contactList.array[i];
-                if( attendee.attendeeId === contact.contactId) {
-                    return true;
+        function isContactAlreadyAdded(contact, emailAddress) {
+            for(var i=0; i < contactModel.count; i++) {
+                var attendee = contactModel.get(i).contact;
+                if (attendee && (emailAddress.length > 0)) {
+                    if (attendee.emailAddress === emailAddress) {
+                        return true;
+                    }
+                } else {
+                    if (attendee.attendeeId === contact.contactId) {
+                        return true
+                    }
                 }
             }
             return false;
         }
 
-        function contactToAttendee(contact) {
-            var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", event, "NewEvent.qml");
-            attendee.name = contact.displayLabel.label
-            attendee.emailAddress = contact.email.emailAddress;
-            attendee.attendeeId = contact.contactId;
+        function attendeeFromData(id, name, emailAddress)
+        {
+            var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee{}", internal, "NewEvent.qml");
+            attendee.name = name
+            attendee.emailAddress = emailAddress
+            attendee.attendeeId = id
             return attendee;
+        }
+
+        function contactToAttendee(contact, emailAddress) {
+            return attendeeFromData(contact.contactId, contact.displayLabel.label, emailAddress)
         }
     }
 }

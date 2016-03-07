@@ -80,7 +80,6 @@ OrganizerModel {
         var collections = eventModel.collections;
         for(var i = 0 ; i < collections.length ; ++i) {
             var cal = collections[i];
-            print(cal.name + " ---- " + cal.extendedMetaData("collection-readonly"));
             if( cal.extendedMetaData("collection-type") === "Calendar" &&
                     cal.extendedMetaData("collection-readonly") === false ) {
                 cals.push(cal);
@@ -90,16 +89,21 @@ OrganizerModel {
     }
 
     function getDefaultCollection() {
+        var defaultCol = defaultCollection();
+        if (defaultCol.extendedMetaData("collection-selected") === true) {
+            return defaultCol
+        }
+
         var cals = getCollections();
-         for(var i = 0 ; i < cals.length ; ++i) {
+        for(var i = 0 ; i < cals.length ; ++i) {
             var cal = cals[i]
-            var val = cal.extendedMetaData("X-CAL-DEFAULT-CALENDAR")
-            if( val ) {
+            var val = cal.extendedMetaData("collection-selected")
+            if (val === true) {
                 return cal;
             }
         }
 
-        return defaultCollection();
+        return cals[0]
     }
 
     function setDefaultCollection( collectionId ) {
@@ -120,6 +124,14 @@ OrganizerModel {
     onIsLoadingChanged: {
         if( isLoading ) {
             startLoadingTimer();
+        }
+    }
+
+    // disable update while syncing to avoid tons of unecessary update
+    autoUpdate: !mainView.syncInProgress
+    onAutoUpdateChanged: {
+        if (autoUpdate) {
+            eventModel.update()
         }
     }
 }

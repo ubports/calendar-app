@@ -18,22 +18,36 @@
 
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+
 import "dateExt.js" as DateExt
 import "./3rd-party/lunar.js" as Lunar
 
-Page {
+PageWithBottomEdge {
     id: yearViewPage
     objectName: "yearViewPage"
 
-    property int currentYear: DateExt.today().getFullYear();
+    property int anchorYear: new Date().getFullYear()
+    property bool displayLunarCalendar: false
+    readonly property int currentYear: yearPathView.currentItem.item ? yearPathView.currentItem.item.year : anchorYear
+
     signal monthSelected(var date);
 
-    Keys.forwardTo: [yearPathView]
+    function refreshCurrentYear(year)
+    {
+        if (currentYear !== year) {
+            anchorYear = year;
+            yearPathView.scrollToBegginer()
+        }
+        var yearViewDelegate = yearPathView.currentItem;
+        if (yearViewDelegate && yearViewDelegate.item) {
+            yearViewDelegate.item.refresh();
+        }
+    }
 
-    function refreshCurrentYear(year) {
-        currentYear = year;
-        var yearViewDelegate = yearPathView.currentItem.item;
-        yearViewDelegate.refresh();
+    createEventAt: null
+    Keys.forwardTo: [yearPathView]
+    onAnchorYearChanged: {
+        yearPathView.scrollToBegginer()
     }
 
     Action {
@@ -42,25 +56,49 @@ Page {
         iconName: "calendar-today"
         text: i18n.tr("Today")
         onTriggered: {
-            currentYear = new Date().getFullYear()
+            var todayYear = new Date().getFullYear()
+            yearViewPage.refreshCurrentYear(todayYear)
         }
     }
 
     header: PageHeader {
         id: pageHeader
-
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
             calendarTodayAction,
-            commonHeaderActions.newEventAction,
             commonHeaderActions.showCalendarAction,
             commonHeaderActions.reloadAction,
             commonHeaderActions.syncCalendarAction,
             commonHeaderActions.settingsAction
         ]
-        title: i18n.tr("Year %1").arg(currentYear)
+        title: {
+            if (displayLunarCalendar) {
+                var lunarDate = Lunar.calendar.solar2lunar(currentYear, 6, 0)
+                return lunarDate.gzYear +" "+ lunarDate.Animal
+            } else {
+                return i18n.tr("Year %1").arg(currentYear)
+            }
+        }
         flickable: null
     }
+
+    ActivityIndicator {
+        property var startDate: new Date()
+
+        visible: running
+        running: (yearPathView.currentItem.status !== Loader.Ready)
+        anchors.centerIn: parent
+        z:2
+
+        onRunningChanged: {
+            if (!running) {
+                var current  = new Date()
+                console.debug("Elapsed:" + (current.getTime() - startDate.getTime()))
+            }
+        }
+    }
+
+    flickable: null
 
     PathViewBase {
         id: yearPathView
@@ -71,46 +109,24 @@ Page {
             topMargin: header.height
         }
 
-        onNextItemHighlighted: {
-            currentYear = currentYear + 1;
-        }
-
-        onPreviousItemHighlighted: {
-            currentYear = currentYear - 1;
-        }
-
         delegate: Loader {
-            width: parent.width
-            height: parent.height
-            anchors.top: parent.top
+            id: delegateLoader
 
-            asynchronous: index !== yearPathView.currentIndex
-            sourceComponent: delegateComponent
+            asynchronous: true
+            width: PathView.view.width
+            height: PathView.view.height
 
-            Component{
-                id: delegateComponent
-
-                YearViewDelegate{
-                    focus: index == yearPathView.currentIndex
-
-                    scrollMonth: 0;
-                    isCurrentItem: index == yearPathView.currentIndex
-                    year: (currentYear + yearPathView.indexType(index))
-
-                    anchors.fill: parent
+            sourceComponent: YearViewDelegate {
+                visible: delegateLoader.status === Loader.Ready
+                anchors.fill: parent
+                scrollMonth: 0;
+                isCurrentItem: (index === yearPathView.currentIndex)
+                focus: isCurrentItem
+                year: (yearViewPage.anchorYear + yearPathView.loopCurrentIndex + yearPathView.indexType(index))
+                onMonthSelected: {
+                    yearViewPage.monthSelected(date)
                 }
             }
         }
-    }
-
-    Component.onCompleted: {
-        pageHeader.title = Qt.binding(function(){
-            if(mainView.displayLunarCalendar){
-                var lunarDate = Lunar.calendar.solar2lunar(currentYear, 6, 0)
-                return lunarDate.gzYear +" "+ lunarDate.Animal
-            } else {
-                return i18n.tr("Year %1").arg(currentYear)
-            }
-        })
     }
 }

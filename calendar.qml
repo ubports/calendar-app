@@ -20,6 +20,7 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.0
 import QtOrganizer 5.0
 import Qt.labs.settings 1.0
+
 import "dateExt.js" as DateExt
 
 MainView {
@@ -27,6 +28,7 @@ MainView {
 
     property bool displayWeekNumber: false;
     property bool displayLunarCalendar: false;
+    readonly property bool syncInProgress: commonHeaderActions.syncInProgress
 
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
@@ -92,7 +94,7 @@ MainView {
     focus: true
     Keys.forwardTo: [pageStack.currentPage]
     backgroundColor: "#ffffff"
-    anchorToKeyboard: true
+    anchorToKeyboard: false
 
     Connections {
         target: UriHandler
@@ -103,8 +105,9 @@ MainView {
                 if(commands[0].toLowerCase() === "eventid") {
                     // calendar://eventid=??
                     if( eventModel ) {
+                        // qtorganizer:eds::<event-id>
                         var eventId = commands[1];
-                        var prefix = "qtorganizer:eds::system-calendar/";
+                        var prefix = "qtorganizer:eds::";
                         if (eventId.indexOf(prefix) < 0)
                             eventId  = prefix + eventId;
 
@@ -174,17 +177,37 @@ MainView {
         EventListModel{
             id: eventModel
 
-            autoUpdate: true
+            property bool isReady: false
+
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
 
             filter: invalidFilter
 
-            function delayedApplyFilter() {
-                applyFilterTimer.restart();
+            onCollectionsChanged: {
+                if (!isReady)
+                    return
+
+                var collectionIds = enabledColections()
+                var oldCollections = collectionFilter.ids
+                var needsUpdate = false
+                if (collectionIds.length != oldCollections.length) {
+                    needsUpdate = true
+                } else {
+                    for(var i=oldCollections.length - 1; i >=0 ; i--) {
+                        if (collectionIds.indexOf(oldCollections[i]) === -1) {
+                            needsUpdate = true
+                            break;
+                        }
+                    }
+                }
+
+                if (needsUpdate)
+                    collectionFilter.ids = collectionIds;
             }
 
-            function applyFilterFinal() {
+            function enabledColections()
+            {
                 var collectionIds = [];
                 var collections = eventModel.getCollections();
                 for(var i=0; i < collections.length ; ++i) {
@@ -193,8 +216,18 @@ MainView {
                         collectionIds.push(collection.collectionId);
                     }
                 }
+                return collectionIds
+            }
+
+            function delayedApplyFilter() {
+                applyFilterTimer.restart();
+            }
+
+            function applyFilterFinal() {
+                var collectionIds = enabledColections()
                 collectionFilter.ids = collectionIds;
-                filter = mainFilter
+                filter = Qt.binding(function() { return mainFilter; })
+                isReady = true
             }
 
             function showEventFromId(eventId) {
@@ -379,7 +412,7 @@ MainView {
                         }
                     } // End of else if (starttime)
                     else if (eventId !== "") {
-                        var prefix = "qtorganizer:eds::system-calendar/";
+                        var prefix = "qtorganizer:eds::";
                         if (eventId.indexOf(prefix) < 0)
                             eventId  = prefix + eventId;
 
@@ -395,6 +428,11 @@ MainView {
                     tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
                 tabs.isReady = true
+                // WORKAROUND: Due the missing feature on SDK, they can not detect if
+                // there is a mouse attached to device or not. And this will cause the
+                // bootom edge component to not work correct on desktop.
+                // We will consider that  a mouse is always attached until it get implement on SDK.
+                QuickUtils.mouseAttached = true
             } // End of Component.onCompleted:
 
             Keys.onTabPressed: {
@@ -530,6 +568,16 @@ MainView {
         id: yearViewComp
 
         YearView {
+            readonly property bool tabSelected: tabs.selectedTabIndex === yearTab.index
+
+            model: eventModel.isReady ? eventModel : null
+            bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
+
+            onCurrentYearChanged: {
+                tabs.currentDay = new Date(currentYear, 1, 1)
+            }
+
             onMonthSelected: {
                 var now = DateExt.today();
                 if ((date.getMonth() === now.getMonth()) &&
@@ -540,9 +588,10 @@ MainView {
                 }
                 tabs.selectedTabIndex = monthTab.index;
             }
-            onActiveChanged: {
-                if (active) {
-                    refreshCurrentYear(DateExt.today().getFullYear())
+
+            onTabSelectedChanged: {
+                if (tabSelected) {
+                    refreshCurrentYear(tabs.currentDay.getFullYear())
                 }
             }
         }
@@ -552,13 +601,35 @@ MainView {
         id: monthViewComp
 
         MonthView {
+            readonly property bool tabSelected: tabs.selectedTabIndex === monthTab.index
+
+            model: eventModel.isReady ? eventModel : null
+            bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
+
+            onCurrentDateChanged: {
+                tabs.currentDay = currentDate
+            }
+
+            onHighlightedDateChanged: {
+                if (highlightedDate)
+                    tabs.currentDay = highlightedDate
+                else
+                    tabs.currentDay = currentDate
+            }
+
             onDateSelected: {
-                tabs.currentDay = date;
+                tabs.currentDay = date
                 tabs.selectedTabIndex = dayTab.index
             }
-            onActiveChanged: {
-                if (active)
-                    currentMonth = tabs.currentDay.midnight()
+
+            onTabSelectedChanged: {
+                    if (tabSelected) {
+                        anchorDate = new Date(tabs.currentDay.getFullYear(),
+                                              tabs.currentDay.getMonth(),
+                                              1,
+                                              0, 0, 0)
+                    }
             }
         }
     }
@@ -567,16 +638,45 @@ MainView {
         id: weekViewComp
 
         WeekView {
-            onDayStartChanged: {
-                tabs.currentDay = dayStart
+            readonly property bool tabSelected: tabs.selectedTab === weekTab
+
+            model: eventModel.isReady ? eventModel : null
+            bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
+
+            onHighlightedDayChanged: {
+                if (highlightedDay)
+                    tabs.currentDay = highlightedDay
+                else
+                    tabs.currentDay = currentFirstDayOfWeek
             }
+
+            onCurrentFirstDayOfWeekChanged: {
+                tabs.currentDay = currentFirstDayOfWeek
+            }
+
             onDateSelected: {
                 tabs.currentDay = date;
                 tabs.selectedTabIndex = dayTab.index
             }
-            onActiveChanged: {
-                if (active)
-                    dayStart = tabs.currentDay
+
+            onPressAndHoldAt: {
+                bottomEdgeCommit(date, allDay)
+            }
+
+            onTabSelectedChanged: {
+                if (tabSelected) {
+                    // 'tabs.currntDay' can change after set 'anchorDate' to avoid that
+                    // create a copy of the current value
+                    var tabDate = new Date(tabs.currentDay)
+                    if (!anchorDate ||
+                        (tabs.currentDay.getFullYear() != anchorDate.getFullYear()) ||
+                        (tabs.currentDay.getMonth() != anchorDate.getMonth()) ||
+                        (tabs.currentDay.getDate() != anchorDate.getDate())) {
+                        anchorDate = new Date(tabDate)
+                    }
+                    delayScrollToDate(tabDate)
+                }
             }
         }
     }
@@ -585,17 +685,37 @@ MainView {
         id: dayViewComp
 
         DayView {
-            onCurrentDayChanged: {
-                tabs.currentDay = currentDay;
-            }
+            readonly property bool tabSelected: tabs.selectedTabIndex === dayTab.index
+
+            model: eventModel.isReady ? eventModel : null
+            bootomEdgeEnabled: tabSelected
+            displayLunarCalendar: mainView.displayLunarCalendar
 
             onDateSelected: {
                 tabs.currentDay = date
             }
 
-            onActiveChanged: {
-                if (active)
-                    currentDay = tabs.currentDay;
+            onPressAndHoldAt: {
+                bottomEdgeCommit(date, allDay)
+            }
+
+            onCurrentDateChanged: {
+                tabs.currentDay = currentDate
+            }
+
+            onTabSelectedChanged: {
+                if (tabSelected) {
+                    // 'tabs.currntDay' can change after set 'anchorDate' to avoid that
+                    // create a copy of the current value
+                    var tabDate = new Date(tabs.currentDay)
+                    if (!anchorDate ||
+                        (tabs.currentDay.getFullYear() != anchorDate.getFullYear()) ||
+                        (tabs.currentDay.getMonth() != anchorDate.getMonth()) ||
+                        (tabs.currentDay.getDate() != anchorDate.getDate())) {
+                        anchorDate = new Date(tabDate)
+                    }
+                    delayScrollToDate(tabDate)
+                }
             }
         }
     }
@@ -604,6 +724,9 @@ MainView {
         id: agendaViewComp
 
         AgendaView {
+            model: eventModel.isReady ? eventModel : null
+            bootomEdgeEnabled: tabs.selectedTabIndex === agendaTab.index
+
             onDateSelected: {
                 tabs.currentDay = date;
                 tabs.selectedTabIndex = dayTab.index
