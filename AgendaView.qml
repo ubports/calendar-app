@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2014 Canonical Ltd
+ * Copyright (C) 2013-2016 Canonical Ltd
  *
  * This file is part of Ubuntu Calendar App
  *
@@ -19,7 +19,6 @@
 import QtQuick 2.4
 import QtOrganizer 5.0
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.0 as ListItem
 import "dateExt.js" as DateExt
 import "./3rd-party/lunar.js" as Lunar
 
@@ -29,7 +28,7 @@ PageWithBottomEdge {
 
     property var anchorDate: new Date()
 
-    signal dateSelected(var date);
+    signal dateSelected(var date)
 
     function goToBeginning() {
         eventList.positionViewAtBeginning();
@@ -43,42 +42,28 @@ PageWithBottomEdge {
         return !!enabled_calendars.length;
     }
 
-
     Keys.forwardTo: [eventList]
     createEventAt: anchorDate
 
-    Action {
-        id: calendarTodayAction
-        objectName:"todaybutton"
-        iconName: "calendar-today"
-        text: i18n.tr("Today")
-        onTriggered: {
-            anchorDate = new Date()
-            goToBeginning()
-        }
-    }
-
+    // Page Header
     header: PageHeader {
-        id: pageHeader
-
         title: i18n.tr("Agenda")
         leadingActionBar.actions: tabs.tabsAction
         trailingActionBar.actions: [
-            calendarTodayAction,
-            commonHeaderActions.showCalendarAction,
-            commonHeaderActions.reloadAction,
-            commonHeaderActions.syncCalendarAction,
-            commonHeaderActions.settingsAction
+            commonHeaderActions.settingsAction,
         ]
         flickable: eventList
     }
 
+
+    // ListModel to hold all events for upcoming 7days.
     EventListModel {
         id: eventListModel
+        objectName: "eventListModel"
+
         startPeriod: anchorDate.midnight();
         endPeriod: anchorDate.addDays(7).endOfDay()
         filter: model.filter
-
         sortOrders: [
             SortOrder{
                 blankPolicy: SortOrder.BlanksFirst
@@ -89,35 +74,32 @@ PageWithBottomEdge {
         ]
     }
 
+    // spinner. running while agenda is loading.
     ActivityIndicator {
+        z:2
         visible: running
         running: eventListModel.isLoading
         anchors.centerIn: parent
-        z:2
     }
 
+    // Label to be shown when there is no upcoming events or if no calendar is selected.
     Label {
         id: noEventsOrCalendarsLabel
-        text: {
-            var default_title = i18n.tr( "No upcoming events" );
-
-            if ( !root.hasEnabledCalendars() ) {
-                default_title = i18n.tr("You have no calendars enabled")
-            }
-
-            return default_title;
-        }
-        visible: (eventList.count === 0) && !eventListModel.isLoading
         anchors.centerIn: parent
+        visible: (eventList.itemCount === 0) && !eventListModel.isLoading
+        text: !root.hasEnabledCalendars() ? i18n.tr("You have no calendars enabled") : i18n.tr( "No upcoming events" )
     }
 
+    // button to be shown when no calendar is selected (onClick will take user to list of all calendars)
     Button {
-        text: i18n.tr( "Enable calendars" )
-        visible: !root.hasEnabledCalendars()
-        anchors.top: noEventsOrCalendarsLabel.bottom
-        anchors.horizontalCenter: noEventsOrCalendarsLabel.horizontalCenter
-        anchors.topMargin: units.gu( 1.5 )
+        anchors {
+            top: noEventsOrCalendarsLabel.bottom;
+            horizontalCenter: noEventsOrCalendarsLabel.horizontalCenter;
+            topMargin: units.gu(1.5)
+        }
         color: UbuntuColors.orange
+        visible: !root.hasEnabledCalendars()
+        text: i18n.tr( "Enable calendars" )
 
         onClicked: {
             pageStack.push(Qt.resolvedUrl("CalendarChoicePopup.qml"),{"model": model});
@@ -125,155 +107,141 @@ PageWithBottomEdge {
         }
     }
 
+    // Main ListView with all upcoming events.
     ListView {
         id: eventList
         objectName: "eventList"
-        model: eventListModel
+
         anchors.fill: parent
         visible: eventListModel.itemCount > 0
-
+        model: eventListModel
         delegate: listDelegate
     }
 
+    // Scrollbar
     Scrollbar{
         flickableItem: eventList
         align: Qt.AlignTrailing
     }
 
+    // ListView delegate
     Component{
         id: listDelegate
 
+        // Main item to hold listitem delegate.
         Item {
-            id: root
             property var event: eventListModel.items[index];
-
-            width: parent.width
-            height: container.height
-
-            onEventChanged: {
-                setDetails();
-            }
-
-            function setDetails() {
-                if(event === null || event === undefined) {
-                    return;
-                }
-
-                headerContainer.visible = false;
-                if( index == 0 ) {
-                    headerContainer.visible = true;
-                } else {
-                    var prevEvent = eventListModel.items[index-1];
-                    if( prevEvent.startDateTime.midnight() < event.startDateTime.midnight()) {
-                        headerContainer.visible = true;
-                    }
-                }
-
-                var date = event.startDateTime.toLocaleDateString()
-                var startTime = event.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-                var endTime = event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-
-                // TRANSLATORS: the first argument (%1) refers to a start time for an event,
-                // while the second one (%2) refers to the end time
-                var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
-
-                if (mainView.displayLunarCalendar) {
-                    var lunarDate = Lunar.calendar.solar2lunar(event.startDateTime.getFullYear(),
+            property var prevEvent: eventListModel.items[index-1];
+            property var date: event.startDateTime.toLocaleDateString()
+            property var startTime: event.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+            property var endTime: event.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+            property var lunarDate: Lunar.calendar.solar2lunar(event.startDateTime.getFullYear(),
                                                                event.startDateTime.getMonth() + 1,
                                                                event.startDateTime.getDate())
-                    header.text = i18n.tr("%1 %2 %3 %4 %5").arg(lunarDate.gzYear).arg(lunarDate .IMonthCn).arg(lunarDate.IDayCn)
-                                                            .arg(lunarDate.gzDay).arg(lunarDate.isTerm ? lunarDate.Term : "")
-                } else {
-                    header.text = date
-                }
 
-                timeLabel.text = timeString
-                header.color = event.startDateTime.toLocaleDateString() === new Date().toLocaleDateString() ? UbuntuColors.orange : UbuntuColors.darkGrey
-                detailsContainer.color = eventListModel.collection(event.collectionId).color
+            width: parent.width
+            height: eventContainer.height
 
-                if( event.displayLabel) {
-                    titleLabel.text = event.displayLabel;
-                }
-            }
-
+            // main Column to hold   header-(date) and event details-(start/end time, Description and location)
             Column {
-                id: container
+                id: eventContainer
                 objectName: "eventContainer" + index
 
                 width: parent.width
                 anchors.top: parent.top
 
-                //Not using ListItem.Header because of bug #1380766
-                ListItem.Standard{
-                    id: headerContainer
-
-                    height: visible ? header.height + units.gu(1) : 0
+                // header ListItem eg. ( Friday, October 29th 2015 )
+                ListItem {
                     width: parent.width
+                    height: visible ? units.gu(4) : 0
+                    color: "#F7F7F7"
+                    highlightColor: "#EDEDED"
+                    visible: index === 0 ? true : prevEvent === undefined ? false : prevEvent.startDateTime.midnight() < event.startDateTime.midnight() ? true : false
 
-                    Label{
-                        id: header
-                        fontSize: "medium"
-                        width: parent.width
-                        elide: Text.ElideRight
-                        anchors {
-                            left: parent.left
-                            leftMargin: units.gu(1)
-                            verticalCenter: parent.verticalCenter
-                        }
+                    ListItemLayout {
+                        id: listitemlayout
+                        padding.top: units.gu(1)
+                        title.text: mainView.displayLunarCalendar ? i18n.tr("%1 %2 %3 %4 %5").arg(lunarDate.gzYear).arg(lunarDate .IMonthCn).arg(lunarDate.IDayCn)
+                                                                                             .arg(lunarDate.gzDay).arg(lunarDate.isTerm ? lunarDate.Term : "")
+                                                                  : date
+                        title.color: event.startDateTime.toLocaleDateString() === new Date().toLocaleDateString() ? UbuntuColors.orange : UbuntuColors.darkGrey
                     }
+
+                    // onClicked new page with daily view will open.
                     onClicked: {
+                        Haptics.play()
                         dateSelected(event.startDateTime);
                     }
-                    showDivider: false
                 }
-                ListItem.ThinDivider {}
 
-                Rectangle{
-                    id: detailsContainer
+                // Main ListItem to hold details about event eg. ( 19:30 -   Beer with the team )
+                //                                               ( 20:00     Hicter             )
+                ListItem {
+                    id: detailsListItem
 
-                    anchors {
-                        left: parent.left
-                        right: parent.right
+                    width: parent.width
+                    height: detailsListitemlayout.height
+                    color: "white"
+                    highlightColor: "#F7F7F7"
+
+                    ListItemLayout {
+                        id: detailsListitemlayout
+
+                        title.font.bold: true
+                        title.text: event.displayLabel ? event.displayLabel : i18n.tr("no event name set")
+                        subtitle.font.pixelSize: title.font.pixelSize
+                        subtitle.text: event.location ? event.location : i18n.tr("no location")
+                        subtitle.color: event.location ? UbuntuColors.coolGrey : "#B3B3B3"
+                        subtitle.font.italic: event.location ? false : true
+
+
+                        // item to hold SlotsLayout.Leading items: timeStart timeEnad and little calendar indication icon.
+                        Item {
+                            width: timeLabelStart.width + units.gu(2)
+                            height: parent.height
+                            SlotsLayout.overrideVerticalPositioning: true
+                            SlotsLayout.position: SlotsLayout.Leading
+
+                            // Little icon in left top corner of every event to indicate color of the calendar.
+                            UbuntuShape {
+                                id: calendarIndicator
+
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: units.gu(1)
+                                height: width
+                                aspect: UbuntuShape.DropShadow
+                                backgroundColor: eventListModel.collection(event.collectionId).color
+                            }
+
+                            // start time event Label
+                            Label {
+                                id: timeLabelStart
+
+                                anchors {left: calendarIndicator.right; leftMargin: units.gu(1)}
+                                fontSize: "small"
+                                y: detailsListitemlayout.mainSlot.y + detailsListitemlayout.title.y
+                                   + detailsListitemlayout.title.baselineOffset - baselineOffset
+                                text: startTime.concat('-')
+                            }
+
+                            // finish time event Label
+                            Label {
+                                id: timeLabelEnd
+
+                                anchors {left: calendarIndicator.right; leftMargin: units.gu(1)}
+                                fontSize: "small"
+                                y: detailsListitemlayout.mainSlot.y + detailsListitemlayout.subtitle.y
+                                   + detailsListitemlayout.subtitle.baselineOffset - baselineOffset;
+                                text: endTime
+                            }
+                        }
+
                     }
 
-                    height: detailsColumn.height + units.gu(1)
-
-                    ListItem.Standard{
-                        showDivider:false
-                        Column{
-                            id: detailsColumn
-
-                            anchors {
-                                top: parent.top
-                                left: parent.left
-                                right: parent.right
-                                margins: units.gu(0.5)
-                            }
-
-                            Label{
-                                id: timeLabel
-                                objectName: "timeLabel" + index
-                                color:"White"
-                                font.bold: true
-                                fontSize: "small"
-                                width: parent.width
-                            }
-
-                            Label{
-                                id: titleLabel
-                                objectName: "titleLabel" + index
-
-                                color:"White"
-                                fontSize: "small"
-                                width: parent.width
-                                maximumLineCount: 2
-                                elide: Text.ElideRight
-                                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                            }
-                        }
-                        onClicked: {
-                            pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
-                        }
+                    // new page will open to edit selected event
+                    onClicked: {
+                        Haptics.play()
+                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"), {"event":event,"model":eventListModel});
                     }
                 }
             }
