@@ -396,6 +396,7 @@ Item {
             flickable: root.isCurrentItem ? timeLineView : null
             clip: true
             opacity: parent.enabled ? 1.0 : 0.3
+            minimumHeight: fontMetrics.height + units.gu(1)
 
             // send a signal to update application current date
             onClicked: root.dateHighlighted(event.startDateTime)
@@ -405,4 +406,12 @@ Item {
             }
         }
     }
+
+    // used to check font size and calculate the event minimum height
+
+    FontMetrics {
+        id: fontMetrics
+        font.pixelSize: FontUtils.sizeToPixels("small")
+    }
+
 }

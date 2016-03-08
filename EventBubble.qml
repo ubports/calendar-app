@@ -37,16 +37,15 @@ Item{
     property bool isLiveEditing: false
     property Flickable flickable;
     property bool isEventBubble: true
+    property real minimumHeight: units.gu(4)
 
-    readonly property int minimumHeight: type == wideType
-                                         ? detailsItems.timeLabelHeight + /*top-bottom margin*/ units.gu(2)
-                                         : units.gu(2)
-
+    readonly property bool isSingleLine: (infoBubble.height < (minimumHeight * 2))
     readonly property real startTimeInMinutes: event ? CanlendarCanvas.minutesSince(infoBubble.anchorDate, event.startDateTime) : 0.0
     readonly property real endTimeInMinutes: event ? CanlendarCanvas.minutesSince(infoBubble.anchorDate, event.endDateTime) : 0.0
     readonly property real durationInMinutes: endTimeInMinutes - startTimeInMinutes
 
     signal clicked(var event);
+
 
     // keep color up-to-date
     Connections {
@@ -87,42 +86,27 @@ Item{
         }
     }
 
-    function setDetails() {
+    function updateTitle() {
         if(event === null || event === undefined) {
             return;
         }
 
-        var startTime = Qt.formatTime( event.startDateTime, "hh:mm")
-        var endTime = Qt.formatTime( event.endDateTime, "hh:mm")
+        var startTime = Qt.formatTime(event.startDateTime, "hh:mm")
+        var endTime = Qt.formatTime(event.endDateTime, "hh:mm")
 
         if (type === wideType) {
-            timeLabel.text = ""
-            titleLabel.text = ""
-
             // TRANSLATORS: the first argument (%1) refers to a start time for an event,
             // while the second one (%2) refers to the end time
             var timeString = i18n.tr("%1 - %2").arg(startTime).arg(endTime)
 
-            //height is less then set only event title
-            if( infoBubble.height > minimumHeight ) {
-                //on wide type show all details
-                if( infoBubble.height > titleLabel.y + titleLabel.height + units.gu(1)) {
-                    timeLabel.text = timeString
-                    titleLabel.text = "<b>" + event.displayLabel +"</b>"
-                } else if ( event.displayLabel ) {
-                    // TRANSLATORS: the first argument (%1) refers to a time for an event,
-                    // while the second one (%2) refers to title of event
-                    timeLabel.text = i18n.tr("%1 <b>%2</b>").arg(timeString).arg(event.displayLabel);
-                }
-            } else if (event.displayLabel){
-                // TRANSLATORS: the first argument (%1) refers to a time for an event,
-                // while the second one (%2) refers to title of event
-                timeLabel.text = i18n.tr("%1 <b>%2</b>").arg(timeString).arg(event.displayLabel);
+            //there is space for two lines
+            if (infoBubble.isSingleLine) {
+                eventTitle.text =  ("%1 %2").arg(timeString).arg(event.displayLabel);
+            } else {
+                eventTitle.text =  ("%1\n%2").arg(timeString).arg(event.displayLabel);
             }
         } else {
-            timeLabel.text = event.displayLabel;
-            timeLabel.horizontalAlignment = Text.AlignHCenter
-            timeLabel.wrapMode = Text.WrapAtWordBoundaryOrAnywhere
+            eventTitle.text = event.displayLabel
         }
     }
 
@@ -131,12 +115,14 @@ Item{
         width = parent ? parent.width * sizeOfRow : 0
         x = depthInRow * width
         z = depthInRow
-        height = Math.max(30, (durationInMinutes * parent.minuteHeight))
+        // avoid events to be draw too small, use the font height for timeLabel plus a gu(1) as margin
+        height = Math.max(minimumHeight, durationInMinutes * parent.minuteHeight)
     }
 
+    onIsSingleLineChanged: updateTitle()
     onEventChanged: {
-        assingnBgColor();
-        setDetails();
+        assingnBgColor()
+        updateTitle()
         resize()
     }
 
@@ -158,42 +144,17 @@ Item{
         border.color: isLiveEditing ? "red" : "white"
     }
 
-    Item {
-        id: detailsItems
+    Label {
+        id: eventTitle
 
-        property alias timeLabelHeight : timeLabel.height
-
-        width: parent.width
-        height: detailsColumn.height
-
-        Column {
-            id: detailsColumn
-
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-                margins: units.gu(0.5)
-            }
-
-            Label {
-                id: timeLabel
-                objectName: "timeLabel"
-                color: "White"
-                fontSize:"small"
-                font.bold: true
-                width: parent.width
-            }
-
-            Label {
-                id: titleLabel
-                objectName: "titleLabel"
-                color: "White"
-                fontSize: "small"
-                width: parent.width
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            }
+        anchors {
+            fill: parent
+            margins: units.gu(0.5)
         }
+        clip: true
+        fontSize: "small"
+        color: "White"
+        font.bold: true
     }
 
     Drag.active: dragArea.drag.active
