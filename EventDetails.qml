@@ -253,7 +253,7 @@ Page {
                 wrapMode: Text.WordWrap
                 color: "white"
                 text: event.displayLabel
-                anchors { left: parent.left; right: parent.right; margins: units.gu(1); verticalCenter: parent.verticalCenter }
+                anchors { left: parent.left; right: parent.right; margins: units.gu(2); verticalCenter: parent.verticalCenter }
             }
         }
 
@@ -263,13 +263,15 @@ Page {
             spacing: units.gu(1)
             anchors{
                 top: titleContainer.bottom
+                topMargin: units.gu(1)
                 right: parent.right
                 left:parent.left
-                margins: units.gu(1)
+                margins: units.gu(2)
             }
 
             Column {
                 width: parent.width
+                spacing: units.dp(2)
                 Label{
                     id: locationLabel
                     objectName: "locationLabel"
