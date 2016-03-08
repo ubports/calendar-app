@@ -95,8 +95,8 @@ Page {
         if( attendees !== undefined ) {
             for (var j = 0 ; j < attendees.length ; ++j) {
                 var name = attendees[j].name.trim().length === 0 ?
-                                attendees[j].emailAddress.replace("mailto:", ""):
-                                attendees[j].name
+                            attendees[j].emailAddress.replace("mailto:", ""):
+                            attendees[j].name
 
                 contactModel.append( {"name": name,"participationStatus": attendees[j].participationStatus }  );
             }
@@ -108,11 +108,11 @@ Page {
         if(reminder) {
             for(var i=0; i<reminderModel.count; i++) {
                 if(reminder.secondsBeforeStart === reminderModel.get(i).value) {
-                    reminderHeader.subText = reminderModel.get(i).label
+                    reminderLayout.subtitle.text = reminderModel.get(i).label
                 }
             }
         } else {
-            reminderHeader.subText = reminderModel.get(0).label
+            reminderLayout.subtitle.text = reminderModel.get(0).label
         }
     }
 
@@ -124,12 +124,12 @@ Page {
         var lunarEndDate = null;
         if (mainView.displayLunarCalendar) {
             lunarStartDate = Lunar.calendar.solar2lunar(e.startDateTime.getFullYear(),
-                                                   e.startDateTime.getMonth() + 1,
-                                                   e.startDateTime.getDate())
+                                                        e.startDateTime.getMonth() + 1,
+                                                        e.startDateTime.getDate())
 
             lunarEndDate = Lunar.calendar.solar2lunar(e.endDateTime.getFullYear(),
-                                                   e.endDateTime.getMonth() + 1,
-                                                   e.endDateTime.getDate())
+                                                      e.endDateTime.getMonth() + 1,
+                                                      e.endDateTime.getDate())
         }
 
         if( e.allDay ) {
@@ -182,14 +182,6 @@ Page {
                 }
             });
             requestId = model.fetchItems([e.parentId]);
-        }
-        // This is the event title
-        if( e.displayLabel) {
-            titleLabel.text = e.displayLabel;
-        }
-
-        if( e.description ) {
-            descLabel.text = e.description;
         }
 
         updateContacts(e);
@@ -245,66 +237,23 @@ Page {
         interactive: contentHeight > height
 
         contentWidth: parent.width
-        contentHeight: column.height + eventInfo.height + units.gu(3) /*top margin + spacing */
+        contentHeight: column.height + titleContainer.height + units.gu(3) /*top margin + spacing */
 
         Rectangle{
-            id: eventInfo
+            id: titleContainer
 
             color: collection.color
             width: parent.width
-            height: eventInfoList.height + units.gu(5)
+            height: titleLabel.implicitHeight + units.gu(2)
 
-            Column{
-                id:eventInfoList
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    margins: units.gu(2)
-                }
-
-                spacing: units.gu(0.5)
-
-                Label{
-                    id: titleLabel
-                    objectName: "titleLabel"
-                    fontSize: "large"
-                    width: parent.width
-                    wrapMode: Text.WordWrap
-                    color: "white"
-                    text: i18n.tr("%1 Calendar").arg(collection.name)
-                }
-
-                Label{
-                    id: dateLabel
-                    objectName: "dateLabel"
-                    color: "white"
-                    fontSize: "medium"
-                    width: parent.width
-                    wrapMode: Text.WordWrap
-                }
-
-                Label{
-                    id: repeatLabel
-                    objectName: "repeatLabel"
-                    color: "white"
-                    fontSize: "small"
-                    width: parent.width
-                    wrapMode: Text.WordWrap
-                    visible: repeatLabel.text !== ""
-                }
-
-                Label{
-                    id: locationLabel
-                    objectName: "locationLabel"
-                    color: "white"
-                    fontSize: "small"
-                    width: parent.width
-                    wrapMode: Text.WordWrap
-                    visible: locationLabel.text !== ""
-                    text: event.location
-                }
+            Label{
+                id: titleLabel
+                objectName: "titleLabel"
+                textSize: Label.Large
+                wrapMode: Text.WordWrap
+                color: "white"
+                text: event.displayLabel
+                anchors { left: parent.left; right: parent.right; margins: units.gu(1); verticalCenter: parent.verticalCenter }
             }
         }
 
@@ -313,15 +262,43 @@ Page {
 
             spacing: units.gu(1)
             anchors{
-                top: eventInfo.bottom
+                top: titleContainer.bottom
                 right: parent.right
                 left:parent.left
-                margins: units.gu(2)
+                margins: units.gu(1)
+            }
+
+            Column {
+                width: parent.width
+                Label{
+                    id: locationLabel
+                    objectName: "locationLabel"
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    visible: locationLabel.text !== ""
+                    text: event.location
+                }
+
+                Label{
+                    id: dateLabel
+                    objectName: "dateLabel"
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                }
+
+                Label{
+                    id: repeatLabel
+                    objectName: "repeatLabel"
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    visible: repeatLabel.text !== ""
+                }
             }
 
             Row{
                 width: parent.width
                 spacing: units.gu(1)
+
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
                     text: i18n.tr("Calendar")
@@ -334,20 +311,13 @@ Page {
                     color: collection.color
                     anchors.verticalCenter: parent.verticalCenter
                 }
+
                 Label{
                     id:calendarName
                     objectName: "calendarName"
                     anchors.verticalCenter: parent.verticalCenter
                     text: collection.name
                 }
-            }
-
-            Label{
-                id: descLabel
-                objectName: "descriptionLabel"
-                visible: text != ""
-                width: parent.width
-                wrapMode: Text.WordWrap
             }
 
             Column {
@@ -378,30 +348,39 @@ Page {
 
                     Repeater{
                         model: contactModel
-                        delegate: ListItems.Standard {
-                            Label {
-                                text: name
-                                objectName: "eventGuest%1".arg(index)
-                                color: UbuntuColors.midAubergine
-                                anchors {
-                                    left: parent.left
-                                    leftMargin: units.gu(2)
-                                    verticalCenter: parent.verticalCenter
+                        delegate: ListItem {
+                            height: contactListItemLayout.height + divider.height
+                            ListItemLayout {
+                                id: contactListItemLayout
+                                title.text: name
+                                CheckBox {
+                                    enabled: false
+                                    checked: participationStatus
+                                    SlotsLayout.position: SlotsLayout.Last
                                 }
-                            }
-
-                            control: CheckBox {
-                                enabled: false
-                                checked: participationStatus
                             }
                         }
                     }
-                }
-                //Guest Entries ends
+                    //Guest Entries ends
 
-                ListItems.Subtitled {
-                    id: reminderHeader
-                    text: i18n.tr("Reminder")
+                    ListItem {
+                        id: descLabel
+                        height: descriptionLabelLayout.height + divider.height
+                        visible: descriptionLabelLayout.summary.text !== ""
+                        ListItemLayout {
+                            id: descriptionLabelLayout
+                            title.text: i18n.tr("Description")
+                            summary.text: event.description
+                        }
+                    }
+
+                    ListItem {
+                        height: reminderLayout.height + divider.height
+                        ListItemLayout {
+                            id: reminderLayout
+                            title.text: i18n.tr("Reminder")
+                        }
+                    }
                 }
             }
         }

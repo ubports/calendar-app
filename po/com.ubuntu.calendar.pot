@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 16:53+0530\n"
+"POT-Creation-Date: 2016-03-09 05:02+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,21 +225,20 @@ msgstr ""
 msgid "%1 %2 %3, %4 - %5"
 msgstr ""
 
-#: ../EventDetails.qml:276
-#, qt-format
-msgid "%1 Calendar"
-msgstr ""
-
-#: ../EventDetails.qml:327 ../NewEvent.qml:552
+#: ../EventDetails.qml:304 ../NewEvent.qml:552
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr ""
 
-#: ../EventDetails.qml:361 ../NewEvent.qml:592
+#: ../EventDetails.qml:331 ../NewEvent.qml:592
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:404 ../EventReminder.qml:35 ../NewEvent.qml:710
+#: ../EventDetails.qml:372 ../NewEvent.qml:518
+msgid "Description"
+msgstr ""
+
+#: ../EventDetails.qml:381 ../EventReminder.qml:35 ../NewEvent.qml:710
 msgid "Reminder"
 msgstr ""
 
@@ -353,10 +352,6 @@ msgstr ""
 
 #: ../NewEvent.qml:500
 msgid "Event Name"
-msgstr ""
-
-#: ../NewEvent.qml:518
-msgid "Description"
 msgstr ""
 
 #: ../NewEvent.qml:537
