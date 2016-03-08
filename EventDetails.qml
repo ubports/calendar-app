@@ -39,6 +39,7 @@ Page {
             text: i18n.tr("Edit");
             objectName: "edit"
             iconName: "edit";
+            enabled: !collection.extendedMetaData("collection-readonly")
             onTriggered: {
                 if( event.itemType === Type.EventOccurrence ) {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
@@ -73,19 +74,7 @@ Page {
         id: reminderModel
     }
 
-    function updateCollection(event) {
-
-        var collection = model.collection( event.collectionId );
-        calendarIndicator.color = collection.color
-        eventInfo.color=collection.color
-        // TRANSLATORS: the first parameter refers to the name of event calendar.
-        calendarName.text = i18n.tr("%1 Calendar").arg( collection.name)
-
-        //disable edit in case of read only calendar
-        if( collection.extendedMetaData("collection-readonly") === true ) {
-            editAction.enabled = false
-        }
-    }
+    property var collection: model.collection(event.collectionId);
 
     function updateRecurrence( event ) {
         var index = 0;
@@ -124,12 +113,6 @@ Page {
             }
         } else {
             reminderHeader.subText = reminderModel.get(0).label
-        }
-    }
-
-    function updateLocation(event) {
-        if( event.location ) {
-            locationLabel.text = event.location
         }
     }
 
@@ -209,15 +192,9 @@ Page {
             descLabel.text = e.description;
         }
 
-        updateCollection(e);
-
         updateContacts(e);
-
         updateRecurrence(e);
-
         updateReminder(e);
-
-        updateLocation(e);
     }
 
     function showEditEventPage(event, model) {
@@ -255,12 +232,6 @@ Page {
         property var parentEvent;
     }
 
-    Rectangle {
-        id: bg
-        color: "white"
-        anchors.fill: parent
-    }
-
     Scrollbar {
         flickableItem: flicable
         align: Qt.AlignTrailing
@@ -279,6 +250,7 @@ Page {
         Rectangle{
             id: eventInfo
 
+            color: collection.color
             width: parent.width
             height: eventInfoList.height + units.gu(5)
 
@@ -301,6 +273,7 @@ Page {
                     width: parent.width
                     wrapMode: Text.WordWrap
                     color: "white"
+                    text: i18n.tr("%1 Calendar").arg(collection.name)
                 }
 
                 Label{
@@ -330,6 +303,7 @@ Page {
                     width: parent.width
                     wrapMode: Text.WordWrap
                     visible: locationLabel.text !== ""
+                    text: event.location
                 }
             }
         }
@@ -348,16 +322,23 @@ Page {
             Row{
                 width: parent.width
                 spacing: units.gu(1)
+                Label {
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: i18n.tr("Calendar")
+                }
+
                 UbuntuShape{
                     id: calendarIndicator
                     width: parent.height
                     height: width
+                    color: collection.color
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Label{
                     id:calendarName
                     objectName: "calendarName"
                     anchors.verticalCenter: parent.verticalCenter
+                    text: collection.name
                 }
             }
 

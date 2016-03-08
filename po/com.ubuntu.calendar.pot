@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-07 23:36+0530\n"
+"POT-Creation-Date: 2016-03-08 16:53+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgid "Select Color"
 msgstr ""
 
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
-#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:340
+#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:343
 msgid "Cancel"
 msgstr ""
 
@@ -147,11 +147,11 @@ msgstr ""
 msgid "Delete this"
 msgstr ""
 
-#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:347
+#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:350
 msgid "Delete"
 msgstr ""
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:335
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:338
 msgid "Edit Event"
 msgstr ""
 
@@ -187,7 +187,7 @@ msgstr ""
 msgid "%1 <b>%2</b>"
 msgstr ""
 
-#: ../EventDetails.qml:36 ../NewEvent.qml:483
+#: ../EventDetails.qml:36 ../NewEvent.qml:486
 msgid "Event Details"
 msgstr ""
 
@@ -195,47 +195,51 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#. TRANSLATORS: the first parameter refers to the name of event calendar.
-#: ../EventDetails.qml:82
-#, qt-format
-msgid "%1 Calendar"
-msgstr ""
-
-#: ../EventDetails.qml:156
+#: ../EventDetails.qml:139
 #, qt-format
 msgid "%1 %2 %3 - %4 %5 %6 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:160
+#: ../EventDetails.qml:143
 #, qt-format
 msgid "%1 - %2 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:166
+#: ../EventDetails.qml:149
 #, qt-format
 msgid "%1 %2 %3 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:169
+#: ../EventDetails.qml:152
 #, qt-format
 msgid "%1 (All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:175
+#: ../EventDetails.qml:158
 #, qt-format
 msgid "%1 %2 %3, %4 - %5 %6 %7, %8"
 msgstr ""
 
-#: ../EventDetails.qml:184
+#: ../EventDetails.qml:167
 #, qt-format
 msgid "%1 %2 %3, %4 - %5"
 msgstr ""
 
-#: ../EventDetails.qml:380 ../NewEvent.qml:589
+#: ../EventDetails.qml:276
+#, qt-format
+msgid "%1 Calendar"
+msgstr ""
+
+#: ../EventDetails.qml:327 ../NewEvent.qml:552
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr ""
+
+#: ../EventDetails.qml:361 ../NewEvent.qml:592
 msgid "Guests"
 msgstr ""
 
-#: ../EventDetails.qml:423 ../EventReminder.qml:35 ../NewEvent.qml:701
+#: ../EventDetails.qml:404 ../EventReminder.qml:35 ../NewEvent.qml:710
 msgid "Reminder"
 msgstr ""
 
@@ -258,7 +262,7 @@ msgstr ""
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:685
+#: ../EventRepetition.qml:242 ../NewEvent.qml:688
 msgid "Repeats"
 msgstr ""
 
@@ -315,55 +319,51 @@ msgstr ""
 msgid "%1 %2"
 msgstr ""
 
-#: ../NewEvent.qml:171
+#: ../NewEvent.qml:174
 msgid "End time can't be before start time"
 msgstr ""
 
-#: ../NewEvent.qml:335 ../NewEventBottomEdge.qml:52
+#: ../NewEvent.qml:338 ../NewEventBottomEdge.qml:52
 msgid "New Event"
 msgstr ""
 
-#: ../NewEvent.qml:364
+#: ../NewEvent.qml:367
 msgid "Save"
 msgstr ""
 
-#: ../NewEvent.qml:375
+#: ../NewEvent.qml:378
 msgid "Error"
 msgstr ""
 
-#: ../NewEvent.qml:377
+#: ../NewEvent.qml:380
 msgid "OK"
 msgstr ""
 
-#: ../NewEvent.qml:437
+#: ../NewEvent.qml:440
 msgid "From"
 msgstr ""
 
-#: ../NewEvent.qml:450
+#: ../NewEvent.qml:453
 msgid "To"
 msgstr ""
 
-#: ../NewEvent.qml:467
+#: ../NewEvent.qml:470
 msgid "All day event"
 msgstr ""
 
-#: ../NewEvent.qml:497
+#: ../NewEvent.qml:500
 msgid "Event Name"
 msgstr ""
 
-#: ../NewEvent.qml:515
+#: ../NewEvent.qml:518
 msgid "Description"
 msgstr ""
 
-#: ../NewEvent.qml:534
+#: ../NewEvent.qml:537
 msgid "Location"
 msgstr ""
 
-#: ../NewEvent.qml:549 com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr ""
-
-#: ../NewEvent.qml:598
+#: ../NewEvent.qml:601
 msgid "Add Guest"
 msgstr ""
 
