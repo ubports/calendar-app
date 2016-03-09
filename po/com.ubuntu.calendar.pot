@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-09 06:54+0530\n"
+"POT-Creation-Date: 2016-03-09 07:01+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,11 +32,6 @@ msgstr ""
 
 #: ../AgendaView.qml:102
 msgid "Enable calendars"
-msgstr ""
-
-#: ../AgendaView.qml:164
-#, qt-format
-msgid "%1 %2 %3 %4 %5"
 msgstr ""
 
 #: ../AgendaView.qml:191
@@ -264,11 +259,6 @@ msgstr ""
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
-
-#: ../HeaderDateComponent.qml:90
-#, qt-format
-msgid "%1 %2 %3"
 msgstr ""
 
 #: ../LimitLabelModel.qml:25
