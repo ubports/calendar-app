@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-09 07:01+0530\n"
+"POT-Creation-Date: 2016-03-09 14:27+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,11 +46,9 @@ msgstr ""
 msgid "New event"
 msgstr ""
 
-#. TRANSLATORS: the first parameter refers to the number of all-day events
-#. on a given day. "Ev." is short form for "Events".
-#. Please keep the translation of "Ev." to 3 characters only, as the week view
-#. where it's shown has limited space
-#: ../AllDayEventComponent.qml:150
+#. TRANSLATORS: Please keep the translation of this string to a max of
+#. 5 characters as the week view where it is shown has limited space.
+#: ../AllDayEventComponent.qml:148
 #, qt-format
 msgid "%1 event"
 msgid_plural "%1 events"
@@ -58,7 +56,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:154
+#: ../AllDayEventComponent.qml:152
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
@@ -190,24 +188,32 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:130
+#: ../EventDetails.qml:152
 msgid "(All Day)"
 msgstr ""
 
-#: ../EventDetails.qml:296 ../NewEvent.qml:552
+#: ../EventDetails.qml:312 ../NewEvent.qml:552
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr ""
 
-#: ../EventDetails.qml:323 ../NewEvent.qml:592
-msgid "Guests"
+#: ../EventDetails.qml:345
+msgid "Not Attending"
 msgstr ""
 
-#: ../EventDetails.qml:364 ../NewEvent.qml:518
+#: ../EventDetails.qml:349
+msgid "Attending"
+msgstr ""
+
+#: ../EventDetails.qml:353
+msgid "No Reply"
+msgstr ""
+
+#: ../EventDetails.qml:380 ../NewEvent.qml:518
 msgid "Description"
 msgstr ""
 
-#: ../EventDetails.qml:373 ../EventReminder.qml:35 ../NewEvent.qml:710
+#: ../EventDetails.qml:389 ../EventReminder.qml:35 ../NewEvent.qml:710
 msgid "Reminder"
 msgstr ""
 
@@ -273,7 +279,9 @@ msgstr ""
 msgid "After Date"
 msgstr ""
 
-#: ../MonthComponent.qml:315
+#. TRANSLATORS: This is shown in the month view as "Wk" as a title
+#. to indicate the week numbers. It should be a max of up to 3 characters.
+#: ../MonthComponent.qml:317
 msgid "Wk"
 msgstr ""
 
@@ -320,6 +328,10 @@ msgstr ""
 
 #: ../NewEvent.qml:537
 msgid "Location"
+msgstr ""
+
+#: ../NewEvent.qml:592
+msgid "Guests"
 msgstr ""
 
 #: ../NewEvent.qml:601
