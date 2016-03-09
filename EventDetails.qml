@@ -116,12 +116,19 @@ Page {
         }
     }
 
-    function showEvent(e) {
+    function getDate(e) {
+        var dateLabel = null
+
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+        var startDay = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat)
+        var endDay = e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat)
 
-        var lunarStartDate = null;
-        var lunarEndDate = null;
+        var lunarStartDate = null
+        var lunarEndDate = null
+
+        var allDayString = i18n.tr("(All Day)")
+
         if (mainView.displayLunarCalendar) {
             lunarStartDate = Lunar.calendar.solar2lunar(e.startDateTime.getFullYear(),
                                                         e.startDateTime.getMonth() + 1,
@@ -136,42 +143,43 @@ Page {
             var days = Math.floor((e.endDateTime - e.startDateTime) / Date.msPerDay);
             if( days !== 1 ) {
                 if (mainView.displayLunarCalendar) {
-                    dateLabel.text = i18n.tr("%1 %2 %3 - %4 %5 %6 (All Day)")
-                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
-                    .arg(lunarEndDate.gzYear).arg(lunarEndDate .IMonthCn).arg(lunarEndDate.IDayCn)
+                    dateLabel = ("%1 %2 %3 - %4 %5 %6").arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
+                                                       .arg(lunarEndDate.gzYear).arg(lunarEndDate .IMonthCn).arg(lunarEndDate.IDayCn)
                 } else {
-                    dateLabel.text = i18n.tr("%1 - %2 (All Day)")
-                    .arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
-                    .arg( e.endDateTime.addDays(-1).toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                    dateLabel = ("%1 - %2").arg(startDay).arg(e.endDateTime.addDays(-1).toLocaleDateString(Qt.locale(), Locale.LongFormat))
                 }
             } else {
                 if (mainView.displayLunarCalendar) {
-                    dateLabel.text = i18n.tr("%1 %2 %3 (All Day)")
-                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
+                    dateLabel = ("%1 %2 %3").arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
                 } else {
-                    dateLabel.text = i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                    dateLabel = startDay
                 }
             }
-        } else {
+
+            dateLabel = dateLabel.concat(" ", allDayString)
+        }
+
+        else {
             if (e.endDateTime.getDate() !== e.startDateTime.getDate()) {
                 if (mainView.displayLunarCalendar) {
-                    dateLabel.text = i18n.tr("%1 %2 %3, %4 - %5 %6 %7, %8")
-                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime)
-                    .arg(lunarEndDate.gzYear).arg(lunarEndDate .IMonthCn).arg(lunarEndDate.IDayCn).arg(endTime);
+                    dateLabel = ("%1 %2 %3, %4 - %5 %6 %7, %8").arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime)
+                                                               .arg(lunarEndDate.gzYear).arg(lunarEndDate .IMonthCn).arg(lunarEndDate.IDayCn).arg(endTime);
                 } else {
-                    dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "
-                            + e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) +  ", " + endTime;
+                    dateLabel = ("%1, %2 - %3, %4").arg(startDay).arg(startTime).arg(endDay).arg(endTime)
                 }
             } else {
                 if (mainView.displayLunarCalendar) {
-                    dateLabel.text = i18n.tr("%1 %2 %3, %4 - %5")
-                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime).arg(endTime);
+                    dateLabel = ("%1 %2 %3, %4 - %5").arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime).arg(endTime)
                 } else {
-                    dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
+                    dateLabel = ("%1, %2 - %3").arg(startDay).arg(startTime).arg(endTime)
                 }
             }
         }
 
+        return dateLabel
+    }
+
+    function showEvent(e) {
         if( e.itemType === Type.EventOccurrence ){
             var requestId = -1;
             model.onItemsFetched.connect( function(id,fetchedItems){
@@ -234,10 +242,8 @@ Page {
 
         clip: interactive
         anchors.fill: parent
-        interactive: contentHeight > height
-
         contentWidth: parent.width
-        contentHeight: column.height + titleContainer.height + units.gu(3) /*top margin + spacing */
+        contentHeight: column.height + titleContainer.height
 
         Rectangle{
             id: titleContainer
@@ -286,6 +292,7 @@ Page {
                     objectName: "dateLabel"
                     width: parent.width
                     wrapMode: Text.WordWrap
+                    text: getDate(event)
                 }
 
                 Label{
