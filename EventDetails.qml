@@ -81,10 +81,10 @@ Page {
         if (event.recurrence) {
             if(event.recurrence.recurrenceRules[0] !== undefined){
                 var rule =  event.recurrence.recurrenceRules[0];
-                repeatLabel.text = eventUtils.getRecurrenceString(rule)
+                mainEventDetailsLayout.summary.text = eventUtils.getRecurrenceString(rule)
             } else {
                 //For event occurs once, event.recurrence.recurrenceRules == []
-                repeatLabel.text = Defines.recurrenceLabel[0];
+                mainEventDetailsLayout.summary.text = Defines.recurrenceLabel[0];
             }
         }
     }
@@ -269,38 +269,21 @@ Page {
             spacing: units.gu(1)
             anchors{
                 top: titleContainer.bottom
-                topMargin: units.gu(1)
+                topMargin: units.gu(0)
                 right: parent.right
                 left:parent.left
                 margins: units.gu(2)
             }
 
-            Column {
-                width: parent.width
-                spacing: units.dp(2)
-                Label{
-                    id: locationLabel
-                    objectName: "locationLabel"
-                    width: parent.width
-                    wrapMode: Text.WordWrap
-                    visible: locationLabel.text !== ""
-                    text: event.location
-                }
-
-                Label{
-                    id: dateLabel
-                    objectName: "dateLabel"
-                    width: parent.width
-                    wrapMode: Text.WordWrap
-                    text: getDate(event)
-                }
-
-                Label{
-                    id: repeatLabel
-                    objectName: "repeatLabel"
-                    width: parent.width
-                    wrapMode: Text.WordWrap
-                    visible: repeatLabel.text !== ""
+            ListItem {
+                height: mainEventDetailsLayout.height + divider.height
+                divider.anchors.leftMargin: units.gu(-2)
+                divider.anchors.rightMargin: units.gu(-2)
+                ListItemLayout {
+                    id: mainEventDetailsLayout
+                    title.text: getDate(event)
+                    subtitle.text: event.location
+                    anchors { left: parent.left; right: parent.right; margins: units.gu(-2) }
                 }
             }
 
