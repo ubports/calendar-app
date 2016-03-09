@@ -142,7 +142,7 @@ Page {
         var lunarStartDate = null
         var lunarEndDate = null
 
-        var allDayString = i18n.tr("(All Day)")
+        var allDayString = "(%1)".arg(i18n.tr("All Day"))
 
         if (mainView.displayLunarCalendar) {
             lunarStartDate = Lunar.calendar.solar2lunar(e.startDateTime.getFullYear(),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-09 14:27+0530\n"
+"POT-Creation-Date: 2016-03-10 00:03+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -168,28 +168,21 @@ msgstr ""
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../EventBubble.qml:104
+#: ../EventBubble.qml:100
 #, qt-format
 msgid "%1 - %2"
 msgstr ""
 
-#. TRANSLATORS: the first argument (%1) refers to a time for an event,
-#. while the second one (%2) refers to title of event
-#: ../EventBubble.qml:115 ../EventBubble.qml:120
-#, qt-format
-msgid "%1 <b>%2</b>"
-msgstr ""
-
-#: ../EventDetails.qml:36 ../NewEvent.qml:486
+#: ../EventDetails.qml:37 ../NewEvent.qml:486
 msgid "Event Details"
 msgstr ""
 
-#: ../EventDetails.qml:39
+#: ../EventDetails.qml:40
 msgid "Edit"
 msgstr ""
 
-#: ../EventDetails.qml:152
-msgid "(All Day)"
+#: ../EventDetails.qml:145 ../TimeLineHeader.qml:66
+msgid "All Day"
 msgstr ""
 
 #: ../EventDetails.qml:312 ../NewEvent.qml:552
@@ -209,11 +202,11 @@ msgstr ""
 msgid "No Reply"
 msgstr ""
 
-#: ../EventDetails.qml:380 ../NewEvent.qml:518
+#: ../EventDetails.qml:375 ../NewEvent.qml:518
 msgid "Description"
 msgstr ""
 
-#: ../EventDetails.qml:389 ../EventReminder.qml:35 ../NewEvent.qml:710
+#: ../EventDetails.qml:384 ../EventReminder.qml:35 ../NewEvent.qml:710
 msgid "Reminder"
 msgstr ""
 
@@ -433,10 +426,6 @@ msgstr ""
 #: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
-msgstr ""
-
-#: ../TimeLineHeader.qml:66
-msgid "All Day"
 msgstr ""
 
 #: ../WeekView.qml:138 ../WeekView.qml:139
