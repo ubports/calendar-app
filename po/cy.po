@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-03-01 16:35+0530\n"
-"PO-Revision-Date: 2015-07-14 12:29+0000\n"
+"POT-Creation-Date: 2016-03-04 04:02+0530\n"
+"PO-Revision-Date: 2016-03-07 19:45+0000\n"
 "Last-Translator: Owen Llywelyn <owen.llywelyn@gmail.com>\n"
 "Language-Team: Welsh <cy@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,53 +16,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : (n != 8 && n != 11) ? "
 "2 : 3;\n"
-"X-Launchpad-Export-Date: 2016-03-02 05:40+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-08 05:49+0000\n"
+"X-Generator: Launchpad (build 17936)\n"
 
-#: ../AgendaView.qml:52 ../DayView.qml:41 ../MonthView.qml:40
-#: ../WeekView.qml:45 ../YearView.qml:43
-msgid "Today"
-msgstr "Heddiw"
-
-#: ../AgendaView.qml:62 ../calendar.qml:288 ../calendar.qml:509
+#: ../AgendaView.qml:50 ../calendar.qml:292 ../calendar.qml:518
 msgid "Agenda"
 msgstr "Agenda"
 
-#: ../AgendaView.qml:101
-msgid "No upcoming events"
-msgstr "Dim digwyddiadau i ddod"
-
-#: ../AgendaView.qml:104
+#: ../AgendaView.qml:90
 msgid "You have no calendars enabled"
 msgstr "Dim calendrau wedi'u galluogi"
 
-#: ../AgendaView.qml:114
+#: ../AgendaView.qml:90
+msgid "No upcoming events"
+msgstr "Dim digwyddiadau i ddod"
+
+#: ../AgendaView.qml:102
 msgid "Enable calendars"
 msgstr "Galluogi calendrau"
 
-#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
-#. while the second one (%2) refers to the end time
-#: ../AgendaView.qml:177 ../EventBubble.qml:133
-#, qt-format
-msgid "%1 - %2"
-msgstr "%1 - %2"
-
-#: ../AgendaView.qml:183
+#: ../AgendaView.qml:164
 #, qt-format
 msgid "%1 %2 %3 %4 %5"
-msgstr ""
+msgstr "%1 %2 %3 %4 %5"
+
+#: ../AgendaView.qml:191
+msgid "no event name set"
+msgstr "heb roi enw i'r digwyddiad"
+
+#: ../AgendaView.qml:193
+msgid "no location"
+msgstr "dim lleoliad"
+
+#: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
+msgid "New event"
+msgstr "Digwyddiad newydd"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
 #. Please keep the translation of "Ev." to 3 characters only, as the week view
 #. where it's shown has limited space
-#: ../AllDayEventComponent.qml:123
+#: ../AllDayEventComponent.qml:150
 #, qt-format
 msgid "%1 ev."
 msgstr "%1 di."
 
 #. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:127
+#: ../AllDayEventComponent.qml:154
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
@@ -71,7 +71,7 @@ msgstr[1] "%1 digwyddiad drwy'r dydd"
 msgstr[2] "%1 digwyddiad drwy'r dydd"
 msgstr[3] "%1digwyddiad drwy'r dydd"
 
-#: ../CalendarChoicePopup.qml:34 ../EventActions.qml:63
+#: ../CalendarChoicePopup.qml:34 ../EventActions.qml:51
 msgid "Calendars"
 msgstr "Calendrau"
 
@@ -81,11 +81,11 @@ msgstr "Nôl"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:37
+#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:36
 msgid "Sync"
 msgstr "Cydweddu"
 
-#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:37
+#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:36
 msgid "Syncing"
 msgstr "Yn cydweddu"
 
@@ -98,7 +98,7 @@ msgid "Select Color"
 msgstr "Dewis Lliw"
 
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
-#: ../EditEventConfirmationDialog.qml:53
+#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:340
 msgid "Cancel"
 msgstr "Diddymu"
 
@@ -106,22 +106,26 @@ msgstr "Diddymu"
 msgid "No contact"
 msgstr "Dim cyswllt"
 
-#: ../ContactChoicePopup.qml:83
+#: ../ContactChoicePopup.qml:96
 msgid "Search contact"
 msgstr "Chwilio am gyswllt"
+
+#: ../DayView.qml:71 ../MonthView.qml:50 ../WeekView.qml:54 ../YearView.qml:57
+msgid "Today"
+msgstr "Heddiw"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:64 ../DayView.qml:157 ../MonthView.qml:62
-#: ../MonthView.qml:149 ../WeekView.qml:68 ../WeekView.qml:180
+#: ../DayView.qml:115 ../DayView.qml:203 ../MonthView.qml:78
+#: ../WeekView.qml:137 ../WeekView.qml:256
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
-#: ../DayView.qml:155 ../MonthView.qml:144 ../WeekView.qml:178
+#: ../DayView.qml:201 ../MonthView.qml:73 ../WeekView.qml:254
 #, qt-format
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -150,11 +154,11 @@ msgstr "Dileu cyfres"
 msgid "Delete this"
 msgstr "Dileu hwn"
 
-#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:68
+#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:347
 msgid "Delete"
 msgstr "Dileu"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:325
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:335
 msgid "Edit Event"
 msgstr "Golygu Digwyddiad"
 
@@ -172,22 +176,25 @@ msgstr "Golygu cyfres"
 msgid "Edit this"
 msgstr "Golygu hwn"
 
-#: ../EventActions.qml:52 ../NewEvent.qml:325
-msgid "New Event"
-msgstr "Digwyddiad Newydd"
-
-#: ../EventActions.qml:75 ../Settings.qml:29
+#: ../EventActions.qml:63 ../Settings.qml:29
 msgid "Settings"
-msgstr ""
+msgstr "Gosodiadau"
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../EventBubble.qml:97
+#, qt-format
+msgid "%1 - %2"
+msgstr "%1 - %2"
 
 #. TRANSLATORS: the first argument (%1) refers to a time for an event,
 #. while the second one (%2) refers to title of event
-#: ../EventBubble.qml:144 ../EventBubble.qml:149
+#: ../EventBubble.qml:108 ../EventBubble.qml:113
 #, qt-format
 msgid "%1 <b>%2</b>"
 msgstr "%1 <b>%2</b>"
 
-#: ../EventDetails.qml:44 ../NewEvent.qml:436
+#: ../EventDetails.qml:44 ../NewEvent.qml:483
 msgid "Event Details"
 msgstr "Manylion y Digwyddiad"
 
@@ -200,7 +207,7 @@ msgstr "Calendr %1"
 #: ../EventDetails.qml:143
 #, qt-format
 msgid "%1 %2 %3 - %4 %5 %6 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 - %4 %5 %6 (Drwy'r dydd)"
 
 #: ../EventDetails.qml:147
 #, qt-format
@@ -210,7 +217,7 @@ msgstr "%1 - %2 (Drwy'r Dydd)"
 #: ../EventDetails.qml:153
 #, qt-format
 msgid "%1 %2 %3 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 (Drwy'r dydd)"
 
 #: ../EventDetails.qml:156
 #, qt-format
@@ -220,22 +227,22 @@ msgstr "%1 (Drwy'r Dydd)"
 #: ../EventDetails.qml:162
 #, qt-format
 msgid "%1 %2 %3, %4 - %5 %6 %7, %8"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5 %6 %7, %8"
 
 #: ../EventDetails.qml:171
 #, qt-format
 msgid "%1 %2 %3, %4 - %5"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5"
 
 #: ../EventDetails.qml:238
 msgid "Edit"
 msgstr "Golygu"
 
-#: ../EventDetails.qml:389 ../NewEvent.qml:538
+#: ../EventDetails.qml:389 ../NewEvent.qml:589
 msgid "Guests"
 msgstr "Gwestai"
 
-#: ../EventDetails.qml:432 ../EventReminder.qml:35 ../NewEvent.qml:635
+#: ../EventDetails.qml:432 ../EventReminder.qml:35 ../NewEvent.qml:701
 msgid "Reminder"
 msgstr "Atgoffa"
 
@@ -258,7 +265,7 @@ msgstr "Digwyddiad sy'n ailadrodd yn gorffen"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:619
+#: ../EventRepetition.qml:242 ../NewEvent.qml:685
 msgid "Repeats"
 msgstr "Ailadrodd"
 
@@ -294,7 +301,7 @@ msgstr "Yn wythnosol ar %1"
 #: ../HeaderDateComponent.qml:90
 #, qt-format
 msgid "%1 %2 %3"
-msgstr ""
+msgstr "%1 %2 %3"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -308,55 +315,59 @@ msgstr "Wedi X Achlysur"
 msgid "After Date"
 msgstr "Wedi'r dyddiad"
 
-#: ../MonthComponent.qml:262
+#: ../MonthComponent.qml:315
 msgid "Wk"
-msgstr ""
+msgstr "Wth"
 
-#: ../NewEvent.qml:84
-msgid "Save"
-msgstr "Cadw"
-
-#: ../NewEvent.qml:192
+#: ../NewEvent.qml:171
 msgid "End time can't be before start time"
 msgstr "Gall amser gorffen ddim bod cyn amser cychwyn"
 
-#: ../NewEvent.qml:335
+#: ../NewEvent.qml:335 ../NewEventBottomEdge.qml:52
+msgid "New Event"
+msgstr "Digwyddiad Newydd"
+
+#: ../NewEvent.qml:364
+msgid "Save"
+msgstr "Cadw"
+
+#: ../NewEvent.qml:375
 msgid "Error"
 msgstr "Gwall"
 
-#: ../NewEvent.qml:337
+#: ../NewEvent.qml:377
 msgid "OK"
 msgstr "Iawn"
 
-#: ../NewEvent.qml:390
+#: ../NewEvent.qml:437
 msgid "From"
 msgstr "O"
 
-#: ../NewEvent.qml:403
+#: ../NewEvent.qml:450
 msgid "To"
 msgstr "I"
 
-#: ../NewEvent.qml:420
+#: ../NewEvent.qml:467
 msgid "All day event"
 msgstr "Digwyddiad drwy'r dydd"
 
-#: ../NewEvent.qml:449
+#: ../NewEvent.qml:497
 msgid "Event Name"
 msgstr "Enw'r Digwyddiad"
 
-#: ../NewEvent.qml:467
+#: ../NewEvent.qml:515
 msgid "Description"
 msgstr "Disgrifiad"
 
-#: ../NewEvent.qml:485
+#: ../NewEvent.qml:534
 msgid "Location"
 msgstr "Lleoliad"
 
-#: ../NewEvent.qml:500 com.ubuntu.calendar_calendar.desktop.in.in.h:1
+#: ../NewEvent.qml:549 com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Calendr"
 
-#: ../NewEvent.qml:542
+#: ../NewEvent.qml:598
 msgid "Add Guest"
 msgstr "Ychwanegu Gwestai"
 
@@ -445,27 +456,27 @@ msgstr "2 wythnos"
 
 #: ../Settings.qml:55
 msgid "Show week numbers"
-msgstr ""
+msgstr "Dangos rhifau wythnosau"
 
 #: ../Settings.qml:71
 msgid "Show lunar calendar"
-msgstr ""
-
-#: ../TimeLineBase.qml:73
-msgid "Untitled"
-msgstr "Heb deitl"
+msgstr "Dangos calendr y lleuad"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:53
+#: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
 msgstr "W%1"
 
-#: ../TimeLineHeader.qml:65
+#: ../TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "Drwy'r Dydd"
 
-#: ../YearView.qml:61 ../YearView.qml:112
+#: ../WeekView.qml:131 ../WeekView.qml:132
+msgid "MMM"
+msgstr "MMM"
+
+#: ../YearView.qml:79
 #, qt-format
 msgid "Year %1"
 msgstr "Blwyddyn %1"
@@ -480,19 +491,19 @@ msgstr ""
 "--eventid. Caiff rhain eu rheoli gan y system. Gweler y ffynhonnell am "
 "fanylion pellach am y rhain"
 
-#: ../calendar.qml:256 ../calendar.qml:425
+#: ../calendar.qml:260 ../calendar.qml:434
 msgid "Year"
 msgstr "Blwyddyn"
 
-#: ../calendar.qml:264 ../calendar.qml:446
+#: ../calendar.qml:268 ../calendar.qml:455
 msgid "Month"
 msgstr "Mis"
 
-#: ../calendar.qml:272 ../calendar.qml:467
+#: ../calendar.qml:276 ../calendar.qml:476
 msgid "Week"
 msgstr "Wythnos"
 
-#: ../calendar.qml:280 ../calendar.qml:488
+#: ../calendar.qml:284 ../calendar.qml:497
 msgid "Day"
 msgstr "Diwrnod"
 
