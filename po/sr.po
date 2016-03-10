@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-04 04:02+0530\n"
-"PO-Revision-Date: 2016-03-04 15:34+0000\n"
-"Last-Translator: Данило Шеган <Unknown>\n"
+"PO-Revision-Date: 2016-03-09 21:50+0000\n"
+"Last-Translator: Bojan Bogdanović <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-03-08 05:49+0000\n"
+"X-Launchpad-Export-Date: 2016-03-10 05:48+0000\n"
 "X-Generator: Launchpad (build 17936)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:292 ../calendar.qml:518
@@ -38,19 +38,19 @@ msgstr "Укључи календаре"
 #: ../AgendaView.qml:164
 #, qt-format
 msgid "%1 %2 %3 %4 %5"
-msgstr ""
+msgstr "%1 %2 %3 %4 %5"
 
 #: ../AgendaView.qml:191
 msgid "no event name set"
-msgstr ""
+msgstr "нема подешеног имена догађаја"
 
 #: ../AgendaView.qml:193
 msgid "no location"
-msgstr ""
+msgstr "нема локације"
 
 #: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
 msgid "New event"
-msgstr ""
+msgstr "Нови догађај"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -124,7 +124,7 @@ msgstr "MMMM yyyy"
 #: ../DayView.qml:201 ../MonthView.qml:73 ../WeekView.qml:254
 #, qt-format
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -206,7 +206,7 @@ msgstr "%1 Календар"
 #: ../EventDetails.qml:143
 #, qt-format
 msgid "%1 %2 %3 - %4 %5 %6 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 - %4 %5 %6 (Цео дан)"
 
 #: ../EventDetails.qml:147
 #, qt-format
@@ -226,12 +226,12 @@ msgstr "%1 (Цео дан)"
 #: ../EventDetails.qml:162
 #, qt-format
 msgid "%1 %2 %3, %4 - %5 %6 %7, %8"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5 %6 %7, %8"
 
 #: ../EventDetails.qml:171
 #, qt-format
 msgid "%1 %2 %3, %4 - %5"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5"
 
 #: ../EventDetails.qml:238
 msgid "Edit"
@@ -299,7 +299,7 @@ msgstr "Недељно у %1"
 #: ../HeaderDateComponent.qml:90
 #, qt-format
 msgid "%1 %2 %3"
-msgstr ""
+msgstr "%1 %2 %3"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -472,7 +472,7 @@ msgstr "Цео дан"
 
 #: ../WeekView.qml:131 ../WeekView.qml:132
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../YearView.qml:79
 #, qt-format
