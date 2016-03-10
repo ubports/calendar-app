@@ -223,15 +223,6 @@ Page {
         })
     }
 
-    Connections{
-        target: pageStack
-        onCurrentPageChanged:{
-            if( pageStack.currentPage === root) {
-                showEvent(event)
-            }
-        }
-    }
-
     RemindersModel {
         id: reminderModel
     }
