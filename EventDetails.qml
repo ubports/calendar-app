@@ -41,6 +41,7 @@ Page {
             objectName: "edit"
             iconName: "edit";
             enabled: !collection.extendedMetaData("collection-readonly")
+            shortcut: "Ctrl+E"
             onTriggered: {
                 if( event.itemType === Type.EventOccurrence ) {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
@@ -64,12 +65,6 @@ Page {
 
     Keys.onEscapePressed: {
         pageStack.pop();
-    }
-
-    Keys.onPressed: {
-        if ((event.key === Qt.Key_E) && ( event.modifiers & Qt.ControlModifier)) {
-            showEditEventPage(event, model);
-        }
     }
 
     function updateRecurrence( event ) {
