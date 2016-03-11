@@ -63,7 +63,7 @@ Item {
         iconName: "settings"
         text: i18n.tr("Settings")
         onTriggered: {
-            pageStack.push(Qt.resolvedUrl("Settings.qml"));
+            pageStack.push(Qt.resolvedUrl("Settings.qml"), {"eventModel": eventModel});
         }
     }
 }

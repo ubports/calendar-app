@@ -75,6 +75,20 @@ OrganizerModel {
         return cals;
     }
 
+    function getWritableAndSelectedCollections(){
+        var cals = [];
+        var collections = eventModel.collections;
+        for(var i = 0 ; i < collections.length ; ++i) {
+            var cal = collections[i];
+            if( cal.extendedMetaData("collection-type") === "Calendar" &&
+                    cal.extendedMetaData("collection-selected") === true &&
+                    cal.extendedMetaData("collection-readonly") === false) {
+                cals.push(cal);
+            }
+        }
+        return cals;
+    }
+
     function getWritableCollections(){
         var cals = [];
         var collections = eventModel.collections;
