@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-04 04:02+0530\n"
-"PO-Revision-Date: 2016-02-29 18:05+0000\n"
+"PO-Revision-Date: 2016-03-09 07:41+0000\n"
 "Last-Translator: P_E_T_O <Unknown>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Launchpad-Export-Date: 2016-03-08 05:49+0000\n"
+"X-Launchpad-Export-Date: 2016-03-10 05:48+0000\n"
 "X-Generator: Launchpad (build 17936)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:292 ../calendar.qml:518
@@ -37,19 +37,19 @@ msgstr "Povoliť kalendáre"
 #: ../AgendaView.qml:164
 #, qt-format
 msgid "%1 %2 %3 %4 %5"
-msgstr ""
+msgstr "%1 %2 %3 %4 %5"
 
 #: ../AgendaView.qml:191
 msgid "no event name set"
-msgstr ""
+msgstr "nezadané meno udalosti"
 
 #: ../AgendaView.qml:193
 msgid "no location"
-msgstr ""
+msgstr "žiadna poloha"
 
 #: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
 msgid "New event"
-msgstr ""
+msgstr "Nová udalosť"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -118,12 +118,12 @@ msgstr "Dnes"
 #: ../DayView.qml:115 ../DayView.qml:203 ../MonthView.qml:78
 #: ../WeekView.qml:137 ../WeekView.qml:256
 msgid "MMMM yyyy"
-msgstr "MMMM yyyy"
+msgstr "MMM yyyy"
 
 #: ../DayView.qml:201 ../MonthView.qml:73 ../WeekView.qml:254
 #, qt-format
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -176,7 +176,7 @@ msgstr "Upraviť túto"
 
 #: ../EventActions.qml:63 ../Settings.qml:29
 msgid "Settings"
-msgstr ""
+msgstr "Nastavenia"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -205,7 +205,7 @@ msgstr "%1 kalendár"
 #: ../EventDetails.qml:143
 #, qt-format
 msgid "%1 %2 %3 - %4 %5 %6 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 - %4 %5 %6 (Celý deň)"
 
 #: ../EventDetails.qml:147
 #, qt-format
@@ -215,7 +215,7 @@ msgstr "%1 - %2 (celodenná)"
 #: ../EventDetails.qml:153
 #, qt-format
 msgid "%1 %2 %3 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 (Celý deň)"
 
 #: ../EventDetails.qml:156
 #, qt-format
@@ -225,12 +225,12 @@ msgstr "%1 (celodenná)"
 #: ../EventDetails.qml:162
 #, qt-format
 msgid "%1 %2 %3, %4 - %5 %6 %7, %8"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5 %6 %7, %8"
 
 #: ../EventDetails.qml:171
 #, qt-format
 msgid "%1 %2 %3, %4 - %5"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5"
 
 #: ../EventDetails.qml:238
 msgid "Edit"
@@ -298,7 +298,7 @@ msgstr "Týždenne v %1"
 #: ../HeaderDateComponent.qml:90
 #, qt-format
 msgid "%1 %2 %3"
-msgstr ""
+msgstr "%1 %2 %3"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -314,7 +314,7 @@ msgstr "Po dátume"
 
 #: ../MonthComponent.qml:315
 msgid "Wk"
-msgstr ""
+msgstr "Týž."
 
 #: ../NewEvent.qml:171
 msgid "End time can't be before start time"
@@ -453,17 +453,17 @@ msgstr "2 týždne"
 
 #: ../Settings.qml:55
 msgid "Show week numbers"
-msgstr ""
+msgstr "Zobraziť čísla týždňov"
 
 #: ../Settings.qml:71
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Zobraziť lunárny kalendár"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
-msgstr "Týždeň%1"
+msgstr "Týž.%1"
 
 #: ../TimeLineHeader.qml:66
 msgid "All Day"
@@ -471,7 +471,7 @@ msgstr "Celý deň"
 
 #: ../WeekView.qml:131 ../WeekView.qml:132
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../YearView.qml:79
 #, qt-format
