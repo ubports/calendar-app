@@ -26,7 +26,15 @@ Item {
     property alias showCalendarAction: _showCalendarAction
     property alias syncCalendarAction: _syncCalendarAction
     property alias settingsAction: _settingsAction
+    property alias displayLunarCalendar: settingsPage.displayLunarCalendar
+    property alias displayWeekNumber: settingsPage.displayWeekNumber
+    property alias reminderDefaultValue: settingsPage.reminderDefaultValue
     readonly property bool syncInProgress: (syncMonitor.state === "syncing")
+
+    Settings {
+        id: settingsPage
+        onBackRequested: pageStack.pop()
+    }
 
     Action {
         id: _syncCalendarAction
@@ -62,8 +70,6 @@ Item {
         name: "calendarsbutton"
         iconName: "settings"
         text: i18n.tr("Settings")
-        onTriggered: {
-            pageStack.push(Qt.resolvedUrl("Settings.qml"));
-        }
+        onTriggered: pageStack.push(settingsPage);
     }
 }

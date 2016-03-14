@@ -23,6 +23,12 @@ Page {
     id: settingsPage
     objectName: "settings"
 
+    signal backRequested()
+
+    property alias displayWeekNumber: weekCheckBox.checked
+    property alias displayLunarCalendar: lunarCalCheckBox.checked
+    property int reminderDefaultValue: -1
+
     visible: false
 
     header: PageHeader {
@@ -30,15 +36,12 @@ Page {
         leadingActionBar.actions: Action {
             text: i18n.tr("Back")
             iconName: "back"
-            onTriggered: {
-                pop()
-            }
+            onTriggered: settingsPage.backRequested()
         }
     }
 
-    Component.onCompleted: {
-        weekCheckBox.checked = mainView.displayWeekNumber
-        lunarCalCheckBox.checked = mainView.displayLunarCalendar
+    RemindersModel {
+        id: remindersModel
     }
 
     Column {
@@ -57,9 +60,6 @@ Page {
                     id: weekCheckBox
                     objectName: "weekCheckBox"
                     SlotsLayout.position: SlotsLayout.Last
-                    onCheckedChanged: {
-                        mainView.displayWeekNumber = weekCheckBox.checked
-                    }
                 }
             }
         }
@@ -73,8 +73,54 @@ Page {
                     id: lunarCalCheckBox
                     objectName: "lunarCalCheckbox"
                     SlotsLayout.position: SlotsLayout.Last
-                    onCheckedChanged: {
-                        mainView.displayLunarCalendar = lunarCalCheckBox.checked
+                }
+            }
+        }
+
+        ListItem {
+            id: defaultReminderItem
+
+            visible: defaultReminderOptionSelector.model && defaultReminderOptionSelector.model.count > 0
+            height: visible ? defaultReminderLayout.height + divider.height : 0
+
+            Connections {
+                target: remindersModel
+                onLoaded: {
+                    if (!defaultReminderOptionSelector.model) {
+                        return
+                    }
+
+                    for (var i=0; i<defaultReminderOptionSelector.model.count; ++i) {
+                        var reminder = defaultReminderOptionSelector.model.get(i)
+                        if (reminder.value === settingsPage.reminderDefaultValue) {
+                            defaultReminderOptionSelector.selectedIndex = i
+                            return
+                        }
+                    }
+
+                    defaultReminderOptionSelector.selectedIndex = 0
+                }
+            }
+
+            SlotsLayout {
+                id: defaultReminderLayout
+
+                mainSlot: Item {
+                    height: defaultReminderOptionSelector.height
+
+                    OptionSelector {
+                        id: defaultReminderOptionSelector
+
+                        text: i18n.tr("Default reminder")
+                        model: remindersModel
+                        containerHeight: itemHeight * 4
+
+                        delegate: OptionSelectorDelegate {
+                            text: label
+                            height: units.gu(4)
+                        }
+
+                       onDelegateClicked: settingsPage.reminderDefaultValue = model.get(index).value
                     }
                 }
             }
