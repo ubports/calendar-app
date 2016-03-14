@@ -117,8 +117,6 @@ Page {
                     rule.daysOfMonth = [eventRoot.startDate.getDate()];
                     break;
                 case 7: //yearly
-                    rule.monthsOfYear = [eventRoot.startDate.getMonth()];
-                    rule.daysOfMonth = [eventRoot.startDate.getDate()];
                     break;
                 case 0: //once
                 default:
