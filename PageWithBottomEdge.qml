@@ -24,6 +24,7 @@ Page {
     property alias model: bottomEdge.eventModel
     property alias createEventAt: bottomEdge.date
     property bool bootomEdgeEnabled: bottomEdge.enabled
+    readonly property int bottomEdgeHeight: bottomEdge.hint.height
 
     signal bottomEdgeCommitStarted()
     signal eventCreated(var event)

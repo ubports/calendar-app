@@ -112,7 +112,10 @@ PageWithBottomEdge {
         id: eventList
         objectName: "eventList"
 
-        anchors.fill: parent
+        anchors{
+            fill: parent
+            bottomMargin: root.bottomEdgeHeight
+        }
         visible: eventListModel.itemCount > 0
         model: eventListModel
         delegate: listDelegate
