@@ -71,6 +71,11 @@ Page {
         root.canceled()
     }
 
+    function updateEventInfo(date, allDay) {
+        selectCalendar(model.getDefaultCollection().collectionId);
+        updateEventDate(date, allDay)
+    }
+
     function updateEventDate(date, allDay) {
         root.startDate = undefined
         root.endDate = undefined
@@ -117,7 +122,6 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        selectCalendar(model.getDefaultCollection().collectionId);
     }
 
     //Editing Event

@@ -124,9 +124,9 @@ OrganizerModel {
         var cals = getCollections();
          for(var i = 0 ; i < cals.length ; ++i) {
              var cal = cals[i]
-             cal.setExtendedMetaData("X-CAL-DEFAULT-CALENDAR", false);
              if( cal.collectionId === collectionId) {
-                cal.setExtendedMetaData("X-CAL-DEFAULT-CALENDAR", true);
+                 cal.setExtendedMetaData("collection-default", true);
+                 eventModel.saveCollection(cal);
              }
         }
     }
