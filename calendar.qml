@@ -732,6 +732,7 @@ MainView {
         id: agendaViewComp
 
         AgendaView {
+            reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabs.selectedTabIndex === agendaTab.index
 
