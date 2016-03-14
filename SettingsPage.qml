@@ -18,16 +18,27 @@
 
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Qt.labs.settings 1.0
 
 Page {
     id: settingsPage
     objectName: "settings"
 
-    signal backRequested()
+    property Settings settings: undefined
 
-    property alias displayWeekNumber: weekCheckBox.checked
-    property alias displayLunarCalendar: lunarCalCheckBox.checked
-    property int reminderDefaultValue: -1
+    Binding {
+        target: settingsPage.settings
+        property: "showWeekNumber"
+        value: weekCheckBox.checked
+        when: settings
+    }
+
+    Binding {
+        target: settingsPage.settings
+        property: "showLunarCalendar"
+        value: lunarCalCheckBox.checked
+        when: settings
+    }
 
     visible: false
 
@@ -36,7 +47,7 @@ Page {
         leadingActionBar.actions: Action {
             text: i18n.tr("Back")
             iconName: "back"
-            onTriggered: settingsPage.backRequested()
+            onTriggered: pop()
         }
     }
 
@@ -60,6 +71,7 @@ Page {
                     id: weekCheckBox
                     objectName: "weekCheckBox"
                     SlotsLayout.position: SlotsLayout.Last
+                    checked: settings ? settings.showWeekNumber : false
                 }
             }
         }
@@ -73,6 +85,7 @@ Page {
                     id: lunarCalCheckBox
                     objectName: "lunarCalCheckbox"
                     SlotsLayout.position: SlotsLayout.Last
+                    checked: settings ? settings.showLunarCalendar : false
                 }
             }
         }
@@ -92,7 +105,7 @@ Page {
 
                     for (var i=0; i<defaultReminderOptionSelector.model.count; ++i) {
                         var reminder = defaultReminderOptionSelector.model.get(i)
-                        if (reminder.value === settingsPage.reminderDefaultValue) {
+                        if (reminder.value === settings.reminderDefaultValue) {
                             defaultReminderOptionSelector.selectedIndex = i
                             return
                         }
@@ -120,7 +133,7 @@ Page {
                             height: units.gu(4)
                         }
 
-                       onDelegateClicked: settingsPage.reminderDefaultValue = model.get(index).value
+                       onDelegateClicked: settings.reminderDefaultValue = model.get(index).value
                     }
                 }
             }

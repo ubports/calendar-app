@@ -260,14 +260,7 @@ MainView {
 
         EventActions {
             id: commonHeaderActions
-
-            displayWeekNumber: mainView.displayWeekNumber
-            displayLunarCalendar: mainView.displayLunarCalendar
-            reminderDefaultValue: mainView.reminderDefaultValue
-
-            onDisplayWeekNumberChanged: mainView.displayWeekNumber = displayWeekNumber
-            onDisplayLunarCalendarChanged: mainView.displayLunarCalendar = displayLunarCalendar
-            onReminderDefaultValueChanged: mainView.reminderDefaultValue = reminderDefaultValue 
+            settings: settings
         }
 
         Settings {

@@ -43,7 +43,7 @@ Page {
     property var startDate;
     property var endDate;
     //default reminder time = 15 min
-    property int reminderValue;
+    property int reminderValue: 900;
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
