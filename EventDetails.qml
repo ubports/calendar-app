@@ -67,6 +67,11 @@ Page {
         pageStack.pop();
     }
 
+    Connections {
+        target: event
+        onItemChanged: showEvent(event)
+    }
+
     function updateRecurrence( event ) {
         var index = 0;
         if (event.recurrence) {
