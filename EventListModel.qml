@@ -127,6 +127,7 @@ OrganizerModel {
              if( cal.collectionId === collectionId) {
                  cal.setExtendedMetaData("collection-default", true);
                  eventModel.saveCollection(cal);
+                 return
              }
         }
     }
