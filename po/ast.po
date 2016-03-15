@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-04 04:02+0530\n"
-"PO-Revision-Date: 2015-10-06 11:57+0000\n"
+"PO-Revision-Date: 2016-03-14 17:08+0000\n"
 "Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
 "Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-08 05:49+0000\n"
-"X-Generator: Launchpad (build 17936)\n"
+"X-Launchpad-Export-Date: 2016-03-15 05:58+0000\n"
+"X-Generator: Launchpad (build 17939)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:292 ../calendar.qml:518
 msgid "Agenda"
@@ -37,19 +37,19 @@ msgstr "Habilitar calendarios"
 #: ../AgendaView.qml:164
 #, qt-format
 msgid "%1 %2 %3 %4 %5"
-msgstr ""
+msgstr "%1 %2 %3 %4 %5"
 
 #: ../AgendaView.qml:191
 msgid "no event name set"
-msgstr ""
+msgstr "nun se dió nome a l'actividá"
 
 #: ../AgendaView.qml:193
 msgid "no location"
-msgstr ""
+msgstr "nun tien allugamientu"
 
 #: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
 msgid "New event"
-msgstr ""
+msgstr "Nueva actividá"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -122,7 +122,7 @@ msgstr "MMMM yyyy"
 #: ../DayView.qml:201 ../MonthView.qml:73 ../WeekView.qml:254
 #, qt-format
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -175,7 +175,7 @@ msgstr "Editar esto"
 
 #: ../EventActions.qml:63 ../Settings.qml:29
 msgid "Settings"
-msgstr ""
+msgstr "Configuración"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -204,7 +204,7 @@ msgstr "Calendariu de %1"
 #: ../EventDetails.qml:143
 #, qt-format
 msgid "%1 %2 %3 - %4 %5 %6 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 - %4 %5 %6 (Día enteru)"
 
 #: ../EventDetails.qml:147
 #, qt-format
@@ -214,7 +214,7 @@ msgstr "%1 - %2 (Tol día)"
 #: ../EventDetails.qml:153
 #, qt-format
 msgid "%1 %2 %3 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 (Día enteru)"
 
 #: ../EventDetails.qml:156
 #, qt-format
@@ -224,12 +224,12 @@ msgstr "%1 (Tol día)"
 #: ../EventDetails.qml:162
 #, qt-format
 msgid "%1 %2 %3, %4 - %5 %6 %7, %8"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5 %6 %7, %8"
 
 #: ../EventDetails.qml:171
 #, qt-format
 msgid "%1 %2 %3, %4 - %5"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5"
 
 #: ../EventDetails.qml:238
 msgid "Edit"
@@ -296,7 +296,7 @@ msgstr "Selmanalmente en %1"
 #: ../HeaderDateComponent.qml:90
 #, qt-format
 msgid "%1 %2 %3"
-msgstr ""
+msgstr "%1 %2 %3"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -312,7 +312,7 @@ msgstr "Tres una data"
 
 #: ../MonthComponent.qml:315
 msgid "Wk"
-msgstr ""
+msgstr "Se"
 
 #: ../NewEvent.qml:171
 msgid "End time can't be before start time"
@@ -451,11 +451,11 @@ msgstr "2 selmanes"
 
 #: ../Settings.qml:55
 msgid "Show week numbers"
-msgstr ""
+msgstr "Amosar númberos de selmana"
 
 #: ../Settings.qml:71
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Amosar calendariu llunar"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:54
@@ -469,7 +469,7 @@ msgstr "Tol día"
 
 #: ../WeekView.qml:131 ../WeekView.qml:132
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../YearView.qml:79
 #, qt-format
