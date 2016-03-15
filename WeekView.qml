@@ -177,6 +177,7 @@ PageWithBottomEdge {
 
                 TimeLineBaseComponent {
                     id: timeLineView
+                    objectName: "weekViewDelegate"
 
                     startDay: anchorFirstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
                     anchors.fill: parent
@@ -186,6 +187,7 @@ PageWithBottomEdge {
                     keyboardEventProvider: weekViewPath
                     selectedDay: weekViewPage.selectedDay
                     modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
+                    autoUpdate: weekViewPage.tabSelected
 
                     onDateSelected: {
                         weekViewPage.dateSelected(date);
