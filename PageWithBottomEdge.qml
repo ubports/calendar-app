@@ -23,6 +23,7 @@ Page {
 
     property alias model: bottomEdge.eventModel
     property alias createEventAt: bottomEdge.date
+    property alias reminderValue: bottomEdge.reminderValue
     property bool bootomEdgeEnabled: bottomEdge.enabled
 
     signal bottomEdgeCommitStarted()

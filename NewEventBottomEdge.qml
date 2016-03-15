@@ -26,6 +26,7 @@ BottomEdge {
     property var pageStack: null
     property var eventModel: null
     property var date: new Date()
+    property int reminderValue
 
     // WORKAROUND: BottomEdge component loads the page async while draging it
     // this cause a very bad visual.
@@ -93,6 +94,7 @@ BottomEdge {
 
             implicitWidth: bottomEdge.width
             implicitHeight: bottomEdge.height
+            reminderValue: bottomEdge.reminderValue
             model: bottomEdge.eventModel
             date: bottomEdge.date
             enabled: bottomEdge.status === BottomEdge.Committed

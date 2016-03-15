@@ -20,9 +20,10 @@ import QtQuick 2.4
 
 ListModel {
     id: reminderModel
-    Component.onCompleted: initialise()
 
-    function initialise() {
+    signal loaded()
+
+    Component.onCompleted: {
         reminderModel.append({ "label": i18n.tr("No Reminder"), "value": -1 })
         // TRANSLATORS: this refers to when a reminder should be shown as a notification
         // in the indicators. "On Event" means that it will be shown right at the time
@@ -37,6 +38,7 @@ ListModel {
         reminderModel.append({ "label": i18n.tr("2 days"), "value": 172800 })
         reminderModel.append({ "label": i18n.tr("1 week"), "value": 604800 })
         reminderModel.append({ "label": i18n.tr("2 weeks"), "value": 1209600 })
+        reminderModel.loaded()
     }
 }
 

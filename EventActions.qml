@@ -19,6 +19,7 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.SyncMonitor 0.1
+import Qt.labs.settings 1.0
 
 Item {
     id: actionPool
@@ -26,6 +27,7 @@ Item {
     property alias showCalendarAction: _showCalendarAction
     property alias syncCalendarAction: _syncCalendarAction
     property alias settingsAction: _settingsAction
+    property Settings settings
     readonly property bool syncInProgress: (syncMonitor.state === "syncing")
 
     Action {
@@ -62,8 +64,6 @@ Item {
         name: "calendarsbutton"
         iconName: "settings"
         text: i18n.tr("Settings")
-        onTriggered: {
-            pageStack.push(Qt.resolvedUrl("Settings.qml"));
-        }
+        onTriggered: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"),{"settings": actionPool.settings});
     }
 }
