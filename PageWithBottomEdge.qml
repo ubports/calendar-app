@@ -25,6 +25,7 @@ Page {
     property alias createEventAt: bottomEdge.date
     property alias reminderValue: bottomEdge.reminderValue
     property bool bootomEdgeEnabled: bottomEdge.enabled
+    readonly property int bottomEdgeHeight: bottomEdge.hint.height
 
     signal bottomEdgeCommitStarted()
     signal eventCreated(var event)

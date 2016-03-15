@@ -89,6 +89,7 @@ PageWithBottomEdge {
         anchors {
             fill: parent
             topMargin: header.height
+            bottomMargin: monthViewPage.bottomEdgeHeight
         }
 
         delegate: MonthWithEventsComponent {
