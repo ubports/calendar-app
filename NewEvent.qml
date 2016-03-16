@@ -42,6 +42,8 @@ Page {
 
     property var startDate;
     property var endDate;
+    //default reminder time = 15 min
+    property int reminderValue: 900;
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
@@ -249,13 +251,11 @@ Page {
 
     VisualReminder{
         id: visualReminder
-        //default reminder time = 15 min
-        secondsBeforeStart: 900
+        secondsBeforeStart: root.reminderValue
     }
     AudibleReminder{
         id: audibleReminder
-        //default reminder time = 15 min
-        secondsBeforeStart: 900
+        secondsBeforeStart: root.reminderValue
     }
 
     function getDaysOfWeek(){

@@ -18,12 +18,29 @@
 
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Qt.labs.settings 1.0
 
 Page {
     id: settingsPage
     objectName: "settings"
 
     property EventListModel eventModel
+    property Settings settings: undefined
+
+    Binding {
+        target: settingsPage.settings
+        property: "showWeekNumber"
+        value: weekCheckBox.checked
+        when: settings
+    }
+
+    Binding {
+        target: settingsPage.settings
+        property: "showLunarCalendar"
+        value: lunarCalCheckBox.checked
+        when: settings
+    }
+
     visible: false
 
     header: PageHeader {
@@ -31,15 +48,12 @@ Page {
         leadingActionBar.actions: Action {
             text: i18n.tr("Back")
             iconName: "back"
-            onTriggered: {
-                pop()
-            }
+            onTriggered: pop()
         }
     }
 
-    Component.onCompleted: {
-        weekCheckBox.checked = mainView.displayWeekNumber
-        lunarCalCheckBox.checked = mainView.displayLunarCalendar
+    RemindersModel {
+        id: remindersModel
     }
 
     Column {
@@ -58,9 +72,7 @@ Page {
                     id: weekCheckBox
                     objectName: "weekCheckBox"
                     SlotsLayout.position: SlotsLayout.Last
-                    onCheckedChanged: {
-                        mainView.displayWeekNumber = weekCheckBox.checked
-                    }
+                    checked: settings ? settings.showWeekNumber : false
                 }
             }
         }
@@ -74,8 +86,55 @@ Page {
                     id: lunarCalCheckBox
                     objectName: "lunarCalCheckbox"
                     SlotsLayout.position: SlotsLayout.Last
-                    onCheckedChanged: {
-                        mainView.displayLunarCalendar = lunarCalCheckBox.checked
+                    checked: settings ? settings.showLunarCalendar : false
+                }
+            }
+        }
+
+        ListItem {
+            id: defaultReminderItem
+
+            visible: defaultReminderOptionSelector.model && defaultReminderOptionSelector.model.count > 0
+            height: visible ? defaultReminderLayout.height + divider.height : 0
+
+            Connections {
+                target: remindersModel
+                onLoaded: {
+                    if (!defaultReminderOptionSelector.model) {
+                        return
+                    }
+
+                    for (var i=0; i<defaultReminderOptionSelector.model.count; ++i) {
+                        var reminder = defaultReminderOptionSelector.model.get(i)
+                        if (reminder.value === settings.reminderDefaultValue) {
+                            defaultReminderOptionSelector.selectedIndex = i
+                            return
+                        }
+                    }
+
+                    defaultReminderOptionSelector.selectedIndex = 0
+                }
+            }
+
+            SlotsLayout {
+                id: defaultReminderLayout
+
+                mainSlot: Item {
+                    height: defaultReminderOptionSelector.height
+
+                    OptionSelector {
+                        id: defaultReminderOptionSelector
+
+                        text: i18n.tr("Default reminder")
+                        model: remindersModel
+                        containerHeight: itemHeight * 4
+
+                        delegate: OptionSelectorDelegate {
+                            text: label
+                            height: units.gu(4)
+                        }
+
+                       onDelegateClicked: settings.reminderDefaultValue = model.get(index).value
                     }
                 }
             }

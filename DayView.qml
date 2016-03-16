@@ -146,6 +146,7 @@ PageWithBottomEdge {
         anchors {
             fill: parent
             topMargin: header.height
+            bottomMargin: dayViewPage.bottomEdgeHeight
         }
 
         delegate: TimeLineBaseComponent {

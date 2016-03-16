@@ -107,6 +107,7 @@ PageWithBottomEdge {
         anchors {
             fill: parent
             topMargin: header.height
+            bottomMargin: yearViewPage.bottomEdgeHeight
         }
 
         delegate: Loader {
