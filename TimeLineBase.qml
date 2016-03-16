@@ -95,8 +95,15 @@ Item {
                         dirty = true
                     }
                     if (e.endDateTime.getTime() != events[i].eventEndTime) {
-                        console.warn("Event does not match end time")
-                        dirty = true
+                        if (!isNaN(e.endDateTime.getTime()) && !isNaN(events[i].eventEndTime)) {
+                            console.warn("Event does not match end time")
+                            dirty = true
+                        } else {
+                            // Sometimes when both star and end time are equals
+                            // end time is reported as empty
+                            e.endDateTime = e.startDateTime
+                            events[i].eventEndTime = events[i].eventStartTime
+                        }
                     }
 
                     if (dirty) {

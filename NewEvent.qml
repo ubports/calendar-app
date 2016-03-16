@@ -172,7 +172,7 @@ Page {
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
-        if ( startDate >= endDate && !allDayEventCheckbox.checked) {
+        if ( startDate > endDate && !allDayEventCheckbox.checked) {
             PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
         } else {
             var newCollection = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
