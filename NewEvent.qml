@@ -25,6 +25,7 @@ import Ubuntu.Components.Themes.Ambiance 1.0
 import Ubuntu.Components.Pickers 1.0
 import QtOrganizer 5.0
 import "Defines.js" as Defines
+import "dateExt.js" as DateExt
 
 Page {
     id: root
@@ -35,18 +36,20 @@ Page {
 
     property var date;
     property alias allDay: allDayEventCheckbox.checked
+    property int eventSize: -1
 
     property var event:null;
     property var rule :null;
     property var model:null;
 
-    property var startDate;
-    property var endDate;
-    //default reminder time = 15 min
-    property int reminderValue: 900;
+    property alias startDate: startDateTimeInput.dateTime
+    property alias endDate: endDateTimeInput.dateTime
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
+
+    readonly property int millisecsInADay: 86400000
+    readonly property int millisecsInAHour: 3600000
 
     signal eventAdded(var event);
     signal eventDeleted(var event);
@@ -74,8 +77,6 @@ Page {
     }
 
     function updateEventDate(date, allDay) {
-        root.startDate = undefined
-        root.endDate = undefined
         setDate(date)
         root.allDay = allDay
     }
@@ -90,18 +91,9 @@ Page {
             date.setHours(newDate.getHours(), newDate.getMinutes());
         }
 
-        // If startDate is setted by argument we have to not change it
-        //Set the nearest current time.
-        if (typeof(startDate) === 'undefined')
-            startDate = new Date(root.roundDate(date))
-
-        // If endDate is setted by argument we have to not change it
-        if (typeof(endDate) === 'undefined') {
-            endDate = new Date(root.roundDate(date))
-            endDate.setMinutes(endDate.getMinutes() + 30)
-            endTimeInput.text = Qt.formatDateTime(endDate, Qt.locale().timeFormat(Locale.ShortFormat));
-        }
-
+        startDate = new Date(root.roundDate(date))
+        var enDateValue = new Date(root.roundDate(date))
+        endDate = enDateValue.addMinutes(60)
     }
 
     function selectCalendar(collectionId) {
@@ -136,9 +128,14 @@ Page {
             titleEdit.text = e.displayLabel;
         }
 
+        allDayEventCheckbox.checked = e.allDay;
         if (e.allDay) {
             allDayEventCheckbox.checked = true
             endDate = new Date(e.endDateTime).addDays(-1);
+            eventSize = DateExt.daysBetween(startDate, endDate) * root.millisecsInADay
+        } else {
+            endDate = e.endDateTime
+            eventSize = (endDate.getTime() - startDate.getTime())
         }
 
         if(e.location) {
@@ -149,7 +146,6 @@ Page {
             messageEdit.text = e.description;
         }
 
-        allDayEventCheckbox.checked = e.allDay;
         var index = 0;
 
         if( e.itemType === Type.Event ) {
@@ -311,26 +307,6 @@ Page {
     }
 
     Keys.onEscapePressed: root.cancel()
-    onStartDateChanged: {
-        if (!startDate)
-            return
-
-        startDateTimeInput.dateTime = startDate;
-
-        // set time forward to one hour
-        var time_forward = 3600000;
-
-        if (isEdit && event !== null) {
-            time_forward = event.endDateTime - event.startDateTime;
-        }
-        adjustEndDateToStartDate(time_forward);
-    }
-
-    onEndDateChanged: {
-        if (endDate)
-            endDateTimeInput.dateTime = endDate;
-    }
-
     header: PageHeader {
         id: pageHeader
 
@@ -445,6 +421,7 @@ Page {
                 }
                 onDateTimeChanged: {
                     startDate = dateTime;
+                    endDateTimeInput.dateTime = new Date(startDate.getTime() + root.eventSize)
                 }
             }
 
@@ -457,7 +434,17 @@ Page {
                     right: parent.right
                 }
                 onDateTimeChanged: {
+                    if (dateTime.getTime() < startDate.getTime()) {
+                        root.eventSize = root.allDay ? 0 : root.millisecsInAHour
+                        dateTime = new Date(startDate.getTime() + root.eventSize)
+                        return
+                    }
+
                     endDate = dateTime;
+                    if (allDay)
+                        root.eventSize = endDate.midnight().getTime() - startDate.midnight().getTime()
+                    else
+                        root.eventSize = endDate.getTime() - startDate.getTime()
                 }
             }
 
@@ -473,6 +460,12 @@ Page {
                     objectName: "allDayEventCheckbox"
                     id: allDayEventCheckbox
                     checked: false
+                    onCheckedChanged: {
+                        if (checked)
+                            root.eventSize = Math.max(endDate.midnight().getTime() - startDate.midnight().getTime(), 0)
+                        else
+                            root.eventSize = Math.max(endDate.getTime() - startDate.getTime(), root.millisecsInAHour)
+                    }
                 }
             }
 
