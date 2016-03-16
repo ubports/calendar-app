@@ -77,10 +77,10 @@ Page {
         if (event.recurrence) {
             if(event.recurrence.recurrenceRules[0] !== undefined){
                 var rule =  event.recurrence.recurrenceRules[0];
-                mainEventDetailsLayout.summary.text = eventUtils.getRecurrenceString(rule)
+                recurrenceLabel.text = eventUtils.getRecurrenceString(rule)
             } else {
                 //For event occurs once, event.recurrence.recurrenceRules == []
-                mainEventDetailsLayout.summary.text = Defines.recurrenceLabel[0];
+                recurrenceLabel.text = Defines.recurrenceLabel[0];
             }
         }
     }
@@ -263,16 +263,46 @@ Page {
 
             color: collection.color
             width: parent.width
-            height: titleLabel.implicitHeight + units.gu(2)
+            height: mainEventDetails.height + units.gu(4)
 
-            Label{
-                id: titleLabel
-                objectName: "titleLabel"
-                textSize: Label.Large
-                wrapMode: Text.WordWrap
-                color: "white"
-                text: event.displayLabel
-                anchors { left: parent.left; right: parent.right; margins: units.gu(2); verticalCenter: parent.verticalCenter }
+            Column {
+                id: mainEventDetails
+
+                spacing: units.gu(0.5)
+                anchors { verticalCenter: parent.verticalCenter; left: parent.left; right: parent.right; margins: units.gu(2) }
+
+                Label {
+                    text: event.displayLabel
+                    color: "White"
+                    textSize: Label.Large
+                    width: parent.width
+                    wrapMode: Text.wrapMode
+                }
+
+                Label {
+                    text: getDate(event)
+                    color: "White"
+                    visible: text != ""
+                    width: parent.width
+                    wrapMode: Text.wrapMode
+                }
+
+                Label {
+                    text: event.location
+                    color: "White"
+                    visible: text != ""
+                    width: parent.width
+                    wrapMode: Text.wrapMode
+                }
+
+                Label {
+                    id: recurrenceLabel
+                    textSize: Label.Small
+                    color: "White"
+                    visible: text != ""
+                    width: parent.width
+                    wrapMode: Text.wrapMode
+                }
             }
         }
 
@@ -281,15 +311,6 @@ Page {
 
             width: parent.width
             anchors.top: titleContainer.bottom
-
-            ListItem {
-                height: mainEventDetailsLayout.height + divider.height
-                ListItemLayout {
-                    id: mainEventDetailsLayout
-                    title.text: getDate(event)
-                    subtitle.text: event.location
-                }
-            }
 
             ListItem {
                 height: units.gu(6)
@@ -359,12 +380,22 @@ Page {
 
             ListItem {
                 id: descLabel
-                height: descriptionLabelLayout.height + divider.height
-                visible: descriptionLabelLayout.summary.text !== ""
-                ListItemLayout {
-                    id: descriptionLabelLayout
-                    title.text: i18n.tr("Description")
-                    summary.text: event.description
+                height: descTitle.height + desc.implicitHeight + divider.height + units.gu(4)
+                visible: desc.text !== ""
+
+                Label {
+                    id: descTitle
+                    text: i18n.tr("Description")
+                    anchors { left: parent.left; right: parent.right; top: parent.top; margins: units.gu(2); topMargin: units.gu(1.5) }
+                }
+
+                Label {
+                    id: desc
+                    text: event.description
+                    textSize: Label.Small
+                    color: UbuntuColors.graphite
+                    wrapMode: Text.WordWrap
+                    anchors { left: parent.left; right: parent.right; top: descTitle.bottom; margins: units.gu(2); topMargin: units.gu(0.5) }
                 }
             }
 
