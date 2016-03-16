@@ -31,6 +31,25 @@ MainView {
     property int reminderDefaultValue: 900;
     readonly property bool syncInProgress: commonHeaderActions.syncInProgress
 
+    function handleUri(uri)
+    {
+        if(uri !== undefined && uri !== "") {
+            var commands = uri.split("://")[1].split("=");
+            if(commands[0].toLowerCase() === "eventid") {
+                // calendar://eventid=??
+                if( eventModel ) {
+                    // qtorganizer:eds::<event-id>
+                    var eventId = commands[1];
+                    var prefix = "qtorganizer:eds::";
+                    if (eventId.indexOf(prefix) < 0)
+                        eventId  = prefix + eventId;
+
+                    eventModel.showEventFromId(eventId);
+                }
+            }
+        }
+    }
+
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
     //property bool windowActive: typeof window != 'undefined'
@@ -99,24 +118,7 @@ MainView {
 
     Connections {
         target: UriHandler
-        onOpened: {
-            var uri = uris[0]
-            if(uri !== undefined && uri !== "") {
-                var commands = uri.split("://")[1].split("=");
-                if(commands[0].toLowerCase() === "eventid") {
-                    // calendar://eventid=??
-                    if( eventModel ) {
-                        // qtorganizer:eds::<event-id>
-                        var eventId = commands[1];
-                        var prefix = "qtorganizer:eds::";
-                        if (eventId.indexOf(prefix) < 0)
-                            eventId  = prefix + eventId;
-
-                        eventModel.showEventFromId(eventId);
-                    }
-                }
-            }
-        }
+        onOpened: handleUri(uris[0])
     }
 
     PageStack {
@@ -379,6 +381,12 @@ MainView {
                 var starttimepattern = new RegExp ("starttime=\\d+");
                 var endtimepattern = new RegExp ("endtime=\\d+");
                 var eventIdpattern = new RegExp ("eventId=.*")
+                var urlpattern = new RegExp("calendar://.*")
+
+                if (urlpattern.test(url)) {
+                    handleUri(url)
+                    return
+                }
 
                 newevent = newevenpattern.test(url);
 
