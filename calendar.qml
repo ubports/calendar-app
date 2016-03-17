@@ -177,6 +177,7 @@ MainView {
 
         EventListModel{
             id: eventModel
+            objectName: "calendarEventList"
 
             property bool isReady: false
 
@@ -732,6 +733,8 @@ MainView {
         id: agendaViewComp
 
         AgendaView {
+            readonly property bool tabSelected: tabs.selectedTab === agendaTab
+
             reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabs.selectedTabIndex === agendaTab.index
