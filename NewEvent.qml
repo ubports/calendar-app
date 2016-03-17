@@ -127,7 +127,7 @@ Page {
             }
 
             if (calendarsOption.model[i].collectionId === fallbackCollectionId) {
-                fallbackCollectionIndex = i;}}
+                fallbackCollectionIndex = i;
             }
         }
 
