@@ -29,6 +29,7 @@ MainView {
     property bool displayWeekNumber: false;
     property bool displayLunarCalendar: false;
     property int reminderDefaultValue: 900;
+    property string defaultCollectionId: "qtorganizer:eds::system-calendar";
     readonly property bool syncInProgress: commonHeaderActions.syncInProgress
 
     // Work-around until this branch lands:
@@ -270,6 +271,7 @@ MainView {
             property alias showWeekNumber: mainView.displayWeekNumber
             property alias showLunarCalendar: mainView.displayLunarCalendar
             property alias reminderDefaultValue: mainView.reminderDefaultValue
+            property alias defaultCollectionId: mainView.defaultCollectionId
         }
 
         Tabs{
@@ -576,6 +578,7 @@ MainView {
             readonly property bool tabSelected: tabs.selectedTabIndex === yearTab.index
 
             reminderValue: mainView.reminderDefaultValue
+            collectionId: mainView.defaultCollectionId
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
             displayLunarCalendar: mainView.displayLunarCalendar
@@ -610,6 +613,7 @@ MainView {
             readonly property bool tabSelected: tabs.selectedTabIndex === monthTab.index
 
             reminderValue: mainView.reminderDefaultValue
+            collectionId: mainView.defaultCollectionId
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
             displayLunarCalendar: mainView.displayLunarCalendar
@@ -648,6 +652,7 @@ MainView {
             readonly property bool tabSelected: tabs.selectedTab === weekTab
 
             reminderValue: mainView.reminderDefaultValue
+            collectionId: mainView.defaultCollectionId
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
             displayLunarCalendar: mainView.displayLunarCalendar
@@ -696,6 +701,7 @@ MainView {
             readonly property bool tabSelected: tabs.selectedTabIndex === dayTab.index
 
             reminderValue: mainView.reminderDefaultValue
+            collectionId: mainView.defaultCollectionId
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
             displayLunarCalendar: mainView.displayLunarCalendar
@@ -736,6 +742,7 @@ MainView {
             readonly property bool tabSelected: tabs.selectedTab === agendaTab
 
             reminderValue: mainView.reminderDefaultValue
+            collectionId: mainView.defaultCollectionId
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabs.selectedTabIndex === agendaTab.index
 

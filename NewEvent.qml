@@ -44,6 +44,8 @@ Page {
     property var endDate;
     //default reminder time = 15 min
     property int reminderValue: 900;
+    //default collection = "Personal"
+    property string collectionId: "qtorganizer:eds::system-calendar";
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
@@ -74,7 +76,7 @@ Page {
     }
 
     function updateEventInfo(date, allDay) {
-        selectCalendar(model.getDefaultCollection().collectionId);
+        selectCalendar(root.collectionId);
         updateEventDate(date, allDay)
     }
 
@@ -110,15 +112,33 @@ Page {
     }
 
     function selectCalendar(collectionId) {
-        var index = 0;
-        for(var i=0; i < calendarsOption.model.length; ++i){
-            if(calendarsOption.model[i].collectionId === collectionId){
-                index = i;
-                break;
+        var fallbackCollectionId = "qtorganizer:eds::system-calendar"
+        var fallbackCollectionIndex = -1
+
+        if (!calendarsOption.model || calendarsOption.model.length <= 0) {
+            return;
+        }
+
+        for (var i=0; i < calendarsOption.model.length; ++i){
+            if (calendarsOption.model[i].collectionId === collectionId){
+                calendarsOption.selectedIndex = i;
+                internal.collectionId = collectionId;
+                return;
+            }
+
+            if (calendarsOption.model[i].collectionId === fallbackCollectionId) {
+                fallbackCollectionIndex = i;}}
             }
         }
-        calendarsOption.selectedIndex = index
-        internal.collectionId = collectionId;
+
+        if (fallbackCollectionIndex >= 0) {
+            calendarsOption.selectedIndex = fallbackCollectionIndex;
+            internal.collectionId = fallbackCollectionId;
+            return;
+        }
+
+        calendarsOption.selectedIndex = 0;
+        internal.collectionId = calendarsOption.model[0].collectionId;
     }
 
     //Data for Add events
@@ -571,7 +591,7 @@ Page {
                     }
 
                     containerHeight: itemHeight * 4
-                    model: root.model.getWritableCollections();
+                    model: root.model.getWritableAndSelectedCollections();
 
                     delegate: OptionSelectorDelegate{
                         text: modelData.name

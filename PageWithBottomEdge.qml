@@ -24,6 +24,7 @@ Page {
     property alias model: bottomEdge.eventModel
     property alias createEventAt: bottomEdge.date
     property alias reminderValue: bottomEdge.reminderValue
+    property alias collectionId: bottomEdge.collectionId
     property bool bootomEdgeEnabled: bottomEdge.enabled
     readonly property int bottomEdgeHeight: bottomEdge.hint.height
 
