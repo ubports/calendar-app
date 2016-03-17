@@ -73,6 +73,11 @@ Page {
         root.canceled()
     }
 
+    function updateEventInfo(date, allDay) {
+        updateEventDate(date, allDay)
+        eventReminder.subText = eventReminder.getReminderLabel(root.reminderValue)
+    }
+
     function updateEventDate(date, allDay) {
         root.startDate = undefined
         root.endDate = undefined
@@ -709,21 +714,21 @@ Page {
                 progression: true
                 text: i18n.tr("Reminder")
 
-                RemindersModel {
-                    id: reminderModel
-                }
-
-                subText:{
-                    if(visualReminder.secondsBeforeStart !== -1) {
-                        for( var i=0; i<reminderModel.count; i++ ) {
-                            if(visualReminder.secondsBeforeStart === reminderModel.get(i).value) {
+                function getReminderLabel(value) {
+                    if (value !== -1) {
+                        for (var i=0; i<reminderModel.count; i++) {
+                            if (reminderModel.get(i).value === value) {
                                 return reminderModel.get(i).label
                             }
                         }
                     } else {
                         return reminderModel.get(0).label
                     }
+                }
 
+                RemindersModel {
+                    id: reminderModel
+                    onLoaded: eventReminder.subText = eventReminder.getReminderLabel(root.reminderValue)
                 }
 
                 onClicked:{
