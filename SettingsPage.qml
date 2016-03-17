@@ -145,27 +145,16 @@ Page {
             height: visible ? defaultCalendarLayout.height + divider.height : 0
 
             Component.onCompleted: {
-                var fallbackCollectionId = "qtorganizer:eds::system-calendar"
-                var fallbackCollectionIndex = -1
-
-                if (!defaultCalendarOptionSelector.model) {
+                if (!eventModel || !defaultCalendarOptionSelector.model) {
                     return
                 }
 
+                var defaultCollectionId = eventModel.getDefaultCollection().collectionId
                 for (var i=0; i<defaultCalendarOptionSelector.model.length; ++i) {
-                    if (defaultCalendarOptionSelector.model[i].collectionId === settings.defaultCollectionId) {
+                    if (defaultCalendarOptionSelector.model[i].collectionId === defaultCollectionId) {
                         defaultCalendarOptionSelector.selectedIndex = i
                         return
                     }
-
-                    if (defaultCalendarOptionSelector.model[i].collectionId === fallbackCollectionId) {
-                        fallbackCollectionIndex = i
-                    }
-                }
-
-                if (fallbackCollectionIndex >= 0) {
-                    defaultCalendarOptionSelector.selectedIndex = fallbackCollectionIndex
-                    return
                 }
 
                 defaultCalendarOptionSelector.selectedIndex = 0
@@ -201,7 +190,7 @@ Page {
                             }
                         }
 
-                        onDelegateClicked: settings.defaultCollectionId = model[index].collectionId
+                        onDelegateClicked: settingsPage.eventModel.setDefaultCollection(model[index].collectionId)
                     }
                 }
             }

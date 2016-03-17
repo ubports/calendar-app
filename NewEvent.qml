@@ -73,8 +73,8 @@ Page {
         root.canceled()
     }
 
-    function updateEventInfo(date, allDay, collectionId) {
-        selectCalendar(collectionId);
+    function updateEventInfo(date, allDay) {
+        selectCalendar(model.getDefaultCollection().collectionId);
         updateEventDate(date, allDay)
     }
 
@@ -110,33 +110,15 @@ Page {
     }
 
     function selectCalendar(collectionId) {
-        var fallbackCollectionId = "qtorganizer:eds::system-calendar"
-        var fallbackCollectionIndex = -1
-
-        if (!calendarsOption.model || calendarsOption.model.length <= 0) {
-            return;
-        }
-
-        for (var i=0; i < calendarsOption.model.length; ++i){
-            if (calendarsOption.model[i].collectionId === collectionId){
-                calendarsOption.selectedIndex = i;
-                internal.collectionId = collectionId;
-                return;
-            }
-
-            if (calendarsOption.model[i].collectionId === fallbackCollectionId) {
-                fallbackCollectionIndex = i;
+        var index = 0;
+        for(var i=0; i < calendarsOption.model.length; ++i){
+            if(calendarsOption.model[i].collectionId === collectionId){
+                index = i;
+                break;
             }
         }
-
-        if (fallbackCollectionIndex >= 0) {
-            calendarsOption.selectedIndex = fallbackCollectionIndex;
-            internal.collectionId = fallbackCollectionId;
-            return;
-        }
-
-        calendarsOption.selectedIndex = 0;
-        internal.collectionId = calendarsOption.model[0].collectionId;
+        calendarsOption.selectedIndex = index
+        internal.collectionId = collectionId;
     }
 
     //Data for Add events
@@ -589,7 +571,7 @@ Page {
                     }
 
                     containerHeight: itemHeight * 4
-                    model: root.model.getWritableAndSelectedCollections();
+                    model: root.model.getWritableCollections();
 
                     delegate: OptionSelectorDelegate{
                         text: modelData.name
