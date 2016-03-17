@@ -75,7 +75,8 @@ Page {
 
     function updateEventInfo(date, allDay) {
         updateEventDate(date, allDay)
-        eventReminder.subText = eventReminder.getReminderLabel(root.reminderValue)
+        eventReminder.reminderValue = root.reminderValue
+        eventReminder.updateReminderLabel()
     }
 
     function updateEventDate(date, allDay) {
@@ -168,9 +169,12 @@ Page {
         var reminder = e.detail( Detail.VisualReminder);
         if (reminder) {
             visualReminder.secondsBeforeStart = reminder.secondsBeforeStart;
+            eventReminder.reminderValue = reminder.secondsBeforeStart;
         } else {
             visualReminder.secondsBeforeStart = reminderModel.get(0).value;
+            eventReminder.reminderValue = reminderModel.get(0).value;
         }
+        eventReminder.updateReminderLabel()
 
         selectCalendar(e.collectionId);
     }
@@ -713,26 +717,30 @@ Page {
                 id:eventReminder
                 objectName  : "eventReminder"
 
+                property int reminderValue
+
                 anchors.left:parent.left
                 showDivider: false
                 progression: true
                 text: i18n.tr("Reminder")
 
-                function getReminderLabel(value) {
+                function updateReminderLabel() {
                     if (value !== -1) {
                         for (var i=0; i<reminderModel.count; i++) {
-                            if (reminderModel.get(i).value === value) {
-                                return reminderModel.get(i).label
+                            if (reminderModel.get(i).value === eventReminder.reminderValue) {
+                                eventReminder.subText = reminderModel.get(i).label
+                                return
                             }
                         }
                     } else {
-                        return reminderModel.get(0).label
+                        eventReminder.subText = reminderModel.get(0).label
+                        return
                     }
                 }
 
                 RemindersModel {
                     id: reminderModel
-                    onLoaded: eventReminder.subText = eventReminder.getReminderLabel(root.reminderValue)
+                    onLoaded: eventReminder.updateReminderLabel()
                 }
 
                 onClicked:{
