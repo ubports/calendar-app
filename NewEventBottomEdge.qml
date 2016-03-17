@@ -38,9 +38,9 @@ BottomEdge {
     signal opened()
     signal eventCreated(var event)
 
-    function updateNewEventInfo(date, allDay)
+    function updateNewEventInfo(date, allDay, collectionId)
     {
-        _realPage.updateEventInfo(date, allDay)
+        _realPage.updateEventInfo(date, allDay, collectionId)
     }
 
     hint {
@@ -75,7 +75,7 @@ BottomEdge {
 
     onCommitStarted: {
         bottomEdge.opened()
-        updateNewEventInfo(bottomEdge.date ? bottomEdge.date : new Date(), false)
+        updateNewEventInfo(bottomEdge.date ? bottomEdge.date : new Date(), false, bottomEdge.collectionId)
     }
 
     Component.onCompleted:  {
@@ -96,7 +96,6 @@ BottomEdge {
             implicitWidth: bottomEdge.width
             implicitHeight: bottomEdge.height
             reminderValue: bottomEdge.reminderValue
-            collectionId: bottomEdge.collectionId
             model: bottomEdge.eventModel
             date: bottomEdge.date
             enabled: bottomEdge.status === BottomEdge.Committed

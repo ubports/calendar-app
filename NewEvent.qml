@@ -44,8 +44,6 @@ Page {
     property var endDate;
     //default reminder time = 15 min
     property int reminderValue: 900;
-    //default collection = "Personal"
-    property string collectionId: "qtorganizer:eds::system-calendar";
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
@@ -75,8 +73,8 @@ Page {
         root.canceled()
     }
 
-    function updateEventInfo(date, allDay) {
-        selectCalendar(root.collectionId);
+    function updateEventInfo(date, allDay, collectionId) {
+        selectCalendar(collectionId);
         updateEventDate(date, allDay)
     }
 
