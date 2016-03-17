@@ -2,13 +2,13 @@
 # Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
 # This file is distributed under the same license as the ubuntu-calendar-app package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
-# GunChleoc <fios@foramnagaidhlig.net>, 2014.
+# GunChleoc <fios@foramnagaidhlig.net>, 2014, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-04 04:02+0530\n"
-"PO-Revision-Date: 2016-03-03 13:12+0000\n"
+"PO-Revision-Date: 2016-03-16 21:46+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2016-03-08 05:49+0000\n"
-"X-Generator: Launchpad (build 17936)\n"
+"X-Launchpad-Export-Date: 2016-03-17 05:53+0000\n"
+"X-Generator: Launchpad (build 17947)\n"
 "Language: gd\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:292 ../calendar.qml:518
@@ -39,19 +39,19 @@ msgstr "Cuir mìosachain an comas"
 #: ../AgendaView.qml:164
 #, qt-format
 msgid "%1 %2 %3 %4 %5"
-msgstr ""
+msgstr "%1 %2 %3 %4 %5"
 
 #: ../AgendaView.qml:191
 msgid "no event name set"
-msgstr ""
+msgstr "cha deach ainm an tachartais a shuidheachadh"
 
 #: ../AgendaView.qml:193
 msgid "no location"
-msgstr ""
+msgstr "gun ionad"
 
 #: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
 msgid "New event"
-msgstr ""
+msgstr "Tachartas ùr"
 
 #. TRANSLATORS: the first parameter refers to the number of all-day events
 #. on a given day. "Ev." is short form for "Events".
@@ -126,7 +126,7 @@ msgstr "MMMM yyyy"
 #: ../DayView.qml:201 ../MonthView.qml:73 ../WeekView.qml:254
 #, qt-format
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -213,7 +213,7 @@ msgstr "Mìosachan %1"
 #: ../EventDetails.qml:143
 #, qt-format
 msgid "%1 %2 %3 - %4 %5 %6 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 - %4 %5 %6 (fad an latha)"
 
 #: ../EventDetails.qml:147
 #, qt-format
@@ -223,7 +223,7 @@ msgstr "%1 - %2 (Fad an latha)"
 #: ../EventDetails.qml:153
 #, qt-format
 msgid "%1 %2 %3 (All Day)"
-msgstr ""
+msgstr "%1 %2 %3 (fad an latha)"
 
 #: ../EventDetails.qml:156
 #, qt-format
@@ -233,12 +233,12 @@ msgstr "%1 (fad an latha)"
 #: ../EventDetails.qml:162
 #, qt-format
 msgid "%1 %2 %3, %4 - %5 %6 %7, %8"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5 %6 %7, %8"
 
 #: ../EventDetails.qml:171
 #, qt-format
 msgid "%1 %2 %3, %4 - %5"
-msgstr ""
+msgstr "%1 %2 %3, %4 - %5"
 
 #: ../EventDetails.qml:238
 msgid "Edit"
@@ -307,7 +307,7 @@ msgstr "%1 gach seachdain"
 #: ../HeaderDateComponent.qml:90
 #, qt-format
 msgid "%1 %2 %3"
-msgstr ""
+msgstr "%1 %2 %3"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -323,7 +323,7 @@ msgstr "Às dèidh ceann-là"
 
 #: ../MonthComponent.qml:315
 msgid "Wk"
-msgstr ""
+msgstr "Sn"
 
 #: ../NewEvent.qml:171
 msgid "End time can't be before start time"
@@ -480,7 +480,7 @@ msgstr "Fad an latha"
 
 #: ../WeekView.qml:131 ../WeekView.qml:132
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../YearView.qml:79
 #, qt-format

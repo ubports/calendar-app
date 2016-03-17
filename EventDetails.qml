@@ -56,6 +56,23 @@ Page {
         }
     }
 
+    Connections{
+        target: model
+        onItemsFetched: {
+            if (internal.fetchParentRequestId === requestId) {
+                if (fetchedItems.length > 0) {
+                    internal.parentEvent = fetchedItems[0];
+                    updateRecurrence(internal.parentEvent);
+                    updateContacts(internal.parentEvent);
+                } else {
+                    console.warn("Fail to fetch pareten event")
+                }
+                internal.fetchParentRequestId = -1
+            }
+
+        }
+    }
+
     RemindersModel {
         id: reminderModel
     }
@@ -176,17 +193,11 @@ Page {
             }
         }
 
-        if( e.itemType === Type.EventOccurrence ){
-            var requestId = -1;
-            model.onItemsFetched.connect( function(id,fetchedItems){
-                if(requestId === id && fetchedItems.length > 0) {
-                    internal.parentEvent = fetchedItems[0];
-                    updateRecurrence(internal.parentEvent);
-                    updateContacts(internal.parentEvent);
-                }
-            });
-            requestId = model.fetchItems([e.parentId]);
+        var isOcurrence =  (e.itemType === Type.EventOccurrence) || (e.itemType === Type.TodoOccurrence)
+        if (isOcurrence) {
+            internal.fetchParentRequestId = model.fetchItems([e.parentId]);
         }
+
         // This is the event title
         if( e.displayLabel) {
             titleLabel.text = e.displayLabel;
@@ -261,6 +272,7 @@ Page {
 
     QtObject{
         id: internal
+        property int fetchParentRequestId: -1;
         property var parentEvent;
     }
 
