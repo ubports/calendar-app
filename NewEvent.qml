@@ -76,7 +76,6 @@ Page {
     function updateEventInfo(date, allDay) {
         updateEventDate(date, allDay)
         eventReminder.reminderValue = root.reminderValue
-        eventReminder.updateReminderLabel()
     }
 
     function updateEventDate(date, allDay) {
@@ -169,12 +168,9 @@ Page {
         var reminder = e.detail( Detail.VisualReminder);
         if (reminder) {
             visualReminder.secondsBeforeStart = reminder.secondsBeforeStart;
-            eventReminder.reminderValue = reminder.secondsBeforeStart;
         } else {
             visualReminder.secondsBeforeStart = reminderModel.get(0).value;
-            eventReminder.reminderValue = reminderModel.get(0).value;
         }
-        eventReminder.updateReminderLabel()
 
         selectCalendar(e.collectionId);
     }
@@ -261,6 +257,8 @@ Page {
     VisualReminder{
         id: visualReminder
         secondsBeforeStart: root.reminderValue
+
+        onSecondsBeforeStartChanged: eventReminder.reminderValue = visualReminder.secondsBeforeStart
     }
     AudibleReminder{
         id: audibleReminder
@@ -717,7 +715,9 @@ Page {
                 id:eventReminder
                 objectName  : "eventReminder"
 
-                property int reminderValue
+                property int reminderValue: -1
+
+                onReminderValueChanged: updateReminderLabel()
 
                 anchors.left:parent.left
                 showDivider: false
@@ -725,7 +725,7 @@ Page {
                 text: i18n.tr("Reminder")
 
                 function updateReminderLabel() {
-                    if (value !== -1) {
+                    if (eventReminder.reminderValue !== -1) {
                         for (var i=0; i<reminderModel.count; i++) {
                             if (reminderModel.get(i).value === eventReminder.reminderValue) {
                                 eventReminder.subText = reminderModel.get(i).label
