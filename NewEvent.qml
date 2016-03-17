@@ -130,7 +130,8 @@ Page {
     //Editing Event
     function editEvent(e) {
         //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
-        if(e.itemType === Type.Event && e.recurrence.recurrenceRules[0] !== undefined
+        var isOcurrence = ((event.itemType === Type.EventOccurrence) || (event.itemType === Type.TodoOccurrence))
+        if(!isOcurrence && e.recurrence.recurrenceRules[0] !== undefined
                 && e.recurrence.recurrenceRules[0] !== null){
             rule =  e.recurrence.recurrenceRules[0];
         }
@@ -215,10 +216,13 @@ Page {
             }
 
             //Set the Rule object to an event
-            if(rule !== null && rule !== undefined) {
-                event.recurrence.recurrenceRules = [rule]
-            } else {
-                event.recurrence.recurrenceRules = [];
+            var isOcurrence = ((event.itemType === Type.EventOccurrence) || (event.itemType === Type.TodoOccurrence))
+            if (!isOcurrence) {
+                if(rule !== null && rule !== undefined) {
+                    event.recurrence.recurrenceRules = [rule]
+                } else {
+                    event.recurrence.recurrenceRules = [];
+                }
             }
 
             //remove old reminder value
@@ -689,9 +693,9 @@ Page {
 
                 showDivider: false
                 progression: true
-                visible: (event != undefined) && (event.itemType === Type.Event)
+                visible: (event != undefined) && ((event.itemType === Type.Event) || (event.itemType === Type.Todo))
                 text: i18n.tr("Repeats")
-                subText: (event != undefined) && (event.itemType === Type.Event) ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
+                subText: visible ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
                 onClicked: {
                     var stack = pageStack
                     if (!stack)

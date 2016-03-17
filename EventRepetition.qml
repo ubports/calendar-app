@@ -114,11 +114,9 @@ Page {
                     rule.daysOfWeek = eventUtils.getDaysOfWeek(recurrenceOption.selectedIndex, weekDays );
                     break;
                 case 6: //monthly
-                    rule.daysOfMonth = [eventRoot.date.getDate()];
+                    rule.daysOfMonth = [eventRoot.startDate.getDate()];
                     break;
                 case 7: //yearly
-                    rule.monthsOfYear = [eventRoot.date.getMonth()];
-                    rule.daysOfMonth = [eventRoot.date.getDate()];
                     break;
                 case 0: //once
                 default:
@@ -207,7 +205,7 @@ Page {
                                 (checked) ? weekDays.push(index) : weekDays.splice(weekDays.indexOf(index),1);
                         }
                         checked:{
-                            (weekDays.length === 0 && eventRoot.date && (index === eventRoot.date.getDay()) && !isEdit) ? true : false;
+                            (weekDays.length === 0 && eventRoot.startDate && (index === eventRoot.startDate.getDay()) && !isEdit) ? true : false;
                         }
 
                     }
