@@ -73,6 +73,11 @@ Page {
         root.canceled()
     }
 
+    function updateEventInfo(date, allDay) {
+        updateEventDate(date, allDay)
+        eventReminder.reminderValue = root.reminderValue
+    }
+
     function updateEventDate(date, allDay) {
         root.startDate = undefined
         root.endDate = undefined
@@ -125,7 +130,8 @@ Page {
     //Editing Event
     function editEvent(e) {
         //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
-        if(e.itemType === Type.Event && e.recurrence.recurrenceRules[0] !== undefined
+        var isOcurrence = ((event.itemType === Type.EventOccurrence) || (event.itemType === Type.TodoOccurrence))
+        if(!isOcurrence && e.recurrence.recurrenceRules[0] !== undefined
                 && e.recurrence.recurrenceRules[0] !== null){
             rule =  e.recurrence.recurrenceRules[0];
         }
@@ -210,10 +216,13 @@ Page {
             }
 
             //Set the Rule object to an event
-            if(rule !== null && rule !== undefined) {
-                event.recurrence.recurrenceRules = [rule]
-            } else {
-                event.recurrence.recurrenceRules = [];
+            var isOcurrence = ((event.itemType === Type.EventOccurrence) || (event.itemType === Type.TodoOccurrence))
+            if (!isOcurrence) {
+                if(rule !== null && rule !== undefined) {
+                    event.recurrence.recurrenceRules = [rule]
+                } else {
+                    event.recurrence.recurrenceRules = [];
+                }
             }
 
             //remove old reminder value
@@ -248,6 +257,8 @@ Page {
     VisualReminder{
         id: visualReminder
         secondsBeforeStart: root.reminderValue
+
+        onSecondsBeforeStartChanged: eventReminder.reminderValue = visualReminder.secondsBeforeStart
     }
     AudibleReminder{
         id: audibleReminder
@@ -684,9 +695,9 @@ Page {
 
                 showDivider: false
                 progression: true
-                visible: (event != undefined) && (event.itemType === Type.Event)
+                visible: (event != undefined) && ((event.itemType === Type.Event) || (event.itemType === Type.Todo))
                 text: i18n.tr("Repeats")
-                subText: (event != undefined) && (event.itemType === Type.Event) ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
+                subText: visible ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
                 onClicked: {
                     var stack = pageStack
                     if (!stack)
@@ -704,26 +715,32 @@ Page {
                 id:eventReminder
                 objectName  : "eventReminder"
 
+                property int reminderValue: -1
+
+                onReminderValueChanged: updateReminderLabel()
+
                 anchors.left:parent.left
                 showDivider: false
                 progression: true
                 text: i18n.tr("Reminder")
 
-                RemindersModel {
-                    id: reminderModel
-                }
-
-                subText:{
-                    if(visualReminder.secondsBeforeStart !== -1) {
-                        for( var i=0; i<reminderModel.count; i++ ) {
-                            if(visualReminder.secondsBeforeStart === reminderModel.get(i).value) {
-                                return reminderModel.get(i).label
+                function updateReminderLabel() {
+                    if (eventReminder.reminderValue !== -1) {
+                        for (var i=0; i<reminderModel.count; i++) {
+                            if (reminderModel.get(i).value === eventReminder.reminderValue) {
+                                eventReminder.subText = reminderModel.get(i).label
+                                return
                             }
                         }
                     } else {
-                        return reminderModel.get(0).label
+                        eventReminder.subText = reminderModel.get(0).label
+                        return
                     }
+                }
 
+                RemindersModel {
+                    id: reminderModel
+                    onLoaded: eventReminder.updateReminderLabel()
                 }
 
                 onClicked:{

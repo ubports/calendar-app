@@ -36,6 +36,7 @@ Item {
     property int weekNumber: startDay.weekNumber(Qt.locale().firstDayOfWeek);
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
+    property alias autoUpdate: mainModel.autoUpdate
     property var modelFilter: invalidFilter
     property var selectedDay;
 
@@ -186,10 +187,11 @@ Item {
 
     EventListModel {
         id: mainModel
+        objectName: "timeLineBaseEventListModel:" + root.objectName
 
         manager:"eds"
         startPeriod: startDay.midnight();
-        endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(7).endOfDay(): startPeriod.endOfDay()
+        endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(6).endOfDay(): startPeriod.endOfDay()
         filter: invalidFilter
 
         onStartPeriodChanged: idleRefresh.reset()
@@ -346,7 +348,6 @@ Item {
                                     dropArea.modifyEventForDrag(drag)
                                     var eventBubble = drag.source;
                                     eventBubble.assingnBgColor();
-                                    eventBubble.setDetails();
 
                                     if( eventBubble.y + eventBubble.height + units.gu(8) > timeLineView.contentY + timeLineView.height ) {
                                         var diff = Math.abs((eventBubble.y + eventBubble.height + units.gu(8))  -
