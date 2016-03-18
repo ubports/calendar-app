@@ -46,6 +46,12 @@ MainView {
 
                     eventModel.showEventFromId(eventId);
                 }
+            } else if (commands[0].toLowerCase() === "startdate") {
+                var date = new Date(commands[1])
+                var currentPage = tabs.selectedTab.page.item
+                if (currentPage.showDate) {
+                    currentPage.showDate(event.startDateTime)
+                }
             }
         }
     }
@@ -242,11 +248,18 @@ MainView {
                 var requestId = "";
                 var callbackFunc = function(id,fetchedItems) {
                     if( requestId === id && fetchedItems.length > 0 ) {
-                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":fetchedItems[0],"model": eventModel});
+                        var event = fetchedItems[0]
+                        var currentPage = tabs.selectedTab.page.item
+                        console.debug("tabs has showData?" + currentPage.showDate)
+                        if (currentPage.showDate) {
+                            console.debug("Show date:" + event.startDateTime)
+                            currentPage.showDate(event.startDateTime)
+                        }
+
+                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model": eventModel});
                     }
                     eventModel.onItemsFetched.disconnect( callbackFunc );
                 }
-
                 eventModel.onItemsFetched.connect( callbackFunc );
                 requestId = eventModel.fetchItems(eventId);
             }
@@ -583,6 +596,11 @@ MainView {
         YearView {
             readonly property bool tabSelected: tabs.selectedTabIndex === yearTab.index
 
+            function showDate(date)
+            {
+                efreshCurrentYear(date.getFullYear())
+            }
+
             reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
@@ -605,7 +623,7 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
-                    refreshCurrentYear(tabs.currentDay.getFullYear())
+                    showDate(tabs.currentDay)
                 }
             }
         }
@@ -616,6 +634,14 @@ MainView {
 
         MonthView {
             readonly property bool tabSelected: tabs.selectedTabIndex === monthTab.index
+
+            function showDate(date)
+            {
+                anchorDate = new Date(date.getFullYear(),
+                                      date.getMonth(),
+                                      1,
+                                      0, 0, 0)
+            }
 
             reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
@@ -640,10 +666,7 @@ MainView {
 
             onTabSelectedChanged: {
                     if (tabSelected) {
-                        anchorDate = new Date(tabs.currentDay.getFullYear(),
-                                              tabs.currentDay.getMonth(),
-                                              1,
-                                              0, 0, 0)
+                        showDate(tabs.currentDay)
                     }
             }
         }
@@ -654,6 +677,18 @@ MainView {
 
         WeekView {
             readonly property bool tabSelected: tabs.selectedTab === weekTab
+
+            function showDate(date)
+            {
+                var dateGoTo = new Date(date)
+                if (!anchorDate ||
+                    (dateGoTo.getFullYear() != anchorDate.getFullYear()) ||
+                    (dateGoTo.getMonth() != anchorDate.getMonth()) ||
+                    (dateGoTo.getDate() != anchorDate.getDate())) {
+                    anchorDate = new Date(dateGoTo)
+                }
+                delayScrollToDate(dateGoTo)
+            }
 
             reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
@@ -682,16 +717,7 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
-                    // 'tabs.currntDay' can change after set 'anchorDate' to avoid that
-                    // create a copy of the current value
-                    var tabDate = new Date(tabs.currentDay)
-                    if (!anchorDate ||
-                        (tabs.currentDay.getFullYear() != anchorDate.getFullYear()) ||
-                        (tabs.currentDay.getMonth() != anchorDate.getMonth()) ||
-                        (tabs.currentDay.getDate() != anchorDate.getDate())) {
-                        anchorDate = new Date(tabDate)
-                    }
-                    delayScrollToDate(tabDate)
+                    showDate(tabs.currentDay)
                 }
             }
         }
@@ -702,6 +728,18 @@ MainView {
 
         DayView {
             readonly property bool tabSelected: tabs.selectedTabIndex === dayTab.index
+
+            function showDate(date)
+            {
+                var dateGoTo = new Date(date)
+                if (!anchorDate ||
+                    (dateGoTo.getFullYear() != anchorDate.getFullYear()) ||
+                    (dateGoTo.getMonth() != anchorDate.getMonth()) ||
+                    (dateGoTo.getDate() != anchorDate.getDate())) {
+                    anchorDate = new Date(dateGoTo)
+                }
+                delayScrollToDate(dateGoTo)
+            }
 
             reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
@@ -722,16 +760,7 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
-                    // 'tabs.currntDay' can change after set 'anchorDate' to avoid that
-                    // create a copy of the current value
-                    var tabDate = new Date(tabs.currentDay)
-                    if (!anchorDate ||
-                        (tabs.currentDay.getFullYear() != anchorDate.getFullYear()) ||
-                        (tabs.currentDay.getMonth() != anchorDate.getMonth()) ||
-                        (tabs.currentDay.getDate() != anchorDate.getDate())) {
-                        anchorDate = new Date(tabDate)
-                    }
-                    delayScrollToDate(tabDate)
+                    showDate(tabs.currentDay)
                 }
             }
         }
