@@ -39,7 +39,7 @@ BottomEdge {
 
     function updateNewEventDate(date, allDay)
     {
-        _realPage.updateEventDate(date, allDay)
+        _realPage.updateEventInfo(date, allDay)
     }
 
     hint {
