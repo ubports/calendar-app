@@ -1,23 +1,34 @@
 project(com.ubuntu.calendar)
 cmake_minimum_required(VERSION 2.8.9)
-find_program(INTLTOOL_MERGE intltool-merge)
-find_program(INTLTOOL_EXTRACT intltool-extract)
 
-# Standard install paths
-include(GNUInstallDirs)
+find_program(INTLTOOL_MERGE intltool-merge)
+if(NOT INTLTOOL_MERGE)
+    message(FATAL_ERROR "Could not find intltool-merge, please install the intltool package")
+endif()
+
+find_program(INTLTOOL_EXTRACT intltool-extract)
+if(NOT INTLTOOL_EXTRACT)
+    message(FATAL_ERROR "Could not find intltool-extract, please install the intltool package")
+endif()
 
 option(INSTALL_TESTS "Install the tests on make install" on)
 option(CLICK_MODE "Installs to a contained location" on)
 
-set(APP_NAME calendar)
-set(DESKTOP_FILE "${PROJECT_NAME}_${APP_NAME}.desktop")
-set(APPLICATION_FILE "${PROJECT_NAME}_${APP_NAME}.application")
-set(URLS_FILE "${PROJECT_NAME}_${APP_NAME}.url-dispatcher")
-set(MAIN_QML calendar.qml)
-set(ICON_FILE calendar-app@30.png)
-set(AUTOPILOT_DIR calendar_app)
-set(APP_HARDCODE calendar-app)
-set(UBUNTU_MANIFEST_PATH "click/manifest.json.in" CACHE INTERNAL "Relative path to the manifest file")
+# Standard install paths
+include(GNUInstallDirs)
+
+# Tests
+enable_testing()
+
+set(APP_NAME                    calendar)
+set(DESKTOP_FILE                "${PROJECT_NAME}_${APP_NAME}.desktop")
+set(APPLICATION_FILE            "${PROJECT_NAME}_${APP_NAME}.application")
+set(URLS_FILE                   "${PROJECT_NAME}_${APP_NAME}.url-dispatcher")
+set(MAIN_QML                    calendar.qml)
+set(ICON_FILE                   calendar-app@30.png)
+set(AUTOPILOT_DIR               calendar_app)
+set(APP_HARDCODE                calendar-app)
+set(UBUNTU_MANIFEST_PATH        "click/manifest.json.in" CACHE INTERNAL "Relative path to the manifest file")
 
 if(CLICK_MODE)
     if(NOT DEFINED BZR_SOURCE)
@@ -76,9 +87,6 @@ install(FILES ${URLS_FILE} DESTINATION ${URLS_DIR})
 install(FILES ${APPLICATION_FILE} DESTINATION ${APPLICATION_DIR})
 
 install(DIRECTORY "3rd-party" DESTINATION ${DATA_DIR})
-
-# Tests
-enable_testing()
 
 add_subdirectory(click)
 add_subdirectory(po)

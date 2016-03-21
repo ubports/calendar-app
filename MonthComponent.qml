@@ -312,6 +312,8 @@ Item{
                     id: weekNumLabel;
                     objectName: "weekNumLabel";
                     width: parent.width;
+                    // TRANSLATORS: This is shown in the month view as "Wk" as a title
+                    // to indicate the week numbers. It should be a max of up to 3 characters.
                     text: i18n.tr("Wk");
                     horizontalAlignment: Text.AlignHCenter;
                     verticalAlignment: Text.AlignVCenter;

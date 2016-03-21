@@ -33,7 +33,7 @@ Page {
     function bottomEdgeCommit(date, allDay)
     {
         bottomEdge.commit()
-        bottomEdge.updateNewEventDate(date, allDay)
+        bottomEdge.updateNewEventInfo(date, allDay)
     }
 
     NewEventBottomEdge {

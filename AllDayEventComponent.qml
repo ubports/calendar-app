@@ -143,10 +143,8 @@ Row {
                     }
 
                     if(repeater.compactView) {
-                        // TRANSLATORS: the first parameter refers to the number of all-day events
-                        // on a given day. "Ev." is short form for "Events".
-                        // Please keep the translation of "Ev." to 3 characters only, as the week view
-                        // where it's shown has limited space
+                        // TRANSLATORS: Please keep the translation of this string to a max of
+                        // 5 characters as the week view where it is shown has limited space.
                         return i18n.tr("%1 event", "%1 events", events.length).arg(events.length)
                     } else {
                         if( events.length > 1) {
