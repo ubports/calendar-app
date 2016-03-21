@@ -42,8 +42,7 @@ Page {
 
     property var startDate;
     property var endDate;
-    //default reminder time = 15 min
-    property int reminderValue: 900;
+    property alias reminderValue: eventReminder.reminderValue
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
@@ -75,7 +74,6 @@ Page {
 
     function updateEventInfo(date, allDay) {
         selectCalendar(model.getDefaultCollection().collectionId);
-        eventReminder.reminderValue = root.reminderValue
         updateEventDate(date, allDay)
     }
 
@@ -165,13 +163,12 @@ Page {
                 }
             }
         }
-        var reminder = e.detail( Detail.VisualReminder);
+        var reminder = e.detail(Detail.AudibleReminder);
         if (reminder) {
-            visualReminder.secondsBeforeStart = reminder.secondsBeforeStart;
+            root.reminderValue = reminder.secondsBeforeStart
         } else {
-            visualReminder.secondsBeforeStart = reminderModel.get(0).value;
+            root.reminderValue = -1
         }
-
         selectCalendar(e.collectionId);
     }
 
@@ -225,20 +222,21 @@ Page {
                 }
             }
 
-            //remove old reminder value
-            var oldVisualReminder = event.detail(Detail.VisualReminder);
-            if(oldVisualReminder) {
-                event.removeDetail(oldVisualReminder);
+            // update audible reminder time if necessary
+            // TODO: we only support audible reminders for now
+            var reminder = event.detail(Detail.AudibleReminder);
+            if (root.reminderValue >= 0) {
+                if (!reminder) {
+                    reminder = Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder {}", root, "")
+                    reminder.repetitionCount = 0
+                    reminder.repetitionDelay = 0
+                }
+                reminder.secondsBeforeStart = root.reminderValue
+                event.setDetail(reminder)
+            } else if (reminder) {
+                event.removeDetail(reminder)
             }
 
-            var oldAudibleReminder = event.detail(Detail.AudibleReminder);
-            if(oldAudibleReminder) {
-                event.removeDetail(oldAudibleReminder);
-            }
-            if(visualReminder.secondsBeforeStart >= 0) {
-                event.setDetail(visualReminder);
-                event.setDetail(audibleReminder);
-            }
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
             model.setDefaultCollection(event.collectionId);
 
@@ -252,17 +250,6 @@ Page {
                 pageStack.pop();
             root.eventAdded(event);
         }
-    }
-
-    VisualReminder{
-        id: visualReminder
-        secondsBeforeStart: root.reminderValue
-
-        onSecondsBeforeStartChanged: eventReminder.reminderValue = visualReminder.secondsBeforeStart
-    }
-    AudibleReminder{
-        id: audibleReminder
-        secondsBeforeStart: root.reminderValue
     }
 
     function getDaysOfWeek(){
@@ -748,11 +735,13 @@ Page {
                     if (!stack)
                         stack = bottomEdgePageStack
 
-                    stack.push(Qt.resolvedUrl("EventReminder.qml"),
-                                              {"visualReminder": visualReminder,
-                                               "audibleReminder": audibleReminder,
-                                               "reminderModel": reminderModel,
-                                               "eventTitle": titleEdit.text})
+                    var reminderPick = stack.push(Qt.resolvedUrl("EventReminder.qml"),
+                                                   {"reminderTime": root.reminderValue,
+                                                    "reminderModel": reminderModel,
+                                                    "eventTitle": titleEdit.text})
+                    reminderPick.reminderTimeUpdated.connect(function(value) {
+                        root.reminderValue = value
+                    })
                 }
             }
 
