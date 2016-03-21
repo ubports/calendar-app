@@ -48,10 +48,8 @@ MainView {
                 }
             } else if (commands[0].toLowerCase() === "startdate") {
                 var date = new Date(commands[1])
-                var currentPage = tabs.selectedTab.page.item
-                if (currentPage.showDate) {
-                    currentPage.showDate(event.startDateTime)
-                }
+                // this will be handled by Tabs.component.completed
+                tabs.starttime = date.getTime()
             }
         }
     }
@@ -124,7 +122,14 @@ MainView {
 
     Connections {
         target: UriHandler
-        onOpened: handleUri(uris[0])
+        onOpened: {
+            handleUri(uris[0])
+            if (tabs.starttime !== -1) {
+                tabs.currentDay = new Date(tabs.starttime);
+                tabs.selectedTabIndex = dayTab.index
+                tabs.starttime = -1
+            }
+        }
     }
 
     PageStack {
@@ -297,8 +302,8 @@ MainView {
 
             // Arguments on startup
             property bool newevent: false;
-            property int starttime: -1;
-            property int endtime: -1;
+            property real starttime: -1;
+            property real endtime: -1;
             property string eventId;
 
             //WORKAROUND: The new header api does not work with tabs check bug: #1539759
@@ -405,10 +410,10 @@ MainView {
                 newevent = newevenpattern.test(url);
 
                 if (starttimepattern.test(url))
-                    starttime = url.match(/starttime=(\d+)/)[1];
+                    starttime = parseInt(url.match(/starttime=(\d+)/)[1]);
 
                 if (endtimepattern.test(url))
-                    endtime = url.match(/endtime=(\d+)/)[1];
+                    endtime = parseInt(url.match(/endtime=(\d+)/)[1]);
 
                 if (eventIdpattern.test(url))
                     eventId = url.match(/eventId=(.*)/)[1];
@@ -417,20 +422,17 @@ MainView {
             Component.onCompleted: {
                 // If an url has been set
                 if (args.defaultArgument.at(0)) {
-                    parseArguments(args.defaultArgument.at(0))
                     tabs.currentDay = new Date()
+                    parseArguments(args.defaultArgument.at(0))
                     // If newevent has been called on startup
                     if (newevent) {
                         timer.running = true;
                     }
                     else if (starttime !== -1) { // If no newevent has been setted, but starttime
-                        var startTime = parseInt(starttime);
-                        tabs.currentDay = new Date(startTime);
-
+                        tabs.currentDay = new Date(tabs.starttime);
                         // If also endtime has been settend
                         if (endtime !== -1) {
-                            var endTime = parseInt(endtime);
-                            tabs.selectedTabIndex = calculateDifferenceStarttimeEndtime(startTime, endTime);
+                            tabs.selectedTabIndex = calculateDifferenceStarttimeEndtime(tabs.startTime, tabs.endTime);
                         }
                         else {
                             // If no endtime has been setted, open the starttime date in day view
@@ -453,6 +455,9 @@ MainView {
                 else {
                     tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
+                tabs.starttime = -1
+                tabs.endtime = -1
+                tabs.eventId = ""
                 tabs.isReady = true
                 // WORKAROUND: Due the missing feature on SDK, they can not detect if
                 // there is a mouse attached to device or not. And this will cause the
