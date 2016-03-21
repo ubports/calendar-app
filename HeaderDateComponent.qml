@@ -87,7 +87,7 @@ Item {
                 var lunarDate = Lunar.calendar.solar2lunar(date.getFullYear(),
                                                            date.getMonth() + 1,
                                                            date.getDate())
-                return i18n.tr("%1 %2 %3").arg(lunarDate.IDayCn).arg(lunarDate.gzDay).arg(lunarDate.isTerm ? lunarDate.Term : "")
+                return ("%1 %2 %3").arg(lunarDate.IDayCn).arg(lunarDate.gzDay).arg(lunarDate.isTerm ? lunarDate.Term : "")
             } else {
                 return date.getDate();
             }

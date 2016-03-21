@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2014 Canonical Ltd
+ * Copyright (C) 2013-2016 Canonical Ltd
  *
  * This file is part of Ubuntu Calendar App
  *
@@ -15,11 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 import QtQuick 2.4
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Components.Themes.Ambiance 1.0
-import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components.Popups 1.3
 import QtOrganizer 5.0
 
 import "Defines.js" as Defines
@@ -32,28 +31,45 @@ Page {
 
     property var event
     property var model
+    property var collection: model.collection(event.collectionId);
 
-    anchors{
-        left: parent.left
-        right: parent.right
-        bottom: parent.bottom
+    header: PageHeader {
+        title: i18n.tr("Event Details")
+        flickable: flicable
+        trailingActionBar.actions: Action {
+            text: i18n.tr("Edit");
+            objectName: "edit"
+            iconName: "edit";
+            enabled: !collection.extendedMetaData("collection-readonly")
+            shortcut: "Ctrl+E"
+            onTriggered: {
+                if( event.itemType === Type.EventOccurrence ) {
+                    var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
+                    dialog.editEvent.connect( function(eventId){
+                        if( eventId === event.parentId ) {
+                            showEditEventPage(internal.parentEvent, model)
+                        } else {
+                            showEditEventPage(event, model)
+                        }
+                    });
+                } else {
+                    showEditEventPage(event, model)
+                }
+            }
+        }
     }
-
-    flickable: null
-
-    title: i18n.tr("Event Details")
 
     Component.onCompleted: {
         showEvent(event)
     }
 
-    Connections{
-        target: pageStack
-        onCurrentPageChanged:{
-            if( pageStack.currentPage === root) {
-                showEvent(event)
-            }
-        }
+    Keys.onEscapePressed: {
+        pageStack.pop();
+    }
+
+    Connections {
+        target: event
+        onItemChanged: showEvent(event)
     }
 
     Connections{
@@ -73,149 +89,136 @@ Page {
         }
     }
 
-    RemindersModel {
-        id: reminderModel
-    }
-
-    function updateCollection(event) {
-
-        var collection = model.collection( event.collectionId );
-        calendarIndicator.color = collection.color
-        eventInfo.color=collection.color
-        // TRANSLATORS: the first parameter refers to the name of event calendar.
-        calendarName.text = i18n.tr("%1 Calendar").arg( collection.name)
-
-        //disable edit in case of read only calendar
-        if( collection.extendedMetaData("collection-readonly") === true ) {
-            editAction.enabled = false
-        }
-    }
-
     function updateRecurrence( event ) {
         var index = 0;
         if (event.recurrence) {
             if(event.recurrence.recurrenceRules[0] !== undefined){
                 var rule =  event.recurrence.recurrenceRules[0];
-                repeatLabel.text = eventUtils.getRecurrenceString(rule)
+                recurrenceLabel.text = eventUtils.getRecurrenceString(rule)
             } else {
                 //For event occurs once, event.recurrence.recurrenceRules == []
-                repeatLabel.text = Defines.recurrenceLabel[0];
+                recurrenceLabel.text = Defines.recurrenceLabel[0];
             }
         }
     }
 
     function updateContacts(event) {
-        var attendees = event.attendees;
+        var attendees
+        var attendingCount, notAttendingCount
+
+        attendingCount = 0
+        notAttendingCount = 0
+        attendees = event.attendees
+
         contactModel.clear();
+
         if( attendees !== undefined ) {
             for (var j = 0 ; j < attendees.length ; ++j) {
-                var name = attendees[j].name.trim().length === 0 ?
-                                attendees[j].emailAddress.replace("mailto:", ""):
-                                attendees[j].name
+                var name = attendees[j].name.trim().length === 0 ? attendees[j].emailAddress.replace("mailto:", "")
+                                                                 : attendees[j].name
 
-                contactModel.append( {"name": name,"participationStatus": attendees[j].participationStatus }  );
+                // Sort the participating guests by Attending, Not-Attending and No-Reply for easier diaply in the list view.
+                if(attendees[j].participationStatus === 0) {
+                    contactModel.insert(attendingCount+notAttendingCount, {"name": name,"participationStatus": attendees[j].participationStatus})
+                    notAttendingCount++
+                }
+
+                else if(attendees[j].participationStatus === 1) {
+                    contactModel.insert(attendingCount, {"name": name,"participationStatus": attendees[j].participationStatus})
+                    attendingCount++
+                }
+
+                else {
+                    contactModel.append({"name": name,"participationStatus": attendees[j].participationStatus});
+                }
             }
         }
     }
 
     function updateReminder(event) {
-        var reminder = event.detail( Detail.VisualReminder)
+        var reminder = event.detail(Detail.VisualReminder)
         if(reminder) {
             for(var i=0; i<reminderModel.count; i++) {
                 if(reminder.secondsBeforeStart === reminderModel.get(i).value) {
-                    reminderHeader.subText = reminderModel.get(i).label
+                    reminderLayout.subtitle.text = reminderModel.get(i).label
                 }
             }
         } else {
-            reminderHeader.subText = reminderModel.get(0).label
+            reminderLayout.subtitle.text = reminderModel.get(0).label
         }
     }
 
-    function updateLocation(event) {
-        if( event.location ) {
-            locationLabel.text = event.location
-        }
-    }
+    function getDate(e) {
+        var dateLabel = null
 
-    function showEvent(e) {
         var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
         var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+        var startDay = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat)
+        var endDay = e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat)
 
-        var lunarStartDate = null;
-        var lunarEndDate = null;
+        var lunarStartDate = null
+        var lunarEndDate = null
+
+        var allDayString = "(%1)".arg(i18n.tr("All Day"))
+
         if (mainView.displayLunarCalendar) {
             lunarStartDate = Lunar.calendar.solar2lunar(e.startDateTime.getFullYear(),
-                                                   e.startDateTime.getMonth() + 1,
-                                                   e.startDateTime.getDate())
+                                                        e.startDateTime.getMonth() + 1,
+                                                        e.startDateTime.getDate())
 
             lunarEndDate = Lunar.calendar.solar2lunar(e.endDateTime.getFullYear(),
-                                                   e.endDateTime.getMonth() + 1,
-                                                   e.endDateTime.getDate())
+                                                      e.endDateTime.getMonth() + 1,
+                                                      e.endDateTime.getDate())
         }
 
         if( e.allDay ) {
             var days = Math.floor((e.endDateTime - e.startDateTime) / Date.msPerDay);
             if( days !== 1 ) {
                 if (mainView.displayLunarCalendar) {
-                    dateLabel.text = i18n.tr("%1 %2 %3 - %4 %5 %6 (All Day)")
-                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
+                    dateLabel = ("%1 %2 %3 - %4 %5 %6").arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
                     .arg(lunarEndDate.gzYear).arg(lunarEndDate .IMonthCn).arg(lunarEndDate.IDayCn)
                 } else {
-                    dateLabel.text = i18n.tr("%1 - %2 (All Day)")
-                    .arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
-                    .arg( e.endDateTime.addDays(-1).toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                    dateLabel = ("%1 - %2").arg(startDay).arg(e.endDateTime.addDays(-1).toLocaleDateString(Qt.locale(), Locale.LongFormat))
                 }
             } else {
                 if (mainView.displayLunarCalendar) {
-                    dateLabel.text = i18n.tr("%1 %2 %3 (All Day)")
-                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
+                    dateLabel = ("%1 %2 %3").arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
                 } else {
-                    dateLabel.text = i18n.tr("%1 (All Day)").arg( e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                    dateLabel = startDay
                 }
             }
-        } else {
+
+            dateLabel = dateLabel.concat(" ", allDayString)
+        }
+
+        else {
             if (e.endDateTime.getDate() !== e.startDateTime.getDate()) {
                 if (mainView.displayLunarCalendar) {
-                    dateLabel.text = i18n.tr("%1 %2 %3, %4 - %5 %6 %7, %8")
-                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime)
+                    dateLabel = ("%1 %2 %3, %4 - %5 %6 %7, %8").arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime)
                     .arg(lunarEndDate.gzYear).arg(lunarEndDate .IMonthCn).arg(lunarEndDate.IDayCn).arg(endTime);
                 } else {
-                    dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "
-                            + e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) +  ", " + endTime;
+                    dateLabel = ("%1, %2 - %3, %4").arg(startDay).arg(startTime).arg(endDay).arg(endTime)
                 }
             } else {
                 if (mainView.displayLunarCalendar) {
-                    dateLabel.text = i18n.tr("%1 %2 %3, %4 - %5")
-                    .arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime).arg(endTime);
+                    dateLabel = ("%1 %2 %3, %4 - %5").arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime).arg(endTime)
                 } else {
-                    dateLabel.text = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat) + ", " +startTime + " - "  + endTime;
+                    dateLabel = ("%1, %2 - %3").arg(startDay).arg(startTime).arg(endTime)
                 }
             }
         }
+        return dateLabel
+    }
 
+    function showEvent(e) {
         var isOcurrence =  (e.itemType === Type.EventOccurrence) || (e.itemType === Type.TodoOccurrence)
         if (isOcurrence) {
             internal.fetchParentRequestId = model.fetchItems([e.parentId]);
         }
 
-        // This is the event title
-        if( e.displayLabel) {
-            titleLabel.text = e.displayLabel;
-        }
-
-        if( e.description ) {
-            descLabel.text = e.description;
-        }
-
-        updateCollection(e);
-
         updateContacts(e);
-
         updateRecurrence(e);
-
         updateReminder(e);
-
-        updateLocation(e);
     }
 
     function showEditEventPage(event, model) {
@@ -234,37 +237,13 @@ Page {
         })
     }
 
-    Keys.onEscapePressed: {
-        pageStack.pop();
+    RemindersModel {
+        id: reminderModel
     }
 
-    Keys.onPressed: {
-        if ((event.key === Qt.Key_E) && ( event.modifiers & Qt.ControlModifier)) {
-            showEditEventPage(event, model);
-        }
+    ListModel {
+        id: contactModel
     }
-
-    head.actions: [
-        Action {
-            text: i18n.tr("Edit");
-            objectName: "edit"
-            iconName: "edit";
-            onTriggered: {
-                if( event.itemType === Type.EventOccurrence ) {
-                    var dialog = PopupUtils.open(Qt.resolvedUrl("EditEventConfirmationDialog.qml"),root,{"event": event});
-                    dialog.editEvent.connect( function(eventId){
-                        if( eventId === event.parentId ) {
-                            showEditEventPage(internal.parentEvent, model)
-                        } else {
-                            showEditEventPage(event, model)
-                        }
-                    });
-                } else {
-                    showEditEventPage(event, model)
-                }
-            }
-        }
-    ]
 
     EventUtils{
         id:eventUtils
@@ -274,12 +253,6 @@ Page {
         id: internal
         property int fetchParentRequestId: -1;
         property var parentEvent;
-    }
-
-    Rectangle {
-        id: bg
-        color: "white"
-        anchors.fill: parent
     }
 
     Scrollbar {
@@ -292,65 +265,53 @@ Page {
 
         clip: interactive
         anchors.fill: parent
-        interactive: contentHeight > height
-
         contentWidth: parent.width
-        contentHeight: column.height + eventInfo.height + units.gu(3) /*top margin + spacing */
+        contentHeight: column.height + titleContainer.height
 
         Rectangle{
-            id: eventInfo
+            id: titleContainer
 
+            color: collection.color
             width: parent.width
-            height: eventInfoList.height + units.gu(5)
+            height: mainEventDetails.height + units.gu(4)
 
-            Column{
-                id:eventInfoList
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                    margins: units.gu(2)
-                }
+            Column {
+                id: mainEventDetails
 
                 spacing: units.gu(0.5)
+                anchors { verticalCenter: parent.verticalCenter; left: parent.left; right: parent.right; margins: units.gu(2) }
 
-                Label{
-                    id: titleLabel
-                    objectName: "titleLabel"
-                    fontSize: "large"
-                    width: parent.width
-                    wrapMode: Text.WordWrap
-                    color: "white"
-                }
-
-                Label{
-                    id: dateLabel
-                    objectName: "dateLabel"
-                    color: "white"
-                    fontSize: "medium"
+                Label {
+                    text: event.displayLabel
+                    color: "White"
+                    textSize: Label.Large
                     width: parent.width
                     wrapMode: Text.WordWrap
                 }
 
-                Label{
-                    id: repeatLabel
-                    objectName: "repeatLabel"
-                    color: "white"
-                    fontSize: "small"
+                Label {
+                    text: getDate(event)
+                    color: "White"
+                    visible: text != ""
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    visible: repeatLabel.text !== ""
                 }
 
-                Label{
-                    id: locationLabel
-                    objectName: "locationLabel"
-                    color: "white"
-                    fontSize: "small"
+                Label {
+                    text: event.location
+                    color: "White"
+                    visible: text != ""
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    visible: locationLabel.text !== ""
+                }
+
+                Label {
+                    id: recurrenceLabel
+                    textSize: Label.Small
+                    color: "White"
+                    visible: text != ""
+                    width: parent.width
+                    wrapMode: Text.WordWrap
                 }
             }
         }
@@ -358,90 +319,101 @@ Page {
         Column{
             id: column
 
-            spacing: units.gu(1)
-            anchors{
-                top: eventInfo.bottom
-                right: parent.right
-                left:parent.left
-                margins: units.gu(2)
-            }
+            width: parent.width
+            anchors.top: titleContainer.bottom
 
-            Row{
-                width: parent.width
-                spacing: units.gu(1)
-                UbuntuShape{
-                    id: calendarIndicator
-                    width: parent.height
-                    height: width
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                Label{
-                    id:calendarName
-                    objectName: "calendarName"
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-            }
+            ListItem {
+                height: units.gu(6)
+                Row{
+                    id: calendarNameRow
 
-            Label{
-                id: descLabel
-                objectName: "descriptionLabel"
-                visible: text != ""
-                width: parent.width
-                wrapMode: Text.WordWrap
-            }
+                    spacing: units.gu(1)
+                    anchors { verticalCenter: parent.verticalCenter; left: parent.left; right: parent.right; margins: units.gu(2) }
 
-            Column {
-                anchors{
-                    right: parent.right
-                    left:parent.left
-                    margins: units.gu(-2)
-                }
-
-                ListItem.Header {
-                    text: i18n.tr("Guests")
-                    visible: contactModel.count !== 0
-                }
-
-                //Guest Entery Model starts
-                Column{
-                    id: contactList
-                    objectName: 'contactList'
-
-                    anchors {
-                        left: parent.left
-                        right: parent.right
+                    Label {
+                        text: i18n.tr("Calendar")
                     }
 
-                    ListModel {
-                        id: contactModel
+                    UbuntuShape{
+                        id: calendarIndicator
+                        width: parent.height
+                        height: width
+                        color: collection.color
+                        anchors.verticalCenter: parent.verticalCenter
                     }
 
-                    Repeater{
-                        model: contactModel
-                        delegate: ListItem.Standard {
-                            Label {
-                                text: name
-                                objectName: "eventGuest%1".arg(index)
-                                color: UbuntuColors.midAubergine
-                                anchors {
-                                    left: parent.left
-                                    leftMargin: units.gu(2)
-                                    verticalCenter: parent.verticalCenter
-                                }
+                    Label{
+                        id:calendarName
+                        objectName: "calendarName"
+                        text: collection.name
+                    }
+                }
+            }
+
+            ListView{
+                model: contactModel
+                width: parent.width
+                height: count !== 0 ? (count+1) * units.gu(7): 0
+                interactive: false
+
+                section.property: "participationStatus"
+                section.labelPositioning: ViewSection.InlineLabels
+                section.delegate: ListItem {
+                    height: headerText.height + divider.height
+                    ListItemLayout {
+                        id: headerText
+                        title.text: {
+                            if (section === "0") {
+                                return i18n.tr("Not Attending")
                             }
 
-                            control: CheckBox {
-                                enabled: false
-                                checked: participationStatus
+                            else if (section === "1") {
+                                return i18n.tr("Attending")
+                            }
+
+                            else if (section === "2") {
+                                return i18n.tr("No Reply")
                             }
                         }
+                        title.font.weight: Font.DemiBold
                     }
                 }
-                //Guest Entries ends
 
-                ListItem.Subtitled {
-                    id: reminderHeader
-                    text: i18n.tr("Reminder")
+                delegate: ListItem {
+                    height: contactListItemLayout.height + divider.height
+                    ListItemLayout {
+                        id: contactListItemLayout
+                        title.text: name
+                    }
+                }
+            }
+
+            ListItem {
+                id: descLabel
+                height: descTitle.height + desc.implicitHeight + divider.height + units.gu(4)
+                visible: desc.text !== ""
+
+                Label {
+                    id: descTitle
+                    text: i18n.tr("Description")
+                    anchors { left: parent.left; right: parent.right; top: parent.top; margins: units.gu(2); topMargin: units.gu(1.5) }
+                }
+
+                Label {
+                    id: desc
+                    text: event.description
+                    textSize: Label.Small
+                    color: UbuntuColors.graphite
+                    wrapMode: Text.WordWrap
+                    anchors { left: parent.left; right: parent.right; top: descTitle.bottom; margins: units.gu(2); topMargin: units.gu(0.5) }
+                }
+            }
+
+            ListItem {
+                height: reminderLayout.height + divider.height
+                ListItemLayout {
+                    id: reminderLayout
+                    title.text: i18n.tr("Reminder")
                 }
             }
         }
