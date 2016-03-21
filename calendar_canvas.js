@@ -30,6 +30,11 @@ function parseDayEvents(date, itemsOfTheDay)
         if (event.allDay)
             continue
 
+        // Set event's end time equals to start time when end time is empty
+        if (isNaN(event.endDateTime.getTime())) {
+            event.endDateTime = event.startDateTime
+        }
+
         var eventStartTimeInMinutes = minutesSince(date, event.startDateTime)
         var eventEndTimeInMinutes = minutesSince(date, event.endDateTime)
 
