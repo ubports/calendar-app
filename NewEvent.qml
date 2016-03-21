@@ -338,8 +338,11 @@ Page {
     }
 
     onEndDateChanged: {
-        if (endDate)
+        if (isNaN(endDate.getTime())) {
+            endDateTimeInput.dateTime = startDate;
+        } else {
             endDateTimeInput.dateTime = endDate;
+        }
     }
 
     header: PageHeader {
