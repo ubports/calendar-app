@@ -74,8 +74,9 @@ Page {
     }
 
     function updateEventInfo(date, allDay) {
-        updateEventDate(date, allDay)
+        selectCalendar(model.getDefaultCollection().collectionId);
         eventReminder.reminderValue = root.reminderValue
+        updateEventDate(date, allDay)
     }
 
     function updateEventDate(date, allDay) {
@@ -124,7 +125,6 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        selectCalendar(model.getDefaultCollection().collectionId);
     }
 
     //Editing Event
@@ -574,7 +574,7 @@ Page {
                     }
 
                     containerHeight: itemHeight * 4
-                    model: root.model.getWritableCollections();
+                    model: root.model.getWritableAndSelectedCollections();
 
                     delegate: OptionSelectorDelegate{
                         text: modelData.name

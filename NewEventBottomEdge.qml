@@ -37,7 +37,7 @@ BottomEdge {
     signal opened()
     signal eventCreated(var event)
 
-    function updateNewEventDate(date, allDay)
+    function updateNewEventInfo(date, allDay)
     {
         _realPage.updateEventInfo(date, allDay)
     }
@@ -74,7 +74,7 @@ BottomEdge {
 
     onCommitStarted: {
         bottomEdge.opened()
-        updateNewEventDate(bottomEdge.date ? bottomEdge.date : new Date(), false)
+        updateNewEventInfo(bottomEdge.date ? bottomEdge.date : new Date(), false)
     }
 
     Component.onCompleted:  {
