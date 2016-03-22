@@ -255,9 +255,7 @@ MainView {
                     if( requestId === id && fetchedItems.length > 0 ) {
                         var event = fetchedItems[0]
                         var currentPage = tabs.selectedTab.page.item
-                        console.debug("tabs has showData?" + currentPage.showDate)
                         if (currentPage.showDate) {
-                            console.debug("Show date:" + event.startDateTime)
                             currentPage.showDate(event.startDateTime)
                         }
 
@@ -603,7 +601,7 @@ MainView {
 
             function showDate(date)
             {
-                efreshCurrentYear(date.getFullYear())
+                refreshCurrentYear(date.getFullYear())
             }
 
             reminderValue: mainView.reminderDefaultValue
