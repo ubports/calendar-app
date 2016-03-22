@@ -745,8 +745,6 @@ Page {
                     })
                 }
             }
-
-            ListItems.ThinDivider {}
         }
     }
 
