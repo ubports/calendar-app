@@ -698,10 +698,6 @@ Page {
                 }
             }
 
-            ListItems.ThinDivider {
-                visible: (event != undefined) && (event.itemType === Type.Event)
-            }
-
             ListItem {
                 id: eventReminder
                 objectName: "eventReminder"
