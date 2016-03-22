@@ -151,6 +151,7 @@ Page {
 
         ListItem.Header{
             text: i18n.tr("Repeat")
+            __foregroundColor: Theme.palette.normal.baseText
         }
 
         OptionSelector{
@@ -170,6 +171,7 @@ Page {
 
         ListItem.Header{
             text: i18n.tr("Repeats On:")
+            __foregroundColor: Theme.palette.normal.baseText
             visible: recurrenceOption.selectedIndex == 5
         }
 
@@ -215,6 +217,7 @@ Page {
 
         ListItem.Header {
             text: i18n.tr("Recurring event ends")
+            __foregroundColor: Theme.palette.normal.baseText
             visible: recurrenceOption.selectedIndex != 0
         }
 
@@ -238,6 +241,7 @@ Page {
             // and it is shown as the header of the option selector to choose
             // its repetition
             text:i18n.tr("Repeats")
+            __foregroundColor: Theme.palette.normal.baseText
             visible: recurrenceOption.selectedIndex != 0
                      && limitOptions.selectedIndex == 1
         }
@@ -263,6 +267,7 @@ Page {
 
         ListItem.Header{
             text:i18n.tr("Date")
+            __foregroundColor: Theme.palette.normal.baseText
             visible: recurrenceOption.selectedIndex != 0 && limitOptions.selectedIndex == 2
         }
 
