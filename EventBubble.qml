@@ -63,7 +63,7 @@ Item{
                 endDateTime = event.startDateTime;
             }
 
-            if( endDateTime >= now) {}
+            if( endDateTime >= now) {
                 if( getOwnersStatus(collection) === EventAttendee.StatusDeclined ) {
                     //if owner of account is not attending event the dim it
                     bg.color = Qt.tint( collection.color, "#aaffffff" );
