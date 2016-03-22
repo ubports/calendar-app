@@ -51,14 +51,19 @@ Item{
     Connections {
         target: model
         ignoreUnknownSignals: true
-        onCollectionsChanged: assingnBgColor()
+        onCollectionsChanged: assignBgColor()
     }
 
-    function assingnBgColor() {
+    function assignBgColor() {
         if (model && event ) {
             var collection = model.collection( event.collectionId );
             var now = new Date();
-            if( event.endDateTime >= now) {
+            var endDateTime = event.endDateTime
+            if (!endDateTime || isNaN(endDateTime.getTime())) {
+                endDateTime = event.startDateTime;
+            }
+
+            if( endDateTime >= now) {}
                 if( getOwnersStatus(collection) === EventAttendee.StatusDeclined ) {
                     //if owner of account is not attending event the dim it
                     bg.color = Qt.tint( collection.color, "#aaffffff" );
@@ -121,7 +126,7 @@ Item{
 
     onIsSingleLineChanged: updateTitle()
     onEventChanged: {
-        assingnBgColor()
+        assignBgColor()
         updateTitle()
         resize()
     }

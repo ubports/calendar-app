@@ -338,7 +338,7 @@ Page {
     }
 
     onEndDateChanged: {
-        if (isNaN(endDate.getTime())) {
+        if (!root.endDate || isNaN(root.endDate.getTime())) {
             endDateTimeInput.dateTime = startDate;
         } else {
             endDateTimeInput.dateTime = endDate;

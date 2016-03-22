@@ -347,7 +347,7 @@ Item {
                                 onPositionChanged: {
                                     dropArea.modifyEventForDrag(drag)
                                     var eventBubble = drag.source;
-                                    eventBubble.assingnBgColor();
+                                    eventBubble.assignBgColor();
 
                                     if( eventBubble.y + eventBubble.height + units.gu(8) > timeLineView.contentY + timeLineView.height ) {
                                         var diff = Math.abs((eventBubble.y + eventBubble.height + units.gu(8))  -
