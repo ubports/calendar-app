@@ -136,7 +136,9 @@ Page {
     }
 
     function updateReminder(event) {
-        var reminder = event.detail(Detail.VisualReminder)
+        //TODO: implment support for display information about all reminder
+        // We can have multiples Audible and Visible reminders.
+        var reminder = event.detail(Detail.AudibleReminder)
         if(reminder) {
             for(var i=0; i<reminderModel.count; i++) {
                 if(reminder.secondsBeforeStart === reminderModel.get(i).value) {

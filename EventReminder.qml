@@ -24,11 +24,12 @@ Page{
     id:root
     objectName: "eventReminder"
 
-    property var visualReminder: null
     property var audibleReminder: null
     property var reminderModel: null
     property var eventTitle: null
-    property var reminderTime: visualReminder.secondsBeforeStart
+    property int reminderTime: -1
+
+    signal reminderTimeUpdated(int value);
 
     visible: false
     flickable: null
@@ -37,26 +38,7 @@ Page{
     head.backAction: Action{
         iconName:"back"
         onTriggered:{
-            var repeatCount = 3;
-            var repeatDelay = 5 * 60;
-
-            //reminder on event time
-            if( reminderTime === 0 ) {
-                repeatCount = 0;
-                repeatDelay = 0;
-            } else if( reminderTime === 300) { //5 min
-                repeatCount = 1;
-            }
-
-            visualReminder.repetitionCount = repeatCount;
-            visualReminder.repetitionDelay = repeatDelay;
-            visualReminder.message = eventTitle
-            visualReminder.secondsBeforeStart = reminderTime;
-
-            audibleReminder.repetitionCount = repeatCount;
-            audibleReminder.repetitionDelay = repeatDelay;
-            audibleReminder.secondsBeforeStart = reminderTime;
-
+            reminderTimeUpdated(reminderTime)
             pop();
         }
     }

@@ -106,6 +106,15 @@ Page {
                     checked: modelData.extendedMetaData("collection-selected")
                     enabled: !calendarChoicePage.isInEditMode
                     onCheckedChanged: {
+                        if (!checkBox.checked && modelData.extendedMetaData("collection-readonly") === false) {
+                           var collections = calendarChoicePage.model.getWritableAndSelectedCollections();
+                           if (collections.length == 1) {
+                               PopupUtils.open(singleWritableDialogComponent);
+                               checkBox.checked = true;
+                               return;
+                           }
+                        }
+
                         modelData.setExtendedMetaData("collection-selected",checkBox.checked)
                         var collection = calendarChoicePage.model.collection(modelData.collectionId);
                         calendarChoicePage.model.saveCollection(collection);
@@ -149,5 +158,17 @@ Page {
         asynchronous: true
         source: sourceFile
     }
-}
 
+    Component {
+        id: singleWritableDialogComponent 
+        Dialog {
+            id: singleWritableDialog
+            title: i18n.tr("Unable to deselect")
+            text: i18n.tr("In order to create new events you must have at least one writable calendar selected")
+            Button {
+                text: i18n.tr("Ok")	
+                onClicked: PopupUtils.close(singleWritableDialog)
+            }
+        }
+    }
+}
