@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-03-21 20:06+0530\n"
+"POT-Creation-Date: 2016-03-23 00:58-0300\n"
 "PO-Revision-Date: 2016-03-21 21:18+0000\n"
 "Last-Translator: franciscoIR <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -15,10 +15,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-22 05:56+0000\n"
+"X-Launchpad-Export-Date: 2016-03-23 06:02+0000\n"
 "X-Generator: Launchpad (build 17958)\n"
 
-#: ../AgendaView.qml:50 ../calendar.qml:326 ../calendar.qml:552
+#: ../AgendaView.qml:50 ../calendar.qml:344 ../calendar.qml:576
 msgid "Agenda"
 msgstr "Planificador"
 
@@ -85,12 +85,26 @@ msgstr "Sincronizando"
 msgid "Add online Calendar"
 msgstr "Añadir calendario en línea"
 
+#: ../CalendarChoicePopup.qml:166
+msgid "Unable to deselect"
+msgstr ""
+
+#: ../CalendarChoicePopup.qml:167
+msgid ""
+"In order to create new events you must have at least one writable calendar "
+"selected"
+msgstr ""
+
+#: ../CalendarChoicePopup.qml:169
+msgid "Ok"
+msgstr ""
+
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
 msgstr "Seleccionar color"
 
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
-#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:354
+#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:341
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -140,11 +154,11 @@ msgstr "Eliminar serie"
 msgid "Delete this"
 msgstr "Eliminar esto"
 
-#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:361
+#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:348
 msgid "Delete"
 msgstr "Eliminar"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:349
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:336
 msgid "Edit Event"
 msgstr "Editar evento"
 
@@ -173,7 +187,7 @@ msgstr "Configuración"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: ../EventDetails.qml:37 ../NewEvent.qml:497
+#: ../EventDetails.qml:37 ../NewEvent.qml:484
 msgid "Event Details"
 msgstr "Detalles del evento"
 
@@ -181,32 +195,32 @@ msgstr "Detalles del evento"
 msgid "Edit"
 msgstr "Editar"
 
-#: ../EventDetails.qml:162 ../TimeLineHeader.qml:66
+#: ../EventDetails.qml:164 ../TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "Todo el día"
 
-#: ../EventDetails.qml:334 ../NewEvent.qml:563
+#: ../EventDetails.qml:336 ../NewEvent.qml:549
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Calendario"
 
-#: ../EventDetails.qml:367
+#: ../EventDetails.qml:369
 msgid "Not Attending"
 msgstr "Asiste"
 
-#: ../EventDetails.qml:371
+#: ../EventDetails.qml:373
 msgid "Attending"
 msgstr "No asiste"
 
-#: ../EventDetails.qml:375
+#: ../EventDetails.qml:377
 msgid "No Reply"
 msgstr "Sin respuesta"
 
-#: ../EventDetails.qml:398 ../NewEvent.qml:529
+#: ../EventDetails.qml:400 ../NewEvent.qml:515
 msgid "Description"
 msgstr "Descripción"
 
-#: ../EventDetails.qml:416 ../EventReminder.qml:35 ../NewEvent.qml:725
+#: ../EventDetails.qml:418 ../EventReminder.qml:36 ../NewEvent.qml:711
 msgid "Reminder"
 msgstr "Recordatorio"
 
@@ -229,7 +243,7 @@ msgstr "El evento recurrente termina"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:240 ../NewEvent.qml:699
+#: ../EventRepetition.qml:240 ../NewEvent.qml:685
 msgid "Repeats"
 msgstr "Se repite"
 
@@ -283,51 +297,51 @@ msgstr "Sem"
 msgid "%1 %2"
 msgstr "%1 %2"
 
-#: ../NewEvent.qml:182
+#: ../NewEvent.qml:179
 msgid "End time can't be before start time"
 msgstr "La hora de finalización no puede ser anterior a la hora de inicio"
 
-#: ../NewEvent.qml:349 ../NewEventBottomEdge.qml:53
+#: ../NewEvent.qml:336 ../NewEventBottomEdge.qml:53
 msgid "New Event"
 msgstr "Evento nuevo"
 
-#: ../NewEvent.qml:378
+#: ../NewEvent.qml:365
 msgid "Save"
 msgstr "Guardar"
 
-#: ../NewEvent.qml:389
+#: ../NewEvent.qml:376
 msgid "Error"
 msgstr "Error"
 
-#: ../NewEvent.qml:391
+#: ../NewEvent.qml:378
 msgid "OK"
 msgstr "Aceptar"
 
-#: ../NewEvent.qml:451
+#: ../NewEvent.qml:438
 msgid "From"
 msgstr "Desde"
 
-#: ../NewEvent.qml:464
+#: ../NewEvent.qml:451
 msgid "To"
 msgstr "Hasta"
 
-#: ../NewEvent.qml:481
+#: ../NewEvent.qml:468
 msgid "All day event"
 msgstr "El evento dura todo el día"
 
-#: ../NewEvent.qml:511
+#: ../NewEvent.qml:497
 msgid "Event Name"
 msgstr "Nombre del evento"
 
-#: ../NewEvent.qml:548
+#: ../NewEvent.qml:534
 msgid "Location"
 msgstr "Ubicación"
 
-#: ../NewEvent.qml:603
+#: ../NewEvent.qml:589
 msgid "Guests"
 msgstr "Invitados"
 
-#: ../NewEvent.qml:612
+#: ../NewEvent.qml:598
 msgid "Add Guest"
 msgstr "Añadir invitado"
 
@@ -445,7 +459,7 @@ msgstr "MMM"
 msgid "Year %1"
 msgstr "Año %1"
 
-#: ../calendar.qml:49
+#: ../calendar.qml:72
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -455,19 +469,19 @@ msgstr ""
 "eventid. Los gestiona el sistema. Vea la fuente para tener toda la "
 "información sobre esto."
 
-#: ../calendar.qml:294 ../calendar.qml:468
+#: ../calendar.qml:312 ../calendar.qml:492
 msgid "Year"
 msgstr "Año"
 
-#: ../calendar.qml:302 ../calendar.qml:489
+#: ../calendar.qml:320 ../calendar.qml:513
 msgid "Month"
 msgstr "Mes"
 
-#: ../calendar.qml:310 ../calendar.qml:510
+#: ../calendar.qml:328 ../calendar.qml:534
 msgid "Week"
 msgstr "Semana"
 
-#: ../calendar.qml:318 ../calendar.qml:531
+#: ../calendar.qml:336 ../calendar.qml:555
 msgid "Day"
 msgstr "Día"
 
