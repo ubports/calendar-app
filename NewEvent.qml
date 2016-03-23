@@ -720,7 +720,7 @@ Page {
                             }
                         }
                     } else {
-                        eventReminder.subText = reminderModel.get(0).label
+                        eventReminderLayout.summary.text = reminderModel.get(0).label
                         return
                     }
                 }
