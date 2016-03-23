@@ -326,9 +326,13 @@ Page {
 
     onEndDateChanged: {
         if (!root.endDate || isNaN(root.endDate.getTime())) {
-            endDateTimeInput.dateTime = startDate;
+            if (root.startDate) {
+                endDateTimeInput.dateTime = root.startDate;
+            }
         } else {
-            endDateTimeInput.dateTime = endDate;
+            if (root.endDate) {
+                endDateTimeInput.dateTime = root.endDate;
+            }
         }
     }
 
