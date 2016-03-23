@@ -466,6 +466,7 @@ Page {
                 }
 
                 text: i18n.tr("All day event")
+                __foregroundColor: Theme.palette.normal.baseText
                 showDivider: false
                 control: CheckBox {
                     objectName: "allDayEventCheckbox"
@@ -482,6 +483,7 @@ Page {
 
                 ListItems.Header{
                     text: i18n.tr("Event Details")
+                    __foregroundColor: Theme.palette.normal.baseText
                 }
 
                 TextField {
@@ -547,6 +549,7 @@ Page {
 
                 ListItems.Header {
                     text: i18n.tr("Calendar")
+                    __foregroundColor: Theme.palette.normal.baseText
                 }
 
                 OptionSelector{
@@ -587,6 +590,7 @@ Page {
 
                 ListItems.Header {
                     text: i18n.tr("Guests")
+                    __foregroundColor: Theme.palette.normal.baseText
                 }
 
                 Button{
@@ -671,19 +675,19 @@ Page {
 
             }
 
-            ListItems.Subtitled{
+            ListItem {
                 id:thisHappens
                 objectName :"thisHappens"
 
-                anchors {
-                    left: parent.left
+                visible: (event != undefined) && ((event.itemType === Type.Event) || (event.itemType === Type.Todo))
+
+                ListItemLayout {
+                    id: thisHappensLayout
+                    title.text: i18n.tr("Repeats")
+                    summary.text: (event != undefined) && (event.itemType === Type.Event) ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
+                    ProgressionSlot {}
                 }
 
-                showDivider: false
-                progression: true
-                visible: (event != undefined) && ((event.itemType === Type.Event) || (event.itemType === Type.Todo))
-                text: i18n.tr("Repeats")
-                subText: visible ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
                 onClicked: {
                     var stack = pageStack
                     if (!stack)
@@ -693,33 +697,30 @@ Page {
                 }
             }
 
-            ListItems.ThinDivider {
-                visible: (event != undefined) && (event.itemType === Type.Event)
-            }
-
-            ListItems.Subtitled{
-                id:eventReminder
-                objectName  : "eventReminder"
+            ListItem {
+                id: eventReminder
+                objectName: "eventReminder"
 
                 property int reminderValue: -1
 
                 onReminderValueChanged: updateReminderLabel()
 
-                anchors.left:parent.left
-                showDivider: false
-                progression: true
-                text: i18n.tr("Reminder")
+                ListItemLayout {
+                    id: eventReminderLayout
+                    title.text: i18n.tr("Reminder")
+                    ProgressionSlot {}
+                }
 
                 function updateReminderLabel() {
                     if (eventReminder.reminderValue !== -1) {
                         for (var i=0; i<reminderModel.count; i++) {
                             if (reminderModel.get(i).value === eventReminder.reminderValue) {
-                                eventReminder.subText = reminderModel.get(i).label
+                                eventReminderLayout.summary.text = reminderModel.get(i).label
                                 return
                             }
                         }
                     } else {
-                        eventReminder.subText = reminderModel.get(0).label
+                        eventReminderLayout.summary.text = reminderModel.get(0).label
                         return
                     }
                 }
@@ -743,8 +744,6 @@ Page {
                     })
                 }
             }
-
-            ListItems.ThinDivider {}
         }
     }
 

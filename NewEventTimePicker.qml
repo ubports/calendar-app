@@ -31,6 +31,7 @@ Column {
 
     ListItem.Header {
         id: listHeader
+        __foregroundColor: Theme.palette.normal.baseText
     }
 
     Item {
