@@ -31,7 +31,7 @@ function parseDayEvents(date, itemsOfTheDay)
             continue
 
         var eventStartTimeInMinutes = minutesSince(date, event.startDateTime)
-        var eventEndTimeInMinutes = minutesSince(date, event.endDateTime)
+        var eventEndTimeInMinutes = minutesSince(date, isNaN(event.endDateTime.getTime()) ? event.startDateTime : event.endDateTime)
 
         // avoid to draw events too small
         if ((eventEndTimeInMinutes - eventStartTimeInMinutes) < 20)
@@ -39,7 +39,7 @@ function parseDayEvents(date, itemsOfTheDay)
 
         eventsInfo.push({'eventId': event.itemId,
                          'eventStartTime': event.startDateTime.getTime(),
-                         'eventEndTime': event.endDateTime.getTime(),
+                         'eventEndTime': isNaN(event.endDateTime.getTime()) ? event.startDateTime.getTime() : event.endDateTime.getTime(),
                          'startTime': eventStartTimeInMinutes,
                          'endTime': eventEndTimeInMinutes,
                          'endTimeInSecs': event.endDateTime.getTime(),

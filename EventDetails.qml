@@ -153,10 +153,13 @@ Page {
     function getDate(e) {
         var dateLabel = null
 
-        var startTime = e.startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-        var endTime = e.endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-        var startDay = e.startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat)
-        var endDay = e.endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat)
+        var startDateTime = e.startDateTime
+        var endDateTime = isNaN(e.endDateTime.getTime()) ? e.startDateTime : e.endDateTime
+
+        var startTime = startDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+        var endTime = endDateTime.toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+        var startDay = startDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat)
+        var endDay = endDateTime.toLocaleDateString(Qt.locale(), Locale.LongFormat)
 
         var lunarStartDate = null
         var lunarEndDate = null
@@ -164,23 +167,23 @@ Page {
         var allDayString = "(%1)".arg(i18n.tr("All Day"))
 
         if (mainView.displayLunarCalendar) {
-            lunarStartDate = Lunar.calendar.solar2lunar(e.startDateTime.getFullYear(),
-                                                        e.startDateTime.getMonth() + 1,
-                                                        e.startDateTime.getDate())
+            lunarStartDate = Lunar.calendar.solar2lunar(startDateTime.getFullYear(),
+                                                        startDateTime.getMonth() + 1,
+                                                        startDateTime.getDate())
 
-            lunarEndDate = Lunar.calendar.solar2lunar(e.endDateTime.getFullYear(),
-                                                      e.endDateTime.getMonth() + 1,
-                                                      e.endDateTime.getDate())
+            lunarEndDate = Lunar.calendar.solar2lunar(endDateTime.getFullYear(),
+                                                      endDateTime.getMonth() + 1,
+                                                      endDateTime.getDate())
         }
 
         if( e.allDay ) {
-            var days = Math.floor((e.endDateTime - e.startDateTime) / Date.msPerDay);
+            var days = Math.floor((endDateTime - startDateTime) / Date.msPerDay);
             if( days !== 1 ) {
                 if (mainView.displayLunarCalendar) {
                     dateLabel = ("%1 %2 %3 - %4 %5 %6").arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn)
                     .arg(lunarEndDate.gzYear).arg(lunarEndDate .IMonthCn).arg(lunarEndDate.IDayCn)
                 } else {
-                    dateLabel = ("%1 - %2").arg(startDay).arg(e.endDateTime.addDays(-1).toLocaleDateString(Qt.locale(), Locale.LongFormat))
+                    dateLabel = ("%1 - %2").arg(startDay).arg(endDateTime.addDays(-1).toLocaleDateString(Qt.locale(), Locale.LongFormat))
                 }
             } else {
                 if (mainView.displayLunarCalendar) {
@@ -194,7 +197,7 @@ Page {
         }
 
         else {
-            if (e.endDateTime.getDate() !== e.startDateTime.getDate()) {
+            if (endDateTime.getDate() !== startDateTime.getDate()) {
                 if (mainView.displayLunarCalendar) {
                     dateLabel = ("%1 %2 %3, %4 - %5 %6 %7, %8").arg(lunarStartDate.gzYear).arg(lunarStartDate .IMonthCn).arg(lunarStartDate.IDayCn).arg(startTime)
                     .arg(lunarEndDate.gzYear).arg(lunarEndDate .IMonthCn).arg(lunarEndDate.IDayCn).arg(endTime);
