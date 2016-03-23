@@ -126,7 +126,11 @@ MainView {
             handleUri(uris[0])
             if (tabs.starttime !== -1) {
                 tabs.currentDay = new Date(tabs.starttime);
-                tabs.selectedTabIndex = dayTab.index
+                if (tabs.selectedTabIndex != dayTab.index)
+                    tabs.selectedTabIndex = dayTab.index
+                else {
+                    dayTab.page.item.showDate(tabs.currentDay)
+                }
                 tabs.starttime = -1
             }
         }
@@ -735,10 +739,10 @@ MainView {
             function showDate(date)
             {
                 var dateGoTo = new Date(date)
-                if (!anchorDate ||
-                    (dateGoTo.getFullYear() != anchorDate.getFullYear()) ||
-                    (dateGoTo.getMonth() != anchorDate.getMonth()) ||
-                    (dateGoTo.getDate() != anchorDate.getDate())) {
+                if (!currentDate ||
+                    (dateGoTo.getFullYear() !== currentDate.getFullYear()) ||
+                    (dateGoTo.getMonth() !== currentDate.getMonth()) ||
+                    (dateGoTo.getDate() !== currentDate.getDate())) {
                     anchorDate = new Date(dateGoTo)
                 }
                 delayScrollToDate(dateGoTo)
