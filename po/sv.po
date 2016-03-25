@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-23 00:58-0300\n"
-"PO-Revision-Date: 2015-07-12 22:19+0000\n"
+"PO-Revision-Date: 2016-03-25 05:06+0000\n"
 "Last-Translator: Josef Andersson <Unknown>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-24 06:04+0000\n"
-"X-Generator: Launchpad (build 17958)\n"
+"X-Launchpad-Export-Date: 2016-03-25 05:52+0000\n"
+"X-Generator: Launchpad (build 17967)\n"
 "Language: sv\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:344 ../calendar.qml:576
@@ -37,15 +37,15 @@ msgstr "Aktivera kalendrar"
 
 #: ../AgendaView.qml:195
 msgid "no event name set"
-msgstr ""
+msgstr "inget händelsenamn angivet"
 
 #: ../AgendaView.qml:197
 msgid "no location"
-msgstr ""
+msgstr "ingen plats"
 
 #: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
 msgid "New event"
-msgstr ""
+msgstr "Ny händelse"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
@@ -53,8 +53,8 @@ msgstr ""
 #, qt-format
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 händelse"
+msgstr[1] "%1 händelser"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:152
@@ -88,17 +88,18 @@ msgstr "Lägg till online-kalender"
 
 #: ../CalendarChoicePopup.qml:166
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Kunde inte avmarkera"
 
 #: ../CalendarChoicePopup.qml:167
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"För att kunna skapa nya händelser måste du ha minst en skrivbar kalender vald"
 
 #: ../CalendarChoicePopup.qml:169
 msgid "Ok"
-msgstr ""
+msgstr "OK"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -179,7 +180,7 @@ msgstr "Redigera denna"
 
 #: ../EventActions.qml:66 ../SettingsPage.qml:47
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -207,15 +208,15 @@ msgstr "Kalender"
 
 #: ../EventDetails.qml:369
 msgid "Not Attending"
-msgstr ""
+msgstr "Deltar ej"
 
 #: ../EventDetails.qml:373
 msgid "Attending"
-msgstr ""
+msgstr "Deltar"
 
 #: ../EventDetails.qml:377
 msgid "No Reply"
-msgstr ""
+msgstr "Inget svar"
 
 #: ../EventDetails.qml:400 ../NewEvent.qml:515
 msgid "Description"
@@ -291,12 +292,12 @@ msgstr "Efter datum"
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../MonthComponent.qml:317
 msgid "Wk"
-msgstr ""
+msgstr "Vk"
 
 #: ../MonthView.qml:73 ../WeekView.qml:131
 #, qt-format
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../NewEvent.qml:179
 msgid "End time can't be before start time"
@@ -431,19 +432,19 @@ msgstr "Två veckor"
 
 #: ../SettingsPage.qml:70
 msgid "Show week numbers"
-msgstr ""
+msgstr "Visa veckonummer"
 
 #: ../SettingsPage.qml:84
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Visa månkalender"
 
 #: ../SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Standardpåminnelse"
 
 #: ../SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "Standardkalender"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:54
@@ -453,7 +454,7 @@ msgstr "V%1"
 
 #: ../WeekView.qml:138 ../WeekView.qml:139
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../YearView.qml:79
 #, qt-format
