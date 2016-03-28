@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-23 00:58-0300\n"
-"PO-Revision-Date: 2016-03-09 21:50+0000\n"
+"PO-Revision-Date: 2016-03-24 13:09+0000\n"
 "Last-Translator: Bojan Bogdanović <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-03-24 06:04+0000\n"
-"X-Generator: Launchpad (build 17958)\n"
+"X-Launchpad-Export-Date: 2016-03-25 05:52+0000\n"
+"X-Generator: Launchpad (build 17967)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:344 ../calendar.qml:576
 msgid "Agenda"
@@ -53,8 +53,9 @@ msgstr "Нови догађај"
 #, qt-format
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 догађај"
+msgstr[1] "%1 догађаја"
+msgstr[2] "%1 догађаја"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:152
@@ -89,17 +90,19 @@ msgstr "Додај мрежни календар"
 
 #: ../CalendarChoicePopup.qml:166
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Не могу да дештиклирам"
 
 #: ../CalendarChoicePopup.qml:167
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"Како би могли да креирате нове догађаје, морате имати одабран барем један "
+"уписиви календар"
 
 #: ../CalendarChoicePopup.qml:169
 msgid "Ok"
-msgstr ""
+msgstr "У реду"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -208,15 +211,15 @@ msgstr "Календар"
 
 #: ../EventDetails.qml:369
 msgid "Not Attending"
-msgstr ""
+msgstr "Не присуствују"
 
 #: ../EventDetails.qml:373
 msgid "Attending"
-msgstr ""
+msgstr "Присуствују"
 
 #: ../EventDetails.qml:377
 msgid "No Reply"
-msgstr ""
+msgstr "Нема одговора"
 
 #: ../EventDetails.qml:400 ../NewEvent.qml:515
 msgid "Description"
@@ -441,11 +444,11 @@ msgstr "Прикажи лунарни календар"
 
 #: ../SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Подразумевани подсетник"
 
 #: ../SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "Подразумевани календар"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:54

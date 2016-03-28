@@ -95,14 +95,19 @@ Item{
                 return -1;
             }
 
-            if ((root.currentMonth === date.getMonth()) &&
-                (root.currentYear === date.getFullYear())) {
+            if (date.getFullYear() < root.currentYear ||
+                (date.getFullYear() === root.currentYear && date.getMonth() < root.currentMonth)) {
+                return offset - (Date.daysInMonth(date.getFullYear(), date.getMonth()) - date.getDate());
 
-                return date.getDate() +
-                       (Date.daysInMonth(monthStartYear, monthStartMonth) - monthStartDate);
-            } else {
-                return -1;
+            } else if (date.getFullYear() === root.currentYear && date.getMonth() === root.currentMonth) {
+               return offset + date.getDate();
+
+            } else if (date.getFullYear() > root.currentYear ||
+                       (date.getFullYear() === root.currentYear && date.getMonth() > root.currentMonth)) {
+                return offset + Date.daysInMonth(root.currentYear, root.currentMonth) + date.getDate();
             }
+
+            return -1;
         }
     }
 
@@ -245,19 +250,13 @@ Item{
             var dayItem = getItemAt(mouse.x, mouse.y)
 
             if( dayItem.isSelected ) {
-                var selectedDate = new Date();
-                selectedDate.setFullYear(intern.monthStartYear)
-                selectedDate.setMonth(intern.monthStartMonth + 1)
-                selectedDate.setDate(dayItem.date)
-                selectedDate.setMinutes(60, 0, 0)
+                var selectedDate = new Date(dayItem.delegateDate.getTime());
                 pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
             }
         }
         onClicked: {
             var dayItem = getItemAt(mouse.x, mouse.y)
-            var selectedDate = new Date(intern.monthStartYear,
-                                        intern.monthStartMonth + 1,
-                                        dayItem.date, 0, 0, 0, 0)
+            var selectedDate = new Date(dayItem.delegateDate.getTime());
             if (root.isYearView) {
                 //If yearView is clicked then open selected MonthView
                 root.monthSelected(selectedDate);
