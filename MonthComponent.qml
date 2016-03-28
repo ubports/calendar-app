@@ -251,7 +251,6 @@ Item{
 
             if( dayItem.isSelected ) {
                 var selectedDate = new Date(dayItem.delegateDate.getTime());
-                selectedDate.setMinutes(60, 0, 0)
                 pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
             }
         }
