@@ -38,7 +38,7 @@ Item{
     property Flickable flickable;
     property bool isEventBubble: true
     property real minimumHeight: units.gu(4)
-    property bool strikeoutTitle: false
+    property alias strikeoutTitle: eventTitle.font.strikeout
 
     readonly property bool isSingleLine: (infoBubble.height < (minimumHeight * 2))
     readonly property real startTimeInMinutes: event ? CanlendarCanvas.minutesSince(infoBubble.anchorDate, event.startDateTime) : 0.0
@@ -162,7 +162,6 @@ Item{
         fontSize: "small"
         color: "White"
         font.bold: true
-        font.strikeout: infoBubble.strikeoutTitle
     }
 
     Drag.active: dragArea.drag.active
