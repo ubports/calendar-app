@@ -135,13 +135,18 @@ Page {
         }
 
         allDayEventCheckbox.checked = e.allDay;
+
+        var eventEndDate = e.endDateTime
+        if (!eventEndDate || isNaN(eventEndDate.getTime()))
+            eventEndDate = new Date(startDate)
+
         if (e.allDay) {
             allDayEventCheckbox.checked = true
-            endDate = new Date(e.endDateTime).addDays(-1);
-            eventSize = DateExt.daysBetween(startDate, endDate) * root.millisecsInADay
+            endDate = new Date(eventEndDate).addDays(-1);
+            eventSize = DateExt.daysBetween(startDate, eventEndDate) * root.millisecsInADay
         } else {
-            endDate = e.endDateTime
-            eventSize = (endDate.getTime() - startDate.getTime())
+            endDate = eventEndDate
+            eventSize = (eventEndDate.getTime() - startDate.getTime())
         }
 
         if(e.location) {
@@ -413,6 +418,8 @@ Page {
 
             NewEventTimePicker{
                 id: startDateTimeInput
+                objectName: "startDateTimeInput"
+
                 header: i18n.tr("From")
                 showTimePicker: !allDayEventCheckbox.checked
                 anchors {
@@ -427,6 +434,8 @@ Page {
 
             NewEventTimePicker{
                 id: endDateTimeInput
+                objectName: "endDateTimeInput"
+
                 header: i18n.tr("To")
                 showTimePicker: !allDayEventCheckbox.checked
                 anchors {
@@ -558,7 +567,7 @@ Page {
                     }
 
                     containerHeight: itemHeight * 4
-                    model: root.model.getWritableAndSelectedCollections();
+                    model: root.model ? root.model.getWritableAndSelectedCollections() : []
 
                     delegate: OptionSelectorDelegate{
                         text: modelData.name
