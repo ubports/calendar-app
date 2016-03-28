@@ -44,6 +44,7 @@ Page {
 
     property alias startDate: startDateTimeInput.dateTime
     property alias endDate: endDateTimeInput.dateTime
+    property alias reminderValue: eventReminder.reminderValue
 
     property alias scrollY: flickable.contentY
     property bool isEdit: false
@@ -74,6 +75,11 @@ Page {
         if (pageStack)
             pageStack.pop();
         root.canceled()
+    }
+
+    function updateEventInfo(date, allDay) {
+        selectCalendar(model.getDefaultCollection().collectionId);
+        updateEventDate(date, allDay)
     }
 
     function updateEventDate(date, allDay) {
@@ -111,13 +117,13 @@ Page {
     //Data for Add events
     function addEvent() {
         event = Qt.createQmlObject("import QtOrganizer 5.0; Event { }", Qt.application,"NewEvent.qml");
-        selectCalendar(model.getDefaultCollection().collectionId);
     }
 
     //Editing Event
     function editEvent(e) {
         //If there is a ReccruenceRule use that , else create fresh Recurrence Object.
-        if(e.itemType === Type.Event && e.recurrence.recurrenceRules[0] !== undefined
+        var isOcurrence = ((event.itemType === Type.EventOccurrence) || (event.itemType === Type.TodoOccurrence))
+        if(!isOcurrence && e.recurrence.recurrenceRules[0] !== undefined
                 && e.recurrence.recurrenceRules[0] !== null){
             rule =  e.recurrence.recurrenceRules[0];
         }
@@ -155,20 +161,19 @@ Page {
                 }
             }
         }
-        var reminder = e.detail( Detail.VisualReminder);
+        var reminder = e.detail(Detail.AudibleReminder);
         if (reminder) {
-            visualReminder.secondsBeforeStart = reminder.secondsBeforeStart;
+            root.reminderValue = reminder.secondsBeforeStart
         } else {
-            visualReminder.secondsBeforeStart = reminderModel.get(0).value;
+            root.reminderValue = -1
         }
-
         selectCalendar(e.collectionId);
     }
 
     //Save the new or Existing event
     function saveToQtPim() {
         internal.clearFocus()
-        if ( startDate >= endDate && !allDayEventCheckbox.checked) {
+        if ( startDate > endDate && !allDayEventCheckbox.checked) {
             PopupUtils.open(errorDlgComponent,root,{"text":i18n.tr("End time can't be before start time")});
         } else {
             var newCollection = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
@@ -206,26 +211,30 @@ Page {
             }
 
             //Set the Rule object to an event
-            if(rule !== null && rule !== undefined) {
-                event.recurrence.recurrenceRules = [rule]
-            } else {
-                event.recurrence.recurrenceRules = [];
+            var isOcurrence = ((event.itemType === Type.EventOccurrence) || (event.itemType === Type.TodoOccurrence))
+            if (!isOcurrence) {
+                if(rule !== null && rule !== undefined) {
+                    event.recurrence.recurrenceRules = [rule]
+                } else {
+                    event.recurrence.recurrenceRules = [];
+                }
             }
 
-            //remove old reminder value
-            var oldVisualReminder = event.detail(Detail.VisualReminder);
-            if(oldVisualReminder) {
-                event.removeDetail(oldVisualReminder);
+            // update audible reminder time if necessary
+            // TODO: we only support audible reminders for now
+            var reminder = event.detail(Detail.AudibleReminder);
+            if (root.reminderValue >= 0) {
+                if (!reminder) {
+                    reminder = Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder {}", root, "")
+                    reminder.repetitionCount = 0
+                    reminder.repetitionDelay = 0
+                }
+                reminder.secondsBeforeStart = root.reminderValue
+                event.setDetail(reminder)
+            } else if (reminder) {
+                event.removeDetail(reminder)
             }
 
-            var oldAudibleReminder = event.detail(Detail.AudibleReminder);
-            if(oldAudibleReminder) {
-                event.removeDetail(oldAudibleReminder);
-            }
-            if(visualReminder.secondsBeforeStart >= 0) {
-                event.setDetail(visualReminder);
-                event.setDetail(audibleReminder);
-            }
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
             model.setDefaultCollection(event.collectionId);
 
@@ -239,15 +248,6 @@ Page {
                 pageStack.pop();
             root.eventAdded(event);
         }
-    }
-
-    VisualReminder{
-        id: visualReminder
-        secondsBeforeStart: root.reminderValue
-    }
-    AudibleReminder{
-        id: audibleReminder
-        secondsBeforeStart: root.reminderValue
     }
 
     function getDaysOfWeek(){
@@ -455,6 +455,7 @@ Page {
                 }
 
                 text: i18n.tr("All day event")
+                __foregroundColor: Theme.palette.normal.baseText
                 showDivider: false
                 control: CheckBox {
                     objectName: "allDayEventCheckbox"
@@ -477,6 +478,7 @@ Page {
 
                 ListItems.Header{
                     text: i18n.tr("Event Details")
+                    __foregroundColor: Theme.palette.normal.baseText
                 }
 
                 TextField {
@@ -489,7 +491,6 @@ Page {
                         margins: units.gu(2)
                     }
 
-                    inputMethodHints: Qt.ImhNoPredictiveText
                     placeholderText: i18n.tr("Event Name")
                     onFocusChanged: {
                         if(titleEdit.focus) {
@@ -543,6 +544,7 @@ Page {
 
                 ListItems.Header {
                     text: i18n.tr("Calendar")
+                    __foregroundColor: Theme.palette.normal.baseText
                 }
 
                 OptionSelector{
@@ -556,7 +558,7 @@ Page {
                     }
 
                     containerHeight: itemHeight * 4
-                    model: root.model.getWritableCollections();
+                    model: root.model.getWritableAndSelectedCollections();
 
                     delegate: OptionSelectorDelegate{
                         text: modelData.name
@@ -583,6 +585,7 @@ Page {
 
                 ListItems.Header {
                     text: i18n.tr("Guests")
+                    __foregroundColor: Theme.palette.normal.baseText
                 }
 
                 Button{
@@ -667,19 +670,19 @@ Page {
 
             }
 
-            ListItems.Subtitled{
+            ListItem {
                 id:thisHappens
                 objectName :"thisHappens"
 
-                anchors {
-                    left: parent.left
+                visible: (event != undefined) && ((event.itemType === Type.Event) || (event.itemType === Type.Todo))
+
+                ListItemLayout {
+                    id: thisHappensLayout
+                    title.text: i18n.tr("Repeats")
+                    summary.text: (event != undefined) && (event.itemType === Type.Event) ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
+                    ProgressionSlot {}
                 }
 
-                showDivider: false
-                progression: true
-                visible: (event != undefined) && (event.itemType === Type.Event)
-                text: i18n.tr("Repeats")
-                subText: (event != undefined) && (event.itemType === Type.Event) ? rule === null ? Defines.recurrenceLabel[0] : eventUtils.getRecurrenceString(rule) : ""
                 onClicked: {
                     var stack = pageStack
                     if (!stack)
@@ -689,34 +692,37 @@ Page {
                 }
             }
 
-            ListItems.ThinDivider {
-                visible: (event != undefined) && (event.itemType === Type.Event)
-            }
+            ListItem {
+                id: eventReminder
+                objectName: "eventReminder"
 
-            ListItems.Subtitled{
-                id:eventReminder
-                objectName  : "eventReminder"
+                property int reminderValue: -1
 
-                anchors.left:parent.left
-                showDivider: false
-                progression: true
-                text: i18n.tr("Reminder")
+                onReminderValueChanged: updateReminderLabel()
 
-                RemindersModel {
-                    id: reminderModel
+                ListItemLayout {
+                    id: eventReminderLayout
+                    title.text: i18n.tr("Reminder")
+                    ProgressionSlot {}
                 }
 
-                subText:{
-                    if(visualReminder.secondsBeforeStart !== -1) {
-                        for( var i=0; i<reminderModel.count; i++ ) {
-                            if(visualReminder.secondsBeforeStart === reminderModel.get(i).value) {
-                                return reminderModel.get(i).label
+                function updateReminderLabel() {
+                    if (eventReminder.reminderValue !== -1) {
+                        for (var i=0; i<reminderModel.count; i++) {
+                            if (reminderModel.get(i).value === eventReminder.reminderValue) {
+                                eventReminderLayout.summary.text = reminderModel.get(i).label
+                                return
                             }
                         }
                     } else {
-                        return reminderModel.get(0).label
+                        eventReminderLayout.summary.text = reminderModel.get(0).label
+                        return
                     }
+                }
 
+                RemindersModel {
+                    id: reminderModel
+                    onLoaded: eventReminder.updateReminderLabel()
                 }
 
                 onClicked:{
@@ -724,15 +730,15 @@ Page {
                     if (!stack)
                         stack = bottomEdgePageStack
 
-                    stack.push(Qt.resolvedUrl("EventReminder.qml"),
-                                              {"visualReminder": visualReminder,
-                                               "audibleReminder": audibleReminder,
-                                               "reminderModel": reminderModel,
-                                               "eventTitle": titleEdit.text})
+                    var reminderPick = stack.push(Qt.resolvedUrl("EventReminder.qml"),
+                                                   {"reminderTime": root.reminderValue,
+                                                    "reminderModel": reminderModel,
+                                                    "eventTitle": titleEdit.text})
+                    reminderPick.reminderTimeUpdated.connect(function(value) {
+                        root.reminderValue = value
+                    })
                 }
             }
-
-            ListItems.ThinDivider {}
         }
     }
 

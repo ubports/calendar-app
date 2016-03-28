@@ -59,11 +59,12 @@ PageWithBottomEdge {
     // ListModel to hold all events for upcoming 7days.
     EventListModel {
         id: eventListModel
-        objectName: "eventListModel"
+        objectName: "agendaEventListModel"
 
         startPeriod: anchorDate.midnight();
         endPeriod: anchorDate.addDays(7).endOfDay()
         filter: model.filter
+        autoUpdate: root.tabSelected
         sortOrders: [
             SortOrder{
                 blankPolicy: SortOrder.BlanksFirst
@@ -164,8 +165,8 @@ PageWithBottomEdge {
                     ListItemLayout {
                         id: listitemlayout
                         padding.top: units.gu(1)
-                        title.text: mainView.displayLunarCalendar ? i18n.tr("%1 %2 %3 %4 %5").arg(lunarDate.gzYear).arg(lunarDate .IMonthCn).arg(lunarDate.IDayCn)
-                                                                                             .arg(lunarDate.gzDay).arg(lunarDate.isTerm ? lunarDate.Term : "")
+                        title.text: mainView.displayLunarCalendar ? ("%1 %2 %3 %4 %5").arg(lunarDate.gzYear).arg(lunarDate .IMonthCn).arg(lunarDate.IDayCn)
+                                                                                      .arg(lunarDate.gzDay).arg(lunarDate.isTerm ? lunarDate.Term : "")
                                                                   : date
                         title.color: event.startDateTime.toLocaleDateString() === new Date().toLocaleDateString() ? UbuntuColors.orange : UbuntuColors.darkGrey
                     }

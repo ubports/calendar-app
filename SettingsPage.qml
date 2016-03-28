@@ -24,6 +24,7 @@ Page {
     id: settingsPage
     objectName: "settings"
 
+    property EventListModel eventModel
     property Settings settings: undefined
 
     Binding {
@@ -134,6 +135,62 @@ Page {
                         }
 
                        onDelegateClicked: settings.reminderDefaultValue = model.get(index).value
+                    }
+                }
+            }
+        }
+
+        ListItem {
+            visible: defaultCalendarOptionSelector.model && defaultCalendarOptionSelector.model.length > 0
+            height: visible ? defaultCalendarLayout.height + divider.height : 0
+
+            Component.onCompleted: {
+                if (!eventModel || !defaultCalendarOptionSelector.model) {
+                    return
+                }
+
+                var defaultCollectionId = eventModel.getDefaultCollection().collectionId
+                for (var i=0; i<defaultCalendarOptionSelector.model.length; ++i) {
+                    if (defaultCalendarOptionSelector.model[i].collectionId === defaultCollectionId) {
+                        defaultCalendarOptionSelector.selectedIndex = i
+                        return
+                    }
+                }
+
+                defaultCalendarOptionSelector.selectedIndex = 0
+            }
+
+            SlotsLayout {
+                id: defaultCalendarLayout
+
+                mainSlot: Item {
+                    height: defaultCalendarOptionSelector.height
+
+                    OptionSelector {
+                        id: defaultCalendarOptionSelector
+
+                        text: i18n.tr("Default calendar")
+                        model: settingsPage.eventModel ? settingsPage.eventModel.getWritableAndSelectedCollections() : null
+                        containerHeight: itemHeight * 4 
+
+                        delegate: OptionSelectorDelegate {
+                            text: modelData.name
+                            height: units.gu(4)
+
+                            UbuntuShape{
+                                anchors {
+                                    right: parent.right
+                                    rightMargin: units.gu(4)
+                                    verticalCenter: parent.verticalCenter
+                                }
+
+                                 width: height
+                                 height: parent.height - units.gu(2)
+                                 color: modelData.color
+                            }
+                        }
+
+                        onDelegateClicked: settingsPage.eventModel.setDefaultCollection(model[index].collectionId)
                     }
                 }
             }

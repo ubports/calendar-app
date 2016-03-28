@@ -64,6 +64,7 @@ Item {
         name: "calendarsbutton"
         iconName: "settings"
         text: i18n.tr("Settings")
-        onTriggered: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"),{"settings": actionPool.settings});
+        onTriggered: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"), {"eventModel": eventModel,
+                                                                         "settings": actionPool.settings});
     }
 }

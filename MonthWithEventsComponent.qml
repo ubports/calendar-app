@@ -26,6 +26,7 @@ MonthComponent {
     objectName: "MonthComponent"
 
     property bool isActive: false
+    property alias autoUpdate: mainModel.autoUpdate
     property var modelFilter: invalidFilter
 
     onIsActiveChanged: {
@@ -56,6 +57,7 @@ MonthComponent {
 
     EventListModel {
         id: mainModel
+        objectName: "monthEventListModel"
 
         startPeriod: root.monthStartDate.midnight();
         endPeriod: root.monthStartDate.addDays((/*monthGrid.rows * cols */ 42 )-1).endOfDay()

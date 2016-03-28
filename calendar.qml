@@ -31,6 +31,29 @@ MainView {
     property int reminderDefaultValue: 900;
     readonly property bool syncInProgress: commonHeaderActions.syncInProgress
 
+    function handleUri(uri)
+    {
+        if(uri !== undefined && uri !== "") {
+            var commands = uri.split("://")[1].split("=");
+            if(commands[0].toLowerCase() === "eventid") {
+                // calendar://eventid=??
+                if( eventModel ) {
+                    // qtorganizer:eds::<event-id>
+                    var eventId = commands[1];
+                    var prefix = "qtorganizer:eds::";
+                    if (eventId.indexOf(prefix) < 0)
+                        eventId  = prefix + eventId;
+
+                    eventModel.showEventFromId(eventId);
+                }
+            } else if (commands[0].toLowerCase() === "startdate") {
+                var date = new Date(commands[1])
+                // this will be handled by Tabs.component.completed
+                tabs.starttime = date.getTime()
+            }
+        }
+    }
+
     // Work-around until this branch lands:
     // https://code.launchpad.net/~tpeeters/ubuntu-ui-toolkit/optIn-tabsDrawer/+merge/212496
     //property bool windowActive: typeof window != 'undefined'
@@ -100,21 +123,15 @@ MainView {
     Connections {
         target: UriHandler
         onOpened: {
-            var uri = uris[0]
-            if(uri !== undefined && uri !== "") {
-                var commands = uri.split("://")[1].split("=");
-                if(commands[0].toLowerCase() === "eventid") {
-                    // calendar://eventid=??
-                    if( eventModel ) {
-                        // qtorganizer:eds::<event-id>
-                        var eventId = commands[1];
-                        var prefix = "qtorganizer:eds::";
-                        if (eventId.indexOf(prefix) < 0)
-                            eventId  = prefix + eventId;
-
-                        eventModel.showEventFromId(eventId);
-                    }
+            handleUri(uris[0])
+            if (tabs.starttime !== -1) {
+                tabs.currentDay = new Date(tabs.starttime);
+                if (tabs.selectedTabIndex != dayTab.index)
+                    tabs.selectedTabIndex = dayTab.index
+                else {
+                    dayTab.page.item.showDate(tabs.currentDay)
                 }
+                tabs.starttime = -1
             }
         }
     }
@@ -177,6 +194,7 @@ MainView {
 
         EventListModel{
             id: eventModel
+            objectName: "calendarEventList"
 
             property bool isReady: false
 
@@ -239,11 +257,16 @@ MainView {
                 var requestId = "";
                 var callbackFunc = function(id,fetchedItems) {
                     if( requestId === id && fetchedItems.length > 0 ) {
-                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":fetchedItems[0],"model": eventModel});
+                        var event = fetchedItems[0]
+                        var currentPage = tabs.selectedTab.page.item
+                        if (currentPage.showDate) {
+                            currentPage.showDate(event.startDateTime)
+                        }
+
+                        pageStack.push(Qt.resolvedUrl("EventDetails.qml"),{"event":event,"model": eventModel});
                     }
                     eventModel.onItemsFetched.disconnect( callbackFunc );
                 }
-
                 eventModel.onItemsFetched.connect( callbackFunc );
                 requestId = eventModel.fetchItems(eventId);
             }
@@ -281,8 +304,8 @@ MainView {
 
             // Arguments on startup
             property bool newevent: false;
-            property int starttime: -1;
-            property int endtime: -1;
+            property real starttime: -1;
+            property real endtime: -1;
             property string eventId;
 
             //WORKAROUND: The new header api does not work with tabs check bug: #1539759
@@ -379,14 +402,20 @@ MainView {
                 var starttimepattern = new RegExp ("starttime=\\d+");
                 var endtimepattern = new RegExp ("endtime=\\d+");
                 var eventIdpattern = new RegExp ("eventId=.*")
+                var urlpattern = new RegExp("calendar://.*")
+
+                if (urlpattern.test(url)) {
+                    handleUri(url)
+                    return
+                }
 
                 newevent = newevenpattern.test(url);
 
                 if (starttimepattern.test(url))
-                    starttime = url.match(/starttime=(\d+)/)[1];
+                    starttime = parseInt(url.match(/starttime=(\d+)/)[1]);
 
                 if (endtimepattern.test(url))
-                    endtime = url.match(/endtime=(\d+)/)[1];
+                    endtime = parseInt(url.match(/endtime=(\d+)/)[1]);
 
                 if (eventIdpattern.test(url))
                     eventId = url.match(/eventId=(.*)/)[1];
@@ -395,20 +424,17 @@ MainView {
             Component.onCompleted: {
                 // If an url has been set
                 if (args.defaultArgument.at(0)) {
-                    parseArguments(args.defaultArgument.at(0))
                     tabs.currentDay = new Date()
+                    parseArguments(args.defaultArgument.at(0))
                     // If newevent has been called on startup
                     if (newevent) {
                         timer.running = true;
                     }
                     else if (starttime !== -1) { // If no newevent has been setted, but starttime
-                        var startTime = parseInt(starttime);
-                        tabs.currentDay = new Date(startTime);
-
+                        tabs.currentDay = new Date(tabs.starttime);
                         // If also endtime has been settend
                         if (endtime !== -1) {
-                            var endTime = parseInt(endtime);
-                            tabs.selectedTabIndex = calculateDifferenceStarttimeEndtime(startTime, endTime);
+                            tabs.selectedTabIndex = calculateDifferenceStarttimeEndtime(tabs.startTime, tabs.endTime);
                         }
                         else {
                             // If no endtime has been setted, open the starttime date in day view
@@ -431,6 +457,9 @@ MainView {
                 else {
                     tabs.selectedTabIndex = settings.defaultViewIndex;
                 }
+                tabs.starttime = -1
+                tabs.endtime = -1
+                tabs.eventId = ""
                 tabs.isReady = true
                 // WORKAROUND: Due the missing feature on SDK, they can not detect if
                 // there is a mouse attached to device or not. And this will cause the
@@ -574,6 +603,11 @@ MainView {
         YearView {
             readonly property bool tabSelected: tabs.selectedTabIndex === yearTab.index
 
+            function showDate(date)
+            {
+                refreshCurrentYear(date.getFullYear())
+            }
+
             reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabSelected
@@ -596,7 +630,7 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
-                    refreshCurrentYear(tabs.currentDay.getFullYear())
+                    showDate(tabs.currentDay)
                 }
             }
         }
@@ -607,6 +641,14 @@ MainView {
 
         MonthView {
             readonly property bool tabSelected: tabs.selectedTabIndex === monthTab.index
+
+            function showDate(date)
+            {
+                anchorDate = new Date(date.getFullYear(),
+                                      date.getMonth(),
+                                      1,
+                                      0, 0, 0)
+            }
 
             reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
@@ -631,10 +673,7 @@ MainView {
 
             onTabSelectedChanged: {
                     if (tabSelected) {
-                        anchorDate = new Date(tabs.currentDay.getFullYear(),
-                                              tabs.currentDay.getMonth(),
-                                              1,
-                                              0, 0, 0)
+                        showDate(tabs.currentDay)
                     }
             }
         }
@@ -645,6 +684,18 @@ MainView {
 
         WeekView {
             readonly property bool tabSelected: tabs.selectedTab === weekTab
+
+            function showDate(date)
+            {
+                var dateGoTo = new Date(date)
+                if (!anchorDate ||
+                    (dateGoTo.getFullYear() != anchorDate.getFullYear()) ||
+                    (dateGoTo.getMonth() != anchorDate.getMonth()) ||
+                    (dateGoTo.getDate() != anchorDate.getDate())) {
+                    anchorDate = new Date(dateGoTo)
+                }
+                delayScrollToDate(dateGoTo)
+            }
 
             reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
@@ -673,16 +724,7 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
-                    // 'tabs.currntDay' can change after set 'anchorDate' to avoid that
-                    // create a copy of the current value
-                    var tabDate = new Date(tabs.currentDay)
-                    if (!anchorDate ||
-                        (tabs.currentDay.getFullYear() != anchorDate.getFullYear()) ||
-                        (tabs.currentDay.getMonth() != anchorDate.getMonth()) ||
-                        (tabs.currentDay.getDate() != anchorDate.getDate())) {
-                        anchorDate = new Date(tabDate)
-                    }
-                    delayScrollToDate(tabDate)
+                    showDate(tabs.currentDay)
                 }
             }
         }
@@ -693,6 +735,18 @@ MainView {
 
         DayView {
             readonly property bool tabSelected: tabs.selectedTabIndex === dayTab.index
+
+            function showDate(date)
+            {
+                var dateGoTo = new Date(date)
+                if (!currentDate ||
+                    (dateGoTo.getFullYear() !== currentDate.getFullYear()) ||
+                    (dateGoTo.getMonth() !== currentDate.getMonth()) ||
+                    (dateGoTo.getDate() !== currentDate.getDate())) {
+                    anchorDate = new Date(dateGoTo)
+                }
+                delayScrollToDate(dateGoTo)
+            }
 
             reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
@@ -713,16 +767,7 @@ MainView {
 
             onTabSelectedChanged: {
                 if (tabSelected) {
-                    // 'tabs.currntDay' can change after set 'anchorDate' to avoid that
-                    // create a copy of the current value
-                    var tabDate = new Date(tabs.currentDay)
-                    if (!anchorDate ||
-                        (tabs.currentDay.getFullYear() != anchorDate.getFullYear()) ||
-                        (tabs.currentDay.getMonth() != anchorDate.getMonth()) ||
-                        (tabs.currentDay.getDate() != anchorDate.getDate())) {
-                        anchorDate = new Date(tabDate)
-                    }
-                    delayScrollToDate(tabDate)
+                    showDate(tabs.currentDay)
                 }
             }
         }
@@ -732,6 +777,8 @@ MainView {
         id: agendaViewComp
 
         AgendaView {
+            readonly property bool tabSelected: tabs.selectedTab === agendaTab
+
             reminderValue: mainView.reminderDefaultValue
             model: eventModel.isReady ? eventModel : null
             bootomEdgeEnabled: tabs.selectedTabIndex === agendaTab.index
