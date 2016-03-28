@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-23 00:58-0300\n"
-"PO-Revision-Date: 2016-03-12 09:08+0000\n"
+"PO-Revision-Date: 2016-03-27 10:09+0000\n"
 "Last-Translator: Jared Norris <jarednorris@ubuntu.com>\n"
 "Language-Team: English (Australia) <en_AU@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-24 06:05+0000\n"
-"X-Generator: Launchpad (build 17958)\n"
+"X-Launchpad-Export-Date: 2016-03-28 05:43+0000\n"
+"X-Generator: Launchpad (build 17967)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:344 ../calendar.qml:576
 msgid "Agenda"
@@ -52,8 +52,8 @@ msgstr "New event"
 #, qt-format
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 event"
+msgstr[1] "%1 events"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:152
@@ -87,17 +87,19 @@ msgstr "Add online Calendar"
 
 #: ../CalendarChoicePopup.qml:166
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Unable to deselect"
 
 #: ../CalendarChoicePopup.qml:167
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"In order to create new events you must have at least one writable calendar "
+"selected"
 
 #: ../CalendarChoicePopup.qml:169
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -206,15 +208,15 @@ msgstr "Calendar"
 
 #: ../EventDetails.qml:369
 msgid "Not Attending"
-msgstr ""
+msgstr "Not Attending"
 
 #: ../EventDetails.qml:373
 msgid "Attending"
-msgstr ""
+msgstr "Attending"
 
 #: ../EventDetails.qml:377
 msgid "No Reply"
-msgstr ""
+msgstr "No Reply"
 
 #: ../EventDetails.qml:400 ../NewEvent.qml:515
 msgid "Description"
@@ -438,11 +440,11 @@ msgstr "Show lunar calendar"
 
 #: ../SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Default reminder"
 
 #: ../SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "Default calendar"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:54
