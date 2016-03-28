@@ -38,6 +38,7 @@ Item{
     property Flickable flickable;
     property bool isEventBubble: true
     property real minimumHeight: units.gu(4)
+    property alias strikeoutTitle: eventTitle.font.strikeout
 
     readonly property bool isSingleLine: (infoBubble.height < (minimumHeight * 2))
     readonly property real startTimeInMinutes: event ? CanlendarCanvas.minutesSince(infoBubble.anchorDate, event.startDateTime) : 0.0
@@ -64,11 +65,10 @@ Item{
             }
 
             if( endDateTime >= now) {
+                bg.color = collection.color
+
                 if( getOwnersStatus(collection) === EventAttendee.StatusDeclined ) {
-                    //if owner of account is not attending event the dim it
-                    bg.color = Qt.tint( collection.color, "#aaffffff" );
-                } else {
-                    bg.color = collection.color
+                    infoBubble.strikeoutTitle = true;
                 }
             } else {
                 //if event is on past then add some white color to original color
