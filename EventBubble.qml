@@ -65,12 +65,10 @@ Item{
             }
 
             if( endDateTime >= now) {
+                bg.color = collection.color
+
                 if( getOwnersStatus(collection) === EventAttendee.StatusDeclined ) {
-                    //if owner of account is not attending event the dim it
-                    bg.color = Qt.tint( collection.color, "#aaffffff" );
                     infoBubble.strikeoutTitle = true;
-                } else {
-                    bg.color = collection.color
                 }
             } else {
                 //if event is on past then add some white color to original color
