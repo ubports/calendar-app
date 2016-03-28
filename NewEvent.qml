@@ -50,7 +50,7 @@ Page {
     property bool isEdit: false
 
     readonly property int millisecsInADay: 86400000
-    readonly property int millisecsInAHour: 3600000
+    readonly property int millisecsInAnHour: 3600000
 
     signal eventAdded(var event);
     signal eventDeleted(var event);
@@ -444,7 +444,7 @@ Page {
                 }
                 onDateTimeChanged: {
                     if (dateTime.getTime() < startDate.getTime()) {
-                        root.eventSize = root.allDay ? 0 : root.millisecsInAHour
+                        root.eventSize = root.allDay ? 0 : root.millisecsInAnHour
                         dateTime = new Date(startDate.getTime() + root.eventSize)
                         return
                     }
@@ -474,7 +474,7 @@ Page {
                         if (checked)
                             root.eventSize = Math.max(endDate.midnight().getTime() - startDate.midnight().getTime(), 0)
                         else
-                            root.eventSize = Math.max(endDate.getTime() - startDate.getTime(), root.millisecsInAHour)
+                            root.eventSize = Math.max(endDate.getTime() - startDate.getTime(), root.millisecsInAnHour)
                     }
                 }
             }
