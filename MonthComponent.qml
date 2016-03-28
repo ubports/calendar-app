@@ -250,13 +250,20 @@ Item{
             var dayItem = getItemAt(mouse.x, mouse.y)
 
             if( dayItem.isSelected ) {
-                var selectedDate = new Date(dayItem.delegateDate.getTime());
+                var selectedDate = new Date(dayItem.delegateDate.getFullYear(),
+                                            dayItem.delegateDate.getMonth(),
+                                            dayItem.delegateDate.getDate(),
+                                            0, 0, 0, 0);
+
                 pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
             }
         }
         onClicked: {
             var dayItem = getItemAt(mouse.x, mouse.y)
-            var selectedDate = new Date(dayItem.delegateDate.getTime());
+            var selectedDate = new Date(dayItem.delegateDate.getFullYear(),
+                                        dayItem.delegateDate.getMonth(),
+                                        dayItem.delegateDate.getDate(),
+                                        0, 0, 0, 0);
             if (root.isYearView) {
                 //If yearView is clicked then open selected MonthView
                 root.monthSelected(selectedDate);
