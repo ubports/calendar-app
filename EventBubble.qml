@@ -79,23 +79,24 @@ Item{
             infoBubble.strikeoutTitle = false;
 
             if( endDateTime >= now) {
-                if (getOwnersStatus(collection) === EventAttendee.StatusDeclined) {
+                var ownerStatus = getOwnersStatus(collection);
+                if (ownersStatus === EventAttendee.StatusDeclined) {
                     // Declined events: As per accepted events with strike-through text.
                     infoBubble.strikeoutTitle = true;
 
-                } else if (getOwnersStatus(collection) === EventAttendee.StatusTentative) {
+                } else if (ownersStatus === EventAttendee.StatusTentative) {
                     //Maybe events: As per accepted events with ‘(?)’ placed before Event Title.
                     infoBubble.titleText = "(?) " + infoBubble.titleText
 
-                } else if (getOwnersStatus(collection) !== EventAttendee.StatusAccepted) {
+                } else if (ownersStatus !== EventAttendee.StatusAccepted) {
                     //Unresponded events: Accepted event colours inverted (i.e. collection color text/ outline on white background).
                     infoBubble.backgroundColor = "white"
                     infoBubble.titleColor = collection.color;
 
                 }
             } else {
-                // Past events: As per accepted events, but at 50% transparency.
-                infoBubble.backgroundOpacity = 0.50
+                // Past events: As per accepted events, but at 75% transparency.
+                infoBubble.backgroundOpacity = 0.25
             }
         }
     }
@@ -112,6 +113,8 @@ Item{
                 }
             }
         }
+
+        return EventAttendee.StatusAccepted;
     }
 
     function updateTitle() {
