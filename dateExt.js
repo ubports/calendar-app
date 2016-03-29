@@ -60,19 +60,19 @@ Date.prototype.endOfDay = function() {
 }
 
 Date.prototype.addDays = function(days) {
-    if (days === 0)
-        return this
-
     var date = new Date(this)
+    if (days === 0)
+        return date
+
     date.setDate(date.getDate() + days);
     return date
 }
 
 Date.prototype.addMinutes = function(minutes) {
-    if (minutes === 0)
-        return this
-
     var date = new Date(this)
+    if (minutes === 0)
+        return date
+
     date.setMinutes(date.getMinutes() + minutes);
     return date
 }
