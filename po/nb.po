@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-23 00:58-0300\n"
-"PO-Revision-Date: 2016-03-08 11:21+0000\n"
+"PO-Revision-Date: 2016-03-28 18:44+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-24 06:04+0000\n"
-"X-Generator: Launchpad (build 17958)\n"
+"X-Launchpad-Export-Date: 2016-03-29 05:38+0000\n"
+"X-Generator: Launchpad (build 17967)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:344 ../calendar.qml:576
 msgid "Agenda"
@@ -52,8 +52,8 @@ msgstr "Ny hendelse"
 #, qt-format
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 hendelse"
+msgstr[1] "%1 hendelser"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:152
@@ -87,17 +87,17 @@ msgstr "Legg til nettbasert kalender"
 
 #: ../CalendarChoicePopup.qml:166
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Klarte ikke å fjerne markering"
 
 #: ../CalendarChoicePopup.qml:167
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
-msgstr ""
+msgstr "Du må markere minst én kalender for å kunne lage nye hendelser"
 
 #: ../CalendarChoicePopup.qml:169
 msgid "Ok"
-msgstr ""
+msgstr "OK"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -207,15 +207,15 @@ msgstr "Kalender"
 
 #: ../EventDetails.qml:369
 msgid "Not Attending"
-msgstr ""
+msgstr "Deltar ikke"
 
 #: ../EventDetails.qml:373
 msgid "Attending"
-msgstr ""
+msgstr "Deltar"
 
 #: ../EventDetails.qml:377
 msgid "No Reply"
-msgstr ""
+msgstr "Ikke svart"
 
 #: ../EventDetails.qml:400 ../NewEvent.qml:515
 msgid "Description"
@@ -439,11 +439,11 @@ msgstr "Vis månekalender"
 
 #: ../SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Forvalgt påminnelse"
 
 #: ../SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "Forvalgt kalender"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:54
