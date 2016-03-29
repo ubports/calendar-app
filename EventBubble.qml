@@ -38,7 +38,13 @@ Item{
     property Flickable flickable;
     property bool isEventBubble: true
     property real minimumHeight: units.gu(4)
+
+    // Event bubble style
+    property alias titleText: eventTitle.text
+    property alias titleColor: eventTitle.color
     property alias strikeoutTitle: eventTitle.font.strikeout
+    property alias backgroundColor: bg.color
+    property alias backgroundOpacity: bg.opacity
 
     readonly property bool isSingleLine: (infoBubble.height < (minimumHeight * 2))
     readonly property real startTimeInMinutes: event ? CanlendarCanvas.minutesSince(infoBubble.anchorDate, event.startDateTime) : 0.0
@@ -52,10 +58,10 @@ Item{
     Connections {
         target: model
         ignoreUnknownSignals: true
-        onCollectionsChanged: assignBgColor()
+        onCollectionsChanged: updateEventBubbleStyle()
     }
 
-    function assignBgColor() {
+    function updateEventBubbleStyle() {
         if (model && event ) {
             var collection = model.collection( event.collectionId );
             var now = new Date();
@@ -64,15 +70,32 @@ Item{
                 endDateTime = event.startDateTime;
             }
 
-            if( endDateTime >= now) {
-                bg.color = collection.color
+            updateTitle()
 
-                if( getOwnersStatus(collection) === EventAttendee.StatusDeclined ) {
+            //Accepted events: Solid collection color with white text.
+            infoBubble.backgroundColor = collection.color
+            infoBubble.backgroundOpacity = 1
+            infoBubble.titleColor = "white";
+            infoBubble.strikeoutTitle = false;
+
+            if( endDateTime >= now) {
+                if (getOwnersStatus(collection) === EventAttendee.StatusDeclined) {
+                    // Declined events: As per accepted events with strike-through text.
                     infoBubble.strikeoutTitle = true;
+
+                } else if (getOwnersStatus(collection) === EventAttendee.StatusTentative) {
+                    //Maybe events: As per accepted events with ‘(?)’ placed before Event Title.
+                    infoBubble.titleText = "(?) " + infoBubble.titleText
+
+                } else if (getOwnersStatus(collection) !== EventAttendee.StatusAccepted) {
+                    //Unresponded events: Accepted event colours inverted (i.e. collection color text/ outline on white background).
+                    infoBubble.backgroundColor = "white"
+                    infoBubble.titleColor = collection.color;
+
                 }
             } else {
-                //if event is on past then add some white color to original color
-                bg.color = Qt.tint( collection.color, "#aaffffff" );
+                // Past events: As per accepted events, but at 50% transparency.
+                infoBubble.backgroundOpacity = 0.50
             }
         }
     }
@@ -106,12 +129,12 @@ Item{
 
             //there is space for two lines
             if (infoBubble.isSingleLine) {
-                eventTitle.text =  ("%1 %2").arg(timeString).arg(event.displayLabel);
+                infoBubble.titleText =  ("%1 %2").arg(timeString).arg(event.displayLabel);
             } else {
-                eventTitle.text =  ("%1\n%2").arg(timeString).arg(event.displayLabel);
+                infoBubble.titleText =  ("%1\n%2").arg(timeString).arg(event.displayLabel);
             }
         } else {
-            eventTitle.text = event.displayLabel
+            infoBubble.titleText = event.displayLabel
         }
     }
 
@@ -124,10 +147,9 @@ Item{
         height = Math.max(minimumHeight, durationInMinutes * parent.minuteHeight)
     }
 
-    onIsSingleLineChanged: updateTitle()
+    onIsSingleLineChanged: updateEventBubbleStyle()
     onEventChanged: {
-        assignBgColor()
-        updateTitle()
+        updateEventBubbleStyle()
         resize()
     }
 
@@ -158,7 +180,6 @@ Item{
         }
         clip: true
         fontSize: "small"
-        color: "White"
         font.bold: true
     }
 
