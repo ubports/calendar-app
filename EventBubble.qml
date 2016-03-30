@@ -79,7 +79,7 @@ Item{
             infoBubble.strikeoutTitle = false;
 
             if( endDateTime >= now) {
-                var ownerStatus = getOwnersStatus(collection);
+                var ownersStatus = getOwnersStatus(collection);
                 if (ownersStatus === EventAttendee.StatusDeclined) {
                     // Declined events: As per accepted events with strike-through text.
                     infoBubble.strikeoutTitle = true;
