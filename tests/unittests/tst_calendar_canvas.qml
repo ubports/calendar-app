@@ -639,34 +639,34 @@ TestCase{
         compare(eventsA.event.displayLabel, "Event at 14:15 until 15:15")
         compare(eventsA.y, 0)
         compare(eventsA.intersectionCount, 5)
-        fuzzyCompare(eventsA.width, 0.2, 0.1)
+        fuzzyCompare(eventsA.width, 0.3, 0.1)
 
         //"Event at 14:30 until 15:00"
         var eventsB = eventMap[1]
         compare(eventsB.event.displayLabel, "Event at 14:30 until 15:00")
         compare(eventsB.y, 1)
         compare(eventsB.intersectionCount, 5)
-        fuzzyCompare(eventsB.width, 0.2, 0.1)
+        fuzzyCompare(eventsB.width, 0.3, 0.1)
 
         //"Event at 14:45 until 15:45"
         var eventsC = eventMap[2]
         compare(eventsC.event.displayLabel, "Event at 14:45 until 15:45")
         compare(eventsC.y, 2)
         compare(eventsC.intersectionCount, 5)
-        fuzzyCompare(eventsC.width, 0.2, 0.1)
+        fuzzyCompare(eventsC.width, 0.3, 0.1)
 
         //"Event at 15:30 until 16:30"
         var eventsD = eventMap[3]
         compare(eventsD.event.displayLabel, "Event at 15:30 until 16:30")
         compare(eventsD.y, 0)
         compare(eventsD.intersectionCount, 5)
-        fuzzyCompare(eventsD.width, 0.2, 0.1)
+        fuzzyCompare(eventsD.width, 0.3, 0.1)
 
         //"Event at 15:30 until 16:30 (1)"
         var eventsE = eventMap[4]
         compare(eventsE.event.displayLabel, "Event at 15:30 until 16:30 (1)")
         compare(eventsE.y, 1)
         compare(eventsE.intersectionCount, 5)
-        fuzzyCompare(eventsE.width, 0.2, 0.1)
+        fuzzyCompare(eventsE.width, 0.3, 0.1)
     }
 }
