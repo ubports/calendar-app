@@ -142,6 +142,7 @@ TestCase{
         eventBubble.updateEventBubbleStyle()
 
         compare(eventBubble.backgroundColor, root.collection.color)
+        compare(eventBubble.borderColor, "#ffffff")
         compare(eventBubble.backgroundOpacity, 1.0)
         compare(eventBubble.titleText, "Sample Test Event")
         compare(eventBubble.titleColor, "#ffffff")
@@ -160,6 +161,7 @@ TestCase{
         eventBubble.updateEventBubbleStyle()
 
         compare(eventBubble.backgroundColor, root.collection.color)
+        compare(eventBubble.borderColor, "#ffffff")
         compare(eventBubble.backgroundOpacity, 1.0)
         compare(eventBubble.titleText, "Sample Test Event")
         compare(eventBubble.titleColor, "#ffffff")
@@ -178,6 +180,7 @@ TestCase{
         eventBubble.updateEventBubbleStyle()
 
         compare(eventBubble.backgroundColor, root.collection.color)
+        compare(eventBubble.borderColor, "#ffffff")
         compare(eventBubble.backgroundOpacity, 1.0)
         compare(eventBubble.titleText, "(?) Sample Test Event")
         compare(eventBubble.titleColor, "#ffffff")
@@ -196,6 +199,7 @@ TestCase{
         eventBubble.updateEventBubbleStyle()
 
         compare(eventBubble.backgroundColor, "#ffffff")
+        compare(eventBubble.borderColor, root.collection.color)
         compare(eventBubble.backgroundOpacity, 1.0)
         compare(eventBubble.titleText, "Sample Test Event")
         compare(eventBubble.titleColor, root.collection.color)

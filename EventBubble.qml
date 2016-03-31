@@ -45,6 +45,7 @@ Item{
     property alias strikeoutTitle: eventTitle.font.strikeout
     property alias backgroundColor: bg.color
     property alias backgroundOpacity: bg.opacity
+    property color borderColor: "white"
 
     readonly property bool isSingleLine: (infoBubble.height < (minimumHeight * 2))
     readonly property real startTimeInMinutes: event ? CanlendarCanvas.minutesSince(infoBubble.anchorDate, event.startDateTime) : 0.0
@@ -77,6 +78,7 @@ Item{
             infoBubble.backgroundOpacity = 1
             infoBubble.titleColor = "white";
             infoBubble.strikeoutTitle = false;
+            infoBubble.borderColor = "white";
 
             if( endDateTime >= now) {
                 var ownersStatus = getOwnersStatus(collection);
@@ -92,6 +94,7 @@ Item{
                     //Unresponded events: Accepted event colours inverted (i.e. collection color text/ outline on white background).
                     infoBubble.backgroundColor = "white"
                     infoBubble.titleColor = collection.color;
+                    infoBubble.borderColor = collection.color;
 
                 }
             } else {
@@ -171,7 +174,7 @@ Item{
     Rectangle{
         id: bg
         anchors.fill: parent
-        border.color: isLiveEditing ? "red" : "white"
+        border.color: isLiveEditing ? "red" : infoBubble.borderColor
     }
 
     Label {
