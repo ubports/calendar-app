@@ -165,7 +165,7 @@ Page {
             }
 
             model: Defines.recurrenceLabel
-            containerHeight: itemHeight * 4
+            containerHeight: itemHeight * model.length
             onExpandedChanged: Qt.inputMethod.hide();
         }
 

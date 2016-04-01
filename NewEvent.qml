@@ -736,15 +736,25 @@ Page {
 
                 onClicked:{
                     var stack = pageStack
-                    if (!stack)
+                    if (!stack) {
                         stack = bottomEdgePageStack
+                    }
 
-                    var reminderPick = stack.push(Qt.resolvedUrl("EventReminder.qml"),
-                                                   {"reminderTime": root.reminderValue,
-                                                    "reminderModel": reminderModel,
-                                                    "eventTitle": titleEdit.text})
-                    reminderPick.reminderTimeUpdated.connect(function(value) {
-                        root.reminderValue = value
+                    var reminderSelectedIndex = 0
+                    if (eventReminder.reminderValue !== -1) {
+                        for (var i=0; i<reminderModel.count; ++i) {
+                            if (reminderModel.get(i).value === eventReminder.reminderValue) {
+                                reminderSelectedIndex = i
+                            }
+                        }
+                    }
+
+                    var reminderPick = stack.push(Qt.resolvedUrl("OptionSelectorPage.qml"),
+                                                   {"title": i18n.tr("Reminder"),
+                                                    "model": reminderModel,
+                                                    "selectedIndex": reminderSelectedIndex})
+                    reminderPick.selectedIndexChanged.connect(function() {
+                        root.reminderValue = reminderModel.get(reminderPick.selectedIndex).value
                     })
                 }
             }
