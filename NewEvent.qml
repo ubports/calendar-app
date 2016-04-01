@@ -219,6 +219,11 @@ Page {
             var isOcurrence = ((event.itemType === Type.EventOccurrence) || (event.itemType === Type.TodoOccurrence))
             if (!isOcurrence) {
                 if(rule !== null && rule !== undefined) {
+                    // update monthly rule with final event day
+                    // we need to do it here to make sure that the day is the same day as the event startDate
+                    if (rule.frequency === RecurrenceRule.Monthly) {
+                        rule.daysOfMonth = [event.startDateTime.getDate()]
+                    }
                     event.recurrence.recurrenceRules = [rule]
                 } else {
                     event.recurrence.recurrenceRules = [];
@@ -230,7 +235,7 @@ Page {
             var reminder = event.detail(Detail.AudibleReminder);
             if (root.reminderValue >= 0) {
                 if (!reminder) {
-                    reminder = Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder {}", root, "")
+                    reminder = Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder {}", event, "")
                     reminder.repetitionCount = 0
                     reminder.repetitionDelay = 0
                 }
@@ -241,7 +246,6 @@ Page {
             }
 
             event.collectionId = calendarsOption.model[calendarsOption.selectedIndex].collectionId;
-            model.setDefaultCollection(event.collectionId);
 
             var comment = event.detail(Detail.Comment);
             if(comment && comment.comment === "X-CAL-DEFAULT-EVENT") {
@@ -249,9 +253,9 @@ Page {
             }
 
             model.saveItem(event)
+            root.eventAdded(event);
             if (pageStack)
                 pageStack.pop();
-            root.eventAdded(event);
         }
     }
 
