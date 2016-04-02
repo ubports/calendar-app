@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-23 00:58-0300\n"
-"PO-Revision-Date: 2016-03-22 17:34+0000\n"
+"PO-Revision-Date: 2016-04-01 17:26+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-03-24 06:04+0000\n"
-"X-Generator: Launchpad (build 17958)\n"
+"X-Launchpad-Export-Date: 2016-04-02 06:22+0000\n"
+"X-Generator: Launchpad (build 17972)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:344 ../calendar.qml:576
 msgid "Agenda"
@@ -90,17 +90,19 @@ msgstr "Додати календар у інтернеті"
 
 #: ../CalendarChoicePopup.qml:166
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Не вдалося скасувати позначення"
 
 #: ../CalendarChoicePopup.qml:167
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"Для створення нових записів подій вам слід позначити принаймні один "
+"придатний для запису календар."
 
 #: ../CalendarChoicePopup.qml:169
 msgid "Ok"
-msgstr ""
+msgstr "Гаразд"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
