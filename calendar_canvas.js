@@ -3,7 +3,6 @@
 
 function minutesSince(since, until)
 {
-
     var sinceTime = new Date(since)
     sinceTime.setSeconds(0)
     var untilTime =  new Date(until)
