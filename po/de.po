@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-23 00:58-0300\n"
-"PO-Revision-Date: 2016-03-30 20:40+0000\n"
-"Last-Translator: Alexander Dobetsberger <Unknown>\n"
+"PO-Revision-Date: 2016-04-01 13:37+0000\n"
+"Last-Translator: Tobias Bannert <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-31 05:47+0000\n"
-"X-Generator: Launchpad (build 17967)\n"
+"X-Launchpad-Export-Date: 2016-04-02 06:22+0000\n"
+"X-Generator: Launchpad (build 17972)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:344 ../calendar.qml:576
 msgid "Agenda"
@@ -36,7 +36,7 @@ msgstr "Kalender aktivieren"
 
 #: ../AgendaView.qml:195
 msgid "no event name set"
-msgstr ""
+msgstr "kein Ereignisname festgelegt"
 
 #: ../AgendaView.qml:197
 msgid "no location"
@@ -52,8 +52,8 @@ msgstr "Neues Ereignis"
 #, qt-format
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 Ereignis"
+msgstr[1] "%1 Ereignisse"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:152
@@ -83,17 +83,19 @@ msgstr "Synchronisierung läuft"
 
 #: ../CalendarChoicePopup.qml:72
 msgid "Add online Calendar"
-msgstr "Online-Kalender hinzufügen"
+msgstr "Internetkalender hinzufügen"
 
 #: ../CalendarChoicePopup.qml:166
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Nicht möglich abzuwählen"
 
 #: ../CalendarChoicePopup.qml:167
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"Damit Sie ein neues Ereignis erstellen können, muss mindestens ein "
+"beschreibbarer Kalender ausgewählt sein."
 
 #: ../CalendarChoicePopup.qml:169
 msgid "Ok"
@@ -214,7 +216,7 @@ msgstr "Teilnehmend"
 
 #: ../EventDetails.qml:377
 msgid "No Reply"
-msgstr ""
+msgstr "Keine Antwort"
 
 #: ../EventDetails.qml:400 ../NewEvent.qml:515
 msgid "Description"

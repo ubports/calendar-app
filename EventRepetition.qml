@@ -100,7 +100,7 @@ Page {
 
             if (recurrenceRule !== RecurrenceRule.Invalid) {
                 if (eventRoot.rule === null || eventRoot.rule === undefined ){
-                    eventRoot.rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", eventRoot.event.recurrence,"EventRepetition.qml");
+                    eventRoot.rule = Qt.createQmlObject("import QtOrganizer 5.0; RecurrenceRule {}", eventRoot.event,"EventRepetition.qml");
                 }
 
                 var rule = eventRoot.rule;
@@ -114,7 +114,6 @@ Page {
                     rule.daysOfWeek = eventUtils.getDaysOfWeek(recurrenceOption.selectedIndex, weekDays );
                     break;
                 case 6: //monthly
-                    rule.daysOfMonth = [eventRoot.startDate.getDate()];
                     break;
                 case 7: //yearly
                     break;
