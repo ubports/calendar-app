@@ -105,7 +105,9 @@ Item{
     }
 
     function getOwnersStatus(collection) {
-        var attendees = event.attendees;
+        // Use details method to get attendees list instead of "attendees" property
+        // since a binding issue was returning an empty attendees list for some use cases
+        var attendees = event.details(Detail.EventAttendee);
         if( attendees !== undefined ) {
             for (var j = 0 ; j < attendees.length ; ++j) {
                 var contact = attendees[j];

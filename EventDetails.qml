@@ -103,12 +103,11 @@ Page {
     }
 
     function updateContacts(event) {
-        var attendees
-        var attendingCount, notAttendingCount
-
-        attendingCount = 0
-        notAttendingCount = 0
-        attendees = event.attendees
+        // Use details method to get attendees list instead of "attendees" property
+        // since a binding issue was returning an empty attendees list for some use cases
+        var attendees = event.details(Detail.EventAttendee)
+        var attendingCount = 0
+        var notAttendingCount = 0
 
         contactModel.clear();
 
