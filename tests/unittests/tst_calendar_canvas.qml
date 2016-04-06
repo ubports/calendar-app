@@ -16,7 +16,7 @@ TestCase{
 
             manager: "memory"
             startPeriod: new Date(2016, 7, 2, 0, 0, 0, 0)
-            endPeriod: new Date(2016, 13, 2, 0, 0, 0, 0)
+            endPeriod: new Date(2016, 11, 2, 0, 0, 0, 0)
             autoUpdate: true
         }
     }
@@ -668,5 +668,60 @@ TestCase{
         compare(eventsE.y, 1)
         compare(eventsE.intersectionCount, 5)
         fuzzyCompare(eventsE.width, 0.3, 0.1)
+    }
+
+    // Event starts a day before
+    //    00:00 |XX| ----
+    //          |XX| ----
+    //    01:00 ---- ----
+    function test_starts_a_day_before()
+    {
+        var data = [{startDate: new Date(2016, 7, 2, 23, 0, 0, 0),
+                     endDate: new Date(2016, 7, 3, 1, 0, 0, 0),
+                     label: "Event at 23:00 until 1:00"}
+                ]
+        var model = create_events(data)
+
+        var startDate = new Date(2016, 7, 3, 11, 11, 11, 11)
+        worker.start(model, startDate)
+        tryCompare(worker, 'done', true)
+        var eventMap = worker.reply
+
+        // "Event at 23:00 until 1:00"
+        var eventsA = eventMap[0]
+        compare(eventsA.event.displayLabel, "Event at 23:00 until 1:00")
+        compare(eventsA.y, 0)
+        compare(eventsA.startTime, 0)
+        compare(eventsA.endTime, 60)
+        compare(eventsA.intersectionCount, 1)
+        fuzzyCompare(eventsA.width, 1.0, 0.0)
+    }
+
+    // Event ends a day after
+    //    22:00 |XX| ----
+    //          |XX| ----
+    //    23:00 |XX| ----
+    ///         |XX| ----
+    function test_ends_a_day_after()
+    {
+        var data = [{startDate: new Date(2016, 7, 2, 22, 0, 0, 0),
+                     endDate: new Date(2016, 7, 3, 1, 0, 0, 0),
+                     label: "Event at 22:00 until 1:00"}
+                ]
+        var model = create_events(data)
+
+        var startDate = new Date(2016, 7, 2, 0, 0, 0, 0)
+        worker.start(model, startDate)
+        tryCompare(worker, 'done', true)
+        var eventMap = worker.reply
+
+        // "Event at 22:00 until 1:00"
+        var eventsA = eventMap[0]
+        compare(eventsA.event.displayLabel, "Event at 22:00 until 1:00")
+        compare(eventsA.y, 0)
+        compare(eventsA.intersectionCount, 1)
+        fuzzyCompare(eventsA.startTime, 1320, 0.1)
+        fuzzyCompare(eventsA.endTime, 1440, 0.1)
+        fuzzyCompare(eventsA.width, 1.0, 0.0)
     }
 }

@@ -8,6 +8,13 @@ function minutesSince(since, until)
     var untilTime =  new Date(until)
     untilTime.setSeconds(0)
 
+    // We need that to avoid problems with DST times
+    // Without this the event will be showed in the wrong time on the day that the DST occur
+    // Example: 27/03 (Europe/Paris)
+    if (sinceTime.isSameDay(untilTime)) {
+        return (untilTime.getHours() * 60) + untilTime.getMinutes();
+    }
+
     var sinceTimeInSecs = sinceTime.getTime()
     var untilTimeInSecs = untilTime.getTime()
 

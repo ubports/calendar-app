@@ -6,5 +6,8 @@
         "accounts",
         "push-notification-client"
     ],
+    "read_path": [
+        "/etc/writable/timezone"
+    ],
     "policy_version": 1.3
 }
