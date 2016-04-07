@@ -160,9 +160,12 @@ Page {
         var index = 0;
 
         if( e.itemType === Type.Event ) {
-            if(e.attendees){
-                for( var j = 0 ; j < e.attendees.length ; ++j ) {
-                    contactModel.append({"contact": e.attendees[j]});
+            // Use details method to get attendees list instead of "attendees" property
+            // since a binding issue was returning an empty attendees list for some use cases
+            var attendees = e.details(Detail.EventAttendee);
+            if(attendees){
+                for( var j = 0 ; j < attendees.length ; ++j ) {
+                    contactModel.append({"contact": attendees[j]});
                 }
             }
         }

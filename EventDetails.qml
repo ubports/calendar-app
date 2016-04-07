@@ -79,7 +79,6 @@ Page {
                 if (fetchedItems.length > 0) {
                     internal.parentEvent = fetchedItems[0];
                     updateRecurrence(internal.parentEvent);
-                    updateContacts(internal.parentEvent);
                 } else {
                     console.warn("Fail to fetch pareten event")
                 }
@@ -103,12 +102,9 @@ Page {
     }
 
     function updateContacts(event) {
-        var attendees
-        var attendingCount, notAttendingCount
-
-        attendingCount = 0
-        notAttendingCount = 0
-        attendees = event.attendees
+        // Use details method to get attendees list instead of "attendees" property
+        // since a binding issue was returning an empty attendees list for some use cases
+        var attendees = event.details(Detail.EventAttendee)
 
         contactModel.clear();
 
@@ -116,20 +112,19 @@ Page {
             for (var j = 0 ; j < attendees.length ; ++j) {
                 var name = attendees[j].name.trim().length === 0 ? attendees[j].emailAddress.replace("mailto:", "")
                                                                  : attendees[j].name
+                var participationStatus = attendees[j].participationStatus
+                if (participationStatus === EventAttendee.StatusAccepted) {
+                    contactModel.append({"name": name, "participationStatus": i18n.tr("Attending")});
 
-                // Sort the participating guests by Attending, Not-Attending and No-Reply for easier diaply in the list view.
-                if(attendees[j].participationStatus === 0) {
-                    contactModel.insert(attendingCount+notAttendingCount, {"name": name,"participationStatus": attendees[j].participationStatus})
-                    notAttendingCount++
-                }
+                } else if (participationStatus === EventAttendee.StatusDeclined) {
+                    contactModel.append({"name": name, "participationStatus": i18n.tr("Not Attending")});
 
-                else if(attendees[j].participationStatus === 1) {
-                    contactModel.insert(attendingCount, {"name": name,"participationStatus": attendees[j].participationStatus})
-                    attendingCount++
-                }
+                } else if (participationStatus === EventAttendee.StatusTentative) {
+                    contactModel.append({"name": name, "participationStatus": i18n.tr("Maybe")});
 
-                else {
-                    contactModel.append({"name": name,"participationStatus": attendees[j].participationStatus});
+                } else {
+                    contactModel.append({"name": name, "participationStatus": i18n.tr("No Reply")});
+
                 }
             }
         }
@@ -355,7 +350,7 @@ Page {
                 }
             }
 
-            ListView{
+            ListView {
                 model: contactModel
                 width: parent.width
                 height: count !== 0 ? (count+1) * units.gu(7): 0
@@ -363,35 +358,28 @@ Page {
 
                 section.property: "participationStatus"
                 section.labelPositioning: ViewSection.InlineLabels
-                section.delegate: ListItem {
-                    height: headerText.height + divider.height
+                section.delegate:  ListItem {
+                    height: sectionLayout.height
+                    divider.visible: false
                     ListItemLayout {
-                        id: headerText
-                        title.text: {
-                            if (section === "0") {
-                                return i18n.tr("Not Attending")
-                            }
-
-                            else if (section === "1") {
-                                return i18n.tr("Attending")
-                            }
-
-                            else if (section === "2") {
-                                return i18n.tr("No Reply")
-                            }
-                        }
+                        id: sectionLayout
+                        title.text: section
                         title.font.weight: Font.DemiBold
                     }
                 }
 
                 delegate: ListItem {
-                    height: contactListItemLayout.height + divider.height
+                    height: contactListItemLayout.height
+                    divider.visible: false
                     ListItemLayout {
                         id: contactListItemLayout
                         title.text: name
                     }
                 }
             }
+
+            // Add a ListItem to work as divider between the contact list model and the description list item
+            ListItem { height: units.gu(4) }
 
             ListItem {
                 id: descLabel
