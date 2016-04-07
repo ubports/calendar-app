@@ -379,7 +379,6 @@ Page {
             }
 
             // Add a ListItem to work as divider between the contact list model and the description list item
-            // This will be removed on the new event's details page
             ListItem { height: units.gu(4) }
 
             ListItem {
