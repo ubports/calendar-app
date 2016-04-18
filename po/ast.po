@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-03-23 00:58-0300\n"
-"PO-Revision-Date: 2016-03-14 17:08+0000\n"
+"PO-Revision-Date: 2016-04-17 15:58+0000\n"
 "Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
 "Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-24 06:04+0000\n"
-"X-Generator: Launchpad (build 17958)\n"
+"X-Launchpad-Export-Date: 2016-04-18 05:40+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:344 ../calendar.qml:576
 msgid "Agenda"
@@ -52,8 +52,8 @@ msgstr "Nueva actividá"
 #, qt-format
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 activ"
+msgstr[1] "%1  activs"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:152
@@ -87,17 +87,19 @@ msgstr "Añadir calendariu en llinia"
 
 #: ../CalendarChoicePopup.qml:166
 msgid "Unable to deselect"
-msgstr ""
+msgstr "nun pué deseleicionase"
 
 #: ../CalendarChoicePopup.qml:167
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"Pa poder crear nueves actividaes necesites tener seleicionáu polo menos un "
+"calendariu escribible"
 
 #: ../CalendarChoicePopup.qml:169
 msgid "Ok"
-msgstr ""
+msgstr "Aceutar"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -206,15 +208,15 @@ msgstr "Calendariu"
 
 #: ../EventDetails.qml:369
 msgid "Not Attending"
-msgstr ""
+msgstr "Nun asiste"
 
 #: ../EventDetails.qml:373
 msgid "Attending"
-msgstr ""
+msgstr "Asiste"
 
 #: ../EventDetails.qml:377
 msgid "No Reply"
-msgstr ""
+msgstr "Sin respuesta"
 
 #: ../EventDetails.qml:400 ../NewEvent.qml:515
 msgid "Description"
@@ -438,11 +440,11 @@ msgstr "Amosar calendariu llunar"
 
 #: ../SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Recordatoriu predetermináu"
 
 #: ../SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "Calendariu predetermináu"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:54
