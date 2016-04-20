@@ -108,24 +108,38 @@ Page {
 
         contactModel.clear();
 
+        var acceptedList = []
+        var declinedList = []
+        var tentativeList = []
+        var unknownList = []
+
         if( attendees !== undefined ) {
             for (var j = 0 ; j < attendees.length ; ++j) {
                 var name = attendees[j].name.trim().length === 0 ? attendees[j].emailAddress.replace("mailto:", "")
                                                                  : attendees[j].name
                 var participationStatus = attendees[j].participationStatus
-                if (participationStatus === EventAttendee.StatusAccepted) {
-                    contactModel.append({"name": name, "participationStatus": i18n.tr("Attending")});
-
-                } else if (participationStatus === EventAttendee.StatusDeclined) {
-                    contactModel.append({"name": name, "participationStatus": i18n.tr("Not Attending")});
-
-                } else if (participationStatus === EventAttendee.StatusTentative) {
-                    contactModel.append({"name": name, "participationStatus": i18n.tr("Maybe")});
-
+                if ( participationStatus === EventAttendee.StatusAccepted ) {
+                    acceptedList.push(name);
+                } else if ( participationStatus === EventAttendee.StatusDeclined ) {
+                    declinedList.push(name);
+                } else if ( participationStatus === EventAttendee.StatusTentative ) {
+                    tentativeList.push(name);
                 } else {
-                    contactModel.append({"name": name, "participationStatus": i18n.tr("No Reply")});
-
+                    unknownList.push(name);
                 }
+            }
+
+            for (var j = 0 ; j < acceptedList.length ; ++j) {
+                contactModel.append({"name": acceptedList[j], "participationStatus": EventAttendee.StatusAccepted});
+            }
+            for (var j = 0 ; j < declinedList.length ; ++j) {
+                contactModel.append({"name": declinedList[j], "participationStatus": EventAttendee.StatusDeclined});
+            }
+            for (var j = 0 ; j < tentativeList.length ; ++j) {
+                contactModel.append({"name": tentativeList[j], "participationStatus": EventAttendee.StatusTentative});
+            }
+            for (var j = 0 ; j < unknownList.length ; ++j) {
+                contactModel.append({"name": unknownList[j], "participationStatus": EventAttendee.StatusUnknown});
             }
         }
     }
@@ -266,7 +280,7 @@ Page {
         clip: interactive
         anchors.fill: parent
         contentWidth: parent.width
-        contentHeight: column.height + titleContainer.height
+        contentHeight: titleContainer.height + calendarListItem.height + attendeesListLoader.height + descLabel.height + reminderListItem.height
 
         Rectangle{
             id: titleContainer
@@ -316,44 +330,57 @@ Page {
             }
         }
 
-        Column{
-            id: column
+        ListItem {
+            id: calendarListItem
 
-            width: parent.width
-            anchors.top: titleContainer.bottom
-
-            ListItem {
-                height: units.gu(6)
-                Row{
-                    id: calendarNameRow
-
-                    spacing: units.gu(1)
-                    anchors { verticalCenter: parent.verticalCenter; left: parent.left; right: parent.right; margins: units.gu(2) }
-
-                    Label {
-                        text: i18n.tr("Calendar")
-                    }
-
-                    UbuntuShape{
-                        id: calendarIndicator
-                        width: parent.height
-                        height: width
-                        color: collection.color
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-
-                    Label{
-                        id:calendarName
-                        objectName: "calendarName"
-                        text: collection.name
-                    }
-                }
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: titleContainer.bottom
             }
 
-            ListView {
+            height: units.gu(6)
+
+            Row{
+                id: calendarNameRow
+
+                spacing: units.gu(1)
+                anchors { verticalCenter: parent.verticalCenter; left: parent.left; right: parent.right; margins: units.gu(2) }
+
+                Label {
+                    text: i18n.tr("Calendar")
+                }
+
+                UbuntuShape{
+                    id: calendarIndicator
+                    width: parent.height
+                    height: width
+                    color: collection.color
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                Label{
+                    id:calendarName
+                    objectName: "calendarName"
+                    text: collection.name
+                }
+            }
+        }
+
+        Loader {
+            id: attendeesListLoader
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: calendarListItem.bottom
+            }
+
+            active: contactModel.count > 0
+            height: active ? item.contentHeight : 0
+
+            sourceComponent: ListView {
                 model: contactModel
-                width: parent.width
-                height: count !== 0 ? (count+1) * units.gu(7): 0
                 interactive: false
 
                 section.property: "participationStatus"
@@ -363,51 +390,81 @@ Page {
                     divider.visible: false
                     ListItemLayout {
                         id: sectionLayout
-                        title.text: section
-                        title.font.weight: Font.DemiBold
+                        title.text: {
+                            if ( section == EventAttendee.StatusAccepted ) {
+                                return i18n.tr("Attending");
+                            } else if ( section == EventAttendee.StatusDeclined ) {
+                                return i18n.tr("Not Attending");
+                            } else if ( section == EventAttendee.StatusTentative ) {
+                                return i18n.tr("Maybe");
+                            } else {
+                                return i18n.tr("No Reply");
+                            }
+                        }
                     }
                 }
 
-                delegate: ListItem {
-                    height: contactListItemLayout.height
-                    divider.visible: false
-                    ListItemLayout {
-                        id: contactListItemLayout
-                        title.text: name
+                delegate: Label {
+                    anchors {
+                        left: parent.left;
+                        right: parent.right;
+                        leftMargin: units.gu(2)
+                        rightMargin: units.gu(2)
                     }
-                }
-            }
 
-            // Add a ListItem to work as divider between the contact list model and the description list item
-            ListItem { height: units.gu(4) }
-
-            ListItem {
-                id: descLabel
-                height: descTitle.height + desc.implicitHeight + divider.height + units.gu(4)
-                visible: desc.text !== ""
-
-                Label {
-                    id: descTitle
-                    text: i18n.tr("Description")
-                    anchors { left: parent.left; right: parent.right; top: parent.top; margins: units.gu(2); topMargin: units.gu(1.5) }
-                }
-
-                Label {
-                    id: desc
-                    text: event.description
                     textSize: Label.Small
                     color: UbuntuColors.graphite
                     wrapMode: Text.WordWrap
-                    anchors { left: parent.left; right: parent.right; top: descTitle.bottom; margins: units.gu(2); topMargin: units.gu(0.5) }
+
+                    text: name
                 }
+
+                footer: ListItem { height: units.gu(2) }
+            }
+        }
+
+        ListItem {
+            id: descLabel
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: attendeesListLoader.bottom
             }
 
-            ListItem {
-                height: reminderLayout.height + divider.height
-                ListItemLayout {
-                    id: reminderLayout
-                    title.text: i18n.tr("Reminder")
-                }
+            height: visible ? descTitle.height + desc.implicitHeight + divider.height + units.gu(4) : 0
+            visible: desc.text !== ""
+
+            Label {
+                id: descTitle
+                text: i18n.tr("Description")
+                anchors { left: parent.left; right: parent.right; top: parent.top; margins: units.gu(2); topMargin: units.gu(1.5) }
+            }
+
+            Label {
+                id: desc
+                text: event.description
+                textSize: Label.Small
+                color: UbuntuColors.graphite
+                wrapMode: Text.WordWrap
+                anchors { left: parent.left; right: parent.right; top: descTitle.bottom; margins: units.gu(2); topMargin: units.gu(0.5) }
+            }
+        }
+
+        ListItem {
+            id: reminderListItem
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: descLabel.bottom
+            }
+
+            height: reminderLayout.height + divider.height
+
+            ListItemLayout {
+                id: reminderLayout
+                title.text: i18n.tr("Reminder")
             }
         }
     }
