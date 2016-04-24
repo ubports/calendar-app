@@ -1,0 +1,492 @@
+# Uzbek translation for ubuntu-calendar-app
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the ubuntu-calendar-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ubuntu-calendar-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-03-23 00:58-0300\n"
+"PO-Revision-Date: 2016-04-23 12:58+0000\n"
+"Last-Translator: Ruslan Rustamov <rustamov@ruslanmedia.com>\n"
+"Language-Team: Uzbek <uz@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Launchpad-Export-Date: 2016-04-24 06:03+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
+
+#: ../AgendaView.qml:50 ../calendar.qml:344 ../calendar.qml:576
+msgid "Agenda"
+msgstr "Kun tartibi"
+
+#: ../AgendaView.qml:91
+msgid "You have no calendars enabled"
+msgstr "Faol taqvimlar yo‘q"
+
+#: ../AgendaView.qml:91
+msgid "No upcoming events"
+msgstr "Yaqinlashayotgan tadbirlar yo‘q"
+
+#: ../AgendaView.qml:103
+msgid "Enable calendars"
+msgstr "Taqvimni faollashtirish"
+
+#: ../AgendaView.qml:195
+msgid "no event name set"
+msgstr "tadbir nomi kiritilmagan"
+
+#: ../AgendaView.qml:197
+msgid "no location"
+msgstr "manzil kiritilmagan"
+
+#: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
+msgid "New event"
+msgstr "Yangi tadbir"
+
+#. TRANSLATORS: Please keep the translation of this string to a max of
+#. 5 characters as the week view where it is shown has limited space.
+#: ../AllDayEventComponent.qml:148
+#, qt-format
+msgid "%1 event"
+msgid_plural "%1 events"
+msgstr[0] "%1 ta tadbir"
+
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../AllDayEventComponent.qml:152
+#, qt-format
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
+msgstr[0] "%1 kunlik tadbirlar"
+
+#: ../CalendarChoicePopup.qml:34 ../EventActions.qml:54
+msgid "Calendars"
+msgstr "Taqvim"
+
+#: ../CalendarChoicePopup.qml:36 ../SettingsPage.qml:49
+msgid "Back"
+msgstr "Orqaga"
+
+#. TRANSLATORS: Please translate this string  to 15 characters only.
+#. Currently ,there is no way we can increase width of action menu currently.
+#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:39
+msgid "Sync"
+msgstr "Sinxronlash"
+
+#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:39
+msgid "Syncing"
+msgstr "Sinxronlanmoqda"
+
+#: ../CalendarChoicePopup.qml:72
+msgid "Add online Calendar"
+msgstr "Onlayn taqvim qo‘shish"
+
+#: ../CalendarChoicePopup.qml:166
+msgid "Unable to deselect"
+msgstr "Tanlanganni olib bo‘lmadi"
+
+#: ../CalendarChoicePopup.qml:167
+msgid ""
+"In order to create new events you must have at least one writable calendar "
+"selected"
+msgstr ""
+"Tartib bilan tadbirlarni qo‘shishingiz uchun kamida bitta ruhsat berilgan "
+"taqvimni tanlashingiz kerak"
+
+#: ../CalendarChoicePopup.qml:169
+msgid "Ok"
+msgstr "Ok"
+
+#: ../ColorPickerDialog.qml:25
+msgid "Select Color"
+msgstr "Rangni tanlash"
+
+#: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
+#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:341
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+#: ../ContactChoicePopup.qml:37
+msgid "No contact"
+msgstr "Kontakt yo‘q"
+
+#: ../ContactChoicePopup.qml:96
+msgid "Search contact"
+msgstr "Kontakt qidirish"
+
+#: ../DayView.qml:72 ../MonthView.qml:50 ../WeekView.qml:55 ../YearView.qml:57
+msgid "Today"
+msgstr "Bugun"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../DayView.qml:122 ../MonthView.qml:78 ../WeekView.qml:144
+msgid "MMMM yyyy"
+msgstr "MMMM yyyy"
+
+#: ../DeleteConfirmationDialog.qml:31
+msgid "Delete Recurring Event"
+msgstr "Takrorlanuvchi tadbirni o‘chirish"
+
+#: ../DeleteConfirmationDialog.qml:32
+msgid "Delete Event"
+msgstr "Tadbirni o‘chirish"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../DeleteConfirmationDialog.qml:36
+#, qt-format
+msgid "Delete only this event \"%1\", or all events in the series?"
+msgstr ""
+"Faqat “%1” tadbirini o‘chirasizmi yoki buning barcha qatoridagilarni?"
+
+#: ../DeleteConfirmationDialog.qml:37
+#, qt-format
+msgid "Are you sure you want to delete the event \"%1\"?"
+msgstr "Rostdan ham “%1” tadbirini o‘chirasizmi?"
+
+#: ../DeleteConfirmationDialog.qml:40
+msgid "Delete series"
+msgstr "Qatorni o‘chirish"
+
+#: ../DeleteConfirmationDialog.qml:51
+msgid "Delete this"
+msgstr "Buni o‘chirish"
+
+#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:348
+msgid "Delete"
+msgstr "O‘chirish"
+
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:336
+msgid "Edit Event"
+msgstr "Tadbirni tahrirlash"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../EditEventConfirmationDialog.qml:32
+#, qt-format
+msgid "Edit only this event \"%1\", or all events in the series?"
+msgstr ""
+
+#: ../EditEventConfirmationDialog.qml:35
+msgid "Edit series"
+msgstr ""
+
+#: ../EditEventConfirmationDialog.qml:44
+msgid "Edit this"
+msgstr "Tahrirlash"
+
+#: ../EventActions.qml:66 ../SettingsPage.qml:47
+msgid "Settings"
+msgstr "Sozlamalar"
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../EventBubble.qml:100
+#, qt-format
+msgid "%1 - %2"
+msgstr "%1 - %2"
+
+#: ../EventDetails.qml:37 ../NewEvent.qml:484
+msgid "Event Details"
+msgstr "Tadbir ma’lumotlari"
+
+#: ../EventDetails.qml:40
+msgid "Edit"
+msgstr "Tahrirlash"
+
+#: ../EventDetails.qml:164 ../TimeLineHeader.qml:66
+msgid "All Day"
+msgstr "Kun bo‘yi"
+
+#: ../EventDetails.qml:336 ../NewEvent.qml:549
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
+msgid "Calendar"
+msgstr "Taqvim"
+
+#: ../EventDetails.qml:369
+msgid "Not Attending"
+msgstr "Qatnashmayapti"
+
+#: ../EventDetails.qml:373
+msgid "Attending"
+msgstr "Qatnashyapti"
+
+#: ../EventDetails.qml:377
+msgid "No Reply"
+msgstr "Javobsiz"
+
+#: ../EventDetails.qml:400 ../NewEvent.qml:515
+msgid "Description"
+msgstr "Izoh"
+
+#: ../EventDetails.qml:418 ../EventReminder.qml:36 ../NewEvent.qml:711
+msgid "Reminder"
+msgstr "Esga solish"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../EventRepetition.qml:40 ../EventRepetition.qml:153
+msgid "Repeat"
+msgstr "Takrorlash"
+
+#: ../EventRepetition.qml:172
+msgid "Repeats On:"
+msgstr "Takrorlash:"
+
+#: ../EventRepetition.qml:217
+msgid "Recurring event ends"
+msgstr ""
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../EventRepetition.qml:240 ../NewEvent.qml:685
+msgid "Repeats"
+msgstr "Takrorlanishlar"
+
+#: ../EventRepetition.qml:265
+msgid "Date"
+msgstr "Sana"
+
+#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
+#. E.g. "Daily; 5 times."
+#: ../EventUtils.qml:75
+#, qt-format
+msgid "%1; %2 time"
+msgid_plural "%1; %2 times"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: the argument refers to recurrence until user selected date.
+#. E.g. "Daily; until 12/12/2014."
+#: ../EventUtils.qml:79
+#, qt-format
+msgid "%1; until %2"
+msgstr ""
+
+#. TRANSLATORS: the argument refers to several different days of the week.
+#. E.g. "Weekly on Mondays, Tuesdays"
+#: ../EventUtils.qml:102
+#, qt-format
+msgid "Weekly on %1"
+msgstr ""
+
+#: ../LimitLabelModel.qml:25
+msgid "Never"
+msgstr ""
+
+#: ../LimitLabelModel.qml:26
+msgid "After X Occurrence"
+msgstr ""
+
+#: ../LimitLabelModel.qml:27
+msgid "After Date"
+msgstr ""
+
+#. TRANSLATORS: This is shown in the month view as "Wk" as a title
+#. to indicate the week numbers. It should be a max of up to 3 characters.
+#: ../MonthComponent.qml:317
+msgid "Wk"
+msgstr ""
+
+#: ../MonthView.qml:73 ../WeekView.qml:131
+#, qt-format
+msgid "%1 %2"
+msgstr ""
+
+#: ../NewEvent.qml:179
+msgid "End time can't be before start time"
+msgstr ""
+
+#: ../NewEvent.qml:336 ../NewEventBottomEdge.qml:53
+msgid "New Event"
+msgstr ""
+
+#: ../NewEvent.qml:365
+msgid "Save"
+msgstr ""
+
+#: ../NewEvent.qml:376
+msgid "Error"
+msgstr ""
+
+#: ../NewEvent.qml:378
+msgid "OK"
+msgstr ""
+
+#: ../NewEvent.qml:438
+msgid "From"
+msgstr ""
+
+#: ../NewEvent.qml:451
+msgid "To"
+msgstr ""
+
+#: ../NewEvent.qml:468
+msgid "All day event"
+msgstr ""
+
+#: ../NewEvent.qml:497
+msgid "Event Name"
+msgstr ""
+
+#: ../NewEvent.qml:534
+msgid "Location"
+msgstr ""
+
+#: ../NewEvent.qml:589
+msgid "Guests"
+msgstr ""
+
+#: ../NewEvent.qml:598
+msgid "Add Guest"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:23
+msgid "Once"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:24
+msgid "Daily"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:25
+msgid "On Weekdays"
+msgstr ""
+
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
+#: ../RecurrenceLabelDefines.qml:27
+#, qt-format
+msgid "On %1, %2 ,%3"
+msgstr ""
+
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
+#: ../RecurrenceLabelDefines.qml:29
+#, qt-format
+msgid "On %1 and %2"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:30
+msgid "Weekly"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:31
+msgid "Monthly"
+msgstr ""
+
+#: ../RecurrenceLabelDefines.qml:32
+msgid "Yearly"
+msgstr ""
+
+#: ../RemindersModel.qml:27
+msgid "No Reminder"
+msgstr ""
+
+#. TRANSLATORS: this refers to when a reminder should be shown as a notification
+#. in the indicators. "On Event" means that it will be shown right at the time
+#. the event starts, not any time before
+#: ../RemindersModel.qml:31
+msgid "On Event"
+msgstr ""
+
+#: ../RemindersModel.qml:32
+msgid "5 minutes"
+msgstr ""
+
+#: ../RemindersModel.qml:33
+msgid "15 minutes"
+msgstr ""
+
+#: ../RemindersModel.qml:34
+msgid "30 minutes"
+msgstr ""
+
+#: ../RemindersModel.qml:35
+msgid "1 hour"
+msgstr ""
+
+#: ../RemindersModel.qml:36
+msgid "2 hours"
+msgstr ""
+
+#: ../RemindersModel.qml:37
+msgid "1 day"
+msgstr ""
+
+#: ../RemindersModel.qml:38
+msgid "2 days"
+msgstr ""
+
+#: ../RemindersModel.qml:39
+msgid "1 week"
+msgstr ""
+
+#: ../RemindersModel.qml:40
+msgid "2 weeks"
+msgstr ""
+
+#: ../SettingsPage.qml:70
+msgid "Show week numbers"
+msgstr ""
+
+#: ../SettingsPage.qml:84
+msgid "Show lunar calendar"
+msgstr ""
+
+#: ../SettingsPage.qml:128
+msgid "Default reminder"
+msgstr ""
+
+#: ../SettingsPage.qml:172
+msgid "Default calendar"
+msgstr ""
+
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../TimeLineHeader.qml:54
+#, qt-format
+msgid "W%1"
+msgstr ""
+
+#: ../WeekView.qml:138 ../WeekView.qml:139
+msgid "MMM"
+msgstr ""
+
+#: ../YearView.qml:79
+#, qt-format
+msgid "Year %1"
+msgstr ""
+
+#: ../calendar.qml:72
+msgid ""
+"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
+"eventid. They will be managed by system. See the source for a full comment "
+"about them"
+msgstr ""
+
+#: ../calendar.qml:312 ../calendar.qml:492
+msgid "Year"
+msgstr ""
+
+#: ../calendar.qml:320 ../calendar.qml:513
+msgid "Month"
+msgstr ""
+
+#: ../calendar.qml:328 ../calendar.qml:534
+msgid "Week"
+msgstr ""
+
+#: ../calendar.qml:336 ../calendar.qml:555
+msgid "Day"
+msgstr ""
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:2
+msgid "A calendar for Ubuntu which syncs with online accounts."
+msgstr ""
+
+#: com.ubuntu.calendar_calendar.desktop.in.in.h:3
+msgid "calendar;event;day;week;year;appointment;meeting;"
+msgstr ""
