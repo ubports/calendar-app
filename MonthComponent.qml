@@ -377,7 +377,7 @@ Item{
 
             date: delegateDate.getDate()
             isCurrentMonth: delegateDate.getMonth() === root.currentMonth
-            showEvent: intern.eventStatus[index] === true
+            showEvent: intern.eventStatus[delegateDate.toDateString()] === true
             lunarData: {
                 if (!root.displayLunarCalendar)
                     return null

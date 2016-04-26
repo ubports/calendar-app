@@ -18,6 +18,8 @@
 import QtQuick 2.4
 import QtOrganizer 5.0
 
+import "dateExt.js" as DateExt
+
 OrganizerModel {
     id: eventModel
     manager:"eds"
@@ -130,6 +132,35 @@ OrganizerModel {
                  return
              }
         }
+    }
+
+    // Retruns a map with the date in string format as key, and true if there is events on the day or false as value.
+    function daysWithEvents()
+    {
+        // initialize array
+        var startDate = startPeriod.midnight()
+        var endDate = endPeriod.midnight()
+        var result = []
+        while(startDate <= endDate) {
+            result[startDate.toDateString()] = false
+            startDate = startDate.addDays(1)
+        }
+
+        // set true for days with events
+        for(var index=0; index < items.length; index++) {
+            var ev = items[index]
+            var start = ev.startDateTime.midnight()
+            // if the event ends at 00:00:00 we reduce one minute to make sure that does not appear on this day
+            var end = ev.endDateTime ? ev.endDateTime.addMinutes(-1).midnight() : start
+
+            // set true for all days that this event exists, in case of multiple days events
+            while(start <= end) {
+                result[start.toDateString()] = true
+                start = start.addDays(1)
+            }
+        }
+
+        return result
     }
 
     onStartPeriodChanged: {
