@@ -70,10 +70,7 @@ MonthComponent {
         }
 
         onModelChanged: {
-            var eventStatus = mainModel.containsItems(startPeriod,
-                                                      endPeriod,
-                                                      86400/*24*60*60*/);
-            root.updateEvents(eventStatus)
+            root.updateEvents(daysWithEvents())
         }
 
         onStartPeriodChanged: idleRefresh.reset()
