@@ -150,7 +150,7 @@ OrganizerModel {
         for(var index=0; index < items.length; index++) {
             var ev = items[index]
             var start = ev.startDateTime.midnight()
-            // if the event eds at 00:00:00 we reduce one minute to make sure that does not appear on this day
+            // if the event ends at 00:00:00 we reduce one minute to make sure that does not appear on this day
             var end = ev.endDateTime ? ev.endDateTime.addMinutes(-1).midnight() : start
 
             // set true for all days that this event exists, in case of multiple days events
