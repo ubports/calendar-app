@@ -94,7 +94,7 @@ TestCase{
                      label: "Event 7/05/2016 at 10:10 until 11:00",
                      allDay: false},
                     {startDate: new Date(2016, 7, 10, 10, 10, 0, 0),
-                     endDate: new Date(2016, 7, 2, 10, 00, 0, 0),
+                     endDate: new Date(2016, 7, 10, 10, 00, 0, 0),
                      label: "Event 7/10/2016 at 10:10 until 11:00",
                      allDay: false},
                     {startDate: new Date(2016, 7, 20, 10, 10, 0, 0),
@@ -126,8 +126,12 @@ TestCase{
             var actualDate = startDate.addDays(d)
             // check if it was expected to be true
             if (eventsByDay[startDate.addDays(d).toDateString()]) {
-                verify(expectedTrueDates.indexOf(actualDate.toDateString()) != -1)
+                var index = expectedTrueDates.indexOf(actualDate.toDateString())
+                verify( index != -1)
+                expectedTrueDates.splice(index, 1);
             }
         }
+        // make sure that all date appears on result
+        compare(expectedTrueDates.length, 0)
     }
 }
