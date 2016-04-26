@@ -117,7 +117,7 @@ TestCase{
                                   new Date(2016, 7, 20, 0, 0, 0, 0).toDateString()]
         var model = create_events(data)
         var eventsByDay = model.daysWithEvents()
-        // model contains 31 days
+        // model contains 32 days
         compare(Object.keys(eventsByDay).length, 32)
 
         var duration = DATE.daysBetween(model.startPeriod.midnight(), model.endPeriod.midnight())
