@@ -178,6 +178,10 @@ Item {
         repeat: false
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter} )
+            if (!mainModel.autoUpdate) {
+                console.debug("Force a update")
+                mainModel.update()
+            }
         }
     }
 
@@ -197,16 +201,6 @@ Item {
         onStartPeriodChanged: idleRefresh.reset()
         onEndPeriodChanged: idleRefresh.reset()
    }
-
-    ActivityIndicator {
-        id: activityLoader
-        objectName : "activityIndicator"
-
-        visible: running
-        anchors.centerIn: parent
-        //running: mainModel.isLoading
-        z:2
-    }
 
     Column {
         anchors.fill: parent
