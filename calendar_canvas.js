@@ -3,8 +3,13 @@
 
 function minutesSince(since, until)
 {
+    if (isNaN(since.getTime())) {
+        console.warn("Invalid since time:" + since)
+        return 0
+    }
+
     if (isNaN(until.getTime())) {
-        console.debug("Invalid until time:" + until)
+        console.warn("Invalid until time:" + until)
         return 0
     }
 
