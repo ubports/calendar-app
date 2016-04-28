@@ -22,19 +22,19 @@ import "./3rd-party/lunar.js" as Lunar
 Item{
     id: header
     width: parent.width
-    height: monthLabel.height
+    height: leftLabel.height
 
     property int month;
     property int year;
     property int daysInMonth;
 
-    property string monthLabelFontSize: "large"
-    property string yearLabelFontSize: "large"
+    property string leftLabelFontSize: "large"
+    property string rightLabelFontSize: "large"
 
     Label{
-        id: monthLabel
-        objectName: "monthLabel"
-        fontSize: monthLabelFontSize
+        id: leftLabel
+        objectName: "leftLabel"
+        fontSize: leftLabelFontSize
         anchors.leftMargin: units.gu(1)
         anchors.left: parent.left
         color:"black"
@@ -42,9 +42,9 @@ Item{
     }
 
     Label{
-        id: yearLabel
-        objectName: "yearLabel"
-        fontSize: yearLabelFontSize
+        id: rightLabel
+        objectName: "rightLabel"
+        fontSize: rightLabelFontSize
         anchors.right: parent.right
         anchors.rightMargin: units.gu(1)
         color:"black"
@@ -52,20 +52,30 @@ Item{
     }
 
     Component.onCompleted:  {
-        yearLabel.text = Qt.binding(function(){
+        rightLabel.text = Qt.binding(function(){
+            var labelDate = new Date(year, month)
+
             if (mainView.displayLunarCalendar) {
                 var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
                 return lunarDate.gzYear
             } else {
-                return  year
+                // TRANSLATORS: this is a time formatting string,
+                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+                // It's used in the right label for month's header at the Year's view. 
+                return labelDate.toLocaleString(Qt.locale(), i18n.tr("yyyy"))
             }
         })
-        monthLabel.text = Qt.binding(function(){
+        leftLabel.text = Qt.binding(function(){
+            var labelDate = new Date(year, month)
+
             if (mainView.displayLunarCalendar) {
                 var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
                 return lunarDate.IMonthCn
             } else {
-                return Qt.locale().standaloneMonthName(month)
+                // TRANSLATORS: this is a time formatting string,
+                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+                // It's used in the left label for month's header at the Year's view. 
+                return labelDate.toLocaleString(Qt.locale(), i18n.tr("MMMM"))
             }
         })
     }

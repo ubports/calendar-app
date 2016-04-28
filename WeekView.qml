@@ -137,9 +137,13 @@ PageWithBottomEdge {
                 if (currentLastDayOfWeek.getMonth() !== currentFirstDayOfWeek.getMonth()) {
                     var firstMonthName = currentFirstDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
                     var lastMonthName = currentLastDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
-                    return (firstMonthName[0].toUpperCase() + firstMonthName.substr(1, 2) + "/" +
-                            lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2) + " " +
-                            currentLastDayOfWeek.getFullYear())
+                    var firstLastMonthStr = firstMonthName[0].toUpperCase() + firstMonthName.substr(1, 2) +
+                                            "/" +
+                                            lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2)
+                    // TRANSLATORS: This is displayed on week view when the current displayed week starts
+                    // and ends on different months. %1 is the place holder displaying months text and %2
+                    // is the place holder displaying year
+                    return i18n.tr("%1 %2").arg(firstLastMonthStr).arg(currentLastDayOfWeek.getFullYear())
                 } else {
                     var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
                     return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)
