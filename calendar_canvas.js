@@ -3,6 +3,16 @@
 
 function minutesSince(since, until)
 {
+    if (isNaN(since.getTime())) {
+        console.warn("Invalid since time:" + since)
+        return 0
+    }
+
+    if (isNaN(until.getTime())) {
+        console.warn("Invalid until time:" + until)
+        return 0
+    }
+
     var sinceTime = new Date(since)
     sinceTime.setSeconds(0)
     var untilTime =  new Date(until)
@@ -39,14 +49,16 @@ function parseDayEvents(date, itemsOfTheDay)
 
         var eventStartTimeInMinutes = minutesSince(date, event.startDateTime)
         var eventEndTimeInMinutes = minutesSince(date, isNaN(event.endDateTime.getTime()) ? event.startDateTime : event.endDateTime)
+        var startDateTime = isNaN(event.startDateTime.getTime()) ? date.getTime() : event.startDateTime.getTime()
+        var endDateTime = isNaN(event.endDateTime.getTime()) ? startDateTime : event.endDateTime.getTime()
 
         // avoid to draw events too small
         if ((eventEndTimeInMinutes - eventStartTimeInMinutes) < 20)
             eventEndTimeInMinutes = eventStartTimeInMinutes + 20
 
         eventsInfo.push({'eventId': event.itemId,
-                         'eventStartTime': event.startDateTime.getTime(),
-                         'eventEndTime': isNaN(event.endDateTime.getTime()) ? event.startDateTime.getTime() : event.endDateTime.getTime(),
+                         'eventStartTime': startDateTime,
+                         'eventEndTime': endDateTime,
                          'startTime': eventStartTimeInMinutes,
                          'endTime': eventEndTimeInMinutes,
                          'endTimeInSecs': event.endDateTime.getTime(),

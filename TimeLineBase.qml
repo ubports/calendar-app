@@ -85,35 +85,6 @@ Item {
                 var events = messageObject.reply
                 var dirty = false
                 for (var i=0; i < events.length; i++) {
-                    var e = intern.eventsById[events[i].eventId]
-                    if (e.eventId != events[i].itemId) {
-                        console.warn("Event does not match id:", i)
-                        dirty = true
-                    }
-                    if (e.startDateTime.getTime() != events[i].eventStartTime) {
-                        console.warn("Event does not match start time")
-                        dirty = true
-                    }
-                    if (isNaN(e.endDateTime.getTime())) {
-                        if (events[i].eventEndTime != events[i].eventStartTime) {
-                            // Events with same start and end time have empty end date
-                            console.warn("Event does not match end time")
-                            dirty = true
-                        }
-                    } else if (e.endDateTime.getTime() != events[i].eventEndTime) {
-                        if ((e.endDateTime.getTime() - events[i].eventEndTime) > 3600000) {
-                            // Events with same start and end time have lenght equal to 20 minutes 
-                            console.warn("Event does not match end time")
-                            dirty = true
-                        }
-                    }
-
-                    if (dirty) {
-                        console.warn("Mark as dirty")
-                        intern.dirty = true
-                        break
-                    }
-
                     createVisual(events[i])
                 }
             }
