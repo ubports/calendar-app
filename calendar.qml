@@ -659,13 +659,6 @@ MainView {
                 tabs.currentDay = currentDate
             }
 
-            onHighlightedDateChanged: {
-                if (highlightedDate)
-                    tabs.currentDay = highlightedDate
-                else
-                    tabs.currentDay = currentDate
-            }
-
             onDateSelected: {
                 tabs.currentDay = date
                 tabs.selectedTabIndex = dayTab.index
