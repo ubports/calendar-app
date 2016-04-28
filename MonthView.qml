@@ -34,13 +34,11 @@ PageWithBottomEdge {
     readonly property var currentDate: monthViewPath.currentItem.indexDate
 
     property var selectedDay;
-    property var highlightedDate;
     property bool displayLunarCalendar: false
 
     signal dateSelected(var date);
 
     Keys.forwardTo: [monthViewPath]
-    createEventAt: highlightedDate ? highlightedDate : currentDate
     onAnchorDateChanged: monthViewPath.scrollToBegginer()
 
     Action {
@@ -106,14 +104,10 @@ PageWithBottomEdge {
             isCurrentItem: PathView.isCurrentItem
             isActive: !monthViewPath.moving && !monthViewPath.flicking
             displayWeekNumber: mainView.displayWeekNumber
-            highlightedDate: monthViewPage.highlightedDate
             isYearView: false
 
             onDateSelected: {
                 monthViewPage.dateSelected(date);
-            }
-            onDateHighlighted: {
-                monthViewPage.highlightedDate = date
             }
         }
     }
