@@ -121,6 +121,15 @@ Date.prototype.mergeDate = function (d) {
     this.setDate(d.getDate());
 }
 
+Date.prototype.isYearPrecedesMonthFormat = function( dateShortFormat ) {
+    var yearIndexFormat = dateShortFormat.indexOf("y");
+    var monthIndexFormat = dateShortFormat.indexOf("M");
+
+    return yearIndexFormat >= 0 &&
+           monthIndexFormat >= 0 &&
+           yearIndexFormat < monthIndexFormat;
+}
+
 function weekCount(year, month_number) {
     var firstOfMonth = new Date(year, month_number, 1);
     var lastOfMonth = new Date(year, month_number+1, 0);

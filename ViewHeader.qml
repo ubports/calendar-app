@@ -17,6 +17,7 @@
  */
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import "dateExt.js" as DateExt
 import "./3rd-party/lunar.js" as Lunar
 
 Item{
@@ -30,9 +31,6 @@ Item{
 
     property string leftLabelFontSize: "large"
     property string rightLabelFontSize: "large"
-
-    property string leftLabelDateStr: "MMMM"
-    property string rightLabelDateStr: "yyyy"
 
     Label{
         id: leftLabel
@@ -55,15 +53,6 @@ Item{
     }
 
     Component.onCompleted:  {
-        var dateShortFormat = Qt.locale().dateFormat(Locale.ShortFormat)
-        var yearIndexFormat = dateShortFormat.indexOf("y")
-        var monthIndexFormat = dateShortFormat.indexOf("M")
-
-        if (yearIndexFormat >= 0 && monthIndexFormat >= 0 && yearIndexFormat < monthIndexFormat) {
-            leftLabelDateStr = "yyyy";
-            rightLabelDateStr = "MMMM";
-        }
-
         leftLabel.text = Qt.binding(function(){
             var labelDate = new Date(year, month)
 
@@ -71,7 +60,11 @@ Item{
                 var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
                 return lunarDate.IMonthCn
             } else {
-                return labelDate.toLocaleString(Qt.locale(), leftLabelDateStr)
+                if (labelDate.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
+                    return labelDate.toLocaleString(Qt.locale(), "yyyy")
+                } else {
+                    return labelDate.toLocaleString(Qt.locale(), "MMMM")
+                }
             }
         })
 
@@ -82,7 +75,11 @@ Item{
                 var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
                 return lunarDate.gzYear
             } else {
-                return labelDate.toLocaleString(Qt.locale(), rightLabelDateStr)
+                if (labelDate.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
+                    return labelDate.toLocaleString(Qt.locale(), "MMMM")
+                } else {
+                    return labelDate.toLocaleString(Qt.locale(), "yyyy")
+                }
             }
         })
     }

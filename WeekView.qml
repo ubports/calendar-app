@@ -141,11 +141,7 @@ PageWithBottomEdge {
                                             "/" +
                                             lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2)
 
-                    var dateShortFormat = Qt.locale().dateFormat(Locale.ShortFormat)
-                    var yearIndexFormat = dateShortFormat.indexOf("y")
-                    var monthIndexFormat = dateShortFormat.indexOf("M")
-
-                    if (yearIndexFormat >= 0 && monthIndexFormat >= 0 && yearIndexFormat < monthIndexFormat) {
+                    if (currentLastDayOfWeek.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
                         return currentLastDayOfWeek.getFullYear() + " " + firstLastMonthStr
                     } else {
                         return firstLastMonthStr + " " + currentLastDayOfWeek.getFullYear()
