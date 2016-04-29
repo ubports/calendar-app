@@ -11,3 +11,4 @@ X-Ubuntu-Touch=true
 X-Ubuntu-Default-Department-ID=accessories
 X-Ubuntu-Splash-Show-Header=true
 X-Ubuntu-Splash-Color=#f5f5f5
+X-Ubuntu-SymbolicIcon=@SYMBOLIC_ICON@
