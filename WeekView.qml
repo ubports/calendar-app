@@ -141,7 +141,7 @@ PageWithBottomEdge {
                                             "/" +
                                             lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2)
 
-                    if (currentLastDayOfWeek.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
+                    if (DateExt.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
                         return currentLastDayOfWeek.getFullYear() + " " + firstLastMonthStr
                     } else {
                         return firstLastMonthStr + " " + currentLastDayOfWeek.getFullYear()

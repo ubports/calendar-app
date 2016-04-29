@@ -60,7 +60,7 @@ Item{
                 var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
                 return lunarDate.IMonthCn
             } else {
-                if (labelDate.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
+                if (DateExt.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
                     return labelDate.toLocaleString(Qt.locale(), "yyyy")
                 } else {
                     return labelDate.toLocaleString(Qt.locale(), "MMMM")
@@ -75,7 +75,7 @@ Item{
                 var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
                 return lunarDate.gzYear
             } else {
-                if (labelDate.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
+                if (DateExt.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
                     return labelDate.toLocaleString(Qt.locale(), "MMMM")
                 } else {
                     return labelDate.toLocaleString(Qt.locale(), "yyyy")
