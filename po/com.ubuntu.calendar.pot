@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-28 17:20-0300\n"
+"POT-Creation-Date: 2016-04-29 15:21-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,7 +123,7 @@ msgstr ""
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:122 ../MonthView.qml:76 ../WeekView.qml:148
+#: ../DayView.qml:122 ../MonthView.qml:76 ../WeekView.qml:154
 msgid "MMMM yyyy"
 msgstr ""
 
@@ -296,10 +296,7 @@ msgstr ""
 msgid "Wk"
 msgstr ""
 
-#. TRANSLATORS: This is displayed on week view when the current displayed week starts
-#. and ends on different months. %1 is the place holder displaying months text and %2
-#. is the place holder displaying year
-#: ../MonthView.qml:71 ../WeekView.qml:131 ../WeekView.qml:146
+#: ../MonthView.qml:71 ../WeekView.qml:131
 #, qt-format
 msgid "%1 %2"
 msgstr ""
@@ -455,20 +452,6 @@ msgstr ""
 #: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
-msgstr ""
-
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-#. It's used in the right label for month's header at the Year's view.
-#: ../ViewHeader.qml:65
-msgid "yyyy"
-msgstr ""
-
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-#. It's used in the left label for month's header at the Year's view.
-#: ../ViewHeader.qml:78
-msgid "MMMM"
 msgstr ""
 
 #: ../WeekView.qml:138 ../WeekView.qml:139
