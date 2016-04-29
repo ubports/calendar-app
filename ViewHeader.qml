@@ -31,6 +31,9 @@ Item{
     property string leftLabelFontSize: "large"
     property string rightLabelFontSize: "large"
 
+    property string leftLabelDateStr: "MMMM"
+    property string rightLabelDateStr: "yyyy"
+
     Label{
         id: leftLabel
         objectName: "leftLabel"
@@ -52,19 +55,15 @@ Item{
     }
 
     Component.onCompleted:  {
-        rightLabel.text = Qt.binding(function(){
-            var labelDate = new Date(year, month)
+        var dateShortFormat = Qt.locale().dateFormat(Locale.ShortFormat)
+        var yearIndexFormat = dateShortFormat.indexOf("y")
+        var monthIndexFormat = dateShortFormat.indexOf("M")
 
-            if (mainView.displayLunarCalendar) {
-                var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
-                return lunarDate.gzYear
-            } else {
-                // TRANSLATORS: this is a time formatting string,
-                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-                // It's used in the right label for month's header at the Year's view. 
-                return labelDate.toLocaleString(Qt.locale(), i18n.tr("yyyy"))
-            }
-        })
+        if (yearIndexFormat >= 0 && monthIndexFormat >= 0 && yearIndexFormat < monthIndexFormat) {
+            leftLabelDateStr = "yyyy";
+            rightLabelDateStr = "MMMM";
+        }
+
         leftLabel.text = Qt.binding(function(){
             var labelDate = new Date(year, month)
 
@@ -72,10 +71,18 @@ Item{
                 var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
                 return lunarDate.IMonthCn
             } else {
-                // TRANSLATORS: this is a time formatting string,
-                // see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-                // It's used in the left label for month's header at the Year's view. 
-                return labelDate.toLocaleString(Qt.locale(), i18n.tr("MMMM"))
+                return labelDate.toLocaleString(Qt.locale(), leftLabelDateStr)
+            }
+        })
+
+        rightLabel.text = Qt.binding(function(){
+            var labelDate = new Date(year, month)
+
+            if (mainView.displayLunarCalendar) {
+                var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
+                return lunarDate.gzYear
+            } else {
+                return labelDate.toLocaleString(Qt.locale(), rightLabelDateStr)
             }
         })
     }
