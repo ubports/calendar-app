@@ -120,4 +120,9 @@ TestCase{
         compare(d.endOfDay(), new Date(2014, 2, 3, 23, 59, 59, 0));
     }
 
+    function test_isYearPrecedesMonthFormat(test) {
+	verify(!DATE.isYearPrecedesMonthFormat(Qt.locale("en").dateFormat(Locale.ShortFormat)));
+	verify(DATE.isYearPrecedesMonthFormat(Qt.locale("hu").dateFormat(Locale.ShortFormat)));
+    }
+
 }
