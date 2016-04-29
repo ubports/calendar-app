@@ -17,24 +17,25 @@
  */
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import "dateExt.js" as DateExt
 import "./3rd-party/lunar.js" as Lunar
 
 Item{
     id: header
     width: parent.width
-    height: monthLabel.height
+    height: leftLabel.height
 
     property int month;
     property int year;
     property int daysInMonth;
 
-    property string monthLabelFontSize: "large"
-    property string yearLabelFontSize: "large"
+    property string leftLabelFontSize: "large"
+    property string rightLabelFontSize: "large"
 
     Label{
-        id: monthLabel
-        objectName: "monthLabel"
-        fontSize: monthLabelFontSize
+        id: leftLabel
+        objectName: "leftLabel"
+        fontSize: leftLabelFontSize
         anchors.leftMargin: units.gu(1)
         anchors.left: parent.left
         color:"black"
@@ -42,9 +43,9 @@ Item{
     }
 
     Label{
-        id: yearLabel
-        objectName: "yearLabel"
-        fontSize: yearLabelFontSize
+        id: rightLabel
+        objectName: "rightLabel"
+        fontSize: rightLabelFontSize
         anchors.right: parent.right
         anchors.rightMargin: units.gu(1)
         color:"black"
@@ -52,20 +53,33 @@ Item{
     }
 
     Component.onCompleted:  {
-        yearLabel.text = Qt.binding(function(){
-            if (mainView.displayLunarCalendar) {
-                var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
-                return lunarDate.gzYear
-            } else {
-                return  year
-            }
-        })
-        monthLabel.text = Qt.binding(function(){
+        leftLabel.text = Qt.binding(function(){
+            var labelDate = new Date(year, month)
+
             if (mainView.displayLunarCalendar) {
                 var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
                 return lunarDate.IMonthCn
             } else {
-                return Qt.locale().standaloneMonthName(month)
+                if (DateExt.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
+                    return labelDate.toLocaleString(Qt.locale(), "yyyy")
+                } else {
+                    return labelDate.toLocaleString(Qt.locale(), "MMMM")
+                }
+            }
+        })
+
+        rightLabel.text = Qt.binding(function(){
+            var labelDate = new Date(year, month)
+
+            if (mainView.displayLunarCalendar) {
+                var lunarDate = Lunar.calendar.solar2lunar(year, month + 1, daysInMonth)
+                return lunarDate.gzYear
+            } else {
+                if (DateExt.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
+                    return labelDate.toLocaleString(Qt.locale(), "MMMM")
+                } else {
+                    return labelDate.toLocaleString(Qt.locale(), "yyyy")
+                }
             }
         })
     }
