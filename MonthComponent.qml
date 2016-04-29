@@ -31,7 +31,6 @@ Item{
     property int currentMonth;
 
     property var isYearView;
-    property var highlightedDate;
     property bool displayWeekNumber:false
     property bool displayLunarCalendar: false
 
@@ -46,7 +45,6 @@ Item{
 
     signal monthSelected(var date);
     signal dateSelected(var date);
-    signal dateHighlighted(var date);
 
     function updateEvents(events) {
         intern.eventStatus = events
@@ -83,9 +81,6 @@ Item{
         property int dateFontSize: FontUtils.sizeToPixels(root.dateLabelFontSize)
         property int dayFontSize: FontUtils.sizeToPixels(root.dayLabelFontSize)
 
-        property int highlightedIndex: root.isCurrentItem &&
-                                       root.highlightedDate ?
-                                           intern.indexByDate(root.highlightedDate) : -1
         property int todayIndex: root.isCurrentItem &&
                                  isCurMonthTodayMonth ?
                                      intern.indexByDate(intern.today) : -1
@@ -115,7 +110,7 @@ Item{
         id: todayShape
 
         visible: (monthGrid.todayItem != null)
-        color: (monthGrid.highlightedItem === monthGrid.todayItem) ? UbuntuColors.darkGrey : UbuntuColors.orange
+        color: UbuntuColors.orange
         width: parent ? Math.min(parent.height, parent.width) / 1.3 : 0
         height: width
         parent: monthGrid.todayItem
@@ -125,24 +120,6 @@ Item{
             anchors.fill: parent
             anchors.margins: units.gu(0.5)
             color: UbuntuColors.orange
-            radius: 5
-        }
-    }
-
-    UbuntuShape{
-        id: highlightedShape
-
-        visible: monthGrid.highlightedItem && (monthGrid.highlightedItem != monthGrid.todayItem)
-        color: UbuntuColors.darkGrey
-        width: parent ? Math.min(parent.height, parent.width) / 1.3 : 0
-        height: width
-        parent: monthGrid.highlightedItem
-        anchors.centerIn: parent
-        z: -1
-        Rectangle {
-            anchors.fill: parent
-            anchors.margins: units.gu(0.5)
-            color: UbuntuColors.lightGrey
             radius: 5
         }
     }
@@ -213,10 +190,6 @@ Item{
             readonly property var todayItem: (intern.todayIndex != -1) &&
                                              (monthGrid.children.length > intern.todayIndex) ?
                                                dateLabelRepeater.itemAt(intern.todayIndex) : null
-            readonly property var highlightedItem: (intern.highlightedIndex != -1) &&
-                                                   (monthGrid.children.length > intern.highlightedIndex) ?
-                                                       dateLabelRepeater.itemAt(intern.highlightedIndex) : null
-
             anchors {
                 left: parent.left
                 right: parent.right
@@ -248,11 +221,8 @@ Item{
 
         onPressAndHold: {
             var dayItem = getItemAt(mouse.x, mouse.y)
-
-            if( dayItem.isSelected ) {
-                var selectedDate = new Date(dayItem.delegateDate.getTime());
-                pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
-            }
+            var selectedDate = new Date(dayItem.delegateDate.getTime());
+            pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
         }
         onClicked: {
             var dayItem = getItemAt(mouse.x, mouse.y)
@@ -261,12 +231,7 @@ Item{
                 //If yearView is clicked then open selected MonthView
                 root.monthSelected(selectedDate);
             } else {
-                if (dayItem.isSelected) {
-                    //If monthView is clicked then open selected DayView
-                    root.dateSelected(selectedDate);
-                } else {
-                    root.dateHighlighted(selectedDate)
-                }
+                root.dateSelected(selectedDate);
             }
         }
     }
@@ -392,7 +357,6 @@ Item{
                 }
             }
             isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
-            isSelected: intern.highlightedIndex == index
             width: monthGrid.dayWidth
             height: monthGrid.dayHeight
         }
@@ -408,7 +372,6 @@ Item{
             isCurrentMonth: delegateDate.getMonth() === root.currentMonth
 
             isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
-            isSelected: intern.highlightedIndex == index
             width: monthGrid.dayWidth
             height: monthGrid.dayHeight
         }
