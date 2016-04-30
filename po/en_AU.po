@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-03-23 00:58-0300\n"
+"POT-Creation-Date: 2016-04-29 15:21-0300\n"
 "PO-Revision-Date: 2016-03-27 10:09+0000\n"
 "Last-Translator: Jared Norris <jarednorris@ubuntu.com>\n"
 "Language-Team: English (Australia) <en_AU@li.org>\n"
@@ -15,10 +15,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-03-28 05:43+0000\n"
-"X-Generator: Launchpad (build 17967)\n"
+"X-Launchpad-Export-Date: 2016-04-30 05:34+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
 
-#: ../AgendaView.qml:50 ../calendar.qml:344 ../calendar.qml:576
+#: ../AgendaView.qml:50 ../calendar.qml:348 ../calendar.qml:580
 msgid "Agenda"
 msgstr "Agenda"
 
@@ -106,7 +106,7 @@ msgid "Select Color"
 msgstr "Select Colour"
 
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
-#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:341
+#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:331
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -118,14 +118,14 @@ msgstr "No contact"
 msgid "Search contact"
 msgstr "Search contact"
 
-#: ../DayView.qml:72 ../MonthView.qml:50 ../WeekView.qml:55 ../YearView.qml:57
+#: ../DayView.qml:72 ../MonthView.qml:48 ../WeekView.qml:55 ../YearView.qml:57
 msgid "Today"
 msgstr "Today"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:122 ../MonthView.qml:78 ../WeekView.qml:144
+#: ../DayView.qml:122 ../MonthView.qml:76 ../WeekView.qml:154
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -156,11 +156,11 @@ msgstr "Delete series"
 msgid "Delete this"
 msgstr "Delete this"
 
-#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:348
+#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:338
 msgid "Delete"
 msgstr "Delete"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:336
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:326
 msgid "Edit Event"
 msgstr "Edit Event"
 
@@ -184,12 +184,12 @@ msgstr "Settings"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../EventBubble.qml:100
+#: ../EventBubble.qml:136
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: ../EventDetails.qml:37 ../NewEvent.qml:484
+#: ../EventDetails.qml:37 ../NewEvent.qml:496
 msgid "Event Details"
 msgstr "Event Details"
 
@@ -197,32 +197,36 @@ msgstr "Event Details"
 msgid "Edit"
 msgstr "Edit"
 
-#: ../EventDetails.qml:164 ../TimeLineHeader.qml:66
+#: ../EventDetails.qml:176 ../TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "All Day"
 
-#: ../EventDetails.qml:336 ../NewEvent.qml:549
+#: ../EventDetails.qml:351 ../NewEvent.qml:562
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Calendar"
 
-#: ../EventDetails.qml:369
-msgid "Not Attending"
-msgstr "Not Attending"
-
-#: ../EventDetails.qml:373
+#: ../EventDetails.qml:395
 msgid "Attending"
 msgstr "Attending"
 
-#: ../EventDetails.qml:377
+#: ../EventDetails.qml:397
+msgid "Not Attending"
+msgstr "Not Attending"
+
+#: ../EventDetails.qml:399
+msgid "Maybe"
+msgstr ""
+
+#: ../EventDetails.qml:401
 msgid "No Reply"
 msgstr "No Reply"
 
-#: ../EventDetails.qml:400 ../NewEvent.qml:515
+#: ../EventDetails.qml:440 ../NewEvent.qml:528
 msgid "Description"
 msgstr "Description"
 
-#: ../EventDetails.qml:418 ../EventReminder.qml:36 ../NewEvent.qml:711
+#: ../EventDetails.qml:467 ../NewEvent.qml:721 ../NewEvent.qml:760
 msgid "Reminder"
 msgstr "Reminder"
 
@@ -230,7 +234,7 @@ msgstr "Reminder"
 #. and it is shown as the header of the page to choose repetition
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
-#: ../EventRepetition.qml:40 ../EventRepetition.qml:153
+#: ../EventRepetition.qml:40 ../EventRepetition.qml:152
 msgid "Repeat"
 msgstr "Repeat"
 
@@ -238,18 +242,18 @@ msgstr "Repeat"
 msgid "Repeats On:"
 msgstr "Repeats On:"
 
-#: ../EventRepetition.qml:217
+#: ../EventRepetition.qml:218
 msgid "Recurring event ends"
 msgstr "Recurring event ends"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:240 ../NewEvent.qml:685
+#: ../EventRepetition.qml:242 ../NewEvent.qml:697
 msgid "Repeats"
 msgstr "Repeats"
 
-#: ../EventRepetition.qml:265
+#: ../EventRepetition.qml:268
 msgid "Date"
 msgstr "Date"
 
@@ -290,60 +294,60 @@ msgstr "After Date"
 
 #. TRANSLATORS: This is shown in the month view as "Wk" as a title
 #. to indicate the week numbers. It should be a max of up to 3 characters.
-#: ../MonthComponent.qml:317
+#: ../MonthComponent.qml:281
 msgid "Wk"
 msgstr "Wk"
 
-#: ../MonthView.qml:73 ../WeekView.qml:131
+#: ../MonthView.qml:71 ../WeekView.qml:131
 #, qt-format
 msgid "%1 %2"
 msgstr "%1 %2"
 
-#: ../NewEvent.qml:179
+#: ../NewEvent.qml:185
 msgid "End time can't be before start time"
 msgstr "End time can't be before start time"
 
-#: ../NewEvent.qml:336 ../NewEventBottomEdge.qml:53
+#: ../NewEvent.qml:326 ../NewEventBottomEdge.qml:53
 msgid "New Event"
 msgstr "New Event"
 
-#: ../NewEvent.qml:365
+#: ../NewEvent.qml:355
 msgid "Save"
 msgstr "Save"
 
-#: ../NewEvent.qml:376
+#: ../NewEvent.qml:366
 msgid "Error"
 msgstr "Error"
 
-#: ../NewEvent.qml:378
+#: ../NewEvent.qml:368
 msgid "OK"
 msgstr "OK"
 
-#: ../NewEvent.qml:438
+#: ../NewEvent.qml:430
 msgid "From"
 msgstr "From"
 
-#: ../NewEvent.qml:451
+#: ../NewEvent.qml:446
 msgid "To"
 msgstr "To"
 
-#: ../NewEvent.qml:468
+#: ../NewEvent.qml:473
 msgid "All day event"
 msgstr "All day event"
 
-#: ../NewEvent.qml:497
+#: ../NewEvent.qml:510
 msgid "Event Name"
 msgstr "Event Name"
 
-#: ../NewEvent.qml:534
+#: ../NewEvent.qml:547
 msgid "Location"
 msgstr "Location"
 
-#: ../NewEvent.qml:589
+#: ../NewEvent.qml:603
 msgid "Guests"
 msgstr "Guests"
 
-#: ../NewEvent.qml:598
+#: ../NewEvent.qml:613
 msgid "Add Guest"
 msgstr "Add Guest"
 
@@ -471,19 +475,19 @@ msgstr ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 
-#: ../calendar.qml:312 ../calendar.qml:492
+#: ../calendar.qml:316 ../calendar.qml:496
 msgid "Year"
 msgstr "Year"
 
-#: ../calendar.qml:320 ../calendar.qml:513
+#: ../calendar.qml:324 ../calendar.qml:517
 msgid "Month"
 msgstr "Month"
 
-#: ../calendar.qml:328 ../calendar.qml:534
+#: ../calendar.qml:332 ../calendar.qml:538
 msgid "Week"
 msgstr "Week"
 
-#: ../calendar.qml:336 ../calendar.qml:555
+#: ../calendar.qml:340 ../calendar.qml:559
 msgid "Day"
 msgstr "Day"
 
