@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-04-29 15:21-0300\n"
-"PO-Revision-Date: 2016-03-23 21:23+0000\n"
-"Last-Translator: Jean-Marc <Unknown>\n"
+"PO-Revision-Date: 2016-04-30 13:32+0000\n"
+"Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-04-30 05:34+0000\n"
+"X-Launchpad-Export-Date: 2016-05-01 05:36+0000\n"
 "X-Generator: Launchpad (build 17995)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:348 ../calendar.qml:580
@@ -218,7 +218,7 @@ msgstr "Ne participe pas"
 
 #: ../EventDetails.qml:399
 msgid "Maybe"
-msgstr ""
+msgstr "Peut-être"
 
 #: ../EventDetails.qml:401
 msgid "No Reply"
