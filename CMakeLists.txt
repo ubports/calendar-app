@@ -26,6 +26,7 @@ set(APPLICATION_FILE            "${PROJECT_NAME}_${APP_NAME}.application")
 set(URLS_FILE                   "${PROJECT_NAME}_${APP_NAME}.url-dispatcher")
 set(MAIN_QML                    calendar.qml)
 set(ICON_FILE                   calendar-app@30.png)
+set(SYMBOLIC_ICON_FILE		calendar-app-symbolic.svg)
 set(AUTOPILOT_DIR               calendar_app)
 set(APP_HARDCODE                calendar-app)
 set(UBUNTU_MANIFEST_PATH        "click/manifest.json.in" CACHE INTERNAL "Relative path to the manifest file")
@@ -39,6 +40,7 @@ if(CLICK_MODE)
     set(CMAKE_INSTALL_BINDIR /)
     set(DATA_DIR /)
     set(ICON ${ICON_FILE})
+    set(SYMBOLIC_ICON ${SYMBOLIC_ICON_FILE})
     set(EXEC "qmlscene %u ${MAIN_QML}")
     set(DESKTOP_DIR ${DATA_DIR})
     set(URLS_DIR ${DATA_DIR})
@@ -47,6 +49,7 @@ else(CLICK_MODE)
     set(DATA_DIR ${CMAKE_INSTALL_DATADIR}/${APP_HARDCODE})
     set(EXEC ${APP_HARDCODE})
     set(ICON ${CMAKE_INSTALL_PREFIX}/${DATA_DIR}/${ICON_FILE})
+    set(SYMBOLIC_ICON ${CMAKE_INSTALL_PREFIX}/${DATA_DIR}/${SYMBOLIC_ICON_FILE})
     configure_file(${APP_HARDCODE}.in
             ${CMAKE_CURRENT_BINARY_DIR}/${APP_HARDCODE})
     install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${APP_HARDCODE}
@@ -71,7 +74,7 @@ add_custom_target(ubuntu-calendar-app_QMlFiles ALL SOURCES ${SRC_FILES})
 file(GLOB RESOURCE_FILES
      RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
      *.png *.svg)
-install(FILES ${SRC_FILES} ${RESOURCE_FILES} ${ICON_FILE} DESTINATION ${DATA_DIR})
+install(FILES ${SRC_FILES} ${RESOURCE_FILES} ${ICON_FILE} ${SYMBOLIC_ICON_FILE} DESTINATION ${DATA_DIR})
 
 configure_file(${DESKTOP_FILE}.in.in ${DESKTOP_FILE}.in)
 

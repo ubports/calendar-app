@@ -56,8 +56,8 @@ import Ubuntu.Components 1.3
             isYearView: true
             dayLabelFontSize:"x-small"
             dateLabelFontSize: "medium"
-            monthLabelFontSize: "medium"
-            yearLabelFontSize: "medium"
+            leftLabelFontSize: "medium"
+            rightLabelFontSize: "medium"
             onMonthSelected: {
                 yearView.monthSelected(date);
             }

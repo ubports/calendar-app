@@ -137,9 +137,15 @@ PageWithBottomEdge {
                 if (currentLastDayOfWeek.getMonth() !== currentFirstDayOfWeek.getMonth()) {
                     var firstMonthName = currentFirstDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
                     var lastMonthName = currentLastDayOfWeek.toLocaleString(Qt.locale(),i18n.tr("MMM"))
-                    return (firstMonthName[0].toUpperCase() + firstMonthName.substr(1, 2) + "/" +
-                            lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2) + " " +
-                            currentLastDayOfWeek.getFullYear())
+                    var firstLastMonthStr = firstMonthName[0].toUpperCase() + firstMonthName.substr(1, 2) +
+                                            "/" +
+                                            lastMonthName[0].toUpperCase() + lastMonthName.substr(1, 2)
+
+                    if (DateExt.isYearPrecedesMonthFormat(Qt.locale().dateFormat(Locale.ShortFormat))) {
+                        return currentLastDayOfWeek.getFullYear() + " " + firstLastMonthStr
+                    } else {
+                        return firstLastMonthStr + " " + currentLastDayOfWeek.getFullYear()
+                    }
                 } else {
                     var monthName = currentDate.toLocaleString(Qt.locale(),i18n.tr("MMMM yyyy"))
                     return monthName[0].toUpperCase() + monthName.substr(1, monthName.length - 1)

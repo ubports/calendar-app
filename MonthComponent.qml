@@ -40,8 +40,8 @@ Item{
 
     property string dayLabelFontSize: "medium"
     property string dateLabelFontSize: "large"
-    property string monthLabelFontSize: "large"
-    property string yearLabelFontSize: "large"
+    property string leftLabelFontSize: "large"
+    property string rightLabelFontSize: "large"
 
     signal monthSelected(var date);
     signal dateSelected(var date);
@@ -140,7 +140,7 @@ Item{
 
         Loader {
             width: parent.width
-            height: isYearView ? FontUtils.sizeToPixels(root.monthLabelFontSize) : 0;
+            height: isYearView ? FontUtils.sizeToPixels(root.leftLabelFontSize) : 0;
             sourceComponent: isYearView ? headerComp : undefined
             Component{
                 id: headerComp
@@ -151,8 +151,8 @@ Item{
                     year: root.currentYear
                     daysInMonth: intern.daysInStartMonth
 
-                    monthLabelFontSize: root.monthLabelFontSize
-                    yearLabelFontSize: root.yearLabelFontSize
+                    leftLabelFontSize: root.leftLabelFontSize
+                    rightLabelFontSize: root.rightLabelFontSize
                 }
             }
         }
