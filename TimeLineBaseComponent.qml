@@ -179,7 +179,6 @@ Item {
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter} )
             if (!mainModel.autoUpdate) {
-                console.debug("Force a update")
                 mainModel.update()
             }
         }

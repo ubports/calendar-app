@@ -180,7 +180,6 @@ OrganizerModel {
     }
 
     onAutoUpdateChanged: {
-        console.debug("auto update changed:" + autoUpdate)
         if (autoUpdate) {
             eventModel.update()
         }
