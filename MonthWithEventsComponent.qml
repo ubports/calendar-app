@@ -48,6 +48,9 @@ MonthComponent {
         repeat: false
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter } )
+            if (!mainModel.autoUpdate) {
+                mainModel.update()
+            }
         }
     }
 

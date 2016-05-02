@@ -26,6 +26,12 @@ OrganizerModel {
 
     property var listeners:[];
     property bool isLoading: false
+    // disable update while syncing to avoid tons of unecessary update
+    property var _priv: Binding {
+        target: eventModel
+        property: "autoUpdate"
+        value: !mainView.syncInProgress
+    }
 
     function addModelChangeListener(listener){
         listeners.push(listener);
@@ -173,8 +179,6 @@ OrganizerModel {
         }
     }
 
-    // disable update while syncing to avoid tons of unecessary update
-    autoUpdate: !mainView.syncInProgress
     onAutoUpdateChanged: {
         if (autoUpdate) {
             eventModel.update()
