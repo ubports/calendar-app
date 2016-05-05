@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-04-29 15:21-0300\n"
-"PO-Revision-Date: 2016-03-24 13:09+0000\n"
+"PO-Revision-Date: 2016-05-04 19:34+0000\n"
 "Last-Translator: Bojan Bogdanović <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-05-01 05:37+0000\n"
+"X-Launchpad-Export-Date: 2016-05-05 05:36+0000\n"
 "X-Generator: Launchpad (build 17995)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:348 ../calendar.qml:580
@@ -219,7 +219,7 @@ msgstr "Не присуствују"
 
 #: ../EventDetails.qml:399
 msgid "Maybe"
-msgstr ""
+msgstr "Можда"
 
 #: ../EventDetails.qml:401
 msgid "No Reply"
