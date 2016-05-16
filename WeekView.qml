@@ -64,7 +64,7 @@ PageWithBottomEdge {
         weekViewPath.scrollToBegginer()
     }
 
-    onEventCreated: {
+    onEventSaved: {
         var scrollDate = new Date(event.startDateTime)
         var currentWeekNumber = currentDate.weekNumber(Qt.locale().firstDayOfWeek)
         var eventWeekNumber = scrollDate.weekNumber(Qt.locale().firstDayOfWeek)
@@ -234,6 +234,17 @@ PageWithBottomEdge {
                             } else if (iType > 0) {
                                 scrollToBegin()
                             }
+                        }
+                    }
+
+                    // make sure that the model is updated after create a new event if it is marked as auto-update false
+                    Connections {
+                        target: weekViewPage
+                        onEventSaved: {
+                            timeLineView.update()
+                        }
+                        onEventDeleted: {
+                            timeLineView.update()
                         }
                     }
 

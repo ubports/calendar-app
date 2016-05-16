@@ -35,7 +35,8 @@ BottomEdge {
     property var _realPage: null
 
     signal opened()
-    signal eventCreated(var event)
+    signal eventSaved(var event)
+    signal eventDeleted()
 
     function updateNewEventInfo(date, allDay)
     {
@@ -103,9 +104,12 @@ BottomEdge {
             visible: (bottomEdge.status !== BottomEdge.Hidden)
             onCanceled: bottomEdge.collapse()
             bottomEdgePageStack: bottomEdge.pageStack
-            onEventAdded: {
+            onEventSaved: {
                 bottomEdge.collapse()
-                bottomEdge.eventCreated(event)
+                bottomEdge.eventSaved(event)
+            }
+            onEventDeleted: {
+                bottomEdge.evetDeleted()
             }
         }
     }

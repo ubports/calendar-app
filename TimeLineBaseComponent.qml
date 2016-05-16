@@ -132,6 +132,11 @@ Item {
         timeLineView.returnToBounds()
     }
 
+    function update()
+    {
+        mainModel.updateIfNecessary()
+    }
+
     Connections{
         target: keyboardEventProvider
         onScrollUp:{
@@ -335,6 +340,7 @@ Item {
                                     var event = dropArea.modifyEventForDrag(drop);
                                     delegate.waitForModelChange()
                                     delegate.model.saveItem(event);
+                                    delegate.model.updateIfNecessary()
                                 }
 
                                 onPositionChanged: {

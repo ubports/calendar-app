@@ -91,6 +91,8 @@ PageWithBottomEdge {
         }
 
         delegate: MonthWithEventsComponent {
+            id: monthDelegate
+
             property var indexDate: firstDayOfAnchorDate.addMonths(monthViewPath.loopCurrentIndex + monthViewPath.indexType(index))
 
             currentMonth: indexDate.getMonth()
@@ -108,6 +110,17 @@ PageWithBottomEdge {
 
             onDateSelected: {
                 monthViewPage.dateSelected(date);
+            }
+
+            // make sure that the model is updated after create a new event if it is marked as auto-update false
+            Connections {
+                target: monthViewPage
+                onEventSaved: {
+                    monthDelegate.update()
+                }
+                onEventDeleted: {
+                    monthDelegate.update()
+                }
             }
         }
     }

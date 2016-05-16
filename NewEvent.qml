@@ -52,7 +52,7 @@ Page {
     readonly property int millisecsInADay: 86400000
     readonly property int millisecsInAnHour: 3600000
 
-    signal eventAdded(var event);
+    signal eventSaved(var event);
     signal eventDeleted(var event);
     signal canceled()
 
@@ -256,7 +256,9 @@ Page {
             }
 
             model.saveItem(event)
-            root.eventAdded(event);
+            root.eventSaved(event);
+            model.updateIfNecessary()
+
             if (pageStack)
                 pageStack.pop();
         }
@@ -343,6 +345,7 @@ Page {
                     var dialog = PopupUtils.open(Qt.resolvedUrl("DeleteConfirmationDialog.qml"),root,{"event": event});
                     dialog.deleteEvent.connect( function(eventId){
                         model.removeItem(eventId);
+                        model.updateIfNecessary()
                         if (pageStack)
                             pageStack.pop();
                         root.eventDeleted(eventId);

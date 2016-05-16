@@ -55,6 +55,10 @@ PageWithBottomEdge {
         flickable: eventList
     }
 
+    // make sure that the model is updated after create a new event if it is marked as auto-update false
+    onEventSaved: eventListModel.updateIfNecessary()
+    onEventDeleted: eventListModel.updateIfNecessary()
+
 
     // ListModel to hold all events for upcoming 7days.
     EventListModel {
