@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-04-29 15:21-0300\n"
-"PO-Revision-Date: 2015-03-01 07:19+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"PO-Revision-Date: 2016-05-17 03:14+0000\n"
+"Last-Translator: Po-Hsu Lin <po-hsu.lin@canonical.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-05-01 05:37+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-17 05:57+0000\n"
+"X-Generator: Launchpad (build 18025)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:348 ../calendar.qml:580
 msgid "Agenda"
@@ -44,7 +44,7 @@ msgstr ""
 
 #: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
 msgid "New event"
-msgstr ""
+msgstr "新增事件"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
@@ -52,8 +52,7 @@ msgstr ""
 #, qt-format
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 個事件"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:152
@@ -82,7 +81,7 @@ msgstr "同步中"
 
 #: ../CalendarChoicePopup.qml:72
 msgid "Add online Calendar"
-msgstr ""
+msgstr "新增線上行事曆"
 
 #: ../CalendarChoicePopup.qml:166
 msgid "Unable to deselect"
@@ -292,7 +291,7 @@ msgstr "此日期之後："
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../MonthComponent.qml:281
 msgid "Wk"
-msgstr ""
+msgstr "週"
 
 #: ../MonthView.qml:71 ../WeekView.qml:131
 #, qt-format
@@ -436,7 +435,7 @@ msgstr ""
 
 #: ../SettingsPage.qml:84
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "顯示陰曆"
 
 #: ../SettingsPage.qml:128
 msgid "Default reminder"
@@ -444,13 +443,13 @@ msgstr ""
 
 #: ../SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "預設行事曆"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
-msgstr ""
+msgstr "%1 週"
 
 #: ../WeekView.qml:138 ../WeekView.qml:139
 msgid "MMM"
