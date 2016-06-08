@@ -71,6 +71,24 @@ OrganizerModel {
         }
     }
 
+    function collectionIsReadOnlyFromId(collectionId)
+    {
+        if (collectionId === "")
+            return false
+
+        var cal = eventModel.collection(collectionId)
+        return collectionIsReadOnly(cal)
+    }
+
+    function collectionIsReadOnly(collection)
+    {
+        if (!collection)
+            return false
+
+        return collection.extendedMetaData("collection-readonly") === true ||
+               collection.extendedMetaData("collection-sync-readonly") === true
+    }
+
     function getCollections(){
         var cals = [];
         var collections = eventModel.collections;
@@ -90,7 +108,7 @@ OrganizerModel {
             var cal = collections[i];
             if( cal.extendedMetaData("collection-type") === "Calendar" &&
                     cal.extendedMetaData("collection-selected") === true &&
-                    cal.extendedMetaData("collection-readonly") === false) {
+                    !collectionIsReadOnly(cal)) {
                 cals.push(cal);
             }
         }
@@ -102,8 +120,8 @@ OrganizerModel {
         var collections = eventModel.collections;
         for(var i = 0 ; i < collections.length ; ++i) {
             var cal = collections[i];
-            if( cal.extendedMetaData("collection-type") === "Calendar" &&
-                    cal.extendedMetaData("collection-readonly") === false ) {
+            if (cal.extendedMetaData("collection-type") === "Calendar" &&
+                !collectionIsReadOnly(cal)) {
                 cals.push(cal);
             }
         }

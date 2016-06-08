@@ -219,8 +219,12 @@ Item{
         }
 
         onPressAndHold: {
-            isLiveEditing = true;
-            infoBubble.z += 1;
+            if (event && model && model.collectionIsReadOnlyFromId(event.collectionId)) {
+                console.debug("Read-only event can not be dragged")
+            } else {
+                isLiveEditing = true;
+                infoBubble.z += 1;
+            }
         }
     }
 }
