@@ -187,6 +187,13 @@ OrganizerModel {
         return result
     }
 
+    function updateIfNecessary()
+    {
+        console.debug("UpdateIfNecessary:" + eventModel)
+        if (!autoUpdate)
+            update()
+    }
+
     onStartPeriodChanged: {
         isLoading = true
     }

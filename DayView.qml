@@ -48,7 +48,7 @@ PageWithBottomEdge {
         dayViewPath.scrollToBegginer()
     }
 
-    onEventCreated: {
+    onEventSaved: {
         var scrollDate = new Date(event.startDateTime)
         var needScroll = false
         if ((currentDate.getFullYear() !== scrollDate.getFullYear()) ||
@@ -181,6 +181,12 @@ PageWithBottomEdge {
                     if(tabSelected){
                         timeLineView.scrollToTime(new Date());
                     }
+                }
+                onEventSaved: {
+                    timeLineView.update()
+                }
+                onEventDeleted: {
+                    timeLineView.update()
                 }
             }
 

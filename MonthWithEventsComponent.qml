@@ -29,9 +29,17 @@ MonthComponent {
     property alias autoUpdate: mainModel.autoUpdate
     property var modelFilter: invalidFilter
 
+    function refresh() {
+        idleRefresh.reset()
+    }
+
+    function update() {
+        mainModel.updateIfNecessary()
+    }
+
     onIsActiveChanged: {
         if (isActive && (mainModel.filter === invalidFilter)) {
-            idleRefresh.reset()
+            refresh();
         }
     }
 
@@ -48,9 +56,7 @@ MonthComponent {
         repeat: false
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter } )
-            if (!mainModel.autoUpdate) {
-                mainModel.update()
-            }
+            mainModel.updateIfNecessary()
         }
     }
 
