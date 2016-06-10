@@ -98,8 +98,8 @@ Item{
 
                 }
             } else {
-                // Past events: As per accepted events, but at 75% transparency.
-                infoBubble.backgroundOpacity = 0.25
+                // Past events: As per accepted events, but at 60% transparency.
+                infoBubble.backgroundOpacity = 0.4
             }
         }
     }
