@@ -256,6 +256,7 @@ Page {
             }
 
             model.saveItem(event)
+            console.debug("Save item. Model is autoUpdate?" + model.autoUpdate)
             root.eventSaved(event);
             model.updateIfNecessary()
 
