@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-04-29 15:21-0300\n"
-"PO-Revision-Date: 2016-04-30 13:32+0000\n"
-"Last-Translator: Anne <anneonyme017@gmail.com>\n"
+"PO-Revision-Date: 2016-06-08 16:10+0000\n"
+"Last-Translator: Jean-Marc <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-05-01 05:36+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-06-09 06:22+0000\n"
+"X-Generator: Launchpad (build 18097)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:348 ../calendar.qml:580
 msgid "Agenda"
@@ -24,7 +24,7 @@ msgstr "Agenda"
 
 #: ../AgendaView.qml:91
 msgid "You have no calendars enabled"
-msgstr "Vous n'avez pas de calendriers activés"
+msgstr "Vous n'avez pas d'agenda activé"
 
 #: ../AgendaView.qml:91
 msgid "No upcoming events"
@@ -83,7 +83,7 @@ msgstr "Synchronisation en cours"
 
 #: ../CalendarChoicePopup.qml:72
 msgid "Add online Calendar"
-msgstr "Ajouter un calendrier en ligne"
+msgstr "Ajouter un agenda en ligne"
 
 #: ../CalendarChoicePopup.qml:166
 msgid "Unable to deselect"
@@ -95,7 +95,7 @@ msgid ""
 "selected"
 msgstr ""
 "Afin de créer de nouveaux événements, vous devez avoir sélectionné au moins "
-"un calendrier que vous pouvez modifier"
+"un agenda que vous pouvez modifier"
 
 #: ../CalendarChoicePopup.qml:169
 msgid "Ok"
@@ -242,7 +242,7 @@ msgstr "Répétition"
 
 #: ../EventRepetition.qml:172
 msgid "Repeats On:"
-msgstr "se répète tous les  :"
+msgstr "Se répète tous les :"
 
 #: ../EventRepetition.qml:218
 msgid "Recurring event ends"
@@ -288,7 +288,7 @@ msgstr "Jamais"
 
 #: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr "Après X occurrence"
+msgstr "Après X événements"
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
@@ -298,7 +298,7 @@ msgstr "Après le"
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../MonthComponent.qml:281
 msgid "Wk"
-msgstr "Sem."
+msgstr "Sem"
 
 #: ../MonthView.qml:71 ../WeekView.qml:131
 #, qt-format
@@ -450,7 +450,7 @@ msgstr "Rappel par défaut"
 
 #: ../SettingsPage.qml:172
 msgid "Default calendar"
-msgstr "Calendrier par défaut"
+msgstr "Agenda par défaut"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:54
@@ -473,8 +473,8 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
-"L'application Calendrier accepte quatre arguments : --starttime, --endtime, -"
-"-newevent et --eventid. Ils sont gérés par le système. Consulter le code "
+"L'application Agenda accepte quatre arguments : --starttime, --endtime, --"
+"newevent et --eventid. Ils sont gérés par le système. Consulter le code "
 "source pour un commentaire complet à ce sujet."
 
 #: ../calendar.qml:316 ../calendar.qml:496
@@ -495,9 +495,8 @@ msgstr "Jour"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
-"Un calendrier pour Ubuntu qui se synchronise avec les comptes en ligne."
+msgstr "Un agenda pour Ubuntu qui se synchronise avec les comptes en ligne."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr "calendrier;événement;jour;semaine;année;rendez-vous;réunion;"
+msgstr "agenda;événement;jour;semaine;année;rendez-vous;rdv;réunion;"
