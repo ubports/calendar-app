@@ -30,7 +30,8 @@ OrganizerModel {
     property var _priv: Binding {
         target: eventModel
         property: "autoUpdate"
-        value: !mainView.syncInProgress
+        value: false
+        when: mainView.syncInProgress
     }
 
     function addModelChangeListener(listener){
@@ -189,7 +190,7 @@ OrganizerModel {
 
     function updateIfNecessary()
     {
-        console.debug("UpdateIfNecessary:" + eventModel)
+        console.debug("UpdateIfNecessary:" + eventModel + " has autoUpdate?" + autoUpdate)
         if (!autoUpdate)
             update()
     }
