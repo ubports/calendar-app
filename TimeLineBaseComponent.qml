@@ -36,7 +36,7 @@ Item {
     property int weekNumber: startDay.weekNumber(Qt.locale().firstDayOfWeek);
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
-    property alias autoUpdate: mainModel.autoUpdate
+    property alias autoUpdate: mainModel.active
     property var modelFilter: invalidFilter
     property var selectedDay;
 

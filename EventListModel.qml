@@ -24,14 +24,14 @@ OrganizerModel {
     id: eventModel
     manager:"eds"
 
+    property bool active: true
     property var listeners:[];
     property bool isLoading: false
     // disable update while syncing to avoid tons of unecessary update
     property var _priv: Binding {
         target: eventModel
         property: "autoUpdate"
-        value: false
-        when: mainView.syncInProgress
+        value: mainView.syncInProgress ? false : eventModel.active
     }
 
     function addModelChangeListener(listener){

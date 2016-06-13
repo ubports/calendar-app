@@ -26,7 +26,7 @@ MonthComponent {
     objectName: "MonthComponent"
 
     property bool isActive: false
-    property alias autoUpdate: mainModel.autoUpdate
+    property alias autoUpdate: mainModel.active
     property var modelFilter: invalidFilter
 
     function refresh() {
