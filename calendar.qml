@@ -198,6 +198,7 @@ MainView {
 
             property bool isReady: false
 
+            active: true
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
 

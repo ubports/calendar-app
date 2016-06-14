@@ -24,7 +24,7 @@ OrganizerModel {
     id: eventModel
     manager:"eds"
 
-    property bool active: true
+    property bool active: false
     property var listeners:[];
     property bool isLoading: false
     // disable update while syncing to avoid tons of unecessary update
@@ -60,16 +60,6 @@ OrganizerModel {
             }
             newObject.destroy();
         });
-    }
-
-    onModelChanged: {
-        isLoading = false
-        if(listeners === undefined){
-            return;
-        }
-        for(var i=0; i < listeners.length ;++i){
-            (listeners[i])();
-        }
     }
 
     function collectionIsReadOnlyFromId(collectionId)
@@ -191,8 +181,26 @@ OrganizerModel {
     function updateIfNecessary()
     {
         console.debug("UpdateIfNecessary:" + eventModel + " has autoUpdate?" + autoUpdate)
-        if (!autoUpdate)
+        if (!autoUpdate) {
+            console.debug("\tUpdate")
             update()
+        } else {
+            console.debug("\tIgnore")
+        }
+    }
+
+    onModelChanged: {
+        isLoading = false
+        if(listeners === undefined){
+            return;
+        }
+        for(var i=0; i < listeners.length ;++i){
+            (listeners[i])();
+        }
+    }
+
+    onFilterChanged: {
+        updateIfNecessary()
     }
 
     onStartPeriodChanged: {
@@ -206,8 +214,21 @@ OrganizerModel {
     }
 
     onAutoUpdateChanged: {
+        console.debug("Model " + eventModel + " auto Update changed: " + autoUpdate)
         if (autoUpdate) {
             eventModel.update()
+        }
+    }
+
+    onActiveChanged: {
+        if (active) {
+            updateIfNecessary()
+        }
+    }
+
+    Component.onCompleted: {
+        if (active) {
+            updateIfNecessary()
         }
     }
 }

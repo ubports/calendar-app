@@ -28,7 +28,7 @@ Item {
     property alias syncCalendarAction: _syncCalendarAction
     property alias settingsAction: _settingsAction
     property Settings settings
-    readonly property bool syncInProgress: (syncMonitor.state !== "") && (syncMonitor.state !== "idle")
+    readonly property bool syncInProgress: (syncMonitor.state !== "") && (syncMonitor.state === "syncing")
 
     Action {
         id: _syncCalendarAction
