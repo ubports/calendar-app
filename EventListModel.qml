@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2013-2014 Canonical Ltd
  *
  * This file is part of Ubuntu Calendar App
@@ -28,10 +28,12 @@ OrganizerModel {
     property var listeners:[];
     property bool isLoading: false
     // disable update while syncing to avoid tons of unecessary update
+    // disable update if the app is not active
     property var _priv: Binding {
         target: eventModel
         property: "autoUpdate"
-        value: mainView.syncInProgress ? false : eventModel.active
+        value: mainView.syncInProgress ? false
+                                       : (eventModel.active && (Qt.application.state === Qt.ApplicationActive))
     }
 
     function addModelChangeListener(listener){
@@ -189,6 +191,9 @@ OrganizerModel {
         }
     }
 
+    // init model with invalid filter
+    filter: InvalidFilter {}
+
     onModelChanged: {
         isLoading = false
         if(listeners === undefined){
@@ -214,7 +219,7 @@ OrganizerModel {
     }
 
     onAutoUpdateChanged: {
-        console.debug("Model " + eventModel + " auto Update changed: " + autoUpdate)
+        console.debug("Model " + eventModel + " auto Update changed: " + autoUpdate + "app Is Active?" + appIsActive)
         if (autoUpdate) {
             eventModel.update()
         }
