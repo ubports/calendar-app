@@ -220,7 +220,7 @@ OrganizerModel {
     }
 
     onAutoUpdateChanged: {
-        console.debug("Model " + eventModel + " auto Update changed: " + autoUpdate + "app Is Active?" + appIsActive)
+        console.debug("Model " + eventModel + " auto Update changed: " + autoUpdate + " app Is Active: " + appIsActive)
         if (autoUpdate) {
             eventModel.update()
         }

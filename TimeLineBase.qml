@@ -78,13 +78,17 @@ Item {
 
         source: "calendar_canvas_worker.js"
         onMessage: {
+            console.debug("\tEvents parsed.")
             // check if anything changed during the process
             if (intern.dirty) {
                 console.debug("Something has changed while work script was running, ignore message")
             } else {
                 var events = messageObject.reply
+                console.debug("\tNumber of events:" + events.length)
                 var dirty = false
                 for (var i=0; i < events.length; i++) {
+                    var eventId = events[i].eventId
+                    console.debug("\tDraw event:" +  eventId + " title:" + intern.eventsById[eventId].displayLabel)
                     createVisual(events[i])
                 }
             }
@@ -126,13 +130,13 @@ Item {
 
     function createEvents() {
         if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined || model === null) {
-            console.debug("\tabort.")
+            console.debug("\t*************************************abort event drawinig******************.")
             return;
         }
 
         // check if there is any update in progress
         if (intern.busy) {
-            console.debug("Work script still busy, postpone update")
+            console.debug("************************Work script still busy, postpone update**************")
             // mark as dirsty to triggere a new update after the message arrives
             intern.dirty = true
             return;
@@ -144,8 +148,10 @@ Item {
         intern.eventsById = {}
 
         var startDate = day.midnight()
+        console.debug("Fetching events in time interval: start " + startDate + " end: " + startDate.endOfDay())
         var itemsOfTheDay = model.itemsByTimePeriod(startDate, startDate.endOfDay())
         if (itemsOfTheDay.length === 0) {
+            console.debug("\tThere is no events on this period!")
             bubbleOverLay.showSeparator();
             intern.busy = false
             return
@@ -154,9 +160,11 @@ Item {
         for(var i=0; i < itemsOfTheDay.length; i++) {
             var e = itemsOfTheDay[i]
             intern.eventsById[e.itemId] = e
+            console.debug("\tid: " + e.itemId + " title:" + e.displayLabel)
         }
 
         var eventInfo = CanlendarCanvas.parseDayEvents(startDate, itemsOfTheDay)
+        console.debug("\tSend event to parse on a external thread. Number of events:" + eventInfo.length)
         eventLayoutHelper.sendMessage({'events': eventInfo})
         bubbleOverLay.showSeparator();
     }
