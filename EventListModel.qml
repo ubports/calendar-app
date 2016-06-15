@@ -24,6 +24,7 @@ OrganizerModel {
     id: eventModel
     manager:"eds"
 
+    readonly property bool appIsActive: (Qt.application.state === Qt.ApplicationActive)
     property bool active: false
     property var listeners:[];
     property bool isLoading: false
@@ -33,7 +34,7 @@ OrganizerModel {
         target: eventModel
         property: "autoUpdate"
         value: mainView.syncInProgress ? false
-                                       : (eventModel.active && (Qt.application.state === Qt.ApplicationActive))
+                                       : (eventModel.active && eventModel.appIsActive)
     }
 
     function addModelChangeListener(listener){
