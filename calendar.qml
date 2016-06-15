@@ -294,6 +294,11 @@ MainView {
             property alias showWeekNumber: mainView.displayWeekNumber
             property alias showLunarCalendar: mainView.displayLunarCalendar
             property alias reminderDefaultValue: mainView.reminderDefaultValue
+
+            function defaultViewIndexValue(fallback) {
+                return defaultViewIndex != -1 ? defaultViewIndex : fallback
+            }
+
         }
 
         Tabs{
@@ -455,11 +460,11 @@ MainView {
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex = settings.defaultViewIndex;
+                        tabs.selectedTabIndex = settings.defaultViewIndexValue(0)
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex = settings.defaultViewIndex;
+                    tabs.selectedTabIndex = settings.defaultViewIndexValue(0)
                 }
                 tabs.starttime = -1
                 tabs.endtime = -1

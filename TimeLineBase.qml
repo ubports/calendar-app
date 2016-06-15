@@ -142,7 +142,7 @@ Item {
             return;
         }
 
-        intern.busy = true
+
         intern.dirty = false
         destroyAllChildren();
         intern.eventsById = {}
@@ -152,6 +152,7 @@ Item {
             return
         }
 
+        intern.busy = true
         var startDate = day.midnight()
         console.debug("Fetching events in time interval: start " + startDate + " end: " + startDate.endOfDay())
         console.debug("\tModel: " + model)
