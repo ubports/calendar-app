@@ -147,11 +147,17 @@ Item {
         destroyAllChildren();
         intern.eventsById = {}
 
+        if (model.filter.objectName === "invalidFilter") {
+            console.debug("Model is not ready. will fetch events later! " + model)
+            return
+        }
+
         var startDate = day.midnight()
         console.debug("Fetching events in time interval: start " + startDate + " end: " + startDate.endOfDay())
+        console.debug("\tModel: " + model)
         var itemsOfTheDay = model.itemsByTimePeriod(startDate, startDate.endOfDay())
         if (itemsOfTheDay.length === 0) {
-            console.debug("\tThere is no events on this period!")
+            console.debug("\tThere is no events on this period!:" + model.filter)
             bubbleOverLay.showSeparator();
             intern.busy = false
             return

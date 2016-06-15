@@ -184,6 +184,7 @@ MainView {
 
         InvalidFilter {
             id: invalidFilter
+            objectName: "invalidFilter"
         }
 
         IntersectionFilter {
@@ -298,6 +299,8 @@ MainView {
         Tabs{
             id: tabs
             Keys.forwardTo: [tabs.currentPage]
+
+            selectedTabIndex: -1
 
             property bool isReady: false
             property var currentDay: DateExt.today();
@@ -634,6 +637,8 @@ MainView {
                     showDate(tabs.currentDay)
                 }
             }
+
+            Component.onCompleted: console.debug(">>>>>>>>>>>>>>>>> Year view created")
         }
     }
 
@@ -670,6 +675,8 @@ MainView {
                         showDate(tabs.currentDay)
                     }
             }
+
+            Component.onCompleted: console.debug(">>>>>>>>>>>>>>>>> Month view created")
         }
     }
 
@@ -721,6 +728,8 @@ MainView {
                     showDate(tabs.currentDay)
                 }
             }
+
+            Component.onCompleted: console.debug(">>>>>>>>>>>>>>>>> week view created")
         }
     }
 
@@ -764,6 +773,8 @@ MainView {
                     showDate(tabs.currentDay)
                 }
             }
+
+            Component.onCompleted: console.debug("<>>>>>>>>>>>> Day view created")
         }
     }
 
@@ -781,6 +792,8 @@ MainView {
                 tabs.currentDay = date;
                 tabs.selectedTabIndex = dayTab.index
             }
+
+            Component.onCompleted: console.debug(">>>>>>>>>>>>>>>>> Agenda view created")
         }
     }
 }

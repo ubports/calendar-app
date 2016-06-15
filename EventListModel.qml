@@ -193,7 +193,7 @@ OrganizerModel {
     }
 
     // init model with invalid filter
-    filter: InvalidFilter {}
+    filter: InvalidFilter { objectName: "invalidFilter" }
 
     onModelChanged: {
         isLoading = false

@@ -190,10 +190,6 @@ Item {
         }
     }
 
-    InvalidFilter {
-        id: invalidFilter
-    }
-
     EventListModel {
         id: mainModel
         objectName: "timeLineBaseEventListModel:" + root.objectName
@@ -201,7 +197,6 @@ Item {
         manager:"eds"
         startPeriod: startDay.midnight();
         endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(6).endOfDay(): startPeriod.endOfDay()
-        filter: invalidFilter
 
         onStartPeriodChanged: idleRefresh.reset()
         onEndPeriodChanged: idleRefresh.reset()

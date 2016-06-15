@@ -62,6 +62,7 @@ MonthComponent {
 
     InvalidFilter {
         id: invalidFilter
+        objectName: "invalidFilter"
     }
 
     EventListModel {
