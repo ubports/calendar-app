@@ -183,12 +183,8 @@ OrganizerModel {
 
     function updateIfNecessary()
     {
-        console.debug("UpdateIfNecessary:" + eventModel + " has autoUpdate?" + autoUpdate)
         if (!autoUpdate) {
-            console.debug("\tUpdate")
             update()
-        } else {
-            console.debug("\tIgnore")
         }
     }
 
@@ -220,7 +216,6 @@ OrganizerModel {
     }
 
     onAutoUpdateChanged: {
-        console.debug("Model " + eventModel + " auto Update changed: " + autoUpdate + " app Is Active: " + appIsActive)
         if (autoUpdate) {
             eventModel.update()
         }

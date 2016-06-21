@@ -78,17 +78,14 @@ Item {
 
         source: "calendar_canvas_worker.js"
         onMessage: {
-            console.debug("\tEvents parsed.")
             // check if anything changed during the process
             if (intern.dirty) {
                 console.debug("Something has changed while work script was running, ignore message")
             } else {
                 var events = messageObject.reply
-                console.debug("\tNumber of events:" + events.length)
                 var dirty = false
                 for (var i=0; i < events.length; i++) {
                     var eventId = events[i].eventId
-                    console.debug("\tDraw event:" +  eventId + " title:" + intern.eventsById[eventId].displayLabel)
                     createVisual(events[i])
                 }
             }
@@ -148,14 +145,11 @@ Item {
         intern.eventsById = {}
 
         if (model.filter.objectName === "invalidFilter") {
-            console.debug("Model is not ready. will fetch events later! " + model)
             return
         }
 
         intern.busy = true
         var startDate = day.midnight()
-        console.debug("Fetching events in time interval: start " + startDate + " end: " + startDate.endOfDay())
-        console.debug("\tModel: " + model)
         var itemsOfTheDay = model.itemsByTimePeriod(startDate, startDate.endOfDay())
         if (itemsOfTheDay.length === 0) {
             console.debug("\tThere is no events on this period!:" + model.filter)
@@ -167,11 +161,9 @@ Item {
         for(var i=0; i < itemsOfTheDay.length; i++) {
             var e = itemsOfTheDay[i]
             intern.eventsById[e.itemId] = e
-            console.debug("\tid: " + e.itemId + " title:" + e.displayLabel)
         }
 
         var eventInfo = CanlendarCanvas.parseDayEvents(startDate, itemsOfTheDay)
-        console.debug("\tSend event to parse on a external thread. Number of events:" + eventInfo.length)
         eventLayoutHelper.sendMessage({'events': eventInfo})
         bubbleOverLay.showSeparator();
     }
