@@ -147,15 +147,13 @@ Page {
     function updateReminder(event) {
         //TODO: implment support for display information about all reminder
         // We can have multiples Audible and Visible reminders.
-        var reminder = event.detail(Detail.AudibleReminder)
+        var reminder = event.detail(Detail.VisualReminder)
+        // fallback to Audible reminders
+        if (!reminder)
+            reminder = event.detail(Detail.AudibleReminder)
+
         if(reminder) {
-            for(var i=0; i<reminderModel.count; i++) {
-                if(reminder.secondsBeforeStart === reminderModel.get(i).value) {
-                    reminderLayout.subtitle.text = reminderModel.get(i).label
-                }
-            }
-        } else {
-            reminderLayout.subtitle.text = reminderModel.get(0).label
+            reminderLayout.subtitle.text = reminderModel.intervalToString(reminder.secondsBeforeStart)
         }
     }
 
