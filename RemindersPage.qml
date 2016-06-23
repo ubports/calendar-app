@@ -89,6 +89,8 @@ OptionSelectorPage {
                     PopupUtils.close(dialog)
                 }
             }
+
+            Component.onCompleted: customInteval.forceActiveFocus()
         }
     }
 
