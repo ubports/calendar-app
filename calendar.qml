@@ -642,8 +642,6 @@ MainView {
                     showDate(tabs.currentDay)
                 }
             }
-
-            Component.onCompleted: console.debug(">>>>>>>>>>>>>>>>> Year view created")
         }
     }
 
@@ -680,9 +678,7 @@ MainView {
                         showDate(tabs.currentDay)
                     }
             }
-
-            Component.onCompleted: console.debug(">>>>>>>>>>>>>>>>> Month view created")
-        }
+       }
     }
 
     Component {
@@ -733,8 +729,6 @@ MainView {
                     showDate(tabs.currentDay)
                 }
             }
-
-            Component.onCompleted: console.debug(">>>>>>>>>>>>>>>>> week view created")
         }
     }
 
@@ -778,8 +772,6 @@ MainView {
                     showDate(tabs.currentDay)
                 }
             }
-
-            Component.onCompleted: console.debug("<>>>>>>>>>>>> Day view created")
         }
     }
 
@@ -797,8 +789,6 @@ MainView {
                 tabs.currentDay = date;
                 tabs.selectedTabIndex = dayTab.index
             }
-
-            Component.onCompleted: console.debug(">>>>>>>>>>>>>>>>> Agenda view created")
         }
     }
 }
