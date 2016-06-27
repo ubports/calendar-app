@@ -21,15 +21,13 @@ Vcs-Bzr: https://code.launchpad.net/~ubuntu-calendar-dev/ubuntu-calendar-app/tru
 Package: calendar-app
 Architecture: all
 Depends: ${misc:Depends},
-         libqt5contacts5,
-         libqt5organizer5,
          qmlscene,
+         qml-module-qt-labs-settings,
          qml-module-qtcontacts,
          qml-module-qtorganizer,
-         qml-module-qtquick-layouts,
+         qml-module-ubuntu-components,
          qtcontact5-galera,
          qtdeclarative5-ubuntu-syncmonitor0.1,
-         qtdeclarative5-ubuntu-ui-toolkit-plugin | qt-components-ubuntu,
          qtorganizer5-eds,
          ubuntu-mobile-icons | suru-icon-theme,
 Description: Calendar application for Ubuntu devices
