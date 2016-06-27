@@ -10,6 +10,7 @@ Build-Depends: cmake,
                qml-module-qttest,
                qt5-default,
                qtdeclarative5-dev-tools,
+               qtdeclarative5-ubuntu-content1,
 Standards-Version: 3.9.4
 Section: misc
 Homepage: https://launchpad.net/ubuntu-calendar-app
