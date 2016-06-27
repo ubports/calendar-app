@@ -5,14 +5,12 @@ Build-Depends: cmake,
                debhelper (>= 9),
                intltool,
                python3,
-               qml-module-qtcontacts,
                qml-module-qtorganizer,
                qml-module-qtquick2,
                qml-module-qttest,
                qml-module-ubuntu-components,
                qt5-default,
                qtdeclarative5-dev-tools,
-               qtdeclarative5-ubuntu-content1,
 Standards-Version: 3.9.4
 Section: misc
 Homepage: https://launchpad.net/ubuntu-calendar-app
