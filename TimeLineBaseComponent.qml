@@ -134,7 +134,6 @@ Item {
 
     function update()
     {
-        console.debug("will update model if necessary.")
         mainModel.updateIfNecessary()
     }
 

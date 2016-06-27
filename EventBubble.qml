@@ -74,7 +74,9 @@ Item{
             updateTitle()
 
             //Accepted events: Solid collection color with white text.
-            infoBubble.backgroundColor = collection.color
+            if (collection)
+                infoBubble.backgroundColor = collection.color
+
             infoBubble.backgroundOpacity = 1
             infoBubble.titleColor = "white";
             infoBubble.strikeoutTitle = false;
