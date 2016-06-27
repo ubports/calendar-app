@@ -19,8 +19,6 @@ Vcs-Bzr: https://code.launchpad.net/~ubuntu-calendar-dev/ubuntu-calendar-app/tru
 Package: calendar-app
 Architecture: all
 Depends: ${misc:Depends},
-         libqt5contacts5,
-         libqt5organizer5,
          qmlscene,
          qml-module-qt-labs-settings,
          qml-module-qtcontacts,
