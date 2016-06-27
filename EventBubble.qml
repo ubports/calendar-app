@@ -226,6 +226,7 @@ Item{
             } else {
                 isLiveEditing = true;
                 infoBubble.z += 1;
+                Haptics.play()
             }
         }
     }
