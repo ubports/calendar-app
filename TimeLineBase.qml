@@ -152,7 +152,6 @@ Item {
         var startDate = day.midnight()
         var itemsOfTheDay = model.itemsByTimePeriod(startDate, startDate.endOfDay())
         if (itemsOfTheDay.length === 0) {
-            console.debug("\tThere is no events on this period!:" + model.filter)
             bubbleOverLay.showSeparator();
             intern.busy = false
             return

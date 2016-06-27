@@ -97,13 +97,15 @@ PageWithBottomEdge {
         interval: 200
         repeat:false
         onTriggered: {
-            if (scrollToDate) {
-                if (scrollToTime)
-                    weekViewPath.currentItem.item.scrollToDateAndTime(scrollToDate);
-                else
-                    weekViewPath.currentItem.item.scrollToDate(scrollToDate);
-            } else {
-                weekViewPath.currentItem.item.scrollToBegin()
+            if (weekViewPath.currentItem && weekViewPath.currentItem.item) {
+                if (scrollToDate) {
+                    if (scrollToTime)
+                        weekViewPath.currentItem.item.scrollToDateAndTime(scrollToDate);
+                    else
+                        weekViewPath.currentItem.item.scrollToDate(scrollToDate);
+                } else {
+                    weekViewPath.currentItem.item.scrollToBegin()
+                }
             }
 
             scrollToDate = null
