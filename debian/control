@@ -8,6 +8,7 @@ Build-Depends: cmake,
                qtdeclarative5-dev-tools,
                qt5-default,
                qtdeclarative5-qtquick2-plugin,
+               qtdeclarative5-qtorganizer-plugin,
                qtdeclarative5-test-plugin,
 Standards-Version: 3.9.4
 Section: misc
