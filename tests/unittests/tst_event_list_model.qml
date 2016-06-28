@@ -10,16 +10,23 @@ TestCase{
     id: root
     name: "Event List Model tests"
 
+    QtObject {
+        id: mainView
+        property bool syncInProgress: false
+    }
+
     Component {
         id: modelComp
 
         EventListModel {
             id: eventModel
 
+            active: true
             manager: "memory"
             startPeriod: new Date(2016, 7, 1, 0, 0, 0, 0)
             endPeriod: new Date(2016, 8, 1, 0, 0, 0, 0)
             autoUpdate: true
+            filter: null
         }
     }
 
@@ -51,14 +58,13 @@ TestCase{
     function create_events(data)
     {
         var model = modelComp.createObject(root, {});
-        var spy = spyComp.createObject(root, {'target': model})
 
         for(var i=0; i < data.length; i++) {
             var ev = create_event_from_data(model, data[i])
             model.saveItem(ev)
-            tryCompare(spy, 'count', i+1)
         }
-        compare(model.itemCount, data.length)
+        model.updateIfNecessary()
+        tryCompare(model, 'itemCount', data.length)
         return model
     }
 
