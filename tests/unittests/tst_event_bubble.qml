@@ -2,6 +2,8 @@ import QtQuick 2.0
 import QtTest 1.0
 import QtOrganizer 5.0
 
+import "../../dateExt.js" as DATE
+
 TestCase{
     id: root
     name: "Event Bubble tests"
@@ -107,8 +109,9 @@ TestCase{
     function init()
     {
         var collectionId = get_collection_id_by_name(root.model, root.collection.name)
-        var startDate = new Date(2016, 3, 28, 14, 0,0 )
-        var endDate = new Date(2016, 3, 28, 15, 0,0 )
+        var startDate = new Date()
+        startDate = startDate.addDays(1)
+        var endDate = startDate.addMinutes(60)
         var eventData = {"collectionId": collectionId,
                          "label": "Sample Test Event",
                          "allDay": false,
