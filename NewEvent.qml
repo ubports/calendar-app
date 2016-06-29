@@ -583,7 +583,7 @@ Page {
                         margins: units.gu(2)
                     }
 
-                    containerHeight: itemHeight * 4
+                    containerHeight: (model && (model.length > 1) ? itemHeight * model.length : itemHeight)
                     model: root.model ? root.model.getWritableAndSelectedCollections() : []
 
                     Connections {
@@ -595,6 +595,8 @@ Page {
                             calendarsOption.model = root.model.getWritableAndSelectedCollections()
                         }
                     }
+
+                    onExpansionCompleted: flickable.makeMeVisible(calendarsOption)
 
                     delegate: OptionSelectorDelegate{
                         text: modelData.name

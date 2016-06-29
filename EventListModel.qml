@@ -37,6 +37,10 @@ OrganizerModel {
                                        : (eventModel.active && eventModel.appIsActive)
     }
 
+    function _sortCollections(collectionA, collectionB) {
+        return collectionA.name.localeCompare(collectionB.name)
+    }
+
     function addModelChangeListener(listener){
         listeners.push(listener);
     }
@@ -92,6 +96,7 @@ OrganizerModel {
                 cals.push(cal);
             }
         }
+        cals.sort(eventModel._sortCollections)
         return cals;
     }
 
@@ -106,20 +111,8 @@ OrganizerModel {
                 cals.push(cal);
             }
         }
-        return cals;
-    }
-
-    function getWritableCollections(){
-        var cals = [];
-        var collections = eventModel.collections;
-        for(var i = 0 ; i < collections.length ; ++i) {
-            var cal = collections[i];
-            if (cal.extendedMetaData("collection-type") === "Calendar" &&
-                !collectionIsReadOnly(cal)) {
-                cals.push(cal);
-            }
-        }
-        return cals;
+        cals.sort(eventModel._sortCollections);
+        return cals
     }
 
     function getDefaultCollection() {
