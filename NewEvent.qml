@@ -586,6 +586,16 @@ Page {
                     containerHeight: itemHeight * 4
                     model: root.model ? root.model.getWritableAndSelectedCollections() : []
 
+                    Connections {
+                        target: root.model ? root.model : null
+                        onModelChanged: {
+                            calendarsOption.model = root.model.getWritableAndSelectedCollections()
+                        }
+                        onCollectionsChanged: {
+                            calendarsOption.model = root.model.getWritableAndSelectedCollections()
+                        }
+                    }
+
                     delegate: OptionSelectorDelegate{
                         text: modelData.name
 
