@@ -152,9 +152,8 @@ Page {
         if (!reminder)
             reminder = event.detail(Detail.AudibleReminder)
 
-        if(reminder) {
-            reminderLayout.subtitle.text = reminderModel.intervalToString(reminder.secondsBeforeStart)
-        }
+        var interval = reminder ? reminder.secondsBeforeStart : -1
+        reminderLayout.subtitle.text = reminderModel.intervalToString(interval)
     }
 
     function getDate(e) {
