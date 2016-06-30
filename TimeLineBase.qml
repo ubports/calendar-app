@@ -215,7 +215,6 @@ Item {
         isLiveEditing: overlayMouseArea.creatingEvent
         visible: overlayMouseArea.creatingEvent
         sizeOfRow: 1.0
-        z: 100
         onVisibleChanged: {
             if (visible)
                 y = event ? CanlendarCanvas.minutesSince(bubbleOverLay.day, event.startDateTime) * bubbleOverLay.minuteHeight : 0
@@ -274,6 +273,7 @@ Item {
             temporaryEvent.model = bubbleOverLay.model
             temporaryEvent.event = event
             temporaryEvent.resize()
+            temporaryEvent.z = 1000
             creatingEvent = true
         }
 
