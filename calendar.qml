@@ -460,11 +460,11 @@ MainView {
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex = settings.defaultViewIndexValue(0)
+                        tabs.selectedTabIndex = settings.defaultViewIndexValue(1)
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex = settings.defaultViewIndexValue(0)
+                    tabs.selectedTabIndex = settings.defaultViewIndexValue(1)
                 }
                 tabs.starttime = -1
                 tabs.endtime = -1
