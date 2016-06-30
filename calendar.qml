@@ -139,8 +139,6 @@ MainView {
     PageStack {
         id: pageStack
 
-        Component.onCompleted: push(tabs)
-
         // This is for wait that the app is load when newEvent is invoked by argument
         Timer {
             id: timer
@@ -470,6 +468,7 @@ MainView {
                 tabs.endtime = -1
                 tabs.eventId = ""
                 tabs.isReady = true
+                pageStack.push(tabs)
                 // WORKAROUND: Due the missing feature on SDK, they can not detect if
                 // there is a mouse attached to device or not. And this will cause the
                 // bootom edge component to not work correct on desktop.
