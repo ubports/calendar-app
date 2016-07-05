@@ -596,6 +596,15 @@ Page {
                         }
                     }
 
+                    Connections {
+                        target: root
+                        onActiveChanged: {
+                            if (root.active) {
+                                calendarsOption.model = root.model.getWritableAndSelectedCollections()
+                            }
+                        }
+                    }
+
                     onExpansionCompleted: flickable.makeMeVisible(calendarsOption)
 
                     delegate: OptionSelectorDelegate{
