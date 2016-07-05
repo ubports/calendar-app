@@ -68,7 +68,7 @@ PageWithBottomEdge {
         startPeriod: anchorDate.midnight();
         endPeriod: anchorDate.addDays(7).endOfDay()
         filter: model.filter
-        active: root.tabSelected
+        active: root.tabSelected && root.active
         sortOrders: [
             SortOrder{
                 blankPolicy: SortOrder.BlanksFirst

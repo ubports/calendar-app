@@ -196,34 +196,7 @@ MainView {
             objectName: "calendarEventList"
 
             property bool isReady: false
-
-            active: true
-            startPeriod: tabs.currentDay
-            endPeriod: tabs.currentDay
-
-            filter: invalidFilter
-
-            onCollectionsChanged: {
-                if (!isReady)
-                    return
-
-                var collectionIds = enabledColections()
-                var oldCollections = collectionFilter.ids
-                var needsUpdate = false
-                if (collectionIds.length != oldCollections.length) {
-                    needsUpdate = true
-                } else {
-                    for(var i=oldCollections.length - 1; i >=0 ; i--) {
-                        if (collectionIds.indexOf(oldCollections[i]) === -1) {
-                            needsUpdate = true
-                            break;
-                        }
-                    }
-                }
-
-                if (needsUpdate)
-                    collectionFilter.ids = collectionIds;
-            }
+            property alias collectionsToFilter: collectionFilter.ids
 
             function enabledColections()
             {
@@ -269,6 +242,37 @@ MainView {
                 }
                 eventModel.onItemsFetched.connect( callbackFunc );
                 requestId = eventModel.fetchItems(eventId);
+            }
+
+            active: true
+            startPeriod: tabs.currentDay
+            endPeriod: tabs.currentDay
+
+            filter: invalidFilter
+
+            onCollectionsChanged: {
+                if (!isReady) {
+                    return
+                }
+
+                var collectionIds = enabledColections()
+                var oldCollections = collectionFilter.ids
+                var needsUpdate = false
+                if (collectionIds.length != oldCollections.length) {
+                    needsUpdate = true
+                } else {
+                    for(var i=oldCollections.length - 1; i >=0 ; i--) {
+                        if (collectionIds.indexOf(oldCollections[i]) === -1) {
+                            needsUpdate = true
+                            break;
+                        }
+                    }
+                }
+
+                if (needsUpdate) {
+                    eventModel.collectionsToFilter = collectionIds
+                    updateIfNecessary()
+                }
             }
 
             Component.onCompleted: {
@@ -659,7 +663,7 @@ MainView {
             }
 
             reminderValue: mainView.reminderDefaultValue
-            model: eventModel.isReady ? eventModel : null
+            model: eventModel.isReady && eventModel.collectionsToFilter ? eventModel : null
             bootomEdgeEnabled: tabSelected
             displayLunarCalendar: mainView.displayLunarCalendar
 
@@ -699,7 +703,7 @@ MainView {
             }
 
             reminderValue: mainView.reminderDefaultValue
-            model: eventModel.isReady ? eventModel : null
+            model: eventModel.isReady && eventModel.collectionsToFilter ? eventModel : null
             bootomEdgeEnabled: tabSelected
             displayLunarCalendar: mainView.displayLunarCalendar
 
@@ -750,7 +754,7 @@ MainView {
             }
 
             reminderValue: mainView.reminderDefaultValue
-            model: eventModel.isReady ? eventModel : null
+            model: eventModel.isReady && eventModel.collectionsToFilter ? eventModel : null
             bootomEdgeEnabled: tabSelected
             displayLunarCalendar: mainView.displayLunarCalendar
 
@@ -781,7 +785,7 @@ MainView {
             readonly property bool tabSelected: tabs.selectedTab === agendaTab
 
             reminderValue: mainView.reminderDefaultValue
-            model: eventModel.isReady ? eventModel : null
+            model: eventModel.isReady && eventModel.collectionsToFilter ? eventModel : null
             bootomEdgeEnabled: tabs.selectedTabIndex === agendaTab.index
 
             onDateSelected: {

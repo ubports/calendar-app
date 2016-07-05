@@ -196,7 +196,7 @@ PageWithBottomEdge {
                     keyboardEventProvider: weekViewPath
                     selectedDay: weekViewPage.selectedDay
                     modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
-                    autoUpdate: weekViewPage.tabSelected
+                    autoUpdate: weekViewPage.tabSelected && weekViewPage.active
 
                     onDateSelected: {
                         weekViewPage.dateSelected(date);

@@ -99,7 +99,7 @@ PageWithBottomEdge {
             currentYear: indexDate.getFullYear()
             displayLunarCalendar: monthViewPage.displayLunarCalendar
 
-            autoUpdate: monthViewPage.tabSelected
+            autoUpdate: monthViewPage.tabSelected && monthViewPage.active
             modelFilter: eventModel.filter
             width: parent.width - units.gu(4)
             height: parent.height
