@@ -244,6 +244,8 @@ MainView {
                 requestId = eventModel.fetchItems(eventId);
             }
 
+            // force this model to never disable the auto-update
+            live: true
             active: true
             startPeriod: tabs.currentDay
             endPeriod: tabs.currentDay
