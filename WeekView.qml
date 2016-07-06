@@ -241,6 +241,11 @@ PageWithBottomEdge {
                     // make sure that the model is updated after create a new event if it is marked as auto-update false
                     Connections {
                         target: weekViewPage
+                        onActiveChanged: {
+                            if (weekViewPage.active) {
+                                timeLineView.update()
+                            }
+                        }
                         onEventSaved: {
                             timeLineView.update()
                         }

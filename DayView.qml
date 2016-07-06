@@ -178,8 +178,13 @@ PageWithBottomEdge {
             Connections{
                 target: dayViewPage
                 onTabSelectedChanged: {
-                    if(tabSelected){
+                    if(dayViewPage.tabSelected){
                         timeLineView.scrollToTime(new Date());
+                    }
+                }
+                onActiveChanged: {
+                    if (dayViewPage.active) {
+                        timeLineView.update()
                     }
                 }
                 onEventSaved: {
