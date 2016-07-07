@@ -163,7 +163,7 @@ PageWithBottomEdge {
             startDay: anchorDate.addDays(dayViewPath.loopCurrentIndex + dayViewPath.indexType(index))
             keyboardEventProvider: dayViewPath
             modelFilter: dayViewPage.model ? dayViewPage.model.filter : null
-            autoUpdate: dayViewPage.tabSelected
+            autoUpdate: dayViewPage.tabSelected && dayViewPage.active
 
             onPressAndHoldAt: {
                 dayViewPage.pressAndHoldAt(date, allDay)
