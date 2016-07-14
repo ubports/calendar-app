@@ -4,7 +4,7 @@ Maintainer: Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>
 Build-Depends: cmake,
                debhelper (>= 9),
                intltool,
-               python3,
+               python3:any,
                qml-module-qtorganizer,
                qml-module-qtquick2,
                qml-module-qttest,
