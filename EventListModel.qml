@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2013-2014 Canonical Ltd
  *
  * This file is part of Ubuntu Calendar App
@@ -24,14 +24,22 @@ OrganizerModel {
     id: eventModel
     manager:"eds"
 
+    readonly property bool appIsActive: (Qt.application.state === Qt.ApplicationActive)
+    property bool active: false
     property var listeners:[];
     property bool isLoading: false
+    property bool live: false
     // disable update while syncing to avoid tons of unecessary update
+    // disable update if the app is not active
     property var _priv: Binding {
         target: eventModel
         property: "autoUpdate"
-        value: false
-        when: mainView.syncInProgress
+        value: mainView.syncInProgress ? (false || live)
+                                       : (eventModel.active && eventModel.appIsActive) || live
+    }
+
+    function _sortCollections(collectionA, collectionB) {
+        return collectionA.name.localeCompare(collectionB.name)
     }
 
     function addModelChangeListener(listener){
@@ -62,14 +70,22 @@ OrganizerModel {
         });
     }
 
-    onModelChanged: {
-        isLoading = false
-        if(listeners === undefined){
-            return;
-        }
-        for(var i=0; i < listeners.length ;++i){
-            (listeners[i])();
-        }
+    function collectionIsReadOnlyFromId(collectionId)
+    {
+        if (collectionId === "")
+            return false
+
+        var cal = eventModel.collection(collectionId)
+        return collectionIsReadOnly(cal)
+    }
+
+    function collectionIsReadOnly(collection)
+    {
+        if (!collection)
+            return false
+
+        return collection.extendedMetaData("collection-readonly") === true ||
+               collection.extendedMetaData("collection-sync-readonly") === true
     }
 
     function getCollections(){
@@ -81,6 +97,7 @@ OrganizerModel {
                 cals.push(cal);
             }
         }
+        cals.sort(eventModel._sortCollections)
         return cals;
     }
 
@@ -91,24 +108,12 @@ OrganizerModel {
             var cal = collections[i];
             if( cal.extendedMetaData("collection-type") === "Calendar" &&
                     cal.extendedMetaData("collection-selected") === true &&
-                    cal.extendedMetaData("collection-readonly") === false) {
+                    !collectionIsReadOnly(cal)) {
                 cals.push(cal);
             }
         }
-        return cals;
-    }
-
-    function getWritableCollections(){
-        var cals = [];
-        var collections = eventModel.collections;
-        for(var i = 0 ; i < collections.length ; ++i) {
-            var cal = collections[i];
-            if( cal.extendedMetaData("collection-type") === "Calendar" &&
-                    cal.extendedMetaData("collection-readonly") === false ) {
-                cals.push(cal);
-            }
-        }
-        return cals;
+        cals.sort(eventModel._sortCollections);
+        return cals
     }
 
     function getDefaultCollection() {
@@ -172,9 +177,26 @@ OrganizerModel {
 
     function updateIfNecessary()
     {
-        console.debug("UpdateIfNecessary:" + eventModel + " has autoUpdate?" + autoUpdate)
-        if (!autoUpdate)
+        if (!autoUpdate) {
             update()
+        }
+    }
+
+    // init model with invalid filter
+    filter: InvalidFilter { objectName: "invalidFilter" }
+
+    onModelChanged: {
+        isLoading = false
+        if(listeners === undefined){
+            return;
+        }
+        for(var i=0; i < listeners.length ;++i){
+            (listeners[i])();
+        }
+    }
+
+    onFilterChanged: {
+        updateIfNecessary()
     }
 
     onStartPeriodChanged: {
@@ -190,6 +212,18 @@ OrganizerModel {
     onAutoUpdateChanged: {
         if (autoUpdate) {
             eventModel.update()
+        }
+    }
+
+    onActiveChanged: {
+        if (active) {
+            updateIfNecessary()
+        }
+    }
+
+    Component.onCompleted: {
+        if (active) {
+            updateIfNecessary()
         }
     }
 }

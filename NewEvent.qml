@@ -169,7 +169,12 @@ Page {
                 }
             }
         }
-        var reminder = e.detail(Detail.AudibleReminder);
+
+        var reminder = e.detail(Detail.VisualReminder)
+        // fallback to audible
+        if (!reminder)
+            reminder = e.detail(Detail.AudibleReminder)
+
         if (reminder) {
             root.reminderValue = reminder.secondsBeforeStart
         } else {
@@ -233,12 +238,14 @@ Page {
                 }
             }
 
-            // update audible reminder time if necessary
-            // TODO: we only support audible reminders for now
-            var reminder = event.detail(Detail.AudibleReminder);
+            // update the first reminder time if necessary
+            var reminder = event.detail(Detail.VisualReminder)
+            if (!reminder)
+                reminder = event.detail(Detail.AudibleReminder)
+
             if (root.reminderValue >= 0) {
                 if (!reminder) {
-                    reminder = Qt.createQmlObject("import QtOrganizer 5.0; AudibleReminder {}", event, "")
+                    reminder = Qt.createQmlObject("import QtOrganizer 5.0; VisualReminder {}", event, "")
                     reminder.repetitionCount = 0
                     reminder.repetitionDelay = 0
                 }
@@ -256,7 +263,6 @@ Page {
             }
 
             model.saveItem(event)
-            console.debug("Save item. Model is autoUpdate?" + model.autoUpdate)
             root.eventSaved(event);
             model.updateIfNecessary()
 
@@ -577,8 +583,29 @@ Page {
                         margins: units.gu(2)
                     }
 
-                    containerHeight: itemHeight * 4
+                    containerHeight: (model && (model.length > 1) ? itemHeight * model.length : itemHeight)
                     model: root.model ? root.model.getWritableAndSelectedCollections() : []
+
+                    Connections {
+                        target: root.model ? root.model : null
+                        onModelChanged: {
+                            calendarsOption.model = root.model.getWritableAndSelectedCollections()
+                        }
+                        onCollectionsChanged: {
+                            calendarsOption.model = root.model.getWritableAndSelectedCollections()
+                        }
+                    }
+
+                    Connections {
+                        target: root
+                        onActiveChanged: {
+                            if (root.active) {
+                                calendarsOption.model = root.model.getWritableAndSelectedCollections()
+                            }
+                        }
+                    }
+
+                    onExpansionCompleted: flickable.makeMeVisible(calendarsOption)
 
                     delegate: OptionSelectorDelegate{
                         text: modelData.name
@@ -718,31 +745,15 @@ Page {
 
                 property int reminderValue: -1
 
-                onReminderValueChanged: updateReminderLabel()
-
                 ListItemLayout {
                     id: eventReminderLayout
                     title.text: i18n.tr("Reminder")
+                    summary.text: reminderModel.intervalToString(eventReminder.reminderValue)
                     ProgressionSlot {}
-                }
-
-                function updateReminderLabel() {
-                    if (eventReminder.reminderValue !== -1) {
-                        for (var i=0; i<reminderModel.count; i++) {
-                            if (reminderModel.get(i).value === eventReminder.reminderValue) {
-                                eventReminderLayout.summary.text = reminderModel.get(i).label
-                                return
-                            }
-                        }
-                    } else {
-                        eventReminderLayout.summary.text = reminderModel.get(0).label
-                        return
-                    }
                 }
 
                 RemindersModel {
                     id: reminderModel
-                    onLoaded: eventReminder.updateReminderLabel()
                 }
 
                 onClicked:{
@@ -751,22 +762,15 @@ Page {
                         stack = bottomEdgePageStack
                     }
 
-                    var reminderSelectedIndex = 0
-                    if (eventReminder.reminderValue !== -1) {
-                        for (var i=0; i<reminderModel.count; ++i) {
-                            if (reminderModel.get(i).value === eventReminder.reminderValue) {
-                                reminderSelectedIndex = i
-                            }
-                        }
-                    }
-
-                    var reminderPick = stack.push(Qt.resolvedUrl("OptionSelectorPage.qml"),
+                    reminderModel.reset()
+                    var reminderPick = stack.push(Qt.resolvedUrl("RemindersPage.qml"),
                                                    {"title": i18n.tr("Reminder"),
                                                     "model": reminderModel,
-                                                    "selectedIndex": reminderSelectedIndex})
-                    reminderPick.selectedIndexChanged.connect(function() {
-                        root.reminderValue = reminderModel.get(reminderPick.selectedIndex).value
+                                                    "interval": eventReminder.reminderValue})
+                    reminderPick.intervalChanged.connect(function() {
+                        root.reminderValue = reminderPick.interval
                     })
+
                 }
             }
         }

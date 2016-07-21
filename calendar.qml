@@ -139,8 +139,6 @@ MainView {
     PageStack {
         id: pageStack
 
-        Component.onCompleted: push(tabs)
-
         // This is for wait that the app is load when newEvent is invoked by argument
         Timer {
             id: timer
@@ -184,6 +182,7 @@ MainView {
 
         InvalidFilter {
             id: invalidFilter
+            objectName: "invalidFilter"
         }
 
         IntersectionFilter {
@@ -197,33 +196,7 @@ MainView {
             objectName: "calendarEventList"
 
             property bool isReady: false
-
-            startPeriod: tabs.currentDay
-            endPeriod: tabs.currentDay
-
-            filter: invalidFilter
-
-            onCollectionsChanged: {
-                if (!isReady)
-                    return
-
-                var collectionIds = enabledColections()
-                var oldCollections = collectionFilter.ids
-                var needsUpdate = false
-                if (collectionIds.length != oldCollections.length) {
-                    needsUpdate = true
-                } else {
-                    for(var i=oldCollections.length - 1; i >=0 ; i--) {
-                        if (collectionIds.indexOf(oldCollections[i]) === -1) {
-                            needsUpdate = true
-                            break;
-                        }
-                    }
-                }
-
-                if (needsUpdate)
-                    collectionFilter.ids = collectionIds;
-            }
+            property alias collectionsToFilter: collectionFilter.ids
 
             function enabledColections()
             {
@@ -271,6 +244,39 @@ MainView {
                 requestId = eventModel.fetchItems(eventId);
             }
 
+            // force this model to never disable the auto-update
+            live: true
+            active: true
+            startPeriod: tabs.currentDay
+            endPeriod: tabs.currentDay
+
+            filter: invalidFilter
+
+            onCollectionsChanged: {
+                if (!isReady) {
+                    return
+                }
+
+                var collectionIds = enabledColections()
+                var oldCollections = collectionFilter.ids
+                var needsUpdate = false
+                if (collectionIds.length != oldCollections.length) {
+                    needsUpdate = true
+                } else {
+                    for(var i=oldCollections.length - 1; i >=0 ; i--) {
+                        if (collectionIds.indexOf(oldCollections[i]) === -1) {
+                            needsUpdate = true
+                            break;
+                        }
+                    }
+                }
+
+                if (needsUpdate) {
+                    eventModel.collectionsToFilter = collectionIds
+                    updateIfNecessary()
+                }
+            }
+
             Component.onCompleted: {
                 delayedApplyFilter();
 
@@ -292,11 +298,18 @@ MainView {
             property alias showWeekNumber: mainView.displayWeekNumber
             property alias showLunarCalendar: mainView.displayLunarCalendar
             property alias reminderDefaultValue: mainView.reminderDefaultValue
+
+            function defaultViewIndexValue(fallback) {
+                return defaultViewIndex != -1 ? defaultViewIndex : fallback
+            }
+
         }
 
         Tabs{
             id: tabs
             Keys.forwardTo: [tabs.currentPage]
+
+            selectedTabIndex: -1
 
             property bool isReady: false
             property var currentDay: DateExt.today();
@@ -451,16 +464,17 @@ MainView {
                     else {
                         // Due to bug #1231558 {if (args.defaultArgument.at(0))} is always true
                         // After the fix we can delete this else
-                        tabs.selectedTabIndex = settings.defaultViewIndex;
+                        tabs.selectedTabIndex = settings.defaultViewIndexValue(1)
                     }
                 } // End of if about args.values
                 else {
-                    tabs.selectedTabIndex = settings.defaultViewIndex;
+                    tabs.selectedTabIndex = settings.defaultViewIndexValue(1)
                 }
                 tabs.starttime = -1
                 tabs.endtime = -1
                 tabs.eventId = ""
                 tabs.isReady = true
+                pageStack.push(tabs)
                 // WORKAROUND: Due the missing feature on SDK, they can not detect if
                 // there is a mouse attached to device or not. And this will cause the
                 // bootom edge component to not work correct on desktop.
@@ -651,7 +665,7 @@ MainView {
             }
 
             reminderValue: mainView.reminderDefaultValue
-            model: eventModel.isReady ? eventModel : null
+            model: eventModel.isReady && eventModel.collectionsToFilter ? eventModel : null
             bootomEdgeEnabled: tabSelected
             displayLunarCalendar: mainView.displayLunarCalendar
 
@@ -669,7 +683,7 @@ MainView {
                         showDate(tabs.currentDay)
                     }
             }
-        }
+       }
     }
 
     Component {
@@ -691,7 +705,7 @@ MainView {
             }
 
             reminderValue: mainView.reminderDefaultValue
-            model: eventModel.isReady ? eventModel : null
+            model: eventModel.isReady && eventModel.collectionsToFilter ? eventModel : null
             bootomEdgeEnabled: tabSelected
             displayLunarCalendar: mainView.displayLunarCalendar
 
@@ -742,7 +756,7 @@ MainView {
             }
 
             reminderValue: mainView.reminderDefaultValue
-            model: eventModel.isReady ? eventModel : null
+            model: eventModel.isReady && eventModel.collectionsToFilter ? eventModel : null
             bootomEdgeEnabled: tabSelected
             displayLunarCalendar: mainView.displayLunarCalendar
 
@@ -773,7 +787,7 @@ MainView {
             readonly property bool tabSelected: tabs.selectedTab === agendaTab
 
             reminderValue: mainView.reminderDefaultValue
-            model: eventModel.isReady ? eventModel : null
+            model: eventModel.isReady && eventModel.collectionsToFilter ? eventModel : null
             bootomEdgeEnabled: tabs.selectedTabIndex === agendaTab.index
 
             onDateSelected: {

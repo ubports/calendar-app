@@ -170,8 +170,18 @@ Page {
                         id: defaultCalendarOptionSelector
 
                         text: i18n.tr("Default calendar")
-                        model: settingsPage.eventModel ? settingsPage.eventModel.getWritableAndSelectedCollections() : null
-                        containerHeight: itemHeight * 4 
+                        model: settingsPage.eventModel ? settingsPage.eventModel.getWritableAndSelectedCollections() : []
+                        containerHeight: (model && (model.length > 1) ? itemHeight * model.length : itemHeight)
+
+                        Connections {
+                            target: settingsPage.eventModel ? settingsPage.eventModel : null
+                            onModelChanged: {
+                                defaultCalendarOptionSelector.model = settingsPage.eventModel.getWritableAndSelectedCollections()
+                            }
+                            onCollectionsChanged: {
+                                defaultCalendarOptionSelector.model = settingsPage.eventModel.getWritableAndSelectedCollections()
+                            }
+                        }
 
                         delegate: OptionSelectorDelegate {
                             text: modelData.name

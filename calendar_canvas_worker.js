@@ -81,7 +81,7 @@ function dayEventsMap(eventsInfo)
     var lines = []
 
     while (events.length > 0) {
-        var aux = {"startTime": 0, "ednTime": 0}
+        var aux = {"startTime": 0, "endTime": 0}
         var eventA = events[0]
         events.splice(0, 1)
         var line = [eventA]

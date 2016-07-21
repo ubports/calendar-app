@@ -74,7 +74,9 @@ Item{
             updateTitle()
 
             //Accepted events: Solid collection color with white text.
-            infoBubble.backgroundColor = collection.color
+            if (collection)
+                infoBubble.backgroundColor = collection.color
+
             infoBubble.backgroundOpacity = 1
             infoBubble.titleColor = "white";
             infoBubble.strikeoutTitle = false;
@@ -98,8 +100,8 @@ Item{
 
                 }
             } else {
-                // Past events: As per accepted events, but at 75% transparency.
-                infoBubble.backgroundOpacity = 0.25
+                // Past events: As per accepted events, but at 60% transparency.
+                infoBubble.backgroundOpacity = 0.4
             }
         }
     }
@@ -219,8 +221,13 @@ Item{
         }
 
         onPressAndHold: {
-            isLiveEditing = true;
-            infoBubble.z += 1;
+            if (event && model && model.collectionIsReadOnlyFromId(event.collectionId)) {
+                console.debug("Read-only event can not be dragged")
+            } else {
+                isLiveEditing = true;
+                infoBubble.z += 1;
+                Haptics.play()
+            }
         }
     }
 }

@@ -36,7 +36,7 @@ Item {
     property int weekNumber: startDay.weekNumber(Qt.locale().firstDayOfWeek);
     property alias contentY: timeLineView.contentY
     property alias contentInteractive: timeLineView.interactive
-    property alias autoUpdate: mainModel.autoUpdate
+    property alias autoUpdate: mainModel.active
     property var modelFilter: invalidFilter
     property var selectedDay;
 
@@ -134,7 +134,6 @@ Item {
 
     function update()
     {
-        console.debug("will update model if necessary.")
         mainModel.updateIfNecessary()
     }
 
@@ -184,14 +183,7 @@ Item {
         repeat: false
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter} )
-            if (!mainModel.autoUpdate) {
-                mainModel.update()
-            }
         }
-    }
-
-    InvalidFilter {
-        id: invalidFilter
     }
 
     EventListModel {
@@ -201,7 +193,6 @@ Item {
         manager:"eds"
         startPeriod: startDay.midnight();
         endPeriod: type == ViewType.ViewTypeWeek ? startPeriod.addDays(6).endOfDay(): startPeriod.endOfDay()
-        filter: invalidFilter
 
         onStartPeriodChanged: idleRefresh.reset()
         onEndPeriodChanged: idleRefresh.reset()

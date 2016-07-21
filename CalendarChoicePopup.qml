@@ -21,6 +21,7 @@ import QtOrganizer 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.SyncMonitor 0.1
 import Ubuntu.Components.Popups 1.3
+import Ubuntu.OnlineAccounts 0.1
 
 Page {
     id: calendarChoicePage
@@ -28,6 +29,15 @@ Page {
 
     property var model
     signal collectionUpdated()
+
+    function accountFromId(accountId)
+    {
+        if (accountId && accountId >= 0) {
+            return Manager.loadAccount(accountId)
+        }
+
+        return null
+    }
 
     visible: false
     header: PageHeader {
@@ -96,7 +106,13 @@ Page {
             ListItemLayout {
                 id: calendarsListLayout
 
+                Account {
+                    id: delegateAccount
+                    objectHandle: calendarChoicePage.accountFromId(modelData.extendedMetaData("collection-account-id"))
+                }
+
                 title.text: modelData.name
+                subtitle.text: delegateAccount.objectHandle ? delegateAccount.displayName : ""
                 title.objectName: "calendarName"
 
                 CheckBox {

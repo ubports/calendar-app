@@ -85,6 +85,7 @@ Item {
                 var events = messageObject.reply
                 var dirty = false
                 for (var i=0; i < events.length; i++) {
+                    var eventId = events[i].eventId
                     createVisual(events[i])
                 }
             }
@@ -126,23 +127,28 @@ Item {
 
     function createEvents() {
         if(!bubbleOverLay || bubbleOverLay == undefined || model === undefined || model === null) {
-            console.debug("\tabort.")
+            console.debug("\t*************************************abort event drawinig******************.")
             return;
         }
 
         // check if there is any update in progress
         if (intern.busy) {
-            console.debug("Work script still busy, postpone update")
+            console.debug("************************Work script still busy, postpone update**************")
             // mark as dirsty to triggere a new update after the message arrives
             intern.dirty = true
             return;
         }
 
-        intern.busy = true
+
         intern.dirty = false
-        destroyAllChildren();
+        hideAllChildren();
         intern.eventsById = {}
 
+        if (model.filter.objectName === "invalidFilter") {
+            return
+        }
+
+        intern.busy = true
         var startDate = day.midnight()
         var itemsOfTheDay = model.itemsByTimePeriod(startDate, startDate.endOfDay())
         if (itemsOfTheDay.length === 0) {
@@ -161,7 +167,7 @@ Item {
         bubbleOverLay.showSeparator();
     }
 
-    function destroyAllChildren() {
+    function hideAllChildren() {
         separator.visible = false
         for(var i=0; i < children.length; i++) {
             var child = children[i]
@@ -175,6 +181,15 @@ Item {
                 intern.unUsedEvents.push(child)
             }
         }
+    }
+
+    function destroyAllChildren() {
+        hideAllChildren()
+        for(var i=0; i < intern.unUsedEvents.length; i++) {
+            var child = intern.unUsedEvents[i]
+            child.destroy()
+        }
+        intern.unUsedEvents = []
     }
 
     function getUnusedEventBubble() {
@@ -209,7 +224,6 @@ Item {
         isLiveEditing: overlayMouseArea.creatingEvent
         visible: overlayMouseArea.creatingEvent
         sizeOfRow: 1.0
-        z: 100
         onVisibleChanged: {
             if (visible)
                 y = event ? CanlendarCanvas.minutesSince(bubbleOverLay.day, event.startDateTime) * bubbleOverLay.minuteHeight : 0
@@ -268,6 +282,7 @@ Item {
             temporaryEvent.model = bubbleOverLay.model
             temporaryEvent.event = event
             temporaryEvent.resize()
+            temporaryEvent.z = 1000
             creatingEvent = true
         }
 
@@ -330,4 +345,6 @@ Item {
             bubbleOverLay.idleCreateEvents()
         }
     }
+
+    Component.onDestruction: destroyAllChildren()
 }

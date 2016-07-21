@@ -28,7 +28,7 @@ Item {
     property alias syncCalendarAction: _syncCalendarAction
     property alias settingsAction: _settingsAction
     property Settings settings
-    readonly property bool syncInProgress: (syncMonitor.state === "syncing")
+    readonly property bool syncInProgress: (syncMonitor.state !== "") && (syncMonitor.state === "syncing")
 
     Action {
         id: _syncCalendarAction
@@ -38,7 +38,7 @@ Item {
         // Currently ,there is no way we can increase width of action menu currently.
         text: enabled ? i18n.tr("Sync") : i18n.tr("Syncing")
         onTriggered: syncMonitor.sync(["calendar"])
-        enabled: !syncInProgress
+        enabled: !actionPool.syncInProgress
         visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
     }
 
