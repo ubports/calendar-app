@@ -28,7 +28,8 @@ Page {
     readonly property int bottomEdgeHeight: bottomEdge.hint.height
 
     signal bottomEdgeCommitStarted()
-    signal eventCreated(var event)
+    signal eventSaved(var event)
+    signal eventDeleted()
 
     function bottomEdgeCommit(date, allDay)
     {
@@ -41,6 +42,7 @@ Page {
 
         pageStack: root.pageStack
         onOpened: root.bottomEdgeCommitStarted()
-        onEventCreated: root.eventCreated(event)
+        onEventSaved: root.eventSaved(event)
+        onEventDeleted: root.eventDeleted()
     }
 }

@@ -242,7 +242,7 @@ Page {
         }
 
         pageStack.push(Qt.resolvedUrl("NewEvent.qml"),{"event": event, "model":model});
-        pageStack.currentPage.eventAdded.connect( function(event){
+        pageStack.currentPage.eventSaved.connect( function(event){
             pageStack.pop();
         })
         //When event deleted from the Edit mode
