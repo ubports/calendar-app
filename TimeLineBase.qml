@@ -141,7 +141,7 @@ Item {
 
 
         intern.dirty = false
-        destroyAllChildren();
+        hideAllChildren();
         intern.eventsById = {}
 
         if (model.filter.objectName === "invalidFilter") {
@@ -167,7 +167,7 @@ Item {
         bubbleOverLay.showSeparator();
     }
 
-    function destroyAllChildren() {
+    function hideAllChildren() {
         separator.visible = false
         for(var i=0; i < children.length; i++) {
             var child = children[i]
@@ -181,6 +181,15 @@ Item {
                 intern.unUsedEvents.push(child)
             }
         }
+    }
+
+    function destroyAllChildren() {
+        hideAllChildren()
+        for(var i=0; i < intern.unUsedEvents.length; i++) {
+            var child = intern.unUsedEvents[i]
+            child.destroy()
+        }
+        intern.unUsedEvents = []
     }
 
     function getUnusedEventBubble() {
@@ -336,4 +345,6 @@ Item {
             bubbleOverLay.idleCreateEvents()
         }
     }
+
+    Component.onDestruction: destroyAllChildren()
 }

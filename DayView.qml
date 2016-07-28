@@ -163,7 +163,7 @@ PageWithBottomEdge {
             startDay: anchorDate.addDays(dayViewPath.loopCurrentIndex + dayViewPath.indexType(index))
             keyboardEventProvider: dayViewPath
             modelFilter: dayViewPage.model ? dayViewPage.model.filter : null
-            autoUpdate: dayViewPage.tabSelected && dayViewPage.active
+            autoUpdate: dayViewPage.tabSelected && dayViewPage.active && PathView.isCurrentItem
 
             onPressAndHoldAt: {
                 dayViewPage.pressAndHoldAt(date, allDay)
@@ -178,8 +178,13 @@ PageWithBottomEdge {
             Connections{
                 target: dayViewPage
                 onTabSelectedChanged: {
-                    if(tabSelected){
+                    if(dayViewPage.tabSelected){
                         timeLineView.scrollToTime(new Date());
+                    }
+                }
+                onActiveChanged: {
+                    if (dayViewPage.active) {
+                        timeLineView.update()
                     }
                 }
                 onEventSaved: {

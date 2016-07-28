@@ -99,7 +99,7 @@ PageWithBottomEdge {
             currentYear: indexDate.getFullYear()
             displayLunarCalendar: monthViewPage.displayLunarCalendar
 
-            autoUpdate: monthViewPage.tabSelected && monthViewPage.active
+            autoUpdate: monthViewPage.tabSelected && monthViewPage.active && PathView.isCurrentItem
             modelFilter: eventModel.filter
             width: parent.width - units.gu(4)
             height: parent.height
@@ -115,6 +115,11 @@ PageWithBottomEdge {
             // make sure that the model is updated after create a new event if it is marked as auto-update false
             Connections {
                 target: monthViewPage
+                onActiveChanged: {
+                    if (monthViewPage.active) {
+                        monthDelegate.update()
+                    }
+                }
                 onEventSaved: {
                     monthDelegate.update()
                 }

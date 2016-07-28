@@ -28,13 +28,14 @@ OrganizerModel {
     property bool active: false
     property var listeners:[];
     property bool isLoading: false
+    property bool live: false
     // disable update while syncing to avoid tons of unecessary update
     // disable update if the app is not active
     property var _priv: Binding {
         target: eventModel
         property: "autoUpdate"
-        value: mainView.syncInProgress ? false
-                                       : (eventModel.active && eventModel.appIsActive)
+        value: mainView.syncInProgress ? (false || live)
+                                       : (eventModel.active && eventModel.appIsActive) || live
     }
 
     function _sortCollections(collectionA, collectionB) {

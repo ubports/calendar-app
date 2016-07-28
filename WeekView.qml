@@ -196,7 +196,6 @@ PageWithBottomEdge {
                     keyboardEventProvider: weekViewPath
                     selectedDay: weekViewPage.selectedDay
                     modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
-                    autoUpdate: weekViewPage.tabSelected && weekViewPage.active
 
                     onDateSelected: {
                         weekViewPage.dateSelected(date);
@@ -242,6 +241,11 @@ PageWithBottomEdge {
                     // make sure that the model is updated after create a new event if it is marked as auto-update false
                     Connections {
                         target: weekViewPage
+                        onActiveChanged: {
+                            if (weekViewPage.active) {
+                                timeLineView.update()
+                            }
+                        }
                         onEventSaved: {
                             timeLineView.update()
                         }
@@ -271,6 +275,13 @@ PageWithBottomEdge {
                         value: timeLineView.contentInteractive
                     }
                 }
+            }
+
+            Binding {
+                target: item
+                property: "autoUpdate"
+                value: (weekViewPage.tabSelected && weekViewPage.active && PathView.isCurrentItem)
+                when: (timelineLoader.status === Loader.Ready)
             }
         }
     }
