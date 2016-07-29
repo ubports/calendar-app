@@ -40,7 +40,7 @@ Item {
 
             ScrollView {
                 width: dialog.width
-                height: listView.count * units.gu(7)
+                height: Math.min(listView.count, 3) * units.gu(7)
 
                 ListView {
                     id: listView
@@ -62,11 +62,16 @@ Item {
                             }
                         }
                         onClicked: {
+                            listView.enabled = false
                             setup.providerId = model.providerId
                             setup.exec()
                         }
                     }
                 }
+            }
+            Button {
+                text: i18n.tr("Cancel")
+                onClicked: PopupUtils.close(dialogue)
             }
 
             Component.onDestruction: {
