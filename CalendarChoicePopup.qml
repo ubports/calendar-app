@@ -83,14 +83,14 @@ Page {
 
                 Image {
                     SlotsLayout.position: SlotsLayout.First
-                    source: "image://theme/google"
+                    source: "image://theme/account"
                     width: units.gu(5)
                     height: width
                 }
             }
 
             onClicked: {
-                onlineAccountHelper.item.setupExec()
+                onlineAccountHelper.item.run()
             }
         }
 
