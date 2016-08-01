@@ -60,6 +60,7 @@ Page {
             enabled: (syncMonitor.state !== "syncing")
             visible: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("calendar") : false
         }
+        flickable: calendarsList
     }
 
     SyncMonitor {
@@ -69,13 +70,13 @@ Page {
     ListView {
         id: calendarsList
 
-        anchors { top: calendarChoicePage.header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+        anchors { fill: parent }
 
         header: ListItem {
             id: importFromGoogleButton
 
             visible: (onlineAccountHelper.status === Loader.Ready)
-            height: onlineCalendarLayout.height + divider.height
+            height: units.gu(7)
 
             ListItemLayout {
                 id: onlineCalendarLayout
@@ -96,6 +97,7 @@ Page {
 
         model : calendarChoicePage.model.getCollections()
         currentIndex: -1
+
 
         delegate: ListItem {
             id: delegateComp
