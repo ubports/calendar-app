@@ -8,6 +8,8 @@
 * @农历转公历：calendar.lunar2solar(1987,09,10); //[you can ignore params of prefix 0]
 * http://blog.jjonline.cn/userInterFace/173.html
 */
+.pragma library
+
 var calendar = {
  
  /**
