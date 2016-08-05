@@ -95,7 +95,6 @@ BottomEdge {
     Loader {
         id: editorPageLoader
         active: false
-        sourceComponent: editorPageBottomEdge
         asynchronous: true
         onStatusChanged: {
             if (status == Loader.Null) {
@@ -104,23 +103,21 @@ BottomEdge {
                 bottomEdge._realPage = item;
             }
         }
-    }
+        Component.onCompleted: setSource("NewEvent.qml", {
+                                             "implicitWidth": Qt.binding(function() { return bottomEdge.width } ),
+                                             "implicitHeight": Qt.binding(function() { return bottomEdge.height } ),
+                                             "reminderValue": Qt.binding(function() { return bottomEdge.reminderValue } ),
+                                             "model": Qt.binding(function() { return bottomEdge.eventModel } ),
+                                             "date": Qt.binding(function() { return bottomEdge.date } ),
+                                             "enabled": Qt.binding(function() { return bottomEdge.status === BottomEdge.Committed } ),
+                                             "active": Qt.binding(function() { return bottomEdge.status === BottomEdge.Committed } ),
+                                             "visible": Qt.binding(function() { return (bottomEdge.status !== BottomEdge.Hidden) } ),
+                                             "bottomEdgePageStack": Qt.binding(function() { return bottomEdge.pageStack } ),
+                                         })
 
-    Component {
-        id: editorPageBottomEdge
-        NewEvent {
-            id: newEventPage
-
-            implicitWidth: bottomEdge.width
-            implicitHeight: bottomEdge.height
-            reminderValue: bottomEdge.reminderValue
-            model: bottomEdge.eventModel
-            date: bottomEdge.date
-            enabled: bottomEdge.status === BottomEdge.Committed
-            active: bottomEdge.status === BottomEdge.Committed
-            visible: (bottomEdge.status !== BottomEdge.Hidden)
+        Connections {
+            target: editorPageLoader.item ? editorPageLoader.item : null
             onCanceled: bottomEdge.collapse()
-            bottomEdgePageStack: bottomEdge.pageStack
             onEventSaved: {
                 bottomEdge.collapse()
                 bottomEdge.eventSaved(event)
