@@ -73,8 +73,6 @@ BottomEdge {
 
     onCollapseCompleted: {
         if (bottomEdge._realPage) {
-            bottomEdge._realPage.destroy()
-            bottomEdge._realPage = null
             createPage()
         }
     }
@@ -89,23 +87,21 @@ BottomEdge {
             createPage()
     }
 
-    property var incubator
     function createPage() {
-        if (bottomEdge._realPage) {
-            bottomEdge._realPage.destroy();
-            bottomEdge._realPage = null;
-        }
+        editorPageLoader.active = false;
+        editorPageLoader.active = true;
+    }
 
-        incubator = editorPageBottomEdge.incubateObject(null);
-        if (incubator.status == Component.Ready) {
-            _realPage = incubator.object;
-            incubator = null;
-        } else {
-            incubator.onStatusChanged = function(status) {
-                if (status == Component.Ready) {
-                    _realPage = incubator.object;
-                    incubator = null;
-                }
+    Loader {
+        id: editorPageLoader
+        active: false
+        sourceComponent: editorPageBottomEdge
+        asynchronous: true
+        onStatusChanged: {
+            if (status == Loader.Null) {
+                bottomEdge._realPage = null;
+            } else if (status == Loader.Ready) {
+                bottomEdge._realPage = item;
             }
         }
     }
@@ -132,13 +128,6 @@ BottomEdge {
             onEventDeleted: {
                 bottomEdge.evetDeleted()
             }
-        }
-    }
-
-    Component.onDestruction: {
-        if (bottomEdge._realPage) {
-            bottomEdge._realPage.destroy()
-            bottomEdge._realPage = null
         }
     }
 }
