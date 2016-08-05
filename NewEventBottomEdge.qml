@@ -75,18 +75,39 @@ BottomEdge {
         if (bottomEdge._realPage) {
             bottomEdge._realPage.destroy()
             bottomEdge._realPage = null
-            _realPage = editorPageBottomEdge.createObject(null)
+            createPage()
         }
     }
 
     Component.onCompleted:  {
         if (eventModel)
-            _realPage = editorPageBottomEdge.createObject(null)
+            createPage()
     }
 
     onEventModelChanged: {
         if (eventModel)
-            _realPage = editorPageBottomEdge.createObject(null)
+            createPage()
+    }
+
+    property var incubator
+    function createPage() {
+        if (bottomEdge._realPage) {
+            bottomEdge._realPage.destroy();
+            bottomEdge._realPage = null;
+        }
+
+        incubator = editorPageBottomEdge.incubateObject(null);
+        if (incubator.status == Component.Ready) {
+            _realPage = incubator.object;
+            incubator = null;
+        } else {
+            incubator.onStatusChanged = function(status) {
+                if (status == Component.Ready) {
+                    _realPage = incubator.object;
+                    incubator = null;
+                }
+            }
+        }
     }
 
     Component {
