@@ -18,16 +18,65 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.OnlineAccounts 0.1
 import Ubuntu.OnlineAccounts.Client 0.1
+import Ubuntu.Components.Popups 1.3
 
 Item {
     id: root
 
-    property bool running: false
+    property var dialogInstance: null
 
-    function setupExec(){
-        if (!root.running) {
-            root.running = true
-            setup.exec()
+    function run(){
+        if (!root.dialogInstance) {
+            root.dialogInstance = PopupUtils.open(dialog)
+        }
+    }
+
+    Component {
+        id: dialog
+        Dialog {
+            id: dialogue
+            title: "Online Accounts"
+            text: i18n.tr("Pick an account to create.")
+
+            ScrollView {
+                width: dialog.width
+                height: Math.min(listView.count, 3) * units.gu(7)
+
+                ListView {
+                    id: listView
+
+                    anchors.fill: parent
+                    clip: true
+                    model: ProviderModel {
+                        applicationId: "com.ubuntu.calendar_calendar"
+                    }
+                    delegate: ListItem {
+                        ListItemLayout {
+                            title.text: model.displayName
+
+                            Image {
+                                SlotsLayout.position: SlotsLayout.First
+                                source: "image://theme/" + model.iconName
+                                width: units.gu(5)
+                                height: width
+                            }
+                        }
+                        onClicked: {
+                            listView.enabled = false
+                            setup.providerId = model.providerId
+                            setup.exec()
+                        }
+                    }
+                }
+            }
+            Button {
+                text: i18n.tr("Cancel")
+                onClicked: PopupUtils.close(dialogue)
+            }
+
+            Component.onDestruction: {
+                root.dialogInstance  = null
+            }
         }
     }
 
@@ -36,7 +85,7 @@ Item {
         applicationId: "com.ubuntu.calendar_calendar"
         providerId: "google"
         onFinished: {
-            root.running = false
+            PopupUtils.close(root.dialogInstance)
         }
     }
 }

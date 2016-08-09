@@ -7,6 +7,9 @@
     <service id="google-caldav">
       <description>Syncronize your calendar</description>
     </service>
+    <service id="owncloud-caldav">
+      <description>Syncronize your calendar</description>
+    </service>
   </services>
 
 </application>
