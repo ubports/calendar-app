@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-04-29 15:21-0300\n"
+"POT-Creation-Date: 2016-07-29 17:20-0300\n"
 "PO-Revision-Date: 2016-05-20 09:14+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
@@ -16,31 +16,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2016-07-29 05:57+0000\n"
-"X-Generator: Launchpad (build 18153)\n"
+"X-Launchpad-Export-Date: 2016-08-10 05:37+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 "Language: gd\n"
 
-#: ../AgendaView.qml:50 ../calendar.qml:348 ../calendar.qml:580
+#: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
 msgstr "Clàr-gnothaich"
 
-#: ../AgendaView.qml:91
+#: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
 msgstr "Chan eil mìosachan an comas agad"
 
-#: ../AgendaView.qml:91
+#: ../AgendaView.qml:95
 msgid "No upcoming events"
 msgstr "Cha bhi tachartas ann a dh'aithghearr"
 
-#: ../AgendaView.qml:103
+#: ../AgendaView.qml:107
 msgid "Enable calendars"
 msgstr "Cuir mìosachain an comas"
 
-#: ../AgendaView.qml:195
+#: ../AgendaView.qml:199
 msgid "no event name set"
 msgstr "cha deach ainm an tachartais a shuidheachadh"
 
-#: ../AgendaView.qml:197
+#: ../AgendaView.qml:201
 msgid "no location"
 msgstr "gun ionad"
 
@@ -69,33 +69,33 @@ msgstr[1] "%1 thachartas fad an latha"
 msgstr[2] "%1 tachartasan fad an latha"
 msgstr[3] "%1 tachartas fad an latha"
 
-#: ../CalendarChoicePopup.qml:34 ../EventActions.qml:54
+#: ../CalendarChoicePopup.qml:44 ../EventActions.qml:54
 msgid "Calendars"
 msgstr "Mìosachain"
 
-#: ../CalendarChoicePopup.qml:36 ../SettingsPage.qml:49
+#: ../CalendarChoicePopup.qml:46 ../SettingsPage.qml:49
 msgid "Back"
 msgstr "Air ais"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:39
+#: ../CalendarChoicePopup.qml:58 ../EventActions.qml:39
 msgid "Sync"
 msgstr "Sioncronaich"
 
-#: ../CalendarChoicePopup.qml:48 ../EventActions.qml:39
+#: ../CalendarChoicePopup.qml:58 ../EventActions.qml:39
 msgid "Syncing"
 msgstr "'Ga shioncronachadh"
 
-#: ../CalendarChoicePopup.qml:72
+#: ../CalendarChoicePopup.qml:82
 msgid "Add online Calendar"
 msgstr "Cuir mìosachan air loidhne ris"
 
-#: ../CalendarChoicePopup.qml:166
+#: ../CalendarChoicePopup.qml:182
 msgid "Unable to deselect"
 msgstr "Cha ghabh a dhì-thaghadh"
 
-#: ../CalendarChoicePopup.qml:167
+#: ../CalendarChoicePopup.qml:183
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
@@ -103,7 +103,7 @@ msgstr ""
 "Mus urrainn dhut tachartasan ùra a chruthachadh, feumaidh tu co-dhiù aon "
 "mhìosachan a thaghadh anns an urrainn dhut sgrìobhadh"
 
-#: ../CalendarChoicePopup.qml:169
+#: ../CalendarChoicePopup.qml:185 ../RemindersPage.qml:80
 msgid "Ok"
 msgstr "Ceart ma-thà"
 
@@ -112,7 +112,8 @@ msgid "Select Color"
 msgstr "Tagh dath"
 
 #: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
-#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:331
+#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:340
+#: ../OnlineAccountsHelper.qml:73 ../RemindersPage.qml:72
 msgid "Cancel"
 msgstr "Sguir dheth"
 
@@ -131,7 +132,7 @@ msgstr "An-diugh"
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:122 ../MonthView.qml:76 ../WeekView.qml:154
+#: ../DayView.qml:122 ../MonthView.qml:76 ../WeekView.qml:152
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -165,11 +166,11 @@ msgstr "Sguab às an sreath"
 msgid "Delete this"
 msgstr "Sguab às seo"
 
-#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:338
+#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:347
 msgid "Delete"
 msgstr "Sguab às"
 
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:326
+#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:335
 msgid "Edit Event"
 msgstr "Deasaich an tachartas"
 
@@ -195,12 +196,12 @@ msgstr "Roghainnean"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
-#: ../EventBubble.qml:136
+#: ../EventBubble.qml:138
 #, qt-format
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: ../EventDetails.qml:37 ../NewEvent.qml:496
+#: ../EventDetails.qml:37 ../NewEvent.qml:506
 msgid "Event Details"
 msgstr "Fiosrachadh an tachartais"
 
@@ -208,36 +209,36 @@ msgstr "Fiosrachadh an tachartais"
 msgid "Edit"
 msgstr "Deasaich"
 
-#: ../EventDetails.qml:176 ../TimeLineHeader.qml:66
+#: ../EventDetails.qml:173 ../TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "Fad an latha"
 
-#: ../EventDetails.qml:351 ../NewEvent.qml:562
+#: ../EventDetails.qml:348 ../NewEvent.qml:572
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
 msgid "Calendar"
 msgstr "Am mìosachan"
 
-#: ../EventDetails.qml:395
+#: ../EventDetails.qml:392
 msgid "Attending"
 msgstr "Thig"
 
-#: ../EventDetails.qml:397
+#: ../EventDetails.qml:394
 msgid "Not Attending"
 msgstr "Cha dig"
 
-#: ../EventDetails.qml:399
+#: ../EventDetails.qml:396
 msgid "Maybe"
 msgstr "'S dòcha"
 
-#: ../EventDetails.qml:401
+#: ../EventDetails.qml:398
 msgid "No Reply"
 msgstr "Gun fhreagairt"
 
-#: ../EventDetails.qml:440 ../NewEvent.qml:528
+#: ../EventDetails.qml:437 ../NewEvent.qml:538
 msgid "Description"
 msgstr "Tuairisgeul"
 
-#: ../EventDetails.qml:467 ../NewEvent.qml:721 ../NewEvent.qml:760
+#: ../EventDetails.qml:464 ../NewEvent.qml:750 ../NewEvent.qml:767
 msgid "Reminder"
 msgstr "Cuimhneachan"
 
@@ -260,7 +261,7 @@ msgstr "Deireadh an thachartais ath-chùrsaich"
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:697
+#: ../EventRepetition.qml:242 ../NewEvent.qml:728
 msgid "Repeats"
 msgstr "Tachraidh seo a-rithist"
 
@@ -311,58 +312,62 @@ msgstr "Às dèidh ceann-là"
 msgid "Wk"
 msgstr "Sn"
 
-#: ../MonthView.qml:71 ../WeekView.qml:131
+#: ../MonthView.qml:71 ../WeekView.qml:133
 #, qt-format
 msgid "%1 %2"
 msgstr "%1 %2"
 
-#: ../NewEvent.qml:185
+#: ../NewEvent.qml:190
 msgid "End time can't be before start time"
 msgstr "Chan fhaod e crìochnachadh mus tòisich e"
 
-#: ../NewEvent.qml:326 ../NewEventBottomEdge.qml:53
+#: ../NewEvent.qml:335 ../NewEventBottomEdge.qml:54
 msgid "New Event"
 msgstr "Tachartas ùr"
 
-#: ../NewEvent.qml:355
+#: ../NewEvent.qml:365
 msgid "Save"
 msgstr "Sàbhail"
 
-#: ../NewEvent.qml:366
+#: ../NewEvent.qml:376
 msgid "Error"
 msgstr "Mearachd"
 
-#: ../NewEvent.qml:368
+#: ../NewEvent.qml:378
 msgid "OK"
 msgstr "Ceart ma-thà"
 
-#: ../NewEvent.qml:430
+#: ../NewEvent.qml:440
 msgid "From"
 msgstr "O"
 
-#: ../NewEvent.qml:446
+#: ../NewEvent.qml:456
 msgid "To"
 msgstr "Gu"
 
-#: ../NewEvent.qml:473
+#: ../NewEvent.qml:483
 msgid "All day event"
 msgstr "Tachartas fad an latha"
 
-#: ../NewEvent.qml:510
+#: ../NewEvent.qml:520
 msgid "Event Name"
 msgstr "Ainm an tachartais"
 
-#: ../NewEvent.qml:547
+#: ../NewEvent.qml:557
 msgid "Location"
 msgstr "Ionad"
 
-#: ../NewEvent.qml:603
+#: ../NewEvent.qml:634
 msgid "Guests"
 msgstr "Aoighean"
 
-#: ../NewEvent.qml:613
+#: ../NewEvent.qml:644
 msgid "Add Guest"
 msgstr "Cuir aoigh ris"
+
+#: ../OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr ""
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -400,52 +405,92 @@ msgstr "Gach mìos"
 msgid "Yearly"
 msgstr "Gach bliadhna"
 
-#: ../RemindersModel.qml:27
+#: ../RemindersModel.qml:31 ../RemindersModel.qml:99
 msgid "No Reminder"
 msgstr "Na cuir 'nam chuimhne"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
 #. the event starts, not any time before
-#: ../RemindersModel.qml:31
+#: ../RemindersModel.qml:34 ../RemindersModel.qml:103
 msgid "On Event"
 msgstr "Àm an tachartais"
 
-#: ../RemindersModel.qml:32
+#: ../RemindersModel.qml:43
+#, qt-format
+msgid "%1 week"
+msgid_plural "%1 weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../RemindersModel.qml:54
+#, qt-format
+msgid "%1 day"
+msgid_plural "%1 days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../RemindersModel.qml:65
+#, qt-format
+msgid "%1 hour"
+msgid_plural "%1 hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../RemindersModel.qml:74
+#, qt-format
+msgid "%1 minute"
+msgid_plural "%1 minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../RemindersModel.qml:104
 msgid "5 minutes"
 msgstr "5 mionaidean"
 
-#: ../RemindersModel.qml:33
+#: ../RemindersModel.qml:105
+msgid "10 minutes"
+msgstr ""
+
+#: ../RemindersModel.qml:106
 msgid "15 minutes"
 msgstr "15 mionaidean"
 
-#: ../RemindersModel.qml:34
+#: ../RemindersModel.qml:107
 msgid "30 minutes"
 msgstr "Leth-uair a thìde"
 
-#: ../RemindersModel.qml:35
+#: ../RemindersModel.qml:108
 msgid "1 hour"
 msgstr "Uair a thìde"
 
-#: ../RemindersModel.qml:36
+#: ../RemindersModel.qml:109
 msgid "2 hours"
 msgstr "2 uair a thìde"
 
-#: ../RemindersModel.qml:37
+#: ../RemindersModel.qml:110
 msgid "1 day"
 msgstr "Latha"
 
-#: ../RemindersModel.qml:38
+#: ../RemindersModel.qml:111
 msgid "2 days"
 msgstr "2 latha"
 
-#: ../RemindersModel.qml:39
+#: ../RemindersModel.qml:112
 msgid "1 week"
 msgstr "Seachdain"
 
-#: ../RemindersModel.qml:40
+#: ../RemindersModel.qml:113
 msgid "2 weeks"
 msgstr "2 sheachdain"
+
+#: ../RemindersModel.qml:114
+msgid "Custom"
+msgstr ""
+
+#: ../RemindersPage.qml:62
+msgid "Custom reminder"
+msgstr ""
 
 #: ../SettingsPage.qml:70
 msgid "Show week numbers"
@@ -469,7 +514,7 @@ msgstr "Mìosachan bunaiteach"
 msgid "W%1"
 msgstr "S%1"
 
-#: ../WeekView.qml:138 ../WeekView.qml:139
+#: ../WeekView.qml:140 ../WeekView.qml:141
 msgid "MMM"
 msgstr "MMM"
 
@@ -488,19 +533,19 @@ msgstr ""
 "endtime, --newevent agus --eventid. Stiùirichidh an siostam iad. Thoir sùil "
 "air a' bhun-tùs airson beachd slàn mun dèidhinn"
 
-#: ../calendar.qml:316 ../calendar.qml:496
+#: ../calendar.qml:329 ../calendar.qml:510
 msgid "Year"
 msgstr "Bliadhna"
 
-#: ../calendar.qml:324 ../calendar.qml:517
+#: ../calendar.qml:337 ../calendar.qml:531
 msgid "Month"
 msgstr "Mìos"
 
-#: ../calendar.qml:332 ../calendar.qml:538
+#: ../calendar.qml:345 ../calendar.qml:552
 msgid "Week"
 msgstr "Seachdain"
 
-#: ../calendar.qml:340 ../calendar.qml:559
+#: ../calendar.qml:353 ../calendar.qml:573
 msgid "Day"
 msgstr "Latha"
 
