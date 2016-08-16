@@ -73,37 +73,51 @@ BottomEdge {
 
     onCollapseCompleted: {
         if (bottomEdge._realPage) {
-            bottomEdge._realPage.destroy()
-            bottomEdge._realPage = null
-            _realPage = editorPageBottomEdge.createObject(null)
+            createPage()
         }
     }
 
     Component.onCompleted:  {
         if (eventModel)
-            _realPage = editorPageBottomEdge.createObject(null)
+            createPage()
     }
 
     onEventModelChanged: {
         if (eventModel)
-            _realPage = editorPageBottomEdge.createObject(null)
+            createPage()
     }
 
-    Component {
-        id: editorPageBottomEdge
-        NewEvent {
-            id: newEventPage
+    function createPage() {
+        editorPageLoader.active = false;
+        editorPageLoader.active = true;
+    }
 
-            implicitWidth: bottomEdge.width
-            implicitHeight: bottomEdge.height
-            reminderValue: bottomEdge.reminderValue
-            model: bottomEdge.eventModel
-            date: bottomEdge.date
-            enabled: bottomEdge.status === BottomEdge.Committed
-            active: bottomEdge.status === BottomEdge.Committed
-            visible: (bottomEdge.status !== BottomEdge.Hidden)
+    Loader {
+        id: editorPageLoader
+        active: false
+        asynchronous: true
+        onStatusChanged: {
+            if (status == Loader.Null) {
+                bottomEdge._realPage = null;
+            } else if (status == Loader.Ready) {
+                bottomEdge._realPage = item;
+            }
+        }
+        Component.onCompleted: setSource("NewEvent.qml", {
+                                             "implicitWidth": Qt.binding(function() { return bottomEdge.width } ),
+                                             "implicitHeight": Qt.binding(function() { return bottomEdge.height } ),
+                                             "reminderValue": Qt.binding(function() { return bottomEdge.reminderValue } ),
+                                             "model": Qt.binding(function() { return bottomEdge.eventModel } ),
+                                             "date": Qt.binding(function() { return bottomEdge.date } ),
+                                             "enabled": Qt.binding(function() { return bottomEdge.status === BottomEdge.Committed } ),
+                                             "active": Qt.binding(function() { return bottomEdge.status === BottomEdge.Committed } ),
+                                             "visible": Qt.binding(function() { return (bottomEdge.status !== BottomEdge.Hidden) } ),
+                                             "bottomEdgePageStack": Qt.binding(function() { return bottomEdge.pageStack } ),
+                                         })
+
+        Connections {
+            target: editorPageLoader.item ? editorPageLoader.item : null
             onCanceled: bottomEdge.collapse()
-            bottomEdgePageStack: bottomEdge.pageStack
             onEventSaved: {
                 bottomEdge.collapse()
                 bottomEdge.eventSaved(event)
@@ -111,13 +125,6 @@ BottomEdge {
             onEventDeleted: {
                 bottomEdge.evetDeleted()
             }
-        }
-    }
-
-    Component.onDestruction: {
-        if (bottomEdge._realPage) {
-            bottomEdge._realPage.destroy()
-            bottomEdge._realPage = null
         }
     }
 }

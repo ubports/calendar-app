@@ -19,8 +19,8 @@
 import QtQuick 2.4
 import QtOrganizer 5.0
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Components.Pickers 1.0
+import Ubuntu.Components.ListItems 1.3 as ListItem
+import Ubuntu.Components.Pickers 1.3
 import QtOrganizer 5.0
 import "Defines.js" as Defines
 import "Recurrence.js" as Recurrence

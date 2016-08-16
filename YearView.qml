@@ -110,12 +110,21 @@ PageWithBottomEdge {
             bottomMargin: yearViewPage.bottomEdgeHeight
         }
 
+        property bool loadNonVisibleDelegate: false
+
+        Timer {
+            running: true
+            onTriggered: yearPathView.loadNonVisibleDelegate = true
+            interval: 1
+        }
+
         delegate: Loader {
             id: delegateLoader
 
             asynchronous: true
             width: PathView.view.width
             height: PathView.view.height
+            active: yearPathView.loadNonVisibleDelegate || (index === yearPathView.currentIndex)
 
             sourceComponent: YearViewDelegate {
                 visible: delegateLoader.status === Loader.Ready

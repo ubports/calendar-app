@@ -31,7 +31,9 @@ PageWithBottomEdge {
                                                          anchorDate.getMonth(),
                                                          1,
                                                          0, 0, 0)
-    readonly property var currentDate: monthViewPath.currentItem.indexDate
+    readonly property var currentDate: monthViewPath.currentItem.item ?
+                                           monthViewPath.currentItem.item.indexDate
+                                         : null
 
     property var selectedDay;
     property bool displayLunarCalendar: false
@@ -90,41 +92,58 @@ PageWithBottomEdge {
             bottomMargin: monthViewPage.bottomEdgeHeight
         }
 
-        delegate: MonthWithEventsComponent {
-            id: monthDelegate
+        property bool loadNonVisibleDelegate: false
 
-            property var indexDate: firstDayOfAnchorDate.addMonths(monthViewPath.loopCurrentIndex + monthViewPath.indexType(index))
+        Timer {
+            running: true
+            onTriggered: monthViewPath.loadNonVisibleDelegate = true
+            interval: 1
+        }
 
-            currentMonth: indexDate.getMonth()
-            currentYear: indexDate.getFullYear()
-            displayLunarCalendar: monthViewPage.displayLunarCalendar
+        delegate: Loader {
+            id: delegateLoader
 
-            autoUpdate: monthViewPage.tabSelected && monthViewPage.active && PathView.isCurrentItem
-            modelFilter: eventModel.filter
-            width: parent.width - units.gu(4)
-            height: parent.height
-            isCurrentItem: PathView.isCurrentItem
-            isActive: !monthViewPath.moving && !monthViewPath.flicking
-            displayWeekNumber: mainView.displayWeekNumber
-            isYearView: false
+            asynchronous: true
+            width: PathView.view.width
+            height: PathView.view.height
+            active: monthViewPath.loadNonVisibleDelegate || (index === monthViewPath.currentIndex)
 
-            onDateSelected: {
-                monthViewPage.dateSelected(date);
-            }
+            sourceComponent: MonthWithEventsComponent {
+                id: monthDelegate
 
-            // make sure that the model is updated after create a new event if it is marked as auto-update false
-            Connections {
-                target: monthViewPage
-                onActiveChanged: {
-                    if (monthViewPage.active) {
+                property var indexDate: firstDayOfAnchorDate.addMonths(monthViewPath.loopCurrentIndex + monthViewPath.indexType(index))
+
+                currentMonth: indexDate.getMonth()
+                currentYear: indexDate.getFullYear()
+                displayLunarCalendar: monthViewPage.displayLunarCalendar
+
+                autoUpdate: monthViewPage.tabSelected && monthViewPage.active && isCurrentItem
+                modelFilter: eventModel.filter
+                width: parent.width - units.gu(4)
+                height: parent.height
+                isCurrentItem: (index === monthViewPath.currentIndex)
+                isActive: !monthViewPath.moving && !monthViewPath.flicking
+                displayWeekNumber: mainView.displayWeekNumber
+                isYearView: false
+
+                onDateSelected: {
+                    monthViewPage.dateSelected(date);
+                }
+
+                // make sure that the model is updated after create a new event if it is marked as auto-update false
+                Connections {
+                    target: monthViewPage
+                    onActiveChanged: {
+                        if (monthViewPage.active) {
+                            monthDelegate.update()
+                        }
+                    }
+                    onEventSaved: {
                         monthDelegate.update()
                     }
-                }
-                onEventSaved: {
-                    monthDelegate.update()
-                }
-                onEventDeleted: {
-                    monthDelegate.update()
+                    onEventDeleted: {
+                        monthDelegate.update()
+                    }
                 }
             }
         }

@@ -67,6 +67,7 @@ Item{
         property int monthStartMonth: monthStart.getMonth()
         property int monthStartYear: monthStart.getFullYear()
         readonly property int daysInStartMonth: Date.daysInMonth(monthStartYear, monthStartMonth)
+        readonly property int daysInCurrentMonth: Date.daysInMonth(root.currentYear, root.currentMonth)
 
         //check if current month is start month
         property bool isCurMonthStartMonth: root.currentMonth === monthStartMonth &&
@@ -214,6 +215,15 @@ Item{
             return monthGrid.childAt(clickPosition.x, clickPosition.y)
         }
 
+        function getIndexOfChild(object, child) {
+            for (var i = 0; i <= object.children.length; i++) {
+                if (object.children[i] === child) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         anchors {
             fill: column
             topMargin: monthGrid.y
@@ -221,12 +231,14 @@ Item{
 
         onPressAndHold: {
             var dayItem = getItemAt(mouse.x, mouse.y)
-            var selectedDate = new Date(dayItem.delegateDate.getTime());
+            var index = getIndexOfChild(monthGrid, dayItem);
+            var selectedDate = intern.monthStart.addDays(index);
             pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
         }
         onClicked: {
             var dayItem = getItemAt(mouse.x, mouse.y)
-            var selectedDate = new Date(dayItem.delegateDate.getTime());
+            var index = getIndexOfChild(monthGrid, dayItem);
+            var selectedDate = intern.monthStart.addDays(index);
             if (root.isYearView) {
                 //If yearView is clicked then open selected MonthView
                 root.monthSelected(selectedDate);
@@ -365,15 +377,35 @@ Item{
     Component {
         id: monthWithoutEventsDelegate
 
-        MonthComponentDateDelegate {
-            property var delegateDate: intern.monthStart.addDays(index)
-
-            date: delegateDate.getDate()
-            isCurrentMonth: delegateDate.getMonth() === root.currentMonth
-
-            isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
+        Text {
             width: monthGrid.dayWidth
             height: monthGrid.dayHeight
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            color: {
+                var day = intern.monthStartDate + index;
+                if ( intern.monthStartDate >= 7 ) {
+                    if ( day <= intern.daysInStartMonth ) {
+                        text = day;
+                        return "#AEA79F";
+                    } else {
+                        day = day - intern.daysInStartMonth;
+                    }
+                }
+
+                if ( day <= intern.daysInCurrentMonth ) {
+                    text = day;
+                    if ( intern.todayDate == day && intern.isCurMonthTodayMonth ) {
+                        return "white";
+                    } else {
+                        return "#5D5D5D";
+                    }
+                } else {
+                    day = day - intern.daysInCurrentMonth;
+                    text = day;
+                    return "#AEA79F";
+                }
+            }
         }
     }
 }
