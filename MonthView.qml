@@ -117,11 +117,11 @@ PageWithBottomEdge {
                 currentYear: indexDate.getFullYear()
                 displayLunarCalendar: monthViewPage.displayLunarCalendar
 
-                autoUpdate: monthViewPage.tabSelected && monthViewPage.active && PathView.isCurrentItem
+                autoUpdate: monthViewPage.tabSelected && monthViewPage.active && isCurrentItem
                 modelFilter: eventModel.filter
                 width: parent.width - units.gu(4)
                 height: parent.height
-                isCurrentItem: PathView.isCurrentItem
+                isCurrentItem: (index === monthViewPath.currentIndex)
                 isActive: !monthViewPath.moving && !monthViewPath.flicking
                 displayWeekNumber: mainView.displayWeekNumber
                 isYearView: false
