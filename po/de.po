@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-08-07 19:44+0000\n"
-"Last-Translator: flohack <flori@bin.org.in>\n"
+"PO-Revision-Date: 2016-08-20 14:55+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-08-10 05:37+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-08-22 05:39+0000\n"
+"X-Generator: Launchpad (build 18176)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
@@ -354,7 +354,7 @@ msgstr "Gast hinzufügen"
 
 #: ../OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Wählen Sie ein Konto zum Erstellen aus."
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -407,29 +407,29 @@ msgstr "Am Termin"
 #, qt-format
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 Woche"
+msgstr[1] "%1 Wochen"
 
 #: ../RemindersModel.qml:54
 #, qt-format
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 Tag"
+msgstr[1] "%1 Tage"
 
 #: ../RemindersModel.qml:65
 #, qt-format
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 Stunde"
+msgstr[1] "%1 Stunden"
 
 #: ../RemindersModel.qml:74
 #, qt-format
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 Minute"
+msgstr[1] "%1 Minuten"
 
 #: ../RemindersModel.qml:104
 msgid "5 minutes"
@@ -437,7 +437,7 @@ msgstr "5 Minuten"
 
 #: ../RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 Minuten"
 
 #: ../RemindersModel.qml:106
 msgid "15 minutes"
