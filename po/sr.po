@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-05-04 19:34+0000\n"
+"PO-Revision-Date: 2016-08-22 20:21+0000\n"
 "Last-Translator: Bojan Bogdanović <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-08-10 05:38+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-08-23 06:03+0000\n"
+"X-Generator: Launchpad (build 18176)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
@@ -358,7 +358,7 @@ msgstr "Додај госта"
 
 #: ../OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Одаберите налог да га креирате."
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -411,29 +411,33 @@ msgstr "У време"
 #, qt-format
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 седмица"
+msgstr[1] "%1 седмице"
+msgstr[2] "%1 седмица"
 
 #: ../RemindersModel.qml:54
 #, qt-format
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 дан"
+msgstr[1] "%1 дана"
+msgstr[2] "%1 дана"
 
 #: ../RemindersModel.qml:65
 #, qt-format
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 сат"
+msgstr[1] "%1 сата"
+msgstr[2] "%1 сати"
 
 #: ../RemindersModel.qml:74
 #, qt-format
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 минут"
+msgstr[1] "%1 минута"
+msgstr[2] "%1 минута"
 
 #: ../RemindersModel.qml:104
 msgid "5 minutes"
@@ -441,7 +445,7 @@ msgstr "5 минута"
 
 #: ../RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 минута"
 
 #: ../RemindersModel.qml:106
 msgid "15 minutes"
@@ -477,11 +481,11 @@ msgstr "2 недеље"
 
 #: ../RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Прилагођено"
 
 #: ../RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Прилагођени подсетник"
 
 #: ../SettingsPage.qml:70
 msgid "Show week numbers"
