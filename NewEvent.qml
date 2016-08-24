@@ -159,14 +159,12 @@ Page {
 
         var index = 0;
 
-        if( e.itemType === Type.Event ) {
-            // Use details method to get attendees list instead of "attendees" property
-            // since a binding issue was returning an empty attendees list for some use cases
-            var attendees = e.details(Detail.EventAttendee);
-            if(attendees){
-                for( var j = 0 ; j < attendees.length ; ++j ) {
-                    contactModel.append({"contact": attendees[j]});
-                }
+        // Use details method to get attendees list instead of "attendees" property
+        // since a binding issue was returning an empty attendees list for some use cases
+        var attendees = e.details(Detail.EventAttendee);
+        if (attendees){
+            for( var j = 0 ; j < attendees.length ; ++j ) {
+                contactModel.append({"contact": attendees[j]});
             }
         }
 
@@ -181,6 +179,17 @@ Page {
             root.reminderValue = -1
         }
         selectCalendar(e.collectionId);
+    }
+
+    function createAttendee(contact)
+    {
+        var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee { }", Qt.application,"NewEvent.qml")
+        attendee.attendeeId = contact.attendeeId
+        attendee.emailAddress = contact.emailAddress
+        attendee.name = contact.name
+        attendee.participationRole = EventAttendee.RoleOptionalParticipant
+        attendee.participationStatus = EventAttendee.StatusUnknown
+        return attendee
     }
 
     //Save the new or Existing event
@@ -212,15 +221,27 @@ Page {
             event.description = messageEdit.text;
             event.location = locationEdit.text
 
-            if( event.itemType === Type.Event ) {
+            if ([Type.Event, Type.EventOccurrence].indexOf(event.itemType) != -1) {
+                var oldAttendee = event.details(Detail.EventAttendee)
                 var newContacts = []
                 for(var i=0; i < contactModel.count ; ++i) {
                     var contact = contactModel.get(i).contact
                     if (contact) {
-                        newContacts.push(internal.attendeeFromData(contact.attendeeId, contact.name, contact.emailAddress));
+                        var found = false
+                        for(var a=0; a < oldAttendee.length; ++a) {
+                            var attendee = oldAttendee[a]
+                            if (attendee.attendeeId == contact.attendeeId) {
+                                found = true
+                                break;
+                            }
+                        }
+
+                        if (!found) {
+                            var attendee = createAttendee(contact)
+                            event.setDetail(attendee)
+                        }
                     }
                 }
-                event.attendees = newContacts;
             }
 
             //Set the Rule object to an event
