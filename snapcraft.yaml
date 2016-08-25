@@ -1,0 +1,54 @@
+name: ubuntu-calendar-app
+version: 0.1
+summary: Ubuntu calendar app
+description: Ubuntu calendar app
+confinement: strict # devmode  # use "strict" to enforce system access only via declared interfaces
+
+apps:
+    ubuntu-calendar-app:
+        command: desktop-launch $SNAP/bin/ubuntu-calendar-app
+
+plugs:
+    gsettings:
+        interface: gsettings
+    unity7:
+        interface: unity7
+    opengl:
+        interface: opengl
+    eds-calendar:
+        interface: eds
+        service: calendar
+    address-book:
+        interface: address-book
+
+parts:
+    ubuntu-calendar-app:
+        plugin: cmake
+        configflags: [-DCMAKE_INSTALL_PREFIX=/usr, -DCLICK_MODE=off]
+        source: .
+        stage-packages:
+            - qmlscene
+            - qml-module-qt-labs-settings
+            - qml-module-qtcontacts
+            - qml-module-qtorganizer
+            - qml-module-ubuntu-components
+            - qml-module-ubuntu-onlineaccounts
+            - qtdeclarative5-ubuntu-content1
+            - qtdeclarative5-ubuntu-syncmonitor0.1
+            - qtcontact5-galera
+            - qtorganizer5-eds
+            - suru-icon-theme
+        stage:
+            - -usr/share/pkgconfig/xkeyboard-config.pc
+            - -usr/share/pkgconfig/shared-mime-info.pc
+        snap:
+            - -usr/lib/python3
+            - -usr/share/doc
+            - -usr/include           
+        after: [desktop/gtk3]
+
+    environment:
+        plugin: copy
+        files:
+            ubuntu-calendar-app.wrapper: bin/ubuntu-calendar-app
+            snappy-qt5.conf: etc/xdg/qtchooser/snappy-qt5.conf
