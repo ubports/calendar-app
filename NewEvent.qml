@@ -223,23 +223,48 @@ Page {
 
             if ([Type.Event, Type.EventOccurrence].indexOf(event.itemType) != -1) {
                 var oldAttendee = event.details(Detail.EventAttendee)
-                var newContacts = []
+                var newAttendee = []
                 for(var i=0; i < contactModel.count ; ++i) {
                     var contact = contactModel.get(i).contact
                     if (contact) {
-                        var found = false
-                        for(var a=0; a < oldAttendee.length; ++a) {
-                            var attendee = oldAttendee[a]
-                            if (attendee.attendeeId == contact.attendeeId) {
-                                found = true
-                                break;
-                            }
-                        }
+                        newAttendee.push(contact)
+                    }
+                }
 
-                        if (!found) {
-                            var attendee = createAttendee(contact)
-                            event.setDetail(attendee)
+                // look for removed contacts
+                for(var o=0; o < oldAttendee.length; ++o) {
+                    var found = false
+                    var old = oldAttendee[o]
+                    for (var n=0; n < newAttendee.length; ++n) {
+                        var new_ = newAttendee[n]
+                        if (old.attendeeId == new_.attendeeId) {
+                            found = true
+                            break
                         }
+                    }
+                    if (!found) {
+                        event.removeDetail(old)
+                    }
+                }
+
+                // update list
+                oldAttendee = event.details(Detail.EventAttendee)
+
+                // look for new contacts
+                for(var n=0; n < newAttendee.length; ++n) {
+                    var found = false
+                    var new_ = newAttendee[n]
+                    for(var o=0; o < oldAttendee.length; ++o) {
+                        var old = oldAttendee[o]
+                        if (old.attendeeId == new_.attendeeId) {
+                            found = true
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        var attendee = createAttendee(contact)
+                        event.setDetail(attendee)
                     }
                 }
             }
