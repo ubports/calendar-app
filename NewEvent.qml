@@ -159,14 +159,12 @@ Page {
 
         var index = 0;
 
-        if( e.itemType === Type.Event ) {
-            // Use details method to get attendees list instead of "attendees" property
-            // since a binding issue was returning an empty attendees list for some use cases
-            var attendees = e.details(Detail.EventAttendee);
-            if(attendees){
-                for( var j = 0 ; j < attendees.length ; ++j ) {
-                    contactModel.append({"contact": attendees[j]});
-                }
+        // Use details method to get attendees list instead of "attendees" property
+        // since a binding issue was returning an empty attendees list for some use cases
+        var attendees = e.details(Detail.EventAttendee);
+        if (attendees){
+            for( var j = 0 ; j < attendees.length ; ++j ) {
+                contactModel.append({"contact": attendees[j]});
             }
         }
 
@@ -181,6 +179,17 @@ Page {
             root.reminderValue = -1
         }
         selectCalendar(e.collectionId);
+    }
+
+    function createAttendee(contact)
+    {
+        var attendee = Qt.createQmlObject("import QtOrganizer 5.0; EventAttendee { }", Qt.application,"NewEvent.qml")
+        attendee.attendeeId = contact.attendeeId
+        attendee.emailAddress = contact.emailAddress
+        attendee.name = contact.name
+        attendee.participationRole = EventAttendee.RoleOptionalParticipant
+        attendee.participationStatus = EventAttendee.StatusUnknown
+        return attendee
     }
 
     //Save the new or Existing event
@@ -212,15 +221,52 @@ Page {
             event.description = messageEdit.text;
             event.location = locationEdit.text
 
-            if( event.itemType === Type.Event ) {
-                var newContacts = []
+            if ([Type.Event, Type.EventOccurrence].indexOf(event.itemType) != -1) {
+                var oldAttendee = event.details(Detail.EventAttendee)
+                var newAttendee = []
                 for(var i=0; i < contactModel.count ; ++i) {
                     var contact = contactModel.get(i).contact
                     if (contact) {
-                        newContacts.push(internal.attendeeFromData(contact.attendeeId, contact.name, contact.emailAddress));
+                        newAttendee.push(contact)
                     }
                 }
-                event.attendees = newContacts;
+
+                // look for removed contacts
+                for(var o=0; o < oldAttendee.length; ++o) {
+                    var found = false
+                    var old = oldAttendee[o]
+                    for (var n=0; n < newAttendee.length; ++n) {
+                        var new_ = newAttendee[n]
+                        if (old.attendeeId == new_.attendeeId) {
+                            found = true
+                            break
+                        }
+                    }
+                    if (!found) {
+                        event.removeDetail(old)
+                    }
+                }
+
+                // update list
+                oldAttendee = event.details(Detail.EventAttendee)
+
+                // look for new contacts
+                for(var n=0; n < newAttendee.length; ++n) {
+                    var found = false
+                    var new_ = newAttendee[n]
+                    for(var o=0; o < oldAttendee.length; ++o) {
+                        var old = oldAttendee[o]
+                        if (old.attendeeId == new_.attendeeId) {
+                            found = true
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        var attendee = createAttendee(contact)
+                        event.setDetail(attendee)
+                    }
+                }
             }
 
             //Set the Rule object to an event

@@ -129,7 +129,12 @@ Page {
                     rule.limit =  parseInt(limitCount.text);
                 }
                 else if (limitOptions.selectedIndex === 2 && recurrenceOption.selectedIndex > 0) {
-                    rule.limit =  datePick.date;
+                    // WORKAROUND: Use UTC format because QML module will convert the date to UTC internally and this
+                    // can cause problems if the date is in different TZ.
+                    // Use this until this get merged: https://codereview.qt-project.org/#/c/154461/
+                    rule.limit = new Date(Date.UTC(datePick.date.getFullYear(),
+                                           datePick.date.getMonth(),
+                                           datePick.date.getDate()))
                 }
                 else {
                     rule.limit = undefined;
