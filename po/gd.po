@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-05-20 09:14+0000\n"
+"PO-Revision-Date: 2016-08-30 13:44+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
 "(n > 2 && n < 20) ? 2 : 3;\n"
-"X-Launchpad-Export-Date: 2016-08-10 05:37+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-08-31 06:17+0000\n"
+"X-Generator: Launchpad (build 18179)\n"
 "Language: gd\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
@@ -427,22 +427,28 @@ msgstr[1] ""
 #, qt-format
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 latha"
+msgstr[1] "%1 latha"
+msgstr[2] "%1 làithean"
+msgstr[3] "%1 latha"
 
 #: ../RemindersModel.qml:65
 #, qt-format
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 uair a thìde"
+msgstr[1] "%1 uair a thìde"
+msgstr[2] "%1 uairean a thìde"
+msgstr[3] "%1 uair a thìde"
 
 #: ../RemindersModel.qml:74
 #, qt-format
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 mhionaid"
+msgstr[1] "%1 mhionaid"
+msgstr[2] "%1 mionaidean"
+msgstr[3] "%1 mionaid"
 
 #: ../RemindersModel.qml:104
 msgid "5 minutes"
@@ -450,7 +456,7 @@ msgstr "5 mionaidean"
 
 #: ../RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 mionaidean"
 
 #: ../RemindersModel.qml:106
 msgid "15 minutes"
@@ -486,7 +492,7 @@ msgstr "2 sheachdain"
 
 #: ../RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Gnàthaichte"
 
 #: ../RemindersPage.qml:62
 msgid "Custom reminder"

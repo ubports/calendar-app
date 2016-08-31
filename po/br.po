@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-04-27 12:22+0000\n"
-"Last-Translator: Gwenn M <Unknown>\n"
+"PO-Revision-Date: 2016-08-29 08:29+0000\n"
+"Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-08-10 05:37+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-08-31 06:17+0000\n"
+"X-Generator: Launchpad (build 18179)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
@@ -36,7 +36,7 @@ msgstr "Gweredekaat deiziadurioù"
 
 #: ../AgendaView.qml:199
 msgid "no event name set"
-msgstr ""
+msgstr "n'eus bet lakaet anv darvoud ebet"
 
 #: ../AgendaView.qml:201
 msgid "no location"
@@ -210,15 +210,15 @@ msgstr "Deiziadur"
 
 #: ../EventDetails.qml:392
 msgid "Attending"
-msgstr ""
+msgstr "A gemero perzh"
 
 #: ../EventDetails.qml:394
 msgid "Not Attending"
-msgstr ""
+msgstr "Ne gemero ket perzh"
 
 #: ../EventDetails.qml:396
 msgid "Maybe"
-msgstr ""
+msgstr "Marteze"
 
 #: ../EventDetails.qml:398
 msgid "No Reply"
@@ -355,7 +355,7 @@ msgstr "Ouzhpennañ ur c'houviad"
 
 #: ../OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Tapit ur gont da grouiñ"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -408,29 +408,29 @@ msgstr "D'an darvoud"
 #, qt-format
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 sizhun"
+msgstr[1] "%1 sizhun"
 
 #: ../RemindersModel.qml:54
 #, qt-format
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 deiz"
+msgstr[1] "%1 deiz"
 
 #: ../RemindersModel.qml:65
 #, qt-format
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 eur"
+msgstr[1] "%1 eur"
 
 #: ../RemindersModel.qml:74
 #, qt-format
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 vunutenn"
+msgstr[1] "%1 a vunutoù"
 
 #: ../RemindersModel.qml:104
 msgid "5 minutes"
@@ -438,7 +438,7 @@ msgstr "5 munut"
 
 #: ../RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 munut"
 
 #: ../RemindersModel.qml:106
 msgid "15 minutes"
@@ -474,11 +474,11 @@ msgstr "2 sizhun"
 
 #: ../RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Personelaet"
 
 #: ../RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Degas-da-soñj personelaet"
 
 #: ../SettingsPage.qml:70
 msgid "Show week numbers"
@@ -490,7 +490,7 @@ msgstr "Diskouez loar deiziadur"
 
 #: ../SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Degas-da-soñjj dre ziouer"
 
 #: ../SettingsPage.qml:172
 msgid "Default calendar"

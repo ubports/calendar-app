@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-06-08 16:04+0000\n"
+"PO-Revision-Date: 2016-08-30 18:43+0000\n"
 "Last-Translator: Ubuntu-QC-1 <Unknown>\n"
 "Language-Team: French (Canada) <fr_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-08-10 05:38+0000\n"
-"X-Generator: Launchpad (build 18169)\n"
+"X-Launchpad-Export-Date: 2016-08-31 06:17+0000\n"
+"X-Generator: Launchpad (build 18179)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
@@ -354,7 +354,7 @@ msgstr "Ajouter un participant"
 
 #: ../OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Choisir un compte à créer"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -407,29 +407,29 @@ msgstr "Lors de l'événement"
 #, qt-format
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 semaine"
+msgstr[1] "%1 semaines"
 
 #: ../RemindersModel.qml:54
 #, qt-format
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 jour"
+msgstr[1] "%1 jours"
 
 #: ../RemindersModel.qml:65
 #, qt-format
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 heure"
+msgstr[1] "%1 heures"
 
 #: ../RemindersModel.qml:74
 #, qt-format
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 minute"
+msgstr[1] "%1 minutes"
 
 #: ../RemindersModel.qml:104
 msgid "5 minutes"
@@ -437,7 +437,7 @@ msgstr "5 minutes"
 
 #: ../RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 minutes"
 
 #: ../RemindersModel.qml:106
 msgid "15 minutes"
@@ -473,11 +473,11 @@ msgstr "2 semaines"
 
 #: ../RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Personnalisé"
 
 #: ../RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Rappel personnalisé"
 
 #: ../SettingsPage.qml:70
 msgid "Show week numbers"
