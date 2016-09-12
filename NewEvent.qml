@@ -295,6 +295,7 @@ Page {
                     reminder.repetitionCount = 0
                     reminder.repetitionDelay = 0
                 }
+		reminder.message = titleEdit.text
                 reminder.secondsBeforeStart = root.reminderValue
                 event.setDetail(reminder)
             } else if (reminder) {
