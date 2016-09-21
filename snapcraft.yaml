@@ -37,7 +37,9 @@ parts:
             - qtdeclarative5-ubuntu-syncmonitor0.1
             - qtcontact5-galera
             - qtorganizer5-eds
+            - qtubuntu-desktop
             - suru-icon-theme
+            - mir-graphics-drivers-desktop
         stage:
             - -usr/share/pkgconfig/xkeyboard-config.pc
             - -usr/share/pkgconfig/shared-mime-info.pc
@@ -48,7 +50,8 @@ parts:
         after: [desktop/gtk3]
 
     environment:
-        plugin: copy
-        files:
+        source: .
+        plugin: dump
+        organize:
             ubuntu-calendar-app.wrapper: bin/ubuntu-calendar-app
             snappy-qt5.conf: etc/xdg/qtchooser/snappy-qt5.conf
