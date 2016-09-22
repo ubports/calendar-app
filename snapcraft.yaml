@@ -2,7 +2,7 @@ name: ubuntu-calendar-app
 version: 0.1
 summary: Ubuntu calendar app
 description: Ubuntu calendar app
-confinement: strict # devmode  # use "strict" to enforce system access only via declared interfaces
+confinement: devmode  # use "strict" to enforce system access only via declared interfaces
 
 apps:
     ubuntu-calendar-app:
@@ -15,11 +15,13 @@ plugs:
         interface: unity7
     opengl:
         interface: opengl
-    eds-calendar:
-        interface: eds
-        service: calendar
-    address-book:
-        interface: address-book
+# eds-calendar and address-book not available yet. 
+# FIXME: Fixt that after these interfaces appear on syncd
+#    eds-calendar:
+#        interface: eds
+#        service: calendar
+#    address-book:
+#        interface: address-book
 
 parts:
     ubuntu-calendar-app:
