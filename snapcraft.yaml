@@ -3,6 +3,7 @@ version: 0.1
 summary: Ubuntu calendar app
 description: Ubuntu calendar app
 confinement: devmode  # use "strict" to enforce system access only via declared interfaces
+grade: devel
 
 apps:
     ubuntu-calendar-app:
@@ -35,6 +36,7 @@ parts:
             - qml-module-qtorganizer
             - qml-module-ubuntu-components
             - qml-module-ubuntu-onlineaccounts
+            - qml-module-ubuntu-onlineaccounts-client
             - qtdeclarative5-ubuntu-content1
             - qtdeclarative5-ubuntu-syncmonitor0.1
             - qtcontact5-galera

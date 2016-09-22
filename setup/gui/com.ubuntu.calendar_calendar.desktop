@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Terminal=false
-Exec=calendar-app
+Exec=ubuntu-calendar-app
 Icon=${SNAP}/meta/gui/calendar-app@30.png
 Name=Calendar
 Name[aa]=Aysalu
