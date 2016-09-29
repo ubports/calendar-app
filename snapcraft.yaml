@@ -7,7 +7,7 @@ grade: devel
 
 apps:
     ubuntu-calendar-app:
-        command: desktop-launch $SNAP/bin/ubuntu-calendar-app
+        command: desktop-launch $SNAP/bin/ubuntu-calendar-app --desktop_file_hint=unity8 "$@"
 
 plugs:
     gsettings:
