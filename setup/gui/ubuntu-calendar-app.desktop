@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Terminal=false
-Exec=ubuntu-calendar-app
-Icon=${SNAP}/meta/gui/calendar-app@30.png
+Exec=ubuntu-calendar-app %u
+Icon=/snap/ubuntu-calendar-app/current/calendar-app@30.png
 Name=Calendar
 Name[aa]=Aysalu
 Name[am]=የቀን መቁጠሪያ
@@ -184,4 +184,4 @@ X-Ubuntu-Touch=true
 X-Ubuntu-Default-Department-ID=accessories
 X-Ubuntu-Splash-Show-Header=true
 X-Ubuntu-Splash-Color=#f5f5f5
-X-Ubuntu-SymbolicIcon=${SNAP}/meta/gui/calendar-app-symbolic.svg
+X-Ubuntu-SymbolicIcon=/snap/ubuntu-calendar-app/current/calendar-app-symbolic.svg

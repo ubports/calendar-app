@@ -30,6 +30,9 @@ parts:
         configflags: [-DCMAKE_INSTALL_PREFIX=/usr, -DCLICK_MODE=off]
         source: .
         stage-packages:
+            - accountsservice
+            - accountsservice-ubuntu-schemas
+            - account-plugin-google
             - qmlscene
             - qml-module-qt-labs-settings
             - qml-module-qtcontacts

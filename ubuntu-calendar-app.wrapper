@@ -15,9 +15,7 @@ export XKB_CONFIG_ROOT=$SNAP/usr/share/X11/xkb
 export QTCHOOSER_NO_GLOBAL_DIR=1
 export QT_SELECT=snappy-qt5
 
-if [ "$DESKTOP_SESSION" == "unity8" ]; then
-	# Qt Platform to Mir
-	export QT_QPA_PLATFORM=ubuntumirclient
+if [ "QT_QPA_PLATFORM" == "ubuntumirclient" ]; then
 	# Mir runtime
 	export MIR_SOCKET=$XDG_RUNTIME_DIR/mir_socket
 	export MIR_CLIENT_PLATFORM_PATH=$SNAP/usr/lib/$ARCH/mir/client-platform
@@ -45,5 +43,5 @@ export LIBGL_DRIVERS_PATH=$SNAP/usr/lib/$ARCH/dri
 export LD_LIBRARY_PATH="$SNAP_LIBRARY_PATH:$LD_LIBRARY_PATH"
 
 cd $SNAP
-exec $SNAP/usr/lib/$ARCH/qt5/bin/qmlscene $SNAP/usr/share/calendar-app/calendar.qml --desktop_file_hint=unity8
+exec $SNAP/usr/lib/$ARCH/qt5/bin/qmlscene "$@" $SNAP/usr/share/calendar-app/calendar.qml
 
