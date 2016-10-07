@@ -29,6 +29,9 @@ parts:
         plugin: cmake
         configflags: [-DCMAKE_INSTALL_PREFIX=/usr, -DCLICK_MODE=off]
         source: .
+        build-packages:
+            - cmake
+            - intltool
         stage-packages:
             - accountsservice
             - accountsservice-ubuntu-schemas
