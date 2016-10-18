@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2015-06-23 17:59+0000\n"
-"Last-Translator: David Planella <david.planella@gmail.com>\n"
+"PO-Revision-Date: 2016-10-18 06:44+0000\n"
+"Last-Translator: Walter Garcia-Fontes <walter.garcia@upf.edu>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-10-15 06:13+0000\n"
+"X-Launchpad-Export-Date: 2016-10-18 06:45+0000\n"
 "X-Generator: Launchpad (build 18232)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
@@ -44,7 +44,7 @@ msgstr ""
 
 #: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
 msgid "New event"
-msgstr ""
+msgstr "Nou esdeveniment"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
@@ -97,7 +97,7 @@ msgstr ""
 
 #: ../CalendarChoicePopup.qml:185 ../RemindersPage.qml:80
 msgid "Ok"
-msgstr ""
+msgstr "D'acord"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -183,7 +183,7 @@ msgstr "Edita-ho"
 
 #: ../EventActions.qml:66 ../SettingsPage.qml:47
 msgid "Settings"
-msgstr ""
+msgstr "Configuració"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -211,11 +211,11 @@ msgstr "Calendari"
 
 #: ../EventDetails.qml:392
 msgid "Attending"
-msgstr ""
+msgstr "Assistents"
 
 #: ../EventDetails.qml:394
 msgid "Not Attending"
-msgstr ""
+msgstr "No hi assistiran"
 
 #: ../EventDetails.qml:396
 msgid "Maybe"
@@ -299,7 +299,7 @@ msgstr "Després d'una data"
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../MonthComponent.qml:281
 msgid "Wk"
-msgstr ""
+msgstr "Set"
 
 #: ../MonthView.qml:71 ../WeekView.qml:133
 #, qt-format
@@ -409,29 +409,29 @@ msgstr "A l'hora de l'esdeveniment"
 #, qt-format
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 setmana"
+msgstr[1] "%1 setmanes"
 
 #: ../RemindersModel.qml:54
 #, qt-format
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 dia"
+msgstr[1] "%1 dies"
 
 #: ../RemindersModel.qml:65
 #, qt-format
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 hora"
+msgstr[1] "%1 hores"
 
 #: ../RemindersModel.qml:74
 #, qt-format
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 minut"
+msgstr[1] "%1 minuts"
 
 #: ../RemindersModel.qml:104
 msgid "5 minutes"
@@ -439,7 +439,7 @@ msgstr "5 minuts"
 
 #: ../RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 minuts"
 
 #: ../RemindersModel.qml:106
 msgid "15 minutes"
