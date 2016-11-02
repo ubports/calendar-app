@@ -8,19 +8,34 @@ else
   ARCH="$SNAP_ARCH-linux-gnu"
 fi
 
+export XKB_CONFIG_ROOT=$SNAP/ubuntu-qt-runtime/usr/share/X11/xkb
+export LIBGL_DRIVERS_PATH=$SNAP/ubuntu-qt-runtime/usr/lib/$ARCH/dri
+
 export QTCHOOSER_NO_GLOBAL_DIR=1
 export QT_SELECT=snappy-qt5
 
-# Qt Libs
-export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/qt5/libs:$LD_LIBRARY_PATH
+# Qt Libs (runtime)
+export LD_LIBRARY_PATH=$SNAP/ubuntu-qt-runtime/usr/lib/$ARCH/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$SNAP/ubuntu-qt-runtime/usr/lib/$ARCH/dri:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$SNAP/ubuntu-qt-runtime/usr/lib/$ARCH/mesa:$LD_LIBRARY_PATH
+
+# Font Config and themes
+export FONTCONFIG_PATH=$SNAP/ubuntu-qt-runtime/etc/fonts/conf.d
+export FONTCONFIG_FILE=$SNAP/ubuntu-qt-runtime/etc/fonts/fonts.conf
 
 # Qt Modules
-export QT_PLUGIN_PATH=$SNAP/usr/lib/$ARCH/qt5/plugins
-export QML2_IMPORT_PATH=$QML2_IMPORT_PATH:$SNAP/usr/lib/$ARCH/qt5/qml
-export QML2_IMPORT_PATH=$QML2_IMPORT_PATH:$SNAP/lib/$ARCH
+export QT_PLUGIN_PATH=$SNAP/ubuntu-qt-runtime/usr/lib/$ARCH/qt5/plugins:$QT_PLUGIN_PATH
+export QML2_IMPORT_PATH=$SNAP/ubuntu-qt-runtime/usr/lib/$ARCH/qt5/qml:$QML2_IMPORT_PATH
+export QML2_IMPORT_PATH=$SNAP/usr/lib/$ARCH/qt5/qml:$QML2_IMPORT_PATH
+export QML2_IMPORT_PATH=$SNAP/lib/$ARCH:$QML2_IMPORT_PATH
+
+# Removes Qt warning: Could not find a location
+# of the system Compose files
+export QTCOMPOSE=$SNAP/ubuntu-qt-runtime/usr/share/X11/locale
+export LOCPATH=$SNAP/ubuntu-qt-runtime/usr/lib/locale
 
 # Necessary for the SDK to find the translations directory
 export APP_DIR=$SNAP
 
-exec "$SNAP/bin/desktop-launch" "$SNAP/usr/lib/$ARCH/qt5/bin/qmlscene" "$@" $SNAP/usr/share/calendar-app/calendar.qml
+exec "$SNAP/ubuntu-qt-runtime/usr/lib/x86_64-linux-gnu/qt5/bin/qmlscene" "$@" $SNAP/usr/share/calendar-app/calendar.qml
 
