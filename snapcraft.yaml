@@ -61,7 +61,8 @@ parts:
         snap:
             - -usr/lib/python3
             - -usr/share/doc
-            - -usr/include           
+            - -usr/include  
+            - "$includedfiles"         
         after: [desktop-gtk3]
 
     environment:
