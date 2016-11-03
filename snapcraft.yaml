@@ -2,25 +2,25 @@ name: ubuntu-calendar-app
 version: 0.1
 summary: Ubuntu calendar app
 description: Ubuntu calendar app
-confinement: strict  # use "strict" to enforce system access only via declared interfaces
+confinement: devmode  # use "strict" to enforce system access only via declared interfaces
 grade: devel
 
 apps:
     ubuntu-calendar-app:
         command: desktop-launch $SNAP/bin/ubuntu-calendar-app --desktop_file_hint=unity8 "$@"
-        plugs: [gsettings, unity7, opengl, ubuntu-qt-runtime]
 
 plugs:
+    ubuntu-app-platform:
+        interface: content
+        content: ubuntu-app-platform
+        target: $SNAP/usr/ubuntu-app-platform
+
 #    gsettings:
 #        interface: gsettings
 #    unity7:
 #        interface: unity7
 #    opengl:
 #        interface: opengl
-    ubuntu-qt-runtime:
-        interface: content
-        content: ubuntu-qt-runtime
-        target: ubuntu-qt-runtime
 # eds-calendar and address-book not available yet. 
 # FIXME: Fixt that after these interfaces appear on syncd
 #    eds-calendar:
@@ -37,10 +37,10 @@ parts:
         build-packages:
             - cmake
             - intltool
-        stage-packages:
-            - accountsservice
-            - accountsservice-ubuntu-schemas
-            - account-plugin-google
+        stage-packages: []
+            # - accountsservice
+            #- accountsservice-ubuntu-schemas
+            #- account-plugin-google
             #- qmlscene
             #- qml-module-qt-labs-settings
             #- qml-module-qtcontacts
@@ -55,18 +55,11 @@ parts:
             #- qtubuntu-desktop
             #- suru-icon-theme
             #- mir-graphics-drivers-desktop
-        filesets:
-            includedfiles:
-                - "ubuntu-qt-runtime/*"
-        snap:
-            - -usr/lib/python3
-            - -usr/share/doc
-            - -usr/include  
-            - "$includedfiles"         
+        snap: []
         after: [desktop-gtk3]
 
     environment:
-        source: .
+        source: snap/
         plugin: dump
         organize:
             ubuntu-calendar-app.wrapper: bin/ubuntu-calendar-app

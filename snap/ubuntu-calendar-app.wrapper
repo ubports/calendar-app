@@ -9,7 +9,7 @@ else
 fi
 
 # Path used by content share interface
-export UBUNTU_QT_RUNTIME_PATH="$SNAP/ubuntu-qt-runtime"
+export UBUNTU_QT_RUNTIME_PATH="$SNAP/usr/ubuntu-app-platform"
 
 export XKB_CONFIG_ROOT=$UBUNTU_QT_RUNTIME_PATH/usr/share/X11/xkb
 export LIBGL_DRIVERS_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/dri
@@ -28,6 +28,7 @@ export FONTCONFIG_FILE=$UBUNTU_QT_RUNTIME_PATH/etc/fonts/fonts.conf
 
 # Qt Modules
 export QT_PLUGIN_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/qt5/plugins:$QT_PLUGIN_PATH
+export QT_PLUGIN_PATH=$SNAP/usr/lib/$ARCH/qt5/plugins:$QT_PLUGIN_PATH
 export QML2_IMPORT_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/qt5/qml:$QML2_IMPORT_PATH
 export QML2_IMPORT_PATH=$SNAP/usr/lib/$ARCH/qt5/qml:$QML2_IMPORT_PATH
 export QML2_IMPORT_PATH=$SNAP/lib/$ARCH:$QML2_IMPORT_PATH
