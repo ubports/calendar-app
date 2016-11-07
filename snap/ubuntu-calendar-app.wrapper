@@ -1,9 +1,26 @@
-#!/bin/sh
+#!/bin/bash
+###############################################
+# Launcher common exports for any desktop app #
+###############################################
 
-if [ "$SNAP_ARCH" = "amd64" ]; then
+needs_update=true
+
+#. ~/.last_revision 2>/dev/null || true
+#if [ "$SNAP_DESKTOP_LAST_REVISION" = "$SNAP_REVISION" ]; then
+#  needs_update=false
+#  echo "No update required!!!!"
+#fi
+if [ $needs_update = true ]; then
+  echo "UPDATEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!"
+  echo "SNAP_DESKTOP_LAST_REVISION=$SNAP_REVISION" > ~/.last_revision
+fi
+
+if [ "$SNAP_ARCH" == "amd64" ]; then
   ARCH="x86_64-linux-gnu"
-elif [ "$SNAP_ARCH" = "armhf" ]; then
+elif [ "$SNAP_ARCH" == "armhf" ]; then
   ARCH="arm-linux-gnueabihf"
+elif [ "$SNAP_ARCH" == "arm64" ]; then
+  ARCH="aarch64-linux-gnu"
 else
   ARCH="$SNAP_ARCH-linux-gnu"
 fi
@@ -11,24 +28,168 @@ fi
 # Path used by content share interface
 export UBUNTU_QT_RUNTIME_PATH="$SNAP/usr/ubuntu-app-platform"
 
+# Libs
+export LD_LIBRARY_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
+
+# XKB config
 export XKB_CONFIG_ROOT=$UBUNTU_QT_RUNTIME_PATH/usr/share/X11/xkb
-export LIBGL_DRIVERS_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/dri
 
-export QTCHOOSER_NO_GLOBAL_DIR=1
-export QT_SELECT=snappy-qt5
-
-# Qt Libs (runtime)
-export LD_LIBRARY_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/dri:$LD_LIBRARY_PATH
+# Mesa Libs for OpenGL support
 export LD_LIBRARY_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/mesa:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/mesa-egl:$LD_LIBRARY_PATH
+
+# Tell libGL where to find the drivers
+export LIBGL_DRIVERS_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/dri
+export LD_LIBRARY_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/dri:$LD_LIBRARY_PATH
+
+# TODO: Tell where to find the client libraries for Mir
+export MIR_CLIENT_PLATFORM_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/mir/client-platform
+
+# Pulseaudio export
+##export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/pulseaudio:$LD_LIBRARY_PATH
+
+# Tell GStreamer where to find its system plugins
+export GST_PLUGIN_SYSTEM_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/gstreamer-1.0
+
+# XDG Config
+export XDG_CONFIG_DIRS=$UBUNTU_QT_RUNTIME_PATH/etc/xdg:$UBUNTU_QT_RUNTIME_PATH/usr/xdg:$XDG_CONFIG_DIRS
+
+# Define snaps' own data dir
+export XDG_DATA_DIRS=$SNAP_USER_DATA:$UBUNTU_QT_RUNTIME_PATH/usr/share:$XDG_DATA_DIRS
+
+# Set XDG_DATA_HOME to local path
+export XDG_DATA_HOME=$SNAP_USER_DATA/.local/share
+export XDG_DATA_DIRS=$XDG_DATA_HOME:$XDG_DATA_DIRS
+mkdir -p $XDG_DATA_HOME
+
+# Set cache folder to local path
+export XDG_CACHE_HOME=$SNAP_USER_DATA/.cache
+mkdir -p $XDG_CACHE_HOME
+
+# GI repository
+export GI_TYPELIB_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/girepository-1.0:$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/girepository-1.0
 
 # Font Config and themes
 export FONTCONFIG_PATH=$UBUNTU_QT_RUNTIME_PATH/etc/fonts/conf.d
 export FONTCONFIG_FILE=$UBUNTU_QT_RUNTIME_PATH/etc/fonts/fonts.conf
 
+if [ $needs_update = true ]; then
+  rm -rf $XDG_DATA_HOME/{fontconfig,fonts,fonts-*,themes,.themes}
+  ln -sf $UBUNTU_QT_RUNTIME_PATH/usr/share/{fontconfig,fonts,fonts-*,themes} $XDG_DATA_HOME
+  ln -sfn $UBUNTU_QT_RUNTIME_PATH/usr/share/themes $SNAP_USER_DATA/.themes
+fi
+
+# Build mime.cache
+# needed for gtk and qt icon
+if [ $needs_update = true ]; then
+  rm -rf $XDG_DATA_HOME/mime
+  if [ `which update-mime-database` ]; then
+    cp --preserve=timestamps -dR $UBUNTU_QT_RUNTIME_PATH/usr/share/mime $XDG_DATA_HOME
+    update-mime-database $XDG_DATA_HOME/mime
+  fi
+fi
+
+# Ensure the app finds locale definitions (requires locales-all to be installed)
+export LOCPATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/locale
+##############################
+# GTK launcher specific part #
+##############################
+
+# Gdk-pixbuf loaders
+export GDK_PIXBUF_MODULE_FILE=$XDG_CACHE_HOME/gdk-pixbuf-loaders.cache
+export GDK_PIXBUF_MODULEDIR=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/gdk-pixbuf-2.0/2.10.0/loaders
+
+if [ $needs_update = true ]; then
+  rm -f $GDK_PIXBUF_MODULE_FILE
+  if [ -f $UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/gdk-pixbuf-2.0/gdk-pixbuf-query-loaders ]; then
+    $UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/gdk-pixbuf-2.0/gdk-pixbuf-query-loaders > $GDK_PIXBUF_MODULE_FILE
+  fi
+fi
+
+# Gio modules and cache
+export GIO_MODULE_DIR=$XDG_CACHE_HOME/gio-modules
+if [ $needs_update = true ]; then
+  rm -rf $GIO_MODULE_DIR
+  mkdir -p $GIO_MODULE_DIR
+  ln -s $UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/gio/modules/*.so $GIO_MODULE_DIR
+  if [ -f $UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/glib-2.0/gio-querymodules ]; then
+    $UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/glib-2.0/gio-querymodules $GIO_MODULE_DIR
+  fi
+fi
+
+export GTK_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/gtk-3.0
+
+# ibus and fcitx integration
+# with those defintions fcitx works unconfined out of the box, ibus requires
+# user config to be copied though, https://launchpad.net/bugs/1580463
+GTK_IM_MODULE_DIR=$XDG_CACHE_HOME/immodules
+export GTK_IM_MODULE_FILE=$GTK_IM_MODULE_DIR/immodules.cache
+if [ $needs_update = true ]; then
+  rm -rf $GTK_IM_MODULE_DIR
+  mkdir -p $GTK_IM_MODULE_DIR
+  ln -s $UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/gtk-3.0/3.0.0/immodules/*.so $GTK_IM_MODULE_DIR
+  $UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/libgtk-3-0/gtk-query-immodules-3.0 > $GTK_IM_MODULE_FILE
+fi
+
+# Keep an array of data dirs, for looping through them
+IFS=':' read -r -a data_dirs_array <<< "$XDG_DATA_DIRS"
+
+# Setup compiled gsettings schema
+GS_SCHEMA_DIR=$XDG_DATA_HOME/glib-2.0/schemas
+if [ $needs_update = true ]; then
+  rm -rf $GS_SCHEMA_DIR
+  mkdir -p $GS_SCHEMA_DIR
+  for d in "${data_dirs_array[@]}"; do
+    schema_dir=$d/glib-2.0/schemas
+    if [ "$(ls -A $schema_dir/*.xml 2>/dev/null)" ]; then
+      ln -s $schema_dir/*.xml $GS_SCHEMA_DIR
+    fi
+  done
+  if [ -f $UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/glib-2.0/glib-compile-schemas ]; then
+    $UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/glib-2.0/glib-compile-schemas $GS_SCHEMA_DIR
+  fi
+fi
+
+# Enable gsettings user changes
+# symlink the dconf file if home plug is connected for read
+DCONF_DEST_USER_DIR=$SNAP_USER_DATA/.config/dconf
+if [ ! -f $DCONF_DEST_USER_DIR/user ]; then
+  if [ -f /home/$USER/.config/dconf/user ]; then
+    mkdir -p $DCONF_DEST_USER_DIR
+    ln -s /home/$USER/.config/dconf/user $DCONF_DEST_USER_DIR
+  fi
+fi
+
+# Icon themes cache
+if [ $needs_update = true ]; then
+  rm -rf $XDG_DATA_HOME/icons
+  mkdir -p $XDG_DATA_HOME/icons
+  for d in "${data_dirs_array[@]}"; do
+    for i in $d/icons/*; do
+      if [ -d "$i" ]; then
+        theme_dir=$XDG_DATA_HOME/icons/$(basename "$i")
+        if [ ! -d "$theme_dir" ]; then
+          mkdir -p "$theme_dir"
+          ln -s $i/* "$theme_dir"
+          if [ -f $UBUNTU_QT_RUNTIME_PATH/usr/sbin/update-icon-caches ]; then
+            $UBUNTU_QT_RUNTIME_PATH/usr/sbin/update-icon-caches "$theme_dir"
+          elif [ -f $UBUNTU_QT_RUNTIME_PATH/usr/sbin/update-icon-cache.gtk2 ]; then
+            $UBUNTU_QT_RUNTIME_PATH/usr/sbin/update-icon-cache.gtk2 "$theme_dir"
+          fi
+        fi
+      fi
+    done
+  done
+fi
+
+# Qt Libs
+export QTCHOOSER_NO_GLOBAL_DIR=1
+export QT_SELECT=snappy-qt5
+
 # Qt Modules
 export QT_PLUGIN_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/qt5/plugins:$QT_PLUGIN_PATH
-export QT_PLUGIN_PATH=$SNAP/usr/lib/$ARCH/qt5/plugins:$QT_PLUGIN_PATH
+export QT_PLUGIN_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/qt5/plugins:$QT_PLUGIN_PATH
 export QML2_IMPORT_PATH=$UBUNTU_QT_RUNTIME_PATH/usr/lib/$ARCH/qt5/qml:$QML2_IMPORT_PATH
 export QML2_IMPORT_PATH=$SNAP/usr/lib/$ARCH/qt5/qml:$QML2_IMPORT_PATH
 export QML2_IMPORT_PATH=$SNAP/lib/$ARCH:$QML2_IMPORT_PATH

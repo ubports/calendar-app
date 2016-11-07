@@ -7,20 +7,19 @@ grade: devel
 
 apps:
     ubuntu-calendar-app:
-        command: desktop-launch $SNAP/bin/ubuntu-calendar-app --desktop_file_hint=unity8 "$@"
+        command: ubuntu-calendar-app --desktop_file_hint=unity8 "$@"
 
 plugs:
-    ubuntu-app-platform:
+    platform:
         interface: content
-        content: ubuntu-app-platform
+        content: ubuntu-app-platform1
         target: $SNAP/usr/ubuntu-app-platform
-
-#    gsettings:
-#        interface: gsettings
-#    unity7:
-#        interface: unity7
-#    opengl:
-#        interface: opengl
+    gsettings:
+        interface: gsettings
+    unity7:
+        interface: unity7
+    opengl:
+        interface: opengl
 # eds-calendar and address-book not available yet. 
 # FIXME: Fixt that after these interfaces appear on syncd
 #    eds-calendar:
@@ -56,7 +55,6 @@ parts:
             #- suru-icon-theme
             #- mir-graphics-drivers-desktop
         snap: []
-        after: [desktop-gtk3]
 
     environment:
         source: snap/
