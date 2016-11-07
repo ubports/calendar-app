@@ -90,7 +90,6 @@ install(FILES ${URLS_FILE} DESTINATION ${URLS_DIR})
 install(FILES ${APPLICATION_FILE} DESTINATION ${APPLICATION_DIR})
 
 install(DIRECTORY "3rd-party" DESTINATION ${DATA_DIR})
-install(DIRECTORY "ubuntu-app-platform" DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 add_subdirectory(click)
 add_subdirectory(po)

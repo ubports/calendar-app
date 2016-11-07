@@ -7,19 +7,14 @@ grade: devel
 
 apps:
     ubuntu-calendar-app:
-        command: ubuntu-calendar-app --desktop_file_hint=unity8 "$@"
+        command: desktop-launch $SNAP/bin/ubuntu-calendar-app --desktop_file_hint=unity8 "$@"
+        plugs: [platform, gsettings, unity7, opengl]
 
 plugs:
     platform:
         interface: content
         content: ubuntu-app-platform1
-        target: $SNAP/usr/ubuntu-app-platform
-    gsettings:
-        interface: gsettings
-    unity7:
-        interface: unity7
-    opengl:
-        interface: opengl
+        target: ubuntu-app-platform
 # eds-calendar and address-book not available yet. 
 # FIXME: Fixt that after these interfaces appear on syncd
 #    eds-calendar:
@@ -55,6 +50,17 @@ parts:
             #- suru-icon-theme
             #- mir-graphics-drivers-desktop
         snap: []
+        after: [desktop-ubuntu-app-platform]
+
+    desktop-ubuntu-app-platform:
+        source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+        source-subdir: qt
+        plugin: make
+        make-parameters: ["FLAVOR=qt5-app-platform"]
+        # developer should use stable-phone-overlay PPA for Qt 5.6 to match the platform snap
+        build-packages:
+          - qtbase5-dev
+          - dpkg-dev
 
     environment:
         source: snap/
