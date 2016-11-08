@@ -7,8 +7,8 @@ grade: devel
 
 apps:
     ubuntu-calendar-app:
-        command: desktop-launch $SNAP/bin/ubuntu-calendar-app --desktop_file_hint=unity8 "$@"
-        plugs: [platform, gsettings, unity7, opengl]
+        command: desktop-launch qmlscene --desktop_file_hint=unity8 $SNAP/usr/share/calendar-app/calendar.qml
+        plugs: [home, gsettings, opengl, platform, unity7]
 
 plugs:
     platform:
@@ -56,7 +56,7 @@ parts:
         source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
         source-subdir: qt
         plugin: make
-        make-parameters: ["FLAVOR=qt5-app-platform"]
+        make-parameters: ["FLAVOR=qt5appplatform"]
         # developer should use stable-phone-overlay PPA for Qt 5.6 to match the platform snap
         build-packages:
           - qtbase5-dev
@@ -65,5 +65,3 @@ parts:
     environment:
         source: snap/
         plugin: dump
-        organize:
-            ubuntu-calendar-app.wrapper: bin/ubuntu-calendar-app
