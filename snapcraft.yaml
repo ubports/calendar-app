@@ -31,7 +31,7 @@ parts:
         build-packages:
             - cmake
             - intltool
-        stage-packages: []
+        stage-packages:
             # - accountsservice
             #- accountsservice-ubuntu-schemas
             #- account-plugin-google
@@ -48,8 +48,7 @@ parts:
             #- qtorganizer5-eds
             #- qtubuntu-desktop
             #- suru-icon-theme
-            #- mir-graphics-drivers-desktop
-        snap: []
+            - mir-graphics-drivers-desktop
         after: [desktop-ubuntu-app-platform]
 
     desktop-ubuntu-app-platform:
