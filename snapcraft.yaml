@@ -34,18 +34,6 @@ parts:
         stage-packages: []
         after: [desktop-ubuntu-app-platform]
 
-    desktop-ubuntu-app-platform:
-        source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-        source-subdir: qt
-        plugin: make
-        make-parameters: ["FLAVOR=qt5appplatform"]
-        # developer should use stable-phone-overlay PPA for Qt 5.6 to match the platform snap
-        build-packages:
-          - qtbase5-dev
-          - dpkg-dev
-
     environment:
         source: snap/
         plugin: dump
-        organize:
-            ubuntu-calendar-app.wrapper: bin/ubuntu-calendar-app
