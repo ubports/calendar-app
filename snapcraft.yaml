@@ -4,6 +4,7 @@ summary: Ubuntu calendar app
 description: Ubuntu calendar app
 confinement: devmode  # use "strict" to enforce system access only via declared interfaces
 grade: devel
+architectures: [all]
 
 apps:
     ubuntu-calendar-app:
