@@ -1,5 +1,5 @@
 name: ubuntu-calendar-app
-version: 0.1
+version: 0.1.1
 summary: Ubuntu calendar app
 description: Ubuntu calendar app
 confinement: devmode  # use "strict" to enforce system access only via declared interfaces
@@ -9,7 +9,7 @@ architectures: [all]
 apps:
     ubuntu-calendar-app:
         command: desktop-launch qmlscene --desktop_file_hint=unity8 $SNAP/usr/share/calendar-app/calendar.qml
-        plugs: [home, gsettings, opengl, platform, unity7]
+        plugs: [home, gsettings, opengl, platform, unity7, unity8]
 
 plugs:
     platform:
