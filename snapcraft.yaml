@@ -8,8 +8,8 @@ architectures: [all]
 
 apps:
     ubuntu-calendar-app:
-        command: desktop-launch qmlscene --desktop_file_hint=unity8 $SNAP/usr/share/calendar-app/calendar.qml
-        plugs: [home, gsettings, opengl, platform, unity7, unity8]
+        command: desktop-launch qmlscene "$@" $SNAP/usr/share/calendar-app/calendar.qml
+        plugs: [home, gsettings, opengl, platform, unity7, unity8, mir]
 
 plugs:
     platform:
