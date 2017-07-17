@@ -6,17 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-09-21 19:41+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
-"Language-Team: German <de@li.org>\n"
+"PO-Revision-Date: 2017-07-17 17:50+0000\n"
+"Last-Translator: Weblate Admin <flori-weblate@bin.org.in>\n"
+"Language-Team: German <https://ubpweblate.tnvcomp.com/projects/ubports"
+"/calendar-app/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
@@ -95,7 +97,7 @@ msgid ""
 "selected"
 msgstr ""
 "Damit Sie ein neues Ereignis erstellen können, muss mindestens ein "
-"beschreibbarer Kalender ausgewählt sein."
+"beschreibbarer Kalender ausgewählt sein"
 
 #: ../CalendarChoicePopup.qml:185 ../RemindersPage.qml:80
 msgid "Ok"
@@ -237,7 +239,7 @@ msgstr "Erinnerung"
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:40 ../EventRepetition.qml:152
 msgid "Repeat"
-msgstr "Wiederholung"
+msgstr "Wiederholen"
 
 #: ../EventRepetition.qml:172
 msgid "Repeats On:"
