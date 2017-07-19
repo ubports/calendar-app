@@ -6,17 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-11-25 18:18+0000\n"
-"Last-Translator: Alberto <alberto@canv.ch>\n"
-"Language-Team: French <fr@li.org>\n"
+"PO-Revision-Date: 2017-07-17 19:27+0000\n"
+"Last-Translator: Anne017 <anneonyme017@openmailbox.org>\n"
+"Language-Team: French <https://ubpweblate.tnvcomp.com/projects/ubports"
+"/calendar-app/fr/>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
@@ -69,7 +71,7 @@ msgstr "Agendas"
 
 #: ../CalendarChoicePopup.qml:46 ../SettingsPage.qml:49
 msgid "Back"
-msgstr "Retour"
+msgstr "Précédent"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
@@ -145,7 +147,7 @@ msgstr "Supprimer uniquement cet événement (« %1 ») ou toute la série ?"
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "Êtes-vous sûr de vouloir supprimer cet événement « %1 »?"
+msgstr "Êtes-vous sûr(e) de vouloir supprimer l'événement « %1 » ?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -352,7 +354,7 @@ msgstr "Ajouter un participant"
 
 #: ../OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr "Choisissez un compte à créer"
+msgstr "Choisissez un compte à créer."
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"

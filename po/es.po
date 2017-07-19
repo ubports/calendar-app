@@ -6,21 +6,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-08-29 14:30+0000\n"
-"Last-Translator: Víctor R. Ruiz <Unknown>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"PO-Revision-Date: 2017-07-18 05:58+0000\n"
+"Last-Translator: Francisco Molinero <paco@byasl.com>\n"
+"Language-Team: Spanish <https://ubpweblate.tnvcomp.com/projects/ubports"
+"/calendar-app/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
-msgstr "Planificador"
+msgstr "Agenda"
 
 #: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
@@ -264,7 +266,7 @@ msgstr "Fecha"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 veces"
+msgstr[0] "%1; %2 vez"
 msgstr[1] "%1; %2 veces"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
@@ -414,7 +416,7 @@ msgstr[1] "%1 semanas"
 #, qt-format
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
+msgstr[0] "%1 día"
 msgstr[1] "%1 días"
 
 #: ../RemindersModel.qml:65
@@ -518,7 +520,7 @@ msgid ""
 msgstr ""
 "Calendario acepta cuatro argumentos: --starttime, --endtime, --newevent y --"
 "eventid. Los gestiona el sistema. Vea la fuente para tener toda la "
-"información sobre esto."
+"información sobre esto"
 
 #: ../calendar.qml:329 ../calendar.qml:510
 msgid "Year"
