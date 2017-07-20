@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-02 10:41+0000\n"
+"POT-Creation-Date: 2018-06-09 15:20+0000\n"
 "PO-Revision-Date: 2017-07-20 13:17+0000\n"
 "Last-Translator: wangyou <1078360711@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://ubpweblate.tnvcomp.com/projects/"
@@ -20,247 +20,9 @@ msgstr ""
 "X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 
-#: ../qml/RemindersPage.qml:62
-msgid "Custom reminder"
-msgstr "自定义提醒"
-
-#: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
-#: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
-#: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
-msgid "Cancel"
-msgstr "取消"
-
-#: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
-msgid "Ok"
-msgstr "确定"
-
-#: ../qml/NewEvent.qml:199
-msgid "End time can't be before start time"
-msgstr "结束时间不能早于开始时间"
-
-#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
-msgid "Edit Event"
-msgstr "编辑事件"
-
-#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
-msgid "New Event"
-msgstr "新建事件"
-
-#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
-msgid "Delete"
-msgstr "删除"
-
-#: ../qml/NewEvent.qml:412
-msgid "Save"
-msgstr "保存"
-
-#: ../qml/NewEvent.qml:423
-msgid "Error"
-msgstr "错误"
-
-#: ../qml/NewEvent.qml:425
-msgid "OK"
-msgstr "确定"
-
-#: ../qml/NewEvent.qml:487
-msgid "From"
-msgstr "从"
-
-#: ../qml/NewEvent.qml:503
-msgid "To"
-msgstr "至"
-
-#: ../qml/NewEvent.qml:530
-msgid "All day event"
-msgstr "全天事件"
-
-#: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
+#: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
 msgid "Event Details"
 msgstr "事件详情"
-
-#: ../qml/NewEvent.qml:567
-msgid "Event Name"
-msgstr "事件名称"
-
-#: ../qml/NewEvent.qml:585 ../qml/EventDetails.qml:437
-msgid "Description"
-msgstr "描述"
-
-#: ../qml/NewEvent.qml:604
-msgid "Location"
-msgstr "位置"
-
-#: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
-#: com.ubuntu.calendar_calendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "日历"
-
-#: ../qml/NewEvent.qml:681
-msgid "Guests"
-msgstr "客人"
-
-#: ../qml/NewEvent.qml:691
-msgid "Add Guest"
-msgstr "添加被邀请人"
-
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the option selector to choose
-#. its repetition
-#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
-msgid "Repeats"
-msgstr "重复提醒"
-
-#: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
-msgid "Reminder"
-msgstr "提醒"
-
-#: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
-#: ../qml/DayView.qml:76
-msgid "Today"
-msgstr "今天"
-
-#: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
-msgid "%1 %2"
-msgstr "%1 %2"
-
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-#. It's used in the header of the month and week views
-#: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
-msgid "MMMM yyyy"
-msgstr "月/年"
-
-#: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
-msgid "New event"
-msgstr "新建事件"
-
-#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
-msgid "Calendars"
-msgstr "日历"
-
-#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
-msgid "Back"
-msgstr "返回"
-
-#. TRANSLATORS: Please translate this string  to 15 characters only.
-#. Currently ,there is no way we can increase width of action menu currently.
-#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
-msgid "Sync"
-msgstr "同步"
-
-#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
-msgid "Syncing"
-msgstr "正在同步"
-
-#: ../qml/CalendarChoicePopup.qml:83
-msgid "Add online Calendar"
-msgstr "添加在线日历表"
-
-#: ../qml/CalendarChoicePopup.qml:184
-msgid "Unable to deselect"
-msgstr "无法取消选择"
-
-#: ../qml/CalendarChoicePopup.qml:185
-msgid ""
-"In order to create new events you must have at least one writable calendar "
-"selected"
-msgstr "要创创建新事件，您必须选中至少一个可写的日历"
-
-#: ../qml/LimitLabelModel.qml:25
-msgid "Never"
-msgstr "永不"
-
-#: ../qml/LimitLabelModel.qml:26
-msgid "After X Occurrence"
-msgstr "在X次后"
-
-#: ../qml/LimitLabelModel.qml:27
-msgid "After Date"
-msgstr "起始日期"
-
-#: ../qml/calendar.qml:72
-msgid ""
-"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
-"eventid. They will be managed by system. See the source for a full comment "
-"about them"
-msgstr ""
-"日历软件有四个参数：--starttime, --endtime, --newevent 和 --eventid，这些参数"
-"由系统管理，请查阅源代码了解更多信息"
-
-#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
-msgid "Year"
-msgstr "年"
-
-#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
-msgid "Month"
-msgstr "月"
-
-#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
-msgid "Week"
-msgstr "周"
-
-#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
-msgid "Day"
-msgstr "日"
-
-#: ../qml/calendar.qml:361 ../qml/calendar.qml:594 ../qml/AgendaView.qml:50
-msgid "Agenda"
-msgstr "待办事项"
-
-#: ../qml/YearView.qml:79
-msgid "Year %1"
-msgstr "%1 年"
-
-#: ../qml/ColorPickerDialog.qml:25
-msgid "Select Color"
-msgstr "选择颜色"
-
-#. TRANSLATORS: This is shown in the month view as "Wk" as a title
-#. to indicate the week numbers. It should be a max of up to 3 characters.
-#: ../qml/MonthComponent.qml:293
-msgid "Wk"
-msgstr "周"
-
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../qml/EditEventConfirmationDialog.qml:32
-msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "仅编辑此 \"%1\"活动，还是系列中所有活动？"
-
-#: ../qml/EditEventConfirmationDialog.qml:35
-msgid "Edit series"
-msgstr "编辑系列"
-
-#: ../qml/EditEventConfirmationDialog.qml:44
-msgid "Edit this"
-msgstr "编辑这个"
-
-#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
-msgid "Settings"
-msgstr "设置"
-
-#: ../qml/SettingsPage.qml:70
-msgid "Show week numbers"
-msgstr "显示周数"
-
-#: ../qml/SettingsPage.qml:84
-msgid "Show lunar calendar"
-msgstr "农历显示"
-
-#: ../qml/SettingsPage.qml:128
-msgid "Default reminder"
-msgstr "默认提示"
-
-#: ../qml/SettingsPage.qml:172
-msgid "Default calendar"
-msgstr "默认日历"
-
-#: ../qml/ContactChoicePopup.qml:37
-msgid "No contact"
-msgstr "无联系人"
-
-#: ../qml/ContactChoicePopup.qml:96
-msgid "Search contact"
-msgstr "搜索联系人"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
@@ -269,6 +31,11 @@ msgstr "编辑"
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "全天"
+
+#: ../qml/EventDetails.qml:348 ../qml/NewEvent.qml:619
+#: com.ubuntu.calendar_calendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "日历"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
@@ -286,73 +53,50 @@ msgstr "可能"
 msgid "No Reply"
 msgstr "未回复"
 
-#: ../qml/DeleteConfirmationDialog.qml:31
-msgid "Delete Recurring Event"
-msgstr "删除循环事件"
+#: ../qml/EventDetails.qml:437 ../qml/NewEvent.qml:585
+msgid "Description"
+msgstr "描述"
 
-#: ../qml/DeleteConfirmationDialog.qml:32
-msgid "Delete Event"
-msgstr "删除事件"
+#: ../qml/EventDetails.qml:464 ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814
+msgid "Reminder"
+msgstr "提醒"
 
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../qml/DeleteConfirmationDialog.qml:36
-msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr "仅删除此 \"%1\"活动，还是系列中所有活动？"
+#: ../qml/YearView.qml:57 ../qml/DayView.qml:76 ../qml/WeekView.qml:60
+#: ../qml/MonthView.qml:50
+msgid "Today"
+msgstr "今天"
 
-#: ../qml/DeleteConfirmationDialog.qml:37
-msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "您确定想要删除 \"%1\" 活动？"
+#: ../qml/YearView.qml:79
+msgid "Year %1"
+msgstr "%1 年"
 
-#: ../qml/DeleteConfirmationDialog.qml:40
-msgid "Delete series"
-msgstr "删除系列"
+#: ../qml/LimitLabelModel.qml:25
+msgid "Never"
+msgstr "永不"
 
-#: ../qml/DeleteConfirmationDialog.qml:51
-msgid "Delete this"
-msgstr "删除这个"
+#: ../qml/LimitLabelModel.qml:26
+msgid "After X Occurrence"
+msgstr "在X次后"
+
+#: ../qml/LimitLabelModel.qml:27
+msgid "After Date"
+msgstr "起始日期"
+
+#: ../qml/ColorPickerDialog.qml:25
+msgid "Select Color"
+msgstr "选择颜色"
+
+#: ../qml/ColorPickerDialog.qml:55 ../qml/NewEvent.qml:387
+#: ../qml/DeleteConfirmationDialog.qml:60
+#: ../qml/EditEventConfirmationDialog.qml:53 ../qml/OnlineAccountsHelper.qml:73
+#: ../qml/RemindersPage.qml:72
+msgid "Cancel"
+msgstr "取消"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
 msgid "W%1"
 msgstr "W%1"
-
-#. TRANSLATORS: Please keep the translation of this string to a max of
-#. 5 characters as the week view where it is shown has limited space.
-#: ../qml/AllDayEventComponent.qml:148
-msgid "%1 event"
-msgid_plural "%1 events"
-msgstr[0] "%1 个事件"
-
-#. TRANSLATORS: the argument refers to the number of all day events
-#: ../qml/AllDayEventComponent.qml:152
-msgid "%1 all day event"
-msgid_plural "%1 all day events"
-msgstr[0] "%1 全天活动"
-
-#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
-#. while the second one (%2) refers to the end time
-#: ../qml/EventBubble.qml:138
-msgid "%1 - %2"
-msgstr "%1 - %2"
-
-#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
-#. E.g. "Daily; 5 times."
-#: ../qml/EventUtils.qml:75
-msgid "%1; %2 time"
-msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 次"
-
-#. TRANSLATORS: the argument refers to recurrence until user selected date.
-#. E.g. "Daily; until 12/12/2014."
-#: ../qml/EventUtils.qml:79
-msgid "%1; until %2"
-msgstr "%1; 至 %2"
-
-#. TRANSLATORS: the argument refers to several different days of the week.
-#. E.g. "Weekly on Mondays, Tuesdays"
-#: ../qml/EventUtils.qml:102
-msgid "Weekly on %1"
-msgstr "每周 %1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
@@ -429,54 +173,6 @@ msgstr "两周"
 msgid "Custom"
 msgstr "自定义"
 
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the page to choose repetition
-#. and as the header of the list item that shows the repetition
-#. summary in the page that displays the event details
-#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
-msgid "Repeat"
-msgstr "重复"
-
-#: ../qml/EventRepetition.qml:177
-msgid "Repeats On:"
-msgstr "重复于："
-
-#: ../qml/EventRepetition.qml:223
-msgid "Recurring event ends"
-msgstr "重复事件结束"
-
-#: ../qml/EventRepetition.qml:273
-msgid "Date"
-msgstr "日期"
-
-#: ../qml/OnlineAccountsHelper.qml:39
-msgid "Pick an account to create."
-msgstr "选择一个帐户来创建。"
-
-#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
-msgid "MMM"
-msgstr "月"
-
-#: ../qml/AgendaView.qml:95
-msgid "You have no calendars enabled"
-msgstr "您没有启用的日历"
-
-#: ../qml/AgendaView.qml:95
-msgid "No upcoming events"
-msgstr "没有即将到来的事件"
-
-#: ../qml/AgendaView.qml:107
-msgid "Enable calendars"
-msgstr "启用日历"
-
-#: ../qml/AgendaView.qml:199
-msgid "no event name set"
-msgstr "未设事件名称"
-
-#: ../qml/AgendaView.qml:201
-msgid "no location"
-msgstr "未设地点"
-
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr "一次"
@@ -510,6 +206,311 @@ msgstr "每月"
 #: ../qml/RecurrenceLabelDefines.qml:32
 msgid "Yearly"
 msgstr "每年"
+
+#: ../qml/NewEvent.qml:199
+msgid "End time can't be before start time"
+msgstr "结束时间不能早于开始时间"
+
+#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
+msgid "Edit Event"
+msgstr "编辑事件"
+
+#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
+msgid "New Event"
+msgstr "新建事件"
+
+#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete"
+msgstr "删除"
+
+#: ../qml/NewEvent.qml:412
+msgid "Save"
+msgstr "保存"
+
+#: ../qml/NewEvent.qml:423
+msgid "Error"
+msgstr "错误"
+
+#: ../qml/NewEvent.qml:425
+msgid "OK"
+msgstr "确定"
+
+#: ../qml/NewEvent.qml:487
+msgid "From"
+msgstr "从"
+
+#: ../qml/NewEvent.qml:503
+msgid "To"
+msgstr "至"
+
+#: ../qml/NewEvent.qml:530
+msgid "All day event"
+msgstr "全天事件"
+
+#: ../qml/NewEvent.qml:567
+msgid "Event Name"
+msgstr "事件名称"
+
+#: ../qml/NewEvent.qml:604
+msgid "Location"
+msgstr "位置"
+
+#: ../qml/NewEvent.qml:681
+msgid "Guests"
+msgstr "客人"
+
+#: ../qml/NewEvent.qml:691
+msgid "Add Guest"
+msgstr "添加被邀请人"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
+msgid "Repeats"
+msgstr "重复提醒"
+
+#: ../qml/DeleteConfirmationDialog.qml:31
+msgid "Delete Recurring Event"
+msgstr "删除循环事件"
+
+#: ../qml/DeleteConfirmationDialog.qml:32
+msgid "Delete Event"
+msgstr "删除事件"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/DeleteConfirmationDialog.qml:36
+msgid "Delete only this event \"%1\", or all events in the series?"
+msgstr "仅删除此 \"%1\"活动，还是系列中所有活动？"
+
+#: ../qml/DeleteConfirmationDialog.qml:37
+msgid "Are you sure you want to delete the event \"%1\"?"
+msgstr "您确定想要删除 \"%1\" 活动？"
+
+#: ../qml/DeleteConfirmationDialog.qml:40
+msgid "Delete series"
+msgstr "删除系列"
+
+#: ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete this"
+msgstr "删除这个"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/EditEventConfirmationDialog.qml:32
+msgid "Edit only this event \"%1\", or all events in the series?"
+msgstr "仅编辑此 \"%1\"活动，还是系列中所有活动？"
+
+#: ../qml/EditEventConfirmationDialog.qml:35
+msgid "Edit series"
+msgstr "编辑系列"
+
+#: ../qml/EditEventConfirmationDialog.qml:44
+msgid "Edit this"
+msgstr "编辑这个"
+
+#: ../qml/AgendaView.qml:50 ../qml/calendar.qml:361 ../qml/calendar.qml:594
+msgid "Agenda"
+msgstr "待办事项"
+
+#: ../qml/AgendaView.qml:95
+msgid "You have no calendars enabled"
+msgstr "您没有启用的日历"
+
+#: ../qml/AgendaView.qml:95
+msgid "No upcoming events"
+msgstr "没有即将到来的事件"
+
+#: ../qml/AgendaView.qml:107
+msgid "Enable calendars"
+msgstr "启用日历"
+
+#: ../qml/AgendaView.qml:199
+msgid "no event name set"
+msgstr "未设事件名称"
+
+#: ../qml/AgendaView.qml:201
+msgid "no location"
+msgstr "未设地点"
+
+#. TRANSLATORS: This is shown in the month view as "Wk" as a title
+#. to indicate the week numbers. It should be a max of up to 3 characters.
+#: ../qml/MonthComponent.qml:293
+msgid "Wk"
+msgstr "周"
+
+#: ../qml/AllDayEventComponent.qml:89 ../qml/TimeLineBase.qml:50
+msgid "New event"
+msgstr "新建事件"
+
+#. TRANSLATORS: Please keep the translation of this string to a max of
+#. 5 characters as the week view where it is shown has limited space.
+#: ../qml/AllDayEventComponent.qml:148
+msgid "%1 event"
+msgid_plural "%1 events"
+msgstr[0] "%1 个事件"
+
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../qml/AllDayEventComponent.qml:152
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
+msgstr[0] "%1 全天活动"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../qml/DayView.qml:126 ../qml/WeekView.qml:157 ../qml/MonthView.qml:78
+msgid "MMMM yyyy"
+msgstr "月/年"
+
+#: ../qml/WeekView.qml:138 ../qml/MonthView.qml:73
+msgid "%1 %2"
+msgstr "%1 %2"
+
+#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
+msgid "MMM"
+msgstr "月"
+
+#: ../qml/OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr "选择一个帐户来创建。"
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../qml/EventBubble.qml:139
+msgid "%1 - %2"
+msgstr "%1 - %2"
+
+#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
+msgid "Calendars"
+msgstr "日历"
+
+#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
+msgid "Back"
+msgstr "返回"
+
+#. TRANSLATORS: Please translate this string  to 15 characters only.
+#. Currently ,there is no way we can increase width of action menu currently.
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
+msgid "Sync"
+msgstr "同步"
+
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
+msgid "Syncing"
+msgstr "正在同步"
+
+#: ../qml/CalendarChoicePopup.qml:83
+msgid "Add online Calendar"
+msgstr "添加在线日历表"
+
+#: ../qml/CalendarChoicePopup.qml:184
+msgid "Unable to deselect"
+msgstr "无法取消选择"
+
+#: ../qml/CalendarChoicePopup.qml:185
+msgid ""
+"In order to create new events you must have at least one writable calendar "
+"selected"
+msgstr "要创创建新事件，您必须选中至少一个可写的日历"
+
+#: ../qml/CalendarChoicePopup.qml:187 ../qml/RemindersPage.qml:80
+msgid "Ok"
+msgstr "确定"
+
+#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
+msgid "Settings"
+msgstr "设置"
+
+#: ../qml/SettingsPage.qml:70
+msgid "Show week numbers"
+msgstr "显示周数"
+
+#: ../qml/SettingsPage.qml:88
+msgid "Show lunar calendar"
+msgstr "农历显示"
+
+#: ../qml/SettingsPage.qml:136
+msgid "Default reminder"
+msgstr "默认提示"
+
+#: ../qml/SettingsPage.qml:180
+msgid "Default calendar"
+msgstr "默认日历"
+
+#: ../qml/RemindersPage.qml:62
+msgid "Custom reminder"
+msgstr "自定义提醒"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
+msgid "Repeat"
+msgstr "重复"
+
+#: ../qml/EventRepetition.qml:177
+msgid "Repeats On:"
+msgstr "重复于："
+
+#: ../qml/EventRepetition.qml:223
+msgid "Recurring event ends"
+msgstr "重复事件结束"
+
+#: ../qml/EventRepetition.qml:273
+msgid "Date"
+msgstr "日期"
+
+#: ../qml/ContactChoicePopup.qml:37
+msgid "No contact"
+msgstr "无联系人"
+
+#: ../qml/ContactChoicePopup.qml:96
+msgid "Search contact"
+msgstr "搜索联系人"
+
+#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
+#. E.g. "Daily; 5 times."
+#: ../qml/EventUtils.qml:75
+msgid "%1; %2 time"
+msgid_plural "%1; %2 times"
+msgstr[0] "%1; %2 次"
+
+#. TRANSLATORS: the argument refers to recurrence until user selected date.
+#. E.g. "Daily; until 12/12/2014."
+#: ../qml/EventUtils.qml:79
+msgid "%1; until %2"
+msgstr "%1; 至 %2"
+
+#. TRANSLATORS: the argument refers to several different days of the week.
+#. E.g. "Weekly on Mondays, Tuesdays"
+#: ../qml/EventUtils.qml:102
+msgid "Weekly on %1"
+msgstr "每周 %1"
+
+#: ../qml/calendar.qml:72
+msgid ""
+"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
+"eventid. They will be managed by system. See the source for a full comment "
+"about them"
+msgstr ""
+"日历软件有四个参数：--starttime, --endtime, --newevent 和 --eventid，这些参数"
+"由系统管理，请查阅源代码了解更多信息"
+
+#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
+msgid "Year"
+msgstr "年"
+
+#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
+msgid "Month"
+msgstr "月"
+
+#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
+msgid "Week"
+msgstr "周"
+
+#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
+msgid "Day"
+msgstr "日"
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
