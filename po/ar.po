@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2017-07-19 15:50+0000\n"
+"PO-Revision-Date: 2017-07-20 15:44+0000\n"
 "Last-Translator: Ahmed Suliman <ahmedselaman@gmail.com>\n"
 "Language-Team: Arabic <https://ubpweblate.tnvcomp.com/projects/ubports"
 "/calendar-app/ar/>\n"
@@ -139,7 +139,7 @@ msgstr "اليوم"
 #. It's used in the header of the month and week views
 #: ../DayView.qml:122 ../MonthView.qml:76 ../WeekView.qml:152
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -312,12 +312,12 @@ msgstr "بعد تاريخ"
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../MonthComponent.qml:281
 msgid "Wk"
-msgstr ""
+msgstr "Wk"
 
 #: ../MonthView.qml:71 ../WeekView.qml:133
 #, qt-format
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../NewEvent.qml:190
 msgid "End time can't be before start time"
@@ -369,7 +369,7 @@ msgstr "إضافة ضيف"
 
 #: ../OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "أختر حساب للإنشاء."
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -504,42 +504,42 @@ msgstr "أسبوعان"
 
 #: ../RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "مخصص"
 
 #: ../RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "تذكير مخصص"
 
 #: ../SettingsPage.qml:70
 msgid "Show week numbers"
-msgstr ""
+msgstr "إظهار أرقام الأسبوع"
 
 #: ../SettingsPage.qml:84
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "إظهار التقويم القمري"
 
 #: ../SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "التذكير الافتراضي"
 
 #: ../SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "التقويم الافتراضي"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../TimeLineHeader.qml:54
 #, qt-format
 msgid "W%1"
-msgstr ""
+msgstr "W%1"
 
 #: ../WeekView.qml:140 ../WeekView.qml:141
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../YearView.qml:79
 #, qt-format
 msgid "Year %1"
-msgstr ""
+msgstr "السنة %1"
 
 #: ../calendar.qml:72
 msgid ""
@@ -547,6 +547,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"تطبيق التقويم يقبل المعاملات : --starttime, --endtime, --newevent and --"
+"eventid. سيتم إدارتها بواسطة النظام. أنظر المصدر للحصول على تعليق الكامل حول "
+"هذه المعاملات"
 
 #: ../calendar.qml:329 ../calendar.qml:510
 msgid "Year"
