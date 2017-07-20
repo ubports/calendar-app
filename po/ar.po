@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2017-07-17 21:40+0000\n"
+"PO-Revision-Date: 2017-07-19 15:50+0000\n"
 "Last-Translator: Ahmed Suliman <ahmedselaman@gmail.com>\n"
 "Language-Team: Arabic <https://ubpweblate.tnvcomp.com/projects/ubports"
 "/calendar-app/ar/>\n"
@@ -67,12 +67,12 @@ msgstr[5] "%1 أحداث"
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%1 حدث اليوم"
+msgstr[1] "%1 كل أحدات اليوم"
+msgstr[2] "%1 حدثين اليوم"
+msgstr[3] "%1 كل أحدات اليوم"
+msgstr[4] "%1 كل أحدات اليوم"
+msgstr[5] "%1 كل أحدات اليوم"
 
 #: ../CalendarChoicePopup.qml:44 ../EventActions.qml:54
 msgid "Calendars"
@@ -302,7 +302,7 @@ msgstr "نهائيًا"
 
 #: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr ""
+msgstr "بعد X ظهور"
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
@@ -341,15 +341,15 @@ msgstr "حسنا"
 
 #: ../NewEvent.qml:440
 msgid "From"
-msgstr ""
+msgstr "من"
 
 #: ../NewEvent.qml:456
 msgid "To"
-msgstr ""
+msgstr "إلي"
 
 #: ../NewEvent.qml:483
 msgid "All day event"
-msgstr ""
+msgstr "حدث اليوم"
 
 #: ../NewEvent.qml:520
 msgid "Event Name"
@@ -365,7 +365,7 @@ msgstr "الضيوف"
 
 #: ../NewEvent.qml:644
 msgid "Add Guest"
-msgstr ""
+msgstr "إضافة ضيف"
 
 #: ../OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
@@ -381,19 +381,19 @@ msgstr "يوميًا"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "في أيام الأسبوع"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "في %1, %2 ,%3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "في %1 و %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -416,35 +416,51 @@ msgstr "دون تذكير"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:34 ../RemindersModel.qml:103
 msgid "On Event"
-msgstr ""
+msgstr "في الحدث"
 
 #: ../RemindersModel.qml:43
 #, qt-format
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 أسبوع"
+msgstr[1] "%1 أسبوع"
+msgstr[2] "%1 أسبوعان"
+msgstr[3] "%1 أسابيع"
+msgstr[4] "%1 أسابيع"
+msgstr[5] "%1 أسابيع"
 
 #: ../RemindersModel.qml:54
 #, qt-format
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 يوم"
+msgstr[1] "%1 أيام"
+msgstr[2] "%1 يومان"
+msgstr[3] "%1 أيام"
+msgstr[4] "%1 أيام"
+msgstr[5] "%1 أيام"
 
 #: ../RemindersModel.qml:65
 #, qt-format
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 ساعة"
+msgstr[1] "%1 ساعة"
+msgstr[2] "%1 ساعتان"
+msgstr[3] "%1 ساعات"
+msgstr[4] "%1 ساعات"
+msgstr[5] "%1 ساعات"
 
 #: ../RemindersModel.qml:74
 #, qt-format
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 دقيقة"
+msgstr[1] "%1 دقيقة"
+msgstr[2] "%1 دقيقتان"
+msgstr[3] "%1 دقائق"
+msgstr[4] "%1 دقائق"
+msgstr[5] "%1 دقائق"
 
 #: ../RemindersModel.qml:104
 msgid "5 minutes"
@@ -452,7 +468,7 @@ msgstr "٥ دقائق"
 
 #: ../RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 دقائق"
 
 #: ../RemindersModel.qml:106
 msgid "15 minutes"
