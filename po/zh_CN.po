@@ -6,17 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-07-01 09:27+0000\n"
-"Last-Translator: FanJun Kong - ( BH1SCW ) <fanjun.kong@canonical.com>\n"
-"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"PO-Revision-Date: 2017-07-20 13:16+0000\n"
+"Last-Translator: wangyou <1078360711@qq.com>\n"
+"Language-Team: Chinese (Simplified) "
+"<https://ubpweblate.tnvcomp.com/projects/ubports/calendar-app/zh_Hans/>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
@@ -67,7 +69,7 @@ msgstr "日历"
 
 #: ../CalendarChoicePopup.qml:46 ../SettingsPage.qml:49
 msgid "Back"
-msgstr "后退"
+msgstr "返回"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
@@ -233,7 +235,7 @@ msgstr "提醒"
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:40 ../EventRepetition.qml:152
 msgid "Repeat"
-msgstr "重复提醒"
+msgstr "重复"
 
 #: ../EventRepetition.qml:172
 msgid "Repeats On:"
@@ -297,7 +299,7 @@ msgstr "周"
 #: ../MonthView.qml:71 ../WeekView.qml:133
 #, qt-format
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../NewEvent.qml:190
 msgid "End time can't be before start time"
@@ -349,7 +351,7 @@ msgstr "添加被邀请人"
 
 #: ../OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "选择一个帐户来创建。"
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -402,29 +404,25 @@ msgstr "进行中"
 #, qt-format
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 周"
 
 #: ../RemindersModel.qml:54
 #, qt-format
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 天"
 
 #: ../RemindersModel.qml:65
 #, qt-format
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 小时"
 
 #: ../RemindersModel.qml:74
 #, qt-format
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 分钟"
 
 #: ../RemindersModel.qml:104
 msgid "5 minutes"
@@ -432,7 +430,7 @@ msgstr "5 分钟"
 
 #: ../RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 分钟"
 
 #: ../RemindersModel.qml:106
 msgid "15 minutes"
@@ -468,11 +466,11 @@ msgstr "两周"
 
 #: ../RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "自定义"
 
 #: ../RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "自定义提醒"
 
 #: ../SettingsPage.qml:70
 msgid "Show week numbers"
@@ -498,7 +496,7 @@ msgstr "W%1"
 
 #: ../WeekView.qml:140 ../WeekView.qml:141
 msgid "MMM"
-msgstr ""
+msgstr "月"
 
 #: ../YearView.qml:79
 #, qt-format
@@ -511,8 +509,8 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
-"日历软件有四个参数：--starttime, --endtime, --newevent 和 --"
-"eventid，这些参数由系统管理，请查阅源代码了解更多信息"
+"日历软件有四个参数：--starttime, --endtime, --newevent 和 --eventid，这些参数"
+"由系统管理，请查阅源代码了解更多信息"
 
 #: ../calendar.qml:329 ../calendar.qml:510
 msgid "Year"
@@ -536,4 +534,5 @@ msgstr "与在线账户同步的 Ubuntu 日历软件。"
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr "calendar;event;day;week;year;appointment;meeting;日历;会;天;月;年;星期;周;"
+msgstr ""
+"calendar;event;day;week;year;appointment;meeting;日历;会;天;月;年;星期;周;"
