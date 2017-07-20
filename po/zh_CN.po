@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2017-07-20 13:16+0000\n"
+"PO-Revision-Date: 2017-07-20 13:17+0000\n"
 "Last-Translator: wangyou <1078360711@qq.com>\n"
 "Language-Team: Chinese (Simplified) "
 "<https://ubpweblate.tnvcomp.com/projects/ubports/calendar-app/zh_Hans/>\n"
@@ -126,7 +126,7 @@ msgstr "今天"
 #. It's used in the header of the month and week views
 #: ../DayView.qml:122 ../MonthView.qml:76 ../WeekView.qml:152
 msgid "MMMM yyyy"
-msgstr "MMMM yyyy"
+msgstr "月/年"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -450,7 +450,7 @@ msgstr "2 小时"
 
 #: ../RemindersModel.qml:110
 msgid "1 day"
-msgstr "一天"
+msgstr "1 天"
 
 #: ../RemindersModel.qml:111
 msgid "2 days"
@@ -458,7 +458,7 @@ msgstr "两天"
 
 #: ../RemindersModel.qml:112
 msgid "1 week"
-msgstr "一周"
+msgstr "1 周"
 
 #: ../RemindersModel.qml:113
 msgid "2 weeks"
