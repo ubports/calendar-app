@@ -8,3 +8,6 @@ debian/*.debhelper.log
 debian/*.substvars
 .build
 .excludes
+builddir/
+Testing/
+build-*
