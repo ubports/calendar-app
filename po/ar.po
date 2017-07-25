@@ -6,22 +6,24 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2015-11-28 19:17+0000\n"
-"Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
-"Language-Team: Arabic <ar@li.org>\n"
+"PO-Revision-Date: 2017-07-19 15:50+0000\n"
+"Last-Translator: Ahmed Suliman <ahmedselaman@gmail.com>\n"
+"Language-Team: Arabic <https://ubpweblate.tnvcomp.com/projects/ubports"
+"/calendar-app/ar/>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
-"3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
-msgstr "جدول أعمال"
+msgstr "الاجندة"
 
 #: ../AgendaView.qml:95
 msgid "You have no calendars enabled"
@@ -37,15 +39,15 @@ msgstr "تفعيل التقويمات"
 
 #: ../AgendaView.qml:199
 msgid "no event name set"
-msgstr ""
+msgstr "لم يتم تحديد اسم للحدث"
 
 #: ../AgendaView.qml:201
 msgid "no location"
-msgstr ""
+msgstr "بلا موقع"
 
 #: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
 msgid "New event"
-msgstr ""
+msgstr "حدث جديد"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
@@ -53,16 +55,24 @@ msgstr ""
 #, qt-format
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 حدث"
+msgstr[1] "%1 أحداث"
+msgstr[2] "%1 حدثين"
+msgstr[3] "%1 أحداث"
+msgstr[4] "%1 أحداث"
+msgstr[5] "%1 أحداث"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../AllDayEventComponent.qml:152
 #, qt-format
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 حدث اليوم"
+msgstr[1] "%1 كل أحدات اليوم"
+msgstr[2] "%1 حدثين اليوم"
+msgstr[3] "%1 كل أحدات اليوم"
+msgstr[4] "%1 كل أحدات اليوم"
+msgstr[5] "%1 كل أحدات اليوم"
 
 #: ../CalendarChoicePopup.qml:44 ../EventActions.qml:54
 msgid "Calendars"
@@ -84,21 +94,23 @@ msgstr "المزامنة"
 
 #: ../CalendarChoicePopup.qml:82
 msgid "Add online Calendar"
-msgstr ""
+msgstr "أضافه تقويم على الأنترنت"
 
 #: ../CalendarChoicePopup.qml:182
 msgid "Unable to deselect"
-msgstr ""
+msgstr "تعذر إلغاء التحديد"
 
 #: ../CalendarChoicePopup.qml:183
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"من أجل إنشاء أحداث جديدة يجب أن يكون لديك تقويم واحد قابل للكتابة على الأقل "
+"محدد"
 
 #: ../CalendarChoicePopup.qml:185 ../RemindersPage.qml:80
 msgid "Ok"
-msgstr ""
+msgstr "موافق"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -112,7 +124,7 @@ msgstr "إلغاء"
 
 #: ../ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr ""
+msgstr "لا جهة اتصال"
 
 #: ../ContactChoicePopup.qml:96
 msgid "Search contact"
@@ -141,12 +153,12 @@ msgstr "حذف الحدث"
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "حذف هذا الحدث فقط \"%1\", أو كل الأحداث في السلسة?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "هل انت متأكد من حذف الحدث \"%1\"?"
 
 #: ../DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -154,7 +166,7 @@ msgstr "حذف سلسلة"
 
 #: ../DeleteConfirmationDialog.qml:51
 msgid "Delete this"
-msgstr "حذف ذلك"
+msgstr "حذف هذا"
 
 #: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:347
 msgid "Delete"
@@ -168,7 +180,7 @@ msgstr "تعديل الحدث"
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "تعديل هذا الحدث فقط  \"%1\", أو كل الأحداث في السلسة?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -176,11 +188,11 @@ msgstr "تعديل سلسلة"
 
 #: ../EditEventConfirmationDialog.qml:44
 msgid "Edit this"
-msgstr "تعديل ذلك"
+msgstr "تعديل هذا"
 
 #: ../EventActions.qml:66 ../SettingsPage.qml:47
 msgid "Settings"
-msgstr ""
+msgstr "الاعدادات"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -195,11 +207,11 @@ msgstr "تفاصيل الحدث"
 
 #: ../EventDetails.qml:40
 msgid "Edit"
-msgstr "حرّر"
+msgstr "تعديل"
 
 #: ../EventDetails.qml:173 ../TimeLineHeader.qml:66
 msgid "All Day"
-msgstr ""
+msgstr "كل اليوم"
 
 #: ../EventDetails.qml:348 ../NewEvent.qml:572
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:1
@@ -208,19 +220,19 @@ msgstr "التقويم"
 
 #: ../EventDetails.qml:392
 msgid "Attending"
-msgstr ""
+msgstr "سأحضر"
 
 #: ../EventDetails.qml:394
 msgid "Not Attending"
-msgstr ""
+msgstr "لن احضر"
 
 #: ../EventDetails.qml:396
 msgid "Maybe"
-msgstr ""
+msgstr "ربما"
 
 #: ../EventDetails.qml:398
 msgid "No Reply"
-msgstr ""
+msgstr "بلا رد"
 
 #: ../EventDetails.qml:437 ../NewEvent.qml:538
 msgid "Description"
@@ -228,7 +240,7 @@ msgstr "الوصف"
 
 #: ../EventDetails.qml:464 ../NewEvent.qml:750 ../NewEvent.qml:767
 msgid "Reminder"
-msgstr ""
+msgstr "تذكير"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -236,7 +248,7 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../EventRepetition.qml:40 ../EventRepetition.qml:152
 msgid "Repeat"
-msgstr ""
+msgstr "تكرار"
 
 #: ../EventRepetition.qml:172
 msgid "Repeats On:"
@@ -244,14 +256,14 @@ msgstr "تكرار في:"
 
 #: ../EventRepetition.qml:218
 msgid "Recurring event ends"
-msgstr ""
+msgstr "ينتهي الحدث المتكرر"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
 #: ../EventRepetition.qml:242 ../NewEvent.qml:728
 msgid "Repeats"
-msgstr ""
+msgstr "تكرار"
 
 #: ../EventRepetition.qml:268
 msgid "Date"
@@ -263,22 +275,26 @@ msgstr "التاريخ"
 #, qt-format
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 مرة"
+msgstr[1] "%1; %2 مرات"
+msgstr[2] "%1; %2 مرات"
+msgstr[3] "%1; %2 مرات"
+msgstr[4] "%1; %2 مرات"
+msgstr[5] "%1; %2 مرات"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../EventUtils.qml:79
 #, qt-format
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; حتى %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../EventUtils.qml:102
 #, qt-format
 msgid "Weekly on %1"
-msgstr ""
+msgstr "اسبوعي في %1"
 
 #: ../LimitLabelModel.qml:25
 msgid "Never"
@@ -286,7 +302,7 @@ msgstr "نهائيًا"
 
 #: ../LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr ""
+msgstr "بعد X ظهور"
 
 #: ../LimitLabelModel.qml:27
 msgid "After Date"
@@ -325,15 +341,15 @@ msgstr "حسنا"
 
 #: ../NewEvent.qml:440
 msgid "From"
-msgstr ""
+msgstr "من"
 
 #: ../NewEvent.qml:456
 msgid "To"
-msgstr ""
+msgstr "إلي"
 
 #: ../NewEvent.qml:483
 msgid "All day event"
-msgstr ""
+msgstr "حدث اليوم"
 
 #: ../NewEvent.qml:520
 msgid "Event Name"
@@ -349,7 +365,7 @@ msgstr "الضيوف"
 
 #: ../NewEvent.qml:644
 msgid "Add Guest"
-msgstr ""
+msgstr "إضافة ضيف"
 
 #: ../OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
@@ -365,19 +381,19 @@ msgstr "يوميًا"
 
 #: ../RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "في أيام الأسبوع"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../RecurrenceLabelDefines.qml:27
 #, qt-format
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "في %1, %2 ,%3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../RecurrenceLabelDefines.qml:29
 #, qt-format
 msgid "On %1 and %2"
-msgstr ""
+msgstr "في %1 و %2"
 
 #: ../RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -400,35 +416,51 @@ msgstr "دون تذكير"
 #. the event starts, not any time before
 #: ../RemindersModel.qml:34 ../RemindersModel.qml:103
 msgid "On Event"
-msgstr ""
+msgstr "في الحدث"
 
 #: ../RemindersModel.qml:43
 #, qt-format
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 أسبوع"
+msgstr[1] "%1 أسبوع"
+msgstr[2] "%1 أسبوعان"
+msgstr[3] "%1 أسابيع"
+msgstr[4] "%1 أسابيع"
+msgstr[5] "%1 أسابيع"
 
 #: ../RemindersModel.qml:54
 #, qt-format
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 يوم"
+msgstr[1] "%1 أيام"
+msgstr[2] "%1 يومان"
+msgstr[3] "%1 أيام"
+msgstr[4] "%1 أيام"
+msgstr[5] "%1 أيام"
 
 #: ../RemindersModel.qml:65
 #, qt-format
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 ساعة"
+msgstr[1] "%1 ساعة"
+msgstr[2] "%1 ساعتان"
+msgstr[3] "%1 ساعات"
+msgstr[4] "%1 ساعات"
+msgstr[5] "%1 ساعات"
 
 #: ../RemindersModel.qml:74
 #, qt-format
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 دقيقة"
+msgstr[1] "%1 دقيقة"
+msgstr[2] "%1 دقيقتان"
+msgstr[3] "%1 دقائق"
+msgstr[4] "%1 دقائق"
+msgstr[5] "%1 دقائق"
 
 #: ../RemindersModel.qml:104
 msgid "5 minutes"
@@ -436,7 +468,7 @@ msgstr "٥ دقائق"
 
 #: ../RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 دقائق"
 
 #: ../RemindersModel.qml:106
 msgid "15 minutes"
