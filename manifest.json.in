@@ -15,7 +15,7 @@
         }
     },
     "icon": "@ICON@",
-    "maintainer": "Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>",
+    "maintainer": "UBports <community@ubports.com>",
     "name": "@PROJECT_NAME@",
     "title": "Calendar",
     "version": "0.6.0",
