@@ -2,7 +2,7 @@ import QtQuick 2.4
 import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Themes.Ambiance 1.3
 import Ubuntu.Components.Pickers 1.3
-import CustomPickers 1.0
+import "CustomPickers"
 
 Column {
     id: dateTimeInput
