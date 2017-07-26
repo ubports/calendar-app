@@ -2,6 +2,7 @@ import QtQuick 2.4
 import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Components.Themes.Ambiance 1.3
 import Ubuntu.Components.Pickers 1.3
+import CustomPickers 1.0
 
 Column {
     id: dateTimeInput
@@ -17,7 +18,7 @@ Column {
 
     function openDatePicker (element, caller, callerProperty, mode) {
         element.highlighted = true;
-        var picker = PickerPanel.openDatePicker(caller, callerProperty, mode);
+        var picker = NewPickerPanel.openDatePicker(caller, callerProperty, mode);
         if (!picker) return;
         picker.closed.connect(function () {
             element.highlighted = false;
@@ -69,7 +70,7 @@ Column {
 
             MouseArea{
                 anchors.fill: parent
-                onClicked: openDatePicker(timeInput, dateTimeInput, "dateTime", "Hours|Minutes")
+                onClicked: openDatePicker(timeInput, dateTimeInput, "dateTime", "Hours|FiveMinutes")
             }
         }
     }

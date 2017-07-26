@@ -1,0 +1,8 @@
+#version 1.0
+module CustomPickers
+NewPicker 1.0 1.0/Picker.qml
+NewPickerDelegate 1.0 1.0/PickerDelegate.qml
+NewDialer 1.0 1.0/Dialer.qml
+NewDialerHand 1.0 1.0/DialerHand.qml
+NewDatePicker 1.0 1.0/DatePicker.qml
+singleton NewPickerPanel 1.0 1.0/PickerPanel.qml
