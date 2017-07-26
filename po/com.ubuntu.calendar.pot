@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-26 12:29+0900\n"
+"POT-Creation-Date: 2017-07-26 17:36+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,14 +117,14 @@ msgstr ""
 msgid "Search contact"
 msgstr ""
 
-#: ../DayView.qml:72 ../MonthView.qml:50 ../WeekView.qml:55 ../YearView.qml:57
+#: ../DayView.qml:76 ../MonthView.qml:50 ../WeekView.qml:60 ../YearView.qml:57
 msgid "Today"
 msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../DayView.qml:122 ../MonthView.qml:78 ../WeekView.qml:152
+#: ../DayView.qml:126 ../MonthView.qml:78 ../WeekView.qml:157
 msgid "MMMM yyyy"
 msgstr ""
 
@@ -297,7 +297,7 @@ msgstr ""
 msgid "Wk"
 msgstr ""
 
-#: ../MonthView.qml:73 ../WeekView.qml:133
+#: ../MonthView.qml:73 ../WeekView.qml:138
 #, qt-format
 msgid "%1 %2"
 msgstr ""
@@ -499,7 +499,7 @@ msgstr ""
 msgid "W%1"
 msgstr ""
 
-#: ../WeekView.qml:140 ../WeekView.qml:141
+#: ../WeekView.qml:145 ../WeekView.qml:146
 msgid "MMM"
 msgstr ""
 
