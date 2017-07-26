@@ -91,6 +91,8 @@ install(FILES ${APPLICATION_FILE} DESTINATION ${APPLICATION_DIR})
 
 install(DIRECTORY "3rd-party" DESTINATION ${DATA_DIR})
 
+install(DIRECTORY "CustomPickers" DESTINATION ${DATA_DIR})
+
 add_subdirectory(click)
 add_subdirectory(po)
 add_subdirectory(tests)

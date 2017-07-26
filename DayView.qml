@@ -35,12 +35,16 @@ PageWithBottomEdge {
     signal dateSelected(var date);
     signal pressAndHoldAt(var date, bool allDay)
 
-    function delayScrollToDate(date, scrollTime) {
+    function delayScrollToDate(scrollDate, scrollTime) {
+	var cur = new Date();
         idleScroll.scrollToTime = scrollTime != undefined ? scrollTime : true
-        idleScroll.scrollToDate = new Date(date)
+	if(idleScroll.scrollToTime && (scrollDate.getHours() + scrollDate.getMinutes() + scrollDate.getSeconds()) === 0) {
+            scrollDate.setHours(cur.getHours());
+            scrollDate.setMinutes(cur.getMinutes());
+        }
+        idleScroll.scrollToDate = new Date(scrollDate)
         idleScroll.restart()
     }
-
     Keys.forwardTo: [dayViewPath]
 
     createEventAt: currentDate
