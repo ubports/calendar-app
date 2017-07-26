@@ -1,12 +1,12 @@
 {
-    "architecture": "all",
+    "architecture": "@CLICK_ARCH@",
     "description": "A calendar for Ubuntu which syncs with online accounts",
     "framework": "ubuntu-sdk-15.04.4",
     "hooks": {
         "calendar": {
             "account-application": "@PROJECT_NAME@_@APP_NAME@.application",
             "apparmor": "calendar.apparmor",
-            "desktop": "@DESKTOP_FILE@",
+            "desktop": "calendar.desktop",
             "urls": "@URLS_FILE@"
         },
         "calendar-helper": {
@@ -18,11 +18,7 @@
     "maintainer": "Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>",
     "name": "@PROJECT_NAME@",
     "title": "Calendar",
-    "version": "0.5.@BZR_REVNO@",
-    "x-source": {
-        "vcs-bzr": "@BZR_SOURCE@",
-        "vcs-bzr-revno": "@BZR_REVNO@"
-    },
+    "version": "0.5.1",
     "x-test": {
         "autopilot": {
             "autopilot_module": "@AUTOPILOT_DIR@",
