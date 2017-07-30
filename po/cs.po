@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2017-07-30 05:57+0000\n"
+"PO-Revision-Date: 2017-07-30 06:41+0000\n"
 "Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
 "Language-Team: Czech <https://ubpweblate.tnvcomp.com/projects/ubports"
 "/calendar-app/cs/>\n"
@@ -136,7 +136,7 @@ msgstr "MMMM yyyy"
 
 #: ../DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr "Odstranit opakující se událost"
+msgstr "Smazat opakující se událost"
 
 #: ../DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
@@ -146,7 +146,7 @@ msgstr "Smazat událost"
 #: ../DeleteConfirmationDialog.qml:36
 #, qt-format
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr "Smazat pouze tuto událost \"%1\" nebo všechny události?"
+msgstr "Smazat pouze tuto událost \"%1\" nebo všechny události v sérii?"
 
 #: ../DeleteConfirmationDialog.qml:37
 #, qt-format
@@ -173,7 +173,7 @@ msgstr "Upravit událost"
 #: ../EditEventConfirmationDialog.qml:32
 #, qt-format
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "Chcete upravit událost \"%1\" nebo všechny události?"
+msgstr "Chcete upravit událost \"%1\" nebo všechny události v sérii?"
 
 #: ../EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -213,11 +213,11 @@ msgstr "Kalendář"
 
 #: ../EventDetails.qml:392
 msgid "Attending"
-msgstr "Účastníci"
+msgstr "Účastní se"
 
 #: ../EventDetails.qml:394
 msgid "Not Attending"
-msgstr "Nezůčastní se"
+msgstr "Neúčastní se"
 
 #: ../EventDetails.qml:396
 msgid "Maybe"
@@ -233,7 +233,7 @@ msgstr "Popis"
 
 #: ../EventDetails.qml:464 ../NewEvent.qml:750 ../NewEvent.qml:767
 msgid "Reminder"
-msgstr "Připomínka"
+msgstr "Oznámení"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -359,7 +359,7 @@ msgstr "Přidat hosta"
 
 #: ../OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr "Vyberte účet k zadání."
+msgstr "Vyberte účet k vytvoření."
 
 #: ../RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -399,7 +399,7 @@ msgstr "Ročně"
 
 #: ../RemindersModel.qml:31 ../RemindersModel.qml:99
 msgid "No Reminder"
-msgstr "Bez upozornění"
+msgstr "Bez oznámení"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
@@ -486,7 +486,7 @@ msgstr "Vlastní"
 
 #: ../RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr "Vlastní připomínka"
+msgstr "Vlastní oznámení"
 
 #: ../SettingsPage.qml:70
 msgid "Show week numbers"
@@ -551,4 +551,4 @@ msgstr "Kalendář Ubuntu, který se synchronizuje s online účty."
 
 #: com.ubuntu.calendar_calendar.desktop.in.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr "kalendář;údálost;den;týden;rok;schůzka;setkání"
+msgstr "kalendář;událost;den;týden;rok;schůzka;setkání;"
