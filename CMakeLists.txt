@@ -22,9 +22,9 @@ set(QT_IMPORTS_DIR "lib/${ARCH_TRIPLET}")
 set(PROJECT_NAME "com.ubuntu.calendar")
 set(CMAKE_INSTALL_PREFIX /)
 set(DATA_DIR /)
-set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
-set(APPLICATION_FILE "${PROJECT_NAME}.application")
-set(URLS_FILE "${PROJECT_NAME}.url-dispatcher")
+set(DESKTOP_FILE_NAME ${PROJECT_NAME}_calendar.desktop)
+set(APPLICATION_FILE "${PROJECT_NAME}_calendar.application")
+set(URLS_FILE "${PROJECT_NAME}_calendar.url-dispatcher")
 
 
 # This command figures out the target architecture for use in the manifest file
@@ -37,6 +37,9 @@ execute_process(
 configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
 install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
+install(FILES ${APPLICATION_FILE} DESTINATION ${DATA_DIR})
+install(FILES push-helper DESTINATION ${DATA_DIR})
+install(FILES push-helper.json DESTINATION ${DATA_DIR})
 install(DIRECTORY qml DESTINATION ${DATA_DIR})
 install(DIRECTORY assets DESTINATION ${DATA_DIR})
 
@@ -56,7 +59,7 @@ endif()
 add_custom_target(${DESKTOP_FILE_NAME} ALL
     COMMENT "Merging translations into ${DESKTOP_FILE_NAME}..."
     COMMAND LC_ALL=C ${INTLTOOL_MERGE} -d -u ${CMAKE_SOURCE_DIR}/po ${CMAKE_SOURCE_DIR}/${DESKTOP_FILE_NAME}.in ${DESKTOP_FILE_NAME}
-    COMMAND sed -i 's/${PROJECT_NAME}-//g' ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE_NAME}
+    COMMAND sed -i 's/${PROJECT_NAME}_calendar-//g' ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE_NAME}
 )
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE_NAME} DESTINATION ${DATA_DIR})

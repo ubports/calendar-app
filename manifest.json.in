@@ -4,9 +4,9 @@
     "framework": "ubuntu-sdk-15.04.4",
     "hooks": {
         "calendar": {
-            "account-application": "@PROJECT_NAME@.application",
+            "account-application": "@APPLICATION_FILE@",
             "apparmor": "@PROJECT_NAME@.apparmor",
-            "desktop": "@PROJECT_NAME@.desktop",
+            "desktop": "@DESKTOP_FILE_NAME@",
             "urls": "@URLS_FILE@"
         },
         "calendar-helper": {
