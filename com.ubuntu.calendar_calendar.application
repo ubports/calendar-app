@@ -3,13 +3,10 @@
   <description>Calendar</description>
   <translations>calendar-sync</translations>
 
-  <services>
-    <service id="google-caldav">
+  <service-types>
+    <service-type id="calendar">
       <description>Syncronize your calendar</description>
-    </service>
-    <service id="owncloud-caldav">
-      <description>Syncronize your calendar</description>
-    </service>
-  </services>
+    </service-type>
+  </service-types>
 
 </application>
