@@ -1,15 +1,8 @@
-ReadMe - Ubuntu Calendar App 
+ReadMe - Calendar App 
 ============================
 
-Ubuntu Calendar App is the official calendar app for Ubuntu Touch. We follow an open source model where the code is available to anyone to branch and to hack on. 
-The ubuntu calendar app follows a test driven development (TDD) where tests are written in parallel to feature implementation to help spot regressions easier.
-
-Dependencies
-============
-
-DEPENDENCIES ARE NEEDED TO BE INSTALLED TO BUILD AND RUN THE APP.
-
-A complete list of dependencies for the project can be found in ubuntu-calendar-app/debian/control
+Calendar App is the official calendar app for Ubuntu Touch. We follow an open source model where the code is available to anyone to branch and to hack on. 
+The calendar app follows a test driven development (TDD) where tests are written in parallel to feature implementation to help spot regressions easier.
 
 Useful Links
 ============
@@ -19,12 +12,28 @@ Here are some useful links with regards to the Calendar App development.
 * Home Page      - https://developer.ubuntu.com/en/community/core-apps/calendar/
 * Calendar App Wiki - https://wiki.ubuntu.com/Touch/CoreApps/Calendar
 * Designs        - https://docs.google.com/presentation/d/14NIPecPFKb_8Ad3O4suEGJqVOw9bC4n0s63uWalbZ98/edit#slide=id.p
-* Project page   - https://launchpad.net/ubuntu-calendar-app
 
 Launch
 ======
 This application is implemented in QML/JS.
 You need Qt5 and the qmlscene viewer to launch this application.
 
-$ cd ubuntu-calendar-app
-$ qmlscene calendar.qml
+$ cd calendar-app
+$ qmlscene qml/calendar.qml
+
+Contributing
+==========
+
+All contributions are welcome, please see the information below for details of how you can help.
+
+**Coding**
+Please refer to the *README.developers* file for details on how to build the app and contribute code.
+
+**Translation**
+Help us translate the app to make it accessible to more people. Refer to our [translations](https://ubports.com/page/vvo-focus-languagetranslation) page for details.
+
+**Ideas & bugs**
+Please create a new issue in our [issue tracker](https://github.com/ubports/calendar-app/issues).
+
+**Other**
+Please go to UBPorts [contribution](https://ubports.com/page/vo-get-involved) page for more details on other ways to supports UBPorts.
