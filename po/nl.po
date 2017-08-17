@@ -6,17 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-11-01 08:32+0000\n"
-"Last-Translator: Hannie Dumoleyn <Unknown>\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"PO-Revision-Date: 2017-07-24 14:45+0000\n"
+"Last-Translator: Arjan Vlek <arjan1995@gmail.com>\n"
+"Language-Team: Dutch <https://ubpweblate.tnvcomp.com/projects/ubports"
+"/calendar-app/nl/>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
 msgid "Agenda"
@@ -99,7 +101,7 @@ msgstr ""
 
 #: ../CalendarChoicePopup.qml:185 ../RemindersPage.qml:80
 msgid "Ok"
-msgstr "Ok"
+msgstr "Oke"
 
 #: ../ColorPickerDialog.qml:25
 msgid "Select Color"
