@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-08-21 20:10+0000\n"
+"PO-Revision-Date: 2017-08-21 20:12+0000\n"
 "Last-Translator: Byteschubse <usoltau@mail.de>\n"
 "Language-Team: German <https://ubpweblate.tnvcomp.com/projects/ubports"
 "/calendar-app/de/>\n"
@@ -390,6 +390,7 @@ msgstr[0] "%1 Stunde"
 msgstr[1] "%1 Stunden"
 
 #: ../qml/RemindersModel.qml:74
+#, fuzzy
 msgid "%1 minute"
 msgid_plural "%1 minutes"
 msgstr[0] "ist die Anzahl der Minuten"
