@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-08-18 19:41+0000\n"
+"PO-Revision-Date: 2017-08-23 16:17+0000\n"
 "Last-Translator: Eran <etherpulse@gmail.com>\n"
 "Language-Team: Hebrew <https://ubpweblate.tnvcomp.com/projects/ubports"
 "/calendar-app/he/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "תזכורת מותאמת אישית"
 
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
@@ -63,16 +63,17 @@ msgid "OK"
 msgstr "אישור"
 
 #: ../qml/NewEvent.qml:487
+#, fuzzy
 msgid "From"
-msgstr ""
+msgstr "מ"
 
 #: ../qml/NewEvent.qml:503
 msgid "To"
-msgstr ""
+msgstr "עד"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
-msgstr ""
+msgstr "אירוע של יום שלם"
 
 #: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
 msgid "Event Details"
@@ -108,11 +109,11 @@ msgstr "הוספת אורח"
 #. its repetition
 #: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
 msgid "Repeats"
-msgstr ""
+msgstr "חזרות"
 
 #: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
 msgid "Reminder"
-msgstr ""
+msgstr "תזכורות"
 
 #: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
 #: ../qml/DayView.qml:76
@@ -127,12 +128,13 @@ msgstr ""
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
+#, fuzzy
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
-msgstr ""
+msgstr "אירוע חדש"
 
 #: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
 msgid "Calendars"
@@ -140,7 +142,7 @@ msgstr "יומנים"
 
 #: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
 msgid "Back"
-msgstr "חזרה"
+msgstr "אחורה"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
@@ -164,7 +166,7 @@ msgstr ""
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
-msgstr ""
+msgstr "על מנת ליצור אירוע חדש חייב להיות בחור לפחות לוח שנה אחד שניתן לכתיבה"
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
@@ -209,7 +211,7 @@ msgstr "סדר יום"
 
 #: ../qml/YearView.qml:79
 msgid "Year %1"
-msgstr ""
+msgstr "שנת %1"
 
 #: ../qml/ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -224,7 +226,7 @@ msgstr ""
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "עריכה של האירוע הנוכחי \"%1\" , או את כל האירועים בסדרה?"
 
 #: ../qml/EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -236,11 +238,11 @@ msgstr "לערוך את המופע"
 
 #: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
 msgid "Settings"
-msgstr ""
+msgstr "הגדרות"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
-msgstr ""
+msgstr "הצגת מספרי שבועות"
 
 #: ../qml/SettingsPage.qml:84
 msgid "Show lunar calendar"
@@ -389,8 +391,8 @@ msgstr[1] ""
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "דקה %1"
+msgstr[1] "%1 דקות"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"

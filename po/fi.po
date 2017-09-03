@@ -6,90 +6,161 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-11-23 07:41+0000\n"
-"Last-Translator: Jiri Grönroos <Unknown>\n"
-"Language-Team: Finnish <fi@li.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-02 10:41+0000\n"
+"PO-Revision-Date: 2017-08-24 14:44+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"Language-Team: Finnish <https://ubpweblate.tnvcomp.com/projects/ubports"
+"/calendar-app/fi/>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
-#: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
-msgid "Agenda"
-msgstr "Tapahtumat"
+#: ../qml/RemindersPage.qml:62
+msgid "Custom reminder"
+msgstr "Mukautettu muistutus"
 
-#: ../AgendaView.qml:95
-msgid "You have no calendars enabled"
-msgstr "Käytössäsi ei ole yhtäkään kalenteria"
+#: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
+#: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
+#: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
+msgid "Cancel"
+msgstr "Peru"
 
-#: ../AgendaView.qml:95
-msgid "No upcoming events"
-msgstr "Ei tulevia tapahtumia"
+#: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
+msgid "Ok"
+msgstr "OK"
 
-#: ../AgendaView.qml:107
-msgid "Enable calendars"
-msgstr "Ota kalentereita käyttöön"
+#: ../qml/NewEvent.qml:199
+msgid "End time can't be before start time"
+msgstr "Päättymisaika ei voi olla ennen aloitusaikaa"
 
-#: ../AgendaView.qml:199
-msgid "no event name set"
-msgstr "tapahtuman nimeä ei ole asetettu"
+#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
+msgid "Edit Event"
+msgstr "Muokkaa tapahtumaa"
 
-#: ../AgendaView.qml:201
-msgid "no location"
-msgstr "ei sijaintia"
+#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
+msgid "New Event"
+msgstr "Uusi tapahtuma"
 
-#: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
+#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete"
+msgstr "Poista"
+
+#: ../qml/NewEvent.qml:412
+msgid "Save"
+msgstr "Tallenna"
+
+#: ../qml/NewEvent.qml:423
+msgid "Error"
+msgstr "Virhe"
+
+#: ../qml/NewEvent.qml:425
+msgid "OK"
+msgstr "OK"
+
+#: ../qml/NewEvent.qml:487
+msgid "From"
+msgstr "Alkaa"
+
+#: ../qml/NewEvent.qml:503
+msgid "To"
+msgstr "Päättyy"
+
+#: ../qml/NewEvent.qml:530
+msgid "All day event"
+msgstr "Koko päivän tapahtuma"
+
+#: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
+msgid "Event Details"
+msgstr "Tapahtuman tiedot"
+
+#: ../qml/NewEvent.qml:567
+msgid "Event Name"
+msgstr "Tapahtuman nimi"
+
+#: ../qml/NewEvent.qml:585 ../qml/EventDetails.qml:437
+msgid "Description"
+msgstr "Kuvaus"
+
+#: ../qml/NewEvent.qml:604
+msgid "Location"
+msgstr "Sijainti"
+
+#: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
+#: com.ubuntu.calendar_calendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Kalenteri"
+
+#: ../qml/NewEvent.qml:681
+msgid "Guests"
+msgstr "Vieraat"
+
+#: ../qml/NewEvent.qml:691
+msgid "Add Guest"
+msgstr "Lisää vieras"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
+msgid "Repeats"
+msgstr "Toistuu"
+
+#: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
+msgid "Reminder"
+msgstr "Muistutus"
+
+#: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
+#: ../qml/DayView.qml:76
+msgid "Today"
+msgstr "Tänään"
+
+#: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
+msgid "%1 %2"
+msgstr "%1 %2"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
+msgid "MMMM yyyy"
+msgstr "MMMM yyyy"
+
+#: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
 msgstr "Uusi tapahtuma"
 
-#. TRANSLATORS: Please keep the translation of this string to a max of
-#. 5 characters as the week view where it is shown has limited space.
-#: ../AllDayEventComponent.qml:148
-#, qt-format
-msgid "%1 event"
-msgid_plural "%1 events"
-msgstr[0] "%1 tapahtuma"
-msgstr[1] "%1 tapahtumaa"
-
-#. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:152
-#, qt-format
-msgid "%1 all day event"
-msgid_plural "%1 all day events"
-msgstr[0] "%1 koko päivän tapahtuma"
-msgstr[1] "%1 koko päivän tapahtumaa"
-
-#: ../CalendarChoicePopup.qml:44 ../EventActions.qml:54
+#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
 msgid "Calendars"
 msgstr "Kalenterit"
 
-#: ../CalendarChoicePopup.qml:46 ../SettingsPage.qml:49
+#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
 msgid "Back"
 msgstr "Takaisin"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:58 ../EventActions.qml:39
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Sync"
 msgstr "Synkronoi"
 
-#: ../CalendarChoicePopup.qml:58 ../EventActions.qml:39
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Syncing"
 msgstr "Synkronoidaan"
 
-#: ../CalendarChoicePopup.qml:82
+#: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
 msgstr "Lisää verkkokalenteri"
 
-#: ../CalendarChoicePopup.qml:182
+#: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
 msgstr "Valinnan poistaminen ei onnistunut"
 
-#: ../CalendarChoicePopup.qml:183
+#: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
@@ -97,423 +168,19 @@ msgstr ""
 "Uusien tapahtumien luominen vaatii, että valittuna on ainakin yksi "
 "kirjoitettavissa oleva kalenteri"
 
-#: ../CalendarChoicePopup.qml:185 ../RemindersPage.qml:80
-msgid "Ok"
-msgstr "OK"
-
-#: ../ColorPickerDialog.qml:25
-msgid "Select Color"
-msgstr "Valitse väri"
-
-#: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
-#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:340
-#: ../OnlineAccountsHelper.qml:73 ../RemindersPage.qml:72
-msgid "Cancel"
-msgstr "Peru"
-
-#: ../ContactChoicePopup.qml:37
-msgid "No contact"
-msgstr "Ei yhteystietoa"
-
-#: ../ContactChoicePopup.qml:96
-msgid "Search contact"
-msgstr "Etsi yhteystiedoista"
-
-#: ../DayView.qml:72 ../MonthView.qml:48 ../WeekView.qml:55 ../YearView.qml:57
-msgid "Today"
-msgstr "Tänään"
-
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-#. It's used in the header of the month and week views
-#: ../DayView.qml:122 ../MonthView.qml:76 ../WeekView.qml:152
-msgid "MMMM yyyy"
-msgstr "MMMM yyyy"
-
-#: ../DeleteConfirmationDialog.qml:31
-msgid "Delete Recurring Event"
-msgstr "Poista toistuva tapahtuma"
-
-#: ../DeleteConfirmationDialog.qml:32
-msgid "Delete Event"
-msgstr "Poista tapahtuma"
-
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../DeleteConfirmationDialog.qml:36
-#, qt-format
-msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
-"Poistetaank vain tapahtuma \"%1\", vai kaikki sarjassa ilmenevät tapahtumat?"
-
-#: ../DeleteConfirmationDialog.qml:37
-#, qt-format
-msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "Haluatko varmasti poistaa tapahtuman \"%1\"?"
-
-#: ../DeleteConfirmationDialog.qml:40
-msgid "Delete series"
-msgstr "Poista sarja"
-
-#: ../DeleteConfirmationDialog.qml:51
-msgid "Delete this"
-msgstr "Poista tämä"
-
-#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:347
-msgid "Delete"
-msgstr "Poista"
-
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:335
-msgid "Edit Event"
-msgstr "Muokkaa tapahtumaa"
-
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../EditEventConfirmationDialog.qml:32
-#, qt-format
-msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
-"Muokataanko vain tapahtumaa \"%1\", vai kaikkia sarjassa ilmeneviä "
-"tapahtumia?"
-
-#: ../EditEventConfirmationDialog.qml:35
-msgid "Edit series"
-msgstr "Muokkaa sarjaa"
-
-#: ../EditEventConfirmationDialog.qml:44
-msgid "Edit this"
-msgstr "Muokkaa tätä"
-
-#: ../EventActions.qml:66 ../SettingsPage.qml:47
-msgid "Settings"
-msgstr "Asetukset"
-
-#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
-#. while the second one (%2) refers to the end time
-#: ../EventBubble.qml:138
-#, qt-format
-msgid "%1 - %2"
-msgstr "%1 - %2"
-
-#: ../EventDetails.qml:37 ../NewEvent.qml:506
-msgid "Event Details"
-msgstr "Tapahtuman tiedot"
-
-#: ../EventDetails.qml:40
-msgid "Edit"
-msgstr "Muokkaa"
-
-#: ../EventDetails.qml:173 ../TimeLineHeader.qml:66
-msgid "All Day"
-msgstr "Koko päivä"
-
-#: ../EventDetails.qml:348 ../NewEvent.qml:572
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "Kalenteri"
-
-#: ../EventDetails.qml:392
-msgid "Attending"
-msgstr "Osallistuu"
-
-#: ../EventDetails.qml:394
-msgid "Not Attending"
-msgstr "Ei osallistu"
-
-#: ../EventDetails.qml:396
-msgid "Maybe"
-msgstr "Ehkä"
-
-#: ../EventDetails.qml:398
-msgid "No Reply"
-msgstr "Ei vastausta"
-
-#: ../EventDetails.qml:437 ../NewEvent.qml:538
-msgid "Description"
-msgstr "Kuvaus"
-
-#: ../EventDetails.qml:464 ../NewEvent.qml:750 ../NewEvent.qml:767
-msgid "Reminder"
-msgstr "Muistutus"
-
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the page to choose repetition
-#. and as the header of the list item that shows the repetition
-#. summary in the page that displays the event details
-#: ../EventRepetition.qml:40 ../EventRepetition.qml:152
-msgid "Repeat"
-msgstr "Toistuvuus"
-
-#: ../EventRepetition.qml:172
-msgid "Repeats On:"
-msgstr "Toisto:"
-
-#: ../EventRepetition.qml:218
-msgid "Recurring event ends"
-msgstr "Toistuva tapahtuma päättyy"
-
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the option selector to choose
-#. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:728
-msgid "Repeats"
-msgstr "Toistuu"
-
-#: ../EventRepetition.qml:268
-msgid "Date"
-msgstr "Päiväys"
-
-#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
-#. E.g. "Daily; 5 times."
-#: ../EventUtils.qml:75
-#, qt-format
-msgid "%1; %2 time"
-msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 kerran"
-msgstr[1] "%1; %2 kertaa"
-
-#. TRANSLATORS: the argument refers to recurrence until user selected date.
-#. E.g. "Daily; until 12/12/2014."
-#: ../EventUtils.qml:79
-#, qt-format
-msgid "%1; until %2"
-msgstr "%1; päättyen %2"
-
-#. TRANSLATORS: the argument refers to several different days of the week.
-#. E.g. "Weekly on Mondays, Tuesdays"
-#: ../EventUtils.qml:102
-#, qt-format
-msgid "Weekly on %1"
-msgstr "Viikottain päivinä %1"
-
-#: ../LimitLabelModel.qml:25
+#: ../qml/LimitLabelModel.qml:25
 msgid "Never"
 msgstr "Ei koskaan"
 
-#: ../LimitLabelModel.qml:26
+#: ../qml/LimitLabelModel.qml:26
 msgid "After X Occurrence"
 msgstr "X kerran jälkeen"
 
-#: ../LimitLabelModel.qml:27
+#: ../qml/LimitLabelModel.qml:27
 msgid "After Date"
 msgstr "Päiväyksen jälkeen"
 
-#. TRANSLATORS: This is shown in the month view as "Wk" as a title
-#. to indicate the week numbers. It should be a max of up to 3 characters.
-#: ../MonthComponent.qml:281
-msgid "Wk"
-msgstr "Vko"
-
-#: ../MonthView.qml:71 ../WeekView.qml:133
-#, qt-format
-msgid "%1 %2"
-msgstr ""
-
-#: ../NewEvent.qml:190
-msgid "End time can't be before start time"
-msgstr "Päättymisaika ei voi olla ennen aloitusaikaa"
-
-#: ../NewEvent.qml:335 ../NewEventBottomEdge.qml:54
-msgid "New Event"
-msgstr "Uusi tapahtuma"
-
-#: ../NewEvent.qml:365
-msgid "Save"
-msgstr "Tallenna"
-
-#: ../NewEvent.qml:376
-msgid "Error"
-msgstr "Virhe"
-
-#: ../NewEvent.qml:378
-msgid "OK"
-msgstr "OK"
-
-#: ../NewEvent.qml:440
-msgid "From"
-msgstr "Alkaa"
-
-#: ../NewEvent.qml:456
-msgid "To"
-msgstr "Päättyy"
-
-#: ../NewEvent.qml:483
-msgid "All day event"
-msgstr "Koko päivän tapahtuma"
-
-#: ../NewEvent.qml:520
-msgid "Event Name"
-msgstr "Tapahtuman nimi"
-
-#: ../NewEvent.qml:557
-msgid "Location"
-msgstr "Sijainti"
-
-#: ../NewEvent.qml:634
-msgid "Guests"
-msgstr "Vieraat"
-
-#: ../NewEvent.qml:644
-msgid "Add Guest"
-msgstr "Lisää vieras"
-
-#: ../OnlineAccountsHelper.qml:39
-msgid "Pick an account to create."
-msgstr "Valitse luotava tili."
-
-#: ../RecurrenceLabelDefines.qml:23
-msgid "Once"
-msgstr "Kerran"
-
-#: ../RecurrenceLabelDefines.qml:24
-msgid "Daily"
-msgstr "Päivittäin"
-
-#: ../RecurrenceLabelDefines.qml:25
-msgid "On Weekdays"
-msgstr "Arkisin"
-
-#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
-#: ../RecurrenceLabelDefines.qml:27
-#, qt-format
-msgid "On %1, %2 ,%3"
-msgstr "Päivinä %1, %2 ,%3"
-
-#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
-#: ../RecurrenceLabelDefines.qml:29
-#, qt-format
-msgid "On %1 and %2"
-msgstr "Päivinä %1 ja %2"
-
-#: ../RecurrenceLabelDefines.qml:30
-msgid "Weekly"
-msgstr "Viikoittain"
-
-#: ../RecurrenceLabelDefines.qml:31
-msgid "Monthly"
-msgstr "Kuukausittain"
-
-#: ../RecurrenceLabelDefines.qml:32
-msgid "Yearly"
-msgstr "Vuosittain"
-
-#: ../RemindersModel.qml:31 ../RemindersModel.qml:99
-msgid "No Reminder"
-msgstr "Ei muistutusta"
-
-#. TRANSLATORS: this refers to when a reminder should be shown as a notification
-#. in the indicators. "On Event" means that it will be shown right at the time
-#. the event starts, not any time before
-#: ../RemindersModel.qml:34 ../RemindersModel.qml:103
-msgid "On Event"
-msgstr "Tapahtuma"
-
-#: ../RemindersModel.qml:43
-#, qt-format
-msgid "%1 week"
-msgid_plural "%1 weeks"
-msgstr[0] "%1 viikko"
-msgstr[1] "%1 viikkoa"
-
-#: ../RemindersModel.qml:54
-#, qt-format
-msgid "%1 day"
-msgid_plural "%1 days"
-msgstr[0] "%1 päivä"
-msgstr[1] "%1 päivää"
-
-#: ../RemindersModel.qml:65
-#, qt-format
-msgid "%1 hour"
-msgid_plural "%1 hours"
-msgstr[0] "%1 tunti"
-msgstr[1] "%1 tuntia"
-
-#: ../RemindersModel.qml:74
-#, qt-format
-msgid "%1 minute"
-msgid_plural "%1 minutes"
-msgstr[0] "%1 minuutti"
-msgstr[1] "%1 minuuttia"
-
-#: ../RemindersModel.qml:104
-msgid "5 minutes"
-msgstr "5 minuuttia"
-
-#: ../RemindersModel.qml:105
-msgid "10 minutes"
-msgstr "10 minuuttia"
-
-#: ../RemindersModel.qml:106
-msgid "15 minutes"
-msgstr "15 minuuttia"
-
-#: ../RemindersModel.qml:107
-msgid "30 minutes"
-msgstr "30 minuuttia"
-
-#: ../RemindersModel.qml:108
-msgid "1 hour"
-msgstr "1 tunti"
-
-#: ../RemindersModel.qml:109
-msgid "2 hours"
-msgstr "2 tuntia"
-
-#: ../RemindersModel.qml:110
-msgid "1 day"
-msgstr "1 päivä"
-
-#: ../RemindersModel.qml:111
-msgid "2 days"
-msgstr "2 päivää"
-
-#: ../RemindersModel.qml:112
-msgid "1 week"
-msgstr "1 viikko"
-
-#: ../RemindersModel.qml:113
-msgid "2 weeks"
-msgstr "2 viikkoa"
-
-#: ../RemindersModel.qml:114
-msgid "Custom"
-msgstr "Mukautettu"
-
-#: ../RemindersPage.qml:62
-msgid "Custom reminder"
-msgstr "Mukautettu muistutus"
-
-#: ../SettingsPage.qml:70
-msgid "Show week numbers"
-msgstr "Näytä viikkonumerot"
-
-#: ../SettingsPage.qml:84
-msgid "Show lunar calendar"
-msgstr "Näytä kuukalenteri"
-
-#: ../SettingsPage.qml:128
-msgid "Default reminder"
-msgstr "Oletusmuistutus"
-
-#: ../SettingsPage.qml:172
-msgid "Default calendar"
-msgstr "Oletuskalenteri"
-
-#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:54
-#, qt-format
-msgid "W%1"
-msgstr "Vk %1"
-
-#: ../WeekView.qml:140 ../WeekView.qml:141
-msgid "MMM"
-msgstr ""
-
-#: ../YearView.qml:79
-#, qt-format
-msgid "Year %1"
-msgstr "Vuosi %1"
-
-#: ../calendar.qml:72
+#: ../qml/calendar.qml:72
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -524,28 +191,346 @@ msgstr ""
 "lähdekoodia, mikäli olet kiinnostunut pidemmästä selityksestä asian "
 "tiimoilta."
 
-#: ../calendar.qml:329 ../calendar.qml:510
+#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
 msgstr "Vuosi"
 
-#: ../calendar.qml:337 ../calendar.qml:531
+#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
 msgid "Month"
 msgstr "Kuukausi"
 
-#: ../calendar.qml:345 ../calendar.qml:552
+#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
 msgid "Week"
 msgstr "Viikko"
 
-#: ../calendar.qml:353 ../calendar.qml:573
+#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
 msgid "Day"
 msgstr "Päivä"
 
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:2
+#: ../qml/calendar.qml:361 ../qml/calendar.qml:594 ../qml/AgendaView.qml:50
+msgid "Agenda"
+msgstr "Tapahtumat"
+
+#: ../qml/YearView.qml:79
+msgid "Year %1"
+msgstr "Vuosi %1"
+
+#: ../qml/ColorPickerDialog.qml:25
+msgid "Select Color"
+msgstr "Valitse väri"
+
+#. TRANSLATORS: This is shown in the month view as "Wk" as a title
+#. to indicate the week numbers. It should be a max of up to 3 characters.
+#: ../qml/MonthComponent.qml:293
+msgid "Wk"
+msgstr "Vko"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/EditEventConfirmationDialog.qml:32
+msgid "Edit only this event \"%1\", or all events in the series?"
+msgstr ""
+"Muokataanko vain tapahtumaa \"%1\", vai kaikkia sarjassa ilmeneviä "
+"tapahtumia?"
+
+#: ../qml/EditEventConfirmationDialog.qml:35
+msgid "Edit series"
+msgstr "Muokkaa sarjaa"
+
+#: ../qml/EditEventConfirmationDialog.qml:44
+msgid "Edit this"
+msgstr "Muokkaa tätä"
+
+#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
+msgid "Settings"
+msgstr "Asetukset"
+
+#: ../qml/SettingsPage.qml:70
+msgid "Show week numbers"
+msgstr "Näytä viikkonumerot"
+
+#: ../qml/SettingsPage.qml:84
+msgid "Show lunar calendar"
+msgstr "Näytä kuukalenteri"
+
+#: ../qml/SettingsPage.qml:128
+msgid "Default reminder"
+msgstr "Oletusmuistutus"
+
+#: ../qml/SettingsPage.qml:172
+msgid "Default calendar"
+msgstr "Oletuskalenteri"
+
+#: ../qml/ContactChoicePopup.qml:37
+msgid "No contact"
+msgstr "Ei yhteystietoa"
+
+#: ../qml/ContactChoicePopup.qml:96
+msgid "Search contact"
+msgstr "Etsi yhteystiedoista"
+
+#: ../qml/EventDetails.qml:40
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
+msgid "All Day"
+msgstr "Koko päivä"
+
+#: ../qml/EventDetails.qml:392
+msgid "Attending"
+msgstr "Osallistuu"
+
+#: ../qml/EventDetails.qml:394
+msgid "Not Attending"
+msgstr "Ei osallistu"
+
+#: ../qml/EventDetails.qml:396
+msgid "Maybe"
+msgstr "Ehkä"
+
+#: ../qml/EventDetails.qml:398
+msgid "No Reply"
+msgstr "Ei vastausta"
+
+#: ../qml/DeleteConfirmationDialog.qml:31
+msgid "Delete Recurring Event"
+msgstr "Poista toistuva tapahtuma"
+
+#: ../qml/DeleteConfirmationDialog.qml:32
+msgid "Delete Event"
+msgstr "Poista tapahtuma"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/DeleteConfirmationDialog.qml:36
+msgid "Delete only this event \"%1\", or all events in the series?"
+msgstr ""
+"Poistetaank vain tapahtuma \"%1\", vai kaikki sarjassa ilmenevät tapahtumat?"
+
+#: ../qml/DeleteConfirmationDialog.qml:37
+msgid "Are you sure you want to delete the event \"%1\"?"
+msgstr "Haluatko varmasti poistaa tapahtuman \"%1\"?"
+
+#: ../qml/DeleteConfirmationDialog.qml:40
+msgid "Delete series"
+msgstr "Poista sarja"
+
+#: ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete this"
+msgstr "Poista tämä"
+
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../qml/TimeLineHeader.qml:54
+msgid "W%1"
+msgstr "Vk %1"
+
+#. TRANSLATORS: Please keep the translation of this string to a max of
+#. 5 characters as the week view where it is shown has limited space.
+#: ../qml/AllDayEventComponent.qml:148
+msgid "%1 event"
+msgid_plural "%1 events"
+msgstr[0] "%1 tapahtuma"
+msgstr[1] "%1 tapahtumaa"
+
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../qml/AllDayEventComponent.qml:152
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
+msgstr[0] "%1 koko päivän tapahtuma"
+msgstr[1] "%1 koko päivän tapahtumaa"
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../qml/EventBubble.qml:138
+msgid "%1 - %2"
+msgstr "%1 - %2"
+
+#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
+#. E.g. "Daily; 5 times."
+#: ../qml/EventUtils.qml:75
+msgid "%1; %2 time"
+msgid_plural "%1; %2 times"
+msgstr[0] "%1; %2 kerran"
+msgstr[1] "%1; %2 kertaa"
+
+#. TRANSLATORS: the argument refers to recurrence until user selected date.
+#. E.g. "Daily; until 12/12/2014."
+#: ../qml/EventUtils.qml:79
+msgid "%1; until %2"
+msgstr "%1; päättyen %2"
+
+#. TRANSLATORS: the argument refers to several different days of the week.
+#. E.g. "Weekly on Mondays, Tuesdays"
+#: ../qml/EventUtils.qml:102
+msgid "Weekly on %1"
+msgstr "Viikottain päivinä %1"
+
+#: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
+msgid "No Reminder"
+msgstr "Ei muistutusta"
+
+#. TRANSLATORS: this refers to when a reminder should be shown as a notification
+#. in the indicators. "On Event" means that it will be shown right at the time
+#. the event starts, not any time before
+#: ../qml/RemindersModel.qml:34 ../qml/RemindersModel.qml:103
+msgid "On Event"
+msgstr "Tapahtuma"
+
+#: ../qml/RemindersModel.qml:43
+msgid "%1 week"
+msgid_plural "%1 weeks"
+msgstr[0] "%1 viikko"
+msgstr[1] "%1 viikkoa"
+
+#: ../qml/RemindersModel.qml:54
+msgid "%1 day"
+msgid_plural "%1 days"
+msgstr[0] "%1 päivä"
+msgstr[1] "%1 päivää"
+
+#: ../qml/RemindersModel.qml:65
+msgid "%1 hour"
+msgid_plural "%1 hours"
+msgstr[0] "%1 tunti"
+msgstr[1] "%1 tuntia"
+
+#: ../qml/RemindersModel.qml:74
+msgid "%1 minute"
+msgid_plural "%1 minutes"
+msgstr[0] "%1 minuutti"
+msgstr[1] "%1 minuuttia"
+
+#: ../qml/RemindersModel.qml:104
+msgid "5 minutes"
+msgstr "5 minuuttia"
+
+#: ../qml/RemindersModel.qml:105
+msgid "10 minutes"
+msgstr "10 minuuttia"
+
+#: ../qml/RemindersModel.qml:106
+msgid "15 minutes"
+msgstr "15 minuuttia"
+
+#: ../qml/RemindersModel.qml:107
+msgid "30 minutes"
+msgstr "30 minuuttia"
+
+#: ../qml/RemindersModel.qml:108
+msgid "1 hour"
+msgstr "1 tunti"
+
+#: ../qml/RemindersModel.qml:109
+msgid "2 hours"
+msgstr "2 tuntia"
+
+#: ../qml/RemindersModel.qml:110
+msgid "1 day"
+msgstr "1 päivä"
+
+#: ../qml/RemindersModel.qml:111
+msgid "2 days"
+msgstr "2 päivää"
+
+#: ../qml/RemindersModel.qml:112
+msgid "1 week"
+msgstr "1 viikko"
+
+#: ../qml/RemindersModel.qml:113
+msgid "2 weeks"
+msgstr "2 viikkoa"
+
+#: ../qml/RemindersModel.qml:114
+msgid "Custom"
+msgstr "Mukautettu"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
+msgid "Repeat"
+msgstr "Toistuvuus"
+
+#: ../qml/EventRepetition.qml:177
+msgid "Repeats On:"
+msgstr "Toisto:"
+
+#: ../qml/EventRepetition.qml:223
+msgid "Recurring event ends"
+msgstr "Toistuva tapahtuma päättyy"
+
+#: ../qml/EventRepetition.qml:273
+msgid "Date"
+msgstr "Päiväys"
+
+#: ../qml/OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr "Valitse luotava tili."
+
+#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
+msgid "MMM"
+msgstr "MMM"
+
+#: ../qml/AgendaView.qml:95
+msgid "You have no calendars enabled"
+msgstr "Käytössäsi ei ole yhtäkään kalenteria"
+
+#: ../qml/AgendaView.qml:95
+msgid "No upcoming events"
+msgstr "Ei tulevia tapahtumia"
+
+#: ../qml/AgendaView.qml:107
+msgid "Enable calendars"
+msgstr "Ota kalentereita käyttöön"
+
+#: ../qml/AgendaView.qml:199
+msgid "no event name set"
+msgstr "tapahtuman nimeä ei ole asetettu"
+
+#: ../qml/AgendaView.qml:201
+msgid "no location"
+msgstr "ei sijaintia"
+
+#: ../qml/RecurrenceLabelDefines.qml:23
+msgid "Once"
+msgstr "Kerran"
+
+#: ../qml/RecurrenceLabelDefines.qml:24
+msgid "Daily"
+msgstr "Päivittäin"
+
+#: ../qml/RecurrenceLabelDefines.qml:25
+msgid "On Weekdays"
+msgstr "Arkisin"
+
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
+#: ../qml/RecurrenceLabelDefines.qml:27
+msgid "On %1, %2 ,%3"
+msgstr "Päivinä %1, %2 ,%3"
+
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
+#: ../qml/RecurrenceLabelDefines.qml:29
+msgid "On %1 and %2"
+msgstr "Päivinä %1 ja %2"
+
+#: ../qml/RecurrenceLabelDefines.qml:30
+msgid "Weekly"
+msgstr "Viikoittain"
+
+#: ../qml/RecurrenceLabelDefines.qml:31
+msgid "Monthly"
+msgstr "Kuukausittain"
+
+#: ../qml/RecurrenceLabelDefines.qml:32
+msgid "Yearly"
+msgstr "Vuosittain"
+
+#: com.ubuntu.calendar_calendar.desktop.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
 msgstr "Kalenteri Ubuntulle, joka on synkronoitavissa verkkotilien kanssa."
 
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:3
+#: com.ubuntu.calendar_calendar.desktop.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
-"calendar;event;day;week;year;appointment;meeting;kalenteri;tapahtuma;päivä;vi"
-"ikko;tapaaminen;kokous;"
+"calendar;event;day;week;year;appointment;meeting;kalenteri;tapahtuma;päivä;"
+"viikko;tapaaminen;kokous;"
