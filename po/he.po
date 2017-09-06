@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-08-23 16:17+0000\n"
+"PO-Revision-Date: 2017-09-06 15:04+0000\n"
 "Last-Translator: Eran <etherpulse@gmail.com>\n"
 "Language-Team: Hebrew <https://ubpweblate.tnvcomp.com/projects/ubports"
 "/calendar-app/he/>\n"
@@ -121,8 +121,9 @@ msgid "Today"
 msgstr "היום"
 
 #: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
+#, fuzzy
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -156,11 +157,11 @@ msgstr "בסנכרון"
 
 #: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
-msgstr ""
+msgstr "הוספת לוח שנה מקוון"
 
 #: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
-msgstr ""
+msgstr "לא ניתן לבטל בחירה"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
@@ -250,11 +251,11 @@ msgstr ""
 
 #: ../qml/SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "התרעת ברירת מחדל"
 
 #: ../qml/SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "לוח שנה ברירת מחדל"
 
 #: ../qml/ContactChoicePopup.qml:37
 msgid "No contact"
@@ -270,23 +271,23 @@ msgstr "עריכה"
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
-msgstr ""
+msgstr "כל היום"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
-msgstr ""
+msgstr "ישתתפו"
 
 #: ../qml/EventDetails.qml:394
 msgid "Not Attending"
-msgstr ""
+msgstr "לא ישתתפו"
 
 #: ../qml/EventDetails.qml:396
 msgid "Maybe"
-msgstr ""
+msgstr "אולי"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
-msgstr ""
+msgstr "אין תשובה"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -299,11 +300,11 @@ msgstr "מחיקת אירוע"
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/DeleteConfirmationDialog.qml:36
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "האם למחוק רק את האירוע \"%1\", או את כל האירועים בסדרה?"
 
 #: ../qml/DeleteConfirmationDialog.qml:37
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "האם אתם בטוחים לגבי המחיקה של אירוע \"%1\"?"
 
 #: ../qml/DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -315,23 +316,24 @@ msgstr "למחוק את המופע"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
+#, fuzzy
 msgid "W%1"
-msgstr ""
+msgstr "W%1"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
 #: ../qml/AllDayEventComponent.qml:148
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 אירוע"
+msgstr[1] "%1 אירועים"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 אירוע על פני כל היום"
+msgstr[1] "%1 אירועים על פני כל היום"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -344,20 +346,20 @@ msgstr "%1 - %2"
 #: ../qml/EventUtils.qml:75
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 פעם אחת"
+msgstr[1] "%1; %2 פעמים"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../qml/EventUtils.qml:79
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; עד %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../qml/EventUtils.qml:102
 msgid "Weekly on %1"
-msgstr ""
+msgstr "שבועי ב %1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
@@ -368,25 +370,25 @@ msgstr "ללא תזכורת"
 #. the event starts, not any time before
 #: ../qml/RemindersModel.qml:34 ../qml/RemindersModel.qml:103
 msgid "On Event"
-msgstr ""
+msgstr "בזמן האירוע"
 
 #: ../qml/RemindersModel.qml:43
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 שבוע"
+msgstr[1] "%1 שבועות"
 
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 יום"
+msgstr[1] "%1 ימים"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 שעה"
+msgstr[1] "%1 שעות"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
@@ -400,7 +402,7 @@ msgstr "5 דקות"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 דקות"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
@@ -444,7 +446,7 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
 msgid "Repeat"
-msgstr ""
+msgstr "חזרות"
 
 #: ../qml/EventRepetition.qml:177
 msgid "Repeats On:"
@@ -460,7 +462,7 @@ msgstr "תאריך"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "בחרו חשבון ליצירה."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
@@ -468,7 +470,7 @@ msgstr ""
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "אין לוחות שנה פעילים"
 
 #: ../qml/AgendaView.qml:95
 msgid "No upcoming events"
@@ -476,15 +478,15 @@ msgstr "אין אירועים בזמן הקרוב"
 
 #: ../qml/AgendaView.qml:107
 msgid "Enable calendars"
-msgstr ""
+msgstr "הפעלת לוחות שנה"
 
 #: ../qml/AgendaView.qml:199
 msgid "no event name set"
-msgstr ""
+msgstr "לא הוגדר שם האירוע"
 
 #: ../qml/AgendaView.qml:201
 msgid "no location"
-msgstr ""
+msgstr "אין מיקום"
 
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
