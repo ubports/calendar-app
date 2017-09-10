@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-08-28 23:57+0000\n"
+"PO-Revision-Date: 2017-09-07 21:36+0000\n"
 "Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
-"Language-Team: Czech <https://ubpweblate.tnvcomp.com/projects/ubports"
+"Language-Team: Czech <https://translate.ubports.com/projects/ubports"
 "/calendar-app/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Zrušit"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"
-msgstr "Přijmout"
+msgstr "Ok"
 
 #: ../qml/NewEvent.qml:199
 msgid "End time can't be before start time"
