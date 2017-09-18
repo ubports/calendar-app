@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-06 15:04+0000\n"
+"PO-Revision-Date: 2017-09-18 12:14+0000\n"
 "Last-Translator: Eran <etherpulse@gmail.com>\n"
-"Language-Team: Hebrew <https://ubpweblate.tnvcomp.com/projects/ubports"
+"Language-Team: Hebrew <https://translate.ubports.com/projects/ubports"
 "/calendar-app/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +121,6 @@ msgid "Today"
 msgstr "היום"
 
 #: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
-#, fuzzy
 msgid "%1 %2"
 msgstr "%1 %2"
 
@@ -129,7 +128,6 @@ msgstr "%1 %2"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
-#, fuzzy
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -222,7 +220,7 @@ msgstr "בחירת צבע"
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../qml/MonthComponent.qml:293
 msgid "Wk"
-msgstr ""
+msgstr "Wk"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
@@ -247,7 +245,7 @@ msgstr "הצגת מספרי שבועות"
 
 #: ../qml/SettingsPage.qml:84
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "הצג לוח שנה ירחי"
 
 #: ../qml/SettingsPage.qml:128
 msgid "Default reminder"
@@ -414,7 +412,7 @@ msgstr "חצי שעה"
 
 #: ../qml/RemindersModel.qml:108
 msgid "1 hour"
-msgstr "שעה"
+msgstr "שעה 1"
 
 #: ../qml/RemindersModel.qml:109
 msgid "2 hours"
@@ -422,7 +420,7 @@ msgstr "שעתיים"
 
 #: ../qml/RemindersModel.qml:110
 msgid "1 day"
-msgstr "יום"
+msgstr "יום 1"
 
 #: ../qml/RemindersModel.qml:111
 msgid "2 days"
@@ -430,7 +428,7 @@ msgstr "יומיים"
 
 #: ../qml/RemindersModel.qml:112
 msgid "1 week"
-msgstr "שבוע"
+msgstr "שבוע 1"
 
 #: ../qml/RemindersModel.qml:113
 msgid "2 weeks"
@@ -438,7 +436,7 @@ msgstr "שבועיים"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "התאמה אישית"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -466,7 +464,7 @@ msgstr "בחרו חשבון ליצירה."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
@@ -498,17 +496,17 @@ msgstr "מדי יום"
 
 #: ../qml/RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "בימי השבוע"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:27
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "ב %1, %2, %3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:29
 msgid "On %1 and %2"
-msgstr ""
+msgstr "ב %1 וב %2"
 
 #: ../qml/RecurrenceLabelDefines.qml:30
 msgid "Weekly"
