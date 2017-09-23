@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-08-24 18:56+0000\n"
-"Last-Translator: Sander <sander.k1007@kpnmail.nl>\n"
-"Language-Team: Dutch <https://ubpweblate.tnvcomp.com/projects/ubports"
+"PO-Revision-Date: 2017-09-23 22:05+0000\n"
+"Last-Translator: Mappack Owner <mappack@null.net>\n"
+"Language-Team: Dutch <https://translate.ubports.com/projects/ubports"
 "/calendar-app/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgstr "Agenda's"
 
 #: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
 msgid "Back"
-msgstr "Terug"
+msgstr "Vorige"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
