@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-01 21:12+0000\n"
+"PO-Revision-Date: 2017-09-21 08:24+0000\n"
 "Last-Translator: Daniel Frańczak <danielfranczak5@wp.pl>\n"
-"Language-Team: Polish <https://ubpweblate.tnvcomp.com/projects/ubports"
+"Language-Team: Polish <https://translate.ubports.com/projects/ubports"
 "/calendar-app/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -141,7 +141,7 @@ msgstr "Kalendarze"
 
 #: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
 msgid "Back"
-msgstr "Powrót"
+msgstr "Wstecz"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
@@ -445,7 +445,7 @@ msgstr "2 tygodnie"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr "Inne"
+msgstr "Własne"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
