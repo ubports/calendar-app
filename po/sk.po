@@ -6,92 +6,161 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-07-29 17:20-0300\n"
-"PO-Revision-Date: 2016-08-10 12:19+0000\n"
-"Last-Translator: P_E_T_O <Unknown>\n"
-"Language-Team: Slovak <sk@li.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-02 10:41+0000\n"
+"PO-Revision-Date: 2017-09-29 22:17+0000\n"
+"Last-Translator: Peter Valachovič <peter.valachovic@gmail.com>\n"
+"Language-Team: Slovak <https://translate.ubports.com/projects/ubports"
+"/calendar-app/sk/>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
-#: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
-msgid "Agenda"
-msgstr "Program"
+#: ../qml/RemindersPage.qml:62
+msgid "Custom reminder"
+msgstr "Vlastná pripomienka"
 
-#: ../AgendaView.qml:95
-msgid "You have no calendars enabled"
-msgstr "Nemáte vybraný žiadny kalendár"
+#: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
+#: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
+#: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
+msgid "Cancel"
+msgstr "Zrušiť"
 
-#: ../AgendaView.qml:95
-msgid "No upcoming events"
-msgstr "Žiadne nadchádzajúce udalosti"
+#: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
+msgid "Ok"
+msgstr "Ok"
 
-#: ../AgendaView.qml:107
-msgid "Enable calendars"
-msgstr "Povoliť kalendáre"
+#: ../qml/NewEvent.qml:199
+msgid "End time can't be before start time"
+msgstr "Čas ukončenia nemôže byť pred časom začiatku"
 
-#: ../AgendaView.qml:199
-msgid "no event name set"
-msgstr "nezadané meno udalosti"
+#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
+msgid "Edit Event"
+msgstr "Upraviť udalosť"
 
-#: ../AgendaView.qml:201
-msgid "no location"
-msgstr "žiadna poloha"
+#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
+msgid "New Event"
+msgstr "Nová udalosť"
 
-#: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
+#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete"
+msgstr "Vymazať"
+
+#: ../qml/NewEvent.qml:412
+msgid "Save"
+msgstr "Uložiť"
+
+#: ../qml/NewEvent.qml:423
+msgid "Error"
+msgstr "Chyba"
+
+#: ../qml/NewEvent.qml:425
+msgid "OK"
+msgstr "OK"
+
+#: ../qml/NewEvent.qml:487
+msgid "From"
+msgstr "Od"
+
+#: ../qml/NewEvent.qml:503
+msgid "To"
+msgstr "Do"
+
+#: ../qml/NewEvent.qml:530
+msgid "All day event"
+msgstr "Celodenná udalosť"
+
+#: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
+msgid "Event Details"
+msgstr "Podrobnosti o udalosti"
+
+#: ../qml/NewEvent.qml:567
+msgid "Event Name"
+msgstr "Meno udalosti"
+
+#: ../qml/NewEvent.qml:585 ../qml/EventDetails.qml:437
+msgid "Description"
+msgstr "Popis"
+
+#: ../qml/NewEvent.qml:604
+msgid "Location"
+msgstr "Poloha"
+
+#: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
+#: com.ubuntu.calendar_calendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Kalendár"
+
+#: ../qml/NewEvent.qml:681
+msgid "Guests"
+msgstr "Hostia"
+
+#: ../qml/NewEvent.qml:691
+msgid "Add Guest"
+msgstr "Pridaj hosťa"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
+msgid "Repeats"
+msgstr "Opakovanie"
+
+#: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
+msgid "Reminder"
+msgstr "Pripomienka"
+
+#: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
+#: ../qml/DayView.qml:76
+msgid "Today"
+msgstr "Dnes"
+
+#: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
+msgid "%1 %2"
+msgstr "%1 %2"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
+msgid "MMMM yyyy"
+msgstr "MMM yyyy"
+
+#: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
 msgstr "Nová udalosť"
 
-#. TRANSLATORS: Please keep the translation of this string to a max of
-#. 5 characters as the week view where it is shown has limited space.
-#: ../AllDayEventComponent.qml:148
-#, qt-format
-msgid "%1 event"
-msgid_plural "%1 events"
-msgstr[0] "%1 udalostí"
-msgstr[1] "%1 udalosť"
-msgstr[2] "%1 udalosti"
-
-#. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:152
-#, qt-format
-msgid "%1 all day event"
-msgid_plural "%1 all day events"
-msgstr[0] "%1 celodenných udalostí"
-msgstr[1] "%1 celodenná udalosť"
-msgstr[2] "%1 celodenné udalosti"
-
-#: ../CalendarChoicePopup.qml:44 ../EventActions.qml:54
+#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
 msgid "Calendars"
 msgstr "Kalendáre"
 
-#: ../CalendarChoicePopup.qml:46 ../SettingsPage.qml:49
+#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
 msgid "Back"
 msgstr "Späť"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:58 ../EventActions.qml:39
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Sync"
 msgstr "Synchronizovať"
 
-#: ../CalendarChoicePopup.qml:58 ../EventActions.qml:39
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Syncing"
-msgstr "Prebieha synchronizácia"
+msgstr "Synchronizovanie"
 
-#: ../CalendarChoicePopup.qml:82
+#: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
 msgstr "Pridať online kalendár"
 
-#: ../CalendarChoicePopup.qml:182
+#: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
 msgstr "Nie je možné zrušiť výber"
 
-#: ../CalendarChoicePopup.qml:183
+#: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
@@ -99,425 +168,19 @@ msgstr ""
 "Pre vytváranie nových udalostí, musíte mať vybraný aspoň jeden zapisovateľný "
 "kalendár"
 
-#: ../CalendarChoicePopup.qml:185 ../RemindersPage.qml:80
-msgid "Ok"
-msgstr "Ok"
-
-#: ../ColorPickerDialog.qml:25
-msgid "Select Color"
-msgstr "Vybrať farbu"
-
-#: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
-#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:340
-#: ../OnlineAccountsHelper.qml:73 ../RemindersPage.qml:72
-msgid "Cancel"
-msgstr "Zrušiť"
-
-#: ../ContactChoicePopup.qml:37
-msgid "No contact"
-msgstr "Žiadny kontakt"
-
-#: ../ContactChoicePopup.qml:96
-msgid "Search contact"
-msgstr "Hľadať kontakt"
-
-#: ../DayView.qml:72 ../MonthView.qml:48 ../WeekView.qml:55 ../YearView.qml:57
-msgid "Today"
-msgstr "Dnes"
-
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-#. It's used in the header of the month and week views
-#: ../DayView.qml:122 ../MonthView.qml:76 ../WeekView.qml:152
-msgid "MMMM yyyy"
-msgstr "MMM yyyy"
-
-#: ../DeleteConfirmationDialog.qml:31
-msgid "Delete Recurring Event"
-msgstr "Vymazať opakujúcu sa udalosť"
-
-#: ../DeleteConfirmationDialog.qml:32
-msgid "Delete Event"
-msgstr "Vymazať udalosť"
-
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../DeleteConfirmationDialog.qml:36
-#, qt-format
-msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr "Vymazať len udalosť  \"%1\" alebo všetky udalosti v sérii?"
-
-#: ../DeleteConfirmationDialog.qml:37
-#, qt-format
-msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "Určite chcete vymazať udalosť \"%1\"?"
-
-#: ../DeleteConfirmationDialog.qml:40
-msgid "Delete series"
-msgstr "Vymazať série"
-
-#: ../DeleteConfirmationDialog.qml:51
-msgid "Delete this"
-msgstr "Vymazať túto"
-
-#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:347
-msgid "Delete"
-msgstr "Vymazať"
-
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:335
-msgid "Edit Event"
-msgstr "Upraviť udalosť"
-
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../EditEventConfirmationDialog.qml:32
-#, qt-format
-msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "Upraviť len udalosť \"%1\" alebo všetky udalosti v sérii ?"
-
-#: ../EditEventConfirmationDialog.qml:35
-msgid "Edit series"
-msgstr "Upraviť sériu"
-
-#: ../EditEventConfirmationDialog.qml:44
-msgid "Edit this"
-msgstr "Upraviť túto"
-
-#: ../EventActions.qml:66 ../SettingsPage.qml:47
-msgid "Settings"
-msgstr "Nastavenia"
-
-#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
-#. while the second one (%2) refers to the end time
-#: ../EventBubble.qml:138
-#, qt-format
-msgid "%1 - %2"
-msgstr "%1 - %2"
-
-#: ../EventDetails.qml:37 ../NewEvent.qml:506
-msgid "Event Details"
-msgstr "Podrobnosti o udalosti"
-
-#: ../EventDetails.qml:40
-msgid "Edit"
-msgstr "Upraviť"
-
-#: ../EventDetails.qml:173 ../TimeLineHeader.qml:66
-msgid "All Day"
-msgstr "Celý deň"
-
-#: ../EventDetails.qml:348 ../NewEvent.qml:572
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "Kalendár"
-
-#: ../EventDetails.qml:392
-msgid "Attending"
-msgstr "Zúčastnia sa"
-
-#: ../EventDetails.qml:394
-msgid "Not Attending"
-msgstr "Nezúčastnia sa"
-
-#: ../EventDetails.qml:396
-msgid "Maybe"
-msgstr "Možno"
-
-#: ../EventDetails.qml:398
-msgid "No Reply"
-msgstr "Bez odpovede"
-
-#: ../EventDetails.qml:437 ../NewEvent.qml:538
-msgid "Description"
-msgstr "Popis"
-
-#: ../EventDetails.qml:464 ../NewEvent.qml:750 ../NewEvent.qml:767
-msgid "Reminder"
-msgstr "Pripomienka"
-
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the page to choose repetition
-#. and as the header of the list item that shows the repetition
-#. summary in the page that displays the event details
-#: ../EventRepetition.qml:40 ../EventRepetition.qml:152
-msgid "Repeat"
-msgstr "Opakovať"
-
-#: ../EventRepetition.qml:172
-msgid "Repeats On:"
-msgstr "Opakovať:"
-
-#: ../EventRepetition.qml:218
-msgid "Recurring event ends"
-msgstr "Opakujúca udalosť končí"
-
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the option selector to choose
-#. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:728
-msgid "Repeats"
-msgstr "Opakovanie"
-
-#: ../EventRepetition.qml:268
-msgid "Date"
-msgstr "Dátum"
-
-#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
-#. E.g. "Daily; 5 times."
-#: ../EventUtils.qml:75
-#, qt-format
-msgid "%1; %2 time"
-msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 krát"
-msgstr[1] "%1; %2 krát"
-msgstr[2] "%1; %2 krát"
-
-#. TRANSLATORS: the argument refers to recurrence until user selected date.
-#. E.g. "Daily; until 12/12/2014."
-#: ../EventUtils.qml:79
-#, qt-format
-msgid "%1; until %2"
-msgstr "%1; do %2"
-
-#. TRANSLATORS: the argument refers to several different days of the week.
-#. E.g. "Weekly on Mondays, Tuesdays"
-#: ../EventUtils.qml:102
-#, qt-format
-msgid "Weekly on %1"
-msgstr "Týždenne v %1"
-
-#: ../LimitLabelModel.qml:25
+#: ../qml/LimitLabelModel.qml:25
 msgid "Never"
 msgstr "Nikdy"
 
-#: ../LimitLabelModel.qml:26
+#: ../qml/LimitLabelModel.qml:26
 msgid "After X Occurrence"
 msgstr "Po X výskytoch"
 
-#: ../LimitLabelModel.qml:27
+#: ../qml/LimitLabelModel.qml:27
 msgid "After Date"
 msgstr "Po dátume"
 
-#. TRANSLATORS: This is shown in the month view as "Wk" as a title
-#. to indicate the week numbers. It should be a max of up to 3 characters.
-#: ../MonthComponent.qml:281
-msgid "Wk"
-msgstr "Týž."
-
-#: ../MonthView.qml:71 ../WeekView.qml:133
-#, qt-format
-msgid "%1 %2"
-msgstr "%1 %2"
-
-#: ../NewEvent.qml:190
-msgid "End time can't be before start time"
-msgstr "Čas ukončenia nemôže byť pred časom začiatku"
-
-#: ../NewEvent.qml:335 ../NewEventBottomEdge.qml:54
-msgid "New Event"
-msgstr "Nová udalosť"
-
-#: ../NewEvent.qml:365
-msgid "Save"
-msgstr "Uložiť"
-
-#: ../NewEvent.qml:376
-msgid "Error"
-msgstr "Chyba"
-
-#: ../NewEvent.qml:378
-msgid "OK"
-msgstr "OK"
-
-#: ../NewEvent.qml:440
-msgid "From"
-msgstr "Od"
-
-#: ../NewEvent.qml:456
-msgid "To"
-msgstr "Do"
-
-#: ../NewEvent.qml:483
-msgid "All day event"
-msgstr "Celodenná udalosť"
-
-#: ../NewEvent.qml:520
-msgid "Event Name"
-msgstr "Meno udalosti"
-
-#: ../NewEvent.qml:557
-msgid "Location"
-msgstr "Poloha"
-
-#: ../NewEvent.qml:634
-msgid "Guests"
-msgstr "Hostia"
-
-#: ../NewEvent.qml:644
-msgid "Add Guest"
-msgstr "Pridaj hosťa"
-
-#: ../OnlineAccountsHelper.qml:39
-msgid "Pick an account to create."
-msgstr "Vybrať účet pre vytvorenie."
-
-#: ../RecurrenceLabelDefines.qml:23
-msgid "Once"
-msgstr "Raz"
-
-#: ../RecurrenceLabelDefines.qml:24
-msgid "Daily"
-msgstr "Denne"
-
-#: ../RecurrenceLabelDefines.qml:25
-msgid "On Weekdays"
-msgstr "Cez víkend"
-
-#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
-#: ../RecurrenceLabelDefines.qml:27
-#, qt-format
-msgid "On %1, %2 ,%3"
-msgstr "V %1, %2 ,%3"
-
-#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
-#: ../RecurrenceLabelDefines.qml:29
-#, qt-format
-msgid "On %1 and %2"
-msgstr "V %1 and %2"
-
-#: ../RecurrenceLabelDefines.qml:30
-msgid "Weekly"
-msgstr "Týždenne"
-
-#: ../RecurrenceLabelDefines.qml:31
-msgid "Monthly"
-msgstr "Mesačne"
-
-#: ../RecurrenceLabelDefines.qml:32
-msgid "Yearly"
-msgstr "Ročne"
-
-#: ../RemindersModel.qml:31 ../RemindersModel.qml:99
-msgid "No Reminder"
-msgstr "Žiadna pripomienka"
-
-#. TRANSLATORS: this refers to when a reminder should be shown as a notification
-#. in the indicators. "On Event" means that it will be shown right at the time
-#. the event starts, not any time before
-#: ../RemindersModel.qml:34 ../RemindersModel.qml:103
-msgid "On Event"
-msgstr "Presne na udalosť"
-
-#: ../RemindersModel.qml:43
-#, qt-format
-msgid "%1 week"
-msgid_plural "%1 weeks"
-msgstr[0] "%1 týždňov"
-msgstr[1] "%1 týždeň"
-msgstr[2] "%1 týždne"
-
-#: ../RemindersModel.qml:54
-#, qt-format
-msgid "%1 day"
-msgid_plural "%1 days"
-msgstr[0] "%1 dní"
-msgstr[1] "%1 deň"
-msgstr[2] "%1 dni"
-
-#: ../RemindersModel.qml:65
-#, qt-format
-msgid "%1 hour"
-msgid_plural "%1 hours"
-msgstr[0] "%1 hodín"
-msgstr[1] "%1 hodina"
-msgstr[2] "%1 hodiny"
-
-#: ../RemindersModel.qml:74
-#, qt-format
-msgid "%1 minute"
-msgid_plural "%1 minutes"
-msgstr[0] "%1 minút"
-msgstr[1] "%1 minúta"
-msgstr[2] "%1 minúty"
-
-#: ../RemindersModel.qml:104
-msgid "5 minutes"
-msgstr "5 minút"
-
-#: ../RemindersModel.qml:105
-msgid "10 minutes"
-msgstr "10 minút"
-
-#: ../RemindersModel.qml:106
-msgid "15 minutes"
-msgstr "15 minút"
-
-#: ../RemindersModel.qml:107
-msgid "30 minutes"
-msgstr "30 minút"
-
-#: ../RemindersModel.qml:108
-msgid "1 hour"
-msgstr "1 hodina"
-
-#: ../RemindersModel.qml:109
-msgid "2 hours"
-msgstr "2 hodiny"
-
-#: ../RemindersModel.qml:110
-msgid "1 day"
-msgstr "1 deň"
-
-#: ../RemindersModel.qml:111
-msgid "2 days"
-msgstr "2 dni"
-
-#: ../RemindersModel.qml:112
-msgid "1 week"
-msgstr "1 týždeň"
-
-#: ../RemindersModel.qml:113
-msgid "2 weeks"
-msgstr "2 týždne"
-
-#: ../RemindersModel.qml:114
-msgid "Custom"
-msgstr "Vlastné"
-
-#: ../RemindersPage.qml:62
-msgid "Custom reminder"
-msgstr "Vlastná pripomienka"
-
-#: ../SettingsPage.qml:70
-msgid "Show week numbers"
-msgstr "Zobraziť čísla týždňov"
-
-#: ../SettingsPage.qml:84
-msgid "Show lunar calendar"
-msgstr "Zobraziť lunárny kalendár"
-
-#: ../SettingsPage.qml:128
-msgid "Default reminder"
-msgstr "Predvolené pripomenutie"
-
-#: ../SettingsPage.qml:172
-msgid "Default calendar"
-msgstr "Predvolený kalendár"
-
-#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:54
-#, qt-format
-msgid "W%1"
-msgstr "Týž.%1"
-
-#: ../WeekView.qml:140 ../WeekView.qml:141
-msgid "MMM"
-msgstr "MMM"
-
-#: ../YearView.qml:79
-#, qt-format
-msgid "Year %1"
-msgstr "Rok %1"
-
-#: ../calendar.qml:72
+#: ../qml/calendar.qml:72
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -526,26 +189,348 @@ msgstr ""
 "Aplikácia Kalendár prijíma štyri argumenty: --starttime, --endtime, --"
 "newevent a --eventid. Budú riadené systémom. Pre úplný výklad pozri zdroj"
 
-#: ../calendar.qml:329 ../calendar.qml:510
+#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
 msgstr "Rok"
 
-#: ../calendar.qml:337 ../calendar.qml:531
+#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
 msgid "Month"
 msgstr "Mesiac"
 
-#: ../calendar.qml:345 ../calendar.qml:552
+#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
 msgid "Week"
 msgstr "Týždeň"
 
-#: ../calendar.qml:353 ../calendar.qml:573
+#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
 msgid "Day"
 msgstr "Deň"
 
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:2
+#: ../qml/calendar.qml:361 ../qml/calendar.qml:594 ../qml/AgendaView.qml:50
+msgid "Agenda"
+msgstr "Program"
+
+#: ../qml/YearView.qml:79
+msgid "Year %1"
+msgstr "Rok %1"
+
+#: ../qml/ColorPickerDialog.qml:25
+msgid "Select Color"
+msgstr "Vybrať farbu"
+
+#. TRANSLATORS: This is shown in the month view as "Wk" as a title
+#. to indicate the week numbers. It should be a max of up to 3 characters.
+#: ../qml/MonthComponent.qml:293
+msgid "Wk"
+msgstr "Týž."
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/EditEventConfirmationDialog.qml:32
+msgid "Edit only this event \"%1\", or all events in the series?"
+msgstr "Upraviť len udalosť \"%1\" alebo všetky udalosti v sérii ?"
+
+#: ../qml/EditEventConfirmationDialog.qml:35
+msgid "Edit series"
+msgstr "Upraviť sériu"
+
+#: ../qml/EditEventConfirmationDialog.qml:44
+msgid "Edit this"
+msgstr "Upraviť túto"
+
+#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
+msgid "Settings"
+msgstr "Nastavenia"
+
+#: ../qml/SettingsPage.qml:70
+msgid "Show week numbers"
+msgstr "Zobraziť čísla týždňov"
+
+#: ../qml/SettingsPage.qml:84
+msgid "Show lunar calendar"
+msgstr "Zobraziť lunárny kalendár"
+
+#: ../qml/SettingsPage.qml:128
+msgid "Default reminder"
+msgstr "Predvolené pripomenutie"
+
+#: ../qml/SettingsPage.qml:172
+msgid "Default calendar"
+msgstr "Predvolený kalendár"
+
+#: ../qml/ContactChoicePopup.qml:37
+msgid "No contact"
+msgstr "Žiadny kontakt"
+
+#: ../qml/ContactChoicePopup.qml:96
+msgid "Search contact"
+msgstr "Hľadať kontakt"
+
+#: ../qml/EventDetails.qml:40
+msgid "Edit"
+msgstr "Upraviť"
+
+#: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
+msgid "All Day"
+msgstr "Celý deň"
+
+#: ../qml/EventDetails.qml:392
+msgid "Attending"
+msgstr "Zúčastnia sa"
+
+#: ../qml/EventDetails.qml:394
+msgid "Not Attending"
+msgstr "Nezúčastnia sa"
+
+#: ../qml/EventDetails.qml:396
+msgid "Maybe"
+msgstr "Možno"
+
+#: ../qml/EventDetails.qml:398
+msgid "No Reply"
+msgstr "Bez odpovede"
+
+#: ../qml/DeleteConfirmationDialog.qml:31
+msgid "Delete Recurring Event"
+msgstr "Vymazať opakujúcu sa udalosť"
+
+#: ../qml/DeleteConfirmationDialog.qml:32
+msgid "Delete Event"
+msgstr "Vymazať udalosť"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/DeleteConfirmationDialog.qml:36
+msgid "Delete only this event \"%1\", or all events in the series?"
+msgstr "Vymazať len udalosť  \"%1\" alebo všetky udalosti v sérii?"
+
+#: ../qml/DeleteConfirmationDialog.qml:37
+msgid "Are you sure you want to delete the event \"%1\"?"
+msgstr "Určite chcete vymazať udalosť \"%1\"?"
+
+#: ../qml/DeleteConfirmationDialog.qml:40
+msgid "Delete series"
+msgstr "Vymazať série"
+
+#: ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete this"
+msgstr "Vymazať túto"
+
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../qml/TimeLineHeader.qml:54
+msgid "W%1"
+msgstr "Týž.%1"
+
+#. TRANSLATORS: Please keep the translation of this string to a max of
+#. 5 characters as the week view where it is shown has limited space.
+#: ../qml/AllDayEventComponent.qml:148
+msgid "%1 event"
+msgid_plural "%1 events"
+msgstr[0] "%1 udalostí"
+msgstr[1] "%1 udalosť"
+msgstr[2] "%1 udalosti"
+
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../qml/AllDayEventComponent.qml:152
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
+msgstr[0] "%1 celodenných udalostí"
+msgstr[1] "%1 celodenná udalosť"
+msgstr[2] "%1 celodenné udalosti"
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../qml/EventBubble.qml:138
+msgid "%1 - %2"
+msgstr "%1 - %2"
+
+#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
+#. E.g. "Daily; 5 times."
+#: ../qml/EventUtils.qml:75
+msgid "%1; %2 time"
+msgid_plural "%1; %2 times"
+msgstr[0] "%1; %2 krát"
+msgstr[1] "%1; %2 krát"
+msgstr[2] "%1; %2 krát"
+
+#. TRANSLATORS: the argument refers to recurrence until user selected date.
+#. E.g. "Daily; until 12/12/2014."
+#: ../qml/EventUtils.qml:79
+msgid "%1; until %2"
+msgstr "%1; do %2"
+
+#. TRANSLATORS: the argument refers to several different days of the week.
+#. E.g. "Weekly on Mondays, Tuesdays"
+#: ../qml/EventUtils.qml:102
+msgid "Weekly on %1"
+msgstr "Týždenne v %1"
+
+#: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
+msgid "No Reminder"
+msgstr "Žiadna pripomienka"
+
+#. TRANSLATORS: this refers to when a reminder should be shown as a notification
+#. in the indicators. "On Event" means that it will be shown right at the time
+#. the event starts, not any time before
+#: ../qml/RemindersModel.qml:34 ../qml/RemindersModel.qml:103
+msgid "On Event"
+msgstr "Presne na udalosť"
+
+#: ../qml/RemindersModel.qml:43
+msgid "%1 week"
+msgid_plural "%1 weeks"
+msgstr[0] "%1 týždňov"
+msgstr[1] "%1 týždeň"
+msgstr[2] "%1 týždne"
+
+#: ../qml/RemindersModel.qml:54
+msgid "%1 day"
+msgid_plural "%1 days"
+msgstr[0] "%1 dní"
+msgstr[1] "%1 deň"
+msgstr[2] "%1 dni"
+
+#: ../qml/RemindersModel.qml:65
+msgid "%1 hour"
+msgid_plural "%1 hours"
+msgstr[0] "%1 hodín"
+msgstr[1] "%1 hodina"
+msgstr[2] "%1 hodiny"
+
+#: ../qml/RemindersModel.qml:74
+msgid "%1 minute"
+msgid_plural "%1 minutes"
+msgstr[0] "%1 minút"
+msgstr[1] "%1 minúta"
+msgstr[2] "%1 minúty"
+
+#: ../qml/RemindersModel.qml:104
+msgid "5 minutes"
+msgstr "5 minút"
+
+#: ../qml/RemindersModel.qml:105
+msgid "10 minutes"
+msgstr "10 minút"
+
+#: ../qml/RemindersModel.qml:106
+msgid "15 minutes"
+msgstr "15 minút"
+
+#: ../qml/RemindersModel.qml:107
+msgid "30 minutes"
+msgstr "30 minút"
+
+#: ../qml/RemindersModel.qml:108
+msgid "1 hour"
+msgstr "1 hodina"
+
+#: ../qml/RemindersModel.qml:109
+msgid "2 hours"
+msgstr "2 hodiny"
+
+#: ../qml/RemindersModel.qml:110
+msgid "1 day"
+msgstr "1 deň"
+
+#: ../qml/RemindersModel.qml:111
+msgid "2 days"
+msgstr "2 dni"
+
+#: ../qml/RemindersModel.qml:112
+msgid "1 week"
+msgstr "1 týždeň"
+
+#: ../qml/RemindersModel.qml:113
+msgid "2 weeks"
+msgstr "2 týždne"
+
+#: ../qml/RemindersModel.qml:114
+msgid "Custom"
+msgstr "Vlastné"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
+msgid "Repeat"
+msgstr "Opakovať"
+
+#: ../qml/EventRepetition.qml:177
+msgid "Repeats On:"
+msgstr "Opakovať:"
+
+#: ../qml/EventRepetition.qml:223
+msgid "Recurring event ends"
+msgstr "Opakujúca udalosť končí"
+
+#: ../qml/EventRepetition.qml:273
+msgid "Date"
+msgstr "Dátum"
+
+#: ../qml/OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr "Vybrať účet pre vytvorenie."
+
+#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
+msgid "MMM"
+msgstr "MMM"
+
+#: ../qml/AgendaView.qml:95
+msgid "You have no calendars enabled"
+msgstr "Nemáte vybraný žiadny kalendár"
+
+#: ../qml/AgendaView.qml:95
+msgid "No upcoming events"
+msgstr "Žiadne nadchádzajúce udalosti"
+
+#: ../qml/AgendaView.qml:107
+msgid "Enable calendars"
+msgstr "Povoliť kalendáre"
+
+#: ../qml/AgendaView.qml:199
+msgid "no event name set"
+msgstr "nezadané meno udalosti"
+
+#: ../qml/AgendaView.qml:201
+msgid "no location"
+msgstr "žiadna poloha"
+
+#: ../qml/RecurrenceLabelDefines.qml:23
+msgid "Once"
+msgstr "Raz"
+
+#: ../qml/RecurrenceLabelDefines.qml:24
+msgid "Daily"
+msgstr "Denne"
+
+#: ../qml/RecurrenceLabelDefines.qml:25
+msgid "On Weekdays"
+msgstr "Cez víkend"
+
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
+#: ../qml/RecurrenceLabelDefines.qml:27
+msgid "On %1, %2 ,%3"
+msgstr "V %1, %2 ,%3"
+
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
+#: ../qml/RecurrenceLabelDefines.qml:29
+msgid "On %1 and %2"
+msgstr "V %1 and %2"
+
+#: ../qml/RecurrenceLabelDefines.qml:30
+msgid "Weekly"
+msgstr "Týždenne"
+
+#: ../qml/RecurrenceLabelDefines.qml:31
+msgid "Monthly"
+msgstr "Mesačne"
+
+#: ../qml/RecurrenceLabelDefines.qml:32
+msgid "Yearly"
+msgstr "Ročne"
+
+#: com.ubuntu.calendar_calendar.desktop.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
 msgstr "Kalendár pre Ubuntu, ktorý sa synchronizuje s online účtami."
 
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:3
+#: com.ubuntu.calendar_calendar.desktop.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "kalendár;udalosť;deň;týždeň;rok;stretnutie;schôdza;"
