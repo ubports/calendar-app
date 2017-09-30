@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-08-17 23:17+0000\n"
-"Last-Translator: advocatux <advocatux@airpost.net>\n"
-"Language-Team: Spanish <https://ubpweblate.tnvcomp.com/projects/ubports"
+"PO-Revision-Date: 2017-09-30 08:32+0000\n"
+"Last-Translator: Francisco Molinero <paco@byasl.com>\n"
+"Language-Team: Spanish <https://translate.ubports.com/projects/ubports"
 "/calendar-app/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -146,7 +146,7 @@ msgstr "Atrás"
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Sync"
-msgstr "Sincronizar"
+msgstr "Sincr."
 
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Syncing"
