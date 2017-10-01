@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-28 20:14+0000\n"
+"PO-Revision-Date: 2017-10-01 17:36+0000\n"
 "Last-Translator: Henrik Holm <hbir@post10.tele.dk>\n"
 "Language-Team: Danish <https://translate.ubports.com/projects/ubports"
 "/calendar-app/da/>\n"
@@ -159,7 +159,7 @@ msgstr "Tilføj online kalender"
 
 #: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Kan ikke fravælge"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
@@ -287,7 +287,7 @@ msgstr "Måske"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
-msgstr ""
+msgstr "Ingen svar"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -324,8 +324,8 @@ msgstr "U%1"
 #: ../qml/AllDayEventComponent.qml:148
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 aftale"
+msgstr[1] "%1 aftaler"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
@@ -380,8 +380,8 @@ msgstr[1] "%1 uger"
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 dag"
+msgstr[1] "%1 dage"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
@@ -465,7 +465,7 @@ msgstr "Vælg konto for at oprette."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
-msgstr ""
+msgstr "MM"
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
@@ -481,7 +481,7 @@ msgstr "Aktivér kalendere"
 
 #: ../qml/AgendaView.qml:199
 msgid "no event name set"
-msgstr ""
+msgstr "Aftalenavn mangler"
 
 #: ../qml/AgendaView.qml:201
 msgid "no location"
