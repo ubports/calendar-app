@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.ubuntu.calendar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-13 21:07+0000\n"
+"PO-Revision-Date: 2017-09-29 07:36+0000\n"
 "Last-Translator: Jeff <jeffi27@live.at>\n"
 "Language-Team: Albanian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sq/>\n"
@@ -63,11 +63,11 @@ msgstr "Ok"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
-msgstr "Prej"
+msgstr "Nga"
 
 #: ../qml/NewEvent.qml:503
 msgid "To"
-msgstr "Deri"
+msgstr "Marrësi"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
@@ -116,7 +116,7 @@ msgstr "Kujtim"
 #: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
 #: ../qml/DayView.qml:76
 msgid "Today"
-msgstr "Sotë"
+msgstr "Sot"
 
 #: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
 msgid "%1 %2"
@@ -145,11 +145,11 @@ msgstr "Mbrapa"
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Sync"
-msgstr "Sinkronizimi"
+msgstr "Sinkronizo"
 
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Syncing"
-msgstr "Bëhët Sinkronizimi"
+msgstr "Duke Sinkronizuar"
 
 #: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
@@ -266,7 +266,7 @@ msgstr "Kërko kontaktin"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
-msgstr "Redakto"
+msgstr "Ndrysho"
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"

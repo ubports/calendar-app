@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-21 08:24+0000\n"
+"PO-Revision-Date: 2017-09-24 22:14+0000\n"
 "Last-Translator: Daniel Frańczak <danielfranczak5@wp.pl>\n"
 "Language-Team: Polish <https://translate.ubports.com/projects/ubports"
 "/calendar-app/pl/>\n"
@@ -129,7 +129,7 @@ msgstr "%1 %2"
 #. It's used in the header of the month and week views
 #: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
 msgid "MMMM yyyy"
-msgstr "MMMM yyyy"
+msgstr "MMMM rrrr"
 
 #: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
@@ -167,7 +167,7 @@ msgid ""
 "selected"
 msgstr ""
 "Aby utworzyć nowe wydarzenia, należy wybrać przynajmniej jeden zapisywalny "
-"kalendarz."
+"kalendarz"
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
@@ -469,7 +469,7 @@ msgstr "Data"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Wybierz konto do utworzenia."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
@@ -531,7 +531,7 @@ msgstr "Co rok"
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr "Kalendarz Ubuntu z synchronizacją kont online"
+msgstr "Kalendarz Ubuntu z synchronizacją kont online."
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
