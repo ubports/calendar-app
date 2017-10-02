@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-18 19:27+0000\n"
+"PO-Revision-Date: 2017-10-02 10:28+0000\n"
 "Last-Translator: Milan Korecký <milan.korecky@gmail.com>\n"
 "Language-Team: Czech <https://translate.ubports.com/projects/ubports"
 "/calendar-app/cs/>\n"
@@ -32,7 +32,7 @@ msgstr "Zrušit"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"
-msgstr "Ok"
+msgstr "OK"
 
 #: ../qml/NewEvent.qml:199
 msgid "End time can't be before start time"
@@ -146,7 +146,7 @@ msgstr "Zpět"
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Sync"
-msgstr "Synchronizace"
+msgstr "Synchronizovat"
 
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Syncing"
@@ -392,8 +392,8 @@ msgstr[2] "%1 dny"
 msgid "%1 hour"
 msgid_plural "%1 hours"
 msgstr[0] "%1 hodina"
-msgstr[1] "%1 hodin"
-msgstr[2] "%1 hodiny"
+msgstr[1] "%1 hodiny"
+msgstr[2] "%1 hodin"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
@@ -514,7 +514,7 @@ msgstr "V %1, %2 ,%3"
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:29
 msgid "On %1 and %2"
-msgstr "V %1 and %2"
+msgstr "V %1 a %2"
 
 #: ../qml/RecurrenceLabelDefines.qml:30
 msgid "Weekly"
