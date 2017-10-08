@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-07 19:34+0000\n"
-"Last-Translator: Anne Onyme <anneonyme017@openmailbox.org>\n"
-"Language-Team: French <https://ubpweblate.tnvcomp.com/projects/ubports"
+"PO-Revision-Date: 2017-10-05 08:37+0000\n"
+"Last-Translator: RedXXIII <adered7@gmail.com>\n"
+"Language-Team: French <https://translate.ubports.com/projects/ubports"
 "/calendar-app/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr "Du"
 
 #: ../qml/NewEvent.qml:503
 msgid "To"
-msgstr "Jusqu'au"
+msgstr "Au"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
