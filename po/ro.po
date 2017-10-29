@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-07-26 07:07+0000\n"
+"PO-Revision-Date: 2017-10-29 22:10+0000\n"
 "Last-Translator: Brînzariu Cristian <info@ebeton.ro>\n"
-"Language-Team: Romanian <https://ubpweblate.tnvcomp.com/projects/ubports/"
-"calendar-app/ro/>\n"
+"Language-Team: Romanian <https://translate.ubports.com/projects/ubports"
+"/calendar-app/ro/>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +33,7 @@ msgstr "Anulează"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../qml/NewEvent.qml:199
 msgid "End time can't be before start time"
@@ -61,7 +61,7 @@ msgstr "Eroare"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
-msgstr "În regulă"
+msgstr "Ok"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
@@ -89,7 +89,7 @@ msgstr "Descriere"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr "Loc"
+msgstr "Locația"
 
 #: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
 #: com.ubuntu.calendar_calendar.desktop.in.h:1
@@ -238,7 +238,7 @@ msgstr "Editare"
 
 #: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
 msgid "Settings"
-msgstr ""
+msgstr "Setări"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
@@ -393,8 +393,9 @@ msgstr[1] ""
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "un minut"
+msgstr[1] "%1 minute"
+msgstr[2] "%1 de minute"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
