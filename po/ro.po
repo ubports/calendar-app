@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-11-09 19:41+0000\n"
+"PO-Revision-Date: 2017-11-09 19:42+0000\n"
 "Last-Translator: Brînzariu Cristian <info@ebeton.ro>\n"
 "Language-Team: Romanian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/ro/>\n"
@@ -94,7 +94,7 @@ msgstr "Locația"
 #: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
 #: com.ubuntu.calendar_calendar.desktop.in.h:1
 msgid "Calendar"
-msgstr "Calendar"
+msgstr "Calendarul"
 
 #: ../qml/NewEvent.qml:681
 msgid "Guests"
@@ -189,7 +189,7 @@ msgid ""
 msgstr ""
 "Aplicația Calendar acceptă patru argumente: --starttime, --endtime, --"
 "newevent și --eventid. Acestea vor fi administrate de sistem. Consultați "
-"sursa pentru comentarii complete asupra acestora."
+"codul sursă pentru comentarii complete asupra acestora"
 
 #: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
