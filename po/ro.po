@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-10-29 22:10+0000\n"
+"PO-Revision-Date: 2017-11-09 19:42+0000\n"
 "Last-Translator: Brînzariu Cristian <info@ebeton.ro>\n"
 "Language-Team: Romanian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/ro/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Memento personalizat"
 
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
@@ -94,7 +94,7 @@ msgstr "Locația"
 #: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
 #: com.ubuntu.calendar_calendar.desktop.in.h:1
 msgid "Calendar"
-msgstr "Calendar"
+msgstr "Calendarul"
 
 #: ../qml/NewEvent.qml:681
 msgid "Guests"
@@ -122,7 +122,7 @@ msgstr "Astăzi"
 
 #: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -133,7 +133,7 @@ msgstr "MMMM yyyy"
 
 #: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
-msgstr ""
+msgstr "Eveniment nou"
 
 #: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
 msgid "Calendars"
@@ -159,13 +159,15 @@ msgstr "Adăugați un calendar online"
 
 #: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Nu am putut anula selecția"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"Pentru a creea evenimente noi trebuie să ai cel puțin un calendar editabil "
+"selectat"
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
@@ -187,7 +189,7 @@ msgid ""
 msgstr ""
 "Aplicația Calendar acceptă patru argumente: --starttime, --endtime, --"
 "newevent și --eventid. Acestea vor fi administrate de sistem. Consultați "
-"sursa pentru comentarii complete asupra acestora."
+"codul sursă pentru comentarii complete asupra acestora"
 
 #: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
@@ -221,7 +223,7 @@ msgstr "Alegeți o culoare"
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../qml/MonthComponent.qml:293
 msgid "Wk"
-msgstr ""
+msgstr "săp"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
@@ -242,19 +244,19 @@ msgstr "Setări"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
-msgstr ""
+msgstr "Arată numerele săptămânilor"
 
 #: ../qml/SettingsPage.qml:84
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Arată calendarul lunar"
 
 #: ../qml/SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Memento implicit"
 
 #: ../qml/SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "Calendarul implicit"
 
 #: ../qml/ContactChoicePopup.qml:37
 msgid "No contact"
@@ -274,19 +276,19 @@ msgstr "Toată ziua"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
-msgstr ""
+msgstr "Participă"
 
 #: ../qml/EventDetails.qml:394
 msgid "Not Attending"
-msgstr ""
+msgstr "Nu particip"
 
 #: ../qml/EventDetails.qml:396
 msgid "Maybe"
-msgstr ""
+msgstr "Poate"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
-msgstr ""
+msgstr "Nici un răspuns"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -323,8 +325,9 @@ msgstr "S%1"
 #: ../qml/AllDayEventComponent.qml:148
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 eveniment"
+msgstr[1] "%1 evenimente"
+msgstr[2] "%1 de evenimente"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
@@ -375,20 +378,23 @@ msgstr "În momentul evenimentului"
 #: ../qml/RemindersModel.qml:43
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 săptămână"
+msgstr[1] "%1 săptămâni"
+msgstr[2] "%1 de săptămâni"
 
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 zi"
+msgstr[1] "%1 zile"
+msgstr[2] "%1 de zile"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 oră"
+msgstr[1] "%1 ore"
+msgstr[2] "%1 de ore"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
@@ -403,7 +409,7 @@ msgstr "5 minute"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 minute"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
@@ -439,7 +445,7 @@ msgstr "două săptămâni"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Personalizat"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -463,11 +469,11 @@ msgstr "Dată"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Alege să creezi un cont."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
@@ -487,7 +493,7 @@ msgstr "nu a fost setat un nume pentru eveniment"
 
 #: ../qml/AgendaView.qml:201
 msgid "no location"
-msgstr ""
+msgstr "nici o locație"
 
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
