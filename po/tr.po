@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-11-25 21:51+0000\n"
-"Last-Translator: Mevlüt Erdem Güven <merdem2002@yandex.com>\n"
+"PO-Revision-Date: 2017-11-25 23:26+0000\n"
+"Last-Translator: Arda Canbolat <oardacn@gmail.com>\n"
 "Language-Team: Turkish <https://translate.ubports.com/projects/ubports"
 "/calendar-app/tr/>\n"
 "Language: tr\n"
@@ -168,7 +168,7 @@ msgstr ""
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
-msgstr "Hiçbir zaman"
+msgstr "Asla"
 
 #: ../qml/LimitLabelModel.qml:26
 msgid "After X Occurrence"
@@ -393,7 +393,7 @@ msgstr[1] ""
 msgid "%1 minute"
 msgid_plural "%1 minutes"
 msgstr[0] "%1 dakika"
-msgstr[1] "%1 dakika"
+msgstr[1] "%1 dakikalar"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
@@ -493,7 +493,7 @@ msgstr "Bir kez"
 
 #: ../qml/RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr "Her Gün"
+msgstr "Günlük"
 
 #: ../qml/RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
