@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-30 14:37+0000\n"
-"Last-Translator: Nelly Simkova <stylinsonnelly@gmail.com>\n"
+"PO-Revision-Date: 2017-11-22 01:02+0000\n"
+"Last-Translator: Alexey Balmashnov <a.balmashnov@gmail.com>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/ru/>\n"
 "Language: ru\n"
@@ -23,13 +23,13 @@ msgstr ""
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Нестандартное напоминание"
 
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
 #: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr "Отмена"
+msgstr "Отменить"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"
@@ -61,7 +61,7 @@ msgstr "Ошибка"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
-msgstr "Принять"
+msgstr "ОК"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
@@ -122,7 +122,7 @@ msgstr "Сегодня"
 
 #: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -133,7 +133,7 @@ msgstr "MMMM yyyy"
 
 #: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
-msgstr ""
+msgstr "Новое событие"
 
 #: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
 msgid "Calendars"
@@ -151,21 +151,23 @@ msgstr "Синхронизация"
 
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Syncing"
-msgstr "Синхронизируется"
+msgstr "Синхронизация"
 
 #: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
-msgstr ""
+msgstr "Добавить сетевой Календарь"
 
 #: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Невозможно снять отметку выбора"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"Для создания новых событий необходимо выбрать календарь с возможностью "
+"редактирования"
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
@@ -220,7 +222,7 @@ msgstr "Выбор цвета"
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../qml/MonthComponent.qml:293
 msgid "Wk"
-msgstr ""
+msgstr "нед"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
@@ -241,19 +243,19 @@ msgstr "Настройки"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
-msgstr ""
+msgstr "Показывать номера недель"
 
 #: ../qml/SettingsPage.qml:84
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Показывать лунный календарь"
 
 #: ../qml/SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Напоминание по умолчанию"
 
 #: ../qml/SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "Календарь по умолчанию"
 
 #: ../qml/ContactChoicePopup.qml:37
 msgid "No contact"
@@ -265,7 +267,7 @@ msgstr "Найти контакт"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
-msgstr "Изменить"
+msgstr "Правка"
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
@@ -273,19 +275,19 @@ msgstr "Весь день"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
-msgstr ""
+msgstr "Приглашение принято"
 
 #: ../qml/EventDetails.qml:394
 msgid "Not Attending"
-msgstr ""
+msgstr "Приглашение отклонено"
 
 #: ../qml/EventDetails.qml:396
 msgid "Maybe"
-msgstr ""
+msgstr "Может быть"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
-msgstr ""
+msgstr "Нет ответа"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -315,15 +317,16 @@ msgstr "Удалить данное"
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
 msgid "W%1"
-msgstr ""
+msgstr "нед%1"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
 #: ../qml/AllDayEventComponent.qml:148
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 соб."
+msgstr[1] "%1 соб."
+msgstr[2] "%1 соб."
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
@@ -374,26 +377,30 @@ msgstr "Во время события"
 #: ../qml/RemindersModel.qml:43
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 неделя"
+msgstr[1] "%1 недели"
+msgstr[2] "%1 недель"
 
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 день"
+msgstr[1] "%1 дня"
+msgstr[2] "%1 дней"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 час"
+msgstr[1] "%1 часа"
+msgstr[2] "%1 часов"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 минута"
+msgstr[1] "%1 минуты"
+msgstr[2] "%1 минут"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
@@ -401,7 +408,7 @@ msgstr "5 минут"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 минут"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
@@ -437,7 +444,7 @@ msgstr "2 недели"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Пользовательские"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -461,11 +468,11 @@ msgstr "Дата"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Выберите тип учётной записи для создания."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
@@ -481,7 +488,7 @@ msgstr "Активировать календари"
 
 #: ../qml/AgendaView.qml:199
 msgid "no event name set"
-msgstr ""
+msgstr "не указано название события"
 
 #: ../qml/AgendaView.qml:201
 msgid "no location"
