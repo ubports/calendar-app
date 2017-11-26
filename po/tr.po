@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-11-25 23:26+0000\n"
+"PO-Revision-Date: 2017-11-26 08:08+0000\n"
 "Last-Translator: Arda Canbolat <oardacn@gmail.com>\n"
 "Language-Team: Turkish <https://translate.ubports.com/projects/ubports"
 "/calendar-app/tr/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Özel hatırlatıcı"
 
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
@@ -121,7 +121,7 @@ msgstr "Bugün"
 
 #: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -132,7 +132,7 @@ msgstr "MMMM yyyy"
 
 #: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
-msgstr ""
+msgstr "Yeni etkinlik"
 
 #: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
 msgid "Calendars"
@@ -154,17 +154,19 @@ msgstr "Eşleniyor"
 
 #: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
-msgstr ""
+msgstr "Çevrimiçi Takvim ekle"
 
 #: ../qml/CalendarChoicePopup.qml:184
+#, fuzzy
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Unable to deselect"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"Yeni etkinlikler oluşturmak için en az bir yazılabilir takvim seçilmelidir"
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
@@ -210,7 +212,7 @@ msgstr "Gündem"
 
 #: ../qml/YearView.qml:79
 msgid "Year %1"
-msgstr ""
+msgstr "Yıl %1"
 
 #: ../qml/ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -220,7 +222,7 @@ msgstr "Renk Seç"
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../qml/MonthComponent.qml:293
 msgid "Wk"
-msgstr ""
+msgstr "Hft"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
@@ -242,19 +244,19 @@ msgstr "Ayarlar"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
-msgstr ""
+msgstr "Hafta numaralarını göster"
 
 #: ../qml/SettingsPage.qml:84
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Ay takvimini göster"
 
 #: ../qml/SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Varsayılan hatırlatıcı"
 
 #: ../qml/SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "Varsayılan takvim"
 
 #: ../qml/ContactChoicePopup.qml:37
 msgid "No contact"
@@ -317,22 +319,22 @@ msgstr "Bunu sil"
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
 msgid "W%1"
-msgstr ""
+msgstr "H%1"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
 #: ../qml/AllDayEventComponent.qml:148
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 olay"
+msgstr[1] "%1 etknlk"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
 msgstr[0] "%1 tam gün etkinliği"
-msgstr[1] "%1 tam gün etkinliği"
+msgstr[1] "%1  tam gün etkinliği"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -346,7 +348,7 @@ msgstr "%1 - %2"
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
 msgstr[0] "%1; %2 kez"
-msgstr[1] "%1; %2 kez"
+msgstr[1] "%1; %2 kere"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
@@ -362,7 +364,7 @@ msgstr "Her hafta %1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
-msgstr "Hatırlatıcı Yok"
+msgstr "Hatırlatma Yok"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
@@ -374,26 +376,26 @@ msgstr "Etkinlikte"
 #: ../qml/RemindersModel.qml:43
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 hafta"
+msgstr[1] "%1  hafta"
 
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 gün"
+msgstr[1] "%1  gün"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 saat"
+msgstr[1] "%1  saat"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
 msgstr[0] "%1 dakika"
-msgstr[1] "%1 dakikalar"
+msgstr[1] "%1  dakika"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
@@ -401,7 +403,7 @@ msgstr "5 dakika"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 dakika"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
@@ -453,7 +455,7 @@ msgstr "Tekrarlama:"
 
 #: ../qml/EventRepetition.qml:223
 msgid "Recurring event ends"
-msgstr "Tekrarlanan etkinlik sona ermesi:"
+msgstr "Tekrarlanan etkinlik sona ermesi"
 
 #: ../qml/EventRepetition.qml:273
 msgid "Date"
@@ -461,7 +463,7 @@ msgstr "Tarih"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Oluşturmak için bir hesap seçin."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
@@ -481,11 +483,11 @@ msgstr "Takvimleri etkinleştir"
 
 #: ../qml/AgendaView.qml:199
 msgid "no event name set"
-msgstr ""
+msgstr "etkinlik adı ayarlanmamış"
 
 #: ../qml/AgendaView.qml:201
 msgid "no location"
-msgstr ""
+msgstr "konum yok"
 
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
