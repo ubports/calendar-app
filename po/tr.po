@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-11-26 08:27+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2017-11-26 10:11+0000\n"
+"Last-Translator: Arda Canbolat <oardacn@gmail.com>\n"
 "Language-Team: Turkish <https://translate.ubports.com/projects/ubports"
 "/calendar-app/tr/>\n"
 "Language: tr\n"
@@ -157,9 +157,8 @@ msgid "Add online Calendar"
 msgstr "Çevrimiçi Takvim ekle"
 
 #: ../qml/CalendarChoicePopup.qml:184
-#, fuzzy
 msgid "Unable to deselect"
-msgstr "Unable to deselect"
+msgstr "Seçim kaldırılamıyor"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
@@ -276,11 +275,11 @@ msgstr "Tüm Gün"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
-msgstr ""
+msgstr "Katılımcı"
 
 #: ../qml/EventDetails.qml:394
 msgid "Not Attending"
-msgstr ""
+msgstr "Katınılmıyor"
 
 #: ../qml/EventDetails.qml:396
 msgid "Maybe"
@@ -288,7 +287,7 @@ msgstr "Olabilir"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
-msgstr ""
+msgstr "Cevap yok"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -334,7 +333,7 @@ msgstr[1] "%1 etknlk"
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
 msgstr[0] "%1 tam gün etkinliği"
-msgstr[1] "%1  tam gün etkinliği"
+msgstr[1] "%1 tam gün etkinliği"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -383,19 +382,19 @@ msgstr[1] "%1  hafta"
 msgid "%1 day"
 msgid_plural "%1 days"
 msgstr[0] "%1 gün"
-msgstr[1] "%1  gün"
+msgstr[1] "%1 gün"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
 msgstr[0] "%1 saat"
-msgstr[1] "%1  saat"
+msgstr[1] "%1 saat"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
 msgstr[0] "%1 dakika"
-msgstr[1] "%1  dakika"
+msgstr[1] "%1 dakika"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
@@ -439,7 +438,7 @@ msgstr "2 hafta"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Özel"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -467,7 +466,7 @@ msgstr "Oluşturmak için bir hesap seçin."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
