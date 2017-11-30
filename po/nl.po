@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-23 22:05+0000\n"
+"PO-Revision-Date: 2017-11-30 18:47+0000\n"
 "Last-Translator: Mappack Owner <mappack@null.net>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports"
 "/calendar-app/nl/>\n"
@@ -60,7 +60,7 @@ msgstr "Fout"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
-msgstr "Ok"
+msgstr "Oké"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
