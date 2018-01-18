@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-01-18 22:00+0000\n"
+"PO-Revision-Date: 2018-01-18 22:03+0000\n"
 "Last-Translator: Noock <nklowns@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) "
 "<https://translate.ubports.com/projects/ubports/calendar-app/pt_BR/>\n"
@@ -227,7 +227,7 @@ msgstr "Sem"
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "Editar apenas o evento \"%1\", ou todos os eventos da série?"
+msgstr "Editar apenas este evento \"%1\", ou todos os eventos da série?"
 
 #: ../qml/EditEventConfirmationDialog.qml:35
 msgid "Edit series"
