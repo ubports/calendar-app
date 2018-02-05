@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-07-20 15:44+0000\n"
-"Last-Translator: Ahmed Suliman <ahmedselaman@gmail.com>\n"
-"Language-Team: Arabic <https://ubpweblate.tnvcomp.com/projects/ubports/"
-"calendar-app/ar/>\n"
+"PO-Revision-Date: 2018-02-05 05:23+0000\n"
+"Last-Translator: ubports_arabic <ubportsarabic@gmail.com>\n"
+"Language-Team: Arabic <https://translate.ubports.com/projects/ubports"
+"/calendar-app/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,11 +29,11 @@ msgstr "تذكير مخصص"
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
 #: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr "إلغاء"
+msgstr "ألغاء"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"
-msgstr "موافق"
+msgstr "تمام"
 
 #: ../qml/NewEvent.qml:199
 msgid "End time can't be before start time"
@@ -61,7 +61,7 @@ msgstr "خطأ"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
-msgstr "حسنا"
+msgstr "موافق"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
@@ -141,7 +141,7 @@ msgstr "التقويمات"
 
 #: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
 msgid "Back"
-msgstr "عودة"
+msgstr "للوراء"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
@@ -240,7 +240,7 @@ msgstr "تعديل هذا"
 
 #: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
 msgid "Settings"
-msgstr "الاعدادات"
+msgstr "الضبط"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
@@ -268,7 +268,7 @@ msgstr "البحث في جهات الاتصال"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
-msgstr "تعديل"
+msgstr "تحرير"
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
@@ -466,7 +466,7 @@ msgstr "أسبوعان"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr "مخصص"
+msgstr "العادة"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -486,7 +486,7 @@ msgstr "ينتهي الحدث المتكرر"
 
 #: ../qml/EventRepetition.qml:273
 msgid "Date"
-msgstr "التاريخ"
+msgstr "تاريخ"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
