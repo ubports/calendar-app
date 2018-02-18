@@ -6,511 +6,179 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-07-29 17:20-0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-02 10:41+0000\n"
 "PO-Revision-Date: 2016-05-03 18:06+0000\n"
 "Last-Translator: Josef Andersson <Unknown>\n"
 "Language-Team: Swedish\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
-"Language: sv\n"
 
-#: ../AgendaView.qml:50 ../calendar.qml:361 ../calendar.qml:594
-msgid "Agenda"
-msgstr "Agenda"
+#: ../qml/RemindersPage.qml:62
+msgid "Custom reminder"
+msgstr ""
 
-#: ../AgendaView.qml:95
-msgid "You have no calendars enabled"
-msgstr "Du har inga kalendarar aktiverade"
+#: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
+#: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
+#: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
+msgid "Cancel"
+msgstr "Avbryt"
 
-#: ../AgendaView.qml:95
-msgid "No upcoming events"
-msgstr "Inga kommande händelser"
+#: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
+msgid "Ok"
+msgstr "OK"
 
-#: ../AgendaView.qml:107
-msgid "Enable calendars"
-msgstr "Aktivera kalendrar"
+#: ../qml/NewEvent.qml:199
+msgid "End time can't be before start time"
+msgstr "Sluttiden kan inte vara före starttiden"
 
-#: ../AgendaView.qml:199
-msgid "no event name set"
-msgstr "inget händelsenamn angivet"
+#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
+msgid "Edit Event"
+msgstr "Redigera händelse"
 
-#: ../AgendaView.qml:201
-msgid "no location"
-msgstr "ingen plats"
+#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
+msgid "New Event"
+msgstr "Ny händelse"
 
-#: ../AllDayEventComponent.qml:89 ../TimeLineBase.qml:50
+#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete"
+msgstr "Ta bort"
+
+#: ../qml/NewEvent.qml:412
+msgid "Save"
+msgstr "Spara"
+
+#: ../qml/NewEvent.qml:423
+msgid "Error"
+msgstr "Fel"
+
+#: ../qml/NewEvent.qml:425
+msgid "OK"
+msgstr "OK"
+
+#: ../qml/NewEvent.qml:487
+msgid "From"
+msgstr "Från"
+
+#: ../qml/NewEvent.qml:503
+msgid "To"
+msgstr "Till"
+
+#: ../qml/NewEvent.qml:530
+msgid "All day event"
+msgstr "Heldagsaktivitet"
+
+#: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
+msgid "Event Details"
+msgstr "Händelsedetaljer"
+
+#: ../qml/NewEvent.qml:567
+msgid "Event Name"
+msgstr "Händelsenamn"
+
+#: ../qml/NewEvent.qml:585 ../qml/EventDetails.qml:437
+msgid "Description"
+msgstr "Beskrivning"
+
+#: ../qml/NewEvent.qml:604
+msgid "Location"
+msgstr "Plats"
+
+#: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
+#: com.ubuntu.calendar_calendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../qml/NewEvent.qml:681
+msgid "Guests"
+msgstr "Gäster"
+
+#: ../qml/NewEvent.qml:691
+msgid "Add Guest"
+msgstr "Lägg till gäst"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
+msgid "Repeats"
+msgstr "Upprepas"
+
+#: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
+msgid "Reminder"
+msgstr "Påminnelse"
+
+#: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
+#: ../qml/DayView.qml:76
+msgid "Today"
+msgstr "Idag"
+
+#: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
+msgid "%1 %2"
+msgstr "%1 %2"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
+msgid "MMMM yyyy"
+msgstr "MMMM yyyy"
+
+#: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
 msgstr "Ny händelse"
 
-#. TRANSLATORS: Please keep the translation of this string to a max of
-#. 5 characters as the week view where it is shown has limited space.
-#: ../AllDayEventComponent.qml:148
-#, qt-format
-msgid "%1 event"
-msgid_plural "%1 events"
-msgstr[0] "%1 händelse"
-msgstr[1] "%1 händelser"
-
-#. TRANSLATORS: the argument refers to the number of all day events
-#: ../AllDayEventComponent.qml:152
-#, qt-format
-msgid "%1 all day event"
-msgid_plural "%1 all day events"
-msgstr[0] "%1 händelse idag"
-msgstr[1] "%1 händelser idag"
-
-#: ../CalendarChoicePopup.qml:44 ../EventActions.qml:54
+#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
 msgid "Calendars"
 msgstr "Kalendrar"
 
-#: ../CalendarChoicePopup.qml:46 ../SettingsPage.qml:49
+#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
 msgid "Back"
 msgstr "Bakåt"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
-#: ../CalendarChoicePopup.qml:58 ../EventActions.qml:39
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Sync"
 msgstr "Synkronisera"
 
-#: ../CalendarChoicePopup.qml:58 ../EventActions.qml:39
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Syncing"
 msgstr "Synkroniserar"
 
-#: ../CalendarChoicePopup.qml:82
+#: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
 msgstr "Lägg till online-kalender"
 
-#: ../CalendarChoicePopup.qml:182
+#: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
 msgstr "Kunde inte avmarkera"
 
-#: ../CalendarChoicePopup.qml:183
+#: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
 "För att kunna skapa nya händelser måste du ha minst en skrivbar kalender vald"
 
-#: ../CalendarChoicePopup.qml:185 ../RemindersPage.qml:80
-msgid "Ok"
-msgstr "OK"
-
-#: ../ColorPickerDialog.qml:25
-msgid "Select Color"
-msgstr "Markera färg"
-
-#: ../ColorPickerDialog.qml:55 ../DeleteConfirmationDialog.qml:60
-#: ../EditEventConfirmationDialog.qml:53 ../NewEvent.qml:340
-#: ../OnlineAccountsHelper.qml:73 ../RemindersPage.qml:72
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: ../ContactChoicePopup.qml:37
-msgid "No contact"
-msgstr "Ingen kontakt"
-
-#: ../ContactChoicePopup.qml:96
-msgid "Search contact"
-msgstr "Sök kontakter"
-
-#: ../DayView.qml:72 ../MonthView.qml:48 ../WeekView.qml:55 ../YearView.qml:57
-msgid "Today"
-msgstr "Idag"
-
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-#. It's used in the header of the month and week views
-#: ../DayView.qml:122 ../MonthView.qml:76 ../WeekView.qml:152
-msgid "MMMM yyyy"
-msgstr "MMMM yyyy"
-
-#: ../DeleteConfirmationDialog.qml:31
-msgid "Delete Recurring Event"
-msgstr "Ta bort upprepad händelse"
-
-#: ../DeleteConfirmationDialog.qml:32
-msgid "Delete Event"
-msgstr "Ta bort händelse"
-
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../DeleteConfirmationDialog.qml:36
-#, qt-format
-msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr "Ta bort endast denna händelse \"%1\", eller alla händelser i serien?"
-
-#: ../DeleteConfirmationDialog.qml:37
-#, qt-format
-msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "Vill du verkligen ta bort denna händelse \"%1\"?"
-
-#: ../DeleteConfirmationDialog.qml:40
-msgid "Delete series"
-msgstr "Ta bort serie"
-
-#: ../DeleteConfirmationDialog.qml:51
-msgid "Delete this"
-msgstr "Ta bort den här"
-
-#: ../DeleteConfirmationDialog.qml:51 ../NewEvent.qml:347
-msgid "Delete"
-msgstr "Ta bort"
-
-#: ../EditEventConfirmationDialog.qml:29 ../NewEvent.qml:335
-msgid "Edit Event"
-msgstr "Redigera händelse"
-
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../EditEventConfirmationDialog.qml:32
-#, qt-format
-msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "Redigera endast denna händelse ”%1” eller alla händelser i serien?"
-
-#: ../EditEventConfirmationDialog.qml:35
-msgid "Edit series"
-msgstr "Redigera serie"
-
-#: ../EditEventConfirmationDialog.qml:44
-msgid "Edit this"
-msgstr "Redigera denna"
-
-#: ../EventActions.qml:66 ../SettingsPage.qml:47
-msgid "Settings"
-msgstr "Inställningar"
-
-#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
-#. while the second one (%2) refers to the end time
-#: ../EventBubble.qml:138
-#, qt-format
-msgid "%1 - %2"
-msgstr "%1 - %2"
-
-#: ../EventDetails.qml:37 ../NewEvent.qml:506
-msgid "Event Details"
-msgstr "Händelsedetaljer"
-
-#: ../EventDetails.qml:40
-msgid "Edit"
-msgstr "Redigera"
-
-#: ../EventDetails.qml:173 ../TimeLineHeader.qml:66
-msgid "All Day"
-msgstr "Hela dagen"
-
-#: ../EventDetails.qml:348 ../NewEvent.qml:572
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:1
-msgid "Calendar"
-msgstr "Kalender"
-
-#: ../EventDetails.qml:392
-msgid "Attending"
-msgstr "Deltar"
-
-#: ../EventDetails.qml:394
-msgid "Not Attending"
-msgstr "Deltar ej"
-
-#: ../EventDetails.qml:396
-msgid "Maybe"
-msgstr "Kanske"
-
-#: ../EventDetails.qml:398
-msgid "No Reply"
-msgstr "Inget svar"
-
-#: ../EventDetails.qml:437 ../NewEvent.qml:538
-msgid "Description"
-msgstr "Beskrivning"
-
-#: ../EventDetails.qml:464 ../NewEvent.qml:750 ../NewEvent.qml:767
-msgid "Reminder"
-msgstr "Påminnelse"
-
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the page to choose repetition
-#. and as the header of the list item that shows the repetition
-#. summary in the page that displays the event details
-#: ../EventRepetition.qml:40 ../EventRepetition.qml:152
-msgid "Repeat"
-msgstr "Upprepa"
-
-#: ../EventRepetition.qml:172
-msgid "Repeats On:"
-msgstr "Upprepad var:"
-
-#: ../EventRepetition.qml:218
-msgid "Recurring event ends"
-msgstr "Upprepad händelse slutar"
-
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the option selector to choose
-#. its repetition
-#: ../EventRepetition.qml:242 ../NewEvent.qml:728
-msgid "Repeats"
-msgstr "Upprepas"
-
-#: ../EventRepetition.qml:268
-msgid "Date"
-msgstr "Datum"
-
-#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
-#. E.g. "Daily; 5 times."
-#: ../EventUtils.qml:75
-#, qt-format
-msgid "%1; %2 time"
-msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 gång"
-msgstr[1] "%1; %2 gånger"
-
-#. TRANSLATORS: the argument refers to recurrence until user selected date.
-#. E.g. "Daily; until 12/12/2014."
-#: ../EventUtils.qml:79
-#, qt-format
-msgid "%1; until %2"
-msgstr "%1; till %2"
-
-#. TRANSLATORS: the argument refers to several different days of the week.
-#. E.g. "Weekly on Mondays, Tuesdays"
-#: ../EventUtils.qml:102
-#, qt-format
-msgid "Weekly on %1"
-msgstr "Veckovis på %1"
-
-#: ../LimitLabelModel.qml:25
+#: ../qml/LimitLabelModel.qml:25
 msgid "Never"
 msgstr "Aldrig"
 
-#: ../LimitLabelModel.qml:26
+#: ../qml/LimitLabelModel.qml:26
 msgid "After X Occurrence"
 msgstr "Efter x förekomst"
 
-#: ../LimitLabelModel.qml:27
+#: ../qml/LimitLabelModel.qml:27
 msgid "After Date"
 msgstr "Efter datum"
 
-#. TRANSLATORS: This is shown in the month view as "Wk" as a title
-#. to indicate the week numbers. It should be a max of up to 3 characters.
-#: ../MonthComponent.qml:281
-msgid "Wk"
-msgstr "Vk"
-
-#: ../MonthView.qml:71 ../WeekView.qml:133
-#, qt-format
-msgid "%1 %2"
-msgstr "%1 %2"
-
-#: ../NewEvent.qml:190
-msgid "End time can't be before start time"
-msgstr "Sluttiden kan inte vara före starttiden"
-
-#: ../NewEvent.qml:335 ../NewEventBottomEdge.qml:54
-msgid "New Event"
-msgstr "Ny händelse"
-
-#: ../NewEvent.qml:365
-msgid "Save"
-msgstr "Spara"
-
-#: ../NewEvent.qml:376
-msgid "Error"
-msgstr "Fel"
-
-#: ../NewEvent.qml:378
-msgid "OK"
-msgstr "OK"
-
-#: ../NewEvent.qml:440
-msgid "From"
-msgstr "Från"
-
-#: ../NewEvent.qml:456
-msgid "To"
-msgstr "Till"
-
-#: ../NewEvent.qml:483
-msgid "All day event"
-msgstr "Heldagsaktivitet"
-
-#: ../NewEvent.qml:520
-msgid "Event Name"
-msgstr "Händelsenamn"
-
-#: ../NewEvent.qml:557
-msgid "Location"
-msgstr "Plats"
-
-#: ../NewEvent.qml:634
-msgid "Guests"
-msgstr "Gäster"
-
-#: ../NewEvent.qml:644
-msgid "Add Guest"
-msgstr "Lägg till gäst"
-
-#: ../OnlineAccountsHelper.qml:39
-msgid "Pick an account to create."
-msgstr ""
-
-#: ../RecurrenceLabelDefines.qml:23
-msgid "Once"
-msgstr "En gång"
-
-#: ../RecurrenceLabelDefines.qml:24
-msgid "Daily"
-msgstr "Dagligen"
-
-#: ../RecurrenceLabelDefines.qml:25
-msgid "On Weekdays"
-msgstr "På veckodagar"
-
-#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
-#: ../RecurrenceLabelDefines.qml:27
-#, qt-format
-msgid "On %1, %2 ,%3"
-msgstr "Var %1, %2 ,%3"
-
-#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
-#: ../RecurrenceLabelDefines.qml:29
-#, qt-format
-msgid "On %1 and %2"
-msgstr "På %1 och %2"
-
-#: ../RecurrenceLabelDefines.qml:30
-msgid "Weekly"
-msgstr "Veckovis"
-
-#: ../RecurrenceLabelDefines.qml:31
-msgid "Monthly"
-msgstr "Månadsvis"
-
-#: ../RecurrenceLabelDefines.qml:32
-msgid "Yearly"
-msgstr "Årligen"
-
-#: ../RemindersModel.qml:31 ../RemindersModel.qml:99
-msgid "No Reminder"
-msgstr "Ingen påminnelse"
-
-#. TRANSLATORS: this refers to when a reminder should be shown as a notification
-#. in the indicators. "On Event" means that it will be shown right at the time
-#. the event starts, not any time before
-#: ../RemindersModel.qml:34 ../RemindersModel.qml:103
-msgid "On Event"
-msgstr "Vid tillfälle"
-
-#: ../RemindersModel.qml:43
-#, qt-format
-msgid "%1 week"
-msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../RemindersModel.qml:54
-#, qt-format
-msgid "%1 day"
-msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../RemindersModel.qml:65
-#, qt-format
-msgid "%1 hour"
-msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../RemindersModel.qml:74
-#, qt-format
-msgid "%1 minute"
-msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../RemindersModel.qml:104
-msgid "5 minutes"
-msgstr "Fem minuter"
-
-#: ../RemindersModel.qml:105
-msgid "10 minutes"
-msgstr ""
-
-#: ../RemindersModel.qml:106
-msgid "15 minutes"
-msgstr "15 minuter"
-
-#: ../RemindersModel.qml:107
-msgid "30 minutes"
-msgstr "30 minuter"
-
-#: ../RemindersModel.qml:108
-msgid "1 hour"
-msgstr "En timme"
-
-#: ../RemindersModel.qml:109
-msgid "2 hours"
-msgstr "Två timmar"
-
-#: ../RemindersModel.qml:110
-msgid "1 day"
-msgstr "Ett dygn"
-
-#: ../RemindersModel.qml:111
-msgid "2 days"
-msgstr "Två dygn"
-
-#: ../RemindersModel.qml:112
-msgid "1 week"
-msgstr "En vecka"
-
-#: ../RemindersModel.qml:113
-msgid "2 weeks"
-msgstr "Två veckor"
-
-#: ../RemindersModel.qml:114
-msgid "Custom"
-msgstr ""
-
-#: ../RemindersPage.qml:62
-msgid "Custom reminder"
-msgstr ""
-
-#: ../SettingsPage.qml:70
-msgid "Show week numbers"
-msgstr "Visa veckonummer"
-
-#: ../SettingsPage.qml:84
-msgid "Show lunar calendar"
-msgstr "Visa månkalender"
-
-#: ../SettingsPage.qml:128
-msgid "Default reminder"
-msgstr "Standardpåminnelse"
-
-#: ../SettingsPage.qml:172
-msgid "Default calendar"
-msgstr "Standardkalender"
-
-#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
-#: ../TimeLineHeader.qml:54
-#, qt-format
-msgid "W%1"
-msgstr "V%1"
-
-#: ../WeekView.qml:140 ../WeekView.qml:141
-msgid "MMM"
-msgstr "MMM"
-
-#: ../YearView.qml:79
-#, qt-format
-msgid "Year %1"
-msgstr "År %1"
-
-#: ../calendar.qml:72
+#: ../qml/calendar.qml:72
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
@@ -520,26 +188,341 @@ msgstr ""
 "--eventid. De hanteras alla av systemet. Se källkoden för utförliga "
 "kommentarer om dem"
 
-#: ../calendar.qml:329 ../calendar.qml:510
+#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
 msgstr "År"
 
-#: ../calendar.qml:337 ../calendar.qml:531
+#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
 msgid "Month"
 msgstr "Månad"
 
-#: ../calendar.qml:345 ../calendar.qml:552
+#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
 msgid "Week"
 msgstr "Vecka"
 
-#: ../calendar.qml:353 ../calendar.qml:573
+#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
 msgid "Day"
 msgstr "Dag"
 
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:2
+#: ../qml/calendar.qml:361 ../qml/calendar.qml:594 ../qml/AgendaView.qml:50
+msgid "Agenda"
+msgstr "Agenda"
+
+#: ../qml/YearView.qml:79
+msgid "Year %1"
+msgstr "År %1"
+
+#: ../qml/ColorPickerDialog.qml:25
+msgid "Select Color"
+msgstr "Markera färg"
+
+#. TRANSLATORS: This is shown in the month view as "Wk" as a title
+#. to indicate the week numbers. It should be a max of up to 3 characters.
+#: ../qml/MonthComponent.qml:293
+msgid "Wk"
+msgstr "Vk"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/EditEventConfirmationDialog.qml:32
+msgid "Edit only this event \"%1\", or all events in the series?"
+msgstr "Redigera endast denna händelse ”%1” eller alla händelser i serien?"
+
+#: ../qml/EditEventConfirmationDialog.qml:35
+msgid "Edit series"
+msgstr "Redigera serie"
+
+#: ../qml/EditEventConfirmationDialog.qml:44
+msgid "Edit this"
+msgstr "Redigera denna"
+
+#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
+msgid "Settings"
+msgstr "Inställningar"
+
+#: ../qml/SettingsPage.qml:70
+msgid "Show week numbers"
+msgstr "Visa veckonummer"
+
+#: ../qml/SettingsPage.qml:84
+msgid "Show lunar calendar"
+msgstr "Visa månkalender"
+
+#: ../qml/SettingsPage.qml:128
+msgid "Default reminder"
+msgstr "Standardpåminnelse"
+
+#: ../qml/SettingsPage.qml:172
+msgid "Default calendar"
+msgstr "Standardkalender"
+
+#: ../qml/ContactChoicePopup.qml:37
+msgid "No contact"
+msgstr "Ingen kontakt"
+
+#: ../qml/ContactChoicePopup.qml:96
+msgid "Search contact"
+msgstr "Sök kontakter"
+
+#: ../qml/EventDetails.qml:40
+msgid "Edit"
+msgstr "Redigera"
+
+#: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
+msgid "All Day"
+msgstr "Hela dagen"
+
+#: ../qml/EventDetails.qml:392
+msgid "Attending"
+msgstr "Deltar"
+
+#: ../qml/EventDetails.qml:394
+msgid "Not Attending"
+msgstr "Deltar ej"
+
+#: ../qml/EventDetails.qml:396
+msgid "Maybe"
+msgstr "Kanske"
+
+#: ../qml/EventDetails.qml:398
+msgid "No Reply"
+msgstr "Inget svar"
+
+#: ../qml/DeleteConfirmationDialog.qml:31
+msgid "Delete Recurring Event"
+msgstr "Ta bort upprepad händelse"
+
+#: ../qml/DeleteConfirmationDialog.qml:32
+msgid "Delete Event"
+msgstr "Ta bort händelse"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/DeleteConfirmationDialog.qml:36
+msgid "Delete only this event \"%1\", or all events in the series?"
+msgstr "Ta bort endast denna händelse \"%1\", eller alla händelser i serien?"
+
+#: ../qml/DeleteConfirmationDialog.qml:37
+msgid "Are you sure you want to delete the event \"%1\"?"
+msgstr "Vill du verkligen ta bort denna händelse \"%1\"?"
+
+#: ../qml/DeleteConfirmationDialog.qml:40
+msgid "Delete series"
+msgstr "Ta bort serie"
+
+#: ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete this"
+msgstr "Ta bort den här"
+
+#. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
+#: ../qml/TimeLineHeader.qml:54
+msgid "W%1"
+msgstr "V%1"
+
+#. TRANSLATORS: Please keep the translation of this string to a max of
+#. 5 characters as the week view where it is shown has limited space.
+#: ../qml/AllDayEventComponent.qml:148
+msgid "%1 event"
+msgid_plural "%1 events"
+msgstr[0] "%1 händelse"
+msgstr[1] "%1 händelser"
+
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../qml/AllDayEventComponent.qml:152
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
+msgstr[0] "%1 händelse idag"
+msgstr[1] "%1 händelser idag"
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../qml/EventBubble.qml:138
+msgid "%1 - %2"
+msgstr "%1 - %2"
+
+#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
+#. E.g. "Daily; 5 times."
+#: ../qml/EventUtils.qml:75
+msgid "%1; %2 time"
+msgid_plural "%1; %2 times"
+msgstr[0] "%1; %2 gång"
+msgstr[1] "%1; %2 gånger"
+
+#. TRANSLATORS: the argument refers to recurrence until user selected date.
+#. E.g. "Daily; until 12/12/2014."
+#: ../qml/EventUtils.qml:79
+msgid "%1; until %2"
+msgstr "%1; till %2"
+
+#. TRANSLATORS: the argument refers to several different days of the week.
+#. E.g. "Weekly on Mondays, Tuesdays"
+#: ../qml/EventUtils.qml:102
+msgid "Weekly on %1"
+msgstr "Veckovis på %1"
+
+#: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
+msgid "No Reminder"
+msgstr "Ingen påminnelse"
+
+#. TRANSLATORS: this refers to when a reminder should be shown as a notification
+#. in the indicators. "On Event" means that it will be shown right at the time
+#. the event starts, not any time before
+#: ../qml/RemindersModel.qml:34 ../qml/RemindersModel.qml:103
+msgid "On Event"
+msgstr "Vid tillfälle"
+
+#: ../qml/RemindersModel.qml:43
+msgid "%1 week"
+msgid_plural "%1 weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../qml/RemindersModel.qml:54
+msgid "%1 day"
+msgid_plural "%1 days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../qml/RemindersModel.qml:65
+msgid "%1 hour"
+msgid_plural "%1 hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../qml/RemindersModel.qml:74
+msgid "%1 minute"
+msgid_plural "%1 minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../qml/RemindersModel.qml:104
+msgid "5 minutes"
+msgstr "Fem minuter"
+
+#: ../qml/RemindersModel.qml:105
+msgid "10 minutes"
+msgstr ""
+
+#: ../qml/RemindersModel.qml:106
+msgid "15 minutes"
+msgstr "15 minuter"
+
+#: ../qml/RemindersModel.qml:107
+msgid "30 minutes"
+msgstr "30 minuter"
+
+#: ../qml/RemindersModel.qml:108
+msgid "1 hour"
+msgstr "En timme"
+
+#: ../qml/RemindersModel.qml:109
+msgid "2 hours"
+msgstr "Två timmar"
+
+#: ../qml/RemindersModel.qml:110
+msgid "1 day"
+msgstr "Ett dygn"
+
+#: ../qml/RemindersModel.qml:111
+msgid "2 days"
+msgstr "Två dygn"
+
+#: ../qml/RemindersModel.qml:112
+msgid "1 week"
+msgstr "En vecka"
+
+#: ../qml/RemindersModel.qml:113
+msgid "2 weeks"
+msgstr "Två veckor"
+
+#: ../qml/RemindersModel.qml:114
+msgid "Custom"
+msgstr ""
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
+msgid "Repeat"
+msgstr "Upprepa"
+
+#: ../qml/EventRepetition.qml:177
+msgid "Repeats On:"
+msgstr "Upprepad var:"
+
+#: ../qml/EventRepetition.qml:223
+msgid "Recurring event ends"
+msgstr "Upprepad händelse slutar"
+
+#: ../qml/EventRepetition.qml:273
+msgid "Date"
+msgstr "Datum"
+
+#: ../qml/OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr ""
+
+#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
+msgid "MMM"
+msgstr "MMM"
+
+#: ../qml/AgendaView.qml:95
+msgid "You have no calendars enabled"
+msgstr "Du har inga kalendarar aktiverade"
+
+#: ../qml/AgendaView.qml:95
+msgid "No upcoming events"
+msgstr "Inga kommande händelser"
+
+#: ../qml/AgendaView.qml:107
+msgid "Enable calendars"
+msgstr "Aktivera kalendrar"
+
+#: ../qml/AgendaView.qml:199
+msgid "no event name set"
+msgstr "inget händelsenamn angivet"
+
+#: ../qml/AgendaView.qml:201
+msgid "no location"
+msgstr "ingen plats"
+
+#: ../qml/RecurrenceLabelDefines.qml:23
+msgid "Once"
+msgstr "En gång"
+
+#: ../qml/RecurrenceLabelDefines.qml:24
+msgid "Daily"
+msgstr "Dagligen"
+
+#: ../qml/RecurrenceLabelDefines.qml:25
+msgid "On Weekdays"
+msgstr "På veckodagar"
+
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
+#: ../qml/RecurrenceLabelDefines.qml:27
+msgid "On %1, %2 ,%3"
+msgstr "Var %1, %2 ,%3"
+
+#. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
+#: ../qml/RecurrenceLabelDefines.qml:29
+msgid "On %1 and %2"
+msgstr "På %1 och %2"
+
+#: ../qml/RecurrenceLabelDefines.qml:30
+msgid "Weekly"
+msgstr "Veckovis"
+
+#: ../qml/RecurrenceLabelDefines.qml:31
+msgid "Monthly"
+msgstr "Månadsvis"
+
+#: ../qml/RecurrenceLabelDefines.qml:32
+msgid "Yearly"
+msgstr "Årligen"
+
+#: com.ubuntu.calendar_calendar.desktop.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
 msgstr "En kalender för Ubuntu som synkroniserar med nätkonton."
 
-#: com.ubuntu.calendar_calendar.desktop.in.in.h:3
+#: com.ubuntu.calendar_calendar.desktop.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr "kalender;händelse;dag;vecka;år;tidsbestämt möte;möte;"
