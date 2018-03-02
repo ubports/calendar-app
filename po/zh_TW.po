@@ -463,7 +463,7 @@ msgstr "您尚未啟用行事曆"
 
 #: ../qml/AgendaView.qml:95
 msgid "No upcoming events"
-msgstr "接下來沒有行程"
+msgstr "接下來沒有活動"
 
 #: ../qml/AgendaView.qml:107
 msgid "Enable calendars"
@@ -471,7 +471,7 @@ msgstr "啟用行事曆"
 
 #: ../qml/AgendaView.qml:199
 msgid "no event name set"
-msgstr "沒有設定事件名稱"
+msgstr "沒有設定活動名稱"
 
 #: ../qml/AgendaView.qml:201
 msgid "no location"
