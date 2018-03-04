@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-18 12:14+0000\n"
-"Last-Translator: Eran <etherpulse@gmail.com>\n"
+"PO-Revision-Date: 2018-03-04 19:52+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports"
 "/calendar-app/he/>\n"
 "Language: he\n"
@@ -63,9 +63,8 @@ msgid "OK"
 msgstr "אישור"
 
 #: ../qml/NewEvent.qml:487
-#, fuzzy
 msgid "From"
-msgstr "מ"
+msgstr "מ־"
 
 #: ../qml/NewEvent.qml:503
 msgid "To"
@@ -314,9 +313,8 @@ msgstr "למחוק את המופע"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
-#, fuzzy
 msgid "W%1"
-msgstr "W%1"
+msgstr "שב׳%1"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
