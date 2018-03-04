@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-03-04 19:52+0000\n"
+"PO-Revision-Date: 2018-03-04 21:10+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.ubports.com/projects/ubports"
 "/calendar-app/he/>\n"
@@ -68,7 +68,7 @@ msgstr "מ־"
 
 #: ../qml/NewEvent.qml:503
 msgid "To"
-msgstr "עד"
+msgstr "אל"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
@@ -383,13 +383,13 @@ msgstr[1] "%1 ימים"
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] "%1 שעה"
+msgstr[0] "שעה"
 msgstr[1] "%1 שעות"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] "דקה %1"
+msgstr[0] "דקה"
 msgstr[1] "%1 דקות"
 
 #: ../qml/RemindersModel.qml:104
