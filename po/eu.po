@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-10-29 17:12+0000\n"
+"PO-Revision-Date: 2018-03-12 02:12+0000\n"
 "Last-Translator: Aitzol Berasategi <aitzol76@gmail.com>\n"
 "Language-Team: Basque <https://translate.ubports.com/projects/ubports"
 "/calendar-app/eu/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Oroigarri pertsonalizatua"
 
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
@@ -32,7 +32,7 @@ msgstr "Utzi"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"
-msgstr ""
+msgstr "Ados"
 
 #: ../qml/NewEvent.qml:199
 msgid "End time can't be before start time"
@@ -60,15 +60,15 @@ msgstr "Errorea"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
-msgstr "ADOS"
+msgstr "Ados"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
-msgstr "Noiztik"
+msgstr "Nork"
 
 #: ../qml/NewEvent.qml:503
 msgid "To"
-msgstr "Noiz arte"
+msgstr "Nori"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
@@ -88,7 +88,7 @@ msgstr "Deskribapena"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr "Kokalekua"
+msgstr "Kokapena"
 
 #: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
 #: com.ubuntu.calendar_calendar.desktop.in.h:1
@@ -121,7 +121,7 @@ msgstr "Gaur"
 
 #: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -132,7 +132,7 @@ msgstr "yyyy(e)ko MMMM"
 
 #: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
-msgstr ""
+msgstr "Gertaera berria"
 
 #: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
 msgid "Calendars"
@@ -140,7 +140,7 @@ msgstr "Egutegiak"
 
 #: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
 msgid "Back"
-msgstr "Itzuli"
+msgstr "Atzera"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
@@ -158,13 +158,15 @@ msgstr "Gehitu lineako egutegia"
 
 #: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Ezinezkoa deshautatzea"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"Gertaera berriak sortzeko gutxienez egutegi editagarri bat izan behar duzu "
+"hautaturik"
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
@@ -220,7 +222,7 @@ msgstr "Hautatu kolorea"
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../qml/MonthComponent.qml:293
 msgid "Wk"
-msgstr ""
+msgstr "Ast"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
@@ -241,19 +243,19 @@ msgstr "Ezarpenak"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
-msgstr ""
+msgstr "Asteen zenbakiak erakutsi"
 
 #: ../qml/SettingsPage.qml:84
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Ilargi egutegia erakutsi"
 
 #: ../qml/SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Lehenetsitako oroigarria"
 
 #: ../qml/SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "Lehenetsitako egutegia"
 
 #: ../qml/ContactChoicePopup.qml:37
 msgid "No contact"
@@ -273,19 +275,19 @@ msgstr "Egun osokoa"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
-msgstr ""
+msgstr "Bertaratua"
 
 #: ../qml/EventDetails.qml:394
 msgid "Not Attending"
-msgstr ""
+msgstr "Bertaratu gabea"
 
 #: ../qml/EventDetails.qml:396
 msgid "Maybe"
-msgstr ""
+msgstr "Agian"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
-msgstr ""
+msgstr "Erantzunik ez"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -322,8 +324,8 @@ msgstr "%1A"
 #: ../qml/AllDayEventComponent.qml:148
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gertaera %1"
+msgstr[1] "%1 gertaera"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
@@ -372,26 +374,26 @@ msgstr "Gertaeraren unean"
 #: ../qml/RemindersModel.qml:43
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Aste %1"
+msgstr[1] "%1 aste"
 
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Egun %1"
+msgstr[1] "%1 egun"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ordu %1"
+msgstr[1] "%1 ordu"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "minutu %1"
+msgstr[1] "%1 minutu"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
@@ -399,7 +401,7 @@ msgstr "5 minutu lehenago"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 minutu"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
@@ -435,7 +437,7 @@ msgstr "2 aste lehenago"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Pertsonalizatua"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -459,11 +461,11 @@ msgstr "Data"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Aukeratu sortu nahi duzun kontua."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
-msgstr ""
+msgstr "HHH"
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
@@ -479,11 +481,11 @@ msgstr "Gaitu egutegiak"
 
 #: ../qml/AgendaView.qml:199
 msgid "no event name set"
-msgstr ""
+msgstr "Gertaerak ez du izenik"
 
 #: ../qml/AgendaView.qml:201
 msgid "no location"
-msgstr ""
+msgstr "kokapenik ez"
 
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
