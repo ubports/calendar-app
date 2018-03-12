@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-03-12 02:12+0000\n"
+"PO-Revision-Date: 2018-03-12 08:37+0000\n"
 "Last-Translator: Aitzol Berasategi <aitzol76@gmail.com>\n"
 "Language-Team: Basque <https://translate.ubports.com/projects/ubports"
 "/calendar-app/eu/>\n"
@@ -56,7 +56,7 @@ msgstr "Gorde"
 
 #: ../qml/NewEvent.qml:423
 msgid "Error"
-msgstr "Errorea"
+msgstr "Akatsa"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
@@ -112,7 +112,7 @@ msgstr "Errepikapenak"
 
 #: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
 msgid "Reminder"
-msgstr "Gogorarazlea"
+msgstr "Oroigarria"
 
 #: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
 #: ../qml/DayView.qml:76
@@ -345,7 +345,7 @@ msgstr "%1 - %2"
 #: ../qml/EventUtils.qml:75
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 aldiz"
+msgstr[0] "%1; Behin"
 msgstr[1] "%1; %2 aldiz"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
@@ -362,7 +362,7 @@ msgstr "Astero - %1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
-msgstr "Ez gogorarazi"
+msgstr "Ez oroitarazi"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
@@ -401,7 +401,7 @@ msgstr "5 minutu lehenago"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr "10 minutu"
+msgstr "10 minutu lehenago"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
@@ -413,7 +413,7 @@ msgstr "30 minutu lehenago"
 
 #: ../qml/RemindersModel.qml:108
 msgid "1 hour"
-msgstr "ordu 1"
+msgstr "ordu 1 lehenago"
 
 #: ../qml/RemindersModel.qml:109
 msgid "2 hours"
@@ -421,7 +421,7 @@ msgstr "2 ordu lehenago"
 
 #: ../qml/RemindersModel.qml:110
 msgid "1 day"
-msgstr "egun 1"
+msgstr "egun 1 lehenago"
 
 #: ../qml/RemindersModel.qml:111
 msgid "2 days"
@@ -429,7 +429,7 @@ msgstr "2 egun lehenago"
 
 #: ../qml/RemindersModel.qml:112
 msgid "1 week"
-msgstr "aste 1"
+msgstr "Astebete lehenago"
 
 #: ../qml/RemindersModel.qml:113
 msgid "2 weeks"
@@ -469,7 +469,7 @@ msgstr "HHH"
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
-msgstr "Ez duzu egutegirik gaituta"
+msgstr "Ez duzu gaitutako egutegirik"
 
 #: ../qml/AgendaView.qml:95
 msgid "No upcoming events"
