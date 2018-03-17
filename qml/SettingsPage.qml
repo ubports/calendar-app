@@ -75,6 +75,10 @@ Page {
                     checked: settings ? settings.showWeekNumber : false
                 }
             }
+
+            onClicked: {
+                weekCheckBox.checked = !weekCheckBox.checked;
+            }
         }
 
         ListItem {
@@ -88,6 +92,10 @@ Page {
                     SlotsLayout.position: SlotsLayout.Last
                     checked: settings ? settings.showLunarCalendar : false
                 }
+            }
+
+            onClicked: {
+                lunarCalCheckBox.checked = !lunarCalCheckBox.checked;
             }
         }
 
