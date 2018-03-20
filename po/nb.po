@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-02-19 08:46+0000\n"
+"PO-Revision-Date: 2018-03-20 08:06+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål "
 "<https://translate.ubports.com/projects/ubports/calendar-app/nb/>\n"
@@ -146,7 +146,6 @@ msgstr "Tilbake"
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
-#, fuzzy
 msgid "Sync"
 msgstr "Synk."
 
