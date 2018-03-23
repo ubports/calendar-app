@@ -154,7 +154,7 @@ OrganizerModel {
         var endDate = endPeriod.midnight()
         var result = []
         while(startDate <= endDate) {
-            result[startDate.toDateString()] = false
+            result[startDate.toDateString()] = []
             startDate = startDate.addDays(1)
         }
 
@@ -167,7 +167,7 @@ OrganizerModel {
 
             // set true for all days that this event exists, in case of multiple days events
             while(start <= end) {
-                result[start.toDateString()] = true
+                result[start.toDateString()].push(ev)
                 start = start.addDays(1)
             }
         }

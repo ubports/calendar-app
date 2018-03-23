@@ -47,13 +47,13 @@ Item{
     signal dateSelected(var date);
 
     function updateEvents(events) {
-        intern.eventStatus = events
+        intern.eventsByDate = events
     }
 
     QtObject{
         id: intern
 
-        property var eventStatus: new Array(42)
+        property var eventsByDate: new Array(42)
 
         property var today: DateExt.today()
         property int todayDate: today.getDate()
@@ -354,7 +354,7 @@ Item{
 
             date: delegateDate.getDate()
             isCurrentMonth: delegateDate.getMonth() === root.currentMonth
-            showEvent: intern.eventStatus[delegateDate.toDateString()] === true
+            showEvent: intern.eventsByDate[delegateDate.toDateString()] !== undefined && intern.eventsByDate[delegateDate.toDateString()][0] !== undefined
             lunarData: {
                 if (!root.displayLunarCalendar)
                     return null
@@ -371,6 +371,21 @@ Item{
             isToday: intern.todayDate == date && intern.isCurMonthTodayMonth
             width: monthGrid.dayWidth
             height: monthGrid.dayHeight
+            dotColors: {
+                if (showEvent === false) {
+                    return "black"
+                }
+                else {
+                    var colors = []
+                    var events = intern.eventsByDate[delegateDate.toDateString()]
+                    for (var index = 0; index < events.length; index++) {
+                        var event = events[index]
+                        var calendar = mainModel.collection(event.collectionId)
+                        colors.push(calendar.color)
+                    }
+                return colors
+                }
+            }
         }
     }
 

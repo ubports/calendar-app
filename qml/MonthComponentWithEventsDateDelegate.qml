@@ -11,6 +11,7 @@ Item{
     property alias fontSize: dateLabel.font.pixelSize
     property bool isSelected: false
     property alias lunarData: lunarLabel.lunarData
+    property var dotColors
 
     Text {
         id: dateLabel
@@ -62,19 +63,25 @@ Item{
         }
     }
 
-    Rectangle {
-        id: eventIndicator
-
-        width: visible ? units.gu(0.8) : 0
-        height: width
+    Row {
         anchors {
             horizontalCenter: parent.horizontalCenter
-            //top: parent.verticalCenter
-            //topMargin: ((Math.min(parent.height, dateRootItem.width) / 1.3) / 2) + units.gu(0.1)
             bottom: parent.bottom
         }
-        radius: height/2
-        color:"black"
-        visible: showEvent
+        Repeater {
+            model: dotColors
+            Rectangle {
+                id: eventIndicator
+
+                width: visible ? units.gu(0.8) : 0
+                height: width
+                radius: height/2
+                color: modelData
+                visible: showEvent
+            }
+
+        }
     }
+
+
 }
