@@ -68,8 +68,12 @@ Item{
             horizontalCenter: parent.horizontalCenter
             bottom: parent.bottom
         }
+
+        spacing: 2
+
         Repeater {
             model: dotColors
+
             Rectangle {
                 id: eventIndicator
 
@@ -79,9 +83,6 @@ Item{
                 color: modelData
                 visible: showEvent
             }
-
         }
     }
-
-
 }

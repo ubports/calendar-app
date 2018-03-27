@@ -146,27 +146,32 @@ OrganizerModel {
         }
     }
 
-    // Retruns a map with the date in string format as key, and true if there is events on the day or false as value.
+    // Returns a map with the date in string format as key, and array of events that happen on that date
     function daysWithEvents()
     {
         // initialize array
         var startDate = startPeriod.midnight()
         var endDate = endPeriod.midnight()
         var result = []
+        var itemsInPeriod = itemsByTimePeriod(startDate, endDate)
+
+        // initialize with empty arrays
         while(startDate <= endDate) {
             result[startDate.toDateString()] = []
             startDate = startDate.addDays(1)
         }
 
-        // set true for days with events
-        for(var index=0; index < items.length; index++) {
-            var ev = items[index]
+        // assign the events to the dates
+        for(var index=0; index < itemsInPeriod.length; index++) {
+            var ev = itemsInPeriod[index]
             var start = ev.startDateTime.midnight()
             // if the event ends at 00:00:00 we reduce one minute to make sure that does not appear on this day
             var end = ev.endDateTime ? ev.endDateTime.addMinutes(-1).midnight() : start
 
-            // set true for all days that this event exists, in case of multiple days events
-            while(start <= end) {
+            // set the event array for all days that this event exists, in case of multiple days events
+            // ToDo: why does itemsByTimePeriod() return items out of the range?!?
+            while(start <= end && start <= endDate && start >= startPeriod.midnight())
+            {
                 result[start.toDateString()].push(ev)
                 start = start.addDays(1)
             }

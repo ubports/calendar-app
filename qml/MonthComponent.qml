@@ -53,7 +53,7 @@ Item{
     QtObject{
         id: intern
 
-        property var eventsByDate: new Array(42)
+        property var eventsByDate: new Array(100)
 
         property var today: DateExt.today()
         property int todayDate: today.getDate()
@@ -373,17 +373,17 @@ Item{
             height: monthGrid.dayHeight
             dotColors: {
                 if (showEvent === false) {
-                    return "black"
+                    return ["black"];
                 }
                 else {
-                    var colors = []
-                    var events = intern.eventsByDate[delegateDate.toDateString()]
+                    var colors = [];
+                    var events = intern.eventsByDate[delegateDate.toDateString()];
                     for (var index = 0; index < events.length; index++) {
-                        var event = events[index]
-                        var calendar = mainModel.collection(event.collectionId)
-                        colors.push(calendar.color)
+                        var event = events[index];
+                        var calendar = mainModel.collection(event.collectionId);
+                        colors[calendar.color] = true;
                     }
-                return colors
+                return Object.keys(colors);
                 }
             }
         }
