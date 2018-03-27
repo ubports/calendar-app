@@ -169,10 +169,18 @@ OrganizerModel {
             var end = ev.endDateTime ? ev.endDateTime.addMinutes(-1).midnight() : start
 
             // set the event array for all days that this event exists, in case of multiple days events
-            // ToDo: why does itemsByTimePeriod() return items out of the range?!?
-            while(start <= end && start <= endDate && start >= startPeriod.midnight())
+            while(start <= end)
             {
-                result[start.toDateString()].push(ev)
+                // stop before things go bad, if events end "out of range"
+                if(start > endDate) {
+                    break
+                }
+
+                // events may also start "out of range", continue until "in range"
+                if(start >= startPeriod.midnight()) {
+                    result[start.toDateString()].push(ev)
+                }
+
                 start = start.addDays(1)
             }
         }
