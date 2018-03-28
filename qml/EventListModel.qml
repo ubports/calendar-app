@@ -151,7 +151,7 @@ OrganizerModel {
     {
         // initialize array
         var startDate = startPeriod.midnight()
-        var endDate = endPeriod.midnight()
+        var endDate = endPeriod.midnight().addDays(1)
         var result = []
         var itemsInPeriod = itemsByTimePeriod(startDate, endDate)
 
