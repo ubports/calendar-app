@@ -196,7 +196,7 @@ Item {
 
         onStartPeriodChanged: idleRefresh.reset()
         onEndPeriodChanged: idleRefresh.reset()
-   }
+    }
 
     Column {
         anchors.fill: parent
@@ -209,6 +209,7 @@ Item {
             type: root.type
             isActive: root.isActive
             selectedDay: root.selectedDay
+            property double daysViewed: weekViewPath.daysViewed
 
             onDateSelected: {
                 root.dateSelected(date.getFullYear(),
@@ -253,9 +254,10 @@ Item {
 
                 boundsBehavior: Flickable.StopAtBounds
 
+                property double daysViewed: weekViewPath.daysViewed
                 property int delegateWidth: {
                     if( type == ViewType.ViewTypeWeek ) {
-                        width/3 - units.gu(1) // partial visible area
+                        width/daysViewed
                     } else {
                         width
                     }
@@ -277,6 +279,7 @@ Item {
                 Row {
                     id: week
                     anchors.fill: parent
+
                     Repeater {
                         model: type == ViewType.ViewTypeWeek ? 7 : 1
 

@@ -40,9 +40,9 @@ PageWithBottomEdge {
     signal pressAndHoldAt(var date, bool allDay)
 
     function delayScrollToDate(scrollDate, scrollTime) {
-	var cur = new Date();
+    var cur = new Date();
         idleScroll.scrollToTime = scrollTime != undefined ? scrollTime : true
-	if(idleScroll.scrollToTime && (scrollDate.getHours() + scrollDate.getMinutes() + scrollDate.getSeconds()) === 0) {
+    if(idleScroll.scrollToTime && (scrollDate.getHours() + scrollDate.getMinutes() + scrollDate.getSeconds()) === 0) {
             scrollDate.setHours(cur.getHours());
             scrollDate.setMinutes(cur.getMinutes());
         }
@@ -162,131 +162,153 @@ PageWithBottomEdge {
         flickable: null
     }
 
-    PathViewBase{
-        id: weekViewPath
-        objectName: "weekviewpathbase"
 
-        anchors {
-            fill: parent
-            topMargin: header.height
-            bottomMargin: weekViewPage.bottomEdgeHeight
+    PinchArea {
+        id: daysInWeekViewScaler
+        anchors.fill: parent
+        pinch.minimumRotation: 0
+        pinch.maximumRotation: 0
+        pinch.minimumScale: 1
+        pinch.maximumScale: 10
+        pinch.dragAxis: Pinch.XAxis
+
+        property double daysViewedBeforePinch
+
+        onPinchStarted: {
+            daysViewedBeforePinch = weekViewPath.daysViewed
         }
 
-        onCurrentIndexChanged: {
-            weekViewPage.highlightedDay = null
+        onPinchUpdated: {
+            weekViewPath.daysViewed = Math.max(1, Math.min(pinch.scale*daysViewedBeforePinch, 7))
         }
 
-        //This is used to scroll all view together when currentItem scrolls
-        property var childContentY;
+        PathViewBase {
+            id: weekViewPath
+            objectName: "weekviewpathbase"
 
-        delegate: Loader {
-            id: timelineLoader
-            width: parent.width
-            height: parent.height
-            asynchronous: !weekViewPath.isCurrentItem
-            sourceComponent: delegateComponent
+            anchors {
+                fill: parent
+                topMargin: header.height
+                bottomMargin: weekViewPage.bottomEdgeHeight
+            }
 
-            Component{
-                id: delegateComponent
+            onCurrentIndexChanged: {
+                weekViewPage.highlightedDay = null
+            }
 
-                TimeLineBaseComponent {
-                    id: timeLineView
-                    objectName: "weekViewDelegate"
+            //This is used to scroll all view together when currentItem scrolls
+            property var childContentY;
+            property double daysViewed: 5.1
 
-                    startDay: anchorFirstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
-                    anchors.fill: parent
-                    type: ViewType.ViewTypeWeek
-                    isCurrentItem: parent.PathView.isCurrentItem
-                    isActive: !weekViewPath.moving && !weekViewPath.flicking
-                    keyboardEventProvider: weekViewPath
-                    selectedDay: weekViewPage.selectedDay
-                    modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
+            delegate: Loader {
+                id: timelineLoader
+                width: parent.width
+                height: parent.height
+                asynchronous: !weekViewPath.isCurrentItem
+                sourceComponent: delegateComponent
 
-                    onDateSelected: {
-                        weekViewPage.dateSelected(date);
-                    }
+                Component{
+                    id: delegateComponent
 
-                    onDateHighlighted:{
-                        weekViewPage.highlightedDay = date
-                    }
+                    TimeLineBaseComponent {
+                        id: timeLineView
+                        objectName: "weekViewDelegate"
 
-                    Component.onCompleted: {
-                        var iType = weekViewPath.indexType(index)
-                        if (iType === 0) {
-                            idleScroll.restart()
-                        } else if (iType < 0) {
-                            scrollToEnd()
+                        startDay: anchorFirstDayOfWeek.addDays((weekViewPath.loopCurrentIndex + weekViewPath.indexType(index)) * 7)
+                        anchors.fill: parent
+                        type: ViewType.ViewTypeWeek
+                        isCurrentItem: parent.PathView.isCurrentItem
+                        isActive: !weekViewPath.moving && !weekViewPath.flicking
+                        keyboardEventProvider: weekViewPath
+                        selectedDay: weekViewPage.selectedDay
+                        modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
+
+                        onDateSelected: {
+                            weekViewPage.dateSelected(date);
                         }
-                    }
 
-                    onPressAndHoldAt: {
-                        weekViewPage.pressAndHoldAt(date, allDay)
-                    }
+                        onDateHighlighted:{
+                            weekViewPage.highlightedDay = date
+                        }
 
-                    Connections{
-                        target: calendarTodayAction
-                        onTriggered:{
-                            if (isActive)
-                                timeLineView.scrollToDate(new Date());
-                            }
-                    }
-
-                    Connections {
-                        target: weekViewPath
-                        onLoopCurrentIndexChanged: {
+                        Component.onCompleted: {
                             var iType = weekViewPath.indexType(index)
-                            if (iType < 0) {
+                            if (iType === 0) {
+                                idleScroll.restart()
+                            } else if (iType < 0) {
                                 scrollToEnd()
-                            } else if (iType > 0) {
-                                scrollToBegin()
                             }
                         }
-                    }
 
-                    // make sure that the model is updated after create a new event if it is marked as auto-update false
-                    Connections {
-                        target: weekViewPage
-                        onActiveChanged: {
-                            if (weekViewPage.active) {
+                        onPressAndHoldAt: {
+                            weekViewPage.pressAndHoldAt(date, allDay)
+                        }
+
+                        Connections{
+                            target: calendarTodayAction
+                            onTriggered:{
+                                if (isActive)
+                                    timeLineView.scrollToDate(new Date());
+                                }
+                        }
+
+                        Connections {
+                            target: weekViewPath
+                            onLoopCurrentIndexChanged: {
+                                var iType = weekViewPath.indexType(index)
+                                if (iType < 0) {
+                                    scrollToEnd()
+                                } else if (iType > 0) {
+                                    scrollToBegin()
+                                }
+                            }
+                        }
+
+                        // make sure that the model is updated after create a new event if it is marked as auto-update false
+                        Connections {
+                            target: weekViewPage
+                            onActiveChanged: {
+                                if (weekViewPage.active) {
+                                    timeLineView.update()
+                                }
+                            }
+                            onEventSaved: {
+                                timeLineView.update()
+                            }
+                            onEventDeleted: {
                                 timeLineView.update()
                             }
                         }
-                        onEventSaved: {
-                            timeLineView.update()
-                        }
-                        onEventDeleted: {
-                            timeLineView.update()
-                        }
-                    }
 
-                    //get contentY value from PathView, if its not current Item
-                    Binding{
-                        target: timeLineView
-                        property: "contentY"
-                        value: weekViewPath.childContentY;
-                        when: !parent.PathView.isCurrentItem
-                    }
+                        //get contentY value from PathView, if its not current Item
+                        Binding{
+                            target: timeLineView
+                            property: "contentY"
+                            value: weekViewPath.childContentY;
+                            when: !parent.PathView.isCurrentItem
+                        }
 
-                    //set PathView's contentY property, if its current item
-                    Binding{
-                        target: weekViewPath
-                        property: "childContentY"
-                        value: contentY
-                        when: parent.PathView.isCurrentItem
-                    }
-                    Binding {
-                        target: weekViewPath
-                        property: "interactive"
-                        value: timeLineView.contentInteractive
+                        //set PathView's contentY property, if its current item
+                        Binding{
+                            target: weekViewPath
+                            property: "childContentY"
+                            value: contentY
+                            when: parent.PathView.isCurrentItem
+                        }
+                        Binding {
+                            target: weekViewPath
+                            property: "interactive"
+                            value: timeLineView.contentInteractive
+                        }
                     }
                 }
-            }
 
-            Binding {
-                target: item
-                property: "autoUpdate"
-                value: (weekViewPage.tabSelected && weekViewPage.active && PathView.isCurrentItem)
-                when: (timelineLoader.status === Loader.Ready)
+                Binding {
+                    target: item
+                    property: "autoUpdate"
+                    value: (weekViewPage.tabSelected && weekViewPage.active && PathView.isCurrentItem)
+                    when: (timelineLoader.status === Loader.Ready)
+                }
             }
         }
     }
