@@ -162,8 +162,9 @@ PageWithBottomEdge {
         flickable: null
     }
 
-
+    // Zoom along the x-axis in WeekView adjusts number of days viewed
     PinchArea {
+        enabled: true
         id: daysInWeekViewScaler
         anchors.fill: parent
         pinch.minimumRotation: 0
@@ -173,13 +174,27 @@ PageWithBottomEdge {
         pinch.dragAxis: Pinch.XAxis
 
         property double daysViewedBeforePinch
+        property int threshing: 0
+        readonly property int threshold: 20
 
         onPinchStarted: {
             daysViewedBeforePinch = weekViewPath.daysViewed
+
         }
 
         onPinchUpdated: {
-            weekViewPath.daysViewed = Math.max(1, Math.min(pinch.scale*daysViewedBeforePinch, 7))
+            weekViewPath.daysViewed = Math.max(1, Math.min((1/pinch.scale)*daysViewedBeforePinch, 6.9)) // 6.9 dirty fix to be able to scroll to next week
+            if (weekViewPath.daysViewed === 6.9) {
+                threshing++;
+            }
+            else {
+                threshing = 0;
+            }
+
+            if (threshing > threshold) {
+                tabs.selectedTabIndex = monthTab.index;
+                threshing = threshold/2;
+            }
         }
 
         PathViewBase {
@@ -198,7 +213,7 @@ PageWithBottomEdge {
 
             //This is used to scroll all view together when currentItem scrolls
             property var childContentY;
-            property double daysViewed: 5.1
+            property real daysViewed: 5.1
 
             delegate: Loader {
                 id: timelineLoader
@@ -222,6 +237,7 @@ PageWithBottomEdge {
                         keyboardEventProvider: weekViewPath
                         selectedDay: weekViewPage.selectedDay
                         modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
+                        daysViewed: weekViewPath.daysViewed
 
                         onDateSelected: {
                             weekViewPage.dateSelected(date);
