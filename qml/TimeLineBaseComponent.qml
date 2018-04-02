@@ -39,6 +39,7 @@ Item {
     property alias autoUpdate: mainModel.active
     property var modelFilter: invalidFilter
     property var selectedDay;
+    property real daysViewed: 5.1
 
     readonly property real hourItemHeight: units.gu(8)
     readonly property int currentHour: timeLineView.contentY > hourItemHeight ?
@@ -209,7 +210,7 @@ Item {
             type: root.type
             isActive: root.isActive
             selectedDay: root.selectedDay
-            property double daysViewed: weekViewPath.daysViewed
+            property double daysViewed: root.daysViewed
 
             onDateSelected: {
                 root.dateSelected(date.getFullYear(),
@@ -254,10 +255,9 @@ Item {
 
                 boundsBehavior: Flickable.StopAtBounds
 
-                property double daysViewed: weekViewPath.daysViewed
                 property int delegateWidth: {
                     if( type == ViewType.ViewTypeWeek ) {
-                        width/daysViewed
+                        width/root.daysViewed
                     } else {
                         width
                     }
