@@ -163,39 +163,15 @@ PageWithBottomEdge {
     }
 
     // Zoom along the x-axis in WeekView adjusts number of days viewed
-    PinchArea {
-        enabled: true
+    PinchAreaBase {
         id: daysInWeekViewScaler
-        anchors.fill: parent
-        pinch.minimumRotation: 0
-        pinch.maximumRotation: 0
-        pinch.minimumScale: 1
-        pinch.maximumScale: 10
-        pinch.dragAxis: Pinch.XAxis
+        targetX: weekViewPath.daysViewed
+        isInvertedX: true
+        minX: 1
+        maxX: 6.9
 
-        property double daysViewedBeforePinch
-        property int threshing: 0
-        readonly property int threshold: 20
-
-        onPinchStarted: {
-            daysViewedBeforePinch = weekViewPath.daysViewed
-
-        }
-
-        onPinchUpdated: {
-            weekViewPath.daysViewed = Math.max(1, Math.min((1/pinch.scale)*daysViewedBeforePinch, 6.9)) // 6.9 dirty fix to be able to scroll to next week
-            if (weekViewPath.daysViewed === 6.9) {
-                threshing++;
-            }
-            else {
-                threshing = 0;
-            }
-
-            if (threshing > threshold) {
-                tabs.selectedTabIndex = monthTab.index;
-                threshing = threshold/2;
-            }
-        }
+        onUpdateTargetX: { weekViewPath.daysViewed = targetX; }
+        onMaxHitX: { tabs.selectedTabIndex = monthTab.index; }
 
         PathViewBase {
             id: weekViewPath
