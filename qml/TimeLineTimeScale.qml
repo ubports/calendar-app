@@ -22,10 +22,12 @@ import Ubuntu.Components 1.3
 Flickable{
     id: timeFlickble
 
+    property real hourItemHeight: units.gu(8)
+
     height: parent.height
     width: units.gu(6)
 
-    contentHeight: 24 * units.gu(8)
+    contentHeight: 24 * hourItemHeight
     contentWidth: width
 
     interactive: false
@@ -41,7 +43,7 @@ Flickable{
 
             delegate: Item {
                 width: parent.width
-                height: units.gu(8)
+                height: hourItemHeight
 
                 Label {
                     id: timeLabel
@@ -57,5 +59,9 @@ Flickable{
                 SimpleDivider{}
             }
         }
+    }
+
+    function getLabelHeight() {
+        return timeLabel.height;
     }
 }
