@@ -41,7 +41,7 @@ Item {
     property var selectedDay;
     property real daysViewed: 5.1
 
-    readonly property real hourItemHeight: units.gu(8)
+    property real hourItemHeight: units.gu(4)
     readonly property int currentHour: timeLineView.contentY > hourItemHeight ?
                                            Math.round(timeLineView.contentY / hourItemHeight) : 1
     readonly property int currentDayOfWeek: timeLineView.contentX > timeLineView.delegateWidth ?
@@ -138,6 +138,10 @@ Item {
         mainModel.updateIfNecessary()
     }
 
+    function getMinHourItemHeight() {
+        return timeLine.getLabelHeight();
+    }
+
     Connections{
         target: keyboardEventProvider
         onScrollUp:{
@@ -150,7 +154,7 @@ Item {
 
         onScrollDown:{
             scrollHour++;
-            var visibleHour = root.height / units.gu(8);
+            var visibleHour = root.height / root.hourItemHeight;
             if( scrollHour > (25 -visibleHour)) {
                 scrollHour = 25 - visibleHour;
             }
@@ -159,7 +163,7 @@ Item {
     }
 
     function scrollToHour() {
-        timeLineView.contentY = scrollHour * units.gu(8);
+        timeLineView.contentY = scrollHour * root.hourItemHeight;
         if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
             timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
@@ -185,6 +189,7 @@ Item {
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter} )
         }
+
     }
 
     EventListModel {
@@ -199,6 +204,7 @@ Item {
         onEndPeriodChanged: idleRefresh.reset()
     }
 
+
     Column {
         anchors.fill: parent
 
@@ -210,7 +216,7 @@ Item {
             type: root.type
             isActive: root.isActive
             selectedDay: root.selectedDay
-            property double daysViewed: root.daysViewed
+            property real daysViewed: root.daysViewed
 
             onDateSelected: {
                 root.dateSelected(date.getFullYear(),
@@ -238,7 +244,9 @@ Item {
             height: parent.height - header.height
 
             TimeLineTimeScale{
+                id: timeLine
                 contentY: timeLineView.contentY
+                hourItemHeight: root.hourItemHeight
             }
 
             SimpleDivider{
@@ -263,7 +271,7 @@ Item {
                     }
                 }
 
-                contentHeight: units.gu(8) * 24
+                contentHeight: root.hourItemHeight * 24
                 contentWidth: {
                     if( type == ViewType.ViewTypeWeek ) {
                         delegateWidth*7
@@ -274,7 +282,9 @@ Item {
 
                 clip: true
 
-                TimeLineBackground{}
+                TimeLineBackground {
+                    property real hourItemHeigth: root.hourItemHeight
+                }
 
                 Row {
                     id: week
@@ -289,6 +299,7 @@ Item {
                             objectName: "TimeLineBase_" + root.objectName
 
                             property int idx: index
+                            hourHeight: root.hourItemHeight
                             flickable: timeLineView
                             anchors.top: parent.top
                             width: {
@@ -343,8 +354,8 @@ Item {
                                     var eventBubble = drag.source;
                                     eventBubble.updateEventBubbleStyle();
 
-                                    if( eventBubble.y + eventBubble.height + units.gu(8) > timeLineView.contentY + timeLineView.height ) {
-                                        var diff = Math.abs((eventBubble.y + eventBubble.height + units.gu(8))  -
+                                    if( eventBubble.y + eventBubble.height + root.hourItemHeight > timeLineView.contentY + timeLineView.height ) {
+                                        var diff = Math.abs((eventBubble.y + eventBubble.height + root.hourItemHeight)  -
                                                             (timeLineView.height + timeLineView.contentY));
                                         timeLineView.contentY += diff
 
@@ -353,8 +364,8 @@ Item {
                                         }
                                     }
 
-                                    if(eventBubble.y - units.gu(8) < timeLineView.contentY ) {
-                                        var diff = Math.abs((eventBubble.y - units.gu(8))  - timeLineView.contentY);
+                                    if(eventBubble.y - root.hourItemHeight < timeLineView.contentY ) {
+                                        var diff = Math.abs((eventBubble.y - root.hourItemHeight)  - timeLineView.contentY);
                                         timeLineView.contentY -= diff
 
                                         if(timeLineView.contentY <= 0) {

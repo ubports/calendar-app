@@ -33,6 +33,10 @@ PinchArea {
         return ( (angle < 45 && angle > -45) || (angle > 135 || angle < -135) );
     }
 
+    function isZoomAlongY(angle) {
+        return ( (angle > 45 && angle < 135) || (angle < -45 && angle > -135) );
+    }
+
     function scaledX(scale) {
         return (isInvertedX ? originalX*(1/scale) : originalX*scale);
     }
@@ -87,7 +91,7 @@ PinchArea {
             }
         }
 
-        if (targetY !== null && !isZoomAlongX()) {
+        if (targetY !== null && isZoomAlongY(pinch.angle)) {
             updateTargetY(respectLowerBound(respectUpperBound(scaledY(pinch.scale), maxY), minY));
             threshCountY = updateThreshCount(minY, maxY, targetY, threshCountY);
 

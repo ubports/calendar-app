@@ -31,7 +31,7 @@ Item {
     property alias model: modelConnections.target
     property var flickable: null
     readonly property alias creatingEvent: overlayMouseArea.creatingEvent
-    readonly property real hourHeight: units.gu(8)
+    property real hourHeight: units.gu(8)
     readonly property real minuteHeight: (hourHeight / 60)
 
     signal pressAndHoldAt(var date)

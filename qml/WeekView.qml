@@ -165,13 +165,16 @@ PageWithBottomEdge {
     // Zoom along the x-axis in WeekView adjusts number of days viewed
     PinchAreaBase {
         id: daysInWeekViewScaler
+
         targetX: weekViewPath.daysViewed
         isInvertedX: true
         minX: 1
         maxX: 6.9
-
         onUpdateTargetX: { weekViewPath.daysViewed = targetX; }
         onMaxHitX: { tabs.selectedTabIndex = monthTab.index; }
+
+        targetY: weekViewPath.hourItemHeight
+        onUpdateTargetY: { weekViewPath.hourItemHeight = targetY; }
 
         PathViewBase {
             id: weekViewPath
@@ -190,6 +193,7 @@ PageWithBottomEdge {
             //This is used to scroll all view together when currentItem scrolls
             property var childContentY;
             property real daysViewed: 5.1
+            property real hourItemHeight: units.gu(4)
 
             delegate: Loader {
                 id: timelineLoader
@@ -214,6 +218,7 @@ PageWithBottomEdge {
                         selectedDay: weekViewPage.selectedDay
                         modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
                         daysViewed: weekViewPath.daysViewed
+                        hourItemHeight: weekViewPath.hourItemHeight
 
                         onDateSelected: {
                             weekViewPage.dateSelected(date);

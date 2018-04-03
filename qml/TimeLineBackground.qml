@@ -25,7 +25,7 @@ Column {
         model: 24 // hour in a day
         delegate: Item {
             width: parent.width
-            height: units.gu(8)
+            height: hourItemHeight
 
             SimpleDivider{}
         }
