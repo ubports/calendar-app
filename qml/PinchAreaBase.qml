@@ -19,6 +19,8 @@ PinchArea {
     property int threshCountY: 0
     property bool isInvertedX: false
     property bool isInvertedY: false
+    property bool zoomAlongX: false
+    property bool zoomAlongY: false
 
     readonly property int threshold: 20
 
@@ -81,7 +83,7 @@ PinchArea {
     }
 
     onPinchUpdated: {
-        if (targetX !== null && isZoomAlongX(pinch.angle)) {
+        if (zoomAlongX) {
             updateTargetX(respectLowerBound(respectUpperBound(scaledX(pinch.scale), maxX), minX));
             threshCountX = updateThreshCount(minX, maxX, targetX, threshCountX);
 
@@ -91,7 +93,7 @@ PinchArea {
             }
         }
 
-        if (targetY !== null && isZoomAlongY(pinch.angle)) {
+        if (zoomAlongY) {
             updateTargetY(respectLowerBound(respectUpperBound(scaledY(pinch.scale), maxY), minY));
             threshCountY = updateThreshCount(minY, maxY, targetY, threshCountY);
 
@@ -103,7 +105,20 @@ PinchArea {
     }
 
     onPinchStarted: {
+        if (targetX !== null && isZoomAlongX(pinch.angle)) {
+            zoomAlongX = true;
+        }
+
+        if (targetY !== null && isZoomAlongY(pinch.angle)) {
+            zoomAlongY = true;
+        }
+
         originalX = targetX;
         originalY = targetY;
+    }
+
+    onPinchFinished: {
+        zoomAlongX = false;
+        zoomAlongY = false;
     }
 }

@@ -42,6 +42,8 @@ Item {
     property real daysViewed: 5.1
 
     property real hourItemHeight: units.gu(4)
+    property real hourItemHeightMin: Math.max(timeLine.timeLabelHeight, timeLine.height/24)
+
     readonly property int currentHour: timeLineView.contentY > hourItemHeight ?
                                            Math.round(timeLineView.contentY / hourItemHeight) : 1
     readonly property int currentDayOfWeek: timeLineView.contentX > timeLineView.delegateWidth ?
@@ -136,10 +138,6 @@ Item {
     function update()
     {
         mainModel.updateIfNecessary()
-    }
-
-    function getMinHourItemHeight() {
-        return timeLine.getLabelHeight();
     }
 
     Connections{
