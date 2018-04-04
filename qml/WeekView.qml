@@ -162,9 +162,8 @@ PageWithBottomEdge {
         flickable: null
     }
 
-    // Zoom along the x-axis in WeekView adjusts number of days viewed
     PinchAreaBase {
-        id: daysInWeekViewScaler
+        id: weekViewPinch
 
         targetX: weekViewPath.daysViewed
         isInvertedX: true
@@ -218,7 +217,7 @@ PageWithBottomEdge {
                         selectedDay: weekViewPage.selectedDay
                         modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
                         daysViewed: weekViewPath.daysViewed
-                        hourItemHeight: weekViewPath.hourItemHeight
+                        hourItemHeight: Math.max(weekViewPath.hourItemHeight, timeLineView.hourItemHeightMin)
 
                         onDateSelected: {
                             weekViewPage.dateSelected(date);
@@ -296,6 +295,13 @@ PageWithBottomEdge {
                             target: weekViewPath
                             property: "interactive"
                             value: timeLineView.contentInteractive
+                        }
+
+                        Binding{
+                            target: weekViewPinch
+                            property: "minY"
+                            value: timeLineView.hourItemHeightMin
+                            when: timeLineView.isCurrentItem
                         }
                     }
                 }
