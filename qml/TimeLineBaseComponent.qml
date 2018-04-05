@@ -43,6 +43,13 @@ Item {
 
     property real hourItemHeight: units.gu(4)
     property real hourItemHeightMin: Math.max(timeLine.timeLabelHeight, timeLine.height/24)
+    property real hourItemHeightPrev: hourItemHeight
+
+    onHourItemHeightChanged: {
+        timeLineView.contentY += timeLineView.contentY * (hourItemHeight - hourItemHeightPrev) / (hourItemHeightPrev);
+        hourItemHeightPrev = hourItemHeight;
+        timeLineView.update();
+    }
 
     readonly property int currentHour: timeLineView.contentY > hourItemHeight ?
                                            Math.round(timeLineView.contentY / hourItemHeight) : 1

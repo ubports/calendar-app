@@ -31,7 +31,7 @@ Item {
     property alias model: modelConnections.target
     property var flickable: null
     readonly property alias creatingEvent: overlayMouseArea.creatingEvent
-    property real hourHeight: units.gu(8)
+    property real hourHeight: units.gu(4)
     readonly property real minuteHeight: (hourHeight / 60)
 
     signal pressAndHoldAt(var date)
@@ -202,6 +202,9 @@ Item {
     }
 
     function showSeparator() {
+        if (bubbleOverLay.day === undefined) {
+            return;
+        }
         intern.now = new Date();
         if (intern.now.isSameDay(bubbleOverLay.day) ) {
             var y = ((intern.now.getMinutes() * hourHeight) / 60) + intern.now.getHours() * hourHeight;
@@ -213,6 +216,7 @@ Item {
     }
 
     onDayChanged: bubbleOverLay.idleCreateEvents();
+    onHourHeightChanged: bubbleOverLay.showSeparator();
     Component.onCompleted: bubbleOverLay.idleCreateEvents();
     enabled: !intern.busy && !intern.waitingForModelChange
 
