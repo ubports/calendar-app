@@ -1,0 +1,55 @@
+Source: calendar-app
+Priority: extra
+Maintainer: Ubuntu App Cats <ubuntu-touch-coreapps@lists.launchpad.net>
+Build-Depends: cmake,
+               debhelper (>= 9),
+               intltool,
+               python3:any,
+               qml-module-qtorganizer,
+               qml-module-qtquick2,
+               qml-module-qttest,
+               qml-module-ubuntu-components,
+               qt5-default,
+               qtdeclarative5-dev-tools,
+Standards-Version: 3.9.4
+Section: misc
+Homepage: https://launchpad.net/ubuntu-calendar-app
+Vcs-Bzr: https://code.launchpad.net/~ubuntu-calendar-dev/ubuntu-calendar-app/trunk
+
+Package: calendar-app
+Architecture: all
+Depends: ${misc:Depends},
+         qmlscene,
+         qml-module-qt-labs-settings,
+         qml-module-qtcontacts,
+         qml-module-qtorganizer,
+         qml-module-ubuntu-components,
+         qtcontact5-galera,
+         qtdeclarative5-ubuntu-syncmonitor0.1,
+         qtorganizer5-eds,
+         ubuntu-mobile-icons | suru-icon-theme,
+Description: Calendar application for Ubuntu devices
+ The Calendar application for Ubuntu devices lets you organise your life your
+ way by month, week or daily diary.
+ .
+ It’s about the task and the context; use the calendar app as a todo list,
+ a diary, a planner, a journal, a life log; and the calendar will behave how
+ you need it to.
+
+Package: calendar-app-autopilot
+Architecture: all
+Depends: address-book-service-dummy,
+         address-book-service-testability,
+         autopilot-qt5,
+         calendar-app (= ${source:Version}),
+         python3-dateutil,
+         ubuntu-ui-toolkit-autopilot,
+Description: Autopilot tests for Ubuntu Calendar Application
+ This package contains autopilot tests for the Ubuntu Calendar application.
+
+Package: ubuntu-calendar-app
+Architecture: all
+Depends: calendar-app, ${misc:Depends}
+Section: oldlibs
+Description: transitional dummy package
+ This is a transitional dummy package. It can safely be removed.
