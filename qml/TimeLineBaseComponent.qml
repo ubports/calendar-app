@@ -43,12 +43,10 @@ Item {
 
     property real hourItemHeight: units.gu(4)
     property real hourItemHeightMin: Math.max(timeLine.timeLabelHeight, timeLine.height/24)
-    property real hourItemHeightPrev: hourItemHeight
 
     onHourItemHeightChanged: {
-        timeLineView.contentY += timeLineView.contentY * (hourItemHeight - hourItemHeightPrev) / (hourItemHeightPrev);
-        hourItemHeightPrev = hourItemHeight;
-        timeLineView.update();
+        mainModel.update();
+        keepScrollHourInBounds();
     }
 
     readonly property int currentHour: timeLineView.contentY > hourItemHeight ?
@@ -58,7 +56,23 @@ Item {
     property int type: ViewType.ViewTypeWeek
 
     //visible hour
-    property int scrollHour;
+    property real scrollHour
+
+    onScrollHourChanged: {
+        keepScrollHourInBounds();
+    }
+
+    function keepScrollHourInBounds() {
+        var visibleHour = timeLine.height / root.hourItemHeight;
+
+        if( scrollHour < 0) {
+            scrollHour = 0;
+        }
+
+        if( scrollHour > (24 - visibleHour)) {
+            scrollHour = 24 - visibleHour;
+        }
+    }
 
     signal dateSelected(var date);
     signal dateHighlighted(var date);
@@ -93,12 +107,6 @@ Item {
 
     function scrollToTime(date) {
         scrollHour = date.getHours();
-
-        var currentTimeY = (scrollHour * hourItemHeight)
-        var margin = (timeLineView.height / 2.0) - units.gu(5)
-        currentTimeY =  currentTimeY - margin
-        timeLineView.contentY = Math.min(timeLineView.contentHeight - timeLineView.height, currentTimeY > 0 ? currentTimeY : 0)
-        timeLineView.returnToBounds()
     }
 
     function scrollToDate(date) {
@@ -151,26 +159,10 @@ Item {
         target: keyboardEventProvider
         onScrollUp:{
             scrollHour--;
-            if( scrollHour < 0) {
-                scrollHour = 0;
-            }
-            scrollToHour();
         }
 
         onScrollDown:{
             scrollHour++;
-            var visibleHour = root.height / root.hourItemHeight;
-            if( scrollHour > (25 -visibleHour)) {
-                scrollHour = 25 - visibleHour;
-            }
-            scrollToHour();
-        }
-    }
-
-    function scrollToHour() {
-        timeLineView.contentY = scrollHour * root.hourItemHeight;
-        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
-            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
     }
 
@@ -276,6 +268,13 @@ Item {
                     }
                 }
 
+                contentY: scrollHour * hourItemHeight
+
+                onMovementStarted: { contentY = scrollHour * hourItemHeight; }
+                onMovementEnded: {
+                    scrollHour = contentY / hourItemHeight;
+                    contentY = Qt.binding( function() { return scrollHour * hourItemHeight; } );
+                }
                 contentHeight: root.hourItemHeight * 24
                 contentWidth: {
                     if( type == ViewType.ViewTypeWeek ) {
@@ -355,27 +354,20 @@ Item {
                                 }
 
                                 onPositionChanged: {
-                                    dropArea.modifyEventForDrag(drag)
+                                    var scrollFactor = 1/(5*root.hourItemHeight);
+                                    dropArea.modifyEventForDrag(drag);
                                     var eventBubble = drag.source;
                                     eventBubble.updateEventBubbleStyle();
 
                                     if( eventBubble.y + eventBubble.height + root.hourItemHeight > timeLineView.contentY + timeLineView.height ) {
                                         var diff = Math.abs((eventBubble.y + eventBubble.height + root.hourItemHeight)  -
                                                             (timeLineView.height + timeLineView.contentY));
-                                        timeLineView.contentY += diff
-
-                                        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
-                                            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
-                                        }
+                                        root.scrollHour += diff*scrollFactor;
                                     }
 
                                     if(eventBubble.y - root.hourItemHeight < timeLineView.contentY ) {
                                         var diff = Math.abs((eventBubble.y - root.hourItemHeight)  - timeLineView.contentY);
-                                        timeLineView.contentY -= diff
-
-                                        if(timeLineView.contentY <= 0) {
-                                            timeLineView.contentY = 0;
-                                        }
+                                        root.scrollHour -= diff*scrollFactor;
                                     }
                                 }
                             }
