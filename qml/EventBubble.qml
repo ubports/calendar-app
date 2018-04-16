@@ -37,7 +37,7 @@ Item{
     property bool isLiveEditing: false
     property Flickable flickable;
     property bool isEventBubble: true
-    property real minimumHeight: units.gu(4)
+    property real minimumHeight: fontMetrics.height
 
     // Event bubble style
     property alias titleText: eventTitle.text
@@ -54,6 +54,7 @@ Item{
 
     signal clicked(var event);
 
+    onMinuteHeightChanged: resize()
 
     // keep color up-to-date
     Connections {

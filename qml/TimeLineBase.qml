@@ -111,7 +111,7 @@ Item {
         var eventWidth =  (bubbleOverLay.width * eventInfo.width)
 
         eventBubble.anchorDate = bubbleOverLay.day
-        eventBubble.minuteHeight = bubbleOverLay.minuteHeight
+        eventBubble.minuteHeight = Qt.binding(function() { return bubbleOverLay.minuteHeight; });
         eventBubble.sizeOfRow = eventInfo.width
         eventBubble.depthInRow = eventInfo.y
         eventBubble.model = bubbleOverLay.model
