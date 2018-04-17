@@ -1,8 +1,14 @@
+calendar-app (0.7ubuntu1) xenial; urgency=medium
+
+  * Build for vivid
+
+ -- Dan Chapman <dan@ubports.com>  Tue, 17 Apr 2018 19:01:33 +0000
+
 calendar-app (0.7) vivid; urgency=medium
 
   * Imported to UBports
 
- -- Florian Leeber <florian@ubports.com> Mon, 16 Apr 2018 10:00:00 +0100
+ -- Florian Leeber <florian@ubports.com>  Mon, 16 Apr 2018 10:00:00 +0100
 
 calendar-app (0.6) raring; urgency=medium
 
