@@ -54,7 +54,8 @@ Item {
 
     function getTimeFromYPos(y, day) {
         var date = new Date(day);
-        var time = y / hourHeight;
+        // add 1 to y in order to avoid rounding errors
+        var time = (y+1) / hourHeight;
         var minutes = time % 1 ;
         var hour = time - minutes;
         minutes = parseInt(60 * minutes);
