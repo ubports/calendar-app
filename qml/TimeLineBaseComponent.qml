@@ -45,7 +45,6 @@ Item {
     property real hourItemHeightMin: Math.max(timeLine.timeLabelHeight, timeLine.height/24)
 
     onHourItemHeightChanged: {
-        mainModel.update();
         keepScrollHourInBounds();
     }
 
