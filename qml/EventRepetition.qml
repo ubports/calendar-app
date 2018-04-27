@@ -139,6 +139,13 @@ Page {
                 else {
                     rule.limit = undefined;
                 }
+
+                if (recurrenceOption.selectedIndex > 0 && recurrenceInterval.text !== "") {
+                    rule.interval = parseInt(recurrenceInterval.text);
+                }
+                else {
+                    rule.interval = 1;
+                }
             }
             else {
                 eventRoot.rule = null;
@@ -216,6 +223,31 @@ Page {
 
                     }
                 }
+            }
+        }
+
+        ListItem.Header {
+            text: i18n.tr("Interval of recurrence")
+            __foregroundColor: Theme.palette.normal.baseText
+            visible: recurrenceOption.selectedIndex != 0
+        }
+
+        TextField {
+            id: recurrenceInterval
+            objectName: "recurrenceInterval"
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(2)
+            }
+
+            visible: recurrenceOption.selectedIndex != 0
+            validator: IntValidator{ bottom: 1; }
+            inputMethodHints: Qt.ImhDialableCharactersOnly
+
+            onTextChanged: {
+                backAction.enabled = !!text.trim()
             }
         }
 
