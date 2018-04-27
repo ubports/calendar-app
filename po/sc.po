@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
 "PO-Revision-Date: 2018-04-27 13:47+0000\n"
-"Last-Translator: Flavia <flavia.efloris@gmail.com>\n"
+"Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sc/>\n"
 "Language: sc\n"
@@ -258,7 +258,7 @@ msgstr "Ammustra calendàriu lunare"
 
 #: ../qml/SettingsPage.qml:128
 msgid "Default reminder"
-msgstr "Apuntu preinstalladu "
+msgstr "Apuntu predefinidu"
 
 #: ../qml/SettingsPage.qml:172
 msgid "Default calendar"
