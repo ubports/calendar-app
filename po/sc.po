@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-04-27 13:43+0000\n"
-"Last-Translator: Matteo Mandis <mandismatteo@gmail.com>\n"
+"PO-Revision-Date: 2018-04-27 13:46+0000\n"
+"Last-Translator: Flavia <flavia.efloris@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sc/>\n"
 "Language: sc\n"
@@ -112,7 +112,7 @@ msgstr ""
 
 #: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
 msgid "Reminder"
-msgstr ""
+msgstr "Apuntu"
 
 #: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
 #: ../qml/DayView.qml:76
@@ -190,6 +190,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"S'aplicatzione Calendàriu ammitet bator argumentos: --starttime, --endtime, "
+"--newevent and --eventid. Ant a èssere gestidos dae su sistema. Càstia su "
+"còdighe de orìgine pro àteras informatziones. "
 
 #: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
