@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-08-29 09:26+0000\n"
-"Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
-"Language-Team: Sardinian <https://ubpweblate.tnvcomp.com/projects/ubports"
+"PO-Revision-Date: 2018-04-27 13:43+0000\n"
+"Last-Translator: Matteo Mandis <mandismatteo@gmail.com>\n"
+"Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "A"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
-msgstr ""
+msgstr "Eventu de totu sa die"
 
 #: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
 msgid "Event Details"
