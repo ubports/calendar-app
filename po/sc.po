@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-08-29 09:26+0000\n"
-"Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
-"Language-Team: Sardinian <https://ubpweblate.tnvcomp.com/projects/ubports"
+"PO-Revision-Date: 2018-04-27 14:43+0000\n"
+"Last-Translator: Flavia <flavia.efloris@gmail.com>\n"
+"Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sc/>\n"
 "Language: sc\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "A"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
-msgstr ""
+msgstr "Eventu de totu sa die"
 
 #: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
 msgid "Event Details"
@@ -112,7 +112,7 @@ msgstr ""
 
 #: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
 msgid "Reminder"
-msgstr ""
+msgstr "Apuntu"
 
 #: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
 #: ../qml/DayView.qml:76
@@ -190,6 +190,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"S'aplicatzione Calendàriu ammitet bator argumentos: --starttime, --endtime, "
+"--newevent and --eventid. Ant a èssere gestidos dae su sistema. Càstia su "
+"còdighe de orìgine pro àteras informatziones"
 
 #: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
@@ -255,7 +258,7 @@ msgstr "Ammustra calendàriu lunare"
 
 #: ../qml/SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Apuntu predefinidu"
 
 #: ../qml/SettingsPage.qml:172
 msgid "Default calendar"
@@ -506,7 +509,7 @@ msgstr "Cada die"
 
 #: ../qml/RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "A intre chida "
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:27
@@ -540,4 +543,4 @@ msgstr "Calendàriu pro Ubuntu chi sincronizat cun contos in lìnia."
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "calendàriu;eventu;die;chida;annu;apuntamentu;riunione;"
