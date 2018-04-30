@@ -8,20 +8,21 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2014-10-13 23:53+0000\n"
-"Last-Translator: Dirgita <Unknown>\n"
-"Language-Team: Indonesian <id@li.org>\n"
+"PO-Revision-Date: 2018-04-30 12:45+0000\n"
+"Last-Translator: Dito Kurnia P <ditokpl@gmail.com>\n"
+"Language-Team: Indonesian <https://translate.ubports.com/projects/ubports"
+"/calendar-app/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Pengingat khusus"
 
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
@@ -31,7 +32,7 @@ msgstr "Batal"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../qml/NewEvent.qml:199
 msgid "End time can't be before start time"
@@ -39,7 +40,7 @@ msgstr "Waktu akhir tak mungkin sebelum waktu mulai"
 
 #: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
 msgid "Edit Event"
-msgstr ""
+msgstr "Sunting Peristiwa"
 
 #: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
 msgid "New Event"
@@ -47,7 +48,7 @@ msgstr "Acara Baru"
 
 #: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
 msgid "Delete"
-msgstr ""
+msgstr "Hapus"
 
 #: ../qml/NewEvent.qml:412
 msgid "Save"
@@ -59,35 +60,35 @@ msgstr "Galat"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
-msgstr ""
+msgstr "Dari"
 
 #: ../qml/NewEvent.qml:503
 msgid "To"
-msgstr ""
+msgstr "Untuk"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
-msgstr ""
+msgstr "Peristiwa tiap hari"
 
 #: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
 msgid "Event Details"
-msgstr ""
+msgstr "Deskripsi peristiwa"
 
 #: ../qml/NewEvent.qml:567
 msgid "Event Name"
-msgstr ""
+msgstr "Nama Peristiwa"
 
 #: ../qml/NewEvent.qml:585 ../qml/EventDetails.qml:437
 msgid "Description"
-msgstr ""
+msgstr "Deskripsi"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr ""
+msgstr "Lokasi"
 
 #: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
 #: com.ubuntu.calendar_calendar.desktop.in.h:1
@@ -95,23 +96,25 @@ msgid "Calendar"
 msgstr "Kalender"
 
 #: ../qml/NewEvent.qml:681
+#, fuzzy
 msgid "Guests"
-msgstr ""
+msgstr "Undangan"
 
 #: ../qml/NewEvent.qml:691
+#, fuzzy
 msgid "Add Guest"
-msgstr ""
+msgstr "Tambah Undangan"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
 #: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
 msgid "Repeats"
-msgstr ""
+msgstr "Ulangi"
 
 #: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
 msgid "Reminder"
-msgstr ""
+msgstr "Pengingat"
 
 #: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
 #: ../qml/DayView.qml:76
@@ -120,18 +123,18 @@ msgstr "Hari ini"
 
 #: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
-msgstr ""
+msgstr "Peristiwa baru"
 
 #: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
 msgid "Calendars"
@@ -139,43 +142,45 @@ msgstr "Kalender"
 
 #: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
 msgid "Back"
-msgstr ""
+msgstr "Kembali"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Sync"
-msgstr ""
+msgstr "Sinkronisasi"
 
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Syncing"
-msgstr ""
+msgstr "Menyinkronkan"
 
 #: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
-msgstr ""
+msgstr "Tambahkan Kalender daring"
 
 #: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Tidak dapat membatalkan pilihan"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"Untuk membuat peristiwa baru anda harus minimal punya satu kalender "
+"terseleksi yang dapat ditulis"
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
-msgstr ""
+msgstr "Tidak pernah"
 
 #: ../qml/LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr ""
+msgstr "Setelah Kejadian X"
 
 #: ../qml/LimitLabelModel.qml:27
 msgid "After Date"
-msgstr ""
+msgstr "Setelah Tanggal"
 
 #: ../qml/calendar.qml:72
 msgid ""
@@ -183,6 +188,9 @@ msgid ""
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
+"Aplikasi Kalender menerima empat argumen: --starttime, --endtime, --newevent "
+"dan --eventid.  Semuanya akan di kelola oleh sistem. Lihat kode sumber untuk "
+"melihat seluruh catatannya"
 
 #: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
@@ -202,11 +210,11 @@ msgstr "Hari"
 
 #: ../qml/calendar.qml:361 ../qml/calendar.qml:594 ../qml/AgendaView.qml:50
 msgid "Agenda"
-msgstr ""
+msgstr "Agenda"
 
 #: ../qml/YearView.qml:79
 msgid "Year %1"
-msgstr ""
+msgstr "Tahun %1"
 
 #: ../qml/ColorPickerDialog.qml:25
 msgid "Select Color"
@@ -215,41 +223,42 @@ msgstr "Pilih Warna"
 #. TRANSLATORS: This is shown in the month view as "Wk" as a title
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../qml/MonthComponent.qml:293
+#, fuzzy
 msgid "Wk"
-msgstr ""
+msgstr "Wk"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Hanya sunting peristiwa ini \"%1\", atau semua peristiwa dalam seri?"
 
 #: ../qml/EditEventConfirmationDialog.qml:35
 msgid "Edit series"
-msgstr ""
+msgstr "Sunting seri"
 
 #: ../qml/EditEventConfirmationDialog.qml:44
 msgid "Edit this"
-msgstr ""
+msgstr "Sunting ini"
 
 #: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
 msgid "Settings"
-msgstr ""
+msgstr "Pengaturan"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
-msgstr ""
+msgstr "Perlihatkan nomor minggu"
 
 #: ../qml/SettingsPage.qml:84
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Perlihatkan kalender bulan"
 
 #: ../qml/SettingsPage.qml:128
 msgid "Default reminder"
-msgstr ""
+msgstr "Pengingat bawaan"
 
 #: ../qml/SettingsPage.qml:172
 msgid "Default calendar"
-msgstr ""
+msgstr "Kalender bawaan"
 
 #: ../qml/ContactChoicePopup.qml:37
 msgid "No contact"
@@ -265,68 +274,68 @@ msgstr "Sunting"
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
-msgstr ""
+msgstr "Seluruh Hari"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
-msgstr ""
+msgstr "Menghadiri"
 
 #: ../qml/EventDetails.qml:394
 msgid "Not Attending"
-msgstr ""
+msgstr "Tidak Menghadiri"
 
 #: ../qml/EventDetails.qml:396
 msgid "Maybe"
-msgstr ""
+msgstr "Mungkin"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
-msgstr ""
+msgstr "Tidak ada Balasan"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "Hapus Peristiwa Berulang"
 
 #: ../qml/DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
-msgstr ""
+msgstr "Hapus Peristiwa"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/DeleteConfirmationDialog.qml:36
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Hapus hanya peristiwa ini \"%1\", atau semua peristiwa dalam seri?"
 
 #: ../qml/DeleteConfirmationDialog.qml:37
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Apa anda yakin ingin menghapus peristiwa \"%1\"?"
 
 #: ../qml/DeleteConfirmationDialog.qml:40
 msgid "Delete series"
-msgstr ""
+msgstr "Hapus Seri"
 
 #: ../qml/DeleteConfirmationDialog.qml:51
 msgid "Delete this"
-msgstr ""
+msgstr "Hapus ini"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
 msgid "W%1"
-msgstr ""
+msgstr "M%1"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
 #: ../qml/AllDayEventComponent.qml:148
+#, fuzzy
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Peristiwa %1"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
+#, fuzzy
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Peristiwa tiap hari %1"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -339,99 +348,95 @@ msgstr "%1 - %2"
 #: ../qml/EventUtils.qml:75
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 kali"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../qml/EventUtils.qml:79
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; sampai %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../qml/EventUtils.qml:102
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Setiap %1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
-msgstr ""
+msgstr "Tidak ada Pengingat"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
 #. the event starts, not any time before
 #: ../qml/RemindersModel.qml:34 ../qml/RemindersModel.qml:103
+#, fuzzy
 msgid "On Event"
-msgstr ""
+msgstr "Saat Terjadi"
 
 #: ../qml/RemindersModel.qml:43
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Minggu %1"
 
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hari %1"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Jam %1"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Menit %1"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
-msgstr ""
+msgstr "5 menit"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 menit"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
-msgstr ""
+msgstr "15 menit"
 
 #: ../qml/RemindersModel.qml:107
 msgid "30 minutes"
-msgstr ""
+msgstr "30 menit"
 
 #: ../qml/RemindersModel.qml:108
 msgid "1 hour"
-msgstr ""
+msgstr "1 jam"
 
 #: ../qml/RemindersModel.qml:109
 msgid "2 hours"
-msgstr ""
+msgstr "2 jam"
 
 #: ../qml/RemindersModel.qml:110
 msgid "1 day"
-msgstr ""
+msgstr "1 hari"
 
 #: ../qml/RemindersModel.qml:111
 msgid "2 days"
-msgstr ""
+msgstr "2 hari"
 
 #: ../qml/RemindersModel.qml:112
 msgid "1 week"
-msgstr ""
+msgstr "1 minggu"
 
 #: ../qml/RemindersModel.qml:113
 msgid "2 weeks"
-msgstr ""
+msgstr "2 minggu"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Kustom"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -439,86 +444,86 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
 msgid "Repeat"
-msgstr ""
+msgstr "Ulangi"
 
 #: ../qml/EventRepetition.qml:177
 msgid "Repeats On:"
-msgstr ""
+msgstr "Ulangi di:"
 
 #: ../qml/EventRepetition.qml:223
 msgid "Recurring event ends"
-msgstr ""
+msgstr "Peristiwa berulang berakhir"
 
 #: ../qml/EventRepetition.qml:273
 msgid "Date"
-msgstr ""
+msgstr "Tanggal"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Pilih akun untuk dibuat."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "Anda tidak punya kalender yang aktif"
 
 #: ../qml/AgendaView.qml:95
 msgid "No upcoming events"
-msgstr ""
+msgstr "Tidak ada peristiwa yang akan datang"
 
 #: ../qml/AgendaView.qml:107
 msgid "Enable calendars"
-msgstr ""
+msgstr "Aktifkan kalender"
 
 #: ../qml/AgendaView.qml:199
 msgid "no event name set"
-msgstr ""
+msgstr "tidak ada nama peristiwa yang di terapkan"
 
 #: ../qml/AgendaView.qml:201
 msgid "no location"
-msgstr ""
+msgstr "tidak ada lokasi"
 
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
-msgstr ""
+msgstr "Sekali"
 
 #: ../qml/RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr ""
+msgstr "Tiap Hari"
 
 #: ../qml/RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "Pada Hari Kerja"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:27
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "Hari %1, %2 ,%3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:29
 msgid "On %1 and %2"
-msgstr ""
+msgstr "Hari %1 dan %2"
 
 #: ../qml/RecurrenceLabelDefines.qml:30
 msgid "Weekly"
-msgstr ""
+msgstr "Setiap minggu"
 
 #: ../qml/RecurrenceLabelDefines.qml:31
 msgid "Monthly"
-msgstr ""
+msgstr "Setiap bulan"
 
 #: ../qml/RecurrenceLabelDefines.qml:32
 msgid "Yearly"
-msgstr ""
+msgstr "Setiap tahun"
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
-msgstr ""
+msgstr "Kalender untuk Ubuntu dimana dapat disinkronkan dengan akun daring."
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr ""
+msgstr "kalender;peristiwa;hari;minggu;tahun;janji;pertemuan;"
