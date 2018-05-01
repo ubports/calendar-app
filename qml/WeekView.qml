@@ -190,7 +190,7 @@ PageWithBottomEdge {
             }
 
             //This is used to scroll all view together when currentItem scrolls
-            property var childContentY;
+            property real childScrollHour;
             property real daysViewed: 5.1
             property real hourItemHeight: units.gu(4)
 
@@ -279,18 +279,19 @@ PageWithBottomEdge {
                         //get contentY value from PathView, if its not current Item
                         Binding{
                             target: timeLineView
-                            property: "contentY"
-                            value: weekViewPath.childContentY;
-                            when: !parent.PathView.isCurrentItem
+                            property: "scrollHour"
+                            value: weekViewPath.childScrollHour;
+                            when: !timeLineView.isCurrentItem
                         }
 
                         //set PathView's contentY property, if its current item
                         Binding{
                             target: weekViewPath
-                            property: "childContentY"
-                            value: contentY
-                            when: parent.PathView.isCurrentItem
+                            property: "childScrollHour"
+                            value: timeLineView.scrollHour
+                            when: timeLineView.isCurrentItem
                         }
+
                         Binding {
                             target: weekViewPath
                             property: "interactive"
