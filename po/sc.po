@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-04-27 14:43+0000\n"
+"PO-Revision-Date: 2018-05-02 13:07+0000\n"
 "Last-Translator: Flavia <flavia.efloris@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sc/>\n"
@@ -21,6 +21,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 
 #: ../qml/RemindersPage.qml:62
+#, fuzzy
 msgid "Custom reminder"
 msgstr ""
 
@@ -35,6 +36,7 @@ msgid "Ok"
 msgstr "AB"
 
 #: ../qml/NewEvent.qml:199
+#, fuzzy
 msgid "End time can't be before start time"
 msgstr ""
 
@@ -107,6 +109,7 @@ msgstr "Agiunghe invitadu"
 #. and it is shown as the header of the option selector to choose
 #. its repetition
 #: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
+#, fuzzy
 msgid "Repeats"
 msgstr ""
 
@@ -120,7 +123,6 @@ msgid "Today"
 msgstr "Oe"
 
 #: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
-#, fuzzy
 msgid "%1 %2"
 msgstr "%1 %2"
 
@@ -128,7 +130,6 @@ msgstr "%1 %2"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
-#, fuzzy
 msgid "MMMM yyyy"
 msgstr "MMMM yyyy"
 
@@ -252,7 +253,6 @@ msgid "Show week numbers"
 msgstr "Ammustra nùmeros de chida"
 
 #: ../qml/SettingsPage.qml:84
-#, fuzzy
 msgid "Show lunar calendar"
 msgstr "Ammustra calendàriu lunare"
 
@@ -281,6 +281,7 @@ msgid "All Day"
 msgstr "Totu sa die"
 
 #: ../qml/EventDetails.qml:392
+#, fuzzy
 msgid "Attending"
 msgstr "Partètzipant"
 
@@ -294,11 +295,11 @@ msgid "Maybe"
 msgstr "Fortzes"
 
 #: ../qml/EventDetails.qml:398
-#, fuzzy
 msgid "No Reply"
 msgstr "Sena risposta"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
+#, fuzzy
 msgid "Delete Recurring Event"
 msgstr ""
 
@@ -339,6 +340,7 @@ msgstr[1] "%1 eventos"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
+#, fuzzy
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
 msgstr[0] ""
@@ -347,7 +349,6 @@ msgstr[1] ""
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
 #: ../qml/EventBubble.qml:138
-#, fuzzy
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
@@ -368,10 +369,12 @@ msgstr "%1; finas a su %2"
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../qml/EventUtils.qml:102
+#, fuzzy
 msgid "Weekly on %1"
 msgstr ""
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
+#, fuzzy
 msgid "No Reminder"
 msgstr ""
 
@@ -459,10 +462,12 @@ msgid "Repeat"
 msgstr "Ripetitzione"
 
 #: ../qml/EventRepetition.qml:177
+#, fuzzy
 msgid "Repeats On:"
 msgstr ""
 
 #: ../qml/EventRepetition.qml:223
+#, fuzzy
 msgid "Recurring event ends"
 msgstr ""
 
@@ -483,7 +488,6 @@ msgid "You have no calendars enabled"
 msgstr "Perunu calendàriu ativadu"
 
 #: ../qml/AgendaView.qml:95
-#, fuzzy
 msgid "No upcoming events"
 msgstr "Perunu eventu imbeniente"
 
@@ -523,17 +527,14 @@ msgid "On %1 and %2"
 msgstr "In su %1 e su %2"
 
 #: ../qml/RecurrenceLabelDefines.qml:30
-#, fuzzy
 msgid "Weekly"
 msgstr "Cada chida"
 
 #: ../qml/RecurrenceLabelDefines.qml:31
-#, fuzzy
 msgid "Monthly"
 msgstr "Cada mese"
 
 #: ../qml/RecurrenceLabelDefines.qml:32
-#, fuzzy
 msgid "Yearly"
 msgstr "Cada annu"
 
