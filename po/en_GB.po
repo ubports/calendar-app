@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2016-05-10 10:10+0000\n"
-"Last-Translator: Andi Chandler <Unknown>\n"
-"Language-Team: English (United Kingdom) <en_GB@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-05-05 20:41+0000\n"
+"Last-Translator: Jolan <jo@jolanberard.com>\n"
+"Language-Team: English (United Kingdom) "
+"<https://translate.ubports.com/projects/ubports/calendar-app/en_GB/>\n"
+"Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
@@ -47,11 +48,11 @@ msgstr "New Event"
 
 #: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
 msgid "Delete"
-msgstr "Delete"
+msgstr "Supprimer"
 
 #: ../qml/NewEvent.qml:412
 msgid "Save"
-msgstr "Save"
+msgstr "Enregistrer"
 
 #: ../qml/NewEvent.qml:423
 msgid "Error"
@@ -266,7 +267,7 @@ msgstr "Search contact"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
-msgstr "Edit"
+msgstr "Editer"
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
