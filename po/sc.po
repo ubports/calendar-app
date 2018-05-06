@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
 "PO-Revision-Date: 2018-05-06 10:50+0000\n"
-"Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
+"Last-Translator: Flavia <flavia.efloris@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sc/>\n"
 "Language: sc\n"
@@ -503,9 +503,8 @@ msgstr "A intre chida "
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:27
-#, fuzzy
 msgid "On %1, %2 ,%3"
-msgstr "In su %1, %2, %2"
+msgstr "Su %1, %2, %2"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:29
