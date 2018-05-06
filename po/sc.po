@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-05-06 10:47+0000\n"
-"Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
+"PO-Revision-Date: 2018-05-06 10:50+0000\n"
+"Last-Translator: Flavia <flavia.efloris@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sc/>\n"
 "Language: sc\n"
@@ -331,11 +331,10 @@ msgstr[1] "%1 eventos"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
-#, fuzzy
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 eventu de totu sa die "
+msgstr[1] "%1 eventos de totu sa die "
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -360,14 +359,12 @@ msgstr "%1; finas a su %2"
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../qml/EventUtils.qml:102
-#, fuzzy
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Cada chida su %1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
-#, fuzzy
 msgid "No Reminder"
-msgstr ""
+msgstr "Sena apuntu "
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
@@ -453,14 +450,12 @@ msgid "Repeat"
 msgstr "Ripetitzione"
 
 #: ../qml/EventRepetition.qml:177
-#, fuzzy
 msgid "Repeats On:"
-msgstr ""
+msgstr "Si repìtet "
 
 #: ../qml/EventRepetition.qml:223
-#, fuzzy
 msgid "Recurring event ends"
-msgstr ""
+msgstr "S'eventu repìtidu acabbat "
 
 #: ../qml/EventRepetition.qml:273
 msgid "Date"
