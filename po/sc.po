@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-05-06 10:50+0000\n"
-"Last-Translator: Flavia <flavia.efloris@gmail.com>\n"
+"PO-Revision-Date: 2018-05-06 10:59+0000\n"
+"Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sc/>\n"
 "Language: sc\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr "Apuntu personalizadu "
+msgstr "Apuntu personalizadu"
 
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
@@ -36,7 +36,7 @@ msgstr "AB"
 
 #: ../qml/NewEvent.qml:199
 msgid "End time can't be before start time"
-msgstr "S'ora de fine non podet èssere in antis de s'ora de cumintzu "
+msgstr "S'ora de fine non podet èssere in antis de s'ora de cumintzu"
 
 #: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
 msgid "Edit Event"
@@ -333,8 +333,8 @@ msgstr[1] "%1 eventos"
 #: ../qml/AllDayEventComponent.qml:152
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] "%1 eventu de totu sa die "
-msgstr[1] "%1 eventos de totu sa die "
+msgstr[0] "%1 eventu de totu sa die"
+msgstr[1] "%1 eventos de totu sa die"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -364,7 +364,7 @@ msgstr "Cada chida su %1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
-msgstr "Sena apuntu "
+msgstr "Sena apuntu"
 
 #. TRANSLATORS: this refers to when a reminder should be shown as a notification
 #. in the indicators. "On Event" means that it will be shown right at the time
@@ -451,7 +451,7 @@ msgstr "Ripetitzione"
 
 #: ../qml/EventRepetition.qml:177
 msgid "Repeats On:"
-msgstr "Si repìtet "
+msgstr "Si repìtet:"
 
 #: ../qml/EventRepetition.qml:223
 msgid "Recurring event ends"
@@ -499,7 +499,7 @@ msgstr "Cada die"
 
 #: ../qml/RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "A intre chida "
+msgstr "A intre chida"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:27
