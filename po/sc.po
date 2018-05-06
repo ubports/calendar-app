@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-05-02 13:07+0000\n"
+"PO-Revision-Date: 2018-05-06 10:40+0000\n"
 "Last-Translator: Flavia <flavia.efloris@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sc/>\n"
@@ -21,9 +21,8 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 
 #: ../qml/RemindersPage.qml:62
-#, fuzzy
 msgid "Custom reminder"
-msgstr ""
+msgstr "Apuntu personalizadu "
 
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
@@ -36,9 +35,8 @@ msgid "Ok"
 msgstr "AB"
 
 #: ../qml/NewEvent.qml:199
-#, fuzzy
 msgid "End time can't be before start time"
-msgstr ""
+msgstr "S'ora de fine non podet èssere in antis de s'ora de cumintzu "
 
 #: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
 msgid "Edit Event"
@@ -109,9 +107,8 @@ msgstr "Agiunghe invitadu"
 #. and it is shown as the header of the option selector to choose
 #. its repetition
 #: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
-#, fuzzy
 msgid "Repeats"
-msgstr ""
+msgstr "Si repitet"
 
 #: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
 msgid "Reminder"
@@ -160,9 +157,8 @@ msgid "Add online Calendar"
 msgstr "Agiunghe calendàriu in lìnia"
 
 #: ../qml/CalendarChoicePopup.qml:184
-#, fuzzy
 msgid "Unable to deselect"
-msgstr "Impossìbile deseletzionare"
+msgstr "Non s'est pòdidu deseletzionare"
 
 #: ../qml/CalendarChoicePopup.qml:185
 #, fuzzy
