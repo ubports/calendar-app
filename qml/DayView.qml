@@ -146,7 +146,7 @@ PageWithBottomEdge {
         minX: 1
         maxX: 1.1
         isInvertedX: true
-        onUpdateTargetX: { dayViewPinch.targetX = targetX }
+        onUpdateTargetX: { dayViewPinch.targetX = targetX; }
         onMaxHitX: { tabs.selectedTabIndex = weekTab.index; }
 
         targetY: dayViewPath.hourItemHeight
@@ -183,6 +183,7 @@ PageWithBottomEdge {
                 modelFilter: dayViewPage.model ? dayViewPage.model.filter : null
                 autoUpdate: dayViewPage.tabSelected && dayViewPage.active && PathView.isCurrentItem
                 hourItemHeight: Math.max(dayViewPath.hourItemHeight, timeLineView.hourItemHeightMin)
+                headerHeight: dayViewPath.anchors.topMargin
 
                 onPressAndHoldAt: {
                     dayViewPage.pressAndHoldAt(date, allDay)

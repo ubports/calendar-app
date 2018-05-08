@@ -218,6 +218,7 @@ PageWithBottomEdge {
                         modelFilter: weekViewPage.model ? weekViewPage.model.filter : null
                         daysViewed: weekViewPath.daysViewed
                         hourItemHeight: Math.max(weekViewPath.hourItemHeight, timeLineView.hourItemHeightMin)
+                        headerHeight: weekViewPath.anchors.topMargin
 
                         onDateSelected: {
                             weekViewPage.dateSelected(date);

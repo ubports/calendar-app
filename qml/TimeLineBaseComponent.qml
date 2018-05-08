@@ -43,6 +43,7 @@ Item {
 
     property real hourItemHeight: units.gu(4)
     property real hourItemHeightMin: Math.max(timeLine.timeLabelHeight, timeLine.height/24)
+    property real headerHeight: 0
 
     onHourItemHeightChanged: {
         keepScrollHourInBounds();
@@ -243,6 +244,7 @@ Item {
                 id: timeLine
                 contentY: timeLineView.contentY
                 hourItemHeight: root.hourItemHeight
+                headerHeight: header.height + root.headerHeight
             }
 
             SimpleDivider{
