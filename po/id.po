@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-04-30 12:45+0000\n"
+"PO-Revision-Date: 2018-05-09 04:19+0000\n"
 "Last-Translator: Dito Kurnia P <ditokpl@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/id/>\n"
@@ -96,12 +96,10 @@ msgid "Calendar"
 msgstr "Kalender"
 
 #: ../qml/NewEvent.qml:681
-#, fuzzy
 msgid "Guests"
 msgstr "Undangan"
 
 #: ../qml/NewEvent.qml:691
-#, fuzzy
 msgid "Add Guest"
 msgstr "Tambah Undangan"
 
@@ -223,7 +221,6 @@ msgstr "Pilih Warna"
 #. TRANSLATORS: This is shown in the month view as "Wk" as a title
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../qml/MonthComponent.qml:293
-#, fuzzy
 msgid "Wk"
 msgstr "Wk"
 
@@ -325,17 +322,15 @@ msgstr "M%1"
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
 #: ../qml/AllDayEventComponent.qml:148
-#, fuzzy
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] "Peristiwa %1"
+msgstr[0] "Acara %1"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
-#, fuzzy
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] "Peristiwa tiap hari %1"
+msgstr[0] "%1 peristiwa tiap hari"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -370,7 +365,6 @@ msgstr "Tidak ada Pengingat"
 #. in the indicators. "On Event" means that it will be shown right at the time
 #. the event starts, not any time before
 #: ../qml/RemindersModel.qml:34 ../qml/RemindersModel.qml:103
-#, fuzzy
 msgid "On Event"
 msgstr "Saat Terjadi"
 
