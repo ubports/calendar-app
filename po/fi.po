@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-08-24 14:44+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish <https://ubpweblate.tnvcomp.com/projects/ubports"
+"PO-Revision-Date: 2018-05-11 21:14+0000\n"
+"Last-Translator: Tatuus <tatuus@riseup.net>\n"
+"Language-Team: Finnish <https://translate.ubports.com/projects/ubports"
 "/calendar-app/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,9 @@ msgstr "Mukautettu muistutus"
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
 #: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
+#, fuzzy
 msgid "Cancel"
-msgstr "Peru"
+msgstr "Keskeytä"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"
@@ -55,12 +56,14 @@ msgid "Save"
 msgstr "Tallenna"
 
 #: ../qml/NewEvent.qml:423
+#, fuzzy
 msgid "Error"
 msgstr "Virhe"
 
 #: ../qml/NewEvent.qml:425
+#, fuzzy
 msgid "OK"
-msgstr "OK"
+msgstr "Selvä"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
