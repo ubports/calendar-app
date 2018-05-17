@@ -338,7 +338,14 @@ Item{
             id: weekDay
             objectName: "weekDay" + index
             width: parent.dayWidth
-            property var day : Qt.locale(Qt.locale().name).standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat);
+            property var day : {
+		        if (Qt.locale().name == "pt_PT") {
+                    // Workaround for https://github.com/ubports/ubuntu-touch/issues/510
+                    Qt.locale("pt").standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat);
+                } else {
+                    Qt.locale(Qt.locale().name).standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.ShortFormat);
+                }
+            }
             text: isYearView ? Qt.locale(Qt.locale().name).standaloneDayName(( Qt.locale().firstDayOfWeek + index), Locale.NarrowFormat) : day
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: intern.dayFontSize
