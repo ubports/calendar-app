@@ -39,6 +39,7 @@ Item {
     property alias autoUpdate: mainModel.active
     property var modelFilter: invalidFilter
     property var selectedDay;
+    property real daysViewed: 5.1
 
     readonly property real hourItemHeight: units.gu(8)
     readonly property int currentHour: timeLineView.contentY > hourItemHeight ?
@@ -196,7 +197,7 @@ Item {
 
         onStartPeriodChanged: idleRefresh.reset()
         onEndPeriodChanged: idleRefresh.reset()
-   }
+    }
 
     Column {
         anchors.fill: parent
@@ -209,6 +210,7 @@ Item {
             type: root.type
             isActive: root.isActive
             selectedDay: root.selectedDay
+            property double daysViewed: root.daysViewed
 
             onDateSelected: {
                 root.dateSelected(date.getFullYear(),
@@ -255,7 +257,7 @@ Item {
 
                 property int delegateWidth: {
                     if( type == ViewType.ViewTypeWeek ) {
-                        width/3 - units.gu(1) // partial visible area
+                        width/root.daysViewed
                     } else {
                         width
                     }
@@ -277,6 +279,7 @@ Item {
                 Row {
                     id: week
                     anchors.fill: parent
+
                     Repeater {
                         model: type == ViewType.ViewTypeWeek ? 7 : 1
 

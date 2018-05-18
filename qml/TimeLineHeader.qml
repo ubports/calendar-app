@@ -142,7 +142,7 @@ Column {
             interactive: false
 
             property int delegateWidth: {
-                width/3 - units.gu(1) /*partial visible area*/
+                width/headerRoot.daysViewed
             }
             contentHeight: height
             contentWidth: {
