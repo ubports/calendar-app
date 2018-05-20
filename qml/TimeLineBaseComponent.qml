@@ -246,6 +246,7 @@ Item {
             }
 
             SimpleDivider{
+                id: timeLineBorder
                 width: units.gu(0.1)
                 height: parent.height
             }
@@ -255,7 +256,7 @@ Item {
                 objectName: "timelineview"
 
                 height: parent.height
-                width: parent.width - units.gu(6)
+                width: parent.width - timeLine.width - timeLineBorder.width
 
                 boundsBehavior: Flickable.StopAtBounds
 
@@ -353,7 +354,9 @@ Item {
                                 }
 
                                 onPositionChanged: {
-                                    var scrollFactor = 1/(5*root.hourItemHeight);
+                                    // the more zoomed in the smaller the scroll factor must be (else the scrolling is too fast)
+                                    var zoomedInPenalty = 10*(root.hourItemHeight-root.hourItemHeightMin);
+                                    var scrollFactor = 1/(units.gu(0.5)+zoomedInPenalty);
                                     dropArea.modifyEventForDrag(drag);
                                     var eventBubble = drag.source;
                                     eventBubble.updateEventBubbleStyle();

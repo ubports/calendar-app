@@ -22,7 +22,7 @@ PinchArea {
     property bool zoomAlongX: false
     property bool zoomAlongY: false
 
-    readonly property int threshold: 20
+    readonly property int threshold: 40
 
     signal minHitX
     signal maxHitX

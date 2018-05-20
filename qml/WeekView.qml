@@ -168,7 +168,7 @@ PageWithBottomEdge {
         targetX: weekViewPath.daysViewed
         isInvertedX: true
         minX: 1
-        maxX: 6.9
+        maxX: 7
         onUpdateTargetX: { weekViewPath.daysViewed = targetX; }
         onMaxHitX: { tabs.selectedTabIndex = monthTab.index; }
 

@@ -73,13 +73,14 @@ Column {
         }
 
         SimpleDivider{
+            id: labelColumnBorder
             width: units.gu(0.1);
             height: parent.height
         }
 
         Loader{
             id: headerLoader
-            width: parent.width - labelColumn.width
+            width: parent.width - labelColumn.width - labelColumnBorder.width
             height: parent.height
 
             sourceComponent: {
@@ -99,7 +100,7 @@ Column {
             anchors.fill: parent
 
             TimeLineHeaderComponent{
-                width: parent.width
+                width: parent.width - labelColumnBorder.width
                 height: units.gu(5)
                 startDay: headerRoot.startDay
                 type: ViewType.ViewTypeDay
