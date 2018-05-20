@@ -22,10 +22,13 @@ import Ubuntu.Components 1.3
 Flickable{
     id: timeFlickble
 
+    property real timeLabelHeight: 0
+    property real hourItemHeight: units.gu(4)
+
     height: parent.height
     width: units.gu(6)
 
-    contentHeight: 24 * units.gu(8)
+    contentHeight: 24 * hourItemHeight
     contentWidth: width
 
     interactive: false
@@ -41,7 +44,7 @@ Flickable{
 
             delegate: Item {
                 width: parent.width
-                height: units.gu(8)
+                height: hourItemHeight
 
                 Label {
                     id: timeLabel
@@ -52,6 +55,12 @@ Flickable{
                     text: Qt.formatTime( new Date(0,0,0,index), "hh:mm")
                     color: UbuntuColors.lightGrey
                     fontSize: "small"
+
+                    Binding{
+                        target: timeFlickble
+                        property: "timeLabelHeight"
+                        value: timeLabel.height+2*timeLabel.anchors.topMargin
+                    }
                 }
 
                 SimpleDivider{}

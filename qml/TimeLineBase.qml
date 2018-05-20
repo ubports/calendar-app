@@ -31,7 +31,7 @@ Item {
     property alias model: modelConnections.target
     property var flickable: null
     readonly property alias creatingEvent: overlayMouseArea.creatingEvent
-    readonly property real hourHeight: units.gu(8)
+    property real hourHeight: units.gu(4)
     readonly property real minuteHeight: (hourHeight / 60)
 
     signal pressAndHoldAt(var date)
@@ -54,7 +54,8 @@ Item {
 
     function getTimeFromYPos(y, day) {
         var date = new Date(day);
-        var time = y / hourHeight;
+        // add 1 to y in order to avoid rounding errors
+        var time = (y+1) / hourHeight;
         var minutes = time % 1 ;
         var hour = time - minutes;
         minutes = parseInt(60 * minutes);
@@ -111,7 +112,7 @@ Item {
         var eventWidth =  (bubbleOverLay.width * eventInfo.width)
 
         eventBubble.anchorDate = bubbleOverLay.day
-        eventBubble.minuteHeight = bubbleOverLay.minuteHeight
+        eventBubble.minuteHeight = Qt.binding(function() { return bubbleOverLay.minuteHeight; });
         eventBubble.sizeOfRow = eventInfo.width
         eventBubble.depthInRow = eventInfo.y
         eventBubble.model = bubbleOverLay.model
@@ -202,6 +203,9 @@ Item {
     }
 
     function showSeparator() {
+        if (bubbleOverLay.day === undefined) {
+            return;
+        }
         intern.now = new Date();
         if (intern.now.isSameDay(bubbleOverLay.day) ) {
             var y = ((intern.now.getMinutes() * hourHeight) / 60) + intern.now.getHours() * hourHeight;
@@ -213,6 +217,7 @@ Item {
     }
 
     onDayChanged: bubbleOverLay.idleCreateEvents();
+    onHourHeightChanged: bubbleOverLay.showSeparator();
     Component.onCompleted: bubbleOverLay.idleCreateEvents();
     enabled: !intern.busy && !intern.waitingForModelChange
 

@@ -139,80 +139,103 @@ PageWithBottomEdge {
         createEventAt = eventAt
     }
 
-    PathViewBase{
-        id: dayViewPath
-        objectName: "dayViewPath"
+    PinchAreaBase {
+        id: dayViewPinch
 
-        property var startDay: currentDate
-        //This is used to scroll all view together when currentItem scrolls
-        property real childContentY;
+        targetX: 1
+        minX: 1
+        maxX: 1.1
+        isInvertedX: true
+        onUpdateTargetX: { dayViewPinch.targetX = targetX }
+        onMaxHitX: { tabs.selectedTabIndex = weekTab.index; }
 
-        anchors {
-            fill: parent
-            topMargin: header.height
-            bottomMargin: dayViewPage.bottomEdgeHeight
-        }
+        targetY: dayViewPath.hourItemHeight
+        onUpdateTargetY: { dayViewPath.hourItemHeight = targetY; }
 
-        delegate: TimeLineBaseComponent {
-            id: timeLineView
-            objectName: "DayComponent-"+index
+        PathViewBase {
+            id: dayViewPath
+            objectName: "dayViewPath"
 
-            width: parent.width
-            height: parent.height
+            property var startDay: currentDate
+            //This is used to scroll all view together when currentItem scrolls
+            property real childScrollHour;
+            property real hourItemHeight: units.gu(4)
 
-            type: ViewType.ViewTypeDay
-            isCurrentItem: PathView.isCurrentItem
-            isActive: !dayViewPath.moving && !dayViewPath.flicking
-            contentInteractive: PathView.isCurrentItem
-            startDay: anchorDate.addDays(dayViewPath.loopCurrentIndex + dayViewPath.indexType(index))
-            keyboardEventProvider: dayViewPath
-            modelFilter: dayViewPage.model ? dayViewPage.model.filter : null
-            autoUpdate: dayViewPage.tabSelected && dayViewPage.active && PathView.isCurrentItem
-
-            onPressAndHoldAt: {
-                dayViewPage.pressAndHoldAt(date, allDay)
+            anchors {
+                fill: parent
+                topMargin: header.height
+                bottomMargin: dayViewPage.bottomEdgeHeight
             }
 
-            Component.onCompleted: {
-                if(dayViewPage.tabSelected){
-                    idleScroll.restart()
+            delegate: TimeLineBaseComponent {
+                id: timeLineView
+                objectName: "DayComponent-"+index
+
+                width: parent.width
+                height: parent.height
+
+                type: ViewType.ViewTypeDay
+                isCurrentItem: PathView.isCurrentItem
+                isActive: !dayViewPath.moving && !dayViewPath.flicking
+                contentInteractive: PathView.isCurrentItem
+                startDay: anchorDate.addDays(dayViewPath.loopCurrentIndex + dayViewPath.indexType(index))
+                keyboardEventProvider: dayViewPath
+                modelFilter: dayViewPage.model ? dayViewPage.model.filter : null
+                autoUpdate: dayViewPage.tabSelected && dayViewPage.active && PathView.isCurrentItem
+                hourItemHeight: Math.max(dayViewPath.hourItemHeight, timeLineView.hourItemHeightMin)
+
+                onPressAndHoldAt: {
+                    dayViewPage.pressAndHoldAt(date, allDay)
                 }
-            }
 
-            Connections{
-                target: dayViewPage
-                onTabSelectedChanged: {
+                Component.onCompleted: {
                     if(dayViewPage.tabSelected){
-                        timeLineView.scrollToTime(new Date());
+                        idleScroll.restart()
                     }
                 }
-                onActiveChanged: {
-                    if (dayViewPage.active) {
+
+                Connections{
+                    target: dayViewPage
+                    onTabSelectedChanged: {
+                        if(dayViewPage.tabSelected){
+                            timeLineView.scrollToTime(new Date());
+                        }
+                    }
+                    onActiveChanged: {
+                        if (dayViewPage.active) {
+                            timeLineView.update()
+                        }
+                    }
+                    onEventSaved: {
+                        timeLineView.update()
+                    }
+                    onEventDeleted: {
                         timeLineView.update()
                     }
                 }
-                onEventSaved: {
-                    timeLineView.update()
-                }
-                onEventDeleted: {
-                    timeLineView.update()
-                }
-            }
 
-            //get contentY value from PathView, if its not current Item
-            Binding{
-                target: timeLineView
-                property: "contentY"
-                value: dayViewPath.childContentY;
-                when: !timeLineView.isCurrentItem
-            }
+                Binding{
+                    target: dayViewPinch
+                    property: "minY"
+                    value: timeLineView.hourItemHeightMin
+                    when: timeLineView.isCurrentItem
+                }
 
-            //set PathView's contentY property, if its current item
-            Binding{
-                target: dayViewPath
-                property: "childContentY"
-                value: timeLineView.contentY
-                when: timeLineView.isCurrentItem
+                //get contentY value from PathView, if its not current Item
+                Binding{
+                    target: timeLineView
+                    property: "scrollHour"
+                    value: dayViewPath.childScrollHour;
+                    when: !timeLineView.isCurrentItem
+                }
+
+                //set PathView's contentY property, if its current item
+                Binding{
+                    target: dayViewPath
+                    property: "childScrollHour"
+                    value: timeLineView.scrollHour
+                    when: timeLineView.isCurrentItem
+                }
             }
         }
     }

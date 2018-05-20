@@ -39,8 +39,15 @@ Item {
     property alias autoUpdate: mainModel.active
     property var modelFilter: invalidFilter
     property var selectedDay;
+    property real daysViewed: 5.1
 
-    readonly property real hourItemHeight: units.gu(8)
+    property real hourItemHeight: units.gu(4)
+    property real hourItemHeightMin: Math.max(timeLine.timeLabelHeight, timeLine.height/24)
+
+    onHourItemHeightChanged: {
+        keepScrollHourInBounds();
+    }
+
     readonly property int currentHour: timeLineView.contentY > hourItemHeight ?
                                            Math.round(timeLineView.contentY / hourItemHeight) : 1
     readonly property int currentDayOfWeek: timeLineView.contentX > timeLineView.delegateWidth ?
@@ -48,7 +55,23 @@ Item {
     property int type: ViewType.ViewTypeWeek
 
     //visible hour
-    property int scrollHour;
+    property real scrollHour
+
+    onScrollHourChanged: {
+        keepScrollHourInBounds();
+    }
+
+    function keepScrollHourInBounds() {
+        var visibleHour = timeLine.height / root.hourItemHeight;
+
+        if( scrollHour < 0) {
+            scrollHour = 0;
+        }
+
+        if( scrollHour > (24 - visibleHour)) {
+            scrollHour = 24 - visibleHour;
+        }
+    }
 
     signal dateSelected(var date);
     signal dateHighlighted(var date);
@@ -83,12 +106,6 @@ Item {
 
     function scrollToTime(date) {
         scrollHour = date.getHours();
-
-        var currentTimeY = (scrollHour * hourItemHeight)
-        var margin = (timeLineView.height / 2.0) - units.gu(5)
-        currentTimeY =  currentTimeY - margin
-        timeLineView.contentY = Math.min(timeLineView.contentHeight - timeLineView.height, currentTimeY > 0 ? currentTimeY : 0)
-        timeLineView.returnToBounds()
     }
 
     function scrollToDate(date) {
@@ -141,26 +158,10 @@ Item {
         target: keyboardEventProvider
         onScrollUp:{
             scrollHour--;
-            if( scrollHour < 0) {
-                scrollHour = 0;
-            }
-            scrollToHour();
         }
 
         onScrollDown:{
             scrollHour++;
-            var visibleHour = root.height / units.gu(8);
-            if( scrollHour > (25 -visibleHour)) {
-                scrollHour = 25 - visibleHour;
-            }
-            scrollToHour();
-        }
-    }
-
-    function scrollToHour() {
-        timeLineView.contentY = scrollHour * units.gu(8);
-        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
-            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
         }
     }
 
@@ -184,6 +185,7 @@ Item {
         onTriggered: {
             mainModel.filter = Qt.binding(function() { return root.modelFilter} )
         }
+
     }
 
     EventListModel {
@@ -196,7 +198,8 @@ Item {
 
         onStartPeriodChanged: idleRefresh.reset()
         onEndPeriodChanged: idleRefresh.reset()
-   }
+    }
+
 
     Column {
         anchors.fill: parent
@@ -209,6 +212,7 @@ Item {
             type: root.type
             isActive: root.isActive
             selectedDay: root.selectedDay
+            property real daysViewed: root.daysViewed
 
             onDateSelected: {
                 root.dateSelected(date.getFullYear(),
@@ -236,10 +240,13 @@ Item {
             height: parent.height - header.height
 
             TimeLineTimeScale{
+                id: timeLine
                 contentY: timeLineView.contentY
+                hourItemHeight: root.hourItemHeight
             }
 
             SimpleDivider{
+                id: timeLineBorder
                 width: units.gu(0.1)
                 height: parent.height
             }
@@ -249,19 +256,26 @@ Item {
                 objectName: "timelineview"
 
                 height: parent.height
-                width: parent.width - units.gu(6)
+                width: parent.width - timeLine.width - timeLineBorder.width
 
                 boundsBehavior: Flickable.StopAtBounds
 
                 property int delegateWidth: {
                     if( type == ViewType.ViewTypeWeek ) {
-                        width/3 - units.gu(1) // partial visible area
+                        width/root.daysViewed
                     } else {
                         width
                     }
                 }
 
-                contentHeight: units.gu(8) * 24
+                contentY: scrollHour * hourItemHeight
+
+                onMovementStarted: { contentY = scrollHour * hourItemHeight; }
+                onMovementEnded: {
+                    scrollHour = contentY / hourItemHeight;
+                    contentY = Qt.binding( function() { return scrollHour * hourItemHeight; } );
+                }
+                contentHeight: root.hourItemHeight * 24
                 contentWidth: {
                     if( type == ViewType.ViewTypeWeek ) {
                         delegateWidth*7
@@ -272,11 +286,14 @@ Item {
 
                 clip: true
 
-                TimeLineBackground{}
+                TimeLineBackground {
+                    property real hourItemHeigth: root.hourItemHeight
+                }
 
                 Row {
                     id: week
                     anchors.fill: parent
+
                     Repeater {
                         model: type == ViewType.ViewTypeWeek ? 7 : 1
 
@@ -286,6 +303,7 @@ Item {
                             objectName: "TimeLineBase_" + root.objectName
 
                             property int idx: index
+                            hourHeight: root.hourItemHeight
                             flickable: timeLineView
                             anchors.top: parent.top
                             width: {
@@ -336,27 +354,22 @@ Item {
                                 }
 
                                 onPositionChanged: {
-                                    dropArea.modifyEventForDrag(drag)
+                                    // the more zoomed in the smaller the scroll factor must be (else the scrolling is too fast)
+                                    var zoomedInPenalty = 10*(root.hourItemHeight-root.hourItemHeightMin);
+                                    var scrollFactor = 1/(units.gu(0.5)+zoomedInPenalty);
+                                    dropArea.modifyEventForDrag(drag);
                                     var eventBubble = drag.source;
                                     eventBubble.updateEventBubbleStyle();
 
-                                    if( eventBubble.y + eventBubble.height + units.gu(8) > timeLineView.contentY + timeLineView.height ) {
-                                        var diff = Math.abs((eventBubble.y + eventBubble.height + units.gu(8))  -
+                                    if( eventBubble.y + eventBubble.height + root.hourItemHeight > timeLineView.contentY + timeLineView.height ) {
+                                        var diff = Math.abs((eventBubble.y + eventBubble.height + root.hourItemHeight)  -
                                                             (timeLineView.height + timeLineView.contentY));
-                                        timeLineView.contentY += diff
-
-                                        if(timeLineView.contentY >= timeLineView.contentHeight - timeLineView.height) {
-                                            timeLineView.contentY = timeLineView.contentHeight - timeLineView.height
-                                        }
+                                        root.scrollHour += diff*scrollFactor;
                                     }
 
-                                    if(eventBubble.y - units.gu(8) < timeLineView.contentY ) {
-                                        var diff = Math.abs((eventBubble.y - units.gu(8))  - timeLineView.contentY);
-                                        timeLineView.contentY -= diff
-
-                                        if(timeLineView.contentY <= 0) {
-                                            timeLineView.contentY = 0;
-                                        }
+                                    if(eventBubble.y - root.hourItemHeight < timeLineView.contentY ) {
+                                        var diff = Math.abs((eventBubble.y - root.hourItemHeight)  - timeLineView.contentY);
+                                        root.scrollHour -= diff*scrollFactor;
                                     }
                                 }
                             }
