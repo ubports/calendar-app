@@ -142,6 +142,8 @@ PageWithBottomEdge {
     PinchAreaBase {
         id: dayViewPinch
 
+        // PinchArea not working inside PathView but we don't want to overlap the PinchArea with the TimeLineTimeScale
+        anchors.leftMargin: units.gu(6) // this magic number will be refactored soon
         targetX: 1
         minX: 1
         maxX: 1.1
@@ -165,6 +167,8 @@ PageWithBottomEdge {
                 fill: parent
                 topMargin: header.height
                 bottomMargin: dayViewPage.bottomEdgeHeight
+                // this magic number will be refactored soon
+                leftMargin: -units.gu(6)
             }
 
             delegate: TimeLineBaseComponent {
