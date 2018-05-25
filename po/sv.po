@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-05-12 15:04+0000\n"
-"Last-Translator: Tomas Öqvist <tomas.oqvist@gmail.com>\n"
+"PO-Revision-Date: 2018-05-25 00:21+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Swedish <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sv/>\n"
 "Language: sv\n"
@@ -60,7 +60,7 @@ msgstr "Fel"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
-msgstr "Ok"
+msgstr "OK"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
