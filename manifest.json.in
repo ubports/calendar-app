@@ -15,7 +15,7 @@
         }
     },
     "icon": "@ICON@",
-    "maintainer": "UBports <community@ubports.com>",
+    "maintainer": "UBports <dev@ubports.com>",
     "name": "@PROJECT_NAME@",
     "title": "Calendar",
     "version": "0.6.3",
