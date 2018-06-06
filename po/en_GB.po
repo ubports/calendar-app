@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-05-05 20:41+0000\n"
-"Last-Translator: Jolan <jo@jolanberard.com>\n"
+"PO-Revision-Date: 2018-06-06 17:27+0000\n"
+"Last-Translator: Rondy Andersson <rondarius@gmail.com>\n"
 "Language-Team: English (United Kingdom) "
 "<https://translate.ubports.com/projects/ubports/calendar-app/en_GB/>\n"
 "Language: en_GB\n"
@@ -22,13 +22,13 @@ msgstr ""
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Anpassad påminnelse"
 
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
 #: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Avbryt"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"
@@ -36,27 +36,27 @@ msgstr "Ok"
 
 #: ../qml/NewEvent.qml:199
 msgid "End time can't be before start time"
-msgstr "End time can't be before start time"
+msgstr "Slut tid kan inte vara före start tid"
 
 #: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
 msgid "Edit Event"
-msgstr "Edit Event"
+msgstr "Redigera händelse"
 
 #: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
 msgid "New Event"
-msgstr "New Event"
+msgstr "Ny händelse"
 
 #: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Radera"
 
 #: ../qml/NewEvent.qml:412
 msgid "Save"
-msgstr "Enregistrer"
+msgstr "Spara"
 
 #: ../qml/NewEvent.qml:423
 msgid "Error"
-msgstr "Error"
+msgstr "Fel"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
@@ -64,60 +64,60 @@ msgstr "OK"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
-msgstr "From"
+msgstr "Från"
 
 #: ../qml/NewEvent.qml:503
 msgid "To"
-msgstr "To"
+msgstr "Till"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
-msgstr "All day event"
+msgstr "Heldags händelse"
 
 #: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
 msgid "Event Details"
-msgstr "Event Details"
+msgstr "Händelse detaljer"
 
 #: ../qml/NewEvent.qml:567
 msgid "Event Name"
-msgstr "Event Name"
+msgstr "Händelse namn"
 
 #: ../qml/NewEvent.qml:585 ../qml/EventDetails.qml:437
 msgid "Description"
-msgstr "Description"
+msgstr "Beskrivning"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr "Location"
+msgstr "Plats"
 
 #: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
 #: com.ubuntu.calendar_calendar.desktop.in.h:1
 msgid "Calendar"
-msgstr "Calendar"
+msgstr "Kalender"
 
 #: ../qml/NewEvent.qml:681
 msgid "Guests"
-msgstr "Guests"
+msgstr "Gäster"
 
 #: ../qml/NewEvent.qml:691
 msgid "Add Guest"
-msgstr "Add Guest"
+msgstr "Lägg till gäst"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
 #: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
 msgid "Repeats"
-msgstr "Repeats"
+msgstr "Upprepningar"
 
 #: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
 msgid "Reminder"
-msgstr "Reminder"
+msgstr "Påminnelse"
 
 #: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
 #: ../qml/DayView.qml:76
 msgid "Today"
-msgstr "Today"
+msgstr "Idag"
 
 #: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
 msgid "%1 %2"
@@ -132,53 +132,51 @@ msgstr "MMMM yyyy"
 
 #: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
 msgid "New event"
-msgstr "New event"
+msgstr "Ny händelse"
 
 #: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
 msgid "Calendars"
-msgstr "Calendars"
+msgstr "Kalendrar"
 
 #: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
 msgid "Back"
-msgstr "Back"
+msgstr "Tillbaka"
 
 #. TRANSLATORS: Please translate this string  to 15 characters only.
 #. Currently ,there is no way we can increase width of action menu currently.
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Sync"
-msgstr "Sync"
+msgstr "Synka"
 
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Syncing"
-msgstr "Syncing"
+msgstr "Synkning"
 
 #: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
-msgstr "Add online Calendar"
+msgstr "Lägg till online kalender"
 
 #: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
-msgstr "Unable to deselect"
+msgstr "Går inte att avmarkera"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
-msgstr ""
-"In order to create new events you must have at least one writable calendar "
-"selected"
+msgstr "För att skapa nya händelser måste du ha minst en skrivbar kalender vald"
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
-msgstr "Never"
+msgstr "Aldrig"
 
 #: ../qml/LimitLabelModel.qml:26
 msgid "After X Occurrence"
-msgstr "After X Occurrence"
+msgstr "Efter X Förekomst"
 
 #: ../qml/LimitLabelModel.qml:27
 msgid "After Date"
-msgstr "After Date"
+msgstr "Efter datum"
 
 #: ../qml/calendar.qml:72
 msgid ""
