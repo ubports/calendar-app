@@ -24,6 +24,7 @@ Flickable{
 
     property real timeLabelHeight: 0
     property real hourItemHeight: units.gu(4)
+    property real headerHeight
 
     height: parent.height
     width: units.gu(6)
@@ -34,6 +35,70 @@ Flickable{
     interactive: false
 
     clip: true
+
+    function yToHour (height) {
+        return (contentY + (height - headerHeight)) / hourItemHeight;
+    }
+
+
+    MultiPointTouchArea {
+        id: businessHourSetter
+
+        property bool isStatic: true
+        property real staticTolerance: units.gu(0.1)
+        property var startPoint1;
+        property var startPoint2;
+
+        minimumTouchPoints: 2
+        maximumTouchPoints: 2
+        anchors.fill: parent
+
+        onPressed: {
+            startPoint1 = Qt.point(touchPoints[0].sceneX, touchPoints[0].sceneY);
+            startPoint2 = Qt.point(touchPoints[1].sceneX, touchPoints[1].sceneY);
+
+            touchTimer.wasLong = false;
+            isStatic = true;
+
+            touchTimer.restart()
+        }
+
+        onUpdated: {
+            touchPoints.forEach( function(entry) {
+                if (manhattanDistance(Qt.point(entry.x, entry.y), Qt.point(entry.startX, entry.startY)) > staticTolerance) {
+                    isStatic = false;
+                }
+            });
+        }
+
+        onReleased: {
+            touchTimer.stop();
+        }
+
+        Timer {
+            id: touchTimer
+            property bool wasLong: false
+
+            interval: 1000
+            repeat: false
+            onTriggered: {
+                if (businessHourSetter.isStatic) {
+                    wasLong = true;
+
+                    var newBusinessHourStart = yToHour(Math.min(businessHourSetter.startPoint1.y, businessHourSetter.startPoint2.y));
+                    var newBusinessHourEnd = yToHour(Math.max(businessHourSetter.startPoint1.y, businessHourSetter.startPoint2.y));
+
+                    settings.businessHourStart = newBusinessHourStart;
+                    settings.businessHourEnd = newBusinessHourEnd;
+                }
+            }
+        }
+
+        function manhattanDistance(point1, point2) {
+            var diff = Qt.point(point1.x - point2.x, point1.y - point2.y);
+            return Math.abs(diff.x) + Math.abs(diff.y);
+        }
+    }
 
     Column {
         id: timeLine

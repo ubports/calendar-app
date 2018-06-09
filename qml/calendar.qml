@@ -29,6 +29,8 @@ MainView {
     property bool displayWeekNumber: false;
     property bool displayLunarCalendar: false;
     property int reminderDefaultValue: 900;
+    property int businessHourStart: 8;
+    property int businessHourEnd: 16;
     readonly property bool syncInProgress: commonHeaderActions.syncInProgress
 
     function handleUri(uri)
@@ -298,6 +300,8 @@ MainView {
             property alias showWeekNumber: mainView.displayWeekNumber
             property alias showLunarCalendar: mainView.displayLunarCalendar
             property alias reminderDefaultValue: mainView.reminderDefaultValue
+            property alias businessHourStart: mainView.businessHourStart
+            property alias businessHourEnd: mainView.businessHourEnd
 
             function defaultViewIndexValue(fallback) {
                 return defaultViewIndex != -1 ? defaultViewIndex : fallback

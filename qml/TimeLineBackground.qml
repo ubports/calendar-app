@@ -22,10 +22,18 @@ import Ubuntu.Components 1.3
 Column {
     width: parent.width
     Repeater {
-        model: 24 // hour in a day
+        model: 24 // hours in day
         delegate: Item {
+
             width: parent.width
             height: hourItemHeight
+
+            Rectangle {
+                height: parent.height
+                width: parent.width
+                color: (index < settings.businessHourStart || index > settings.businessHourEnd) ? "#ffffff" : "#efefef"
+                z: -1000 // its the background
+            }
 
             SimpleDivider{}
         }

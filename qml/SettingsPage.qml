@@ -19,6 +19,8 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
+import Ubuntu.Components.Pickers 1.3
+import "CustomPickers"
 
 Page {
     id: settingsPage
@@ -96,6 +98,79 @@ Page {
 
             onClicked: {
                 lunarCalCheckBox.checked = !lunarCalCheckBox.checked;
+            }
+        }
+
+        ListItem {
+            height: businessHoursLayout.height + divider.height
+            width: parent.width
+
+            ListItemLayout {
+                id: businessHoursLayout
+                title.text: i18n.tr("Business hours")
+
+                height: businessStartInput.height
+
+                Row {
+                    id: businessHoursSettingRow
+                    property date startDateToBeSet: new Date(0, 0, 0, settings.businessHourStart)
+                    property date endDateToBeSet: new Date(0, 0, 0, settings.businessHourEnd)
+
+                    onEndDateToBeSetChanged: setBusinessHours()
+                    onStartDateToBeSetChanged: setBusinessHours()
+
+                    function setBusinessHours() {
+                        if (startDateToBeSet < endDateToBeSet) {
+                            settings.businessHourStart = startDateToBeSet.getHours()
+                            settings.businessHourEnd = endDateToBeSet.getHours()
+                            businessStartInput.text = Qt.formatTime(startDateToBeSet, Qt.SystemLocaleShortDate);
+                            businessEndInput.text = Qt.formatTime(endDateToBeSet, Qt.SystemLocaleShortDate);
+                        }
+                    }
+
+                    function openDatePicker (element, caller, callerProperty, mode) {
+                        element.highlighted = true;
+                        var picker = NewPickerPanel.openDatePicker(caller, callerProperty, mode);
+                        if (!picker) return;
+                        picker.closed.connect(function () {
+                            element.highlighted = false;
+                        });
+                    }
+
+                    NewEventEntryField {
+                        id: businessStartInput
+
+                        objectName: "businessStartInput"
+                        text: "" //Qt.formatTime(businessHoursSettingRow.startDateToBeSet, Qt.SystemLocaleShortDate);
+                        visible: true
+
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: businessHoursSettingRow.openDatePicker(businessStartInput, businessHoursSettingRow, "startDateToBeSet", "Hours")
+                        }
+                    }
+
+                    Label {
+                        text: " - "
+                        height: parent.height
+                        verticalAlignment: Text.AlignVCenter
+                    }
+
+                    NewEventEntryField {
+                        id: businessEndInput
+
+                        objectName: "businessEndInput"
+                        text: "" //Qt.formatTime(businessHoursSettingRow.endDateToBeSet, Qt.SystemLocaleShortDate);
+                        visible: true
+
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: businessHoursSettingRow.openDatePicker(businessEndInput, businessHoursSettingRow, "endDateToBeSet", "Hours")
+                        }
+                    }
+
+                    SlotsLayout.position: SlotsLayout.Last
+                }
             }
         }
 
