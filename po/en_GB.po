@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-06-06 17:27+0000\n"
-"Last-Translator: Rondy Andersson <rondarius@gmail.com>\n"
+"PO-Revision-Date: 2018-06-10 19:53+0000\n"
+"Last-Translator: Eran <etherpulse@gmail.com>\n"
 "Language-Team: English (United Kingdom) "
 "<https://translate.ubports.com/projects/ubports/calendar-app/en_GB/>\n"
 "Language: en_GB\n"
@@ -27,8 +27,9 @@ msgstr "Anpassad påminnelse"
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
 #: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
+#, fuzzy
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr "Cancel"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"
@@ -47,8 +48,9 @@ msgid "New Event"
 msgstr "Ny händelse"
 
 #: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
+#, fuzzy
 msgid "Delete"
-msgstr "Radera"
+msgstr "Delete"
 
 #: ../qml/NewEvent.qml:412
 msgid "Save"
