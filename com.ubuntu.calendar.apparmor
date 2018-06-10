@@ -9,5 +9,5 @@
     "read_path": [
         "/etc/writable/timezone"
     ],
-    "policy_version": 1.3
+    "policy_version": 16.04
 }

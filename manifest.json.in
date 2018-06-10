@@ -1,7 +1,7 @@
 {
     "architecture": "@CLICK_ARCH@",
     "description": "A calendar for Ubuntu which syncs with online accounts",
-    "framework": "ubuntu-sdk-15.04.4",
+    "framework": "ubuntu-sdk-16.04",
     "hooks": {
         "calendar": {
             "account-application": "@APPLICATION_FILE@",
