@@ -41,6 +41,7 @@ install(FILES ${APPLICATION_FILE} DESTINATION ${DATA_DIR})
 install(FILES ${URLS_FILE} DESTINATION ${DATA_DIR})
 install(FILES push-helper DESTINATION ${DATA_DIR})
 install(FILES push-helper.json DESTINATION ${DATA_DIR})
+install(FILES calendar-helper-apparmor.json DESTINATION ${DATA_DIR})
 install(DIRECTORY qml DESTINATION ${DATA_DIR})
 install(DIRECTORY assets DESTINATION ${DATA_DIR})
 
