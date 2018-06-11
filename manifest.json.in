@@ -18,7 +18,7 @@
     "maintainer": "UBports <dev@ubports.com>",
     "name": "@PROJECT_NAME@",
     "title": "Calendar",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "x-test": {
         "autopilot": {
             "autopilot_module": "@AUTOPILOT_DIR@",
