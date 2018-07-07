@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-05-11 20:00+0000\n"
-"Last-Translator: Anne Onyme <anneonyme017@openmailbox.org>\n"
+"PO-Revision-Date: 2018-05-12 12:01+0000\n"
+"Last-Translator: Alessandro Vinciguerra <alesvinciguerra@gmail.com>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports"
 "/calendar-app/fr/>\n"
 "Language: fr\n"
@@ -28,9 +28,7 @@ msgstr "Rappel personnalisé"
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
 #: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
 msgid "Cancel"
-msgstr ""
-"La couleur du texte est déterminée en fonction de l'arrière-plan, donc "
-"définie à partir du HTML"
+msgstr "Annuler"
 
 #: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
 msgid "Ok"

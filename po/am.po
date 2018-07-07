@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-12-24 14:32+0000\n"
+"PO-Revision-Date: 2018-05-20 16:18+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports"
 "/calendar-app/am/>\n"
@@ -236,7 +236,7 @@ msgstr "ይህን ማረሚያ"
 
 #: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
 msgid "Settings"
-msgstr "ማሰናጃዎች"
+msgstr "ማሰናጃ"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
@@ -458,7 +458,7 @@ msgstr "ቀን"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr "መግለጫ ይምረጡ ለ መፍጠር"
+msgstr "መግለጫ ለ መፍጠር ይምረጡ"
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"

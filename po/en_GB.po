@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2018-05-05 20:41+0000\n"
-"Last-Translator: Jolan <jo@jolanberard.com>\n"
+"PO-Revision-Date: 2018-07-05 11:30+0000\n"
+"Last-Translator: konrad <kohofer@gmail.com>\n"
 "Language-Team: English (United Kingdom) "
 "<https://translate.ubports.com/projects/ubports/calendar-app/en_GB/>\n"
 "Language: en_GB\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Custom reminder"
 
 #: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
 #: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
@@ -48,11 +48,11 @@ msgstr "New Event"
 
 #: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Delete"
 
 #: ../qml/NewEvent.qml:412
 msgid "Save"
-msgstr "Enregistrer"
+msgstr "Save"
 
 #: ../qml/NewEvent.qml:423
 msgid "Error"
@@ -165,7 +165,7 @@ msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
-"In order to create new events you must have at least one writable calendar "
+"In order to create new events you must have at least one writeable calendar "
 "selected"
 
 #: ../qml/LimitLabelModel.qml:25
@@ -267,7 +267,7 @@ msgstr "Search contact"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
-msgstr "Editer"
+msgstr "Edit"
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
@@ -374,26 +374,26 @@ msgstr "On Event"
 #: ../qml/RemindersModel.qml:43
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 week"
+msgstr[1] "%1 weeks"
 
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 day"
+msgstr[1] "%1 days"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 hour"
+msgstr[1] "%1 hours"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 minute"
+msgstr[1] "%1 minutes"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
@@ -401,7 +401,7 @@ msgstr "5 minutes"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 minutes"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
@@ -437,7 +437,7 @@ msgstr "2 weeks"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Custom"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -461,7 +461,7 @@ msgstr "Date"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Pick an account to create."
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"

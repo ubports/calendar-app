@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.ubuntu.calendar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-02 10:41+0000\n"
-"PO-Revision-Date: 2017-09-29 07:36+0000\n"
+"PO-Revision-Date: 2018-06-02 20:36+0000\n"
 "Last-Translator: Jeff <jeffi27@live.at>\n"
 "Language-Team: Albanian <https://translate.ubports.com/projects/ubports"
 "/calendar-app/sq/>\n"
@@ -59,7 +59,7 @@ msgstr "Gabim"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
-msgstr "Ok"
+msgstr "OK"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
@@ -111,7 +111,7 @@ msgstr "Përsëritjet"
 
 #: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
 msgid "Reminder"
-msgstr "Kujtim"
+msgstr "Kujtesë"
 
 #: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
 #: ../qml/DayView.qml:76
@@ -203,7 +203,7 @@ msgstr "Java"
 
 #: ../qml/calendar.qml:353 ../qml/calendar.qml:573
 msgid "Day"
-msgstr "Dita"
+msgstr "Ditë"
 
 #: ../qml/calendar.qml:361 ../qml/calendar.qml:594 ../qml/AgendaView.qml:50
 msgid "Agenda"
@@ -221,12 +221,12 @@ msgstr "Zgjidhë ngjyren"
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../qml/MonthComponent.qml:293
 msgid "Wk"
-msgstr "Wk"
+msgstr "KJ"
 
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "Vetëm modifikoni këtë datë »%1« ose të gjitha emërimet në seri?"
+msgstr "Vetëm modifikoni këtë termin \"% 1\" ose të gjitha emërimet në seri?"
 
 #: ../qml/EditEventConfirmationDialog.qml:35
 msgid "Edit series"
@@ -238,7 +238,7 @@ msgstr "Redakto këtë"
 
 #: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
 msgid "Settings"
-msgstr "Konfigurimi"
+msgstr "Cilsimet"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
@@ -278,7 +278,7 @@ msgstr "Të pranishëm"
 
 #: ../qml/EventDetails.qml:394
 msgid "Not Attending"
-msgstr "Jo të pranishëm"
+msgstr "Jo pjesëmarrës"
 
 #: ../qml/EventDetails.qml:396
 msgid "Maybe"
@@ -286,7 +286,7 @@ msgstr "Ndoshta"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
-msgstr "Nuk ka përgjigje"
+msgstr "Nuk  përgjigjet"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -316,7 +316,7 @@ msgstr "Fshije këtë"
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
 msgid "W%1"
-msgstr "JK %1"
+msgstr "J%1"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
@@ -385,7 +385,7 @@ msgstr[1] "%1 ditë"
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] "%1 or"
+msgstr[0] "%1 orë"
 msgstr[1] "%2 orë"
 
 #: ../qml/RemindersModel.qml:74
@@ -436,7 +436,7 @@ msgstr "2 javë"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr "E Personalizuar"
+msgstr "E përsonalizuar"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -526,4 +526,4 @@ msgstr "Një kalendar për Ubuntu, i cili sinkronizohet me Internetkonten."
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:3
 msgid "calendar;event;day;week;year;appointment;meeting;"
-msgstr "Kalendari; ngjarje; ditë; javë; vit; data; takim;"
+msgstr "Kalendar; ngjarje; ditë; javë; vit; termin; takim;"
