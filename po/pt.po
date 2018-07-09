@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-02 10:41+0000\n"
+"POT-Creation-Date: 2018-06-09 15:20+0000\n"
 "PO-Revision-Date: 2018-04-12 08:57+0000\n"
 "Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
-"Language-Team: Portuguese <https://translate.ubports.com/projects/ubports"
-"/calendar-app/pt/>\n"
+"Language-Team: Portuguese <https://translate.ubports.com/projects/ubports/"
+"calendar-app/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,250 +20,9 @@ msgstr ""
 "X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 
-#: ../qml/RemindersPage.qml:62
-msgid "Custom reminder"
-msgstr "Lembrete personalizado"
-
-#: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
-#: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
-#: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
-msgid "Ok"
-msgstr "Ok"
-
-#: ../qml/NewEvent.qml:199
-msgid "End time can't be before start time"
-msgstr "Hora final não pode ser anterior à inicial"
-
-#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
-msgid "Edit Event"
-msgstr "Editar evento"
-
-#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
-msgid "New Event"
-msgstr "Novo evento"
-
-#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
-msgid "Delete"
-msgstr "Eliminar"
-
-#: ../qml/NewEvent.qml:412
-msgid "Save"
-msgstr "Guardar"
-
-#: ../qml/NewEvent.qml:423
-msgid "Error"
-msgstr "Erro"
-
-#: ../qml/NewEvent.qml:425
-msgid "OK"
-msgstr "Confirmar"
-
-#: ../qml/NewEvent.qml:487
-msgid "From"
-msgstr "De"
-
-#: ../qml/NewEvent.qml:503
-msgid "To"
-msgstr "Para"
-
-#: ../qml/NewEvent.qml:530
-msgid "All day event"
-msgstr "Evento de um dia inteiro"
-
-#: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
+#: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
 msgid "Event Details"
 msgstr "Detalhes do evento"
-
-#: ../qml/NewEvent.qml:567
-msgid "Event Name"
-msgstr "Nome do evento"
-
-#: ../qml/NewEvent.qml:585 ../qml/EventDetails.qml:437
-msgid "Description"
-msgstr "Descrição"
-
-#: ../qml/NewEvent.qml:604
-msgid "Location"
-msgstr "Localização"
-
-#: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
-#: com.ubuntu.calendar_calendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "Calendário"
-
-#: ../qml/NewEvent.qml:681
-msgid "Guests"
-msgstr "Convidados"
-
-#: ../qml/NewEvent.qml:691
-msgid "Add Guest"
-msgstr "Adicionar convidado"
-
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the option selector to choose
-#. its repetition
-#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
-msgid "Repeats"
-msgstr "Repete"
-
-#: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
-msgid "Reminder"
-msgstr "Lembrete"
-
-#: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
-#: ../qml/DayView.qml:76
-msgid "Today"
-msgstr "Hoje"
-
-#: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
-msgid "%1 %2"
-msgstr "%1 %2"
-
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-#. It's used in the header of the month and week views
-#: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
-msgid "MMMM yyyy"
-msgstr "MMMM yyyy"
-
-#: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
-msgid "New event"
-msgstr "Novo evento"
-
-#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
-msgid "Calendars"
-msgstr "Calendários"
-
-#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
-msgid "Back"
-msgstr "Anterior"
-
-#. TRANSLATORS: Please translate this string  to 15 characters only.
-#. Currently ,there is no way we can increase width of action menu currently.
-#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
-msgid "Sync"
-msgstr "Sincronizar"
-
-#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
-msgid "Syncing"
-msgstr "A sincronizar"
-
-#: ../qml/CalendarChoicePopup.qml:83
-msgid "Add online Calendar"
-msgstr "Adicionar calendário online"
-
-#: ../qml/CalendarChoicePopup.qml:184
-msgid "Unable to deselect"
-msgstr "Impossível desmarcar"
-
-#: ../qml/CalendarChoicePopup.qml:185
-msgid ""
-"In order to create new events you must have at least one writable calendar "
-"selected"
-msgstr ""
-"Para criar novos eventos deve, pelo menos, ter um calendário editável "
-"selecionado"
-
-#: ../qml/LimitLabelModel.qml:25
-msgid "Never"
-msgstr "Nunca"
-
-#: ../qml/LimitLabelModel.qml:26
-msgid "After X Occurrence"
-msgstr "Depois de X Ocorrência"
-
-#: ../qml/LimitLabelModel.qml:27
-msgid "After Date"
-msgstr "Depois da data"
-
-#: ../qml/calendar.qml:72
-msgid ""
-"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
-"eventid. They will be managed by system. See the source for a full comment "
-"about them"
-msgstr ""
-"A aplicação Calendário aceita quatro argumentos: --starttime, --endtime, --"
-"newevent e eventid. Podem ser geridos pelo sistema. Veja a origem para "
-"comentário completo acerca deles."
-
-#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
-msgid "Year"
-msgstr "Ano"
-
-#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
-msgid "Month"
-msgstr "Mês"
-
-#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
-msgid "Week"
-msgstr "Semana"
-
-#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
-msgid "Day"
-msgstr "Dia"
-
-#: ../qml/calendar.qml:361 ../qml/calendar.qml:594 ../qml/AgendaView.qml:50
-msgid "Agenda"
-msgstr "Agenda"
-
-#: ../qml/YearView.qml:79
-msgid "Year %1"
-msgstr "Ano %1"
-
-#: ../qml/ColorPickerDialog.qml:25
-msgid "Select Color"
-msgstr "Selecionar cor"
-
-#. TRANSLATORS: This is shown in the month view as "Wk" as a title
-#. to indicate the week numbers. It should be a max of up to 3 characters.
-#: ../qml/MonthComponent.qml:293
-msgid "Wk"
-msgstr "Sm"
-
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../qml/EditEventConfirmationDialog.qml:32
-msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "Editar apenas este evento \"%1\", ou todos os eventos da série?"
-
-#: ../qml/EditEventConfirmationDialog.qml:35
-msgid "Edit series"
-msgstr "Editar série"
-
-#: ../qml/EditEventConfirmationDialog.qml:44
-msgid "Edit this"
-msgstr "Editar isto"
-
-#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
-msgid "Settings"
-msgstr "Definições"
-
-#: ../qml/SettingsPage.qml:70
-msgid "Show week numbers"
-msgstr "Mostrar números da semana"
-
-#: ../qml/SettingsPage.qml:84
-msgid "Show lunar calendar"
-msgstr "Mostrar calendário lunar"
-
-#: ../qml/SettingsPage.qml:128
-msgid "Default reminder"
-msgstr "Lembrete padrão"
-
-#: ../qml/SettingsPage.qml:172
-msgid "Default calendar"
-msgstr "Calendário por omissão"
-
-#: ../qml/ContactChoicePopup.qml:37
-msgid "No contact"
-msgstr "Sem contacto"
-
-#: ../qml/ContactChoicePopup.qml:96
-msgid "Search contact"
-msgstr "Procurar contacto"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
@@ -272,6 +31,11 @@ msgstr "Editar"
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "Todo o dia"
+
+#: ../qml/EventDetails.qml:348 ../qml/NewEvent.qml:619
+#: com.ubuntu.calendar_calendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Calendário"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
@@ -289,76 +53,50 @@ msgstr "Talvez"
 msgid "No Reply"
 msgstr "Sem resposta"
 
-#: ../qml/DeleteConfirmationDialog.qml:31
-msgid "Delete Recurring Event"
-msgstr "Eliminar evento repetido"
+#: ../qml/EventDetails.qml:437 ../qml/NewEvent.qml:585
+msgid "Description"
+msgstr "Descrição"
 
-#: ../qml/DeleteConfirmationDialog.qml:32
-msgid "Delete Event"
-msgstr "Eliminar evento"
+#: ../qml/EventDetails.qml:464 ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814
+msgid "Reminder"
+msgstr "Lembrete"
 
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../qml/DeleteConfirmationDialog.qml:36
-msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr "Apagar apenas este evento \"%1\", ou todos os eventos da série?"
+#: ../qml/YearView.qml:57 ../qml/DayView.qml:76 ../qml/WeekView.qml:60
+#: ../qml/MonthView.qml:50
+msgid "Today"
+msgstr "Hoje"
 
-#: ../qml/DeleteConfirmationDialog.qml:37
-msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "Quer mesmo apagar o evento \"%1\"?"
+#: ../qml/YearView.qml:79
+msgid "Year %1"
+msgstr "Ano %1"
 
-#: ../qml/DeleteConfirmationDialog.qml:40
-msgid "Delete series"
-msgstr "Eliminar séries"
+#: ../qml/LimitLabelModel.qml:25
+msgid "Never"
+msgstr "Nunca"
 
-#: ../qml/DeleteConfirmationDialog.qml:51
-msgid "Delete this"
-msgstr "Eliminar isto"
+#: ../qml/LimitLabelModel.qml:26
+msgid "After X Occurrence"
+msgstr "Depois de X Ocorrência"
+
+#: ../qml/LimitLabelModel.qml:27
+msgid "After Date"
+msgstr "Depois da data"
+
+#: ../qml/ColorPickerDialog.qml:25
+msgid "Select Color"
+msgstr "Selecionar cor"
+
+#: ../qml/ColorPickerDialog.qml:55 ../qml/NewEvent.qml:387
+#: ../qml/DeleteConfirmationDialog.qml:60
+#: ../qml/EditEventConfirmationDialog.qml:53 ../qml/OnlineAccountsHelper.qml:73
+#: ../qml/RemindersPage.qml:72
+msgid "Cancel"
+msgstr "Cancelar"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
 msgid "W%1"
 msgstr "S%1"
-
-#. TRANSLATORS: Please keep the translation of this string to a max of
-#. 5 characters as the week view where it is shown has limited space.
-#: ../qml/AllDayEventComponent.qml:148
-msgid "%1 event"
-msgid_plural "%1 events"
-msgstr[0] "%1 evento"
-msgstr[1] "%1 events"
-
-#. TRANSLATORS: the argument refers to the number of all day events
-#: ../qml/AllDayEventComponent.qml:152
-msgid "%1 all day event"
-msgid_plural "%1 all day events"
-msgstr[0] "%1 evento todo o dia"
-msgstr[1] "%1 eventos todo o dia"
-
-#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
-#. while the second one (%2) refers to the end time
-#: ../qml/EventBubble.qml:138
-msgid "%1 - %2"
-msgstr "%1 - %2"
-
-#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
-#. E.g. "Daily; 5 times."
-#: ../qml/EventUtils.qml:75
-msgid "%1; %2 time"
-msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 vez"
-msgstr[1] "%1; %2 vezes"
-
-#. TRANSLATORS: the argument refers to recurrence until user selected date.
-#. E.g. "Daily; until 12/12/2014."
-#: ../qml/EventUtils.qml:79
-msgid "%1; until %2"
-msgstr "%1; até %2"
-
-#. TRANSLATORS: the argument refers to several different days of the week.
-#. E.g. "Weekly on Mondays, Tuesdays"
-#: ../qml/EventUtils.qml:102
-msgid "Weekly on %1"
-msgstr "Semanalmente às %1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
@@ -439,54 +177,6 @@ msgstr "2 semanas"
 msgid "Custom"
 msgstr "Personalizar"
 
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the page to choose repetition
-#. and as the header of the list item that shows the repetition
-#. summary in the page that displays the event details
-#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
-msgid "Repeat"
-msgstr "Repetir"
-
-#: ../qml/EventRepetition.qml:177
-msgid "Repeats On:"
-msgstr "Repetir em:"
-
-#: ../qml/EventRepetition.qml:223
-msgid "Recurring event ends"
-msgstr "Evento recorrente termina"
-
-#: ../qml/EventRepetition.qml:273
-msgid "Date"
-msgstr "Data"
-
-#: ../qml/OnlineAccountsHelper.qml:39
-msgid "Pick an account to create."
-msgstr "Escolha uma conta para criar."
-
-#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
-msgid "MMM"
-msgstr "MMM"
-
-#: ../qml/AgendaView.qml:95
-msgid "You have no calendars enabled"
-msgstr "Sem calendários ativos"
-
-#: ../qml/AgendaView.qml:95
-msgid "No upcoming events"
-msgstr "Sem eventos próximos"
-
-#: ../qml/AgendaView.qml:107
-msgid "Enable calendars"
-msgstr "Ativar calendários"
-
-#: ../qml/AgendaView.qml:199
-msgid "no event name set"
-msgstr "sem nome de evento definido"
-
-#: ../qml/AgendaView.qml:201
-msgid "no location"
-msgstr "sem localização"
-
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr "Uma vez"
@@ -520,6 +210,317 @@ msgstr "Mensalmente"
 #: ../qml/RecurrenceLabelDefines.qml:32
 msgid "Yearly"
 msgstr "Anualmente"
+
+#: ../qml/NewEvent.qml:199
+msgid "End time can't be before start time"
+msgstr "Hora final não pode ser anterior à inicial"
+
+#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
+msgid "Edit Event"
+msgstr "Editar evento"
+
+#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
+msgid "New Event"
+msgstr "Novo evento"
+
+#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete"
+msgstr "Eliminar"
+
+#: ../qml/NewEvent.qml:412
+msgid "Save"
+msgstr "Guardar"
+
+#: ../qml/NewEvent.qml:423
+msgid "Error"
+msgstr "Erro"
+
+#: ../qml/NewEvent.qml:425
+msgid "OK"
+msgstr "Confirmar"
+
+#: ../qml/NewEvent.qml:487
+msgid "From"
+msgstr "De"
+
+#: ../qml/NewEvent.qml:503
+msgid "To"
+msgstr "Para"
+
+#: ../qml/NewEvent.qml:530
+msgid "All day event"
+msgstr "Evento de um dia inteiro"
+
+#: ../qml/NewEvent.qml:567
+msgid "Event Name"
+msgstr "Nome do evento"
+
+#: ../qml/NewEvent.qml:604
+msgid "Location"
+msgstr "Localização"
+
+#: ../qml/NewEvent.qml:681
+msgid "Guests"
+msgstr "Convidados"
+
+#: ../qml/NewEvent.qml:691
+msgid "Add Guest"
+msgstr "Adicionar convidado"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
+msgid "Repeats"
+msgstr "Repete"
+
+#: ../qml/DeleteConfirmationDialog.qml:31
+msgid "Delete Recurring Event"
+msgstr "Eliminar evento repetido"
+
+#: ../qml/DeleteConfirmationDialog.qml:32
+msgid "Delete Event"
+msgstr "Eliminar evento"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/DeleteConfirmationDialog.qml:36
+msgid "Delete only this event \"%1\", or all events in the series?"
+msgstr "Apagar apenas este evento \"%1\", ou todos os eventos da série?"
+
+#: ../qml/DeleteConfirmationDialog.qml:37
+msgid "Are you sure you want to delete the event \"%1\"?"
+msgstr "Quer mesmo apagar o evento \"%1\"?"
+
+#: ../qml/DeleteConfirmationDialog.qml:40
+msgid "Delete series"
+msgstr "Eliminar séries"
+
+#: ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete this"
+msgstr "Eliminar isto"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/EditEventConfirmationDialog.qml:32
+msgid "Edit only this event \"%1\", or all events in the series?"
+msgstr "Editar apenas este evento \"%1\", ou todos os eventos da série?"
+
+#: ../qml/EditEventConfirmationDialog.qml:35
+msgid "Edit series"
+msgstr "Editar série"
+
+#: ../qml/EditEventConfirmationDialog.qml:44
+msgid "Edit this"
+msgstr "Editar isto"
+
+#: ../qml/AgendaView.qml:50 ../qml/calendar.qml:361 ../qml/calendar.qml:594
+msgid "Agenda"
+msgstr "Agenda"
+
+#: ../qml/AgendaView.qml:95
+msgid "You have no calendars enabled"
+msgstr "Sem calendários ativos"
+
+#: ../qml/AgendaView.qml:95
+msgid "No upcoming events"
+msgstr "Sem eventos próximos"
+
+#: ../qml/AgendaView.qml:107
+msgid "Enable calendars"
+msgstr "Ativar calendários"
+
+#: ../qml/AgendaView.qml:199
+msgid "no event name set"
+msgstr "sem nome de evento definido"
+
+#: ../qml/AgendaView.qml:201
+msgid "no location"
+msgstr "sem localização"
+
+#. TRANSLATORS: This is shown in the month view as "Wk" as a title
+#. to indicate the week numbers. It should be a max of up to 3 characters.
+#: ../qml/MonthComponent.qml:293
+msgid "Wk"
+msgstr "Sm"
+
+#: ../qml/AllDayEventComponent.qml:89 ../qml/TimeLineBase.qml:50
+msgid "New event"
+msgstr "Novo evento"
+
+#. TRANSLATORS: Please keep the translation of this string to a max of
+#. 5 characters as the week view where it is shown has limited space.
+#: ../qml/AllDayEventComponent.qml:148
+msgid "%1 event"
+msgid_plural "%1 events"
+msgstr[0] "%1 evento"
+msgstr[1] "%1 events"
+
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../qml/AllDayEventComponent.qml:152
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
+msgstr[0] "%1 evento todo o dia"
+msgstr[1] "%1 eventos todo o dia"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../qml/DayView.qml:126 ../qml/WeekView.qml:157 ../qml/MonthView.qml:78
+msgid "MMMM yyyy"
+msgstr "MMMM yyyy"
+
+#: ../qml/WeekView.qml:138 ../qml/MonthView.qml:73
+msgid "%1 %2"
+msgstr "%1 %2"
+
+#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
+msgid "MMM"
+msgstr "MMM"
+
+#: ../qml/OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr "Escolha uma conta para criar."
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../qml/EventBubble.qml:139
+msgid "%1 - %2"
+msgstr "%1 - %2"
+
+#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
+msgid "Calendars"
+msgstr "Calendários"
+
+#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
+msgid "Back"
+msgstr "Anterior"
+
+#. TRANSLATORS: Please translate this string  to 15 characters only.
+#. Currently ,there is no way we can increase width of action menu currently.
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
+msgid "Sync"
+msgstr "Sincronizar"
+
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
+msgid "Syncing"
+msgstr "A sincronizar"
+
+#: ../qml/CalendarChoicePopup.qml:83
+msgid "Add online Calendar"
+msgstr "Adicionar calendário online"
+
+#: ../qml/CalendarChoicePopup.qml:184
+msgid "Unable to deselect"
+msgstr "Impossível desmarcar"
+
+#: ../qml/CalendarChoicePopup.qml:185
+msgid ""
+"In order to create new events you must have at least one writable calendar "
+"selected"
+msgstr ""
+"Para criar novos eventos deve, pelo menos, ter um calendário editável "
+"selecionado"
+
+#: ../qml/CalendarChoicePopup.qml:187 ../qml/RemindersPage.qml:80
+msgid "Ok"
+msgstr "Ok"
+
+#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
+msgid "Settings"
+msgstr "Definições"
+
+#: ../qml/SettingsPage.qml:70
+msgid "Show week numbers"
+msgstr "Mostrar números da semana"
+
+#: ../qml/SettingsPage.qml:88
+msgid "Show lunar calendar"
+msgstr "Mostrar calendário lunar"
+
+#: ../qml/SettingsPage.qml:136
+msgid "Default reminder"
+msgstr "Lembrete padrão"
+
+#: ../qml/SettingsPage.qml:180
+msgid "Default calendar"
+msgstr "Calendário por omissão"
+
+#: ../qml/RemindersPage.qml:62
+msgid "Custom reminder"
+msgstr "Lembrete personalizado"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
+msgid "Repeat"
+msgstr "Repetir"
+
+#: ../qml/EventRepetition.qml:177
+msgid "Repeats On:"
+msgstr "Repetir em:"
+
+#: ../qml/EventRepetition.qml:223
+msgid "Recurring event ends"
+msgstr "Evento recorrente termina"
+
+#: ../qml/EventRepetition.qml:273
+msgid "Date"
+msgstr "Data"
+
+#: ../qml/ContactChoicePopup.qml:37
+msgid "No contact"
+msgstr "Sem contacto"
+
+#: ../qml/ContactChoicePopup.qml:96
+msgid "Search contact"
+msgstr "Procurar contacto"
+
+#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
+#. E.g. "Daily; 5 times."
+#: ../qml/EventUtils.qml:75
+msgid "%1; %2 time"
+msgid_plural "%1; %2 times"
+msgstr[0] "%1; %2 vez"
+msgstr[1] "%1; %2 vezes"
+
+#. TRANSLATORS: the argument refers to recurrence until user selected date.
+#. E.g. "Daily; until 12/12/2014."
+#: ../qml/EventUtils.qml:79
+msgid "%1; until %2"
+msgstr "%1; até %2"
+
+#. TRANSLATORS: the argument refers to several different days of the week.
+#. E.g. "Weekly on Mondays, Tuesdays"
+#: ../qml/EventUtils.qml:102
+msgid "Weekly on %1"
+msgstr "Semanalmente às %1"
+
+#: ../qml/calendar.qml:72
+msgid ""
+"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
+"eventid. They will be managed by system. See the source for a full comment "
+"about them"
+msgstr ""
+"A aplicação Calendário aceita quatro argumentos: --starttime, --endtime, --"
+"newevent e eventid. Podem ser geridos pelo sistema. Veja a origem para "
+"comentário completo acerca deles."
+
+#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
+msgid "Year"
+msgstr "Ano"
+
+#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
+msgid "Month"
+msgstr "Mês"
+
+#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
+msgid "Week"
+msgstr "Semana"
+
+#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
+msgid "Day"
+msgstr "Dia"
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."

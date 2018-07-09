@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-02 10:41+0000\n"
+"POT-Creation-Date: 2018-06-09 15:20+0000\n"
 "PO-Revision-Date: 2016-03-07 19:45+0000\n"
 "Last-Translator: Owen Llywelyn <owen.llywelyn@gmail.com>\n"
 "Language-Team: Welsh <cy@li.org>\n"
@@ -20,248 +20,9 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: ../qml/RemindersPage.qml:62
-msgid "Custom reminder"
-msgstr ""
-
-#: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
-#: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
-#: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
-msgid "Cancel"
-msgstr "Diddymu"
-
-#: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
-msgid "Ok"
-msgstr ""
-
-#: ../qml/NewEvent.qml:199
-msgid "End time can't be before start time"
-msgstr "Gall amser gorffen ddim bod cyn amser cychwyn"
-
-#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
-msgid "Edit Event"
-msgstr "Golygu Digwyddiad"
-
-#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
-msgid "New Event"
-msgstr "Digwyddiad Newydd"
-
-#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
-msgid "Delete"
-msgstr "Dileu"
-
-#: ../qml/NewEvent.qml:412
-msgid "Save"
-msgstr "Cadw"
-
-#: ../qml/NewEvent.qml:423
-msgid "Error"
-msgstr "Gwall"
-
-#: ../qml/NewEvent.qml:425
-msgid "OK"
-msgstr "Iawn"
-
-#: ../qml/NewEvent.qml:487
-msgid "From"
-msgstr "O"
-
-#: ../qml/NewEvent.qml:503
-msgid "To"
-msgstr "I"
-
-#: ../qml/NewEvent.qml:530
-msgid "All day event"
-msgstr "Digwyddiad drwy'r dydd"
-
-#: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
+#: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
 msgid "Event Details"
 msgstr "Manylion y Digwyddiad"
-
-#: ../qml/NewEvent.qml:567
-msgid "Event Name"
-msgstr "Enw'r Digwyddiad"
-
-#: ../qml/NewEvent.qml:585 ../qml/EventDetails.qml:437
-msgid "Description"
-msgstr "Disgrifiad"
-
-#: ../qml/NewEvent.qml:604
-msgid "Location"
-msgstr "Lleoliad"
-
-#: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
-#: com.ubuntu.calendar_calendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "Calendr"
-
-#: ../qml/NewEvent.qml:681
-msgid "Guests"
-msgstr "Gwestai"
-
-#: ../qml/NewEvent.qml:691
-msgid "Add Guest"
-msgstr "Ychwanegu Gwestai"
-
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the option selector to choose
-#. its repetition
-#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
-msgid "Repeats"
-msgstr "Ailadrodd"
-
-#: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
-msgid "Reminder"
-msgstr "Atgoffa"
-
-#: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
-#: ../qml/DayView.qml:76
-msgid "Today"
-msgstr "Heddiw"
-
-#: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
-msgid "%1 %2"
-msgstr "%1 %2"
-
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-#. It's used in the header of the month and week views
-#: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
-msgid "MMMM yyyy"
-msgstr "MMMM yyyy"
-
-#: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
-msgid "New event"
-msgstr "Digwyddiad newydd"
-
-#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
-msgid "Calendars"
-msgstr "Calendrau"
-
-#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
-msgid "Back"
-msgstr "Nôl"
-
-#. TRANSLATORS: Please translate this string  to 15 characters only.
-#. Currently ,there is no way we can increase width of action menu currently.
-#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
-msgid "Sync"
-msgstr "Cydweddu"
-
-#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
-msgid "Syncing"
-msgstr "Yn cydweddu"
-
-#: ../qml/CalendarChoicePopup.qml:83
-msgid "Add online Calendar"
-msgstr "Ychwanegu calendr ar-lein"
-
-#: ../qml/CalendarChoicePopup.qml:184
-msgid "Unable to deselect"
-msgstr ""
-
-#: ../qml/CalendarChoicePopup.qml:185
-msgid ""
-"In order to create new events you must have at least one writable calendar "
-"selected"
-msgstr ""
-
-#: ../qml/LimitLabelModel.qml:25
-msgid "Never"
-msgstr "Byth"
-
-#: ../qml/LimitLabelModel.qml:26
-msgid "After X Occurrence"
-msgstr "Wedi X Achlysur"
-
-#: ../qml/LimitLabelModel.qml:27
-msgid "After Date"
-msgstr "Wedi'r dyddiad"
-
-#: ../qml/calendar.qml:72
-msgid ""
-"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
-"eventid. They will be managed by system. See the source for a full comment "
-"about them"
-msgstr ""
-"Mae'r ap Calendr yn derbyn pedwar arg: --starttime, --endtime, --newevent ac "
-"--eventid. Caiff rhain eu rheoli gan y system. Gweler y ffynhonnell am "
-"fanylion pellach am y rhain"
-
-#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
-msgid "Year"
-msgstr "Blwyddyn"
-
-#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
-msgid "Month"
-msgstr "Mis"
-
-#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
-msgid "Week"
-msgstr "Wythnos"
-
-#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
-msgid "Day"
-msgstr "Diwrnod"
-
-#: ../qml/calendar.qml:361 ../qml/calendar.qml:594 ../qml/AgendaView.qml:50
-msgid "Agenda"
-msgstr "Agenda"
-
-#: ../qml/YearView.qml:79
-msgid "Year %1"
-msgstr "Blwyddyn %1"
-
-#: ../qml/ColorPickerDialog.qml:25
-msgid "Select Color"
-msgstr "Dewis Lliw"
-
-#. TRANSLATORS: This is shown in the month view as "Wk" as a title
-#. to indicate the week numbers. It should be a max of up to 3 characters.
-#: ../qml/MonthComponent.qml:293
-msgid "Wk"
-msgstr "Wth"
-
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../qml/EditEventConfirmationDialog.qml:32
-msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "Golygu \"%1\" yn unig, neu pob digwyddiad yn y gyfres?"
-
-#: ../qml/EditEventConfirmationDialog.qml:35
-msgid "Edit series"
-msgstr "Golygu cyfres"
-
-#: ../qml/EditEventConfirmationDialog.qml:44
-msgid "Edit this"
-msgstr "Golygu hwn"
-
-#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
-msgid "Settings"
-msgstr "Gosodiadau"
-
-#: ../qml/SettingsPage.qml:70
-msgid "Show week numbers"
-msgstr "Dangos rhifau wythnosau"
-
-#: ../qml/SettingsPage.qml:84
-msgid "Show lunar calendar"
-msgstr "Dangos calendr y lleuad"
-
-#: ../qml/SettingsPage.qml:128
-msgid "Default reminder"
-msgstr ""
-
-#: ../qml/SettingsPage.qml:172
-msgid "Default calendar"
-msgstr ""
-
-#: ../qml/ContactChoicePopup.qml:37
-msgid "No contact"
-msgstr "Dim cyswllt"
-
-#: ../qml/ContactChoicePopup.qml:96
-msgid "Search contact"
-msgstr "Chwilio am gyswllt"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
@@ -270,6 +31,11 @@ msgstr "Golygu"
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "Drwy'r Dydd"
+
+#: ../qml/EventDetails.qml:348 ../qml/NewEvent.qml:619
+#: com.ubuntu.calendar_calendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Calendr"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
@@ -287,80 +53,50 @@ msgstr ""
 msgid "No Reply"
 msgstr ""
 
-#: ../qml/DeleteConfirmationDialog.qml:31
-msgid "Delete Recurring Event"
-msgstr "Dileu digwyddiad sy'n ailadrodd"
+#: ../qml/EventDetails.qml:437 ../qml/NewEvent.qml:585
+msgid "Description"
+msgstr "Disgrifiad"
 
-#: ../qml/DeleteConfirmationDialog.qml:32
-msgid "Delete Event"
-msgstr "Dileu digwyddiad"
+#: ../qml/EventDetails.qml:464 ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814
+msgid "Reminder"
+msgstr "Atgoffa"
 
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../qml/DeleteConfirmationDialog.qml:36
-msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr "Dileu digwyddiad \"%1\", neu bob digwyddiad yn y gyfres?"
+#: ../qml/YearView.qml:57 ../qml/DayView.qml:76 ../qml/WeekView.qml:60
+#: ../qml/MonthView.qml:50
+msgid "Today"
+msgstr "Heddiw"
 
-#: ../qml/DeleteConfirmationDialog.qml:37
-msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "Ydych chi'n siwr eich bod am ddileu digwyddiad \"%1\"?"
+#: ../qml/YearView.qml:79
+msgid "Year %1"
+msgstr "Blwyddyn %1"
 
-#: ../qml/DeleteConfirmationDialog.qml:40
-msgid "Delete series"
-msgstr "Dileu cyfres"
+#: ../qml/LimitLabelModel.qml:25
+msgid "Never"
+msgstr "Byth"
 
-#: ../qml/DeleteConfirmationDialog.qml:51
-msgid "Delete this"
-msgstr "Dileu hwn"
+#: ../qml/LimitLabelModel.qml:26
+msgid "After X Occurrence"
+msgstr "Wedi X Achlysur"
+
+#: ../qml/LimitLabelModel.qml:27
+msgid "After Date"
+msgstr "Wedi'r dyddiad"
+
+#: ../qml/ColorPickerDialog.qml:25
+msgid "Select Color"
+msgstr "Dewis Lliw"
+
+#: ../qml/ColorPickerDialog.qml:55 ../qml/NewEvent.qml:387
+#: ../qml/DeleteConfirmationDialog.qml:60
+#: ../qml/EditEventConfirmationDialog.qml:53 ../qml/OnlineAccountsHelper.qml:73
+#: ../qml/RemindersPage.qml:72
+msgid "Cancel"
+msgstr "Diddymu"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
 msgid "W%1"
 msgstr "W%1"
-
-#. TRANSLATORS: Please keep the translation of this string to a max of
-#. 5 characters as the week view where it is shown has limited space.
-#: ../qml/AllDayEventComponent.qml:148
-msgid "%1 event"
-msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
-
-#. TRANSLATORS: the argument refers to the number of all day events
-#: ../qml/AllDayEventComponent.qml:152
-msgid "%1 all day event"
-msgid_plural "%1 all day events"
-msgstr[0] "%1 digwyddiad drwy'r dydd"
-msgstr[1] "%1 digwyddiad drwy'r dydd"
-msgstr[2] "%1 digwyddiad drwy'r dydd"
-msgstr[3] "%1digwyddiad drwy'r dydd"
-
-#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
-#. while the second one (%2) refers to the end time
-#: ../qml/EventBubble.qml:138
-msgid "%1 - %2"
-msgstr "%1 - %2"
-
-#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
-#. E.g. "Daily; 5 times."
-#: ../qml/EventUtils.qml:75
-msgid "%1; %2 time"
-msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 gwaith"
-msgstr[1] "%1; %2 gwaith"
-msgstr[2] "%1; %2 gwaith"
-msgstr[3] "%1; %2 gwaith"
-
-#. TRANSLATORS: the argument refers to recurrence until user selected date.
-#. E.g. "Daily; until 12/12/2014."
-#: ../qml/EventUtils.qml:79
-msgid "%1; until %2"
-msgstr "%1; tan %2"
-
-#. TRANSLATORS: the argument refers to several different days of the week.
-#. E.g. "Weekly on Mondays, Tuesdays"
-#: ../qml/EventUtils.qml:102
-msgid "Weekly on %1"
-msgstr "Yn wythnosol ar %1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
@@ -441,54 +177,6 @@ msgstr "2 wythnos"
 msgid "Custom"
 msgstr ""
 
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the page to choose repetition
-#. and as the header of the list item that shows the repetition
-#. summary in the page that displays the event details
-#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
-msgid "Repeat"
-msgstr "Ailadrodd"
-
-#: ../qml/EventRepetition.qml:177
-msgid "Repeats On:"
-msgstr "Ailadrodd ar:"
-
-#: ../qml/EventRepetition.qml:223
-msgid "Recurring event ends"
-msgstr "Digwyddiad sy'n ailadrodd yn gorffen"
-
-#: ../qml/EventRepetition.qml:273
-msgid "Date"
-msgstr "Dyddiad"
-
-#: ../qml/OnlineAccountsHelper.qml:39
-msgid "Pick an account to create."
-msgstr ""
-
-#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
-msgid "MMM"
-msgstr "MMM"
-
-#: ../qml/AgendaView.qml:95
-msgid "You have no calendars enabled"
-msgstr "Dim calendrau wedi'u galluogi"
-
-#: ../qml/AgendaView.qml:95
-msgid "No upcoming events"
-msgstr "Dim digwyddiadau i ddod"
-
-#: ../qml/AgendaView.qml:107
-msgid "Enable calendars"
-msgstr "Galluogi calendrau"
-
-#: ../qml/AgendaView.qml:199
-msgid "no event name set"
-msgstr "heb roi enw i'r digwyddiad"
-
-#: ../qml/AgendaView.qml:201
-msgid "no location"
-msgstr "dim lleoliad"
-
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr "Unwaith"
@@ -522,6 +210,319 @@ msgstr "Misol"
 #: ../qml/RecurrenceLabelDefines.qml:32
 msgid "Yearly"
 msgstr "Blynyddol"
+
+#: ../qml/NewEvent.qml:199
+msgid "End time can't be before start time"
+msgstr "Gall amser gorffen ddim bod cyn amser cychwyn"
+
+#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
+msgid "Edit Event"
+msgstr "Golygu Digwyddiad"
+
+#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
+msgid "New Event"
+msgstr "Digwyddiad Newydd"
+
+#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete"
+msgstr "Dileu"
+
+#: ../qml/NewEvent.qml:412
+msgid "Save"
+msgstr "Cadw"
+
+#: ../qml/NewEvent.qml:423
+msgid "Error"
+msgstr "Gwall"
+
+#: ../qml/NewEvent.qml:425
+msgid "OK"
+msgstr "Iawn"
+
+#: ../qml/NewEvent.qml:487
+msgid "From"
+msgstr "O"
+
+#: ../qml/NewEvent.qml:503
+msgid "To"
+msgstr "I"
+
+#: ../qml/NewEvent.qml:530
+msgid "All day event"
+msgstr "Digwyddiad drwy'r dydd"
+
+#: ../qml/NewEvent.qml:567
+msgid "Event Name"
+msgstr "Enw'r Digwyddiad"
+
+#: ../qml/NewEvent.qml:604
+msgid "Location"
+msgstr "Lleoliad"
+
+#: ../qml/NewEvent.qml:681
+msgid "Guests"
+msgstr "Gwestai"
+
+#: ../qml/NewEvent.qml:691
+msgid "Add Guest"
+msgstr "Ychwanegu Gwestai"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
+msgid "Repeats"
+msgstr "Ailadrodd"
+
+#: ../qml/DeleteConfirmationDialog.qml:31
+msgid "Delete Recurring Event"
+msgstr "Dileu digwyddiad sy'n ailadrodd"
+
+#: ../qml/DeleteConfirmationDialog.qml:32
+msgid "Delete Event"
+msgstr "Dileu digwyddiad"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/DeleteConfirmationDialog.qml:36
+msgid "Delete only this event \"%1\", or all events in the series?"
+msgstr "Dileu digwyddiad \"%1\", neu bob digwyddiad yn y gyfres?"
+
+#: ../qml/DeleteConfirmationDialog.qml:37
+msgid "Are you sure you want to delete the event \"%1\"?"
+msgstr "Ydych chi'n siwr eich bod am ddileu digwyddiad \"%1\"?"
+
+#: ../qml/DeleteConfirmationDialog.qml:40
+msgid "Delete series"
+msgstr "Dileu cyfres"
+
+#: ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete this"
+msgstr "Dileu hwn"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/EditEventConfirmationDialog.qml:32
+msgid "Edit only this event \"%1\", or all events in the series?"
+msgstr "Golygu \"%1\" yn unig, neu pob digwyddiad yn y gyfres?"
+
+#: ../qml/EditEventConfirmationDialog.qml:35
+msgid "Edit series"
+msgstr "Golygu cyfres"
+
+#: ../qml/EditEventConfirmationDialog.qml:44
+msgid "Edit this"
+msgstr "Golygu hwn"
+
+#: ../qml/AgendaView.qml:50 ../qml/calendar.qml:361 ../qml/calendar.qml:594
+msgid "Agenda"
+msgstr "Agenda"
+
+#: ../qml/AgendaView.qml:95
+msgid "You have no calendars enabled"
+msgstr "Dim calendrau wedi'u galluogi"
+
+#: ../qml/AgendaView.qml:95
+msgid "No upcoming events"
+msgstr "Dim digwyddiadau i ddod"
+
+#: ../qml/AgendaView.qml:107
+msgid "Enable calendars"
+msgstr "Galluogi calendrau"
+
+#: ../qml/AgendaView.qml:199
+msgid "no event name set"
+msgstr "heb roi enw i'r digwyddiad"
+
+#: ../qml/AgendaView.qml:201
+msgid "no location"
+msgstr "dim lleoliad"
+
+#. TRANSLATORS: This is shown in the month view as "Wk" as a title
+#. to indicate the week numbers. It should be a max of up to 3 characters.
+#: ../qml/MonthComponent.qml:293
+msgid "Wk"
+msgstr "Wth"
+
+#: ../qml/AllDayEventComponent.qml:89 ../qml/TimeLineBase.qml:50
+msgid "New event"
+msgstr "Digwyddiad newydd"
+
+#. TRANSLATORS: Please keep the translation of this string to a max of
+#. 5 characters as the week view where it is shown has limited space.
+#: ../qml/AllDayEventComponent.qml:148
+msgid "%1 event"
+msgid_plural "%1 events"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../qml/AllDayEventComponent.qml:152
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
+msgstr[0] "%1 digwyddiad drwy'r dydd"
+msgstr[1] "%1 digwyddiad drwy'r dydd"
+msgstr[2] "%1 digwyddiad drwy'r dydd"
+msgstr[3] "%1digwyddiad drwy'r dydd"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../qml/DayView.qml:126 ../qml/WeekView.qml:157 ../qml/MonthView.qml:78
+msgid "MMMM yyyy"
+msgstr "MMMM yyyy"
+
+#: ../qml/WeekView.qml:138 ../qml/MonthView.qml:73
+msgid "%1 %2"
+msgstr "%1 %2"
+
+#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
+msgid "MMM"
+msgstr "MMM"
+
+#: ../qml/OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr ""
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../qml/EventBubble.qml:139
+msgid "%1 - %2"
+msgstr "%1 - %2"
+
+#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
+msgid "Calendars"
+msgstr "Calendrau"
+
+#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
+msgid "Back"
+msgstr "Nôl"
+
+#. TRANSLATORS: Please translate this string  to 15 characters only.
+#. Currently ,there is no way we can increase width of action menu currently.
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
+msgid "Sync"
+msgstr "Cydweddu"
+
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
+msgid "Syncing"
+msgstr "Yn cydweddu"
+
+#: ../qml/CalendarChoicePopup.qml:83
+msgid "Add online Calendar"
+msgstr "Ychwanegu calendr ar-lein"
+
+#: ../qml/CalendarChoicePopup.qml:184
+msgid "Unable to deselect"
+msgstr ""
+
+#: ../qml/CalendarChoicePopup.qml:185
+msgid ""
+"In order to create new events you must have at least one writable calendar "
+"selected"
+msgstr ""
+
+#: ../qml/CalendarChoicePopup.qml:187 ../qml/RemindersPage.qml:80
+msgid "Ok"
+msgstr ""
+
+#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
+msgid "Settings"
+msgstr "Gosodiadau"
+
+#: ../qml/SettingsPage.qml:70
+msgid "Show week numbers"
+msgstr "Dangos rhifau wythnosau"
+
+#: ../qml/SettingsPage.qml:88
+msgid "Show lunar calendar"
+msgstr "Dangos calendr y lleuad"
+
+#: ../qml/SettingsPage.qml:136
+msgid "Default reminder"
+msgstr ""
+
+#: ../qml/SettingsPage.qml:180
+msgid "Default calendar"
+msgstr ""
+
+#: ../qml/RemindersPage.qml:62
+msgid "Custom reminder"
+msgstr ""
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
+msgid "Repeat"
+msgstr "Ailadrodd"
+
+#: ../qml/EventRepetition.qml:177
+msgid "Repeats On:"
+msgstr "Ailadrodd ar:"
+
+#: ../qml/EventRepetition.qml:223
+msgid "Recurring event ends"
+msgstr "Digwyddiad sy'n ailadrodd yn gorffen"
+
+#: ../qml/EventRepetition.qml:273
+msgid "Date"
+msgstr "Dyddiad"
+
+#: ../qml/ContactChoicePopup.qml:37
+msgid "No contact"
+msgstr "Dim cyswllt"
+
+#: ../qml/ContactChoicePopup.qml:96
+msgid "Search contact"
+msgstr "Chwilio am gyswllt"
+
+#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
+#. E.g. "Daily; 5 times."
+#: ../qml/EventUtils.qml:75
+msgid "%1; %2 time"
+msgid_plural "%1; %2 times"
+msgstr[0] "%1; %2 gwaith"
+msgstr[1] "%1; %2 gwaith"
+msgstr[2] "%1; %2 gwaith"
+msgstr[3] "%1; %2 gwaith"
+
+#. TRANSLATORS: the argument refers to recurrence until user selected date.
+#. E.g. "Daily; until 12/12/2014."
+#: ../qml/EventUtils.qml:79
+msgid "%1; until %2"
+msgstr "%1; tan %2"
+
+#. TRANSLATORS: the argument refers to several different days of the week.
+#. E.g. "Weekly on Mondays, Tuesdays"
+#: ../qml/EventUtils.qml:102
+msgid "Weekly on %1"
+msgstr "Yn wythnosol ar %1"
+
+#: ../qml/calendar.qml:72
+msgid ""
+"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
+"eventid. They will be managed by system. See the source for a full comment "
+"about them"
+msgstr ""
+"Mae'r ap Calendr yn derbyn pedwar arg: --starttime, --endtime, --newevent ac "
+"--eventid. Caiff rhain eu rheoli gan y system. Gweler y ffynhonnell am "
+"fanylion pellach am y rhain"
+
+#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
+msgid "Year"
+msgstr "Blwyddyn"
+
+#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
+msgid "Month"
+msgstr "Mis"
+
+#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
+msgid "Week"
+msgstr "Wythnos"
+
+#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
+msgid "Day"
+msgstr "Diwrnod"
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
