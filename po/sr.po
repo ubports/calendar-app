@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-02 10:41+0000\n"
+"POT-Creation-Date: 2018-06-09 15:20+0000\n"
 "PO-Revision-Date: 2016-08-22 20:21+0000\n"
 "Last-Translator: Bojan Bogdanović <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -20,250 +20,9 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: ../qml/RemindersPage.qml:62
-msgid "Custom reminder"
-msgstr "Прилагођени подсетник"
-
-#: ../qml/RemindersPage.qml:72 ../qml/NewEvent.qml:387
-#: ../qml/ColorPickerDialog.qml:55 ../qml/EditEventConfirmationDialog.qml:53
-#: ../qml/DeleteConfirmationDialog.qml:60 ../qml/OnlineAccountsHelper.qml:73
-msgid "Cancel"
-msgstr "Откажи"
-
-#: ../qml/RemindersPage.qml:80 ../qml/CalendarChoicePopup.qml:187
-msgid "Ok"
-msgstr "У реду"
-
-#: ../qml/NewEvent.qml:199
-msgid "End time can't be before start time"
-msgstr "Време завршетка не може да буде пре почетка"
-
-#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
-msgid "Edit Event"
-msgstr "Уреди догађај"
-
-#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
-msgid "New Event"
-msgstr "Нови догађај"
-
-#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
-msgid "Delete"
-msgstr "Обриши"
-
-#: ../qml/NewEvent.qml:412
-msgid "Save"
-msgstr "Сачувај"
-
-#: ../qml/NewEvent.qml:423
-msgid "Error"
-msgstr "Грешка"
-
-#: ../qml/NewEvent.qml:425
-msgid "OK"
-msgstr "У реду"
-
-#: ../qml/NewEvent.qml:487
-msgid "From"
-msgstr "Од"
-
-#: ../qml/NewEvent.qml:503
-msgid "To"
-msgstr "До"
-
-#: ../qml/NewEvent.qml:530
-msgid "All day event"
-msgstr "Целодневни догађај"
-
-#: ../qml/NewEvent.qml:553 ../qml/EventDetails.qml:37
+#: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
 msgid "Event Details"
 msgstr "Детаљи догађаја"
-
-#: ../qml/NewEvent.qml:567
-msgid "Event Name"
-msgstr "Назив догађаја"
-
-#: ../qml/NewEvent.qml:585 ../qml/EventDetails.qml:437
-msgid "Description"
-msgstr "Опис"
-
-#: ../qml/NewEvent.qml:604
-msgid "Location"
-msgstr "Место"
-
-#: ../qml/NewEvent.qml:619 ../qml/EventDetails.qml:348
-#: com.ubuntu.calendar_calendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "Календар"
-
-#: ../qml/NewEvent.qml:681
-msgid "Guests"
-msgstr "Гости"
-
-#: ../qml/NewEvent.qml:691
-msgid "Add Guest"
-msgstr "Додај госта"
-
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the option selector to choose
-#. its repetition
-#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
-msgid "Repeats"
-msgstr "Понавља се"
-
-#: ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814 ../qml/EventDetails.qml:464
-msgid "Reminder"
-msgstr "Подсетник"
-
-#: ../qml/MonthView.qml:50 ../qml/YearView.qml:57 ../qml/WeekView.qml:60
-#: ../qml/DayView.qml:76
-msgid "Today"
-msgstr "Данас"
-
-#: ../qml/MonthView.qml:73 ../qml/WeekView.qml:138
-msgid "%1 %2"
-msgstr "%1 %2"
-
-#. TRANSLATORS: this is a time formatting string,
-#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
-#. It's used in the header of the month and week views
-#: ../qml/MonthView.qml:78 ../qml/WeekView.qml:157 ../qml/DayView.qml:126
-msgid "MMMM yyyy"
-msgstr "MMMM yyyy"
-
-#: ../qml/TimeLineBase.qml:50 ../qml/AllDayEventComponent.qml:89
-msgid "New event"
-msgstr "Нови догађај"
-
-#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
-msgid "Calendars"
-msgstr "Календари"
-
-#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
-msgid "Back"
-msgstr "Назад"
-
-#. TRANSLATORS: Please translate this string  to 15 characters only.
-#. Currently ,there is no way we can increase width of action menu currently.
-#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
-msgid "Sync"
-msgstr "Синхронизуј"
-
-#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
-msgid "Syncing"
-msgstr "Синхронизовање"
-
-#: ../qml/CalendarChoicePopup.qml:83
-msgid "Add online Calendar"
-msgstr "Додај мрежни календар"
-
-#: ../qml/CalendarChoicePopup.qml:184
-msgid "Unable to deselect"
-msgstr "Не могу да дештиклирам"
-
-#: ../qml/CalendarChoicePopup.qml:185
-msgid ""
-"In order to create new events you must have at least one writable calendar "
-"selected"
-msgstr ""
-"Како би могли да креирате нове догађаје, морате имати одабран барем један "
-"уписиви календар"
-
-#: ../qml/LimitLabelModel.qml:25
-msgid "Never"
-msgstr "Никада"
-
-#: ../qml/LimitLabelModel.qml:26
-msgid "After X Occurrence"
-msgstr "Након Х пута"
-
-#: ../qml/LimitLabelModel.qml:27
-msgid "After Date"
-msgstr "Након датума"
-
-#: ../qml/calendar.qml:72
-msgid ""
-"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
-"eventid. They will be managed by system. See the source for a full comment "
-"about them"
-msgstr ""
-"Програм за календар прима следећа четири аргумента: --starttime, --endtime, "
-"--newevent and --eventid. Њима ће управљати систем. Погледајте изворни код "
-"за њихов пун опис."
-
-#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
-msgid "Year"
-msgstr "Година"
-
-#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
-msgid "Month"
-msgstr "Месец"
-
-#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
-msgid "Week"
-msgstr "Недеља"
-
-#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
-msgid "Day"
-msgstr "Дан"
-
-#: ../qml/calendar.qml:361 ../qml/calendar.qml:594 ../qml/AgendaView.qml:50
-msgid "Agenda"
-msgstr "Дневни ред"
-
-#: ../qml/YearView.qml:79
-msgid "Year %1"
-msgstr "Година %1"
-
-#: ../qml/ColorPickerDialog.qml:25
-msgid "Select Color"
-msgstr "Изаберите боју"
-
-#. TRANSLATORS: This is shown in the month view as "Wk" as a title
-#. to indicate the week numbers. It should be a max of up to 3 characters.
-#: ../qml/MonthComponent.qml:293
-msgid "Wk"
-msgstr "Нд"
-
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../qml/EditEventConfirmationDialog.qml:32
-msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr "Изменити само догађај %1, или све догађаје у низу?"
-
-#: ../qml/EditEventConfirmationDialog.qml:35
-msgid "Edit series"
-msgstr "Уреди низ"
-
-#: ../qml/EditEventConfirmationDialog.qml:44
-msgid "Edit this"
-msgstr "Уреди ово"
-
-#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
-msgid "Settings"
-msgstr "Подешавања"
-
-#: ../qml/SettingsPage.qml:70
-msgid "Show week numbers"
-msgstr "Прикажи бројеве недеља"
-
-#: ../qml/SettingsPage.qml:84
-msgid "Show lunar calendar"
-msgstr "Прикажи лунарни календар"
-
-#: ../qml/SettingsPage.qml:128
-msgid "Default reminder"
-msgstr "Подразумевани подсетник"
-
-#: ../qml/SettingsPage.qml:172
-msgid "Default calendar"
-msgstr "Подразумевани календар"
-
-#: ../qml/ContactChoicePopup.qml:37
-msgid "No contact"
-msgstr "Нема контакта"
-
-#: ../qml/ContactChoicePopup.qml:96
-msgid "Search contact"
-msgstr "Тражи контакт"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
@@ -272,6 +31,11 @@ msgstr "Уреди"
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
 msgstr "Цео дан"
+
+#: ../qml/EventDetails.qml:348 ../qml/NewEvent.qml:619
+#: com.ubuntu.calendar_calendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Календар"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
@@ -289,79 +53,50 @@ msgstr "Можда"
 msgid "No Reply"
 msgstr "Нема одговора"
 
-#: ../qml/DeleteConfirmationDialog.qml:31
-msgid "Delete Recurring Event"
-msgstr "Обриши догађај који се понавља"
+#: ../qml/EventDetails.qml:437 ../qml/NewEvent.qml:585
+msgid "Description"
+msgstr "Опис"
 
-#: ../qml/DeleteConfirmationDialog.qml:32
-msgid "Delete Event"
-msgstr "Обриши догађај"
+#: ../qml/EventDetails.qml:464 ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814
+msgid "Reminder"
+msgstr "Подсетник"
 
-#. TRANSLATORS: argument (%1) refers to an event name.
-#: ../qml/DeleteConfirmationDialog.qml:36
-msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr "Обрисати само догађај %1, или све догађаје у низу?"
+#: ../qml/YearView.qml:57 ../qml/DayView.qml:76 ../qml/WeekView.qml:60
+#: ../qml/MonthView.qml:50
+msgid "Today"
+msgstr "Данас"
 
-#: ../qml/DeleteConfirmationDialog.qml:37
-msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr "Да ли сте сигурни да желите да обришете догађај %1?"
+#: ../qml/YearView.qml:79
+msgid "Year %1"
+msgstr "Година %1"
 
-#: ../qml/DeleteConfirmationDialog.qml:40
-msgid "Delete series"
-msgstr "Обриши низ"
+#: ../qml/LimitLabelModel.qml:25
+msgid "Never"
+msgstr "Никада"
 
-#: ../qml/DeleteConfirmationDialog.qml:51
-msgid "Delete this"
-msgstr "Обриши ово"
+#: ../qml/LimitLabelModel.qml:26
+msgid "After X Occurrence"
+msgstr "Након Х пута"
+
+#: ../qml/LimitLabelModel.qml:27
+msgid "After Date"
+msgstr "Након датума"
+
+#: ../qml/ColorPickerDialog.qml:25
+msgid "Select Color"
+msgstr "Изаберите боју"
+
+#: ../qml/ColorPickerDialog.qml:55 ../qml/NewEvent.qml:387
+#: ../qml/DeleteConfirmationDialog.qml:60
+#: ../qml/EditEventConfirmationDialog.qml:53 ../qml/OnlineAccountsHelper.qml:73
+#: ../qml/RemindersPage.qml:72
+msgid "Cancel"
+msgstr "Откажи"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
 msgid "W%1"
 msgstr "Н%1"
-
-#. TRANSLATORS: Please keep the translation of this string to a max of
-#. 5 characters as the week view where it is shown has limited space.
-#: ../qml/AllDayEventComponent.qml:148
-msgid "%1 event"
-msgid_plural "%1 events"
-msgstr[0] "%1 догађај"
-msgstr[1] "%1 догађаја"
-msgstr[2] "%1 догађаја"
-
-#. TRANSLATORS: the argument refers to the number of all day events
-#: ../qml/AllDayEventComponent.qml:152
-msgid "%1 all day event"
-msgid_plural "%1 all day events"
-msgstr[0] "%1 целодневни догађај"
-msgstr[1] "%1 целодневна догађаја"
-msgstr[2] "%1 целодневних догађаја"
-
-#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
-#. while the second one (%2) refers to the end time
-#: ../qml/EventBubble.qml:138
-msgid "%1 - %2"
-msgstr "од %1 до %2"
-
-#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
-#. E.g. "Daily; 5 times."
-#: ../qml/EventUtils.qml:75
-msgid "%1; %2 time"
-msgid_plural "%1; %2 times"
-msgstr[0] "%1; %2 пут"
-msgstr[1] "%1; %2 пута"
-msgstr[2] "%1; %2 пута"
-
-#. TRANSLATORS: the argument refers to recurrence until user selected date.
-#. E.g. "Daily; until 12/12/2014."
-#: ../qml/EventUtils.qml:79
-msgid "%1; until %2"
-msgstr "%1; до %2"
-
-#. TRANSLATORS: the argument refers to several different days of the week.
-#. E.g. "Weekly on Mondays, Tuesdays"
-#: ../qml/EventUtils.qml:102
-msgid "Weekly on %1"
-msgstr "Недељно у %1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
@@ -446,54 +181,6 @@ msgstr "2 недеље"
 msgid "Custom"
 msgstr "Прилагођено"
 
-#. TRANSLATORS: this refers to how often a recurrent event repeats
-#. and it is shown as the header of the page to choose repetition
-#. and as the header of the list item that shows the repetition
-#. summary in the page that displays the event details
-#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
-msgid "Repeat"
-msgstr "Понови"
-
-#: ../qml/EventRepetition.qml:177
-msgid "Repeats On:"
-msgstr "Понавља се:"
-
-#: ../qml/EventRepetition.qml:223
-msgid "Recurring event ends"
-msgstr "Понављање догађаја престаје"
-
-#: ../qml/EventRepetition.qml:273
-msgid "Date"
-msgstr "Датум"
-
-#: ../qml/OnlineAccountsHelper.qml:39
-msgid "Pick an account to create."
-msgstr "Одаберите налог да га креирате."
-
-#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
-msgid "MMM"
-msgstr "MMM"
-
-#: ../qml/AgendaView.qml:95
-msgid "You have no calendars enabled"
-msgstr "Немате укључених календара"
-
-#: ../qml/AgendaView.qml:95
-msgid "No upcoming events"
-msgstr "Нема предстојећих догађаја"
-
-#: ../qml/AgendaView.qml:107
-msgid "Enable calendars"
-msgstr "Укључи календаре"
-
-#: ../qml/AgendaView.qml:199
-msgid "no event name set"
-msgstr "нема подешеног имена догађаја"
-
-#: ../qml/AgendaView.qml:201
-msgid "no location"
-msgstr "нема локације"
-
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
 msgstr "Једном"
@@ -527,6 +214,320 @@ msgstr "Месечно"
 #: ../qml/RecurrenceLabelDefines.qml:32
 msgid "Yearly"
 msgstr "Годишње"
+
+#: ../qml/NewEvent.qml:199
+msgid "End time can't be before start time"
+msgstr "Време завршетка не може да буде пре почетка"
+
+#: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
+msgid "Edit Event"
+msgstr "Уреди догађај"
+
+#: ../qml/NewEvent.qml:382 ../qml/NewEventBottomEdge.qml:54
+msgid "New Event"
+msgstr "Нови догађај"
+
+#: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete"
+msgstr "Обриши"
+
+#: ../qml/NewEvent.qml:412
+msgid "Save"
+msgstr "Сачувај"
+
+#: ../qml/NewEvent.qml:423
+msgid "Error"
+msgstr "Грешка"
+
+#: ../qml/NewEvent.qml:425
+msgid "OK"
+msgstr "У реду"
+
+#: ../qml/NewEvent.qml:487
+msgid "From"
+msgstr "Од"
+
+#: ../qml/NewEvent.qml:503
+msgid "To"
+msgstr "До"
+
+#: ../qml/NewEvent.qml:530
+msgid "All day event"
+msgstr "Целодневни догађај"
+
+#: ../qml/NewEvent.qml:567
+msgid "Event Name"
+msgstr "Назив догађаја"
+
+#: ../qml/NewEvent.qml:604
+msgid "Location"
+msgstr "Место"
+
+#: ../qml/NewEvent.qml:681
+msgid "Guests"
+msgstr "Гости"
+
+#: ../qml/NewEvent.qml:691
+msgid "Add Guest"
+msgstr "Додај госта"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the option selector to choose
+#. its repetition
+#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
+msgid "Repeats"
+msgstr "Понавља се"
+
+#: ../qml/DeleteConfirmationDialog.qml:31
+msgid "Delete Recurring Event"
+msgstr "Обриши догађај који се понавља"
+
+#: ../qml/DeleteConfirmationDialog.qml:32
+msgid "Delete Event"
+msgstr "Обриши догађај"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/DeleteConfirmationDialog.qml:36
+msgid "Delete only this event \"%1\", or all events in the series?"
+msgstr "Обрисати само догађај %1, или све догађаје у низу?"
+
+#: ../qml/DeleteConfirmationDialog.qml:37
+msgid "Are you sure you want to delete the event \"%1\"?"
+msgstr "Да ли сте сигурни да желите да обришете догађај %1?"
+
+#: ../qml/DeleteConfirmationDialog.qml:40
+msgid "Delete series"
+msgstr "Обриши низ"
+
+#: ../qml/DeleteConfirmationDialog.qml:51
+msgid "Delete this"
+msgstr "Обриши ово"
+
+#. TRANSLATORS: argument (%1) refers to an event name.
+#: ../qml/EditEventConfirmationDialog.qml:32
+msgid "Edit only this event \"%1\", or all events in the series?"
+msgstr "Изменити само догађај %1, или све догађаје у низу?"
+
+#: ../qml/EditEventConfirmationDialog.qml:35
+msgid "Edit series"
+msgstr "Уреди низ"
+
+#: ../qml/EditEventConfirmationDialog.qml:44
+msgid "Edit this"
+msgstr "Уреди ово"
+
+#: ../qml/AgendaView.qml:50 ../qml/calendar.qml:361 ../qml/calendar.qml:594
+msgid "Agenda"
+msgstr "Дневни ред"
+
+#: ../qml/AgendaView.qml:95
+msgid "You have no calendars enabled"
+msgstr "Немате укључених календара"
+
+#: ../qml/AgendaView.qml:95
+msgid "No upcoming events"
+msgstr "Нема предстојећих догађаја"
+
+#: ../qml/AgendaView.qml:107
+msgid "Enable calendars"
+msgstr "Укључи календаре"
+
+#: ../qml/AgendaView.qml:199
+msgid "no event name set"
+msgstr "нема подешеног имена догађаја"
+
+#: ../qml/AgendaView.qml:201
+msgid "no location"
+msgstr "нема локације"
+
+#. TRANSLATORS: This is shown in the month view as "Wk" as a title
+#. to indicate the week numbers. It should be a max of up to 3 characters.
+#: ../qml/MonthComponent.qml:293
+msgid "Wk"
+msgstr "Нд"
+
+#: ../qml/AllDayEventComponent.qml:89 ../qml/TimeLineBase.qml:50
+msgid "New event"
+msgstr "Нови догађај"
+
+#. TRANSLATORS: Please keep the translation of this string to a max of
+#. 5 characters as the week view where it is shown has limited space.
+#: ../qml/AllDayEventComponent.qml:148
+msgid "%1 event"
+msgid_plural "%1 events"
+msgstr[0] "%1 догађај"
+msgstr[1] "%1 догађаја"
+msgstr[2] "%1 догађаја"
+
+#. TRANSLATORS: the argument refers to the number of all day events
+#: ../qml/AllDayEventComponent.qml:152
+msgid "%1 all day event"
+msgid_plural "%1 all day events"
+msgstr[0] "%1 целодневни догађај"
+msgstr[1] "%1 целодневна догађаја"
+msgstr[2] "%1 целодневних догађаја"
+
+#. TRANSLATORS: this is a time formatting string,
+#. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
+#. It's used in the header of the month and week views
+#: ../qml/DayView.qml:126 ../qml/WeekView.qml:157 ../qml/MonthView.qml:78
+msgid "MMMM yyyy"
+msgstr "MMMM yyyy"
+
+#: ../qml/WeekView.qml:138 ../qml/MonthView.qml:73
+msgid "%1 %2"
+msgstr "%1 %2"
+
+#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
+msgid "MMM"
+msgstr "MMM"
+
+#: ../qml/OnlineAccountsHelper.qml:39
+msgid "Pick an account to create."
+msgstr "Одаберите налог да га креирате."
+
+#. TRANSLATORS: the first argument (%1) refers to a start time for an event,
+#. while the second one (%2) refers to the end time
+#: ../qml/EventBubble.qml:139
+msgid "%1 - %2"
+msgstr "од %1 до %2"
+
+#: ../qml/CalendarChoicePopup.qml:44 ../qml/EventActions.qml:54
+msgid "Calendars"
+msgstr "Календари"
+
+#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
+msgid "Back"
+msgstr "Назад"
+
+#. TRANSLATORS: Please translate this string  to 15 characters only.
+#. Currently ,there is no way we can increase width of action menu currently.
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
+msgid "Sync"
+msgstr "Синхронизуј"
+
+#: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
+msgid "Syncing"
+msgstr "Синхронизовање"
+
+#: ../qml/CalendarChoicePopup.qml:83
+msgid "Add online Calendar"
+msgstr "Додај мрежни календар"
+
+#: ../qml/CalendarChoicePopup.qml:184
+msgid "Unable to deselect"
+msgstr "Не могу да дештиклирам"
+
+#: ../qml/CalendarChoicePopup.qml:185
+msgid ""
+"In order to create new events you must have at least one writable calendar "
+"selected"
+msgstr ""
+"Како би могли да креирате нове догађаје, морате имати одабран барем један "
+"уписиви календар"
+
+#: ../qml/CalendarChoicePopup.qml:187 ../qml/RemindersPage.qml:80
+msgid "Ok"
+msgstr "У реду"
+
+#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
+msgid "Settings"
+msgstr "Подешавања"
+
+#: ../qml/SettingsPage.qml:70
+msgid "Show week numbers"
+msgstr "Прикажи бројеве недеља"
+
+#: ../qml/SettingsPage.qml:88
+msgid "Show lunar calendar"
+msgstr "Прикажи лунарни календар"
+
+#: ../qml/SettingsPage.qml:136
+msgid "Default reminder"
+msgstr "Подразумевани подсетник"
+
+#: ../qml/SettingsPage.qml:180
+msgid "Default calendar"
+msgstr "Подразумевани календар"
+
+#: ../qml/RemindersPage.qml:62
+msgid "Custom reminder"
+msgstr "Прилагођени подсетник"
+
+#. TRANSLATORS: this refers to how often a recurrent event repeats
+#. and it is shown as the header of the page to choose repetition
+#. and as the header of the list item that shows the repetition
+#. summary in the page that displays the event details
+#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
+msgid "Repeat"
+msgstr "Понови"
+
+#: ../qml/EventRepetition.qml:177
+msgid "Repeats On:"
+msgstr "Понавља се:"
+
+#: ../qml/EventRepetition.qml:223
+msgid "Recurring event ends"
+msgstr "Понављање догађаја престаје"
+
+#: ../qml/EventRepetition.qml:273
+msgid "Date"
+msgstr "Датум"
+
+#: ../qml/ContactChoicePopup.qml:37
+msgid "No contact"
+msgstr "Нема контакта"
+
+#: ../qml/ContactChoicePopup.qml:96
+msgid "Search contact"
+msgstr "Тражи контакт"
+
+#. TRANSLATORS: the argument refers to multiple recurrence of event with count .
+#. E.g. "Daily; 5 times."
+#: ../qml/EventUtils.qml:75
+msgid "%1; %2 time"
+msgid_plural "%1; %2 times"
+msgstr[0] "%1; %2 пут"
+msgstr[1] "%1; %2 пута"
+msgstr[2] "%1; %2 пута"
+
+#. TRANSLATORS: the argument refers to recurrence until user selected date.
+#. E.g. "Daily; until 12/12/2014."
+#: ../qml/EventUtils.qml:79
+msgid "%1; until %2"
+msgstr "%1; до %2"
+
+#. TRANSLATORS: the argument refers to several different days of the week.
+#. E.g. "Weekly on Mondays, Tuesdays"
+#: ../qml/EventUtils.qml:102
+msgid "Weekly on %1"
+msgstr "Недељно у %1"
+
+#: ../qml/calendar.qml:72
+msgid ""
+"Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
+"eventid. They will be managed by system. See the source for a full comment "
+"about them"
+msgstr ""
+"Програм за календар прима следећа четири аргумента: --starttime, --endtime, "
+"--newevent and --eventid. Њима ће управљати систем. Погледајте изворни код "
+"за њихов пун опис."
+
+#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
+msgid "Year"
+msgstr "Година"
+
+#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
+msgid "Month"
+msgstr "Месец"
+
+#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
+msgid "Week"
+msgstr "Недеља"
+
+#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
+msgid "Day"
+msgstr "Дан"
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:2
 msgid "A calendar for Ubuntu which syncs with online accounts."
