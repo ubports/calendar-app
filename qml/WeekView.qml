@@ -166,7 +166,7 @@ PageWithBottomEdge {
         id: weekViewPinch
 
         // PinchArea not working inside PathView but we don't want to overlap the PinchArea with the TimeLineTimeScale
-        anchors.leftMargin: units.gu(6) // this magic number will be refactored soon
+        anchors.leftMargin: leftColumnContentWithPadding.width
         targetX: weekViewPath.daysViewed
         isInvertedX: true
         minX: 1
@@ -185,8 +185,7 @@ PageWithBottomEdge {
                 fill: parent
                 topMargin: header.height
                 bottomMargin: weekViewPage.bottomEdgeHeight
-                // this magic number will be refactored soon
-                leftMargin: -units.gu(6)
+                leftMargin: -leftColumnContentWithPadding.width
             }
 
             onCurrentIndexChanged: {
