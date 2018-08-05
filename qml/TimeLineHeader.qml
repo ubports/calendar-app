@@ -44,7 +44,7 @@ Column {
 
         Column{
             id: labelColumn
-            width : units.gu(6)
+            width : leftColumnContentWithPadding.width
 
             Label{
                 id: weekNumLabel

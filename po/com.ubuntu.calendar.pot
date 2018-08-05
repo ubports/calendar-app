@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the com.ubuntu.calendar package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.ubuntu.calendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-09 15:20+0000\n"
+"POT-Creation-Date: 2018-07-14 20:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,6 +27,7 @@ msgid "Edit"
 msgstr ""
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
+#: ../qml/calendar.qml:705
 msgid "All Day"
 msgstr ""
 
@@ -86,8 +87,8 @@ msgstr ""
 
 #: ../qml/ColorPickerDialog.qml:55 ../qml/NewEvent.qml:387
 #: ../qml/DeleteConfirmationDialog.qml:60
-#: ../qml/EditEventConfirmationDialog.qml:53
-#: ../qml/OnlineAccountsHelper.qml:73 ../qml/RemindersPage.qml:72
+#: ../qml/EditEventConfirmationDialog.qml:53 ../qml/OnlineAccountsHelper.qml:73
+#: ../qml/RemindersPage.qml:72
 msgid "Cancel"
 msgstr ""
 
@@ -268,7 +269,7 @@ msgstr ""
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
 #. its repetition
-#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
+#: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:279
 msgid "Repeats"
 msgstr ""
 
@@ -310,7 +311,7 @@ msgstr ""
 msgid "Edit this"
 msgstr ""
 
-#: ../qml/AgendaView.qml:50 ../qml/calendar.qml:361 ../qml/calendar.qml:594
+#: ../qml/AgendaView.qml:50 ../qml/calendar.qml:365 ../qml/calendar.qml:598
 msgid "Agenda"
 msgstr ""
 
@@ -388,7 +389,7 @@ msgstr ""
 msgid "Calendars"
 msgstr ""
 
-#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:49
+#: ../qml/CalendarChoicePopup.qml:46 ../qml/SettingsPage.qml:51
 msgid "Back"
 msgstr ""
 
@@ -420,23 +421,27 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
-#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
+#: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:49
 msgid "Settings"
 msgstr ""
 
-#: ../qml/SettingsPage.qml:70
+#: ../qml/SettingsPage.qml:72
 msgid "Show week numbers"
 msgstr ""
 
-#: ../qml/SettingsPage.qml:88
+#: ../qml/SettingsPage.qml:90
 msgid "Show lunar calendar"
 msgstr ""
 
-#: ../qml/SettingsPage.qml:136
+#: ../qml/SettingsPage.qml:110
+msgid "Business hours"
+msgstr ""
+
+#: ../qml/SettingsPage.qml:211
 msgid "Default reminder"
 msgstr ""
 
-#: ../qml/SettingsPage.qml:180
+#: ../qml/SettingsPage.qml:255
 msgid "Default calendar"
 msgstr ""
 
@@ -448,19 +453,23 @@ msgstr ""
 #. and it is shown as the header of the page to choose repetition
 #. and as the header of the list item that shows the repetition
 #. summary in the page that displays the event details
-#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
+#: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:164
 msgid "Repeat"
 msgstr ""
 
-#: ../qml/EventRepetition.qml:177
+#: ../qml/EventRepetition.qml:184
 msgid "Repeats On:"
 msgstr ""
 
-#: ../qml/EventRepetition.qml:223
+#: ../qml/EventRepetition.qml:230
+msgid "Interval of recurrence"
+msgstr ""
+
+#: ../qml/EventRepetition.qml:255
 msgid "Recurring event ends"
 msgstr ""
 
-#: ../qml/EventRepetition.qml:273
+#: ../qml/EventRepetition.qml:305
 msgid "Date"
 msgstr ""
 
@@ -492,26 +501,26 @@ msgstr ""
 msgid "Weekly on %1"
 msgstr ""
 
-#: ../qml/calendar.qml:72
+#: ../qml/calendar.qml:74
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
 
-#: ../qml/calendar.qml:329 ../qml/calendar.qml:510
+#: ../qml/calendar.qml:333 ../qml/calendar.qml:514
 msgid "Year"
 msgstr ""
 
-#: ../qml/calendar.qml:337 ../qml/calendar.qml:531
+#: ../qml/calendar.qml:341 ../qml/calendar.qml:535
 msgid "Month"
 msgstr ""
 
-#: ../qml/calendar.qml:345 ../qml/calendar.qml:552
+#: ../qml/calendar.qml:349 ../qml/calendar.qml:556
 msgid "Week"
 msgstr ""
 
-#: ../qml/calendar.qml:353 ../qml/calendar.qml:573
+#: ../qml/calendar.qml:357 ../qml/calendar.qml:577
 msgid "Day"
 msgstr ""
 

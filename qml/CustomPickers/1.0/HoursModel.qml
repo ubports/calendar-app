@@ -21,6 +21,12 @@ PickerModelBase {
     property int from
     circular: count >= 24
 
+    function getHourLocalized(hour) {
+        var date = new Date(0,0,0,hour);
+        var localizedTime = Qt.formatTime(date, Qt.SystemLocaleShortDate);
+        return localizedTime.split(":")[0];
+    }
+
     function reset() {
         resetting = true;
 
@@ -28,7 +34,7 @@ PickerModelBase {
         from = minimum.getHours();
         var distance = (!Date.prototype.isValid.call(maximum) || (minimum.daysTo(maximum) > 1)) ? 24 : minimum.hoursTo(maximum);
         for (var i = 0; i < distance; i++) {
-            append({"hour": (from + i) % 24});
+            append({"hour": getHourLocalized((from + i) % 24)});
         }
 
         resetting = false;

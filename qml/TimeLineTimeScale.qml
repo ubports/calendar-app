@@ -27,8 +27,7 @@ Flickable{
     property real headerHeight
 
     height: parent.height
-    width: units.gu(6)
-
+    width: leftColumnContentWithPadding.width
     contentHeight: 24 * hourItemHeight
     contentWidth: width
 
@@ -113,11 +112,12 @@ Flickable{
 
                 Label {
                     id: timeLabel
-                    width: units.gu(5)
+                    width: localizedTimeLabelTemplate.width
                     anchors.top: parent.top
                     anchors.topMargin: units.gu(0.5)
+                    anchors.horizontalCenter: parent.horizontalCenter
                     horizontalAlignment: Text.AlignRight
-                    text: Qt.formatTime( new Date(0,0,0,index), "hh:mm")
+                    text: Qt.formatTime(new Date(0,0,0,index), Qt.SystemLocaleShortDate)
                     color: UbuntuColors.lightGrey
                     fontSize: "small"
 

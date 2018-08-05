@@ -690,6 +690,28 @@ MainView {
        }
     }
 
+    Item {
+        id: leftColumnContentWithPadding
+        width: Math.ceil(childrenRect.width/units.gu(1))*units.gu(1) + units.gu(1)
+
+        Label {
+            id: localizedTimeLabelTemplate
+            visible: false
+            fontSize: "small"
+            text: Qt.formatTime(new Date(0,0,0,12), Qt.SystemLocaleShortDate)
+        }
+
+        Repeater {
+            model: i18n.tr("All Day").split(" ")
+
+            Label {
+                text: modelData
+                visible: false
+                fontSize: "small"
+            }
+        }
+    }
+
     Component {
         id: weekViewComp
 
