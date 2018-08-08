@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-08-08 14:52+0000\n"
+"PO-Revision-Date: 2018-08-08 14:54+0000\n"
 "Last-Translator: ierihon <idekovets@mail.ru>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "calendar-app/be/>\n"
@@ -48,11 +48,11 @@ msgstr "Не наведваць"
 
 #: ../qml/EventDetails.qml:396
 msgid "Maybe"
-msgstr ""
+msgstr "Можа быць"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
-msgstr ""
+msgstr "Няма адказу"
 
 #: ../qml/EventDetails.qml:437 ../qml/NewEvent.qml:585
 msgid "Description"
@@ -60,7 +60,7 @@ msgstr "Апісанне"
 
 #: ../qml/EventDetails.qml:464 ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814
 msgid "Reminder"
-msgstr ""
+msgstr "Напамін"
 
 #: ../qml/YearView.qml:57 ../qml/DayView.qml:76 ../qml/WeekView.qml:60
 #: ../qml/MonthView.qml:50
@@ -69,7 +69,7 @@ msgstr "Сёння"
 
 #: ../qml/YearView.qml:79
 msgid "Year %1"
-msgstr ""
+msgstr "Год %1"
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
@@ -92,7 +92,7 @@ msgstr "Выбраць колер"
 #: ../qml/EditEventConfirmationDialog.qml:53 ../qml/OnlineAccountsHelper.qml:73
 #: ../qml/RemindersPage.qml:72
 msgid "Cancel"
-msgstr ""
+msgstr "Скасаваць"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
