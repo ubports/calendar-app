@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-08-08 14:54+0000\n"
+"PO-Revision-Date: 2018-08-08 15:15+0000\n"
 "Last-Translator: ierihon <idekovets@mail.ru>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "calendar-app/be/>\n"
@@ -96,8 +96,9 @@ msgstr "Скасаваць"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
+#, fuzzy
 msgid "W%1"
-msgstr ""
+msgstr "W%1"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
@@ -108,31 +109,35 @@ msgstr "Без напаміну"
 #. the event starts, not any time before
 #: ../qml/RemindersModel.qml:34 ../qml/RemindersModel.qml:103
 msgid "On Event"
-msgstr ""
+msgstr "Па падзеі"
 
 #: ../qml/RemindersModel.qml:43
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 тыдзень"
+msgstr[1] "%1 тыдняў"
+msgstr[2] "%1 тыдні"
 
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 дзень"
+msgstr[1] "%1 дзён"
+msgstr[2] "%1 дні"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 гадзіна"
+msgstr[1] "%1 гадзін"
+msgstr[2] "%1 гадзіны"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 хвіліна"
+msgstr[1] "%1 хвілін"
+msgstr[2] "%1 хвіліны"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
@@ -140,7 +145,7 @@ msgstr "5 хвілін"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 хвілін"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
@@ -188,17 +193,17 @@ msgstr "Штодзённа"
 
 #: ../qml/RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "У буднія дні"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:27
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "У %1, %2 ,%3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:29
 msgid "On %1 and %2"
-msgstr ""
+msgstr "У %1 and %2"
 
 #: ../qml/RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -242,15 +247,15 @@ msgstr "Добра"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
-msgstr ""
+msgstr "Ад"
 
 #: ../qml/NewEvent.qml:503
 msgid "To"
-msgstr ""
+msgstr "Да"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
-msgstr ""
+msgstr "Цэлы дзень"
 
 #: ../qml/NewEvent.qml:567
 msgid "Event Name"
@@ -258,11 +263,11 @@ msgstr "Назва падзеі"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr ""
+msgstr "Месца"
 
 #: ../qml/NewEvent.qml:681
 msgid "Guests"
-msgstr ""
+msgstr "Госці"
 
 #: ../qml/NewEvent.qml:691
 msgid "Add Guest"
@@ -273,11 +278,11 @@ msgstr "Дадаць госця"
 #. its repetition
 #: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
 msgid "Repeats"
-msgstr ""
+msgstr "Паўтараць"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
-msgstr ""
+msgstr "Выдаліць паўтаральную падзею"
 
 #: ../qml/DeleteConfirmationDialog.qml:32
 msgid "Delete Event"
@@ -286,11 +291,11 @@ msgstr "Выдаліць падзею"
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/DeleteConfirmationDialog.qml:36
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Выдаліць толькі гэту падзею \"%1\", або ўсе падзеі ў гэтай серыі?"
 
 #: ../qml/DeleteConfirmationDialog.qml:37
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "Вы ўпэўнены, што жадаеце выдаліць падзею \"%1\"?"
 
 #: ../qml/DeleteConfirmationDialog.qml:40
 msgid "Delete series"
@@ -303,7 +308,7 @@ msgstr "Выдаліць гэта"
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "Правіць толькі падзею \"%1\", або ўсе падзеі ў гэтай серыі?"
 
 #: ../qml/EditEventConfirmationDialog.qml:35
 msgid "Edit series"
