@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-08-08 15:15+0000\n"
+"PO-Revision-Date: 2018-08-12 06:20+0000\n"
 "Last-Translator: ierihon <idekovets@mail.ru>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "calendar-app/be/>\n"
@@ -243,7 +243,7 @@ msgstr "Памылка"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
-msgstr "Добра"
+msgstr "ОК"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
@@ -291,7 +291,7 @@ msgstr "Выдаліць падзею"
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/DeleteConfirmationDialog.qml:36
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr "Выдаліць толькі гэту падзею \"%1\", або ўсе падзеі ў гэтай серыі?"
+msgstr "Выдаліць толькі падзею \"%1\", або ўсе падзеі ў гэтай серыі?"
 
 #: ../qml/DeleteConfirmationDialog.qml:37
 msgid "Are you sure you want to delete the event \"%1\"?"
@@ -324,7 +324,7 @@ msgstr "Парадак дня"
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "У вас няма календароў"
 
 #: ../qml/AgendaView.qml:95
 msgid "No upcoming events"
@@ -332,59 +332,64 @@ msgstr "Падзей няма"
 
 #: ../qml/AgendaView.qml:107
 msgid "Enable calendars"
-msgstr ""
+msgstr "Уключыць календары"
 
 #: ../qml/AgendaView.qml:199
 msgid "no event name set"
-msgstr ""
+msgstr "няма імя падзеі"
 
 #: ../qml/AgendaView.qml:201
 msgid "no location"
-msgstr ""
+msgstr "няма месца"
 
 #. TRANSLATORS: This is shown in the month view as "Wk" as a title
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../qml/MonthComponent.qml:293
 msgid "Wk"
-msgstr ""
+msgstr "Тдз"
 
 #: ../qml/AllDayEventComponent.qml:89 ../qml/TimeLineBase.qml:50
 msgid "New event"
-msgstr ""
+msgstr "Новая падзея"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
 #: ../qml/AllDayEventComponent.qml:148
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 падзея"
+msgstr[1] "%1 падзей"
+msgstr[2] "%1 падзеі"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 падзея на ўвесь дзень"
+msgstr[1] "%1 падзей на ўвесь дзень"
+msgstr[2] "%1 падзеі на ўвесь дзень"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../qml/DayView.qml:126 ../qml/WeekView.qml:157 ../qml/MonthView.qml:78
+#, fuzzy
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "MMMM yyyy"
 
 #: ../qml/WeekView.qml:138 ../qml/MonthView.qml:73
+#, fuzzy
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
+#, fuzzy
 msgid "MMM"
-msgstr ""
+msgstr "MMM"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Абярыце уліковы запіс, каб стварыць."
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -408,25 +413,27 @@ msgstr "Сінхранізацыя"
 
 #: ../qml/CalendarChoicePopup.qml:58 ../qml/EventActions.qml:39
 msgid "Syncing"
-msgstr ""
+msgstr "Сінхранізацыя"
 
 #: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
-msgstr ""
+msgstr "Дадаць онлайн-каляндар"
 
 #: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
-msgstr ""
+msgstr "Немагчыма адмяніць"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
+"Каб стварыць новыя падзеі, вы павінны выбраць хаця б адзін запісваемы "
+"каляндар"
 
 #: ../qml/CalendarChoicePopup.qml:187 ../qml/RemindersPage.qml:80
 msgid "Ok"
-msgstr ""
+msgstr "ОК"
 
 #: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
 msgid "Settings"
@@ -434,23 +441,23 @@ msgstr "Налады"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
-msgstr ""
+msgstr "Паказваць нумары тыдняў"
 
 #: ../qml/SettingsPage.qml:88
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "Паказаць месяцовы каляндар"
 
 #: ../qml/SettingsPage.qml:136
 msgid "Default reminder"
-msgstr ""
+msgstr "Напамін па змаўчанні"
 
 #: ../qml/SettingsPage.qml:180
 msgid "Default calendar"
-msgstr ""
+msgstr "Каляндар па змаўчанні"
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Карыстальніцкі напамін"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
@@ -458,7 +465,7 @@ msgstr ""
 #. summary in the page that displays the event details
 #: ../qml/EventRepetition.qml:40 ../qml/EventRepetition.qml:157
 msgid "Repeat"
-msgstr ""
+msgstr "Паўтарэнне"
 
 #: ../qml/EventRepetition.qml:177
 msgid "Repeats On:"
@@ -470,11 +477,11 @@ msgstr "Канец паўтораў"
 
 #: ../qml/EventRepetition.qml:273
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: ../qml/ContactChoicePopup.qml:37
 msgid "No contact"
-msgstr ""
+msgstr "Няма кантакту"
 
 #: ../qml/ContactChoicePopup.qml:96
 msgid "Search contact"
@@ -485,20 +492,21 @@ msgstr "Пошук кантактаў"
 #: ../qml/EventUtils.qml:75
 msgid "%1; %2 time"
 msgid_plural "%1; %2 times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1; %2 раз"
+msgstr[1] "%1; %2 разоў"
+msgstr[2] "%1; %2 разы"
 
 #. TRANSLATORS: the argument refers to recurrence until user selected date.
 #. E.g. "Daily; until 12/12/2014."
 #: ../qml/EventUtils.qml:79
 msgid "%1; until %2"
-msgstr ""
+msgstr "%1; да %2"
 
 #. TRANSLATORS: the argument refers to several different days of the week.
 #. E.g. "Weekly on Mondays, Tuesdays"
 #: ../qml/EventUtils.qml:102
 msgid "Weekly on %1"
-msgstr ""
+msgstr "Штотыдзень у %1"
 
 #: ../qml/calendar.qml:72
 msgid ""
