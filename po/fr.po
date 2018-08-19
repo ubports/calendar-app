@@ -257,7 +257,7 @@ msgstr "Nom de l’événement"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr "Position"
+msgstr "Emplacement"
 
 #: ../qml/NewEvent.qml:681
 msgid "Guests"
