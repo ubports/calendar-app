@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-08-19 18:31+0000\n"
+"PO-Revision-Date: 2018-08-26 01:00+0000\n"
 "Last-Translator: Anne Onyme <anneonyme017@openmailbox.org>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports/"
 "calendar-app/fr/>\n"
@@ -257,7 +257,7 @@ msgstr "Nom de l’événement"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr "Position"
+msgstr "Emplacement"
 
 #: ../qml/NewEvent.qml:681
 msgid "Guests"
