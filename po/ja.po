@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2014-09-25 03:14+0000\n"
-"Last-Translator: Mitsuya Shibata <mty.shibata@gmail.com>\n"
-"Language-Team: Japanese <ja@li.org>\n"
+"PO-Revision-Date: 2018-08-26 01:00+0000\n"
+"Last-Translator: ArashiHino <hinoaras.hi82@gmail.com>\n"
+"Language-Team: Japanese <https://translate.ubports.com/projects/ubports/"
+"calendar-app/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.20\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
 msgid "Event Details"
@@ -256,7 +257,7 @@ msgstr "イベント名"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr "場所"
+msgstr "位置"
 
 #: ../qml/NewEvent.qml:681
 msgid "Guests"

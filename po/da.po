@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2017-10-01 17:38+0000\n"
-"Last-Translator: Henrik Holm <hbir@post10.tele.dk>\n"
+"PO-Revision-Date: 2018-09-01 19:36+0000\n"
+"Last-Translator: Øjvind Fritjof Arnfred <fritjofarnfred@protonmail.com>\n"
 "Language-Team: Danish <https://translate.ubports.com/projects/ubports/"
 "calendar-app/da/>\n"
 "Language: da\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 2.20\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 
 #: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
@@ -92,7 +92,7 @@ msgstr "Vælg farve"
 #: ../qml/EditEventConfirmationDialog.qml:53 ../qml/OnlineAccountsHelper.qml:73
 #: ../qml/RemindersPage.qml:72
 msgid "Cancel"
-msgstr "Annullér"
+msgstr "Annuller"
 
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
@@ -258,7 +258,7 @@ msgstr "Begivenhedsnavn"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr "Placering"
+msgstr "Sted"
 
 #: ../qml/NewEvent.qml:681
 msgid "Guests"
