@@ -32,7 +32,7 @@ Column {
 
     ListItem.Header {
         id: listHeader
-        __foregroundColor: Theme.palette.normal.baseText
+        __foregroundColor: Theme.palette.normal.backgroundText
     }
 
     Item {

@@ -528,7 +528,7 @@ Page {
                 }
 
                 text: i18n.tr("All day event")
-                __foregroundColor: Theme.palette.normal.baseText
+                __foregroundColor: theme.palette.normal.backgroundText
                 showDivider: false
                 control: CheckBox {
                     objectName: "allDayEventCheckbox"
@@ -543,7 +543,7 @@ Page {
                 }
             }
 
-            ListItems.ThinDivider {}
+            ListItems.ThinDivider {color:theme.palette.normal.backgroundTertiaryText}
 
             Column {
                 width: parent.width
@@ -551,7 +551,7 @@ Page {
 
                 ListItems.Header{
                     text: i18n.tr("Event Details")
-                    __foregroundColor: Theme.palette.normal.baseText
+                    __foregroundColor: Theme.palette.normal.backgroundText
                 }
 
                 TextField {
@@ -617,7 +617,7 @@ Page {
 
                 ListItems.Header {
                     text: i18n.tr("Calendar")
-                    __foregroundColor: Theme.palette.normal.baseText
+                    __foregroundColor: Theme.palette.normal.backgroundText
                 }
 
                 OptionSelector{
@@ -679,7 +679,7 @@ Page {
 
                 ListItems.Header {
                     text: i18n.tr("Guests")
-                    __foregroundColor: Theme.palette.normal.baseText
+                    __foregroundColor: theme.palette.normal.backgroundText
                 }
 
                 Button{
@@ -760,6 +760,7 @@ Page {
 
                 ListItems.ThinDivider {
                     visible: (event != undefined) && (event.itemType === Type.Event)
+                    color:theme.palette.normal.backgroundTertiaryText
                 }
 
             }
