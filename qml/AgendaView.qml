@@ -162,8 +162,8 @@ PageWithBottomEdge {
                 ListItem {
                     width: parent.width
                     height: visible ? units.gu(4) : 0
-                    color: "#F7F7F7"
-                    highlightColor: "#EDEDED"
+                    color: theme.palette.nromal.backgroundSecondaryText
+                    highlightColor: theme.palette.highlighted.background
                     visible: index === 0 ? true : prevEvent === undefined ? false : prevEvent.startDateTime.midnight() < event.startDateTime.midnight() ? true : false
 
                     ListItemLayout {
@@ -189,8 +189,8 @@ PageWithBottomEdge {
 
                     width: parent.width
                     height: detailsListitemlayout.height
-                    color: "white"
-                    highlightColor: "#F7F7F7"
+                    color: theme.palette.nromal.backgroundText
+                    highlightColor: theme.palette.highlighted.background
 
                     ListItemLayout {
                         id: detailsListitemlayout
@@ -199,7 +199,7 @@ PageWithBottomEdge {
                         title.text: event.displayLabel ? event.displayLabel : i18n.tr("no event name set")
                         subtitle.font.pixelSize: title.font.pixelSize
                         subtitle.text: event.location ? event.location : i18n.tr("no location")
-                        subtitle.color: event.location ? UbuntuColors.coolGrey : "#B3B3B3"
+                        subtitle.color: event.location ? UbuntuColors.coolGrey : theme.palette.disabled.backgroundText
                         subtitle.font.italic: event.location ? false : true
 
 

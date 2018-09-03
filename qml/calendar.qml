@@ -119,7 +119,7 @@ MainView {
     height: units.gu(80)
     focus: true
     Keys.forwardTo: [pageStack.currentPage]
-    backgroundColor: "#ffffff"
+    backgroundColor: theme.palette.normal.background
     anchorToKeyboard: false
 
     Connections {

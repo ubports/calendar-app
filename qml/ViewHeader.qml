@@ -38,7 +38,7 @@ Item{
         fontSize: leftLabelFontSize
         anchors.leftMargin: units.gu(1)
         anchors.left: parent.left
-        color:"black"
+        color: theme.palette.normal.backgroundText
         anchors.verticalCenter: parent.verticalCenter
     }
 
@@ -48,7 +48,7 @@ Item{
         fontSize: rightLabelFontSize
         anchors.right: parent.right
         anchors.rightMargin: units.gu(1)
-        color:"black"
+        color: theme.palette.normal.backgroundText
         anchors.verticalCenter: parent.verticalCenter
     }
 

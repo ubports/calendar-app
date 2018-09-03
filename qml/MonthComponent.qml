@@ -295,7 +295,7 @@ Item{
                     verticalAlignment: Text.AlignVCenter;
                     font.pixelSize: intern.dayFontSize;
                     font.bold: true
-                    color: "black"
+                    color: theme.palette.normal.backgroundText
                 }
             }
 
@@ -313,7 +313,7 @@ Item{
                     verticalAlignment: Text.AlignVCenter;
                     font.pixelSize: intern.dayFontSize + 1;
                     font.bold: true
-                    color: "black"
+                    color: theme.palette.normal.backgroundText
 
                     MouseArea {
                         anchors.fill: parent
@@ -347,7 +347,7 @@ Item{
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: intern.dayFontSize
             font.bold: true
-            color: "black"
+            color: theme.palette.normal.backgroundText
         }
     }
     Component {

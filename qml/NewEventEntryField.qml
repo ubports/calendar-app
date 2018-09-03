@@ -27,12 +27,12 @@ Label {
     height: units.gu(6)
 
     verticalAlignment: Text.AlignVCenter
-    color: highlighted ? "#2C001E" : Theme.palette.normal.baseText
+    color: highlighted ? theme.palette.highlighted.backgroundText : theme.palette.normal.backgroundText
 
     Rectangle {
         z: -1
         anchors.fill: parent
-        color: root.highlighted ? Theme.palette.selected.background
+        color: root.highlighted ? theme.palette.selected.background
                                 : "Transparent"
     }
 }

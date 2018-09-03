@@ -282,7 +282,7 @@ Page {
         Rectangle{
             id: titleContainer
 
-            color: collection.color
+            color:  { var c = collection.color; c.a = 0.5 ; return c; }
             width: parent.width
             height: mainEventDetails.height + units.gu(4)
 
@@ -294,7 +294,7 @@ Page {
 
                 Label {
                     text: event.displayLabel
-                    color: "White"
+                    color: theme.palette.highlighted.backgroundText
                     textSize: Label.Large
                     width: parent.width
                     wrapMode: Text.WordWrap
@@ -302,7 +302,7 @@ Page {
 
                 Label {
                     text: getDate(event)
-                    color: "White"
+                    color: theme.palette.highlighted.backgroundText
                     visible: text != ""
                     width: parent.width
                     wrapMode: Text.WordWrap
@@ -310,7 +310,7 @@ Page {
 
                 Label {
                     text: event.location
-                    color: "White"
+                    color: theme.palette.highlighted.backgroundText
                     visible: text != ""
                     width: parent.width
                     wrapMode: Text.WordWrap
@@ -319,7 +319,7 @@ Page {
                 Label {
                     id: recurrenceLabel
                     textSize: Label.Small
-                    color: "White"
+                    color: theme.palette.highlighted.backgroundText
                     visible: text != ""
                     width: parent.width
                     wrapMode: Text.WordWrap

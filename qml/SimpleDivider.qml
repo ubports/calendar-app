@@ -21,5 +21,5 @@ import QtQuick 2.4
 Rectangle{
      height: units.gu(0.1)
      width: parent.width
-     color: "#e5e2e2"
+     color: theme.palette.selected.raisedSecondaryText
 }
