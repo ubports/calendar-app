@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2015-01-15 07:01+0000\n"
-"Last-Translator: Yongmin Hong <revi@pobox.com>\n"
-"Language-Team: Korean <ko@li.org>\n"
+"PO-Revision-Date: 2018-09-26 15:52+0000\n"
+"Last-Translator: SongInseo <andra123438@gmail.com>\n"
+"Language-Team: Korean <https://translate.ubports.com/projects/ubports/"
+"calendar-app/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.20\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
 msgid "Event Details"
@@ -224,7 +225,7 @@ msgstr "새 이벤트"
 
 #: ../qml/NewEvent.qml:394 ../qml/DeleteConfirmationDialog.qml:51
 msgid "Delete"
-msgstr "삭제"
+msgstr "지우기"
 
 #: ../qml/NewEvent.qml:412
 msgid "Save"
