@@ -117,21 +117,23 @@ OrganizerModel {
     }
 
     function getDefaultCollection() {
-        var defaultCol = defaultCollection();
-        if (defaultCol.extendedMetaData("collection-selected") === true) {
-            return defaultCol
-        }
-
+        var defaultColId = defaultCollectionId();
         var cals = getCollections();
+
+        var firstSelectedCollection = null
         for(var i = 0 ; i < cals.length ; ++i) {
             var cal = cals[i]
-            var val = cal.extendedMetaData("collection-selected")
-            if (val === true) {
-                return cal;
+            if (cal.extendedMetaData("collection-selected") === true) {
+                if (!firstSelectedCollection) {
+                    firstSelectedCollection = cal
+                }
+                if (cal.id == defaultColId) {
+                    return cal
+                }
             }
         }
 
-        return cals[0]
+        return firstSelectedCollection ? firstSelectedCollection : cals[0]
     }
 
     function setDefaultCollection( collectionId ) {
