@@ -543,7 +543,7 @@ Page {
                 }
             }
 
-            ListItems.ThinDivider {color:theme.palette.normal.backgroundTertiaryText}
+            ListItems.ThinDivider {}
 
             Column {
                 width: parent.width
@@ -760,7 +760,6 @@ Page {
 
                 ListItems.ThinDivider {
                     visible: (event != undefined) && (event.itemType === Type.Event)
-                    color:theme.palette.normal.backgroundTertiaryText
                 }
 
             }

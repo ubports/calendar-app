@@ -282,7 +282,7 @@ Page {
         Rectangle{
             id: titleContainer
 
-            color:  { var c = collection.color; c.a = 0.5 ; return c; }
+            color: collection.color
             width: parent.width
             height: mainEventDetails.height + units.gu(4)
 
