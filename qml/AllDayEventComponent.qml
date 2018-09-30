@@ -209,7 +209,7 @@ Row {
                 delegate: Label{
                     text: modelData.displayLabel;
                     anchors.horizontalCenter: parent.horizontalCenter
-                    color: "black"
+                    color: theme.palette.normal.backgroundText
                     height: allDayEventsList.delegateHight
 
                     MouseArea{

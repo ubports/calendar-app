@@ -94,6 +94,7 @@ Item {
                 bottom: parent.bottom
                 right: parent.right
             }
+            color:theme.palette.normal.backgroundTertiaryText
         }
     }
 
@@ -142,6 +143,7 @@ Item {
                 bottom: parent.bottom
                 right: parent.right
             }
+            color:theme.palette.normal.backgroundTertiaryText
         }
     }
 }

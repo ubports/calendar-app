@@ -31,7 +31,7 @@ Column {
             Rectangle {
                 height: parent.height
                 width: parent.width
-                color: (index < settings.businessHourStart || index > settings.businessHourEnd) ? "#ffffff" : "#efefef"
+                color: (index < settings.businessHourStart || index > settings.businessHourEnd) ? theme.palette.normal.background : theme.palette.normal.foreground
                 z: -1000 // its the background
             }
 
