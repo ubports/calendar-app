@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-08-26 01:00+0000\n"
+"PO-Revision-Date: 2018-09-26 15:52+0000\n"
 "Last-Translator: ArashiHino <hinoaras.hi82@gmail.com>\n"
 "Language-Team: Japanese <https://translate.ubports.com/projects/ubports/"
 "calendar-app/ja/>\n"
@@ -420,11 +420,11 @@ msgstr ""
 
 #: ../qml/CalendarChoicePopup.qml:187 ../qml/RemindersPage.qml:80
 msgid "Ok"
-msgstr ""
+msgstr "完了"
 
 #: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
