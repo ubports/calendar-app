@@ -1,5 +1,4 @@
 {
   "template": "cmake",
-  "kill": "qmlscene",
-  "sdk": "ubuntu-sdk-16.04"
+  "kill": "qmlscene"
 }
