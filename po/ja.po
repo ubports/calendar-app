@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-09-26 15:52+0000\n"
-"Last-Translator: ArashiHino <hinoaras.hi82@gmail.com>\n"
+"PO-Revision-Date: 2018-10-17 11:39+0000\n"
+"Last-Translator: M.Sugahara <equaaqua@hotmail.com>\n"
 "Language-Team: Japanese <https://translate.ubports.com/projects/ubports/"
 "calendar-app/ja/>\n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.20\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 
 #: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
@@ -30,7 +30,7 @@ msgstr "編集"
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
-msgstr ""
+msgstr "全日"
 
 #: ../qml/EventDetails.qml:348 ../qml/NewEvent.qml:619
 #: com.ubuntu.calendar_calendar.desktop.in.h:1
@@ -39,19 +39,19 @@ msgstr "カレンダー"
 
 #: ../qml/EventDetails.qml:392
 msgid "Attending"
-msgstr ""
+msgstr "出席"
 
 #: ../qml/EventDetails.qml:394
 msgid "Not Attending"
-msgstr ""
+msgstr "欠席"
 
 #: ../qml/EventDetails.qml:396
 msgid "Maybe"
-msgstr ""
+msgstr "不明"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
-msgstr ""
+msgstr "返信なし"
 
 #: ../qml/EventDetails.qml:437 ../qml/NewEvent.qml:585
 msgid "Description"
@@ -59,7 +59,7 @@ msgstr "概要"
 
 #: ../qml/EventDetails.qml:464 ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814
 msgid "Reminder"
-msgstr ""
+msgstr "リマインダー"
 
 #: ../qml/YearView.qml:57 ../qml/DayView.qml:76 ../qml/WeekView.qml:60
 #: ../qml/MonthView.qml:50
@@ -68,7 +68,7 @@ msgstr "今日"
 
 #: ../qml/YearView.qml:79
 msgid "Year %1"
-msgstr ""
+msgstr "%1 年"
 
 #: ../qml/LimitLabelModel.qml:25
 msgid "Never"
@@ -96,7 +96,7 @@ msgstr "キャンセル"
 #. TRANSLATORS: W refers to Week, followed by the actual week number (%1)
 #: ../qml/TimeLineHeader.qml:54
 msgid "W%1"
-msgstr ""
+msgstr "第%1週"
 
 #: ../qml/RemindersModel.qml:31 ../qml/RemindersModel.qml:99
 msgid "No Reminder"
@@ -107,31 +107,27 @@ msgstr "通知なし"
 #. the event starts, not any time before
 #: ../qml/RemindersModel.qml:34 ../qml/RemindersModel.qml:103
 msgid "On Event"
-msgstr ""
+msgstr "0分"
 
 #: ../qml/RemindersModel.qml:43
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1週間"
 
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1日"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1時間"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1分"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
@@ -139,7 +135,7 @@ msgstr "5分"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10分"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
@@ -175,7 +171,7 @@ msgstr "2週間"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "カスタム"
 
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -187,17 +183,17 @@ msgstr "毎日"
 
 #: ../qml/RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr ""
+msgstr "平日"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:27
 msgid "On %1, %2 ,%3"
-msgstr ""
+msgstr "%1、%2、%3"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday and Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:29
 msgid "On %1 and %2"
-msgstr ""
+msgstr "%1、%2"
 
 #: ../qml/RecurrenceLabelDefines.qml:30
 msgid "Weekly"
@@ -249,7 +245,7 @@ msgstr "終了"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
-msgstr ""
+msgstr "終日のイベント"
 
 #: ../qml/NewEvent.qml:567
 msgid "Event Name"
@@ -257,7 +253,7 @@ msgstr "イベント名"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr "位置"
+msgstr "場所"
 
 #: ../qml/NewEvent.qml:681
 msgid "Guests"
@@ -272,7 +268,7 @@ msgstr "ゲストを追加"
 #. its repetition
 #: ../qml/NewEvent.qml:775 ../qml/EventRepetition.qml:247
 msgid "Repeats"
-msgstr ""
+msgstr "繰り返し"
 
 #: ../qml/DeleteConfirmationDialog.qml:31
 msgid "Delete Recurring Event"
@@ -285,15 +281,15 @@ msgstr "イベントを削除"
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/DeleteConfirmationDialog.qml:36
 msgid "Delete only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "このイベント「%1」だけを削除しますか、一連のイベントすべてを削除しますか？"
 
 #: ../qml/DeleteConfirmationDialog.qml:37
 msgid "Are you sure you want to delete the event \"%1\"?"
-msgstr ""
+msgstr "イベント「%1」を削除します。よろしいですか？"
 
 #: ../qml/DeleteConfirmationDialog.qml:40
 msgid "Delete series"
-msgstr "一連の予定を削除"
+msgstr "一連のイベントを削除"
 
 #: ../qml/DeleteConfirmationDialog.qml:51
 msgid "Delete this"
@@ -302,11 +298,11 @@ msgstr "このイベントを削除"
 #. TRANSLATORS: argument (%1) refers to an event name.
 #: ../qml/EditEventConfirmationDialog.qml:32
 msgid "Edit only this event \"%1\", or all events in the series?"
-msgstr ""
+msgstr "このイベント「%1」だけを編集しますか、一連のすべてのイベントを編集しますか？"
 
 #: ../qml/EditEventConfirmationDialog.qml:35
 msgid "Edit series"
-msgstr "一連の予定を編集"
+msgstr "一連のイベントを編集"
 
 #: ../qml/EditEventConfirmationDialog.qml:44
 msgid "Edit this"
@@ -318,7 +314,7 @@ msgstr "予定表"
 
 #: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
-msgstr ""
+msgstr "すべてのカレンダーが無効になっています"
 
 #: ../qml/AgendaView.qml:95
 msgid "No upcoming events"
@@ -326,47 +322,45 @@ msgstr "近日中のイベントはありません"
 
 #: ../qml/AgendaView.qml:107
 msgid "Enable calendars"
-msgstr ""
+msgstr "カレンダーを有効にする"
 
 #: ../qml/AgendaView.qml:199
 msgid "no event name set"
-msgstr ""
+msgstr "イベント名なし"
 
 #: ../qml/AgendaView.qml:201
 msgid "no location"
-msgstr ""
+msgstr "場所なし"
 
 #. TRANSLATORS: This is shown in the month view as "Wk" as a title
 #. to indicate the week numbers. It should be a max of up to 3 characters.
 #: ../qml/MonthComponent.qml:293
 msgid "Wk"
-msgstr ""
+msgstr "週"
 
 #: ../qml/AllDayEventComponent.qml:89 ../qml/TimeLineBase.qml:50
 msgid "New event"
-msgstr ""
+msgstr "新しいイベント"
 
 #. TRANSLATORS: Please keep the translation of this string to a max of
 #. 5 characters as the week view where it is shown has limited space.
 #: ../qml/AllDayEventComponent.qml:148
 msgid "%1 event"
 msgid_plural "%1 events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1件"
 
 #. TRANSLATORS: the argument refers to the number of all day events
 #: ../qml/AllDayEventComponent.qml:152
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1件の終日イベント"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../qml/DayView.qml:126 ../qml/WeekView.qml:157 ../qml/MonthView.qml:78
 msgid "MMMM yyyy"
-msgstr ""
+msgstr "yyyy'年'M'月'"
 
 #: ../qml/WeekView.qml:138 ../qml/MonthView.qml:73
 msgid "%1 %2"
@@ -374,11 +368,11 @@ msgstr ""
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
-msgstr ""
+msgstr "M'月'"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "アカウントを選択してください。"
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -406,17 +400,17 @@ msgstr "同期中"
 
 #: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
-msgstr ""
+msgstr "オンラインカレンダーを追加"
 
 #: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
-msgstr ""
+msgstr "選択解除できません"
 
 #: ../qml/CalendarChoicePopup.qml:185
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
-msgstr ""
+msgstr "読み取り専用のカレンダーが選択されています。イベントを書き込めません"
 
 #: ../qml/CalendarChoicePopup.qml:187 ../qml/RemindersPage.qml:80
 msgid "Ok"
@@ -428,19 +422,19 @@ msgstr "設定"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
-msgstr ""
+msgstr "週番号を表示"
 
 #: ../qml/SettingsPage.qml:88
 msgid "Show lunar calendar"
-msgstr ""
+msgstr "月齢を表示"
 
 #: ../qml/SettingsPage.qml:136
 msgid "Default reminder"
-msgstr ""
+msgstr "デフォルトリマインダー"
 
 #: ../qml/SettingsPage.qml:180
 msgid "Default calendar"
-msgstr ""
+msgstr "デフォルトカレンダー"
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
