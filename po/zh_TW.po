@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-03-02 06:35+0000\n"
-"Last-Translator: P.-H. Lin <cypressyew@gmail.com>\n"
+"PO-Revision-Date: 2018-10-28 00:00+0000\n"
+"Last-Translator: Louies <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/calendar-app/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -17,12 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 
 #: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
+#, fuzzy
 msgid "Event Details"
-msgstr "活動詳情"
+msgstr "活動行程"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
@@ -55,7 +56,7 @@ msgstr "無回應"
 
 #: ../qml/EventDetails.qml:437 ../qml/NewEvent.qml:585
 msgid "Description"
-msgstr "描述"
+msgstr "說明"
 
 #: ../qml/EventDetails.qml:464 ../qml/NewEvent.qml:797 ../qml/NewEvent.qml:814
 msgid "Reminder"
@@ -79,6 +80,7 @@ msgid "After X Occurrence"
 msgstr "發生 X 次之後"
 
 #: ../qml/LimitLabelModel.qml:27
+#, fuzzy
 msgid "After Date"
 msgstr "此日期之後"
 
@@ -187,6 +189,7 @@ msgstr "平日"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:27
+#, fuzzy
 msgid "On %1, %2 ,%3"
 msgstr "於%1、%2、%3"
 
@@ -241,7 +244,7 @@ msgstr "從"
 
 #: ../qml/NewEvent.qml:503
 msgid "To"
-msgstr "到"
+msgstr "給"
 
 #: ../qml/NewEvent.qml:530
 msgid "All day event"
@@ -253,7 +256,7 @@ msgstr "活動名稱"
 
 #: ../qml/NewEvent.qml:604
 msgid "Location"
-msgstr "地點"
+msgstr "位置"
 
 #: ../qml/NewEvent.qml:681
 msgid "Guests"
@@ -359,6 +362,7 @@ msgstr[0] "%1 件整日活動"
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
 #: ../qml/DayView.qml:126 ../qml/WeekView.qml:157 ../qml/MonthView.qml:78
+#, fuzzy
 msgid "MMMM yyyy"
 msgstr "yyyy年M月"
 
@@ -367,6 +371,7 @@ msgid "%1 %2"
 msgstr "%1 %2"
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
+#, fuzzy
 msgid "MMM"
 msgstr "MMM"
 
@@ -425,6 +430,7 @@ msgid "Show week numbers"
 msgstr "顯示週數"
 
 #: ../qml/SettingsPage.qml:88
+#, fuzzy
 msgid "Show lunar calendar"
 msgstr "顯示陰曆"
 
@@ -488,13 +494,14 @@ msgid "Weekly on %1"
 msgstr "每週%1"
 
 #: ../qml/calendar.qml:72
+#, fuzzy
 msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
 msgstr ""
-"行事曆程式接受四種參數：--starttime、--endtime、--newevent 與 --eventid。其皆"
-"由系統管理。請見原始碼以瞭解各項參數的完整註解。"
+"行事曆程式接受四種參數：--starttime、--endtime、--newevent 與 "
+"--eventid。其皆由系統管理。請見原始碼以瞭解各項參數的完整註解"
 
 #: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
@@ -517,7 +524,8 @@ msgid "A calendar for Ubuntu which syncs with online accounts."
 msgstr "Ubuntu 行事曆，可與線上帳號同步。"
 
 #: com.ubuntu.calendar_calendar.desktop.in.h:3
+#, fuzzy
 msgid "calendar;event;day;week;year;appointment;meeting;"
 msgstr ""
-"calendar;event;day;week;year;appointment;meeting;行事曆;事件;活動;日期;天;日;"
-"週;周;年;約會;會面;會議;行程;"
+"calendar;event;day;week;year;appointment;meeting;行事曆;事件;活動;日期;天;日;週;周;年;約會;會面"
+";會議;行程;"
