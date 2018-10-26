@@ -87,6 +87,9 @@ Page {
                     index = Recurrence.Yearly
                     break;
                 }
+                if (rule.interval !== undefined && rule.interval > 1) {
+		    recurrenceInterval.text = rule.interval
+                }
             }
         }
         recurrenceOption.selectedIndex = index;
