@@ -78,6 +78,18 @@ QtObject{
             // E.g. "Daily; until 12/12/2014."
             str = i18n.tr("%1; until %2").arg(recurrence).arg(rule.limit.toLocaleString(Qt.locale(), dateFormat))
         }
+	
+	if (rule.interval !== undefined) {
+            if (rule.interval == 2) {
+                str = str + i18n.tr(", every 2nd time");
+            }
+            if (rule.interval == 3) {
+                str = str + i18n.tr(", every 3rd time");
+            }
+            if (rule.interval > 3) {
+                str = str + i18n.tr(", every %1th time").arg(rule.interval);
+            }
+	}	
         return str;
     }
 
