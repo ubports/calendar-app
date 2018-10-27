@@ -43,7 +43,7 @@ Item {
 
     function createOrganizerEvent( startDate ) {
         var event = Qt.createQmlObject("import QtOrganizer 5.0; Event {}", Qt.application,"TimeLineBase.qml");
-        event.collectionId = (model.defaultCollection().collectionId);
+        event.collectionId = (model.getDefaultCollection().collectionId);
         var endDate = new Date( startDate.getTime() + 3600000 );
         event.startDateTime = startDate;
         event.endDateTime = endDate;
