@@ -117,7 +117,6 @@ OrganizerModel {
     }
 
     function getDefaultCollection() {
-        var defaultColId = defaultCollectionId();
         var cals = getCollections();
 
         var firstSelectedCollection = null
@@ -127,7 +126,7 @@ OrganizerModel {
                 if (!firstSelectedCollection) {
                     firstSelectedCollection = cal
                 }
-                if (cal.id == defaultColId) {
+            	if (cal.extendedMetaData("collection-default") === true) {
                     return cal
                 }
             }
