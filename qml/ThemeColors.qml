@@ -25,12 +25,12 @@ import QtQuick 2.0
 QtObject {
     property var themes : {
 		'Ubuntu.Components.Themes.Ambiance' : {
-			'lesuire_time' : "#ffffff",
-			'buisness_time' : "#efefef"
+			'leisure_time' : "#ffffff",
+			'business_time' : "#efefef"
 		},
 		'Ubuntu.Components.Themes.SuruDark' : {
-			'lesuire_time' : Theme.palette.normal.background,
-			'buisness_time' : Theme.palette.normal.foreground
+			'leisure_time' : Theme.palette.normal.background,
+			'business_time' : Theme.palette.normal.foreground
 		}
 	}
 
