@@ -127,7 +127,7 @@ OrganizerModel {
                 if (!firstSelectedCollection) {
                     firstSelectedCollection = cal
                 }
-                if (cal.id == defaultColId) {
+                if (cal.collectionId == defaultColId) {
                     return cal
                 }
             }
