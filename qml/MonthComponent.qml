@@ -45,7 +45,6 @@ Item{
 
     signal monthSelected(var date);
     signal dateSelected(var date);
-    signal pressAndHoldAt(var date, bool allDay);
 
     function updateEvents(events) {
         intern.eventsByDate = events
