@@ -430,7 +430,7 @@ msgid "Show week numbers"
 msgstr ""
 
 #: ../qml/SettingsPage.qml:90
-msgid "Show lunar calendar"
+msgid "Display Chinese calendar"
 msgstr ""
 
 #: ../qml/SettingsPage.qml:110
