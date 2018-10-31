@@ -87,7 +87,7 @@ Page {
             height: lunarCalLayout.height + divider.height
             ListItemLayout {
                 id: lunarCalLayout
-                title.text: i18n.tr("Display chinese calendar")
+                title.text: i18n.tr("Display Chinese calendar")
                 CheckBox {
                     id: lunarCalCheckBox
                     objectName: "lunarCalCheckbox"
