@@ -233,7 +233,7 @@ Item{
             var dayItem = getItemAt(mouse.x, mouse.y)
             var index = getIndexOfChild(monthGrid, dayItem);
             var selectedDate = intern.monthStart.addDays(index);
-            pageStack.push(Qt.resolvedUrl("NewEvent.qml"), {"date":selectedDate, "model":eventModel});
+            bottomEdgeCommit(selectedDate, true);
         }
         onClicked: {
             var dayItem = getItemAt(mouse.x, mouse.y)
