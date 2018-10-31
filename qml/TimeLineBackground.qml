@@ -31,7 +31,9 @@ Column {
             Rectangle {
                 height: parent.height
                 width: parent.width
-                color: (index < settings.businessHourStart || index > settings.businessHourEnd) ? theme.palette.normal.background : theme.palette.normal.foreground
+                color: (index < settings.businessHourStart || index > settings.businessHourEnd) ?
+					calenderThemeColors.getColorFor('leisure_time',theme.palette.normal.background ) :
+					calenderThemeColors.getColorFor('business_time',theme.palette.normal.foreground)
                 z: -1000 // its the background
             }
 
