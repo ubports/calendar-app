@@ -40,7 +40,7 @@ ListModel {
         if (interval >= 604800) {
             weeks = Math.floor(interval/604800)
             interval = interval % 604800
-            result = i18n.tr("%1 week", "%1 weeks", weeks).arg(weeks)
+            result = result + i18n.tr("%1 week", "%1 weeks", weeks).arg(weeks)
         }
 
         // Days
@@ -49,9 +49,9 @@ ListModel {
             days = Math.floor(interval/86400)
             interval = interval % 86400
             if (result.length > 0) {
-                result = " " + result
+                result = result + " "
             }
-            result = i18n.tr("%1 day", "%1 days", days).arg(days)
+            result = result + i18n.tr("%1 day", "%1 days", days).arg(days)
         }
 
         // Hours
@@ -60,18 +60,18 @@ ListModel {
             hours = Math.floor(interval/3600)
             interval = interval % 3600
             if (result.length > 0) {
-                result = " " + result
+                result = result + " "
             }
-            result = i18n.tr("%1 hour", "%1 hours", hours).arg(hours)
+            result = result + i18n.tr("%1 hour", "%1 hours", hours).arg(hours)
 
         }
 
         if (interval > 0) {
             var minutes = Math.floor(interval/60)
             if (result.length > 0) {
-                result = " " + result
+                result = result + " "
             }
-            result = i18n.tr("%1 minute", "%1 minutes", minutes).arg(minutes)
+            result = result + i18n.tr("%1 minute", "%1 minutes", minutes).arg(minutes)
         }
 
         return result
