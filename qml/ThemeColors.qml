@@ -23,20 +23,48 @@ import QtQuick 2.0
  */
 
 QtObject {
-    property var themes : {
-		'Ubuntu.Components.Themes.Ambiance' : {
+    // Specify Colors for specific themes
+    property var specificThemesColors : {}
+	
+	// Specify general/fallback colors for light / dark themes
+	property var generalizedColors : {
+		'light' : {
 			'leisure_time' : "#ffffff",
 			'business_time' : "#efefef"
 		},
-		'Ubuntu.Components.Themes.SuruDark' : {
+		'dark' : {
 			'leisure_time' : Theme.palette.normal.background,
 			'business_time' : Theme.palette.normal.foreground
 		}
-	}
+	};
 
+	/**
+     * Get color by name for the the current theme. 
+     * (if no specific color for the theme exists fallback to the generalized theme colors )
+     */
 	function getColorFor(colorName, fallBackColor) {
-		return themes[Theme.name] && themes[Theme.name][colorName] ?
-						themes[Theme.name][colorName] :
-						fallBackColor; // If the current theme is missing from the color scheme return the fallback color
+		return (specificThemesColors && specificThemesColors[Theme.name] && specificThemesColors[Theme.name][colorName]) ?
+						specificThemesColors[Theme.name][colorName] :
+						this.getColorFallbackColor(colorName, fallBackColor); // If the current theme is missing 
 	}
+	
+	/**
+     * Get color by name for the current theme lightness.
+     */
+	function getColorFallbackColor(colorName, fallBackColor) {
+        var generalizedTheme = this.getGenerailzedTheme();
+		return (generalizedColors && generalizedColors[generalizedTheme] && generalizedColors[generalizedTheme][colorName]) ?
+						generalizedColors[generalizedTheme][colorName] :
+						fallBackColor; // If the current theme lightness is missing from the color scheme return the fallback color
+	}
+	
+	/**
+     * determine if the current theme is light theme or a dark theme.
+     */
+	function getGenerailzedTheme() {
+        return (Theme.palette.normal.background.hslLightness > 0.5)  ?
+                "light"
+                :
+                "dark";
+    }
 }
