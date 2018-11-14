@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-11-14 08:28+0000\n"
+"PO-Revision-Date: 2018-11-18 08:41+0000\n"
 "Last-Translator: Louies <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/calendar-app/zh_Hant/>\n"
@@ -261,7 +261,7 @@ msgstr "邀請對象"
 
 #: ../qml/NewEvent.qml:691
 msgid "Add Guest"
-msgstr "新增邀請對象"
+msgstr "加入邀請對象"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the option selector to choose
@@ -353,7 +353,7 @@ msgstr[0] "%1 個事件"
 #: ../qml/AllDayEventComponent.qml:152
 msgid "%1 all day event"
 msgid_plural "%1 all day events"
-msgstr[0] "%1 件整日活動"
+msgstr[0] "%1 件整天活動"
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
@@ -400,7 +400,7 @@ msgstr "同步處理中"
 
 #: ../qml/CalendarChoicePopup.qml:83
 msgid "Add online Calendar"
-msgstr "新增線上行事曆"
+msgstr "加入線上行事曆"
 
 #: ../qml/CalendarChoicePopup.qml:184
 msgid "Unable to deselect"
@@ -410,7 +410,7 @@ msgstr "無法取消選取"
 msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
-msgstr "要建立新行程您必須至少選擇一個可寫入的日曆"
+msgstr "要建立新的行程您必須至少選擇一個可寫入的日曆"
 
 #: ../qml/CalendarChoicePopup.qml:187 ../qml/RemindersPage.qml:80
 msgid "Ok"
@@ -492,7 +492,7 @@ msgid ""
 "Calendar app accept four arguments: --starttime, --endtime, --newevent and --"
 "eventid. They will be managed by system. See the source for a full comment "
 "about them"
-msgstr "行事曆程式接受四種參數：--開始時間、--結束時間、--新事件 與 --事件名稱。其皆由系統管理。請見原始碼以瞭解各項參數的完整註解"
+msgstr "行事曆程式接受四種參數：--開始時間、--結束時間、--新的事件 與 --事件名稱。其皆由系統管理。請見原始碼以瞭解各項參數的完整註解"
 
 #: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
