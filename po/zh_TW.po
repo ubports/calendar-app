@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-11-05 14:11+0000\n"
+"PO-Revision-Date: 2018-11-14 08:28+0000\n"
 "Last-Translator: Louies <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/calendar-app/zh_Hant/>\n"
@@ -64,7 +64,7 @@ msgstr "提醒"
 #: ../qml/YearView.qml:57 ../qml/DayView.qml:76 ../qml/WeekView.qml:60
 #: ../qml/MonthView.qml:50
 msgid "Today"
-msgstr "今日"
+msgstr "今天"
 
 #: ../qml/YearView.qml:79
 msgid "Year %1"
@@ -155,11 +155,11 @@ msgstr "2 小時"
 
 #: ../qml/RemindersModel.qml:110
 msgid "1 day"
-msgstr "1 日"
+msgstr "1 天"
 
 #: ../qml/RemindersModel.qml:111
 msgid "2 days"
-msgstr "2 日"
+msgstr "2 天"
 
 #: ../qml/RemindersModel.qml:112
 msgid "1 week"
@@ -179,7 +179,7 @@ msgstr "一次"
 
 #: ../qml/RecurrenceLabelDefines.qml:24
 msgid "Daily"
-msgstr "每日"
+msgstr "每天"
 
 #: ../qml/RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
@@ -364,7 +364,7 @@ msgstr "yyyy MMMM"
 
 #: ../qml/WeekView.qml:138 ../qml/MonthView.qml:73
 msgid "%1 %2"
-msgstr "%1 %2"
+msgstr "%2年%1"
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"

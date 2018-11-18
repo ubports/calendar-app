@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-05-20 16:18+0000\n"
+"PO-Revision-Date: 2018-11-13 15:34+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
 "calendar-app/am/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 
 #: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
@@ -175,7 +175,7 @@ msgstr "በ 2 ሳምንቶች ውስጥ"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr "የተለመደ"
+msgstr "ማስተካከያ"
 
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
