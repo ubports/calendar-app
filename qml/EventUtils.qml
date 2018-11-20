@@ -78,19 +78,30 @@ QtObject{
             // E.g. "Daily; until 12/12/2014."
             str = i18n.tr("%1; until %2").arg(recurrence).arg(rule.limit.toLocaleString(Qt.locale(), dateFormat))
         }
-	
-	if (rule.interval !== undefined) {
-            if (rule.interval == 2) {
-                str = str + i18n.tr(", every 2nd time");
-            }
-            if (rule.interval == 3) {
-                str = str + i18n.tr(", every 3rd time");
-            }
-            if (rule.interval > 3) {
-                str = str + i18n.tr(", every %1th time").arg(rule.interval);
-            }
-	}	
+
+        if (rule.interval !== undefined && rule.interval > 1) {
+            str = str + getIntervalString(rule);
+        }
+
         return str;
+    }
+
+    function getIntervalString(rule) {
+        var index = rule.frequency;
+
+        if (index == RecurrenceRule.Daily) {
+            return i18n.tr("; every %1 days").arg(rule.interval);
+        } else if (index === RecurrenceRule.Weekly || index === Recurrence.OnDiffDays) {
+            return i18n.tr("; every %1 weeks").arg(rule.interval);
+        } else if (index === RecurrenceRule.Monthly) {
+            return i18n.tr("; every %1 months").arg(rule.interval);
+        } else if (index === RecurrenceRule.Yearly) {
+            return i18n.tr("; every %1 years").arg(rule.interval);
+        }
+
+        console.log("getIntervalString: unknown RecurrenceRule/recurrence frequency " + index);
+
+        return ""
     }
 
     function getRecurrenceString(rule) {

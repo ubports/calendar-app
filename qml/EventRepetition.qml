@@ -88,7 +88,7 @@ Page {
                     break;
                 }
                 if (rule.interval !== undefined && rule.interval > 1) {
-		    recurrenceInterval.text = rule.interval
+                    recurrenceInterval.text = rule.interval
                 }
             }
         }
