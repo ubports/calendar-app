@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-11-09 17:46+0000\n"
+"PO-Revision-Date: 2018-11-21 16:39+0000\n"
 "Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: Catalan <https://translate.ubports.com/projects/ubports/"
 "calendar-app/ca/>\n"
@@ -213,7 +213,7 @@ msgstr "Cada any"
 
 #: ../qml/NewEvent.qml:199
 msgid "End time can't be before start time"
-msgstr "L'hora de finalització no pot ser abans de l'hora d'inici"
+msgstr "L'hora de finalització no pot ser anterior a l'hora d'inici"
 
 #: ../qml/NewEvent.qml:382 ../qml/EditEventConfirmationDialog.qml:29
 msgid "Edit Event"
@@ -421,8 +421,7 @@ msgid ""
 "In order to create new events you must have at least one writable calendar "
 "selected"
 msgstr ""
-"Per crear nous esdeveniments heu de tenir seleccionat almenys un calendari "
-"escrivible"
+"Heu de seleccionar almenys un calendari editable per crear nous esdeveniments"
 
 #: ../qml/CalendarChoicePopup.qml:187 ../qml/RemindersPage.qml:80
 msgid "Ok"
