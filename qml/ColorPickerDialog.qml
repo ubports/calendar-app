@@ -33,7 +33,7 @@ Dialog {
             columns: 4
             spacing: units.gu(1)
             Repeater{
-                model: ["#2C001E","#333333","#DD4814","#DF382C","#EFB73E","#19B6EE","#38B44A","#001F5C"];
+                model: ["#77216f","#888888","#DD4814","#DF382C","#EFB73E","#19B6EE","#38B44A","#006a97"];
                 delegate:Rectangle{
                     objectName: "color" + index
                     width: parent.width/5
