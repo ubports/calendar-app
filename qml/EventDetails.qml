@@ -294,7 +294,7 @@ Page {
 
                 Label {
                     text: event.displayLabel
-                    color: theme.palette.highlighted.backgroundText
+                    color: theme.palette.normal.raised
                     textSize: Label.Large
                     width: parent.width
                     wrapMode: Text.WordWrap
@@ -302,7 +302,7 @@ Page {
 
                 Label {
                     text: getDate(event)
-                    color: theme.palette.highlighted.backgroundText
+                    color: theme.palette.normal.raised
                     visible: text != ""
                     width: parent.width
                     wrapMode: Text.WordWrap
@@ -310,7 +310,7 @@ Page {
 
                 Label {
                     text: event.location
-                    color: theme.palette.highlighted.backgroundText
+                    color: theme.palette.normal.raised
                     visible: text != ""
                     width: parent.width
                     wrapMode: Text.WordWrap
@@ -319,7 +319,7 @@ Page {
                 Label {
                     id: recurrenceLabel
                     textSize: Label.Small
-                    color: theme.palette.highlighted.backgroundText
+                    color: theme.palette.normal.raised
                     visible: text != ""
                     width: parent.width
                     wrapMode: Text.WordWrap
