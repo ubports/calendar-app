@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-11-30 12:28+0000\n"
+"PO-Revision-Date: 2018-12-02 00:01+0000\n"
 "Last-Translator: Dmytro Gladkyi <gladimdim@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.ubports.com/projects/ubports/"
 "calendar-app/uk/>\n"
@@ -27,7 +27,7 @@ msgstr "Докладніше про подію"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
-msgstr "Змінити"
+msgstr "Редагувати"
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
@@ -135,7 +135,7 @@ msgstr[2] "%1 годин"
 msgid "%1 minute"
 msgid_plural "%1 minutes"
 msgstr[0] "%1 хвилина"
-msgstr[1] "%1 хвилин"
+msgstr[1] "%1 хвилини"
 msgstr[2] "%1 хвилин"
 
 #: ../qml/RemindersModel.qml:104
@@ -425,7 +425,7 @@ msgid ""
 "selected"
 msgstr ""
 "Для створення нових записів подій вам слід позначити принаймні один "
-"придатний для запису календар."
+"придатний для запису календар"
 
 #: ../qml/CalendarChoicePopup.qml:187 ../qml/RemindersPage.qml:80
 msgid "Ok"
@@ -433,7 +433,7 @@ msgstr "Гаразд"
 
 #: ../qml/EventActions.qml:66 ../qml/SettingsPage.qml:47
 msgid "Settings"
-msgstr "Параметри"
+msgstr "Налаштування"
 
 #: ../qml/SettingsPage.qml:70
 msgid "Show week numbers"
@@ -512,7 +512,7 @@ msgid ""
 msgstr ""
 "Програмі календаря можна передати чотири параметри: --starttime, --endtime, "
 "--newevent та --eventid. Обробкою параметрів займатиметься система. З повним "
-"коментарем щодо параметрів можна ознайомитися у коді програми."
+"коментарем щодо параметрів можна ознайомитися у коді програми"
 
 #: ../qml/calendar.qml:329 ../qml/calendar.qml:510
 msgid "Year"
