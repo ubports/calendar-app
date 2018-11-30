@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2016-04-01 17:26+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
-"Language-Team: Ukrainian <uk@li.org>\n"
+"PO-Revision-Date: 2018-11-30 12:28+0000\n"
+"Last-Translator: Dmytro Gladkyi <gladimdim@gmail.com>\n"
+"Language-Team: Ukrainian <https://translate.ubports.com/projects/ubports/"
+"calendar-app/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
 msgid "Event Details"
@@ -47,7 +48,7 @@ msgstr "Не візьме участі"
 
 #: ../qml/EventDetails.qml:396
 msgid "Maybe"
-msgstr ""
+msgstr "Можливо"
 
 #: ../qml/EventDetails.qml:398
 msgid "No Reply"
@@ -112,26 +113,30 @@ msgstr "Уразі події"
 #: ../qml/RemindersModel.qml:43
 msgid "%1 week"
 msgid_plural "%1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 тиждень"
+msgstr[1] "%1  тижня"
+msgstr[2] "%1 тижнів"
 
 #: ../qml/RemindersModel.qml:54
 msgid "%1 day"
 msgid_plural "%1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 день"
+msgstr[1] "%1 дня"
+msgstr[2] "%1 днів"
 
 #: ../qml/RemindersModel.qml:65
 msgid "%1 hour"
 msgid_plural "%1 hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 година"
+msgstr[1] "%1 годин"
+msgstr[2] "%1 годин"
 
 #: ../qml/RemindersModel.qml:74
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 хвилина"
+msgstr[1] "%1 хвилин"
+msgstr[2] "%1 хвилин"
 
 #: ../qml/RemindersModel.qml:104
 msgid "5 minutes"
@@ -139,7 +144,7 @@ msgstr "5 хвилин"
 
 #: ../qml/RemindersModel.qml:105
 msgid "10 minutes"
-msgstr ""
+msgstr "10 хвилин"
 
 #: ../qml/RemindersModel.qml:106
 msgid "15 minutes"
@@ -175,7 +180,7 @@ msgstr "2 тижні"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Своє значення"
 
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
@@ -380,7 +385,7 @@ msgstr "MMM"
 
 #: ../qml/OnlineAccountsHelper.qml:39
 msgid "Pick an account to create."
-msgstr ""
+msgstr "Виберіть обліковий запис для створення."
 
 #. TRANSLATORS: the first argument (%1) refers to a start time for an event,
 #. while the second one (%2) refers to the end time
@@ -448,7 +453,7 @@ msgstr "Типовий календар"
 
 #: ../qml/RemindersPage.qml:62
 msgid "Custom reminder"
-msgstr ""
+msgstr "Своє нагадування"
 
 #. TRANSLATORS: this refers to how often a recurrent event repeats
 #. and it is shown as the header of the page to choose repetition
