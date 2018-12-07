@@ -44,7 +44,7 @@ Flickable{
         id: businessHourSetter
 
         property bool isStatic: true
-        property real staticTolerance: units.gu(0.1)
+        property real staticTolerance: units.gu(0.5)
         property var startPoint1;
         property var startPoint2;
 
