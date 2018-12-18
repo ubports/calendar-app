@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-12-02 00:00+0000\n"
+"PO-Revision-Date: 2018-12-23 00:00+0000\n"
 "Last-Translator: Max Libre <libremax@protonmail.com>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports/"
 "calendar-app/fr/>\n"
@@ -187,7 +187,7 @@ msgstr "Tous les jours"
 
 #: ../qml/RecurrenceLabelDefines.qml:25
 msgid "On Weekdays"
-msgstr "Les jours de la semaine"
+msgstr "Les jours en semaine"
 
 #. TRANSLATORS: The arguments refer to days of the week. E.g. "On Monday, Tuesday, Thursday"
 #: ../qml/RecurrenceLabelDefines.qml:27
