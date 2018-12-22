@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-08-12 06:20+0000\n"
+"PO-Revision-Date: 2018-12-26 10:47+0000\n"
 "Last-Translator: ierihon <idekovets@mail.ru>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "calendar-app/be/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2.20\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 
 #: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
@@ -27,7 +27,7 @@ msgstr "Дэталі падзеі"
 
 #: ../qml/EventDetails.qml:40
 msgid "Edit"
-msgstr "Змяніць"
+msgstr "Рэдагаваць"
 
 #: ../qml/EventDetails.qml:173 ../qml/TimeLineHeader.qml:66
 msgid "All Day"
@@ -181,7 +181,7 @@ msgstr "2 тыдні"
 
 #: ../qml/RemindersModel.qml:114
 msgid "Custom"
-msgstr ""
+msgstr "Карыстацкі"
 
 #: ../qml/RecurrenceLabelDefines.qml:23
 msgid "Once"
