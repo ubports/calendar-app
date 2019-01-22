@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-12-30 00:00+0000\n"
+"PO-Revision-Date: 2019-01-16 17:25+0000\n"
 "Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports/"
 "calendar-app/sc/>\n"
@@ -372,7 +372,7 @@ msgstr "MMMM yyyy"
 
 #: ../qml/WeekView.qml:138 ../qml/MonthView.qml:73
 msgid "%1 %2"
-msgstr "%1 %2"
+msgstr "%1 de su %2"
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
