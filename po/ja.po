@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: ubuntu-calendar-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-09 15:20+0000\n"
-"PO-Revision-Date: 2018-10-17 11:39+0000\n"
-"Last-Translator: M.Sugahara <equaaqua@hotmail.com>\n"
+"PO-Revision-Date: 2019-01-22 09:53+0000\n"
+"Last-Translator: louies0623 <louies0623@gmail.com>\n"
 "Language-Team: Japanese <https://translate.ubports.com/projects/ubports/"
 "calendar-app/ja/>\n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:14+0000\n"
 
 #: ../qml/EventDetails.qml:37 ../qml/NewEvent.qml:553
@@ -233,7 +233,7 @@ msgstr "エラー"
 
 #: ../qml/NewEvent.qml:425
 msgid "OK"
-msgstr "OK"
+msgstr "完了"
 
 #: ../qml/NewEvent.qml:487
 msgid "From"
@@ -364,7 +364,7 @@ msgstr "yyyy'年'M'月'"
 
 #: ../qml/WeekView.qml:138 ../qml/MonthView.qml:73
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
 msgid "MMM"
