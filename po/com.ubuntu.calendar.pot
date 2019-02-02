@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.ubuntu.calendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-02 18:11+0000\n"
+"POT-Creation-Date: 2019-02-02 19:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,7 +143,7 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
-#: ../qml/AgendaView.qml:50 ../qml/calendar.qml:333 ../qml/calendar.qml:593
+#: ../qml/AgendaView.qml:50 ../qml/calendar.qml:365 ../qml/calendar.qml:598
 msgid "Agenda"
 msgstr ""
 
@@ -266,23 +266,23 @@ msgid ""
 "about them"
 msgstr ""
 
-#: ../qml/calendar.qml:340 ../qml/calendar.qml:572
-msgid "Day"
-msgstr ""
-
-#: ../qml/calendar.qml:347 ../qml/calendar.qml:551
-msgid "Week"
-msgstr ""
-
-#: ../qml/calendar.qml:354 ../qml/calendar.qml:530
-msgid "Month"
-msgstr ""
-
-#: ../qml/calendar.qml:361 ../qml/calendar.qml:509
+#: ../qml/calendar.qml:333 ../qml/calendar.qml:514
 msgid "Year"
 msgstr ""
 
-#: ../qml/calendar.qml:700 ../qml/TimeLineHeader.qml:66
+#: ../qml/calendar.qml:341 ../qml/calendar.qml:535
+msgid "Month"
+msgstr ""
+
+#: ../qml/calendar.qml:349 ../qml/calendar.qml:556
+msgid "Week"
+msgstr ""
+
+#: ../qml/calendar.qml:357 ../qml/calendar.qml:577
+msgid "Day"
+msgstr ""
+
+#: ../qml/calendar.qml:705 ../qml/TimeLineHeader.qml:66
 #: ../qml/EventDetails.qml:173
 msgid "All Day"
 msgstr ""
@@ -422,7 +422,7 @@ msgstr ""
 msgid "Reminder"
 msgstr ""
 
-#: ../qml/WeekView.qml:138 ../qml/MonthView.qml:75
+#: ../qml/WeekView.qml:138 ../qml/MonthView.qml:76
 msgid "%1 %2"
 msgstr ""
 
@@ -433,7 +433,7 @@ msgstr ""
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../qml/WeekView.qml:157 ../qml/MonthView.qml:80 ../qml/DayView.qml:127
+#: ../qml/WeekView.qml:157 ../qml/MonthView.qml:81 ../qml/DayView.qml:127
 msgid "MMMM yyyy"
 msgstr ""
 
