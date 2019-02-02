@@ -48,7 +48,8 @@ PageWithBottomEdge {
     // Page Header
     header: PageHeader {
         title: i18n.tr("Agenda")
-        leadingActionBar.actions: tabs.tabsAction
+
+        extension: HeaderSections {}
         trailingActionBar.actions: [
             commonHeaderActions.settingsAction,
         ]

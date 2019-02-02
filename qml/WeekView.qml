@@ -121,7 +121,7 @@ PageWithBottomEdge {
     header: PageHeader {
         id: pageHeader
 
-        leadingActionBar.actions: tabs.tabsAction
+        extension: HeaderSections {}
         trailingActionBar.actions: [
             calendarTodayAction,
             commonHeaderActions.showCalendarAction,

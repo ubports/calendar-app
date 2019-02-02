@@ -104,7 +104,8 @@ PageWithBottomEdge {
         id: pageHeader
 
         flickable: null
-        leadingActionBar.actions: tabs.tabsAction
+
+        extension: HeaderSections {}
         trailingActionBar.actions: [
             calendarTodayAction,
             commonHeaderActions.showCalendarAction,

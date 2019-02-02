@@ -327,46 +327,41 @@ MainView {
 
             //WORKAROUND: The new header api does not work with tabs check bug: #1539759
             property list<Action> tabsAction: [
-               Action {
-                   objectName: "tab_yearTab"
-                   name: "tab_yearTab"
-                   text: i18n.tr("Year")
-                   iconName: !enabled ? "tick" : ""
-                   enabled: (tabs.selectedTabIndex != 0)
-                   onTriggered: tabs.selectedTabIndex = 0
-               },
-               Action {
-                   objectName: "tab_monthTab"
-                   name: "tab_monthTab"
-                   text: i18n.tr("Month")
-                   iconName: !enabled ? "tick" : ""
-                   enabled: (tabs.selectedTabIndex != 1)
-                   onTriggered: tabs.selectedTabIndex = 1
-               },
-               Action {
-                   objectName: "tab_weekTab"
-                   name: "tab_weekTab"
-                   text: i18n.tr("Week")
-                   iconName: !enabled ? "tick" : ""
-                   enabled: (tabs.selectedTabIndex != 2)
-                   onTriggered: tabs.selectedTabIndex = 2
-               },
-               Action {
-                   objectName: "tab_dayTab"
-                   name: "tab_dayTab"
-                   text: i18n.tr("Day")
-                   iconName: !enabled ? "tick" : ""
-                   enabled: (tabs.selectedTabIndex != 3)
-                   onTriggered: tabs.selectedTabIndex = 3
-               },
-               Action {
-                   objectName: "tab_agendaTab"
-                   name: "tab_agendaTab"
-                   text: i18n.tr("Agenda")
-                   iconName: !enabled ? "tick" : ""
-                   enabled: (tabs.selectedTabIndex != 4)
-                   onTriggered: tabs.selectedTabIndex = 4
-               }
+            Action {
+                objectName: "tab_agendaTab"
+                name: "tab_agendaTab"
+                text: i18n.tr("Agenda")
+                enabled: tabs.selectedTabIndex !== 4
+                onTriggered: tabs.selectedTabIndex = 4
+            },
+            Action {
+                objectName: "tab_dayTab"
+                name: "tab_dayTab"
+                text: i18n.tr("Day")
+                enabled: tabs.selectedTabIndex !== 3
+                onTriggered: tabs.selectedTabIndex = 3
+            },
+            Action {
+                objectName: "tab_weekTab"
+                name: "tab_weekTab"
+                text: i18n.tr("Week")
+                enabled: tabs.selectedTabIndex !== 2
+                onTriggered: tabs.selectedTabIndex = 2
+            },
+            Action {
+                objectName: "tab_monthTab"
+                name: "tab_monthTab"
+                text: i18n.tr("Month")
+                enabled: tabs.selectedTabIndex !== 1
+                onTriggered: tabs.selectedTabIndex = 1
+            },
+            Action {
+                objectName: "tab_yearTab"
+                name: "tab_yearTab"
+                text: i18n.tr("Year")
+                enabled: tabs.selectedTabIndex !== 0
+                onTriggered: tabs.selectedTabIndex = 0
+            }
             ]
 
             function newEvent() {
