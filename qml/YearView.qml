@@ -61,9 +61,9 @@ PageWithBottomEdge {
         }
     }
 
-    header: PageHeader {
+    header: DefaultHeader {
         id: pageHeader
-        leadingActionBar.actions: tabs.tabsAction
+
         trailingActionBar.actions: [
             calendarTodayAction,
             commonHeaderActions.showCalendarAction,

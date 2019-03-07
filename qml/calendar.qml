@@ -327,46 +327,46 @@ MainView {
 
             //WORKAROUND: The new header api does not work with tabs check bug: #1539759
             property list<Action> tabsAction: [
-               Action {
-                   objectName: "tab_yearTab"
-                   name: "tab_yearTab"
-                   text: i18n.tr("Year")
-                   iconName: !enabled ? "tick" : ""
-                   enabled: (tabs.selectedTabIndex != 0)
-                   onTriggered: tabs.selectedTabIndex = 0
-               },
-               Action {
-                   objectName: "tab_monthTab"
-                   name: "tab_monthTab"
-                   text: i18n.tr("Month")
-                   iconName: !enabled ? "tick" : ""
-                   enabled: (tabs.selectedTabIndex != 1)
-                   onTriggered: tabs.selectedTabIndex = 1
-               },
-               Action {
-                   objectName: "tab_weekTab"
-                   name: "tab_weekTab"
-                   text: i18n.tr("Week")
-                   iconName: !enabled ? "tick" : ""
-                   enabled: (tabs.selectedTabIndex != 2)
-                   onTriggered: tabs.selectedTabIndex = 2
-               },
-               Action {
-                   objectName: "tab_dayTab"
-                   name: "tab_dayTab"
-                   text: i18n.tr("Day")
-                   iconName: !enabled ? "tick" : ""
-                   enabled: (tabs.selectedTabIndex != 3)
-                   onTriggered: tabs.selectedTabIndex = 3
-               },
-               Action {
-                   objectName: "tab_agendaTab"
-                   name: "tab_agendaTab"
-                   text: i18n.tr("Agenda")
-                   iconName: !enabled ? "tick" : ""
-                   enabled: (tabs.selectedTabIndex != 4)
-                   onTriggered: tabs.selectedTabIndex = 4
-               }
+                Action {
+                    objectName: "tab_agendaTab"
+                    name: "tab_agendaTab"
+                    text: i18n.tr("Agenda")
+                    iconName: !enabled ? "tick" : ""
+                    enabled: (tabs.selectedTabIndex != agendaTab.index)
+                    onTriggered: tabs.selectedTabIndex = agendaTab.index
+                },
+                Action {
+                    objectName: "tab_dayTab"
+                    name: "tab_dayTab"
+                    text: i18n.tr("Day")
+                    iconName: !enabled ? "tick" : ""
+                    enabled: (tabs.selectedTabIndex != dayTab.index)
+                    onTriggered: tabs.selectedTabIndex = dayTab.index
+                },
+                Action {
+                    objectName: "tab_weekTab"
+                    name: "tab_weekTab"
+                    text: i18n.tr("Week")
+                    iconName: !enabled ? "tick" : ""
+                    enabled: (tabs.selectedTabIndex != weekTab.index)
+                    onTriggered: tabs.selectedTabIndex = weekTab.index
+                },
+                Action {
+                    objectName: "tab_monthTab"
+                    name: "tab_monthTab"
+                    text: i18n.tr("Month")
+                    iconName: !enabled ? "tick" : ""
+                    enabled: (tabs.selectedTabIndex != monthTab.index)
+                    onTriggered: tabs.selectedTabIndex = monthTab.index
+                },
+                Action {
+                    objectName: "tab_yearTab"
+                    name: "tab_yearTab"
+                    text: i18n.tr("Year")
+                    iconName: !enabled ? "tick" : ""
+                    enabled: (tabs.selectedTabIndex != yearTab.index)
+                    onTriggered: tabs.selectedTabIndex = yearTab.index
+                }
             ]
 
             function newEvent() {
@@ -508,19 +508,19 @@ MainView {
                 }
             }
 
-            Tab{
-                id: yearTab
-                objectName: "yearTab"
-                title: i18n.tr("Year")
+            Tab {
+                id: agendaTab
+                objectName: "agendaTab"
+                title: i18n.tr("Agenda")
 
                 page: Loader {
-                    id: yearViewLoader
+                    id: agendaTabLoader
 
                     asynchronous: true
-                    sourceComponent: yearViewComp
+                    sourceComponent: agendaViewComp
                     active: false
                     // Load page on demand and keep it on memory until the application is closed
-                    enabled: tabs.isReady && (tabs.selectedTab == yearTab)
+                    enabled: tabs.isReady && (tabs.selectedTab == agendaTab)
                     onEnabledChanged: {
                         if (enabled && !active) {
                             active = true
@@ -529,49 +529,7 @@ MainView {
                 }
             }
 
-            Tab{
-                id: monthTab
-                objectName: "monthTab"
-                title: i18n.tr("Month")
-
-                page: Loader {
-                    id: monthTabLoader
-
-                    asynchronous: true
-                    sourceComponent: monthViewComp
-                    active: false
-                    // Load page on demand and keep it on memory until the application is closed
-                    enabled: tabs.isReady && (tabs.selectedTab == monthTab)
-                    onEnabledChanged: {
-                        if (enabled && !active) {
-                            active = true
-                        }
-                    }
-                }
-            }
-
-            Tab{
-                id: weekTab
-                objectName: "weekTab"
-                title: i18n.tr("Week")
-
-                page: Loader {
-                    id: weekTabLoader
-
-                    asynchronous: true
-                    sourceComponent: weekViewComp
-                    active: false
-                    // Load page on demand and keep it on memory until the application is closed
-                    enabled: tabs.isReady && (tabs.selectedTab == weekTab)
-                    onEnabledChanged: {
-                        if (enabled && !active) {
-                            active = true
-                        }
-                    }
-                }
-            }
-
-            Tab{
+            Tab {
                 id: dayTab
                 objectName: "dayTab"
                 title: i18n.tr("Day")
@@ -593,18 +551,60 @@ MainView {
             }
 
             Tab {
-                id: agendaTab
-                objectName: "agendaTab"
-                title: i18n.tr("Agenda")
+                id: weekTab
+                objectName: "weekTab"
+                title: i18n.tr("Week")
 
                 page: Loader {
-                    id: agendaTabLoader
+                    id: weekTabLoader
 
                     asynchronous: true
-                    sourceComponent: agendaViewComp
+                    sourceComponent: weekViewComp
                     active: false
                     // Load page on demand and keep it on memory until the application is closed
-                    enabled: tabs.isReady && (tabs.selectedTab == agendaTab)
+                    enabled: tabs.isReady && (tabs.selectedTab == weekTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
+                    }
+                }
+            }
+
+            Tab {
+                id: monthTab
+                objectName: "monthTab"
+                title: i18n.tr("Month")
+
+                page: Loader {
+                    id: monthTabLoader
+
+                    asynchronous: true
+                    sourceComponent: monthViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == monthTab)
+                    onEnabledChanged: {
+                        if (enabled && !active) {
+                            active = true
+                        }
+                    }
+                }
+            }
+
+            Tab {
+                id: yearTab
+                objectName: "yearTab"
+                title: i18n.tr("Year")
+
+                page: Loader {
+                    id: yearViewLoader
+
+                    asynchronous: true
+                    sourceComponent: yearViewComp
+                    active: false
+                    // Load page on demand and keep it on memory until the application is closed
+                    enabled: tabs.isReady && (tabs.selectedTab == yearTab)
                     onEnabledChanged: {
                         if (enabled && !active) {
                             active = true
