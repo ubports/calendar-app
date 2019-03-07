@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.ubuntu.calendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-07 08:25+0000\n"
+"POT-Creation-Date: 2019-03-07 08:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,7 +143,7 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
-#: ../qml/AgendaView.qml:50 ../qml/calendar.qml:365 ../qml/calendar.qml:598
+#: ../qml/AgendaView.qml:50 ../qml/calendar.qml:333 ../qml/calendar.qml:514
 msgid "Agenda"
 msgstr ""
 
@@ -266,12 +266,8 @@ msgid ""
 "about them"
 msgstr ""
 
-#: ../qml/calendar.qml:333 ../qml/calendar.qml:514
-msgid "Year"
-msgstr ""
-
 #: ../qml/calendar.qml:341 ../qml/calendar.qml:535
-msgid "Month"
+msgid "Day"
 msgstr ""
 
 #: ../qml/calendar.qml:349 ../qml/calendar.qml:556
@@ -279,7 +275,11 @@ msgid "Week"
 msgstr ""
 
 #: ../qml/calendar.qml:357 ../qml/calendar.qml:577
-msgid "Day"
+msgid "Month"
+msgstr ""
+
+#: ../qml/calendar.qml:365 ../qml/calendar.qml:598
+msgid "Year"
 msgstr ""
 
 #: ../qml/calendar.qml:705 ../qml/TimeLineHeader.qml:66
