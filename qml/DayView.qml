@@ -100,12 +100,11 @@ PageWithBottomEdge {
         }
     }
 
-    header: PageHeader {
+    header: DefaultHeader {
         id: pageHeader
 
         flickable: null
 
-        extension: HeaderSections {}
         trailingActionBar.actions: [
             calendarTodayAction,
             commonHeaderActions.showCalendarAction,

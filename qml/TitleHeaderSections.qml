@@ -19,25 +19,25 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 
 Rectangle {
-    width: parent.width
-    height: scrollView.height
-    anchors.bottom: parent.bottom
-    ScrollView {
-        id: scrollView
-        width: sections.width
+    id: headerContentRect
+    anchors.fill: parent
+    color: "transparent"
+    visible: mainView.width > titleLabel.width*2 + sections.width
+    Label {
+        id: titleLabel
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        text: header.title
+        textSize: Label.Large
+    }
+    Rectangle {
+        anchors.left: titleLabel.right
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
         height: sections.height
-        anchors {
-            bottom: parent.bottom
-            horizontalCenter: parent.horizontalCenter
-        }
-        horizontalScrollbar.align: Qt.AlignLeading
-
-        contentItem: Sections {
+        Sections {
             id: sections
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-                bottom: parent.bottom
-            }
+            anchors.centerIn: parent
             selectedIndex: tabs.selectedTabIndex
             Connections {
                 target: tabs
@@ -46,7 +46,6 @@ Rectangle {
                 }
             }
             actions: tabs.tabsAction
-
         }
     }
 }

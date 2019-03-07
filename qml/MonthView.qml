@@ -53,10 +53,10 @@ PageWithBottomEdge {
         }
     }
 
-    header: PageHeader {
-        id: pageHeader
 
-        extension: HeaderSections {}
+
+    header: DefaultHeader {
+        id: pageHeader
 
         trailingActionBar.actions: [
         calendarTodayAction,

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.ubuntu.calendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-02 19:21+0000\n"
+"POT-Creation-Date: 2019-03-07 08:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,23 +147,23 @@ msgstr ""
 msgid "Agenda"
 msgstr ""
 
-#: ../qml/AgendaView.qml:96
+#: ../qml/AgendaView.qml:95
 msgid "You have no calendars enabled"
 msgstr ""
 
-#: ../qml/AgendaView.qml:96
+#: ../qml/AgendaView.qml:95
 msgid "No upcoming events"
 msgstr ""
 
-#: ../qml/AgendaView.qml:108
+#: ../qml/AgendaView.qml:107
 msgid "Enable calendars"
 msgstr ""
 
-#: ../qml/AgendaView.qml:200
+#: ../qml/AgendaView.qml:199
 msgid "no event name set"
 msgstr ""
 
-#: ../qml/AgendaView.qml:202
+#: ../qml/AgendaView.qml:201
 msgid "no location"
 msgstr ""
 
@@ -357,7 +357,7 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: ../qml/YearView.qml:81
+#: ../qml/YearView.qml:79
 msgid "Year %1"
 msgstr ""
 
@@ -422,18 +422,18 @@ msgstr ""
 msgid "Reminder"
 msgstr ""
 
-#: ../qml/WeekView.qml:138 ../qml/MonthView.qml:76
+#: ../qml/WeekView.qml:137 ../qml/MonthView.qml:76
 msgid "%1 %2"
 msgstr ""
 
-#: ../qml/WeekView.qml:145 ../qml/WeekView.qml:146
+#: ../qml/WeekView.qml:144 ../qml/WeekView.qml:145
 msgid "MMM"
 msgstr ""
 
 #. TRANSLATORS: this is a time formatting string,
 #. see http://qt-project.org/doc/qt-5/qml-qtqml-date.html#details for valid expressions.
 #. It's used in the header of the month and week views
-#: ../qml/WeekView.qml:157 ../qml/MonthView.qml:81 ../qml/DayView.qml:127
+#: ../qml/WeekView.qml:156 ../qml/MonthView.qml:81 ../qml/DayView.qml:126
 msgid "MMMM yyyy"
 msgstr ""
 

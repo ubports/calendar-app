@@ -46,10 +46,9 @@ PageWithBottomEdge {
     createEventAt: anchorDate
 
     // Page Header
-    header: PageHeader {
+    header: DefaultHeader {
         title: i18n.tr("Agenda")
 
-        extension: HeaderSections {}
         trailingActionBar.actions: [
             commonHeaderActions.settingsAction,
         ]
